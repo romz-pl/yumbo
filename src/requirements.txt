@@ -1,5 +1,6 @@
 amplpy==0.14.0
 matplotlib==3.10.0
 numpy==2.2.1
+openpyxl
 pandas==2.2.3
 streamlit==1.41.1
