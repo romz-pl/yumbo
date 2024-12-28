@@ -1,4 +1,4 @@
-# :red[Yumbo.] Scheduling, Planning and Resource Allocation
+# Yumbo. Scheduling, Planning and Resource Allocation
 
 ## Zbigniew Romanowski romz@wp.pl; Paweł Koczyk pk@koczyk.pl
 
@@ -49,8 +49,14 @@ and the data is processed using the [Pandas](https://pandas.pydata.org/) and [Nu
 
 - [AMPL](https://ampl.com/) a mathematical programming language; 
 - [HiGHS](https://highs.dev/) a high performance software for linear optimization; 
+- [SCIP](https://www.scipopt.org/) one of the fastest non-commercial solvers for mixed integer programming and mixed integer nonlinear programming;
 - [Streamlit](https://streamlit.io/) a faster way to build and share data apps; 
 - [Python](https://www.python.org/) a programming language that lets you work quickly; 
 - [Pandas](https://pandas.pydata.org/) a fast, powerful, flexible and easy to use open source data analysis and manipulation tool; 
 - [Matplotlib](https://matplotlib.org/) a comprehensive library for creating static, animated, and interactive visualizations in Python; 
 - [NumPy](https://numpy.org/) the fundamental package for scientific computing with Python;
+
+
+### Source code
+
+The programme is implemented in Python. The source code is available in the GitHub repository [Yumbo](https://github.com/romz-pl/yambo/).
