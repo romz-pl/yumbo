@@ -301,6 +301,9 @@ def set_ampl_license():
     if uuid is not None:
         modules.activate(uuid)  # activate your license
 
+import streamlit as st
+
+
 def solve(name, today, data):
     file = data_file(name, today, data)
 
@@ -315,6 +318,8 @@ def solve(name, today, data):
     if solver == "scip":
         ampl.option["scip_options"] = "tech:outlev-native=5"
 
+    st.code("./res/ampl_mathematical_model.mod.py")
+    st.code(file)
     ampl.read("./res/ampl_mathematical_model.mod.py")
     ampl.read_data(file)
     ampl.solve()
