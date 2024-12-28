@@ -1,2 +1,1 @@
-# yambo
-Scheduling, Planning and Resource Allocation
+# :red[Yumbo.] Scheduling, Planning and Resource Allocation
