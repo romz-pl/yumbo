@@ -303,8 +303,6 @@ def set_ampl_license():
         raise Exception("Cannot find AMPLKEY_UUID")
     modules.activate(uuid)
 
-import streamlit as st
-from pathlib import Path
 
 def solve(name, today, data):
     file = data_file(name, today, data)
