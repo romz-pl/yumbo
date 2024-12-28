@@ -317,8 +317,8 @@ def solve(name, today, data):
 
     ampl.read("./res/ampl_mathematical_model.mod.py")
     ampl.read_data(file)
-    # ampl.solve()
-    data["solver output"] = ampl.get_output("solve;")
+    ampl.solve()
+    # data["solver output"] = ampl.get_output("solve;")
     data["solver timestamp"] = "{d}".format(d=datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p"))
     if ampl.solve_result != "solved":
         raise Exception(f"Failed to solve (solve_result: {ampl.solve_result})")
