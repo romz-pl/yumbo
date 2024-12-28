@@ -296,9 +296,15 @@ def save(ampl, data):
     save_day_no(ampl, data)
 
 
+def set_ampl_license():
+    uuid = os.environ.get("AMPLKEY_UUID")  # Use a free https://ampl.com/ce license
+    if uuid is not None:
+        modules.activate(uuid)  # activate your license
+
 def solve(name, today, data):
     file = data_file(name, today, data)
 
+    set_ampl_license()
     ampl = AMPL()
     solver = data["misc"].loc[0, "Solver"]
     ampl.set_option("solver", solver)
