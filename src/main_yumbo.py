@@ -159,7 +159,7 @@ def show_tasks_per_day(expert_name):
         schedule = global_data[f"schedule {expert_name}"]
         invper_bounds = global_data["invoicing periods bounds"]
         bounds = invper_bounds[ invper_bounds["Expert"] == expert_name ]
-        romz_plot_invoicing_periods_histogram.plot(invper, schedule, bounds)
+        romz_plot_invoicing_periods_histogram.plot(invper, schedule, bounds, get_dpi())
     else:
         schedule = global_data[f"schedule {expert_name}"]
         romz_plot_tasks_per_day.plot(schedule, get_tstart(), get_tend(), get_dpi())

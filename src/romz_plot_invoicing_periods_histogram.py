@@ -4,7 +4,7 @@ from matplotlib.figure import Figure
 import matplotlib.ticker as tck
 import pandas as pd
 
-def plot(invper, schedule, bounds):
+def plot(invper, schedule, bounds, dpi):
     if bounds.empty:
         st.write(":green[No limits have been set for the invoicing periods.]")
         return
@@ -33,6 +33,6 @@ def plot(invper, schedule, bounds):
 
     fig.tight_layout()
     buf = io.BytesIO()
-    fig.savefig(buf, format='png', dpi=150, pil_kwargs={'compress_level': 1})
+    fig.savefig(buf, format='png', dpi=dpi, pil_kwargs={'compress_level': 1})
     st.image(buf)
     buf.close()
