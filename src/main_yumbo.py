@@ -110,6 +110,7 @@ def load_excel_file():
     uploaded_file = st.file_uploader("Excel file required in format 'xlsx'")
     if uploaded_file == None:
         st.subheader(":red[Select Excel data file for scheduling investigation!]")
+    st.caption("See the [Yumbo](https://github.com/romz-pl/yambo/tree/main/ampl-data-input-excel) GitHub repository for sample Excel input files.")
     return uploaded_file
 
 
