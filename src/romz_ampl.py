@@ -320,25 +320,9 @@ def solve(name, today, data):
     if solver == "scip":
         ampl.option["scip_options"] = "tech:outlev-native=5"
 
-    fff = open("./res/ampl_mathematical_model.mod.py", "r")
-    content = fff.read()
-    st.code(content)
-    fff.close()
-
-    fff = open(file, "r")
-    content = fff.read()
-    st.code(content)
-    fff.close()
-
-    st.write("aa={d}".format(d=__file__))
 
     dirname1 = os.path.dirname(__file__)
-    st.write("bb={d}".format(d=dirname1))
-
     dirname2 = os.path.dirname(dirname1)
-    st.write("cc={d}".format(d=dirname2))
-
-
     ampl.cd(dirname2)
 
     ampl.read("./res/ampl_mathematical_model.mod.py")
