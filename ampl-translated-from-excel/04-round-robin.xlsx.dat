@@ -1,0 +1,188 @@
+param HOURS_PER_DAY := 8;
+
+set EXPERTN :=
+'Alojzy'
+'Eugeniusz'
+'Ignacy'
+'Pafnucy'
+'Romuald'
+;
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'p1' 1 108 400
+'p5' 1 77 200
+'p6' 1 108 200
+'p13' 1 77 200
+'p14' 1 108 200
+'p15' 1 138 200
+'p20' 1 77 200
+'p21' 1 108 200
+'p22' 1 138 200
+'p23' 1 169 200
+'p30' 1 77 200
+'p31' 1 108 200
+'p32' 1 138 200
+'p33' 1 169 200
+'p34' 1 199 200
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'25.Jan' 1 31
+'25.Feb' 32 60
+'25.Mar' 61 91
+'25.Apr' 92 120
+'25.May' 121 154
+;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+;
+
+param OFFDAY_NO := 57;
+
+param OFFDAY :=
+1 6
+2 7
+3 10
+4 13
+5 14
+6 20
+7 21
+8 27
+9 28
+10 34
+11 35
+12 41
+13 42
+14 48
+15 49
+16 55
+17 56
+18 62
+19 63
+20 69
+21 70
+22 76
+23 77
+24 83
+25 84
+26 90
+27 91
+28 97
+29 98
+30 104
+31 105
+32 111
+33 112
+34 118
+35 119
+36 125
+37 126
+38 132
+39 133
+40 139
+41 140
+42 146
+43 147
+44 153
+45 154
+46 160
+47 161
+48 167
+49 168
+50 174
+51 175
+52 181
+53 182
+54 188
+55 189
+56 195
+57 196
+;
+
+param XBDAY_NO := 36;
+
+param XBDAY:
+1   2   3   4   5 :=
+1 'Eugeniusz' 'p5' 1 8 8
+2 'Eugeniusz' 'p6' 2 8 8
+3 'Eugeniusz' 'p5' 3 8 8
+4 'Eugeniusz' 'p6' 4 8 8
+5 'Eugeniusz' 'p5' 5 8 8
+6 'Eugeniusz' 'p6' 8 8 8
+7 'Eugeniusz' 'p5' 9 8 8
+8 'Eugeniusz' 'p6' 11 8 8
+9 'Eugeniusz' 'p5' 12 8 8
+10 'Ignacy' 'p13' 1 8 8
+11 'Ignacy' 'p14' 2 8 8
+12 'Ignacy' 'p15' 3 8 8
+13 'Ignacy' 'p13' 4 8 8
+14 'Ignacy' 'p14' 5 8 8
+15 'Ignacy' 'p15' 8 8 8
+16 'Ignacy' 'p13' 9 8 8
+17 'Ignacy' 'p14' 11 8 8
+18 'Ignacy' 'p15' 12 8 8
+19 'Pafnucy' 'p20' 1 8 8
+20 'Pafnucy' 'p21' 2 8 8
+21 'Pafnucy' 'p22' 3 8 8
+22 'Pafnucy' 'p23' 4 8 8
+23 'Pafnucy' 'p20' 5 8 8
+24 'Pafnucy' 'p21' 8 8 8
+25 'Pafnucy' 'p22' 9 8 8
+26 'Pafnucy' 'p23' 11 8 8
+27 'Pafnucy' 'p20' 12 8 8
+28 'Romuald' 'p30' 1 8 8
+29 'Romuald' 'p31' 2 8 8
+30 'Romuald' 'p32' 3 8 8
+31 'Romuald' 'p33' 4 8 8
+32 'Romuald' 'p34' 5 8 8
+33 'Romuald' 'p30' 8 8 8
+34 'Romuald' 'p31' 9 8 8
+35 'Romuald' 'p32' 11 8 8
+36 'Romuald' 'p33' 12 8 8
+;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 0;
+
+param UBDAY:
+1   2   3   4 :=
+;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'Alojzy' 'p1'
+'Eugeniusz' 'p5'
+'Eugeniusz' 'p6'
+'Ignacy' 'p13'
+'Ignacy' 'p14'
+'Ignacy' 'p15'
+'Pafnucy' 'p20'
+'Pafnucy' 'p21'
+'Pafnucy' 'p22'
+'Pafnucy' 'p23'
+'Romuald' 'p30'
+'Romuald' 'p31'
+'Romuald' 'p32'
+'Romuald' 'p33'
+'Romuald' 'p34'
+;
+

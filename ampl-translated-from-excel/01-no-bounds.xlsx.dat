@@ -1,0 +1,152 @@
+param HOURS_PER_DAY := 8;
+
+set EXPERTN :=
+'Alojzy'
+'Eugeniusz'
+'Ignacy'
+'Pafnucy'
+'Romuald'
+;
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'p1' 1 108 400
+'p5' 1 77 200
+'p6' 1 108 200
+'p13' 1 77 200
+'p14' 1 108 200
+'p15' 1 138 200
+'p20' 1 77 200
+'p21' 1 108 200
+'p22' 1 138 200
+'p23' 1 169 200
+'p30' 1 77 200
+'p31' 1 108 200
+'p32' 1 138 200
+'p33' 1 169 200
+'p34' 1 199 200
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'25.Jan' 1 31
+'25.Feb' 32 60
+'25.Mar' 61 91
+'25.Apr' 92 120
+'25.May' 121 154
+;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+;
+
+param OFFDAY_NO := 57;
+
+param OFFDAY :=
+1 6
+2 7
+3 10
+4 13
+5 14
+6 20
+7 21
+8 27
+9 28
+10 34
+11 35
+12 41
+13 42
+14 48
+15 49
+16 55
+17 56
+18 62
+19 63
+20 69
+21 70
+22 76
+23 77
+24 83
+25 84
+26 90
+27 91
+28 97
+29 98
+30 104
+31 105
+32 111
+33 112
+34 118
+35 119
+36 125
+37 126
+38 132
+39 133
+40 139
+41 140
+42 146
+43 147
+44 153
+45 154
+46 160
+47 161
+48 167
+49 168
+50 174
+51 175
+52 181
+53 182
+54 188
+55 189
+56 195
+57 196
+;
+
+param XBDAY_NO := 0;
+
+param XBDAY:
+1   2   3   4   5 :=
+;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 0;
+
+param UBDAY:
+1   2   3   4 :=
+;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'Alojzy' 'p1'
+'Eugeniusz' 'p5'
+'Eugeniusz' 'p6'
+'Ignacy' 'p13'
+'Ignacy' 'p14'
+'Ignacy' 'p15'
+'Pafnucy' 'p20'
+'Pafnucy' 'p21'
+'Pafnucy' 'p22'
+'Pafnucy' 'p23'
+'Romuald' 'p30'
+'Romuald' 'p31'
+'Romuald' 'p32'
+'Romuald' 'p33'
+'Romuald' 'p34'
+;
+
