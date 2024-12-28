@@ -329,12 +329,15 @@ def solve(name, today, data):
     fff.close()
 
     st.write("aa={d}".format(d=__file__))
-    st.write("bb={d}".format(d=os.path.dirname(__file__)))
-    path = Path(__file__)
-    st.write("cc={d}".format(d=path.parent.absolute()))
+
+    dirname1 = os.path.dirname(__file__)
+    st.write("bb={d}".format(d=dirname1))
+
+    dirname2 = os.path.dirname(dirname1)
+    st.write("cc={d}".format(d=dirname2))
 
 
-    ampl.cd(os.path.dirname(__file__))
+    ampl.cd(dirname2)
 
     ampl.read("./res/ampl_mathematical_model.mod.py")
     ampl.read_data(file)
