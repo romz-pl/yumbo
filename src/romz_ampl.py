@@ -302,7 +302,7 @@ def set_ampl_license():
         modules.activate(uuid)  # activate your license
 
 import streamlit as st
-
+from pathlib import Path
 
 def solve(name, today, data):
     file = data_file(name, today, data)
@@ -330,6 +330,11 @@ def solve(name, today, data):
 
     st.write("aa={d}".format(d=__file__))
     st.write("bb={d}".format(d=os.path.dirname(__file__)))
+    path = Path(__file__)
+    st.write("cc={d}".format(d=path.parent.absolute()))
+
+
+    ampl.cd(os.path.dirname(__file__))
 
     ampl.read("./res/ampl_mathematical_model.mod.py")
     ampl.read_data(file)
