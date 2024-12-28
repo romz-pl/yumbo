@@ -2,7 +2,7 @@ import datetime
 import pandas as pd
 import os
 import romz_datetime
-from amplpy import AMPL
+from amplpy import AMPL, modules
 
 
 def tasks(today, data):
