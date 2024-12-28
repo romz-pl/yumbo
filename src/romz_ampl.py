@@ -299,10 +299,11 @@ def save(ampl, data):
 # activate AMPL license
 def set_ampl_license():
     uuid = os.environ.get("AMPLKEY_UUID")
-    if uuid is None:
-        raise Exception("Cannot find AMPLKEY_UUID")
-    modules.activate(uuid)
+    if uuid is not None:
+        modules.activate(uuid)
 
+
+import streamlit as st
 
 def solve(name, today, data):
     file = data_file(name, today, data)
@@ -328,8 +329,6 @@ def solve(name, today, data):
     # ampl.solve()
     data["solver output"] = ampl.get_output("solve;")
     data["solver timestamp"] = "{d}".format(d=datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p"))
-    st.write(ampl.solve_result)
-    st.write(ampl.solve_result_num)
     if ampl.solve_result != "solved":
         raise Exception(f"Failed to solve (solve_result: {ampl.solve_result})")
     save(ampl, data)
