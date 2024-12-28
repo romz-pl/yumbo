@@ -333,6 +333,7 @@ def solve(name, today, data):
     ampl.solve()
     # data["solver output"] = ampl.get_output("solve;")
     data["solver timestamp"] = "{d}".format(d=datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p"))
+    st.write(ampl.solve_result)
     if ampl.solve_result != "solved":
         raise Exception(f"Failed to solve (solve_result: {ampl.solve_result})")
     save(ampl, data)
