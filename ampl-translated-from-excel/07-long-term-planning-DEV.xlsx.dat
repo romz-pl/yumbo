@@ -1,0 +1,1821 @@
+param HOURS_PER_DAY := 8;
+
+set EXPERTN :=
+'Alojzy'
+'Bartłomiej'
+'Franciszek'
+'Paweł'
+'Wojciech'
+;
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'p2.m' 15 133 670
+'p2.f' 134 161 128
+'p2.pf' 162 174 64
+'p3.m' 24 191 636
+'p3.f' 192 219 96
+'p3.pf' 220 233 64
+'p4.m' 45 212 1130
+'p4.f' 213 240 160
+'p4.pf' 241 256 64
+'p5.m' 55 173 680
+'p5.f' 174 201 128
+'p5.pf' 202 215 64
+'p6.m' 87 254 1130
+'p6.f' 255 282 160
+'p6.pf' 283 296 64
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'25.Jan' 21 56
+'25.Feb' 57 85
+'25.Mar' 86 116
+'25.Apr' 117 145
+'25.May' 146 179
+;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+;
+
+param OFFDAY_NO := 81;
+
+param OFFDAY :=
+1 17
+2 18
+3 24
+4 25
+5 31
+6 32
+7 35
+8 38
+9 39
+10 45
+11 46
+12 52
+13 53
+14 59
+15 60
+16 66
+17 67
+18 73
+19 74
+20 80
+21 81
+22 87
+23 88
+24 94
+25 95
+26 101
+27 102
+28 108
+29 109
+30 115
+31 116
+32 122
+33 123
+34 129
+35 130
+36 136
+37 137
+38 143
+39 144
+40 150
+41 151
+42 157
+43 158
+44 164
+45 165
+46 171
+47 172
+48 178
+49 179
+50 185
+51 186
+52 192
+53 193
+54 199
+55 200
+56 206
+57 207
+58 213
+59 214
+60 220
+61 221
+62 227
+63 228
+64 234
+65 235
+66 241
+67 242
+68 248
+69 249
+70 255
+71 256
+72 262
+73 263
+74 269
+75 270
+76 276
+77 277
+78 283
+79 284
+80 290
+81 291
+;
+
+param XBDAY_NO := 1637;
+
+param XBDAY:
+1   2   3   4   5 :=
+1 'Alojzy' 'p2.m' 15 7 8
+2 'Alojzy' 'p2.m' 16 7 8
+3 'Alojzy' 'p2.m' 19 7 8
+4 'Alojzy' 'p2.m' 20 7 8
+5 'Alojzy' 'p2.m' 21 7 8
+6 'Alojzy' 'p2.m' 22 7 8
+7 'Alojzy' 'p2.m' 23 7 8
+8 'Alojzy' 'p2.m' 26 7 8
+9 'Alojzy' 'p2.m' 27 7 8
+10 'Alojzy' 'p2.m' 28 7 8
+11 'Alojzy' 'p2.m' 29 7 8
+12 'Alojzy' 'p2.m' 30 7 8
+13 'Alojzy' 'p2.m' 33 7 8
+14 'Alojzy' 'p2.m' 34 7 8
+15 'Alojzy' 'p2.m' 36 7 8
+16 'Alojzy' 'p2.m' 37 7 8
+17 'Alojzy' 'p2.m' 40 7 8
+18 'Alojzy' 'p2.m' 41 7 8
+19 'Alojzy' 'p2.m' 42 7 8
+20 'Alojzy' 'p2.m' 43 7 8
+21 'Alojzy' 'p2.m' 44 7 8
+22 'Alojzy' 'p2.m' 47 7 8
+23 'Alojzy' 'p2.m' 48 7 8
+24 'Alojzy' 'p2.m' 49 7 8
+25 'Alojzy' 'p2.m' 50 7 8
+26 'Alojzy' 'p2.m' 51 7 8
+27 'Alojzy' 'p2.m' 54 7 8
+28 'Alojzy' 'p2.m' 55 7 8
+29 'Alojzy' 'p2.m' 56 7 8
+30 'Alojzy' 'p2.m' 57 7 8
+31 'Alojzy' 'p2.m' 58 7 8
+32 'Alojzy' 'p2.m' 61 7 8
+33 'Alojzy' 'p2.m' 62 7 8
+34 'Alojzy' 'p2.m' 63 7 8
+35 'Alojzy' 'p2.m' 64 7 8
+36 'Alojzy' 'p2.m' 65 7 8
+37 'Alojzy' 'p2.m' 68 7 8
+38 'Alojzy' 'p2.m' 69 7 8
+39 'Alojzy' 'p2.m' 70 7 8
+40 'Alojzy' 'p2.m' 71 7 8
+41 'Alojzy' 'p2.m' 72 7 8
+42 'Alojzy' 'p2.m' 75 7 8
+43 'Alojzy' 'p2.m' 76 7 8
+44 'Alojzy' 'p2.m' 77 7 8
+45 'Alojzy' 'p2.m' 78 7 8
+46 'Alojzy' 'p2.m' 79 7 8
+47 'Alojzy' 'p2.m' 82 7 8
+48 'Alojzy' 'p2.m' 83 7 8
+49 'Alojzy' 'p2.m' 84 7 8
+50 'Alojzy' 'p2.m' 85 7 8
+51 'Alojzy' 'p2.m' 86 7 8
+52 'Alojzy' 'p2.m' 89 7 8
+53 'Alojzy' 'p2.m' 90 7 8
+54 'Alojzy' 'p2.m' 91 7 8
+55 'Alojzy' 'p2.m' 92 7 8
+56 'Alojzy' 'p2.m' 93 7 8
+57 'Alojzy' 'p2.m' 96 7 8
+58 'Alojzy' 'p2.m' 97 7 8
+59 'Alojzy' 'p2.m' 98 7 8
+60 'Alojzy' 'p2.m' 99 7 8
+61 'Alojzy' 'p2.m' 100 7 8
+62 'Alojzy' 'p2.m' 103 7 8
+63 'Alojzy' 'p2.m' 104 7 8
+64 'Alojzy' 'p2.m' 105 7 8
+65 'Alojzy' 'p2.m' 106 7 8
+66 'Alojzy' 'p2.m' 107 7 8
+67 'Alojzy' 'p2.m' 110 7 8
+68 'Alojzy' 'p2.m' 111 7 8
+69 'Alojzy' 'p2.m' 112 7 8
+70 'Alojzy' 'p2.m' 113 7 8
+71 'Alojzy' 'p2.m' 114 7 8
+72 'Alojzy' 'p2.m' 117 7 8
+73 'Alojzy' 'p2.m' 118 7 8
+74 'Alojzy' 'p2.m' 119 7 8
+75 'Alojzy' 'p2.m' 120 7 8
+76 'Alojzy' 'p2.m' 121 7 8
+77 'Alojzy' 'p2.m' 124 7 8
+78 'Alojzy' 'p2.m' 125 7 8
+79 'Alojzy' 'p2.m' 126 7 8
+80 'Alojzy' 'p2.m' 127 7 8
+81 'Alojzy' 'p2.m' 128 7 8
+82 'Alojzy' 'p2.m' 131 7 8
+83 'Alojzy' 'p2.m' 132 7 8
+84 'Alojzy' 'p2.m' 133 7 8
+85 'Alojzy' 'p2.f' 134 6 7
+86 'Alojzy' 'p2.f' 135 6 7
+87 'Alojzy' 'p2.f' 138 6 7
+88 'Alojzy' 'p2.f' 139 6 7
+89 'Alojzy' 'p2.f' 140 6 7
+90 'Alojzy' 'p2.f' 141 6 7
+91 'Alojzy' 'p2.f' 142 6 7
+92 'Alojzy' 'p2.f' 145 6 7
+93 'Alojzy' 'p2.f' 146 6 7
+94 'Alojzy' 'p2.f' 147 6 7
+95 'Alojzy' 'p2.f' 148 6 7
+96 'Alojzy' 'p2.f' 149 6 7
+97 'Alojzy' 'p2.f' 152 6 7
+98 'Alojzy' 'p2.f' 153 6 7
+99 'Alojzy' 'p2.f' 154 6 7
+100 'Alojzy' 'p2.f' 155 6 7
+101 'Alojzy' 'p2.f' 156 6 7
+102 'Alojzy' 'p2.f' 159 6 7
+103 'Alojzy' 'p2.f' 160 6 7
+104 'Alojzy' 'p2.f' 161 6 7
+105 'Alojzy' 'p2.pf' 162 7 8
+106 'Alojzy' 'p2.pf' 163 7 8
+107 'Alojzy' 'p2.pf' 166 7 8
+108 'Alojzy' 'p2.pf' 167 7 8
+109 'Alojzy' 'p2.pf' 168 7 8
+110 'Alojzy' 'p2.pf' 169 7 8
+111 'Alojzy' 'p2.pf' 170 7 8
+112 'Alojzy' 'p2.pf' 173 7 8
+113 'Alojzy' 'p2.pf' 174 7 8
+114 'Bartłomiej' 'p3.m' 26 4 8
+115 'Bartłomiej' 'p3.m' 27 4 8
+116 'Bartłomiej' 'p3.m' 28 4 8
+117 'Bartłomiej' 'p3.m' 29 4 8
+118 'Bartłomiej' 'p3.m' 30 4 8
+119 'Bartłomiej' 'p3.m' 33 4 8
+120 'Bartłomiej' 'p3.m' 34 4 8
+121 'Bartłomiej' 'p3.m' 36 4 8
+122 'Bartłomiej' 'p3.m' 37 4 8
+123 'Bartłomiej' 'p3.m' 40 4 8
+124 'Bartłomiej' 'p3.m' 41 4 8
+125 'Bartłomiej' 'p3.m' 42 4 8
+126 'Bartłomiej' 'p3.m' 43 4 8
+127 'Bartłomiej' 'p3.m' 44 4 8
+128 'Bartłomiej' 'p3.m' 47 4 8
+129 'Bartłomiej' 'p3.m' 48 4 8
+130 'Bartłomiej' 'p3.m' 49 4 8
+131 'Bartłomiej' 'p3.m' 50 4 8
+132 'Bartłomiej' 'p3.m' 51 4 8
+133 'Bartłomiej' 'p3.m' 54 4 8
+134 'Bartłomiej' 'p3.m' 55 4 8
+135 'Bartłomiej' 'p3.m' 56 4 8
+136 'Bartłomiej' 'p3.m' 57 4 8
+137 'Bartłomiej' 'p3.m' 58 4 8
+138 'Bartłomiej' 'p3.m' 61 4 8
+139 'Bartłomiej' 'p3.m' 62 4 8
+140 'Bartłomiej' 'p3.m' 63 4 8
+141 'Bartłomiej' 'p3.m' 64 4 8
+142 'Bartłomiej' 'p3.m' 65 4 8
+143 'Bartłomiej' 'p3.m' 68 4 8
+144 'Bartłomiej' 'p3.m' 69 4 8
+145 'Bartłomiej' 'p3.m' 70 4 8
+146 'Bartłomiej' 'p3.m' 71 4 8
+147 'Bartłomiej' 'p3.m' 72 4 8
+148 'Bartłomiej' 'p3.m' 75 4 8
+149 'Bartłomiej' 'p3.m' 76 4 8
+150 'Bartłomiej' 'p3.m' 77 4 8
+151 'Bartłomiej' 'p3.m' 78 4 8
+152 'Bartłomiej' 'p3.m' 79 4 8
+153 'Bartłomiej' 'p3.m' 82 4 8
+154 'Bartłomiej' 'p3.m' 83 4 8
+155 'Bartłomiej' 'p3.m' 84 4 8
+156 'Bartłomiej' 'p3.m' 85 4 8
+157 'Bartłomiej' 'p3.m' 86 4 8
+158 'Bartłomiej' 'p3.m' 89 4 8
+159 'Bartłomiej' 'p3.m' 90 4 8
+160 'Bartłomiej' 'p3.m' 91 4 8
+161 'Bartłomiej' 'p3.m' 92 4 8
+162 'Bartłomiej' 'p3.m' 93 4 8
+163 'Bartłomiej' 'p3.m' 96 4 8
+164 'Bartłomiej' 'p3.m' 97 4 8
+165 'Bartłomiej' 'p3.m' 98 4 8
+166 'Bartłomiej' 'p3.m' 99 4 8
+167 'Bartłomiej' 'p3.m' 100 4 8
+168 'Bartłomiej' 'p3.m' 103 4 8
+169 'Bartłomiej' 'p3.m' 104 4 8
+170 'Bartłomiej' 'p3.m' 105 4 8
+171 'Bartłomiej' 'p3.m' 106 4 8
+172 'Bartłomiej' 'p3.m' 107 4 8
+173 'Bartłomiej' 'p3.m' 110 4 8
+174 'Bartłomiej' 'p3.m' 111 4 8
+175 'Bartłomiej' 'p3.m' 112 4 8
+176 'Bartłomiej' 'p3.m' 113 4 8
+177 'Bartłomiej' 'p3.m' 114 4 8
+178 'Bartłomiej' 'p3.m' 117 4 8
+179 'Bartłomiej' 'p3.m' 118 4 8
+180 'Bartłomiej' 'p3.m' 119 4 8
+181 'Bartłomiej' 'p3.m' 120 4 8
+182 'Bartłomiej' 'p3.m' 121 4 8
+183 'Bartłomiej' 'p3.m' 124 4 8
+184 'Bartłomiej' 'p3.m' 125 4 8
+185 'Bartłomiej' 'p3.m' 126 4 8
+186 'Bartłomiej' 'p3.m' 127 4 8
+187 'Bartłomiej' 'p3.m' 128 4 8
+188 'Bartłomiej' 'p3.m' 131 4 8
+189 'Bartłomiej' 'p3.m' 132 4 8
+190 'Bartłomiej' 'p3.m' 133 4 8
+191 'Bartłomiej' 'p3.m' 134 4 8
+192 'Bartłomiej' 'p3.m' 135 4 8
+193 'Bartłomiej' 'p3.m' 138 4 8
+194 'Bartłomiej' 'p3.m' 139 4 8
+195 'Bartłomiej' 'p3.m' 140 4 8
+196 'Bartłomiej' 'p3.m' 141 4 8
+197 'Bartłomiej' 'p3.m' 142 4 8
+198 'Bartłomiej' 'p3.m' 145 4 8
+199 'Bartłomiej' 'p3.m' 146 4 8
+200 'Bartłomiej' 'p3.m' 147 4 8
+201 'Bartłomiej' 'p3.m' 148 4 8
+202 'Bartłomiej' 'p3.m' 149 4 8
+203 'Bartłomiej' 'p3.m' 152 4 8
+204 'Bartłomiej' 'p3.m' 153 4 8
+205 'Bartłomiej' 'p3.m' 154 4 8
+206 'Bartłomiej' 'p3.m' 155 4 8
+207 'Bartłomiej' 'p3.m' 156 4 8
+208 'Bartłomiej' 'p3.m' 159 4 8
+209 'Bartłomiej' 'p3.m' 160 4 8
+210 'Bartłomiej' 'p3.m' 161 4 8
+211 'Bartłomiej' 'p3.m' 162 4 8
+212 'Bartłomiej' 'p3.m' 163 4 8
+213 'Bartłomiej' 'p3.m' 166 4 8
+214 'Bartłomiej' 'p3.m' 167 4 8
+215 'Bartłomiej' 'p3.m' 168 4 8
+216 'Bartłomiej' 'p3.m' 169 4 8
+217 'Bartłomiej' 'p3.m' 170 4 8
+218 'Bartłomiej' 'p3.m' 173 4 8
+219 'Bartłomiej' 'p3.m' 174 4 8
+220 'Bartłomiej' 'p3.m' 175 4 8
+221 'Bartłomiej' 'p3.m' 176 4 8
+222 'Bartłomiej' 'p3.m' 177 4 8
+223 'Bartłomiej' 'p3.m' 180 4 8
+224 'Bartłomiej' 'p3.m' 181 4 8
+225 'Bartłomiej' 'p3.m' 182 4 8
+226 'Bartłomiej' 'p3.m' 183 4 8
+227 'Bartłomiej' 'p3.m' 184 4 8
+228 'Bartłomiej' 'p3.m' 187 4 8
+229 'Bartłomiej' 'p3.m' 188 4 8
+230 'Bartłomiej' 'p3.m' 189 4 8
+231 'Bartłomiej' 'p3.m' 190 4 8
+232 'Bartłomiej' 'p3.m' 191 4 8
+233 'Bartłomiej' 'p3.f' 194 4 5
+234 'Bartłomiej' 'p3.f' 195 4 5
+235 'Bartłomiej' 'p3.f' 196 4 5
+236 'Bartłomiej' 'p3.f' 197 4 5
+237 'Bartłomiej' 'p3.f' 198 4 5
+238 'Bartłomiej' 'p3.f' 201 4 5
+239 'Bartłomiej' 'p3.f' 202 4 5
+240 'Bartłomiej' 'p3.f' 203 4 5
+241 'Bartłomiej' 'p3.f' 204 4 5
+242 'Bartłomiej' 'p3.f' 205 4 5
+243 'Bartłomiej' 'p3.f' 208 4 5
+244 'Bartłomiej' 'p3.f' 209 4 5
+245 'Bartłomiej' 'p3.f' 210 4 5
+246 'Bartłomiej' 'p3.f' 211 4 5
+247 'Bartłomiej' 'p3.f' 212 4 5
+248 'Bartłomiej' 'p3.f' 215 4 5
+249 'Bartłomiej' 'p3.f' 216 4 5
+250 'Bartłomiej' 'p3.f' 217 4 5
+251 'Bartłomiej' 'p3.f' 218 4 5
+252 'Bartłomiej' 'p3.f' 219 4 5
+253 'Bartłomiej' 'p3.pf' 222 6 7
+254 'Bartłomiej' 'p3.pf' 223 6 7
+255 'Bartłomiej' 'p3.pf' 224 6 7
+256 'Bartłomiej' 'p3.pf' 225 6 7
+257 'Bartłomiej' 'p3.pf' 226 6 7
+258 'Bartłomiej' 'p3.pf' 229 6 7
+259 'Bartłomiej' 'p3.pf' 230 6 7
+260 'Bartłomiej' 'p3.pf' 231 6 7
+261 'Bartłomiej' 'p3.pf' 232 6 7
+262 'Bartłomiej' 'p3.pf' 233 6 7
+263 'Paweł' 'p4.m' 47 8 8
+264 'Paweł' 'p4.m' 48 8 8
+265 'Paweł' 'p4.m' 49 8 8
+266 'Paweł' 'p4.m' 50 8 8
+267 'Paweł' 'p4.m' 51 8 8
+268 'Paweł' 'p4.m' 54 8 8
+269 'Paweł' 'p4.m' 55 8 8
+270 'Paweł' 'p4.m' 56 8 8
+271 'Paweł' 'p4.m' 57 8 8
+272 'Paweł' 'p4.m' 58 8 8
+273 'Paweł' 'p4.m' 61 8 8
+274 'Paweł' 'p4.m' 62 8 8
+275 'Paweł' 'p4.m' 63 8 8
+276 'Paweł' 'p4.m' 64 8 8
+277 'Paweł' 'p4.m' 65 8 8
+278 'Paweł' 'p4.m' 68 8 8
+279 'Paweł' 'p4.m' 69 8 8
+280 'Paweł' 'p4.m' 70 8 8
+281 'Paweł' 'p4.m' 71 8 8
+282 'Paweł' 'p4.m' 72 8 8
+283 'Paweł' 'p4.m' 75 8 8
+284 'Paweł' 'p4.m' 76 8 8
+285 'Paweł' 'p4.m' 77 8 8
+286 'Paweł' 'p4.m' 78 8 8
+287 'Paweł' 'p4.m' 79 8 8
+288 'Paweł' 'p4.m' 82 8 8
+289 'Paweł' 'p4.m' 83 8 8
+290 'Paweł' 'p4.m' 84 8 8
+291 'Paweł' 'p4.m' 85 8 8
+292 'Paweł' 'p4.m' 86 8 8
+293 'Paweł' 'p4.m' 89 8 8
+294 'Paweł' 'p4.m' 90 8 8
+295 'Paweł' 'p4.m' 91 8 8
+296 'Paweł' 'p4.m' 92 8 8
+297 'Paweł' 'p4.m' 93 8 8
+298 'Paweł' 'p4.m' 96 8 8
+299 'Paweł' 'p4.m' 97 8 8
+300 'Paweł' 'p4.m' 98 8 8
+301 'Paweł' 'p4.m' 99 8 8
+302 'Paweł' 'p4.m' 100 8 8
+303 'Paweł' 'p4.m' 103 8 8
+304 'Paweł' 'p4.m' 104 8 8
+305 'Paweł' 'p4.m' 105 8 8
+306 'Paweł' 'p4.m' 106 8 8
+307 'Paweł' 'p4.m' 107 8 8
+308 'Paweł' 'p4.m' 110 8 8
+309 'Paweł' 'p4.m' 111 8 8
+310 'Paweł' 'p4.m' 112 8 8
+311 'Paweł' 'p4.m' 113 8 8
+312 'Paweł' 'p4.m' 114 8 8
+313 'Paweł' 'p4.m' 117 8 8
+314 'Paweł' 'p4.m' 118 8 8
+315 'Paweł' 'p4.m' 119 8 8
+316 'Paweł' 'p4.m' 120 8 8
+317 'Paweł' 'p4.m' 121 8 8
+318 'Paweł' 'p4.m' 124 8 8
+319 'Paweł' 'p4.m' 125 8 8
+320 'Paweł' 'p4.m' 126 8 8
+321 'Paweł' 'p4.m' 127 8 8
+322 'Paweł' 'p4.m' 128 8 8
+323 'Paweł' 'p4.m' 131 8 8
+324 'Paweł' 'p4.m' 132 8 8
+325 'Paweł' 'p4.m' 133 8 8
+326 'Paweł' 'p4.m' 134 8 8
+327 'Paweł' 'p4.m' 135 8 8
+328 'Paweł' 'p4.m' 138 8 8
+329 'Paweł' 'p4.m' 139 8 8
+330 'Paweł' 'p4.m' 140 8 8
+331 'Paweł' 'p4.m' 141 8 8
+332 'Paweł' 'p4.m' 142 8 8
+333 'Paweł' 'p4.m' 145 8 8
+334 'Paweł' 'p4.m' 146 8 8
+335 'Paweł' 'p4.m' 147 8 8
+336 'Paweł' 'p4.m' 148 8 8
+337 'Paweł' 'p4.m' 149 8 8
+338 'Paweł' 'p4.m' 152 8 8
+339 'Paweł' 'p4.m' 153 8 8
+340 'Paweł' 'p4.m' 154 8 8
+341 'Paweł' 'p4.m' 155 8 8
+342 'Paweł' 'p4.m' 156 8 8
+343 'Paweł' 'p4.m' 159 8 8
+344 'Paweł' 'p4.m' 160 8 8
+345 'Paweł' 'p4.m' 161 8 8
+346 'Paweł' 'p4.m' 162 8 8
+347 'Paweł' 'p4.m' 163 8 8
+348 'Paweł' 'p4.m' 166 8 8
+349 'Paweł' 'p4.m' 167 8 8
+350 'Paweł' 'p4.m' 168 8 8
+351 'Paweł' 'p4.m' 169 8 8
+352 'Paweł' 'p4.m' 170 8 8
+353 'Paweł' 'p4.m' 173 8 8
+354 'Paweł' 'p4.m' 174 8 8
+355 'Paweł' 'p4.m' 175 8 8
+356 'Paweł' 'p4.m' 176 8 8
+357 'Paweł' 'p4.m' 177 8 8
+358 'Paweł' 'p4.m' 180 8 8
+359 'Paweł' 'p4.m' 181 8 8
+360 'Paweł' 'p4.m' 182 8 8
+361 'Paweł' 'p4.m' 183 8 8
+362 'Paweł' 'p4.m' 184 8 8
+363 'Paweł' 'p4.m' 187 8 8
+364 'Paweł' 'p4.m' 188 8 8
+365 'Paweł' 'p4.m' 189 8 8
+366 'Paweł' 'p4.m' 190 8 8
+367 'Paweł' 'p4.m' 191 8 8
+368 'Paweł' 'p4.m' 194 8 8
+369 'Paweł' 'p4.m' 195 8 8
+370 'Paweł' 'p4.m' 196 8 8
+371 'Paweł' 'p4.m' 197 8 8
+372 'Paweł' 'p4.m' 198 8 8
+373 'Paweł' 'p4.m' 201 8 8
+374 'Paweł' 'p4.m' 202 8 8
+375 'Paweł' 'p4.m' 203 8 8
+376 'Paweł' 'p4.m' 204 8 8
+377 'Paweł' 'p4.m' 205 8 8
+378 'Paweł' 'p4.m' 208 8 8
+379 'Paweł' 'p4.m' 209 8 8
+380 'Paweł' 'p4.m' 210 8 8
+381 'Paweł' 'p4.m' 211 8 8
+382 'Paweł' 'p4.m' 212 8 8
+383 'Paweł' 'p4.f' 215 0 8
+384 'Paweł' 'p4.f' 216 0 8
+385 'Paweł' 'p4.f' 217 0 8
+386 'Paweł' 'p4.f' 218 0 8
+387 'Paweł' 'p4.f' 219 0 8
+388 'Paweł' 'p4.f' 222 0 8
+389 'Paweł' 'p4.f' 223 0 8
+390 'Paweł' 'p4.f' 224 0 8
+391 'Paweł' 'p4.f' 225 0 8
+392 'Paweł' 'p4.f' 226 0 8
+393 'Paweł' 'p4.f' 229 0 8
+394 'Paweł' 'p4.f' 230 0 8
+395 'Paweł' 'p4.f' 231 0 8
+396 'Paweł' 'p4.f' 232 0 8
+397 'Paweł' 'p4.f' 233 0 8
+398 'Paweł' 'p4.f' 236 0 8
+399 'Paweł' 'p4.f' 237 0 8
+400 'Paweł' 'p4.f' 238 0 8
+401 'Paweł' 'p4.f' 239 0 8
+402 'Paweł' 'p4.f' 240 0 8
+403 'Paweł' 'p4.pf' 243 6 7
+404 'Paweł' 'p4.pf' 244 6 7
+405 'Paweł' 'p4.pf' 245 6 7
+406 'Paweł' 'p4.pf' 246 6 7
+407 'Paweł' 'p4.pf' 247 6 7
+408 'Paweł' 'p4.pf' 250 6 7
+409 'Paweł' 'p4.pf' 251 6 7
+410 'Paweł' 'p4.pf' 252 6 7
+411 'Paweł' 'p4.pf' 253 6 7
+412 'Paweł' 'p4.pf' 254 6 7
+413 'Wojciech' 'p5.m' 55 8 8
+414 'Wojciech' 'p5.m' 56 8 8
+415 'Wojciech' 'p5.m' 57 8 8
+416 'Wojciech' 'p5.m' 58 8 8
+417 'Wojciech' 'p5.m' 61 8 8
+418 'Wojciech' 'p5.m' 62 8 8
+419 'Wojciech' 'p5.m' 63 8 8
+420 'Wojciech' 'p5.m' 64 8 8
+421 'Wojciech' 'p5.m' 65 8 8
+422 'Wojciech' 'p5.m' 68 8 8
+423 'Wojciech' 'p5.m' 69 8 8
+424 'Wojciech' 'p5.m' 70 8 8
+425 'Wojciech' 'p5.m' 71 8 8
+426 'Wojciech' 'p5.m' 72 8 8
+427 'Wojciech' 'p5.m' 75 8 8
+428 'Wojciech' 'p5.m' 76 8 8
+429 'Wojciech' 'p5.m' 77 8 8
+430 'Wojciech' 'p5.m' 78 8 8
+431 'Wojciech' 'p5.m' 79 8 8
+432 'Wojciech' 'p5.m' 82 8 8
+433 'Wojciech' 'p5.m' 83 8 8
+434 'Wojciech' 'p5.m' 84 8 8
+435 'Wojciech' 'p5.m' 85 8 8
+436 'Wojciech' 'p5.m' 86 8 8
+437 'Wojciech' 'p5.m' 89 8 8
+438 'Wojciech' 'p5.m' 90 8 8
+439 'Wojciech' 'p5.m' 91 8 8
+440 'Wojciech' 'p5.m' 92 8 8
+441 'Wojciech' 'p5.m' 93 8 8
+442 'Wojciech' 'p5.m' 96 8 8
+443 'Wojciech' 'p5.m' 97 8 8
+444 'Wojciech' 'p5.m' 98 8 8
+445 'Wojciech' 'p5.m' 99 8 8
+446 'Wojciech' 'p5.m' 100 8 8
+447 'Wojciech' 'p5.m' 103 8 8
+448 'Wojciech' 'p5.m' 104 8 8
+449 'Wojciech' 'p5.m' 105 8 8
+450 'Wojciech' 'p5.m' 106 8 8
+451 'Wojciech' 'p5.m' 107 8 8
+452 'Wojciech' 'p5.m' 110 8 8
+453 'Wojciech' 'p5.m' 111 8 8
+454 'Wojciech' 'p5.m' 112 8 8
+455 'Wojciech' 'p5.m' 113 8 8
+456 'Wojciech' 'p5.m' 114 8 8
+457 'Wojciech' 'p5.m' 117 8 8
+458 'Wojciech' 'p5.m' 118 8 8
+459 'Wojciech' 'p5.m' 119 8 8
+460 'Wojciech' 'p5.m' 120 8 8
+461 'Wojciech' 'p5.m' 121 8 8
+462 'Wojciech' 'p5.m' 124 8 8
+463 'Wojciech' 'p5.m' 125 8 8
+464 'Wojciech' 'p5.m' 126 8 8
+465 'Wojciech' 'p5.m' 127 8 8
+466 'Wojciech' 'p5.m' 128 8 8
+467 'Wojciech' 'p5.m' 131 8 8
+468 'Wojciech' 'p5.m' 132 8 8
+469 'Wojciech' 'p5.m' 133 8 8
+470 'Wojciech' 'p5.m' 134 8 8
+471 'Wojciech' 'p5.m' 135 8 8
+472 'Wojciech' 'p5.m' 138 8 8
+473 'Wojciech' 'p5.m' 139 8 8
+474 'Wojciech' 'p5.m' 140 8 8
+475 'Wojciech' 'p5.m' 141 8 8
+476 'Wojciech' 'p5.m' 142 8 8
+477 'Wojciech' 'p5.m' 145 8 8
+478 'Wojciech' 'p5.m' 146 8 8
+479 'Wojciech' 'p5.m' 147 8 8
+480 'Wojciech' 'p5.m' 148 8 8
+481 'Wojciech' 'p5.m' 149 8 8
+482 'Wojciech' 'p5.m' 152 8 8
+483 'Wojciech' 'p5.m' 153 8 8
+484 'Wojciech' 'p5.m' 154 8 8
+485 'Wojciech' 'p5.m' 155 8 8
+486 'Wojciech' 'p5.m' 156 8 8
+487 'Wojciech' 'p5.m' 159 8 8
+488 'Wojciech' 'p5.m' 160 8 8
+489 'Wojciech' 'p5.m' 161 8 8
+490 'Wojciech' 'p5.m' 162 8 8
+491 'Wojciech' 'p5.m' 163 8 8
+492 'Wojciech' 'p5.m' 166 8 8
+493 'Wojciech' 'p5.m' 167 8 8
+494 'Wojciech' 'p5.m' 168 8 8
+495 'Wojciech' 'p5.m' 169 8 8
+496 'Wojciech' 'p5.m' 170 8 8
+497 'Wojciech' 'p5.m' 173 8 8
+498 'Wojciech' 'p5.f' 174 6 7
+499 'Wojciech' 'p5.f' 175 6 7
+500 'Wojciech' 'p5.f' 176 6 7
+501 'Wojciech' 'p5.f' 177 6 7
+502 'Wojciech' 'p5.f' 180 6 7
+503 'Wojciech' 'p5.f' 181 6 7
+504 'Wojciech' 'p5.f' 182 6 7
+505 'Wojciech' 'p5.f' 183 6 7
+506 'Wojciech' 'p5.f' 184 6 7
+507 'Wojciech' 'p5.f' 187 6 7
+508 'Wojciech' 'p5.f' 188 6 7
+509 'Wojciech' 'p5.f' 189 6 7
+510 'Wojciech' 'p5.f' 190 6 7
+511 'Wojciech' 'p5.f' 191 6 7
+512 'Wojciech' 'p5.f' 194 6 7
+513 'Wojciech' 'p5.f' 195 6 7
+514 'Wojciech' 'p5.f' 196 6 7
+515 'Wojciech' 'p5.f' 197 6 7
+516 'Wojciech' 'p5.f' 198 6 7
+517 'Wojciech' 'p5.f' 201 6 7
+518 'Wojciech' 'p5.pf' 202 6 7
+519 'Wojciech' 'p5.pf' 203 6 7
+520 'Wojciech' 'p5.pf' 204 6 7
+521 'Wojciech' 'p5.pf' 205 6 7
+522 'Wojciech' 'p5.pf' 208 6 7
+523 'Wojciech' 'p5.pf' 209 6 7
+524 'Wojciech' 'p5.pf' 210 6 7
+525 'Wojciech' 'p5.pf' 211 6 7
+526 'Wojciech' 'p5.pf' 212 6 7
+527 'Wojciech' 'p5.pf' 215 6 7
+528 'Alojzy' 'p4.m' 47 0 8
+529 'Alojzy' 'p4.m' 48 0 8
+530 'Alojzy' 'p4.m' 49 0 8
+531 'Alojzy' 'p4.m' 50 0 8
+532 'Alojzy' 'p4.m' 51 0 8
+533 'Alojzy' 'p4.m' 54 0 8
+534 'Alojzy' 'p4.m' 55 0 8
+535 'Alojzy' 'p4.m' 56 0 8
+536 'Alojzy' 'p4.m' 57 0 8
+537 'Alojzy' 'p4.m' 58 0 8
+538 'Alojzy' 'p4.m' 61 0 8
+539 'Alojzy' 'p4.m' 62 0 8
+540 'Alojzy' 'p4.m' 63 0 8
+541 'Alojzy' 'p4.m' 64 0 8
+542 'Alojzy' 'p4.m' 65 0 8
+543 'Alojzy' 'p4.m' 68 0 8
+544 'Alojzy' 'p4.m' 69 0 8
+545 'Alojzy' 'p4.m' 70 0 8
+546 'Alojzy' 'p4.m' 71 0 8
+547 'Alojzy' 'p4.m' 72 0 8
+548 'Alojzy' 'p4.m' 75 0 8
+549 'Alojzy' 'p4.m' 76 0 8
+550 'Alojzy' 'p4.m' 77 0 8
+551 'Alojzy' 'p4.m' 78 0 8
+552 'Alojzy' 'p4.m' 79 0 8
+553 'Alojzy' 'p4.m' 82 0 8
+554 'Alojzy' 'p4.m' 83 0 8
+555 'Alojzy' 'p4.m' 84 0 8
+556 'Alojzy' 'p4.m' 85 0 8
+557 'Alojzy' 'p4.m' 86 0 8
+558 'Alojzy' 'p4.m' 89 0 8
+559 'Alojzy' 'p4.m' 90 0 8
+560 'Alojzy' 'p4.m' 91 0 8
+561 'Alojzy' 'p4.m' 92 0 8
+562 'Alojzy' 'p4.m' 93 0 8
+563 'Alojzy' 'p4.m' 96 0 8
+564 'Alojzy' 'p4.m' 97 0 8
+565 'Alojzy' 'p4.m' 98 0 8
+566 'Alojzy' 'p4.m' 99 0 8
+567 'Alojzy' 'p4.m' 100 0 8
+568 'Alojzy' 'p4.m' 103 0 8
+569 'Alojzy' 'p4.m' 104 0 8
+570 'Alojzy' 'p4.m' 105 0 8
+571 'Alojzy' 'p4.m' 106 0 8
+572 'Alojzy' 'p4.m' 107 0 8
+573 'Alojzy' 'p4.m' 110 0 8
+574 'Alojzy' 'p4.m' 111 0 8
+575 'Alojzy' 'p4.m' 112 0 8
+576 'Alojzy' 'p4.m' 113 0 8
+577 'Alojzy' 'p4.m' 114 0 8
+578 'Alojzy' 'p4.m' 117 0 8
+579 'Alojzy' 'p4.m' 118 0 8
+580 'Alojzy' 'p4.m' 119 0 8
+581 'Alojzy' 'p4.m' 120 0 8
+582 'Alojzy' 'p4.m' 121 0 8
+583 'Alojzy' 'p4.m' 124 0 8
+584 'Alojzy' 'p4.m' 125 0 8
+585 'Alojzy' 'p4.m' 126 0 8
+586 'Alojzy' 'p4.m' 127 0 8
+587 'Alojzy' 'p4.m' 128 0 8
+588 'Alojzy' 'p4.m' 131 0 8
+589 'Alojzy' 'p4.m' 132 0 8
+590 'Alojzy' 'p4.m' 133 0 8
+591 'Alojzy' 'p4.m' 134 0 8
+592 'Alojzy' 'p4.m' 135 0 8
+593 'Alojzy' 'p4.m' 138 0 8
+594 'Alojzy' 'p4.m' 139 0 8
+595 'Alojzy' 'p4.m' 140 0 8
+596 'Alojzy' 'p4.m' 141 0 8
+597 'Alojzy' 'p4.m' 142 0 8
+598 'Alojzy' 'p4.m' 145 0 8
+599 'Alojzy' 'p4.m' 146 0 8
+600 'Alojzy' 'p4.m' 147 0 8
+601 'Alojzy' 'p4.m' 148 0 8
+602 'Alojzy' 'p4.m' 149 0 8
+603 'Alojzy' 'p4.m' 152 0 8
+604 'Alojzy' 'p4.m' 153 0 8
+605 'Alojzy' 'p4.m' 154 0 8
+606 'Alojzy' 'p4.m' 155 0 8
+607 'Alojzy' 'p4.m' 156 0 8
+608 'Alojzy' 'p4.m' 159 0 8
+609 'Alojzy' 'p4.m' 160 0 8
+610 'Alojzy' 'p4.m' 161 0 8
+611 'Alojzy' 'p4.m' 162 0 8
+612 'Alojzy' 'p4.m' 163 0 8
+613 'Alojzy' 'p4.m' 166 0 8
+614 'Alojzy' 'p4.m' 167 0 8
+615 'Alojzy' 'p4.m' 168 0 8
+616 'Alojzy' 'p4.m' 169 0 8
+617 'Alojzy' 'p4.m' 170 0 8
+618 'Alojzy' 'p4.m' 173 0 8
+619 'Alojzy' 'p4.m' 174 0 8
+620 'Alojzy' 'p4.m' 175 0 8
+621 'Alojzy' 'p4.m' 176 0 8
+622 'Alojzy' 'p4.m' 177 0 8
+623 'Alojzy' 'p4.m' 180 0 8
+624 'Alojzy' 'p4.m' 181 0 8
+625 'Alojzy' 'p4.m' 182 0 8
+626 'Alojzy' 'p4.m' 183 0 8
+627 'Alojzy' 'p4.m' 184 0 8
+628 'Alojzy' 'p4.m' 187 0 8
+629 'Alojzy' 'p4.m' 188 0 8
+630 'Alojzy' 'p4.m' 189 0 8
+631 'Alojzy' 'p4.m' 190 0 8
+632 'Alojzy' 'p4.m' 191 0 8
+633 'Alojzy' 'p4.m' 194 0 8
+634 'Alojzy' 'p4.m' 195 0 8
+635 'Alojzy' 'p4.m' 196 0 8
+636 'Alojzy' 'p4.m' 197 0 8
+637 'Alojzy' 'p4.m' 198 0 8
+638 'Alojzy' 'p4.m' 201 0 8
+639 'Alojzy' 'p4.m' 202 0 8
+640 'Alojzy' 'p4.m' 203 0 8
+641 'Alojzy' 'p4.m' 204 0 8
+642 'Alojzy' 'p4.m' 205 0 8
+643 'Alojzy' 'p4.m' 208 0 8
+644 'Alojzy' 'p4.m' 209 0 8
+645 'Alojzy' 'p4.m' 210 0 8
+646 'Alojzy' 'p4.m' 211 0 8
+647 'Alojzy' 'p4.m' 212 0 8
+648 'Bartłomiej' 'p4.m' 47 0 8
+649 'Bartłomiej' 'p4.m' 48 0 8
+650 'Bartłomiej' 'p4.m' 49 0 8
+651 'Bartłomiej' 'p4.m' 50 0 8
+652 'Bartłomiej' 'p4.m' 51 0 8
+653 'Bartłomiej' 'p4.m' 54 0 8
+654 'Bartłomiej' 'p4.m' 55 0 8
+655 'Bartłomiej' 'p4.m' 56 0 8
+656 'Bartłomiej' 'p4.m' 57 0 8
+657 'Bartłomiej' 'p4.m' 58 0 8
+658 'Bartłomiej' 'p4.m' 61 0 8
+659 'Bartłomiej' 'p4.m' 62 0 8
+660 'Bartłomiej' 'p4.m' 63 0 8
+661 'Bartłomiej' 'p4.m' 64 0 8
+662 'Bartłomiej' 'p4.m' 65 0 8
+663 'Bartłomiej' 'p4.m' 68 0 8
+664 'Bartłomiej' 'p4.m' 69 0 8
+665 'Bartłomiej' 'p4.m' 70 0 8
+666 'Bartłomiej' 'p4.m' 71 0 8
+667 'Bartłomiej' 'p4.m' 72 0 8
+668 'Bartłomiej' 'p4.m' 75 0 8
+669 'Bartłomiej' 'p4.m' 76 0 8
+670 'Bartłomiej' 'p4.m' 77 0 8
+671 'Bartłomiej' 'p4.m' 78 0 8
+672 'Bartłomiej' 'p4.m' 79 0 8
+673 'Bartłomiej' 'p4.m' 82 0 8
+674 'Bartłomiej' 'p4.m' 83 0 8
+675 'Bartłomiej' 'p4.m' 84 0 8
+676 'Bartłomiej' 'p4.m' 85 0 8
+677 'Bartłomiej' 'p4.m' 86 0 8
+678 'Bartłomiej' 'p4.m' 89 0 8
+679 'Bartłomiej' 'p4.m' 90 0 8
+680 'Bartłomiej' 'p4.m' 91 0 8
+681 'Bartłomiej' 'p4.m' 92 0 8
+682 'Bartłomiej' 'p4.m' 93 0 8
+683 'Bartłomiej' 'p4.m' 96 0 8
+684 'Bartłomiej' 'p4.m' 97 0 8
+685 'Bartłomiej' 'p4.m' 98 0 8
+686 'Bartłomiej' 'p4.m' 99 0 8
+687 'Bartłomiej' 'p4.m' 100 0 8
+688 'Bartłomiej' 'p4.m' 103 0 8
+689 'Bartłomiej' 'p4.m' 104 0 8
+690 'Bartłomiej' 'p4.m' 105 0 8
+691 'Bartłomiej' 'p4.m' 106 0 8
+692 'Bartłomiej' 'p4.m' 107 0 8
+693 'Bartłomiej' 'p4.m' 110 0 8
+694 'Bartłomiej' 'p4.m' 111 0 8
+695 'Bartłomiej' 'p4.m' 112 0 8
+696 'Bartłomiej' 'p4.m' 113 0 8
+697 'Bartłomiej' 'p4.m' 114 0 8
+698 'Bartłomiej' 'p4.m' 117 0 8
+699 'Bartłomiej' 'p4.m' 118 0 8
+700 'Bartłomiej' 'p4.m' 119 0 8
+701 'Bartłomiej' 'p4.m' 120 0 8
+702 'Bartłomiej' 'p4.m' 121 0 8
+703 'Bartłomiej' 'p4.m' 124 0 8
+704 'Bartłomiej' 'p4.m' 125 0 8
+705 'Bartłomiej' 'p4.m' 126 0 8
+706 'Bartłomiej' 'p4.m' 127 0 8
+707 'Bartłomiej' 'p4.m' 128 0 8
+708 'Bartłomiej' 'p4.m' 131 0 8
+709 'Bartłomiej' 'p4.m' 132 0 8
+710 'Bartłomiej' 'p4.m' 133 0 8
+711 'Bartłomiej' 'p4.m' 134 0 8
+712 'Bartłomiej' 'p4.m' 135 0 8
+713 'Bartłomiej' 'p4.m' 138 0 8
+714 'Bartłomiej' 'p4.m' 139 0 8
+715 'Bartłomiej' 'p4.m' 140 0 8
+716 'Bartłomiej' 'p4.m' 141 0 8
+717 'Bartłomiej' 'p4.m' 142 0 8
+718 'Bartłomiej' 'p4.m' 145 0 8
+719 'Bartłomiej' 'p4.m' 146 0 8
+720 'Bartłomiej' 'p4.m' 147 0 8
+721 'Bartłomiej' 'p4.m' 148 0 8
+722 'Bartłomiej' 'p4.m' 149 0 8
+723 'Bartłomiej' 'p4.m' 152 0 8
+724 'Bartłomiej' 'p4.m' 153 0 8
+725 'Bartłomiej' 'p4.m' 154 0 8
+726 'Bartłomiej' 'p4.m' 155 0 8
+727 'Bartłomiej' 'p4.m' 156 0 8
+728 'Bartłomiej' 'p4.m' 159 0 8
+729 'Bartłomiej' 'p4.m' 160 0 8
+730 'Bartłomiej' 'p4.m' 161 0 8
+731 'Bartłomiej' 'p4.m' 162 0 8
+732 'Bartłomiej' 'p4.m' 163 0 8
+733 'Bartłomiej' 'p4.m' 166 0 8
+734 'Bartłomiej' 'p4.m' 167 0 8
+735 'Bartłomiej' 'p4.m' 168 0 8
+736 'Bartłomiej' 'p4.m' 169 0 8
+737 'Bartłomiej' 'p4.m' 170 0 8
+738 'Bartłomiej' 'p4.m' 173 0 8
+739 'Bartłomiej' 'p4.m' 174 0 8
+740 'Bartłomiej' 'p4.m' 175 0 8
+741 'Bartłomiej' 'p4.m' 176 0 8
+742 'Bartłomiej' 'p4.m' 177 0 8
+743 'Bartłomiej' 'p4.m' 180 0 8
+744 'Bartłomiej' 'p4.m' 181 0 8
+745 'Bartłomiej' 'p4.m' 182 0 8
+746 'Bartłomiej' 'p4.m' 183 0 8
+747 'Bartłomiej' 'p4.m' 184 0 8
+748 'Bartłomiej' 'p4.m' 187 0 8
+749 'Bartłomiej' 'p4.m' 188 0 8
+750 'Bartłomiej' 'p4.m' 189 0 8
+751 'Bartłomiej' 'p4.m' 190 0 8
+752 'Bartłomiej' 'p4.m' 191 0 8
+753 'Bartłomiej' 'p4.m' 194 0 8
+754 'Bartłomiej' 'p4.m' 195 0 8
+755 'Bartłomiej' 'p4.m' 196 0 8
+756 'Bartłomiej' 'p4.m' 197 0 8
+757 'Bartłomiej' 'p4.m' 198 0 8
+758 'Bartłomiej' 'p4.m' 201 0 8
+759 'Bartłomiej' 'p4.m' 202 0 8
+760 'Bartłomiej' 'p4.m' 203 0 8
+761 'Bartłomiej' 'p4.m' 204 0 8
+762 'Bartłomiej' 'p4.m' 205 0 8
+763 'Bartłomiej' 'p4.m' 208 0 8
+764 'Bartłomiej' 'p4.m' 209 0 8
+765 'Bartłomiej' 'p4.m' 210 0 8
+766 'Bartłomiej' 'p4.m' 211 0 8
+767 'Bartłomiej' 'p4.m' 212 0 8
+768 'Franciszek' 'p4.m' 47 0 8
+769 'Franciszek' 'p4.m' 48 0 8
+770 'Franciszek' 'p4.m' 49 0 8
+771 'Franciszek' 'p4.m' 50 0 8
+772 'Franciszek' 'p4.m' 51 0 8
+773 'Franciszek' 'p4.m' 54 0 8
+774 'Franciszek' 'p4.m' 55 0 8
+775 'Franciszek' 'p4.m' 56 0 8
+776 'Franciszek' 'p4.m' 57 0 8
+777 'Franciszek' 'p4.m' 58 0 8
+778 'Franciszek' 'p4.m' 61 0 8
+779 'Franciszek' 'p4.m' 62 0 8
+780 'Franciszek' 'p4.m' 63 0 8
+781 'Franciszek' 'p4.m' 64 0 8
+782 'Franciszek' 'p4.m' 65 0 8
+783 'Franciszek' 'p4.m' 68 0 8
+784 'Franciszek' 'p4.m' 69 0 8
+785 'Franciszek' 'p4.m' 70 0 8
+786 'Franciszek' 'p4.m' 71 0 8
+787 'Franciszek' 'p4.m' 72 0 8
+788 'Franciszek' 'p4.m' 75 0 8
+789 'Franciszek' 'p4.m' 76 0 8
+790 'Franciszek' 'p4.m' 77 0 8
+791 'Franciszek' 'p4.m' 78 0 8
+792 'Franciszek' 'p4.m' 79 0 8
+793 'Franciszek' 'p4.m' 82 0 8
+794 'Franciszek' 'p4.m' 83 0 8
+795 'Franciszek' 'p4.m' 84 0 8
+796 'Franciszek' 'p4.m' 85 0 8
+797 'Franciszek' 'p4.m' 86 0 8
+798 'Franciszek' 'p4.m' 89 0 8
+799 'Franciszek' 'p4.m' 90 0 8
+800 'Franciszek' 'p4.m' 91 0 8
+801 'Franciszek' 'p4.m' 92 0 8
+802 'Franciszek' 'p4.m' 93 0 8
+803 'Franciszek' 'p4.m' 96 0 8
+804 'Franciszek' 'p4.m' 97 0 8
+805 'Franciszek' 'p4.m' 98 0 8
+806 'Franciszek' 'p4.m' 99 0 8
+807 'Franciszek' 'p4.m' 100 0 8
+808 'Franciszek' 'p4.m' 103 0 8
+809 'Franciszek' 'p4.m' 104 0 8
+810 'Franciszek' 'p4.m' 105 0 8
+811 'Franciszek' 'p4.m' 106 0 8
+812 'Franciszek' 'p4.m' 107 0 8
+813 'Franciszek' 'p4.m' 110 0 8
+814 'Franciszek' 'p4.m' 111 0 8
+815 'Franciszek' 'p4.m' 112 0 8
+816 'Franciszek' 'p4.m' 113 0 8
+817 'Franciszek' 'p4.m' 114 0 8
+818 'Franciszek' 'p4.m' 117 0 8
+819 'Franciszek' 'p4.m' 118 0 8
+820 'Franciszek' 'p4.m' 119 0 8
+821 'Franciszek' 'p4.m' 120 0 8
+822 'Franciszek' 'p4.m' 121 0 8
+823 'Franciszek' 'p4.m' 124 0 8
+824 'Franciszek' 'p4.m' 125 0 8
+825 'Franciszek' 'p4.m' 126 0 8
+826 'Franciszek' 'p4.m' 127 0 8
+827 'Franciszek' 'p4.m' 128 0 8
+828 'Franciszek' 'p4.m' 131 0 8
+829 'Franciszek' 'p4.m' 132 0 8
+830 'Franciszek' 'p4.m' 133 0 8
+831 'Franciszek' 'p4.m' 134 0 8
+832 'Franciszek' 'p4.m' 135 0 8
+833 'Franciszek' 'p4.m' 138 0 8
+834 'Franciszek' 'p4.m' 139 0 8
+835 'Franciszek' 'p4.m' 140 0 8
+836 'Franciszek' 'p4.m' 141 0 8
+837 'Franciszek' 'p4.m' 142 0 8
+838 'Franciszek' 'p4.m' 145 0 8
+839 'Franciszek' 'p4.m' 146 0 8
+840 'Franciszek' 'p4.m' 147 0 8
+841 'Franciszek' 'p4.m' 148 0 8
+842 'Franciszek' 'p4.m' 149 0 8
+843 'Franciszek' 'p4.m' 152 0 8
+844 'Franciszek' 'p4.m' 153 0 8
+845 'Franciszek' 'p4.m' 154 0 8
+846 'Franciszek' 'p4.m' 155 0 8
+847 'Franciszek' 'p4.m' 156 0 8
+848 'Franciszek' 'p4.m' 159 0 8
+849 'Franciszek' 'p4.m' 160 0 8
+850 'Franciszek' 'p4.m' 161 0 8
+851 'Franciszek' 'p4.m' 162 0 8
+852 'Franciszek' 'p4.m' 163 0 8
+853 'Franciszek' 'p4.m' 166 0 8
+854 'Franciszek' 'p4.m' 167 0 8
+855 'Franciszek' 'p4.m' 168 0 8
+856 'Franciszek' 'p4.m' 169 0 8
+857 'Franciszek' 'p4.m' 170 0 8
+858 'Franciszek' 'p4.m' 173 0 8
+859 'Franciszek' 'p4.m' 174 0 8
+860 'Franciszek' 'p4.m' 175 0 8
+861 'Franciszek' 'p4.m' 176 0 8
+862 'Franciszek' 'p4.m' 177 0 8
+863 'Franciszek' 'p4.m' 180 0 8
+864 'Franciszek' 'p4.m' 181 0 8
+865 'Franciszek' 'p4.m' 182 0 8
+866 'Franciszek' 'p4.m' 183 0 8
+867 'Franciszek' 'p4.m' 184 0 8
+868 'Franciszek' 'p4.m' 187 0 8
+869 'Franciszek' 'p4.m' 188 0 8
+870 'Franciszek' 'p4.m' 189 0 8
+871 'Franciszek' 'p4.m' 190 0 8
+872 'Franciszek' 'p4.m' 191 0 8
+873 'Franciszek' 'p4.m' 194 0 8
+874 'Franciszek' 'p4.m' 195 0 8
+875 'Franciszek' 'p4.m' 196 0 8
+876 'Franciszek' 'p4.m' 197 0 8
+877 'Franciszek' 'p4.m' 198 0 8
+878 'Franciszek' 'p4.m' 201 0 8
+879 'Franciszek' 'p4.m' 202 0 8
+880 'Franciszek' 'p4.m' 203 0 8
+881 'Franciszek' 'p4.m' 204 0 8
+882 'Franciszek' 'p4.m' 205 0 8
+883 'Franciszek' 'p4.m' 208 0 8
+884 'Franciszek' 'p4.m' 209 0 8
+885 'Franciszek' 'p4.m' 210 0 8
+886 'Franciszek' 'p4.m' 211 0 8
+887 'Franciszek' 'p4.m' 212 0 8
+888 'Wojciech' 'p4.m' 47 0 8
+889 'Wojciech' 'p4.m' 48 0 8
+890 'Wojciech' 'p4.m' 49 0 8
+891 'Wojciech' 'p4.m' 50 0 8
+892 'Wojciech' 'p4.m' 51 0 8
+893 'Wojciech' 'p4.m' 54 0 8
+894 'Wojciech' 'p4.m' 55 0 8
+895 'Wojciech' 'p4.m' 56 0 8
+896 'Wojciech' 'p4.m' 57 0 8
+897 'Wojciech' 'p4.m' 58 0 8
+898 'Wojciech' 'p4.m' 61 0 8
+899 'Wojciech' 'p4.m' 62 0 8
+900 'Wojciech' 'p4.m' 63 0 8
+901 'Wojciech' 'p4.m' 64 0 8
+902 'Wojciech' 'p4.m' 65 0 8
+903 'Wojciech' 'p4.m' 68 0 8
+904 'Wojciech' 'p4.m' 69 0 8
+905 'Wojciech' 'p4.m' 70 0 8
+906 'Wojciech' 'p4.m' 71 0 8
+907 'Wojciech' 'p4.m' 72 0 8
+908 'Wojciech' 'p4.m' 75 0 8
+909 'Wojciech' 'p4.m' 76 0 8
+910 'Wojciech' 'p4.m' 77 0 8
+911 'Wojciech' 'p4.m' 78 0 8
+912 'Wojciech' 'p4.m' 79 0 8
+913 'Wojciech' 'p4.m' 82 0 8
+914 'Wojciech' 'p4.m' 83 0 8
+915 'Wojciech' 'p4.m' 84 0 8
+916 'Wojciech' 'p4.m' 85 0 8
+917 'Wojciech' 'p4.m' 86 0 8
+918 'Wojciech' 'p4.m' 89 0 8
+919 'Wojciech' 'p4.m' 90 0 8
+920 'Wojciech' 'p4.m' 91 0 8
+921 'Wojciech' 'p4.m' 92 0 8
+922 'Wojciech' 'p4.m' 93 0 8
+923 'Wojciech' 'p4.m' 96 0 8
+924 'Wojciech' 'p4.m' 97 0 8
+925 'Wojciech' 'p4.m' 98 0 8
+926 'Wojciech' 'p4.m' 99 0 8
+927 'Wojciech' 'p4.m' 100 0 8
+928 'Wojciech' 'p4.m' 103 0 8
+929 'Wojciech' 'p4.m' 104 0 8
+930 'Wojciech' 'p4.m' 105 0 8
+931 'Wojciech' 'p4.m' 106 0 8
+932 'Wojciech' 'p4.m' 107 0 8
+933 'Wojciech' 'p4.m' 110 0 8
+934 'Wojciech' 'p4.m' 111 0 8
+935 'Wojciech' 'p4.m' 112 0 8
+936 'Wojciech' 'p4.m' 113 0 8
+937 'Wojciech' 'p4.m' 114 0 8
+938 'Wojciech' 'p4.m' 117 0 8
+939 'Wojciech' 'p4.m' 118 0 8
+940 'Wojciech' 'p4.m' 119 0 8
+941 'Wojciech' 'p4.m' 120 0 8
+942 'Wojciech' 'p4.m' 121 0 8
+943 'Wojciech' 'p4.m' 124 0 8
+944 'Wojciech' 'p4.m' 125 0 8
+945 'Wojciech' 'p4.m' 126 0 8
+946 'Wojciech' 'p4.m' 127 0 8
+947 'Wojciech' 'p4.m' 128 0 8
+948 'Wojciech' 'p4.m' 131 0 8
+949 'Wojciech' 'p4.m' 132 0 8
+950 'Wojciech' 'p4.m' 133 0 8
+951 'Wojciech' 'p4.m' 134 0 8
+952 'Wojciech' 'p4.m' 135 0 8
+953 'Wojciech' 'p4.m' 138 0 8
+954 'Wojciech' 'p4.m' 139 0 8
+955 'Wojciech' 'p4.m' 140 0 8
+956 'Wojciech' 'p4.m' 141 0 8
+957 'Wojciech' 'p4.m' 142 0 8
+958 'Wojciech' 'p4.m' 145 0 8
+959 'Wojciech' 'p4.m' 146 0 8
+960 'Wojciech' 'p4.m' 147 0 8
+961 'Wojciech' 'p4.m' 148 0 8
+962 'Wojciech' 'p4.m' 149 0 8
+963 'Wojciech' 'p4.m' 152 0 8
+964 'Wojciech' 'p4.m' 153 0 8
+965 'Wojciech' 'p4.m' 154 0 8
+966 'Wojciech' 'p4.m' 155 0 8
+967 'Wojciech' 'p4.m' 156 0 8
+968 'Wojciech' 'p4.m' 159 0 8
+969 'Wojciech' 'p4.m' 160 0 8
+970 'Wojciech' 'p4.m' 161 0 8
+971 'Wojciech' 'p4.m' 162 0 8
+972 'Wojciech' 'p4.m' 163 0 8
+973 'Wojciech' 'p4.m' 166 0 8
+974 'Wojciech' 'p4.m' 167 0 8
+975 'Wojciech' 'p4.m' 168 0 8
+976 'Wojciech' 'p4.m' 169 0 8
+977 'Wojciech' 'p4.m' 170 0 8
+978 'Wojciech' 'p4.m' 173 0 8
+979 'Wojciech' 'p4.m' 174 0 8
+980 'Wojciech' 'p4.m' 175 0 8
+981 'Wojciech' 'p4.m' 176 0 8
+982 'Wojciech' 'p4.m' 177 0 8
+983 'Wojciech' 'p4.m' 180 0 8
+984 'Wojciech' 'p4.m' 181 0 8
+985 'Wojciech' 'p4.m' 182 0 8
+986 'Wojciech' 'p4.m' 183 0 8
+987 'Wojciech' 'p4.m' 184 0 8
+988 'Wojciech' 'p4.m' 187 0 8
+989 'Wojciech' 'p4.m' 188 0 8
+990 'Wojciech' 'p4.m' 189 0 8
+991 'Wojciech' 'p4.m' 190 0 8
+992 'Wojciech' 'p4.m' 191 0 8
+993 'Wojciech' 'p4.m' 194 0 8
+994 'Wojciech' 'p4.m' 195 0 8
+995 'Wojciech' 'p4.m' 196 0 8
+996 'Wojciech' 'p4.m' 197 0 8
+997 'Wojciech' 'p4.m' 198 0 8
+998 'Wojciech' 'p4.m' 201 0 8
+999 'Wojciech' 'p4.m' 202 0 8
+1000 'Wojciech' 'p4.m' 203 0 8
+1001 'Wojciech' 'p4.m' 204 0 8
+1002 'Wojciech' 'p4.m' 205 0 8
+1003 'Wojciech' 'p4.m' 208 0 8
+1004 'Wojciech' 'p4.m' 209 0 8
+1005 'Wojciech' 'p4.m' 210 0 8
+1006 'Wojciech' 'p4.m' 211 0 8
+1007 'Wojciech' 'p4.m' 212 0 8
+1008 'Franciszek' 'p6.m' 89 8 8
+1009 'Franciszek' 'p6.m' 90 8 8
+1010 'Franciszek' 'p6.m' 91 8 8
+1011 'Franciszek' 'p6.m' 92 8 8
+1012 'Franciszek' 'p6.m' 93 8 8
+1013 'Franciszek' 'p6.m' 96 8 8
+1014 'Franciszek' 'p6.m' 97 8 8
+1015 'Franciszek' 'p6.m' 98 8 8
+1016 'Franciszek' 'p6.m' 99 8 8
+1017 'Franciszek' 'p6.m' 100 8 8
+1018 'Franciszek' 'p6.m' 103 8 8
+1019 'Franciszek' 'p6.m' 104 8 8
+1020 'Franciszek' 'p6.m' 105 8 8
+1021 'Franciszek' 'p6.m' 106 8 8
+1022 'Franciszek' 'p6.m' 107 8 8
+1023 'Franciszek' 'p6.m' 110 8 8
+1024 'Franciszek' 'p6.m' 111 8 8
+1025 'Franciszek' 'p6.m' 112 8 8
+1026 'Franciszek' 'p6.m' 113 8 8
+1027 'Franciszek' 'p6.m' 114 8 8
+1028 'Franciszek' 'p6.m' 117 8 8
+1029 'Franciszek' 'p6.m' 118 8 8
+1030 'Franciszek' 'p6.m' 119 8 8
+1031 'Franciszek' 'p6.m' 120 8 8
+1032 'Franciszek' 'p6.m' 121 8 8
+1033 'Franciszek' 'p6.m' 124 8 8
+1034 'Franciszek' 'p6.m' 125 8 8
+1035 'Franciszek' 'p6.m' 126 8 8
+1036 'Franciszek' 'p6.m' 127 8 8
+1037 'Franciszek' 'p6.m' 128 8 8
+1038 'Franciszek' 'p6.m' 131 8 8
+1039 'Franciszek' 'p6.m' 132 8 8
+1040 'Franciszek' 'p6.m' 133 8 8
+1041 'Franciszek' 'p6.m' 134 8 8
+1042 'Franciszek' 'p6.m' 135 8 8
+1043 'Franciszek' 'p6.m' 138 8 8
+1044 'Franciszek' 'p6.m' 139 8 8
+1045 'Franciszek' 'p6.m' 140 8 8
+1046 'Franciszek' 'p6.m' 141 8 8
+1047 'Franciszek' 'p6.m' 142 8 8
+1048 'Franciszek' 'p6.m' 145 8 8
+1049 'Franciszek' 'p6.m' 146 8 8
+1050 'Franciszek' 'p6.m' 147 8 8
+1051 'Franciszek' 'p6.m' 148 8 8
+1052 'Franciszek' 'p6.m' 149 8 8
+1053 'Franciszek' 'p6.m' 152 8 8
+1054 'Franciszek' 'p6.m' 153 8 8
+1055 'Franciszek' 'p6.m' 154 8 8
+1056 'Franciszek' 'p6.m' 155 8 8
+1057 'Franciszek' 'p6.m' 156 8 8
+1058 'Franciszek' 'p6.m' 159 8 8
+1059 'Franciszek' 'p6.m' 160 8 8
+1060 'Franciszek' 'p6.m' 161 8 8
+1061 'Franciszek' 'p6.m' 162 8 8
+1062 'Franciszek' 'p6.m' 163 8 8
+1063 'Franciszek' 'p6.m' 166 8 8
+1064 'Franciszek' 'p6.m' 167 8 8
+1065 'Franciszek' 'p6.m' 168 8 8
+1066 'Franciszek' 'p6.m' 169 8 8
+1067 'Franciszek' 'p6.m' 170 8 8
+1068 'Franciszek' 'p6.m' 173 8 8
+1069 'Franciszek' 'p6.m' 174 8 8
+1070 'Franciszek' 'p6.m' 175 8 8
+1071 'Franciszek' 'p6.m' 176 8 8
+1072 'Franciszek' 'p6.m' 177 8 8
+1073 'Franciszek' 'p6.m' 180 8 8
+1074 'Franciszek' 'p6.m' 181 8 8
+1075 'Franciszek' 'p6.m' 182 8 8
+1076 'Franciszek' 'p6.m' 183 8 8
+1077 'Franciszek' 'p6.m' 184 8 8
+1078 'Franciszek' 'p6.m' 187 8 8
+1079 'Franciszek' 'p6.m' 188 8 8
+1080 'Franciszek' 'p6.m' 189 8 8
+1081 'Franciszek' 'p6.m' 190 8 8
+1082 'Franciszek' 'p6.m' 191 8 8
+1083 'Franciszek' 'p6.m' 194 8 8
+1084 'Franciszek' 'p6.m' 195 8 8
+1085 'Franciszek' 'p6.m' 196 8 8
+1086 'Franciszek' 'p6.m' 197 8 8
+1087 'Franciszek' 'p6.m' 198 8 8
+1088 'Franciszek' 'p6.m' 201 8 8
+1089 'Franciszek' 'p6.m' 202 8 8
+1090 'Franciszek' 'p6.m' 203 8 8
+1091 'Franciszek' 'p6.m' 204 8 8
+1092 'Franciszek' 'p6.m' 205 8 8
+1093 'Franciszek' 'p6.m' 208 8 8
+1094 'Franciszek' 'p6.m' 209 8 8
+1095 'Franciszek' 'p6.m' 210 8 8
+1096 'Franciszek' 'p6.m' 211 8 8
+1097 'Franciszek' 'p6.m' 212 8 8
+1098 'Franciszek' 'p6.m' 215 8 8
+1099 'Franciszek' 'p6.m' 216 8 8
+1100 'Franciszek' 'p6.m' 217 8 8
+1101 'Franciszek' 'p6.m' 218 8 8
+1102 'Franciszek' 'p6.m' 219 8 8
+1103 'Franciszek' 'p6.m' 222 8 8
+1104 'Franciszek' 'p6.m' 223 8 8
+1105 'Franciszek' 'p6.m' 224 8 8
+1106 'Franciszek' 'p6.m' 225 8 8
+1107 'Franciszek' 'p6.m' 226 8 8
+1108 'Franciszek' 'p6.m' 229 8 8
+1109 'Franciszek' 'p6.m' 230 8 8
+1110 'Franciszek' 'p6.m' 231 8 8
+1111 'Franciszek' 'p6.m' 232 8 8
+1112 'Franciszek' 'p6.m' 233 8 8
+1113 'Franciszek' 'p6.m' 236 8 8
+1114 'Franciszek' 'p6.m' 237 8 8
+1115 'Franciszek' 'p6.m' 238 8 8
+1116 'Franciszek' 'p6.m' 239 8 8
+1117 'Franciszek' 'p6.m' 240 8 8
+1118 'Franciszek' 'p6.m' 243 8 8
+1119 'Franciszek' 'p6.m' 244 8 8
+1120 'Franciszek' 'p6.m' 245 8 8
+1121 'Franciszek' 'p6.m' 246 8 8
+1122 'Franciszek' 'p6.m' 247 8 8
+1123 'Franciszek' 'p6.m' 250 8 8
+1124 'Franciszek' 'p6.m' 251 8 8
+1125 'Franciszek' 'p6.m' 252 8 8
+1126 'Franciszek' 'p6.m' 253 8 8
+1127 'Franciszek' 'p6.m' 254 8 8
+1128 'Franciszek' 'p6.f' 257 8 8
+1129 'Franciszek' 'p6.f' 258 8 8
+1130 'Franciszek' 'p6.f' 259 8 8
+1131 'Franciszek' 'p6.f' 260 8 8
+1132 'Franciszek' 'p6.f' 261 8 8
+1133 'Franciszek' 'p6.f' 264 8 8
+1134 'Franciszek' 'p6.f' 265 8 8
+1135 'Franciszek' 'p6.f' 266 8 8
+1136 'Franciszek' 'p6.f' 267 8 8
+1137 'Franciszek' 'p6.f' 268 8 8
+1138 'Franciszek' 'p6.f' 271 8 8
+1139 'Franciszek' 'p6.f' 272 8 8
+1140 'Franciszek' 'p6.f' 273 8 8
+1141 'Franciszek' 'p6.f' 274 8 8
+1142 'Franciszek' 'p6.f' 275 8 8
+1143 'Franciszek' 'p6.f' 278 8 8
+1144 'Franciszek' 'p6.f' 279 8 8
+1145 'Franciszek' 'p6.f' 280 8 8
+1146 'Franciszek' 'p6.f' 281 8 8
+1147 'Franciszek' 'p6.f' 282 8 8
+1148 'Franciszek' 'p6.pf' 285 6 7
+1149 'Franciszek' 'p6.pf' 286 6 7
+1150 'Franciszek' 'p6.pf' 287 6 7
+1151 'Franciszek' 'p6.pf' 288 6 7
+1152 'Franciszek' 'p6.pf' 289 6 7
+1153 'Franciszek' 'p6.pf' 292 6 7
+1154 'Franciszek' 'p6.pf' 293 6 7
+1155 'Franciszek' 'p6.pf' 294 6 7
+1156 'Franciszek' 'p6.pf' 295 6 7
+1157 'Franciszek' 'p6.pf' 296 6 7
+1158 'Alojzy' 'p6.m' 89 0 8
+1159 'Alojzy' 'p6.m' 90 0 8
+1160 'Alojzy' 'p6.m' 91 0 8
+1161 'Alojzy' 'p6.m' 92 0 8
+1162 'Alojzy' 'p6.m' 93 0 8
+1163 'Alojzy' 'p6.m' 96 0 8
+1164 'Alojzy' 'p6.m' 97 0 8
+1165 'Alojzy' 'p6.m' 98 0 8
+1166 'Alojzy' 'p6.m' 99 0 8
+1167 'Alojzy' 'p6.m' 100 0 8
+1168 'Alojzy' 'p6.m' 103 0 8
+1169 'Alojzy' 'p6.m' 104 0 8
+1170 'Alojzy' 'p6.m' 105 0 8
+1171 'Alojzy' 'p6.m' 106 0 8
+1172 'Alojzy' 'p6.m' 107 0 8
+1173 'Alojzy' 'p6.m' 110 0 8
+1174 'Alojzy' 'p6.m' 111 0 8
+1175 'Alojzy' 'p6.m' 112 0 8
+1176 'Alojzy' 'p6.m' 113 0 8
+1177 'Alojzy' 'p6.m' 114 0 8
+1178 'Alojzy' 'p6.m' 117 0 8
+1179 'Alojzy' 'p6.m' 118 0 8
+1180 'Alojzy' 'p6.m' 119 0 8
+1181 'Alojzy' 'p6.m' 120 0 8
+1182 'Alojzy' 'p6.m' 121 0 8
+1183 'Alojzy' 'p6.m' 124 0 8
+1184 'Alojzy' 'p6.m' 125 0 8
+1185 'Alojzy' 'p6.m' 126 0 8
+1186 'Alojzy' 'p6.m' 127 0 8
+1187 'Alojzy' 'p6.m' 128 0 8
+1188 'Alojzy' 'p6.m' 131 0 8
+1189 'Alojzy' 'p6.m' 132 0 8
+1190 'Alojzy' 'p6.m' 133 0 8
+1191 'Alojzy' 'p6.m' 134 0 8
+1192 'Alojzy' 'p6.m' 135 0 8
+1193 'Alojzy' 'p6.m' 138 0 8
+1194 'Alojzy' 'p6.m' 139 0 8
+1195 'Alojzy' 'p6.m' 140 0 8
+1196 'Alojzy' 'p6.m' 141 0 8
+1197 'Alojzy' 'p6.m' 142 0 8
+1198 'Alojzy' 'p6.m' 145 0 8
+1199 'Alojzy' 'p6.m' 146 0 8
+1200 'Alojzy' 'p6.m' 147 0 8
+1201 'Alojzy' 'p6.m' 148 0 8
+1202 'Alojzy' 'p6.m' 149 0 8
+1203 'Alojzy' 'p6.m' 152 0 8
+1204 'Alojzy' 'p6.m' 153 0 8
+1205 'Alojzy' 'p6.m' 154 0 8
+1206 'Alojzy' 'p6.m' 155 0 8
+1207 'Alojzy' 'p6.m' 156 0 8
+1208 'Alojzy' 'p6.m' 159 0 8
+1209 'Alojzy' 'p6.m' 160 0 8
+1210 'Alojzy' 'p6.m' 161 0 8
+1211 'Alojzy' 'p6.m' 162 0 8
+1212 'Alojzy' 'p6.m' 163 0 8
+1213 'Alojzy' 'p6.m' 166 0 8
+1214 'Alojzy' 'p6.m' 167 0 8
+1215 'Alojzy' 'p6.m' 168 0 8
+1216 'Alojzy' 'p6.m' 169 0 8
+1217 'Alojzy' 'p6.m' 170 0 8
+1218 'Alojzy' 'p6.m' 173 0 8
+1219 'Alojzy' 'p6.m' 174 0 8
+1220 'Alojzy' 'p6.m' 175 0 8
+1221 'Alojzy' 'p6.m' 176 0 8
+1222 'Alojzy' 'p6.m' 177 0 8
+1223 'Alojzy' 'p6.m' 180 0 8
+1224 'Alojzy' 'p6.m' 181 0 8
+1225 'Alojzy' 'p6.m' 182 0 8
+1226 'Alojzy' 'p6.m' 183 0 8
+1227 'Alojzy' 'p6.m' 184 0 8
+1228 'Alojzy' 'p6.m' 187 0 8
+1229 'Alojzy' 'p6.m' 188 0 8
+1230 'Alojzy' 'p6.m' 189 0 8
+1231 'Alojzy' 'p6.m' 190 0 8
+1232 'Alojzy' 'p6.m' 191 0 8
+1233 'Alojzy' 'p6.m' 194 0 8
+1234 'Alojzy' 'p6.m' 195 0 8
+1235 'Alojzy' 'p6.m' 196 0 8
+1236 'Alojzy' 'p6.m' 197 0 8
+1237 'Alojzy' 'p6.m' 198 0 8
+1238 'Alojzy' 'p6.m' 201 0 8
+1239 'Alojzy' 'p6.m' 202 0 8
+1240 'Alojzy' 'p6.m' 203 0 8
+1241 'Alojzy' 'p6.m' 204 0 8
+1242 'Alojzy' 'p6.m' 205 0 8
+1243 'Alojzy' 'p6.m' 208 0 8
+1244 'Alojzy' 'p6.m' 209 0 8
+1245 'Alojzy' 'p6.m' 210 0 8
+1246 'Alojzy' 'p6.m' 211 0 8
+1247 'Alojzy' 'p6.m' 212 0 8
+1248 'Alojzy' 'p6.m' 215 0 8
+1249 'Alojzy' 'p6.m' 216 0 8
+1250 'Alojzy' 'p6.m' 217 0 8
+1251 'Alojzy' 'p6.m' 218 0 8
+1252 'Alojzy' 'p6.m' 219 0 8
+1253 'Alojzy' 'p6.m' 222 0 8
+1254 'Alojzy' 'p6.m' 223 0 8
+1255 'Alojzy' 'p6.m' 224 0 8
+1256 'Alojzy' 'p6.m' 225 0 8
+1257 'Alojzy' 'p6.m' 226 0 8
+1258 'Alojzy' 'p6.m' 229 0 8
+1259 'Alojzy' 'p6.m' 230 0 8
+1260 'Alojzy' 'p6.m' 231 0 8
+1261 'Alojzy' 'p6.m' 232 0 8
+1262 'Alojzy' 'p6.m' 233 0 8
+1263 'Alojzy' 'p6.m' 236 0 8
+1264 'Alojzy' 'p6.m' 237 0 8
+1265 'Alojzy' 'p6.m' 238 0 8
+1266 'Alojzy' 'p6.m' 239 0 8
+1267 'Alojzy' 'p6.m' 240 0 8
+1268 'Alojzy' 'p6.m' 243 0 8
+1269 'Alojzy' 'p6.m' 244 0 8
+1270 'Alojzy' 'p6.m' 245 0 8
+1271 'Alojzy' 'p6.m' 246 0 8
+1272 'Alojzy' 'p6.m' 247 0 8
+1273 'Alojzy' 'p6.m' 250 0 8
+1274 'Alojzy' 'p6.m' 251 0 8
+1275 'Alojzy' 'p6.m' 252 0 8
+1276 'Alojzy' 'p6.m' 253 0 8
+1277 'Alojzy' 'p6.m' 254 0 8
+1278 'Bartłomiej' 'p6.m' 89 0 8
+1279 'Bartłomiej' 'p6.m' 90 0 8
+1280 'Bartłomiej' 'p6.m' 91 0 8
+1281 'Bartłomiej' 'p6.m' 92 0 8
+1282 'Bartłomiej' 'p6.m' 93 0 8
+1283 'Bartłomiej' 'p6.m' 96 0 8
+1284 'Bartłomiej' 'p6.m' 97 0 8
+1285 'Bartłomiej' 'p6.m' 98 0 8
+1286 'Bartłomiej' 'p6.m' 99 0 8
+1287 'Bartłomiej' 'p6.m' 100 0 8
+1288 'Bartłomiej' 'p6.m' 103 0 8
+1289 'Bartłomiej' 'p6.m' 104 0 8
+1290 'Bartłomiej' 'p6.m' 105 0 8
+1291 'Bartłomiej' 'p6.m' 106 0 8
+1292 'Bartłomiej' 'p6.m' 107 0 8
+1293 'Bartłomiej' 'p6.m' 110 0 8
+1294 'Bartłomiej' 'p6.m' 111 0 8
+1295 'Bartłomiej' 'p6.m' 112 0 8
+1296 'Bartłomiej' 'p6.m' 113 0 8
+1297 'Bartłomiej' 'p6.m' 114 0 8
+1298 'Bartłomiej' 'p6.m' 117 0 8
+1299 'Bartłomiej' 'p6.m' 118 0 8
+1300 'Bartłomiej' 'p6.m' 119 0 8
+1301 'Bartłomiej' 'p6.m' 120 0 8
+1302 'Bartłomiej' 'p6.m' 121 0 8
+1303 'Bartłomiej' 'p6.m' 124 0 8
+1304 'Bartłomiej' 'p6.m' 125 0 8
+1305 'Bartłomiej' 'p6.m' 126 0 8
+1306 'Bartłomiej' 'p6.m' 127 0 8
+1307 'Bartłomiej' 'p6.m' 128 0 8
+1308 'Bartłomiej' 'p6.m' 131 0 8
+1309 'Bartłomiej' 'p6.m' 132 0 8
+1310 'Bartłomiej' 'p6.m' 133 0 8
+1311 'Bartłomiej' 'p6.m' 134 0 8
+1312 'Bartłomiej' 'p6.m' 135 0 8
+1313 'Bartłomiej' 'p6.m' 138 0 8
+1314 'Bartłomiej' 'p6.m' 139 0 8
+1315 'Bartłomiej' 'p6.m' 140 0 8
+1316 'Bartłomiej' 'p6.m' 141 0 8
+1317 'Bartłomiej' 'p6.m' 142 0 8
+1318 'Bartłomiej' 'p6.m' 145 0 8
+1319 'Bartłomiej' 'p6.m' 146 0 8
+1320 'Bartłomiej' 'p6.m' 147 0 8
+1321 'Bartłomiej' 'p6.m' 148 0 8
+1322 'Bartłomiej' 'p6.m' 149 0 8
+1323 'Bartłomiej' 'p6.m' 152 0 8
+1324 'Bartłomiej' 'p6.m' 153 0 8
+1325 'Bartłomiej' 'p6.m' 154 0 8
+1326 'Bartłomiej' 'p6.m' 155 0 8
+1327 'Bartłomiej' 'p6.m' 156 0 8
+1328 'Bartłomiej' 'p6.m' 159 0 8
+1329 'Bartłomiej' 'p6.m' 160 0 8
+1330 'Bartłomiej' 'p6.m' 161 0 8
+1331 'Bartłomiej' 'p6.m' 162 0 8
+1332 'Bartłomiej' 'p6.m' 163 0 8
+1333 'Bartłomiej' 'p6.m' 166 0 8
+1334 'Bartłomiej' 'p6.m' 167 0 8
+1335 'Bartłomiej' 'p6.m' 168 0 8
+1336 'Bartłomiej' 'p6.m' 169 0 8
+1337 'Bartłomiej' 'p6.m' 170 0 8
+1338 'Bartłomiej' 'p6.m' 173 0 8
+1339 'Bartłomiej' 'p6.m' 174 0 8
+1340 'Bartłomiej' 'p6.m' 175 0 8
+1341 'Bartłomiej' 'p6.m' 176 0 8
+1342 'Bartłomiej' 'p6.m' 177 0 8
+1343 'Bartłomiej' 'p6.m' 180 0 8
+1344 'Bartłomiej' 'p6.m' 181 0 8
+1345 'Bartłomiej' 'p6.m' 182 0 8
+1346 'Bartłomiej' 'p6.m' 183 0 8
+1347 'Bartłomiej' 'p6.m' 184 0 8
+1348 'Bartłomiej' 'p6.m' 187 0 8
+1349 'Bartłomiej' 'p6.m' 188 0 8
+1350 'Bartłomiej' 'p6.m' 189 0 8
+1351 'Bartłomiej' 'p6.m' 190 0 8
+1352 'Bartłomiej' 'p6.m' 191 0 8
+1353 'Bartłomiej' 'p6.m' 194 0 8
+1354 'Bartłomiej' 'p6.m' 195 0 8
+1355 'Bartłomiej' 'p6.m' 196 0 8
+1356 'Bartłomiej' 'p6.m' 197 0 8
+1357 'Bartłomiej' 'p6.m' 198 0 8
+1358 'Bartłomiej' 'p6.m' 201 0 8
+1359 'Bartłomiej' 'p6.m' 202 0 8
+1360 'Bartłomiej' 'p6.m' 203 0 8
+1361 'Bartłomiej' 'p6.m' 204 0 8
+1362 'Bartłomiej' 'p6.m' 205 0 8
+1363 'Bartłomiej' 'p6.m' 208 0 8
+1364 'Bartłomiej' 'p6.m' 209 0 8
+1365 'Bartłomiej' 'p6.m' 210 0 8
+1366 'Bartłomiej' 'p6.m' 211 0 8
+1367 'Bartłomiej' 'p6.m' 212 0 8
+1368 'Bartłomiej' 'p6.m' 215 0 8
+1369 'Bartłomiej' 'p6.m' 216 0 8
+1370 'Bartłomiej' 'p6.m' 217 0 8
+1371 'Bartłomiej' 'p6.m' 218 0 8
+1372 'Bartłomiej' 'p6.m' 219 0 8
+1373 'Bartłomiej' 'p6.m' 222 0 8
+1374 'Bartłomiej' 'p6.m' 223 0 8
+1375 'Bartłomiej' 'p6.m' 224 0 8
+1376 'Bartłomiej' 'p6.m' 225 0 8
+1377 'Bartłomiej' 'p6.m' 226 0 8
+1378 'Bartłomiej' 'p6.m' 229 0 8
+1379 'Bartłomiej' 'p6.m' 230 0 8
+1380 'Bartłomiej' 'p6.m' 231 0 8
+1381 'Bartłomiej' 'p6.m' 232 0 8
+1382 'Bartłomiej' 'p6.m' 233 0 8
+1383 'Bartłomiej' 'p6.m' 236 0 8
+1384 'Bartłomiej' 'p6.m' 237 0 8
+1385 'Bartłomiej' 'p6.m' 238 0 8
+1386 'Bartłomiej' 'p6.m' 239 0 8
+1387 'Bartłomiej' 'p6.m' 240 0 8
+1388 'Bartłomiej' 'p6.m' 243 0 8
+1389 'Bartłomiej' 'p6.m' 244 0 8
+1390 'Bartłomiej' 'p6.m' 245 0 8
+1391 'Bartłomiej' 'p6.m' 246 0 8
+1392 'Bartłomiej' 'p6.m' 247 0 8
+1393 'Bartłomiej' 'p6.m' 250 0 8
+1394 'Bartłomiej' 'p6.m' 251 0 8
+1395 'Bartłomiej' 'p6.m' 252 0 8
+1396 'Bartłomiej' 'p6.m' 253 0 8
+1397 'Bartłomiej' 'p6.m' 254 0 8
+1398 'Paweł' 'p6.m' 89 0 8
+1399 'Paweł' 'p6.m' 90 0 8
+1400 'Paweł' 'p6.m' 91 0 8
+1401 'Paweł' 'p6.m' 92 0 8
+1402 'Paweł' 'p6.m' 93 0 8
+1403 'Paweł' 'p6.m' 96 0 8
+1404 'Paweł' 'p6.m' 97 0 8
+1405 'Paweł' 'p6.m' 98 0 8
+1406 'Paweł' 'p6.m' 99 0 8
+1407 'Paweł' 'p6.m' 100 0 8
+1408 'Paweł' 'p6.m' 103 0 8
+1409 'Paweł' 'p6.m' 104 0 8
+1410 'Paweł' 'p6.m' 105 0 8
+1411 'Paweł' 'p6.m' 106 0 8
+1412 'Paweł' 'p6.m' 107 0 8
+1413 'Paweł' 'p6.m' 110 0 8
+1414 'Paweł' 'p6.m' 111 0 8
+1415 'Paweł' 'p6.m' 112 0 8
+1416 'Paweł' 'p6.m' 113 0 8
+1417 'Paweł' 'p6.m' 114 0 8
+1418 'Paweł' 'p6.m' 117 0 8
+1419 'Paweł' 'p6.m' 118 0 8
+1420 'Paweł' 'p6.m' 119 0 8
+1421 'Paweł' 'p6.m' 120 0 8
+1422 'Paweł' 'p6.m' 121 0 8
+1423 'Paweł' 'p6.m' 124 0 8
+1424 'Paweł' 'p6.m' 125 0 8
+1425 'Paweł' 'p6.m' 126 0 8
+1426 'Paweł' 'p6.m' 127 0 8
+1427 'Paweł' 'p6.m' 128 0 8
+1428 'Paweł' 'p6.m' 131 0 8
+1429 'Paweł' 'p6.m' 132 0 8
+1430 'Paweł' 'p6.m' 133 0 8
+1431 'Paweł' 'p6.m' 134 0 8
+1432 'Paweł' 'p6.m' 135 0 8
+1433 'Paweł' 'p6.m' 138 0 8
+1434 'Paweł' 'p6.m' 139 0 8
+1435 'Paweł' 'p6.m' 140 0 8
+1436 'Paweł' 'p6.m' 141 0 8
+1437 'Paweł' 'p6.m' 142 0 8
+1438 'Paweł' 'p6.m' 145 0 8
+1439 'Paweł' 'p6.m' 146 0 8
+1440 'Paweł' 'p6.m' 147 0 8
+1441 'Paweł' 'p6.m' 148 0 8
+1442 'Paweł' 'p6.m' 149 0 8
+1443 'Paweł' 'p6.m' 152 0 8
+1444 'Paweł' 'p6.m' 153 0 8
+1445 'Paweł' 'p6.m' 154 0 8
+1446 'Paweł' 'p6.m' 155 0 8
+1447 'Paweł' 'p6.m' 156 0 8
+1448 'Paweł' 'p6.m' 159 0 8
+1449 'Paweł' 'p6.m' 160 0 8
+1450 'Paweł' 'p6.m' 161 0 8
+1451 'Paweł' 'p6.m' 162 0 8
+1452 'Paweł' 'p6.m' 163 0 8
+1453 'Paweł' 'p6.m' 166 0 8
+1454 'Paweł' 'p6.m' 167 0 8
+1455 'Paweł' 'p6.m' 168 0 8
+1456 'Paweł' 'p6.m' 169 0 8
+1457 'Paweł' 'p6.m' 170 0 8
+1458 'Paweł' 'p6.m' 173 0 8
+1459 'Paweł' 'p6.m' 174 0 8
+1460 'Paweł' 'p6.m' 175 0 8
+1461 'Paweł' 'p6.m' 176 0 8
+1462 'Paweł' 'p6.m' 177 0 8
+1463 'Paweł' 'p6.m' 180 0 8
+1464 'Paweł' 'p6.m' 181 0 8
+1465 'Paweł' 'p6.m' 182 0 8
+1466 'Paweł' 'p6.m' 183 0 8
+1467 'Paweł' 'p6.m' 184 0 8
+1468 'Paweł' 'p6.m' 187 0 8
+1469 'Paweł' 'p6.m' 188 0 8
+1470 'Paweł' 'p6.m' 189 0 8
+1471 'Paweł' 'p6.m' 190 0 8
+1472 'Paweł' 'p6.m' 191 0 8
+1473 'Paweł' 'p6.m' 194 0 8
+1474 'Paweł' 'p6.m' 195 0 8
+1475 'Paweł' 'p6.m' 196 0 8
+1476 'Paweł' 'p6.m' 197 0 8
+1477 'Paweł' 'p6.m' 198 0 8
+1478 'Paweł' 'p6.m' 201 0 8
+1479 'Paweł' 'p6.m' 202 0 8
+1480 'Paweł' 'p6.m' 203 0 8
+1481 'Paweł' 'p6.m' 204 0 8
+1482 'Paweł' 'p6.m' 205 0 8
+1483 'Paweł' 'p6.m' 208 0 8
+1484 'Paweł' 'p6.m' 209 0 8
+1485 'Paweł' 'p6.m' 210 0 8
+1486 'Paweł' 'p6.m' 211 0 8
+1487 'Paweł' 'p6.m' 212 0 8
+1488 'Paweł' 'p6.m' 215 0 8
+1489 'Paweł' 'p6.m' 216 0 8
+1490 'Paweł' 'p6.m' 217 0 8
+1491 'Paweł' 'p6.m' 218 0 8
+1492 'Paweł' 'p6.m' 219 0 8
+1493 'Paweł' 'p6.m' 222 0 8
+1494 'Paweł' 'p6.m' 223 0 8
+1495 'Paweł' 'p6.m' 224 0 8
+1496 'Paweł' 'p6.m' 225 0 8
+1497 'Paweł' 'p6.m' 226 0 8
+1498 'Paweł' 'p6.m' 229 0 8
+1499 'Paweł' 'p6.m' 230 0 8
+1500 'Paweł' 'p6.m' 231 0 8
+1501 'Paweł' 'p6.m' 232 0 8
+1502 'Paweł' 'p6.m' 233 0 8
+1503 'Paweł' 'p6.m' 236 0 8
+1504 'Paweł' 'p6.m' 237 0 8
+1505 'Paweł' 'p6.m' 238 0 8
+1506 'Paweł' 'p6.m' 239 0 8
+1507 'Paweł' 'p6.m' 240 0 8
+1508 'Paweł' 'p6.m' 243 0 8
+1509 'Paweł' 'p6.m' 244 0 8
+1510 'Paweł' 'p6.m' 245 0 8
+1511 'Paweł' 'p6.m' 246 0 8
+1512 'Paweł' 'p6.m' 247 0 8
+1513 'Paweł' 'p6.m' 250 0 8
+1514 'Paweł' 'p6.m' 251 0 8
+1515 'Paweł' 'p6.m' 252 0 8
+1516 'Paweł' 'p6.m' 253 0 8
+1517 'Paweł' 'p6.m' 254 0 8
+1518 'Wojciech' 'p6.m' 89 0 8
+1519 'Wojciech' 'p6.m' 90 0 8
+1520 'Wojciech' 'p6.m' 91 0 8
+1521 'Wojciech' 'p6.m' 92 0 8
+1522 'Wojciech' 'p6.m' 93 0 8
+1523 'Wojciech' 'p6.m' 96 0 8
+1524 'Wojciech' 'p6.m' 97 0 8
+1525 'Wojciech' 'p6.m' 98 0 8
+1526 'Wojciech' 'p6.m' 99 0 8
+1527 'Wojciech' 'p6.m' 100 0 8
+1528 'Wojciech' 'p6.m' 103 0 8
+1529 'Wojciech' 'p6.m' 104 0 8
+1530 'Wojciech' 'p6.m' 105 0 8
+1531 'Wojciech' 'p6.m' 106 0 8
+1532 'Wojciech' 'p6.m' 107 0 8
+1533 'Wojciech' 'p6.m' 110 0 8
+1534 'Wojciech' 'p6.m' 111 0 8
+1535 'Wojciech' 'p6.m' 112 0 8
+1536 'Wojciech' 'p6.m' 113 0 8
+1537 'Wojciech' 'p6.m' 114 0 8
+1538 'Wojciech' 'p6.m' 117 0 8
+1539 'Wojciech' 'p6.m' 118 0 8
+1540 'Wojciech' 'p6.m' 119 0 8
+1541 'Wojciech' 'p6.m' 120 0 8
+1542 'Wojciech' 'p6.m' 121 0 8
+1543 'Wojciech' 'p6.m' 124 0 8
+1544 'Wojciech' 'p6.m' 125 0 8
+1545 'Wojciech' 'p6.m' 126 0 8
+1546 'Wojciech' 'p6.m' 127 0 8
+1547 'Wojciech' 'p6.m' 128 0 8
+1548 'Wojciech' 'p6.m' 131 0 8
+1549 'Wojciech' 'p6.m' 132 0 8
+1550 'Wojciech' 'p6.m' 133 0 8
+1551 'Wojciech' 'p6.m' 134 0 8
+1552 'Wojciech' 'p6.m' 135 0 8
+1553 'Wojciech' 'p6.m' 138 0 8
+1554 'Wojciech' 'p6.m' 139 0 8
+1555 'Wojciech' 'p6.m' 140 0 8
+1556 'Wojciech' 'p6.m' 141 0 8
+1557 'Wojciech' 'p6.m' 142 0 8
+1558 'Wojciech' 'p6.m' 145 0 8
+1559 'Wojciech' 'p6.m' 146 0 8
+1560 'Wojciech' 'p6.m' 147 0 8
+1561 'Wojciech' 'p6.m' 148 0 8
+1562 'Wojciech' 'p6.m' 149 0 8
+1563 'Wojciech' 'p6.m' 152 0 8
+1564 'Wojciech' 'p6.m' 153 0 8
+1565 'Wojciech' 'p6.m' 154 0 8
+1566 'Wojciech' 'p6.m' 155 0 8
+1567 'Wojciech' 'p6.m' 156 0 8
+1568 'Wojciech' 'p6.m' 159 0 8
+1569 'Wojciech' 'p6.m' 160 0 8
+1570 'Wojciech' 'p6.m' 161 0 8
+1571 'Wojciech' 'p6.m' 162 0 8
+1572 'Wojciech' 'p6.m' 163 0 8
+1573 'Wojciech' 'p6.m' 166 0 8
+1574 'Wojciech' 'p6.m' 167 0 8
+1575 'Wojciech' 'p6.m' 168 0 8
+1576 'Wojciech' 'p6.m' 169 0 8
+1577 'Wojciech' 'p6.m' 170 0 8
+1578 'Wojciech' 'p6.m' 173 0 8
+1579 'Wojciech' 'p6.m' 174 0 8
+1580 'Wojciech' 'p6.m' 175 0 8
+1581 'Wojciech' 'p6.m' 176 0 8
+1582 'Wojciech' 'p6.m' 177 0 8
+1583 'Wojciech' 'p6.m' 180 0 8
+1584 'Wojciech' 'p6.m' 181 0 8
+1585 'Wojciech' 'p6.m' 182 0 8
+1586 'Wojciech' 'p6.m' 183 0 8
+1587 'Wojciech' 'p6.m' 184 0 8
+1588 'Wojciech' 'p6.m' 187 0 8
+1589 'Wojciech' 'p6.m' 188 0 8
+1590 'Wojciech' 'p6.m' 189 0 8
+1591 'Wojciech' 'p6.m' 190 0 8
+1592 'Wojciech' 'p6.m' 191 0 8
+1593 'Wojciech' 'p6.m' 194 0 8
+1594 'Wojciech' 'p6.m' 195 0 8
+1595 'Wojciech' 'p6.m' 196 0 8
+1596 'Wojciech' 'p6.m' 197 0 8
+1597 'Wojciech' 'p6.m' 198 0 8
+1598 'Wojciech' 'p6.m' 201 0 8
+1599 'Wojciech' 'p6.m' 202 0 8
+1600 'Wojciech' 'p6.m' 203 0 8
+1601 'Wojciech' 'p6.m' 204 0 8
+1602 'Wojciech' 'p6.m' 205 0 8
+1603 'Wojciech' 'p6.m' 208 0 8
+1604 'Wojciech' 'p6.m' 209 0 8
+1605 'Wojciech' 'p6.m' 210 0 8
+1606 'Wojciech' 'p6.m' 211 0 8
+1607 'Wojciech' 'p6.m' 212 0 8
+1608 'Wojciech' 'p6.m' 215 0 8
+1609 'Wojciech' 'p6.m' 216 0 8
+1610 'Wojciech' 'p6.m' 217 0 8
+1611 'Wojciech' 'p6.m' 218 0 8
+1612 'Wojciech' 'p6.m' 219 0 8
+1613 'Wojciech' 'p6.m' 222 0 8
+1614 'Wojciech' 'p6.m' 223 0 8
+1615 'Wojciech' 'p6.m' 224 0 8
+1616 'Wojciech' 'p6.m' 225 0 8
+1617 'Wojciech' 'p6.m' 226 0 8
+1618 'Wojciech' 'p6.m' 229 0 8
+1619 'Wojciech' 'p6.m' 230 0 8
+1620 'Wojciech' 'p6.m' 231 0 8
+1621 'Wojciech' 'p6.m' 232 0 8
+1622 'Wojciech' 'p6.m' 233 0 8
+1623 'Wojciech' 'p6.m' 236 0 8
+1624 'Wojciech' 'p6.m' 237 0 8
+1625 'Wojciech' 'p6.m' 238 0 8
+1626 'Wojciech' 'p6.m' 239 0 8
+1627 'Wojciech' 'p6.m' 240 0 8
+1628 'Wojciech' 'p6.m' 243 0 8
+1629 'Wojciech' 'p6.m' 244 0 8
+1630 'Wojciech' 'p6.m' 245 0 8
+1631 'Wojciech' 'p6.m' 246 0 8
+1632 'Wojciech' 'p6.m' 247 0 8
+1633 'Wojciech' 'p6.m' 250 0 8
+1634 'Wojciech' 'p6.m' 251 0 8
+1635 'Wojciech' 'p6.m' 252 0 8
+1636 'Wojciech' 'p6.m' 253 0 8
+1637 'Wojciech' 'p6.m' 254 0 8
+;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 0;
+
+param UBDAY:
+1   2   3   4 :=
+;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'Alojzy' 'p2.m'
+'Alojzy' 'p2.f'
+'Alojzy' 'p2.pf'
+'Bartłomiej' 'p3.m'
+'Bartłomiej' 'p3.f'
+'Bartłomiej' 'p3.pf'
+'Paweł' 'p4.m'
+'Paweł' 'p4.f'
+'Paweł' 'p4.pf'
+'Wojciech' 'p5.m'
+'Wojciech' 'p5.f'
+'Wojciech' 'p5.pf'
+'Alojzy' 'p4.m'
+'Bartłomiej' 'p4.m'
+'Franciszek' 'p4.m'
+'Wojciech' 'p4.m'
+'Franciszek' 'p6.m'
+'Franciszek' 'p6.f'
+'Franciszek' 'p6.pf'
+'Alojzy' 'p6.m'
+'Bartłomiej' 'p6.m'
+'Paweł' 'p6.m'
+'Wojciech' 'p6.m'
+;
+
