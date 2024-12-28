@@ -328,8 +328,8 @@ def solve(name, today, data):
     st.code(content)
     fff.close()
 
-    st.write(__file__)
-    st.write(os.path.dirname(__file__))
+    st.write("aa={d}".format(d=__file__))
+    st.write("bb={d}".format(d=os.path.dirname(__file__)))
 
     ampl.read("./res/ampl_mathematical_model.mod.py")
     ampl.read_data(file)
