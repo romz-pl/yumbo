@@ -3,6 +3,7 @@
 ampl_module_base
 ampl_module_highs
 ampl_module_gurobi
+ampl-module_scip
 amplpy
 matplotlib
 numpy==1.24.4
