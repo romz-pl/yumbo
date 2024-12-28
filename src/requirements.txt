@@ -3,9 +3,9 @@
 ampl_module_base
 ampl_module_highs
 ampl_module_gurobi
-amplpy==0.14.0
-matplotlib==3.10.0
-numpy==2.2.1
+amplpy
+matplotlib
+numpy
 openpyxl
-pandas==2.2.3
-streamlit==1.41.1
+pandas
+streamlit
