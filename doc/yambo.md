@@ -1,3 +1,7 @@
+# :red[Yumbo.] Scheduling, Planning and Resource Allocation
+
+## Zbigniew Romanowski romz@wp.pl; Paweł Koczyk pk@koczyk.pl
+
 The project is focuses on the optimal generation of daily schedules. The software developed should solve the problem of optimal schedule generation for project managers, solution architects, or any expert involved in more than one task or project simultaneously.
 
 The assumption is that each task is defined by its start date and its end date. During the fixed task period, the expert is obliged to complete the fixed number of working hours, which is usually less than 40% of the total working hours available. It is also assumed that the tasks can overlap and that the start and end dates of the tasks are independent of each other. The lifetime of a task can be up to 200 working days. However, there is no limit to the lifetime of a task in the software.
