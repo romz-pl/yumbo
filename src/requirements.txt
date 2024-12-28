@@ -5,7 +5,6 @@ ampl_module_highs
 ampl_module_gurobi
 amplpy
 matplotlib
-numpy
 openpyxl
 pandas
 streamlit
