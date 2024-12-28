@@ -52,8 +52,8 @@ Yumbo integrates various tools and libraries to ensure robust functionality and 
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/romz-pl/yambo.git
-   cd Yumbo
+   git clone https://github.com/romz-pl/yumbo.git
+   cd yumbo
    ```
 2. Install required Python libraries:
    ```bash
@@ -69,6 +69,9 @@ Yumbo integrates various tools and libraries to ensure robust functionality and 
 - Input task details (start/end dates, workload, constraints).
 - Generate daily schedules using the intuitive graphical user interface.
 - Visualize and export schedules as needed.
+
+## Streamlit Community Cloud
+Yumbo is available at Streamlit Community Cloud...
 
 
 ## Contributing
