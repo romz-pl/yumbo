@@ -71,7 +71,7 @@ Yumbo integrates various tools and libraries to ensure robust functionality and 
 - Visualize and export schedules as needed.
 
 ## Streamlit Community Cloud
-Yumbo is available at Streamlit Community Cloud...
+Yumbo is available on the Streamlit Community Cloud at https://yumbo-ampl.streamlit.app/
 
 
 ## Contributing
