@@ -1,9 +1,8 @@
-# :red[Yumbo.] Scheduling, Planning and Resource Allocation
-
-## Zbigniew Romanowski, romz@wp.pl
-## Paweł Koczyk, pk@koczyk.pl
+# Yumbo. Scheduling, Planning and Resource Allocation
 
 ![img-00](./doc/img-00.png)
+
+## Zbigniew Romanowski romz@wp.pl; Paweł Koczyk pk@koczyk.pl
 
 ![img-01](./doc/img-01.png)
 
