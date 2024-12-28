@@ -318,8 +318,16 @@ def solve(name, today, data):
     if solver == "scip":
         ampl.option["scip_options"] = "tech:outlev-native=5"
 
-    st.code("./res/ampl_mathematical_model.mod.py")
-    st.code(file)
+    fff = open("./res/ampl_mathematical_model.mod.py", "r")
+    content = fff.read()
+    st.code(content)
+    fff.close()
+
+    fff = open(file, "r")
+    content = fff.read()
+    st.code(content)
+    fff.close()
+
     ampl.read("./res/ampl_mathematical_model.mod.py")
     ampl.read_data(file)
     ampl.solve()
