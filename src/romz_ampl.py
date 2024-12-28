@@ -296,10 +296,12 @@ def save(ampl, data):
     save_day_no(ampl, data)
 
 
+# activate AMPL license
 def set_ampl_license():
-    uuid = os.environ.get("AMPLKEY_UUID")  # Use a free https://ampl.com/ce license
-    if uuid is not None:
-        modules.activate(uuid)  # activate your license
+    uuid = os.environ.get("AMPLKEY_UUID")
+    if uuid is None:
+        raise Exception("Cannot find AMPLKEY_UUID")
+    modules.activate(uuid)
 
 import streamlit as st
 from pathlib import Path
@@ -341,7 +343,7 @@ def solve(name, today, data):
 
     ampl.read("./res/ampl_mathematical_model.mod.py")
     ampl.read_data(file)
-    ampl.solve()
+    # ampl.solve()
     # data["solver output"] = ampl.get_output("solve;")
     data["solver timestamp"] = "{d}".format(d=datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p"))
     st.write(ampl.solve_result)
