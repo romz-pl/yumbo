@@ -118,7 +118,7 @@ Thank you for using Yumbo! Your feedback and contributions are greatly appreciat
 
 ## Screenshots
 
-![img-00](./doc/img-00.png)
+![img-00](./doc/screenshot/img-00.png)
 
 ![img-01](./doc/screenshot/img-01.png)
 
