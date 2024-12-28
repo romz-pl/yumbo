@@ -28,8 +28,8 @@ display EBOUND;
 display PAYROLLN;
 display PAYROLLS;
 display PAYROLLE;
-display PAYROLLBL;
-display PAYROLLBU;
+# display PAYROLLBL;
+# display PAYROLLBU;
 
 
 # expand C_dbound;
@@ -84,13 +84,13 @@ if solve_result = "solved" then
      }
    
    
-     printf "\n=== PAYROLL SUMMARY ===\n";
-     printf "--------------------------\n";
-     printf "%8s  %4s  %5s  %5s\n", "ID", "LOWER", "VALUE", "UPPER";
-     for {k in PAYROLLN}
-     {
-       printf "%8s  %5d  %5d  %5d\n", k, PAYROLLBL[e, k], round(sum {d in PAYROLLS[k]..PAYROLLE[k], (e, t) in LINKS} X[e, d, t]), PAYROLLBU[e, k];
-     }
-   }
+#     printf "\n=== PAYROLL SUMMARY ===\n";
+#     printf "--------------------------\n";
+#     printf "%8s  %4s  %5s  %5s\n", "ID", "LOWER", "VALUE", "UPPER";
+#     for {k in PAYROLLN}
+#     {
+#       printf "%8s  %5d  %5d  %5d\n", k, PAYROLLBL[e, k], round(sum {d in PAYROLLS[k]..PAYROLLE[k], (e, t) in LINKS} X[e, d, t]), PAYROLLBU[e, k];
+#     }
+  }
 }
 
