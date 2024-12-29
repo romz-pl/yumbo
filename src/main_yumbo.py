@@ -335,8 +335,8 @@ def set_page_config():
 def show_page_header():
     st.title(":red[Yumbo.] Scheduling, Planning and Resource Allocation")
     st.subheader("Zbigniew Romanowski, Paweł Koczyk")
-    st.subheader("_{d}_".format(d=datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")), divider="gray")
-
+    st.caption("Source code, documentation and sample Excel input files can be found on [Yumbo's](https://github.com/romz-pl/yambo) GitHub repository.")
+    st.caption("_{d}_".format(d=datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")))
 
 def main():
     # plt.style.use('seaborn-v0_8-whitegrid')
