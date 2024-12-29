@@ -5,7 +5,7 @@ import matplotlib.ticker as tck
 import pandas as pd
 
 
-def plot(task, schedule, bounds):
+def plot(task, schedule, bounds, dpi):
     x_task = pd.date_range(start=task["Start day"], end=task["End day"], freq="D")
     y_task = schedule.loc[task["Name"], x_task.astype("str")]
 
@@ -37,6 +37,6 @@ def plot(task, schedule, bounds):
     ax.tick_params(axis='y', labelsize='x-small')
     fig.tight_layout()
     buf = io.BytesIO()
-    fig.savefig(buf, format='png', dpi=150, pil_kwargs={'compress_level': 1})
+    fig.savefig(buf, format='png', dpi=dpi, pil_kwargs={'compress_level': 1})
     st.image(buf)
     buf.close()

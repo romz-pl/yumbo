@@ -204,15 +204,15 @@ def show_commitment_per_task(expert_name):
         bounds = xbday.loc[ xbday["Task"] == task["Name"]].loc[ xbday["Expert"] == expert_name]
         with col1:
             if(j % 3 == 1):
-                romz_plot_task.plot(task, schedule, bounds)
+                romz_plot_task.plot(task, schedule, bounds, get_dpi())
 
         with col2:
             if(j % 3 == 2):
-                romz_plot_task.plot(task, schedule, bounds)
+                romz_plot_task.plot(task, schedule, bounds, get_dpi())
 
         with col3:
             if(j % 3 == 0):
-                romz_plot_task.plot(task, schedule, bounds)
+                romz_plot_task.plot(task, schedule, bounds, get_dpi())
 
 
 def customise_report():
