@@ -1,0 +1,954 @@
+param HOURS_PER_DAY := 8;
+
+set EXPERTN :=
+'PM.dah'
+'PM.ea'
+'DEV.pak'
+'SA.ab'
+'SA.rh'
+'DEV.hv'
+'DEV.fg'
+'DEV.tr'
+'PM.lw'
+'DEV.cc'
+'DEV.fa'
+'DEV.cfo'
+'DEV.lh'
+'DEV.mp'
+'DEV.mj'
+'PM.hj'
+'DEV.ama'
+'DEV.ag'
+'DEV.ecm'
+'DEV.fl'
+'SA.kh'
+'SA.mcm'
+'SA.jn'
+'DEV.ao'
+'DEV.ap'
+'DEV.jb'
+'DEV.mif'
+'SA.mm'
+'SA.pga'
+'DEV.aj'
+'DEV.db'
+'PM.fm'
+'DEV.msl'
+'DEV.ul'
+;
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'alpha.m' 2 92 450
+'alpha.f' 93 123 60
+'alpha.p' 2 123 55
+'beta.m' 2 172 650
+'beta.f' 173 218 30
+'beta.p' 2 218 72
+'charlie.m' 2 157 800
+'charlie.f' 158 188 100
+'charlie.p' 2 188 90
+'delta.m' 2 57 220
+'delta.f' 58 103 20
+'delta.p' 2 103 25
+'echo.m' 2 75 250
+'echo.f' 93 138 25
+'echo.p' 2 138 30
+'foxtrot.m' 2 92 150
+'foxtrot.f' 93 123 25
+'foxtrot.p' 2 123 18
+'golf.m' 2 133 350
+'golf.f' 134 179 30
+'golf.p' 2 179 38
+'hotel.m' 2 245 750
+'hotel.f' 246 291 70
+'hotel.p' 2 291 80
+'india.m' 2 275 1100
+'india.f' 276 306 200
+'india.p' 2 306 130
+'juliet.m' 60 182 450
+'juliet.f' 183 228 35
+'juliet.p' 60 228 50
+'kilo.m' 85 214 550
+'kilo.f' 215 260 40
+'kilo.p' 85 260 60
+'lima.m' 111 306 1050
+'lima.f' 307 335 120
+'lima.p' 111 335 120
+'mike.m' 116 269 450
+'mike.f' 270 304 60
+'mike.p' 116 304 50
+'november.m' 167 365 550
+'november.f' 366 397 30
+'november.p' 167 397 60
+'oscar.m' 192 365 600
+'oscar.f' 366 397 40
+'oscar.p' 192 397 70
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'January' 1 16
+'February' 17 45
+'March' 46 76
+'April' 77 105
+'May' 106 139
+'June' 140 170
+'July' 171 199
+'August' 200 230
+'September' 231 259
+'October' 260 289
+'November' 290 317
+'December' 318 346
+;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+;
+
+param OFFDAY_NO := 114;
+
+param OFFDAY :=
+1 2
+2 5
+3 6
+4 12
+5 13
+6 19
+7 20
+8 26
+9 27
+10 33
+11 34
+12 40
+13 41
+14 47
+15 48
+16 54
+17 55
+18 61
+19 62
+20 68
+21 69
+22 75
+23 76
+24 82
+25 83
+26 89
+27 90
+28 96
+29 97
+30 103
+31 104
+32 110
+33 111
+34 117
+35 118
+36 124
+37 125
+38 131
+39 132
+40 138
+41 139
+42 145
+43 146
+44 152
+45 153
+46 159
+47 160
+48 166
+49 167
+50 173
+51 174
+52 180
+53 181
+54 187
+55 188
+56 194
+57 195
+58 201
+59 202
+60 208
+61 209
+62 215
+63 216
+64 222
+65 223
+66 229
+67 230
+68 236
+69 237
+70 243
+71 244
+72 250
+73 251
+74 257
+75 258
+76 264
+77 265
+78 271
+79 272
+80 278
+81 279
+82 285
+83 286
+84 292
+85 293
+86 299
+87 300
+88 306
+89 307
+90 313
+91 314
+92 320
+93 321
+94 327
+95 328
+96 334
+97 335
+98 341
+99 342
+100 348
+101 349
+102 355
+103 356
+104 362
+105 363
+106 369
+107 370
+108 376
+109 377
+110 383
+111 384
+112 390
+113 391
+114 397
+;
+
+param XBDAY_NO := 605;
+
+param XBDAY:
+1   2   3   4   5 :=
+1 'PM.dah' 'alpha.p' 3 0 1
+2 'PM.dah' 'alpha.p' 4 0 1
+3 'PM.dah' 'alpha.p' 7 0 1
+4 'PM.dah' 'alpha.p' 8 0 1
+5 'PM.dah' 'alpha.p' 9 0 1
+6 'PM.dah' 'alpha.p' 10 0 1
+7 'PM.dah' 'alpha.p' 11 0 1
+8 'PM.dah' 'alpha.p' 14 0 1
+9 'PM.dah' 'alpha.p' 15 0 1
+10 'PM.dah' 'alpha.p' 16 0 1
+11 'PM.dah' 'alpha.p' 17 0 1
+12 'PM.dah' 'alpha.p' 18 0 1
+13 'PM.dah' 'alpha.p' 21 0 1
+14 'PM.dah' 'alpha.p' 22 0 1
+15 'PM.dah' 'alpha.p' 23 0 1
+16 'PM.dah' 'alpha.p' 24 0 1
+17 'PM.dah' 'alpha.p' 25 0 1
+18 'PM.dah' 'alpha.p' 28 0 1
+19 'PM.dah' 'alpha.p' 29 0 1
+20 'PM.dah' 'alpha.p' 30 0 1
+21 'PM.dah' 'alpha.p' 31 0 1
+22 'PM.dah' 'alpha.p' 32 0 1
+23 'PM.dah' 'alpha.p' 35 0 1
+24 'PM.dah' 'alpha.p' 36 0 1
+25 'PM.dah' 'alpha.p' 37 0 1
+26 'PM.dah' 'alpha.p' 38 0 1
+27 'PM.dah' 'alpha.p' 39 0 1
+28 'PM.dah' 'alpha.p' 42 0 1
+29 'PM.dah' 'alpha.p' 43 0 1
+30 'PM.dah' 'alpha.p' 44 0 1
+31 'PM.dah' 'alpha.p' 45 0 1
+32 'PM.dah' 'alpha.p' 46 0 1
+33 'PM.dah' 'alpha.p' 49 0 1
+34 'PM.dah' 'alpha.p' 50 0 1
+35 'PM.dah' 'alpha.p' 51 0 1
+36 'PM.dah' 'alpha.p' 52 0 1
+37 'PM.dah' 'alpha.p' 53 0 1
+38 'PM.dah' 'alpha.p' 56 0 1
+39 'PM.dah' 'alpha.p' 57 0 1
+40 'PM.dah' 'alpha.p' 58 0 1
+41 'PM.dah' 'alpha.p' 59 0 1
+42 'PM.dah' 'alpha.p' 60 0 1
+43 'PM.dah' 'alpha.p' 63 0 1
+44 'PM.dah' 'alpha.p' 64 0 1
+45 'PM.dah' 'alpha.p' 65 0 1
+46 'PM.dah' 'alpha.p' 66 0 1
+47 'PM.dah' 'alpha.p' 67 0 1
+48 'PM.dah' 'alpha.p' 70 0 1
+49 'PM.dah' 'alpha.p' 71 0 1
+50 'PM.dah' 'alpha.p' 72 0 1
+51 'PM.dah' 'alpha.p' 73 0 1
+52 'PM.dah' 'alpha.p' 74 0 1
+53 'PM.dah' 'alpha.p' 77 0 1
+54 'PM.dah' 'alpha.p' 78 0 1
+55 'PM.dah' 'alpha.p' 79 0 1
+56 'PM.dah' 'alpha.p' 80 0 1
+57 'PM.dah' 'alpha.p' 81 0 1
+58 'PM.dah' 'alpha.p' 84 0 1
+59 'PM.dah' 'alpha.p' 85 0 1
+60 'PM.dah' 'alpha.p' 86 0 1
+61 'PM.dah' 'alpha.p' 87 0 1
+62 'PM.dah' 'alpha.p' 88 0 1
+63 'PM.dah' 'alpha.p' 91 0 1
+64 'PM.dah' 'alpha.p' 92 0 1
+65 'PM.dah' 'alpha.p' 93 0 1
+66 'PM.dah' 'alpha.p' 94 0 1
+67 'PM.dah' 'alpha.p' 95 0 1
+68 'PM.dah' 'alpha.p' 98 0 1
+69 'PM.dah' 'alpha.p' 99 0 1
+70 'PM.dah' 'alpha.p' 100 0 1
+71 'PM.dah' 'alpha.p' 101 0 1
+72 'PM.dah' 'alpha.p' 102 0 1
+73 'PM.dah' 'alpha.p' 105 0 1
+74 'PM.dah' 'alpha.p' 106 0 1
+75 'PM.dah' 'alpha.p' 107 0 1
+76 'PM.dah' 'alpha.p' 108 0 1
+77 'PM.dah' 'alpha.p' 109 0 1
+78 'PM.dah' 'alpha.p' 112 0 1
+79 'PM.dah' 'alpha.p' 113 0 1
+80 'PM.dah' 'alpha.p' 114 0 1
+81 'PM.dah' 'alpha.p' 115 0 1
+82 'PM.dah' 'alpha.p' 116 0 1
+83 'PM.dah' 'alpha.p' 119 0 1
+84 'PM.dah' 'alpha.p' 120 0 1
+85 'PM.dah' 'alpha.p' 121 0 1
+86 'PM.dah' 'alpha.p' 122 0 1
+87 'PM.dah' 'alpha.p' 123 0 1
+88 'PM.dah' 'beta.p' 3 0 1
+89 'PM.dah' 'beta.p' 4 0 1
+90 'PM.dah' 'beta.p' 7 0 1
+91 'PM.dah' 'beta.p' 8 0 1
+92 'PM.dah' 'beta.p' 9 0 1
+93 'PM.dah' 'beta.p' 10 0 1
+94 'PM.dah' 'beta.p' 11 0 1
+95 'PM.dah' 'beta.p' 14 0 1
+96 'PM.dah' 'beta.p' 15 0 1
+97 'PM.dah' 'beta.p' 16 0 1
+98 'PM.dah' 'beta.p' 17 0 1
+99 'PM.dah' 'beta.p' 18 0 1
+100 'PM.dah' 'beta.p' 21 0 1
+101 'PM.dah' 'beta.p' 22 0 1
+102 'PM.dah' 'beta.p' 23 0 1
+103 'PM.dah' 'beta.p' 24 0 1
+104 'PM.dah' 'beta.p' 25 0 1
+105 'PM.dah' 'beta.p' 28 0 1
+106 'PM.dah' 'beta.p' 29 0 1
+107 'PM.dah' 'beta.p' 30 0 1
+108 'PM.dah' 'beta.p' 31 0 1
+109 'PM.dah' 'beta.p' 32 0 1
+110 'PM.dah' 'beta.p' 35 0 1
+111 'PM.dah' 'beta.p' 36 0 1
+112 'PM.dah' 'beta.p' 37 0 1
+113 'PM.dah' 'beta.p' 38 0 1
+114 'PM.dah' 'beta.p' 39 0 1
+115 'PM.dah' 'beta.p' 42 0 1
+116 'PM.dah' 'beta.p' 43 0 1
+117 'PM.dah' 'beta.p' 44 0 1
+118 'PM.dah' 'beta.p' 45 0 1
+119 'PM.dah' 'beta.p' 46 0 1
+120 'PM.dah' 'beta.p' 49 0 1
+121 'PM.dah' 'beta.p' 50 0 1
+122 'PM.dah' 'beta.p' 51 0 1
+123 'PM.dah' 'beta.p' 52 0 1
+124 'PM.dah' 'beta.p' 53 0 1
+125 'PM.dah' 'beta.p' 56 0 1
+126 'PM.dah' 'beta.p' 57 0 1
+127 'PM.dah' 'beta.p' 58 0 1
+128 'PM.dah' 'beta.p' 59 0 1
+129 'PM.dah' 'beta.p' 60 0 1
+130 'PM.dah' 'beta.p' 63 0 1
+131 'PM.dah' 'beta.p' 64 0 1
+132 'PM.dah' 'beta.p' 65 0 1
+133 'PM.dah' 'beta.p' 66 0 1
+134 'PM.dah' 'beta.p' 67 0 1
+135 'PM.dah' 'beta.p' 70 0 1
+136 'PM.dah' 'beta.p' 71 0 1
+137 'PM.dah' 'beta.p' 72 0 1
+138 'PM.dah' 'beta.p' 73 0 1
+139 'PM.dah' 'beta.p' 74 0 1
+140 'PM.dah' 'beta.p' 77 0 1
+141 'PM.dah' 'beta.p' 78 0 1
+142 'PM.dah' 'beta.p' 79 0 1
+143 'PM.dah' 'beta.p' 80 0 1
+144 'PM.dah' 'beta.p' 81 0 1
+145 'PM.dah' 'beta.p' 84 0 1
+146 'PM.dah' 'beta.p' 85 0 1
+147 'PM.dah' 'beta.p' 86 0 1
+148 'PM.dah' 'beta.p' 87 0 1
+149 'PM.dah' 'beta.p' 88 0 1
+150 'PM.dah' 'beta.p' 91 0 1
+151 'PM.dah' 'beta.p' 92 0 1
+152 'PM.dah' 'beta.p' 93 0 1
+153 'PM.dah' 'beta.p' 94 0 1
+154 'PM.dah' 'beta.p' 95 0 1
+155 'PM.dah' 'beta.p' 98 0 1
+156 'PM.dah' 'beta.p' 99 0 1
+157 'PM.dah' 'beta.p' 100 0 1
+158 'PM.dah' 'beta.p' 101 0 1
+159 'PM.dah' 'beta.p' 102 0 1
+160 'PM.dah' 'beta.p' 105 0 1
+161 'PM.dah' 'beta.p' 106 0 1
+162 'PM.dah' 'beta.p' 107 0 1
+163 'PM.dah' 'beta.p' 108 0 1
+164 'PM.dah' 'beta.p' 109 0 1
+165 'PM.dah' 'beta.p' 112 0 1
+166 'PM.dah' 'beta.p' 113 0 1
+167 'PM.dah' 'beta.p' 114 0 1
+168 'PM.dah' 'beta.p' 115 0 1
+169 'PM.dah' 'beta.p' 116 0 1
+170 'PM.dah' 'beta.p' 119 0 1
+171 'PM.dah' 'beta.p' 120 0 1
+172 'PM.dah' 'beta.p' 121 0 1
+173 'PM.dah' 'beta.p' 122 0 1
+174 'PM.dah' 'beta.p' 123 0 1
+175 'PM.dah' 'beta.p' 126 0 1
+176 'PM.dah' 'beta.p' 127 0 1
+177 'PM.dah' 'beta.p' 128 0 1
+178 'PM.dah' 'beta.p' 129 0 1
+179 'PM.dah' 'beta.p' 130 0 1
+180 'PM.dah' 'beta.p' 133 0 1
+181 'PM.dah' 'beta.p' 134 0 1
+182 'PM.dah' 'beta.p' 135 0 1
+183 'PM.dah' 'beta.p' 136 0 1
+184 'PM.dah' 'beta.p' 137 0 1
+185 'PM.dah' 'beta.p' 140 0 1
+186 'PM.dah' 'beta.p' 141 0 1
+187 'PM.dah' 'beta.p' 142 0 1
+188 'PM.dah' 'beta.p' 143 0 1
+189 'PM.dah' 'beta.p' 144 0 1
+190 'PM.dah' 'beta.p' 147 0 1
+191 'PM.dah' 'beta.p' 148 0 1
+192 'PM.dah' 'beta.p' 149 0 1
+193 'PM.dah' 'beta.p' 150 0 1
+194 'PM.dah' 'beta.p' 151 0 1
+195 'PM.dah' 'beta.p' 154 0 1
+196 'PM.dah' 'beta.p' 155 0 1
+197 'PM.dah' 'beta.p' 156 0 1
+198 'PM.dah' 'beta.p' 157 0 1
+199 'PM.dah' 'beta.p' 158 0 1
+200 'PM.dah' 'beta.p' 161 0 1
+201 'PM.dah' 'beta.p' 162 0 1
+202 'PM.dah' 'beta.p' 163 0 1
+203 'PM.dah' 'beta.p' 164 0 1
+204 'PM.dah' 'beta.p' 165 0 1
+205 'PM.dah' 'beta.p' 168 0 1
+206 'PM.dah' 'beta.p' 169 0 1
+207 'PM.dah' 'beta.p' 170 0 1
+208 'PM.dah' 'beta.p' 171 0 1
+209 'PM.dah' 'beta.p' 172 0 1
+210 'PM.dah' 'beta.p' 175 0 1
+211 'PM.dah' 'beta.p' 176 0 1
+212 'PM.dah' 'beta.p' 177 0 1
+213 'PM.dah' 'beta.p' 178 0 1
+214 'PM.dah' 'beta.p' 179 0 1
+215 'PM.dah' 'beta.p' 182 0 1
+216 'PM.dah' 'beta.p' 183 0 1
+217 'PM.dah' 'beta.p' 184 0 1
+218 'PM.dah' 'beta.p' 185 0 1
+219 'PM.dah' 'beta.p' 186 0 1
+220 'PM.dah' 'beta.p' 189 0 1
+221 'PM.dah' 'beta.p' 190 0 1
+222 'PM.dah' 'beta.p' 191 0 1
+223 'PM.dah' 'beta.p' 192 0 1
+224 'PM.dah' 'beta.p' 193 0 1
+225 'PM.dah' 'beta.p' 196 0 1
+226 'PM.dah' 'beta.p' 197 0 1
+227 'PM.dah' 'beta.p' 198 0 1
+228 'PM.dah' 'beta.p' 199 0 1
+229 'PM.dah' 'beta.p' 200 0 1
+230 'PM.dah' 'beta.p' 203 0 1
+231 'PM.dah' 'beta.p' 204 0 1
+232 'PM.dah' 'beta.p' 205 0 1
+233 'PM.dah' 'beta.p' 206 0 1
+234 'PM.dah' 'beta.p' 207 0 1
+235 'PM.dah' 'beta.p' 210 0 1
+236 'PM.dah' 'beta.p' 211 0 1
+237 'PM.dah' 'beta.p' 212 0 1
+238 'PM.dah' 'beta.p' 213 0 1
+239 'PM.dah' 'beta.p' 214 0 1
+240 'PM.dah' 'beta.p' 217 0 1
+241 'PM.dah' 'beta.p' 218 0 1
+242 'PM.dah' 'india.p' 3 0 1
+243 'PM.dah' 'india.p' 4 0 1
+244 'PM.dah' 'india.p' 7 0 1
+245 'PM.dah' 'india.p' 8 0 1
+246 'PM.dah' 'india.p' 9 0 1
+247 'PM.dah' 'india.p' 10 0 1
+248 'PM.dah' 'india.p' 11 0 1
+249 'PM.dah' 'india.p' 14 0 1
+250 'PM.dah' 'india.p' 15 0 1
+251 'PM.dah' 'india.p' 16 0 1
+252 'PM.dah' 'india.p' 17 0 1
+253 'PM.dah' 'india.p' 18 0 1
+254 'PM.dah' 'india.p' 21 0 1
+255 'PM.dah' 'india.p' 22 0 1
+256 'PM.dah' 'india.p' 23 0 1
+257 'PM.dah' 'india.p' 24 0 1
+258 'PM.dah' 'india.p' 25 0 1
+259 'PM.dah' 'india.p' 28 0 1
+260 'PM.dah' 'india.p' 29 0 1
+261 'PM.dah' 'india.p' 30 0 1
+262 'PM.dah' 'india.p' 31 0 1
+263 'PM.dah' 'india.p' 32 0 1
+264 'PM.dah' 'india.p' 35 0 1
+265 'PM.dah' 'india.p' 36 0 1
+266 'PM.dah' 'india.p' 37 0 1
+267 'PM.dah' 'india.p' 38 0 1
+268 'PM.dah' 'india.p' 39 0 1
+269 'PM.dah' 'india.p' 42 0 1
+270 'PM.dah' 'india.p' 43 0 1
+271 'PM.dah' 'india.p' 44 0 1
+272 'PM.dah' 'india.p' 45 0 1
+273 'PM.dah' 'india.p' 46 0 1
+274 'PM.dah' 'india.p' 49 0 1
+275 'PM.dah' 'india.p' 50 0 1
+276 'PM.dah' 'india.p' 51 0 1
+277 'PM.dah' 'india.p' 52 0 1
+278 'PM.dah' 'india.p' 53 0 1
+279 'PM.dah' 'india.p' 56 0 1
+280 'PM.dah' 'india.p' 57 0 1
+281 'PM.dah' 'india.p' 58 0 1
+282 'PM.dah' 'india.p' 59 0 1
+283 'PM.dah' 'india.p' 60 0 1
+284 'PM.dah' 'india.p' 63 0 1
+285 'PM.dah' 'india.p' 64 0 1
+286 'PM.dah' 'india.p' 65 0 1
+287 'PM.dah' 'india.p' 66 0 1
+288 'PM.dah' 'india.p' 67 0 1
+289 'PM.dah' 'india.p' 70 0 1
+290 'PM.dah' 'india.p' 71 0 1
+291 'PM.dah' 'india.p' 72 0 1
+292 'PM.dah' 'india.p' 73 0 1
+293 'PM.dah' 'india.p' 74 0 1
+294 'PM.dah' 'india.p' 77 0 1
+295 'PM.dah' 'india.p' 78 0 1
+296 'PM.dah' 'india.p' 79 0 1
+297 'PM.dah' 'india.p' 80 0 1
+298 'PM.dah' 'india.p' 81 0 1
+299 'PM.dah' 'india.p' 84 0 1
+300 'PM.dah' 'india.p' 85 0 1
+301 'PM.dah' 'india.p' 86 0 1
+302 'PM.dah' 'india.p' 87 0 1
+303 'PM.dah' 'india.p' 88 0 1
+304 'PM.dah' 'india.p' 91 0 1
+305 'PM.dah' 'india.p' 92 0 1
+306 'PM.dah' 'india.p' 93 0 1
+307 'PM.dah' 'india.p' 94 0 1
+308 'PM.dah' 'india.p' 95 0 1
+309 'PM.dah' 'india.p' 98 0 1
+310 'PM.dah' 'india.p' 99 0 1
+311 'PM.dah' 'india.p' 100 0 1
+312 'PM.dah' 'india.p' 101 0 1
+313 'PM.dah' 'india.p' 102 0 1
+314 'PM.dah' 'india.p' 105 0 1
+315 'PM.dah' 'india.p' 106 0 1
+316 'PM.dah' 'india.p' 107 0 1
+317 'PM.dah' 'india.p' 108 0 1
+318 'PM.dah' 'india.p' 109 0 1
+319 'PM.dah' 'india.p' 112 0 1
+320 'PM.dah' 'india.p' 113 0 1
+321 'PM.dah' 'india.p' 114 0 1
+322 'PM.dah' 'india.p' 115 0 1
+323 'PM.dah' 'india.p' 116 0 1
+324 'PM.dah' 'india.p' 119 0 1
+325 'PM.dah' 'india.p' 120 0 1
+326 'PM.dah' 'india.p' 121 0 1
+327 'PM.dah' 'india.p' 122 0 1
+328 'PM.dah' 'india.p' 123 0 1
+329 'PM.dah' 'india.p' 126 0 1
+330 'PM.dah' 'india.p' 127 0 1
+331 'PM.dah' 'india.p' 128 0 1
+332 'PM.dah' 'india.p' 129 0 1
+333 'PM.dah' 'india.p' 130 0 1
+334 'PM.dah' 'india.p' 133 0 1
+335 'PM.dah' 'india.p' 134 0 1
+336 'PM.dah' 'india.p' 135 0 1
+337 'PM.dah' 'india.p' 136 0 1
+338 'PM.dah' 'india.p' 137 0 1
+339 'PM.dah' 'india.p' 140 0 1
+340 'PM.dah' 'india.p' 141 0 1
+341 'PM.dah' 'india.p' 142 0 1
+342 'PM.dah' 'india.p' 143 0 1
+343 'PM.dah' 'india.p' 144 0 1
+344 'PM.dah' 'india.p' 147 0 1
+345 'PM.dah' 'india.p' 148 0 1
+346 'PM.dah' 'india.p' 149 0 1
+347 'PM.dah' 'india.p' 150 0 1
+348 'PM.dah' 'india.p' 151 0 1
+349 'PM.dah' 'india.p' 154 0 1
+350 'PM.dah' 'india.p' 155 0 1
+351 'PM.dah' 'india.p' 156 0 1
+352 'PM.dah' 'india.p' 157 0 1
+353 'PM.dah' 'india.p' 158 0 1
+354 'PM.dah' 'india.p' 161 0 1
+355 'PM.dah' 'india.p' 162 0 1
+356 'PM.dah' 'india.p' 163 0 1
+357 'PM.dah' 'india.p' 164 0 1
+358 'PM.dah' 'india.p' 165 0 1
+359 'PM.dah' 'india.p' 168 0 1
+360 'PM.dah' 'india.p' 169 0 1
+361 'PM.dah' 'india.p' 170 0 1
+362 'PM.dah' 'india.p' 171 0 1
+363 'PM.dah' 'india.p' 172 0 1
+364 'PM.dah' 'india.p' 175 0 1
+365 'PM.dah' 'india.p' 176 0 1
+366 'PM.dah' 'india.p' 177 0 1
+367 'PM.dah' 'india.p' 178 0 1
+368 'PM.dah' 'india.p' 179 0 1
+369 'PM.dah' 'india.p' 182 0 1
+370 'PM.dah' 'india.p' 183 0 1
+371 'PM.dah' 'india.p' 184 0 1
+372 'PM.dah' 'india.p' 185 0 1
+373 'PM.dah' 'india.p' 186 0 1
+374 'PM.dah' 'india.p' 189 0 1
+375 'PM.dah' 'india.p' 190 0 1
+376 'PM.dah' 'india.p' 191 0 1
+377 'PM.dah' 'india.p' 192 0 1
+378 'PM.dah' 'india.p' 193 0 1
+379 'PM.dah' 'india.p' 196 0 1
+380 'PM.dah' 'india.p' 197 0 1
+381 'PM.dah' 'india.p' 198 0 1
+382 'PM.dah' 'india.p' 199 0 1
+383 'PM.dah' 'india.p' 200 0 1
+384 'PM.dah' 'india.p' 203 0 1
+385 'PM.dah' 'india.p' 204 0 1
+386 'PM.dah' 'india.p' 205 0 1
+387 'PM.dah' 'india.p' 206 0 1
+388 'PM.dah' 'india.p' 207 0 1
+389 'PM.dah' 'india.p' 210 0 1
+390 'PM.dah' 'india.p' 211 0 1
+391 'PM.dah' 'india.p' 212 0 1
+392 'PM.dah' 'india.p' 213 0 1
+393 'PM.dah' 'india.p' 214 0 1
+394 'PM.dah' 'india.p' 217 0 1
+395 'PM.dah' 'india.p' 218 0 1
+396 'PM.dah' 'india.p' 219 0 1
+397 'PM.dah' 'india.p' 220 0 1
+398 'PM.dah' 'india.p' 221 0 1
+399 'PM.dah' 'india.p' 224 0 1
+400 'PM.dah' 'india.p' 225 0 1
+401 'PM.dah' 'india.p' 226 0 1
+402 'PM.dah' 'india.p' 227 0 1
+403 'PM.dah' 'india.p' 228 0 1
+404 'PM.dah' 'india.p' 231 0 1
+405 'PM.dah' 'india.p' 232 0 1
+406 'PM.dah' 'india.p' 233 0 1
+407 'PM.dah' 'india.p' 234 0 1
+408 'PM.dah' 'india.p' 235 0 1
+409 'PM.dah' 'india.p' 238 0 1
+410 'PM.dah' 'india.p' 239 0 1
+411 'PM.dah' 'india.p' 240 0 1
+412 'PM.dah' 'india.p' 241 0 1
+413 'PM.dah' 'india.p' 242 0 1
+414 'PM.dah' 'india.p' 245 0 1
+415 'PM.dah' 'india.p' 246 0 1
+416 'PM.dah' 'india.p' 247 0 1
+417 'PM.dah' 'india.p' 248 0 1
+418 'PM.dah' 'india.p' 249 0 1
+419 'PM.dah' 'india.p' 252 0 1
+420 'PM.dah' 'india.p' 253 0 1
+421 'PM.dah' 'india.p' 254 0 1
+422 'PM.dah' 'india.p' 255 0 1
+423 'PM.dah' 'india.p' 256 0 1
+424 'PM.dah' 'india.p' 259 0 1
+425 'PM.dah' 'india.p' 260 0 1
+426 'PM.dah' 'india.p' 261 0 1
+427 'PM.dah' 'india.p' 262 0 1
+428 'PM.dah' 'india.p' 263 0 1
+429 'PM.dah' 'india.p' 266 0 1
+430 'PM.dah' 'india.p' 267 0 1
+431 'PM.dah' 'india.p' 268 0 1
+432 'PM.dah' 'india.p' 269 0 1
+433 'PM.dah' 'india.p' 270 0 1
+434 'PM.dah' 'india.p' 273 0 1
+435 'PM.dah' 'india.p' 274 0 1
+436 'PM.dah' 'india.p' 275 0 1
+437 'PM.dah' 'india.p' 276 0 1
+438 'PM.dah' 'india.p' 277 0 1
+439 'PM.dah' 'india.p' 280 0 1
+440 'PM.dah' 'india.p' 281 0 1
+441 'PM.dah' 'india.p' 282 0 1
+442 'PM.dah' 'india.p' 283 0 1
+443 'PM.dah' 'india.p' 284 0 1
+444 'PM.dah' 'india.p' 287 0 1
+445 'PM.dah' 'india.p' 288 0 1
+446 'PM.dah' 'india.p' 289 0 1
+447 'PM.dah' 'india.p' 290 0 1
+448 'PM.dah' 'india.p' 291 0 1
+449 'PM.dah' 'india.p' 294 0 1
+450 'PM.dah' 'india.p' 295 0 1
+451 'PM.dah' 'india.p' 296 0 1
+452 'PM.dah' 'india.p' 297 0 1
+453 'PM.dah' 'india.p' 298 0 1
+454 'PM.dah' 'india.p' 301 0 1
+455 'PM.dah' 'india.p' 302 0 1
+456 'PM.dah' 'india.p' 303 0 1
+457 'PM.dah' 'india.p' 304 0 1
+458 'PM.dah' 'india.p' 305 0 1
+459 'PM.dah' 'oscar.p' 192 0 1
+460 'PM.dah' 'oscar.p' 193 0 1
+461 'PM.dah' 'oscar.p' 196 0 1
+462 'PM.dah' 'oscar.p' 197 0 1
+463 'PM.dah' 'oscar.p' 198 0 1
+464 'PM.dah' 'oscar.p' 199 0 1
+465 'PM.dah' 'oscar.p' 200 0 1
+466 'PM.dah' 'oscar.p' 203 0 1
+467 'PM.dah' 'oscar.p' 204 0 1
+468 'PM.dah' 'oscar.p' 205 0 1
+469 'PM.dah' 'oscar.p' 206 0 1
+470 'PM.dah' 'oscar.p' 207 0 1
+471 'PM.dah' 'oscar.p' 210 0 1
+472 'PM.dah' 'oscar.p' 211 0 1
+473 'PM.dah' 'oscar.p' 212 0 1
+474 'PM.dah' 'oscar.p' 213 0 1
+475 'PM.dah' 'oscar.p' 214 0 1
+476 'PM.dah' 'oscar.p' 217 0 1
+477 'PM.dah' 'oscar.p' 218 0 1
+478 'PM.dah' 'oscar.p' 219 0 1
+479 'PM.dah' 'oscar.p' 220 0 1
+480 'PM.dah' 'oscar.p' 221 0 1
+481 'PM.dah' 'oscar.p' 224 0 1
+482 'PM.dah' 'oscar.p' 225 0 1
+483 'PM.dah' 'oscar.p' 226 0 1
+484 'PM.dah' 'oscar.p' 227 0 1
+485 'PM.dah' 'oscar.p' 228 0 1
+486 'PM.dah' 'oscar.p' 231 0 1
+487 'PM.dah' 'oscar.p' 232 0 1
+488 'PM.dah' 'oscar.p' 233 0 1
+489 'PM.dah' 'oscar.p' 234 0 1
+490 'PM.dah' 'oscar.p' 235 0 1
+491 'PM.dah' 'oscar.p' 238 0 1
+492 'PM.dah' 'oscar.p' 239 0 1
+493 'PM.dah' 'oscar.p' 240 0 1
+494 'PM.dah' 'oscar.p' 241 0 1
+495 'PM.dah' 'oscar.p' 242 0 1
+496 'PM.dah' 'oscar.p' 245 0 1
+497 'PM.dah' 'oscar.p' 246 0 1
+498 'PM.dah' 'oscar.p' 247 0 1
+499 'PM.dah' 'oscar.p' 248 0 1
+500 'PM.dah' 'oscar.p' 249 0 1
+501 'PM.dah' 'oscar.p' 252 0 1
+502 'PM.dah' 'oscar.p' 253 0 1
+503 'PM.dah' 'oscar.p' 254 0 1
+504 'PM.dah' 'oscar.p' 255 0 1
+505 'PM.dah' 'oscar.p' 256 0 1
+506 'PM.dah' 'oscar.p' 259 0 1
+507 'PM.dah' 'oscar.p' 260 0 1
+508 'PM.dah' 'oscar.p' 261 0 1
+509 'PM.dah' 'oscar.p' 262 0 1
+510 'PM.dah' 'oscar.p' 263 0 1
+511 'PM.dah' 'oscar.p' 266 0 1
+512 'PM.dah' 'oscar.p' 267 0 1
+513 'PM.dah' 'oscar.p' 268 0 1
+514 'PM.dah' 'oscar.p' 269 0 1
+515 'PM.dah' 'oscar.p' 270 0 1
+516 'PM.dah' 'oscar.p' 273 0 1
+517 'PM.dah' 'oscar.p' 274 0 1
+518 'PM.dah' 'oscar.p' 275 0 1
+519 'PM.dah' 'oscar.p' 276 0 1
+520 'PM.dah' 'oscar.p' 277 0 1
+521 'PM.dah' 'oscar.p' 280 0 1
+522 'PM.dah' 'oscar.p' 281 0 1
+523 'PM.dah' 'oscar.p' 282 0 1
+524 'PM.dah' 'oscar.p' 283 0 1
+525 'PM.dah' 'oscar.p' 284 0 1
+526 'PM.dah' 'oscar.p' 287 0 1
+527 'PM.dah' 'oscar.p' 288 0 1
+528 'PM.dah' 'oscar.p' 289 0 1
+529 'PM.dah' 'oscar.p' 290 0 1
+530 'PM.dah' 'oscar.p' 291 0 1
+531 'PM.dah' 'oscar.p' 294 0 1
+532 'PM.dah' 'oscar.p' 295 0 1
+533 'PM.dah' 'oscar.p' 296 0 1
+534 'PM.dah' 'oscar.p' 297 0 1
+535 'PM.dah' 'oscar.p' 298 0 1
+536 'PM.dah' 'oscar.p' 301 0 1
+537 'PM.dah' 'oscar.p' 302 0 1
+538 'PM.dah' 'oscar.p' 303 0 1
+539 'PM.dah' 'oscar.p' 304 0 1
+540 'PM.dah' 'oscar.p' 305 0 1
+541 'PM.dah' 'oscar.p' 308 0 1
+542 'PM.dah' 'oscar.p' 309 0 1
+543 'PM.dah' 'oscar.p' 310 0 1
+544 'PM.dah' 'oscar.p' 311 0 1
+545 'PM.dah' 'oscar.p' 312 0 1
+546 'PM.dah' 'oscar.p' 315 0 1
+547 'PM.dah' 'oscar.p' 316 0 1
+548 'PM.dah' 'oscar.p' 317 0 1
+549 'PM.dah' 'oscar.p' 318 0 1
+550 'PM.dah' 'oscar.p' 319 0 1
+551 'PM.dah' 'oscar.p' 322 0 1
+552 'PM.dah' 'oscar.p' 323 0 1
+553 'PM.dah' 'oscar.p' 324 0 1
+554 'PM.dah' 'oscar.p' 325 0 1
+555 'PM.dah' 'oscar.p' 326 0 1
+556 'PM.dah' 'oscar.p' 329 0 1
+557 'PM.dah' 'oscar.p' 330 0 1
+558 'PM.dah' 'oscar.p' 331 0 1
+559 'PM.dah' 'oscar.p' 332 0 1
+560 'PM.dah' 'oscar.p' 333 0 1
+561 'PM.dah' 'oscar.p' 336 0 1
+562 'PM.dah' 'oscar.p' 337 0 1
+563 'PM.dah' 'oscar.p' 338 0 1
+564 'PM.dah' 'oscar.p' 339 0 1
+565 'PM.dah' 'oscar.p' 340 0 1
+566 'PM.dah' 'oscar.p' 343 0 1
+567 'PM.dah' 'oscar.p' 344 0 1
+568 'PM.dah' 'oscar.p' 345 0 1
+569 'PM.dah' 'oscar.p' 346 0 1
+570 'PM.dah' 'oscar.p' 347 0 1
+571 'PM.dah' 'oscar.p' 350 0 1
+572 'PM.dah' 'oscar.p' 351 0 1
+573 'PM.dah' 'oscar.p' 352 0 1
+574 'PM.dah' 'oscar.p' 353 0 1
+575 'PM.dah' 'oscar.p' 354 0 1
+576 'PM.dah' 'oscar.p' 357 0 1
+577 'PM.dah' 'oscar.p' 358 0 1
+578 'PM.dah' 'oscar.p' 359 0 1
+579 'PM.dah' 'oscar.p' 360 0 1
+580 'PM.dah' 'oscar.p' 361 0 1
+581 'PM.dah' 'oscar.p' 364 0 1
+582 'PM.dah' 'oscar.p' 365 0 1
+583 'PM.dah' 'oscar.p' 366 0 1
+584 'PM.dah' 'oscar.p' 367 0 1
+585 'PM.dah' 'oscar.p' 368 0 1
+586 'PM.dah' 'oscar.p' 371 0 1
+587 'PM.dah' 'oscar.p' 372 0 1
+588 'PM.dah' 'oscar.p' 373 0 1
+589 'PM.dah' 'oscar.p' 374 0 1
+590 'PM.dah' 'oscar.p' 375 0 1
+591 'PM.dah' 'oscar.p' 378 0 1
+592 'PM.dah' 'oscar.p' 379 0 1
+593 'PM.dah' 'oscar.p' 380 0 1
+594 'PM.dah' 'oscar.p' 381 0 1
+595 'PM.dah' 'oscar.p' 382 0 1
+596 'PM.dah' 'oscar.p' 385 0 1
+597 'PM.dah' 'oscar.p' 386 0 1
+598 'PM.dah' 'oscar.p' 387 0 1
+599 'PM.dah' 'oscar.p' 388 0 1
+600 'PM.dah' 'oscar.p' 389 0 1
+601 'PM.dah' 'oscar.p' 392 0 1
+602 'PM.dah' 'oscar.p' 393 0 1
+603 'PM.dah' 'oscar.p' 394 0 1
+604 'PM.dah' 'oscar.p' 395 0 1
+605 'PM.dah' 'oscar.p' 396 0 1
+;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 0;
+
+param UBDAY:
+1   2   3   4 :=
+;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'PM.dah' 'alpha.p'
+'PM.dah' 'beta.p'
+'PM.ea' 'charlie.p'
+'PM.ea' 'delta.p'
+'PM.lw' 'echo.p'
+'PM.lw' 'foxtrot.p'
+'PM.lw' 'golf.p'
+'PM.lw' 'hotel.p'
+'PM.dah' 'india.p'
+'PM.ea' 'juliet.p'
+'PM.lw' 'kilo.p'
+'PM.lw' 'lima.p'
+'PM.ea' 'mike.p'
+'PM.ea' 'november.p'
+'PM.dah' 'oscar.p'
+'DEV.pak' 'alpha.m'
+'DEV.pak' 'alpha.f'
+'SA.ab' 'alpha.m'
+'SA.ab' 'alpha.f'
+'DEV.hv' 'alpha.m'
+'DEV.hv' 'alpha.f'
+'SA.rh' 'beta.m'
+'SA.rh' 'beta.f'
+'DEV.fg' 'beta.m'
+'DEV.fg' 'beta.f'
+'DEV.tr' 'beta.m'
+'DEV.tr' 'beta.f'
+'DEV.cc' 'charlie.m'
+'DEV.cc' 'charlie.f'
+'DEV.fa' 'charlie.m'
+'DEV.fa' 'charlie.f'
+'DEV.cfo' 'charlie.m'
+'DEV.cfo' 'charlie.f'
+'DEV.pak' 'charlie.m'
+'DEV.pak' 'charlie.f'
+'DEV.lh' 'delta.m'
+'DEV.lh' 'delta.f'
+'DEV.mp' 'echo.m'
+'DEV.mp' 'echo.f'
+'DEV.mj' 'foxtrot.m'
+'DEV.mj' 'foxtrot.f'
+'SA.ab' 'golf.m'
+'SA.ab' 'golf.f'
+'DEV.hv' 'golf.m'
+'DEV.hv' 'golf.f'
+'DEV.fa' 'hotel.m'
+'DEV.fa' 'hotel.f'
+'DEV.mp' 'hotel.m'
+'DEV.mp' 'hotel.f'
+'DEV.mj' 'hotel.m'
+'DEV.mj' 'hotel.f'
+'DEV.pak' 'india.m'
+'DEV.pak' 'india.f'
+'SA.rh' 'india.m'
+'SA.rh' 'india.f'
+'DEV.lh' 'india.m'
+'DEV.lh' 'india.f'
+'DEV.cc' 'india.m'
+'DEV.cc' 'india.f'
+'DEV.tr' 'india.m'
+'DEV.tr' 'india.f'
+'DEV.cfo' 'juliet.m'
+'DEV.cfo' 'juliet.f'
+'DEV.hv' 'juliet.m'
+'DEV.hv' 'juliet.f'
+'DEV.mp' 'kilo.m'
+'DEV.mp' 'kilo.f'
+'DEV.fa' 'kilo.m'
+'DEV.fa' 'kilo.f'
+'DEV.pak' 'lima.m'
+'DEV.pak' 'lima.f'
+'DEV.fg' 'lima.m'
+'DEV.fg' 'lima.f'
+'DEV.mj' 'lima.m'
+'DEV.mj' 'lima.f'
+'SA.ab' 'lima.m'
+'SA.ab' 'lima.f'
+'DEV.mp' 'mike.m'
+'DEV.mp' 'mike.f'
+'DEV.mj' 'mike.m'
+'DEV.mj' 'mike.f'
+'DEV.cfo' 'november.m'
+'DEV.cfo' 'november.f'
+'DEV.hv' 'november.m'
+'DEV.hv' 'november.f'
+'SA.rh' 'oscar.m'
+'SA.rh' 'oscar.f'
+'DEV.tr' 'oscar.m'
+'DEV.tr' 'oscar.f'
+;
+
