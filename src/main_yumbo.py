@@ -337,13 +337,6 @@ def show_main_panel():
         st.subheader(":blue[{name}] {comment}".format(name=expert_name, comment=experts.loc[e, "Comment"]), divider="blue")
         if global_data["report"].loc[expert_name, "Show?"]:
             show_one_row(expert_name)
-            # col1, col2, col3 = st.columns(3)
-            # with col1:
-            #     show_tasks_gantt_chart(expert_name)
-            # with col2:
-            #     show_tasks_per_day(expert_name)
-            # with col3:
-            #     show_hours_per_day(expert_name)
 
             if global_data["report"].loc[expert_name, "Table?"]:
                 show_schedule_as_table(expert_name)
