@@ -353,8 +353,8 @@ def main():
     if new_input:
         try:
             romz_ampl.solve(uploaded_file.name, get_Today(), global_data)
-        except:
-            st.subheader(":red[This problem is not feasible.] Please adjust the limits or constraints and try again.")
+        except Exception as e:
+            st.subheader(":red[Exception during solving process.] {m}".format(m=repr(e)))
             return
 
     show_main_panel()
