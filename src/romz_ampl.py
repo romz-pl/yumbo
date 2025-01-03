@@ -26,7 +26,7 @@ def offday(today, data):
     id = 0
     buf = str()
     holidays = data["public holidays"]["Date"].to_numpy()
-    min_date = data["tasks"]["Start day"].min()
+    min_date = max(data["tasks"]["Start day"].min(), today)
     max_date = data["tasks"]["End day"].max()
     d = min_date
     while d <= max_date:
