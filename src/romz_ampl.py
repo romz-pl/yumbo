@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import romz_datetime
 from amplpy import AMPL, modules
-
+import streamlit as st
 
 def tasks(today, data):
     buf = str()
@@ -21,7 +21,11 @@ def tasks(today, data):
         buf += "'{name}' {start} {end} {work}\n".format(
             name=row["Name"], start=start, end=end, work=row["Work"])
 
-    return buf, to_skip
+
+    data["tasks"] = data["tasks"][ ~data["tasks"]["Name"].isin(to_skip) ]
+    data["links"] = data["links"][ ~data["links"]["Task"].isin(to_skip) ]
+
+    return buf
 
 
 def offday(today, data):
@@ -159,13 +163,11 @@ def expert_bounds(today, data):
     return id, buf
 
 
-def links(data, to_skip):
+def links(data):
     buf = str()
     df = data["links"]
     for j in df.index:
         row = df.loc[j]
-        if row["Task"] in to_skip:
-            continue
         buf += "'{expert}' '{task}'\n".format(expert=row["Expert"], task=row["Task"])
     return buf
 
@@ -213,7 +215,7 @@ def data_file(name, today, data):
         f.write(buf)
         f.write(';\n\n')
 
-        buf, to_skip = tasks(today, data)
+        buf = tasks(today, data)
         f.write('param:\n')
         f.write('TASKN: TASKS TASKE TASKW :=\n')
         f.write(buf)
@@ -265,7 +267,7 @@ def data_file(name, today, data):
         f.write(buf)
         f.write(';\n\n')
 
-        buf = links(data, to_skip)
+        buf = links(data)
         f.write('set LINKS :=\n')
         f.write(buf)
         f.write(';\n\n')
