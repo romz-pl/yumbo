@@ -31,6 +31,9 @@ display PAYROLLE;
 display PAYROLLBL;
 display PAYROLLBU;
 
+display LINKS;
+display EXPPAY;
+
 
 # expand C_dbound;
 
