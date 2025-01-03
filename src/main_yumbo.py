@@ -252,7 +252,7 @@ def customise_report():
 
     global_data["report"] = edited_df
 
-    global_data["show_all_experts_overview"] = st.checkbox("Show all experts overview?")
+    global_data["show_experts_overview"] = st.checkbox("Show experts overview?")
 
 
 def show_sidebar(uploaded_file):
@@ -291,8 +291,8 @@ def show_hours_per_day_summary():
 
 
 def show_summary():
-    if global_data["show_all_experts_overview"]:
-        st.subheader(":blue[All experts overview]", divider="blue")
+    if global_data["show_experts_overview"]:
+        st.subheader(":blue[Experts overview]", divider="blue")
         col1, col2, col3 = st.columns(3)
         with col1:
             show_tasks_gantt_chart_summary()
