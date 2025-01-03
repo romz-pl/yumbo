@@ -252,6 +252,8 @@ def customise_report():
 
     global_data["report"] = edited_df
 
+    global_data["show_all_experts_overview"] = st.checkbox("Show all experts overview?")
+
 
 def show_sidebar(uploaded_file):
     new_input = prepare_global_data(uploaded_file)
@@ -289,14 +291,15 @@ def show_hours_per_day_summary():
 
 
 def show_summary():
-    st.subheader(":blue[All experts overview]", divider="blue")
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        show_tasks_gantt_chart_summary()
-    with col2:
-        show_tasks_per_day_summary()
-    with col3:
-        show_hours_per_day_summary()
+    if global_data["show_all_experts_overview"]:
+        st.subheader(":blue[All experts overview]", divider="blue")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            show_tasks_gantt_chart_summary()
+        with col2:
+            show_tasks_per_day_summary()
+        with col3:
+            show_hours_per_day_summary()
 
 def show_solver_output():
     st.subheader(f":green[Solver output at {global_data['solver timestamp']}]", divider="blue")
