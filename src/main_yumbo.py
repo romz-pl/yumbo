@@ -226,10 +226,10 @@ def customise_report():
             ("Task's Gantt chart", "Tasks per day", "Hours per day", "Hours per day stacked", "Invoice period workload"),
             disabled= (ii > report_column_no)
         )
-
-
-
     global_data["report_column_no"] = report_column_no
+
+    show_all_experts = st.checkbox("Show all experts?")
+
     expert = global_data["experts"]["Name"].to_numpy()
     rowno = len(expert)
     colno = 4
@@ -237,6 +237,9 @@ def customise_report():
         index = expert,
         columns = ["Expert", "Show?", "Table?", "Commitment?"])
     df["Expert"] = expert
+
+    if show_all_experts:
+        df["Show?"] = np.ones(rowno, dtype='bool')
 
     edited_df = st.data_editor(
         df,
