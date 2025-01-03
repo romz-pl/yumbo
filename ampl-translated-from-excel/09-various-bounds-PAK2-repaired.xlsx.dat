@@ -1,0 +1,630 @@
+param HOURS_PER_DAY := 8;
+
+set EXPERTN :=
+'PM.Daniel'
+'PM.Angel'
+'DEV.Paul'
+'SA.Adrian'
+'SA.Robert'
+'DEV.Hugo'
+'DEV.Frances'
+'DEV.Tom'
+'PM.Lisa'
+'DEV.Charles'
+'DEV.Francis'
+'DEV.Carl'
+'DEV.Lars'
+'DEV.Martin'
+'DEV.Michael'
+;
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'alpha.m' 2 92 450
+'alpha.f' 93 123 60
+'alpha.pm' 2 92 45
+'alpha.pf' 93 123 5
+'alpha.sm' 2 92 10
+'alpha.sf' 93 123 5
+'beta.m' 2 172 650
+'beta.f' 173 218 30
+'beta.pm' 2 172 65
+'beta.pf' 173 218 5
+'beta.sm' 2 172 10
+'beta.sf' 173 218 5
+'charlie.m' 2 157 800
+'charlie.f' 158 188 100
+'charlie.pm' 2 157 80
+'charlie.pf' 158 188 10
+'charlie.sm' 2 157 15
+'charlie.sf' 158 188 5
+'delta.m' 2 57 220
+'delta.f' 58 103 20
+'delta.pm' 2 57 25
+'delta.pf' 58 103 5
+'delta.sm' 2 57 5
+'delta.sf' 58 103 5
+'echo.m' 2 75 250
+'echo.f' 93 138 25
+'echo.pm' 2 75 20
+'echo.pf' 93 138 5
+'echo.sm' 2 75 5
+'echo.sf' 93 138 8
+'foxtrot.m' 2 92 150
+'foxtrot.f' 93 123 25
+'foxtrot.pm' 2 92 20
+'foxtrot.pf' 93 123 5
+'foxtrot.sm' 2 92 8
+'foxtrot.sf' 93 123 8
+'golf.m' 2 133 350
+'golf.f' 134 179 30
+'golf.pm' 2 133 40
+'golf.pf' 134 179 10
+'golf.sm' 2 133 10
+'golf.sf' 134 179 8
+'hotel.m' 2 245 750
+'hotel.f' 246 291 70
+'hotel.pm' 2 245 80
+'hotel.pf' 246 291 10
+'hotel.sm' 2 245 15
+'hotel.sf' 246 291 5
+'india.m' 2 275 1100
+'india.f' 276 306 200
+'india.pm' 2 275 130
+'india.pf' 276 306 25
+'india.sm' 2 275 30
+'india.sf' 276 306 12
+'juliet.e' 42 59 10
+'juliet.m' 60 182 450
+'juliet.f' 183 228 35
+'juliet.pe' 42 59 10
+'juliet.pm' 60 182 50
+'juliet.pf' 183 228 5
+'juliet.se' 42 59 10
+'juliet.sm' 60 182 10
+'juliet.sf' 183 228 5
+'kilo.e' 61 84 20
+'kilo.m' 85 214 550
+'kilo.f' 215 260 40
+'kilo.pe' 61 84 10
+'kilo.pm' 85 214 50
+'kilo.pf' 215 260 5
+'kilo.se' 61 84 15
+'kilo.sm' 85 214 10
+'kilo.sf' 215 260 5
+'lima.m' 111 306 1050
+'lima.f' 307 335 120
+'lima.pm' 1 306 100
+'lima.pf' 307 335 20
+'lima.sm' 1 306 10
+'lima.sf' 307 335 5
+'mike.e' 101 111 10
+'mike.m' 116 269 450
+'mike.f' 270 304 60
+'mike.pe' 101 111 10
+'mike.pm' 112 269 50
+'mike.pf' 270 304 5
+'mike.se' 101 111 15
+'mike.sm' 112 269 10
+'mike.sf' 270 304 5
+'november.e' 147 166 10
+'november.m' 167 365 550
+'november.f' 366 397 30
+'november.pe' 147 166 10
+'november.pm' 167 365 55
+'november.pf' 366 397 5
+'november.se' 147 166 10
+'november.sm' 167 365 10
+'november.sf' 366 397 5
+'oscar.e' 177 191 15
+'oscar.m' 192 365 600
+'oscar.f' 366 397 40
+'oscar.pe' 177 191 15
+'oscar.pm' 192 365 70
+'oscar.pf' 366 397 10
+'oscar.se' 177 191 10
+'oscar.sm' 192 365 10
+'oscar.sf' 366 397 8
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'January.2025' 1 16
+'February.2025' 17 45
+'March.2025' 46 76
+'April.2025' 77 105
+'May.2025' 106 139
+'June.2025' 140 170
+'July.2025' 171 199
+'August.2025' 200 230
+'September.2025' 231 259
+'October.2025' 260 289
+'November.2025' 290 317
+'December.2025' 318 346
+;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+'PM.Daniel' 'January.2025' 0 180
+'PM.Daniel' 'February.2025' 0 180
+'PM.Daniel' 'March.2025' 0 180
+'PM.Daniel' 'April.2025' 0 180
+'PM.Daniel' 'May.2025' 0 180
+'PM.Daniel' 'June.2025' 0 180
+'PM.Daniel' 'July.2025' 0 180
+'PM.Daniel' 'August.2025' 0 180
+'PM.Daniel' 'September.2025' 0 180
+'PM.Daniel' 'October.2025' 0 180
+'PM.Daniel' 'November.2025' 0 180
+'PM.Daniel' 'December.2025' 0 180
+'PM.Angel' 'January.2025' 0 180
+'PM.Angel' 'February.2025' 0 180
+'PM.Angel' 'March.2025' 0 180
+'PM.Angel' 'April.2025' 0 180
+'PM.Angel' 'May.2025' 0 180
+'PM.Angel' 'June.2025' 0 180
+'PM.Angel' 'July.2025' 0 180
+'PM.Angel' 'August.2025' 0 180
+'PM.Angel' 'September.2025' 0 180
+'PM.Angel' 'October.2025' 0 180
+'PM.Angel' 'November.2025' 0 180
+'PM.Angel' 'December.2025' 0 180
+'DEV.Paul' 'January.2025' 0 180
+'DEV.Paul' 'February.2025' 0 180
+'DEV.Paul' 'March.2025' 0 180
+'DEV.Paul' 'April.2025' 0 180
+'DEV.Paul' 'May.2025' 0 180
+'DEV.Paul' 'June.2025' 0 180
+'DEV.Paul' 'July.2025' 0 180
+'DEV.Paul' 'August.2025' 0 180
+'DEV.Paul' 'September.2025' 0 180
+'DEV.Paul' 'October.2025' 0 180
+'DEV.Paul' 'November.2025' 0 180
+'DEV.Paul' 'December.2025' 0 180
+'SA.Adrian' 'January.2025' 0 180
+'SA.Adrian' 'February.2025' 0 180
+'SA.Adrian' 'March.2025' 0 180
+'SA.Adrian' 'April.2025' 0 180
+'SA.Adrian' 'May.2025' 0 180
+'SA.Adrian' 'June.2025' 0 180
+'SA.Adrian' 'July.2025' 0 180
+'SA.Adrian' 'August.2025' 0 180
+'SA.Adrian' 'September.2025' 0 180
+'SA.Adrian' 'October.2025' 0 180
+'SA.Adrian' 'November.2025' 0 180
+'SA.Adrian' 'December.2025' 0 180
+'SA.Robert' 'January.2025' 0 180
+'SA.Robert' 'February.2025' 0 180
+'SA.Robert' 'March.2025' 0 180
+'SA.Robert' 'April.2025' 0 180
+'SA.Robert' 'May.2025' 0 180
+'SA.Robert' 'June.2025' 0 180
+'SA.Robert' 'July.2025' 0 180
+'SA.Robert' 'August.2025' 0 180
+'SA.Robert' 'September.2025' 0 180
+'SA.Robert' 'October.2025' 0 180
+'SA.Robert' 'November.2025' 0 180
+'SA.Robert' 'December.2025' 0 180
+'DEV.Hugo' 'January.2025' 0 180
+'DEV.Hugo' 'February.2025' 0 180
+'DEV.Hugo' 'March.2025' 0 180
+'DEV.Hugo' 'April.2025' 0 180
+'DEV.Hugo' 'May.2025' 0 180
+'DEV.Hugo' 'June.2025' 0 180
+'DEV.Hugo' 'July.2025' 0 180
+'DEV.Hugo' 'August.2025' 0 180
+'DEV.Hugo' 'September.2025' 0 180
+'DEV.Hugo' 'October.2025' 0 180
+'DEV.Hugo' 'November.2025' 0 180
+'DEV.Hugo' 'December.2025' 0 180
+'DEV.Frances' 'January.2025' 0 180
+'DEV.Frances' 'February.2025' 0 180
+'DEV.Frances' 'March.2025' 0 180
+'DEV.Frances' 'April.2025' 0 180
+'DEV.Frances' 'May.2025' 0 180
+'DEV.Frances' 'June.2025' 0 180
+'DEV.Frances' 'July.2025' 0 180
+'DEV.Frances' 'August.2025' 0 180
+'DEV.Frances' 'September.2025' 0 180
+'DEV.Frances' 'October.2025' 0 180
+'DEV.Frances' 'November.2025' 0 180
+'DEV.Frances' 'December.2025' 0 180
+'DEV.Tom' 'January.2025' 0 180
+'DEV.Tom' 'February.2025' 0 180
+'DEV.Tom' 'March.2025' 0 180
+'DEV.Tom' 'April.2025' 0 180
+'DEV.Tom' 'May.2025' 0 180
+'DEV.Tom' 'June.2025' 0 180
+'DEV.Tom' 'July.2025' 0 180
+'DEV.Tom' 'August.2025' 0 180
+'DEV.Tom' 'September.2025' 0 180
+'DEV.Tom' 'October.2025' 0 180
+'DEV.Tom' 'November.2025' 0 180
+'DEV.Tom' 'December.2025' 0 180
+'PM.Lisa' 'January.2025' 0 180
+'PM.Lisa' 'February.2025' 0 180
+'PM.Lisa' 'March.2025' 0 180
+'PM.Lisa' 'April.2025' 0 180
+'PM.Lisa' 'May.2025' 0 180
+'PM.Lisa' 'June.2025' 0 180
+'PM.Lisa' 'July.2025' 0 180
+'PM.Lisa' 'August.2025' 0 180
+'PM.Lisa' 'September.2025' 0 180
+'PM.Lisa' 'October.2025' 0 180
+'PM.Lisa' 'November.2025' 0 180
+'PM.Lisa' 'December.2025' 0 180
+'DEV.Charles' 'January.2025' 0 180
+'DEV.Charles' 'February.2025' 0 180
+'DEV.Charles' 'March.2025' 0 180
+'DEV.Charles' 'April.2025' 0 180
+'DEV.Charles' 'May.2025' 0 180
+'DEV.Charles' 'June.2025' 0 180
+'DEV.Charles' 'July.2025' 0 180
+'DEV.Charles' 'August.2025' 0 180
+'DEV.Charles' 'September.2025' 0 180
+'DEV.Charles' 'October.2025' 0 180
+'DEV.Charles' 'November.2025' 0 180
+'DEV.Charles' 'December.2025' 0 180
+'DEV.Francis' 'January.2025' 0 180
+'DEV.Francis' 'February.2025' 0 180
+'DEV.Francis' 'March.2025' 0 180
+'DEV.Francis' 'April.2025' 0 180
+'DEV.Francis' 'May.2025' 0 180
+'DEV.Francis' 'June.2025' 0 180
+'DEV.Francis' 'July.2025' 0 180
+'DEV.Francis' 'August.2025' 0 180
+'DEV.Francis' 'September.2025' 0 180
+'DEV.Francis' 'October.2025' 0 180
+'DEV.Francis' 'November.2025' 0 180
+'DEV.Francis' 'December.2025' 0 180
+'DEV.Carl' 'January.2025' 0 180
+'DEV.Carl' 'February.2025' 0 180
+'DEV.Carl' 'March.2025' 0 180
+'DEV.Carl' 'April.2025' 0 180
+'DEV.Carl' 'May.2025' 0 180
+'DEV.Carl' 'June.2025' 0 180
+'DEV.Carl' 'July.2025' 0 180
+'DEV.Carl' 'August.2025' 0 180
+'DEV.Carl' 'September.2025' 0 180
+'DEV.Carl' 'October.2025' 0 180
+'DEV.Carl' 'November.2025' 0 180
+'DEV.Carl' 'December.2025' 0 180
+'DEV.Lars' 'January.2025' 0 180
+'DEV.Lars' 'February.2025' 0 180
+'DEV.Lars' 'March.2025' 0 180
+'DEV.Lars' 'April.2025' 0 180
+'DEV.Lars' 'May.2025' 0 180
+'DEV.Lars' 'June.2025' 0 180
+'DEV.Lars' 'July.2025' 0 180
+'DEV.Lars' 'August.2025' 0 180
+'DEV.Lars' 'September.2025' 0 180
+'DEV.Lars' 'October.2025' 0 180
+'DEV.Lars' 'November.2025' 0 180
+'DEV.Lars' 'December.2025' 0 180
+'DEV.Martin' 'January.2025' 0 180
+'DEV.Martin' 'February.2025' 0 180
+'DEV.Martin' 'March.2025' 0 180
+'DEV.Martin' 'April.2025' 0 180
+'DEV.Martin' 'May.2025' 0 180
+'DEV.Martin' 'June.2025' 0 180
+'DEV.Martin' 'July.2025' 0 180
+'DEV.Martin' 'August.2025' 0 180
+'DEV.Martin' 'September.2025' 0 180
+'DEV.Martin' 'October.2025' 0 180
+'DEV.Martin' 'November.2025' 0 180
+'DEV.Martin' 'December.2025' 0 180
+'DEV.Michael' 'January.2025' 0 180
+'DEV.Michael' 'February.2025' 0 180
+'DEV.Michael' 'March.2025' 0 180
+'DEV.Michael' 'April.2025' 0 180
+'DEV.Michael' 'May.2025' 0 180
+'DEV.Michael' 'June.2025' 0 180
+'DEV.Michael' 'July.2025' 0 180
+'DEV.Michael' 'August.2025' 0 180
+'DEV.Michael' 'September.2025' 0 180
+'DEV.Michael' 'October.2025' 0 180
+'DEV.Michael' 'November.2025' 0 180
+'DEV.Michael' 'December.2025' 0 180
+;
+
+param OFFDAY_NO := 114;
+
+param OFFDAY :=
+1 2
+2 5
+3 6
+4 12
+5 13
+6 19
+7 20
+8 26
+9 27
+10 33
+11 34
+12 40
+13 41
+14 47
+15 48
+16 54
+17 55
+18 61
+19 62
+20 68
+21 69
+22 75
+23 76
+24 82
+25 83
+26 89
+27 90
+28 96
+29 97
+30 103
+31 104
+32 110
+33 111
+34 117
+35 118
+36 124
+37 125
+38 131
+39 132
+40 138
+41 139
+42 145
+43 146
+44 152
+45 153
+46 159
+47 160
+48 166
+49 167
+50 173
+51 174
+52 180
+53 181
+54 187
+55 188
+56 194
+57 195
+58 201
+59 202
+60 208
+61 209
+62 215
+63 216
+64 222
+65 223
+66 229
+67 230
+68 236
+69 237
+70 243
+71 244
+72 250
+73 251
+74 257
+75 258
+76 264
+77 265
+78 271
+79 272
+80 278
+81 279
+82 285
+83 286
+84 292
+85 293
+86 299
+87 300
+88 306
+89 307
+90 313
+91 314
+92 320
+93 321
+94 327
+95 328
+96 334
+97 335
+98 341
+99 342
+100 348
+101 349
+102 355
+103 356
+104 362
+105 363
+106 369
+107 370
+108 376
+109 377
+110 383
+111 384
+112 390
+113 391
+114 397
+;
+
+param XBDAY_NO := 0;
+
+param XBDAY:
+1   2   3   4   5 :=
+;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 0;
+
+param UBDAY:
+1   2   3   4 :=
+;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'PM.Daniel' 'alpha.pm'
+'PM.Daniel' 'alpha.pf'
+'PM.Daniel' 'beta.pm'
+'PM.Daniel' 'beta.pf'
+'PM.Angel' 'charlie.pm'
+'PM.Angel' 'charlie.pf'
+'PM.Angel' 'delta.pm'
+'PM.Angel' 'delta.pf'
+'PM.Lisa' 'echo.pm'
+'PM.Lisa' 'echo.pf'
+'PM.Lisa' 'foxtrot.pm'
+'PM.Lisa' 'foxtrot.pf'
+'PM.Lisa' 'golf.pm'
+'PM.Lisa' 'golf.pf'
+'PM.Lisa' 'hotel.pm'
+'PM.Lisa' 'hotel.pf'
+'PM.Daniel' 'india.pm'
+'PM.Daniel' 'india.pf'
+'PM.Angel' 'juliet.pe'
+'PM.Angel' 'juliet.pm'
+'PM.Angel' 'juliet.pf'
+'PM.Lisa' 'kilo.pe'
+'PM.Lisa' 'kilo.pm'
+'PM.Lisa' 'kilo.pf'
+'PM.Lisa' 'lima.pm'
+'PM.Lisa' 'lima.pf'
+'PM.Angel' 'mike.pe'
+'PM.Angel' 'mike.pm'
+'PM.Angel' 'mike.pf'
+'PM.Angel' 'november.pe'
+'PM.Angel' 'november.pm'
+'PM.Angel' 'november.pf'
+'PM.Daniel' 'oscar.pe'
+'PM.Daniel' 'oscar.pm'
+'PM.Daniel' 'oscar.pf'
+'DEV.Paul' 'alpha.m'
+'DEV.Paul' 'alpha.f'
+'SA.Adrian' 'alpha.m'
+'SA.Adrian' 'alpha.f'
+'DEV.Hugo' 'alpha.m'
+'DEV.Hugo' 'alpha.f'
+'SA.Robert' 'beta.m'
+'SA.Robert' 'beta.f'
+'DEV.Frances' 'beta.m'
+'DEV.Frances' 'beta.f'
+'DEV.Tom' 'beta.m'
+'DEV.Tom' 'beta.f'
+'DEV.Charles' 'charlie.m'
+'DEV.Charles' 'charlie.f'
+'DEV.Francis' 'charlie.m'
+'DEV.Francis' 'charlie.f'
+'DEV.Carl' 'charlie.m'
+'DEV.Carl' 'charlie.f'
+'DEV.Paul' 'charlie.m'
+'DEV.Paul' 'charlie.f'
+'DEV.Lars' 'delta.m'
+'DEV.Lars' 'delta.f'
+'DEV.Martin' 'echo.m'
+'DEV.Martin' 'echo.f'
+'DEV.Michael' 'foxtrot.m'
+'DEV.Michael' 'foxtrot.f'
+'SA.Adrian' 'golf.m'
+'SA.Adrian' 'golf.f'
+'DEV.Hugo' 'golf.m'
+'DEV.Hugo' 'golf.f'
+'DEV.Francis' 'hotel.m'
+'DEV.Francis' 'hotel.f'
+'DEV.Martin' 'hotel.m'
+'DEV.Martin' 'hotel.f'
+'DEV.Michael' 'hotel.m'
+'DEV.Michael' 'hotel.f'
+'DEV.Paul' 'india.m'
+'DEV.Paul' 'india.f'
+'SA.Robert' 'india.m'
+'SA.Robert' 'india.f'
+'DEV.Lars' 'india.m'
+'DEV.Lars' 'india.f'
+'DEV.Charles' 'india.m'
+'DEV.Charles' 'india.f'
+'DEV.Tom' 'india.m'
+'DEV.Tom' 'india.f'
+'DEV.Carl' 'juliet.m'
+'DEV.Carl' 'juliet.f'
+'DEV.Hugo' 'juliet.m'
+'DEV.Hugo' 'juliet.f'
+'DEV.Martin' 'kilo.m'
+'DEV.Martin' 'kilo.f'
+'DEV.Francis' 'kilo.m'
+'DEV.Francis' 'kilo.f'
+'DEV.Paul' 'lima.m'
+'DEV.Paul' 'lima.f'
+'DEV.Frances' 'lima.m'
+'DEV.Frances' 'lima.f'
+'DEV.Michael' 'lima.m'
+'DEV.Michael' 'lima.f'
+'SA.Adrian' 'lima.m'
+'SA.Adrian' 'lima.f'
+'DEV.Martin' 'mike.m'
+'DEV.Martin' 'mike.f'
+'DEV.Michael' 'mike.m'
+'DEV.Michael' 'mike.f'
+'DEV.Carl' 'november.m'
+'DEV.Carl' 'november.f'
+'DEV.Hugo' 'november.m'
+'DEV.Hugo' 'november.f'
+'SA.Robert' 'oscar.m'
+'SA.Robert' 'oscar.f'
+'DEV.Tom' 'oscar.m'
+'DEV.Tom' 'oscar.f'
+'DEV.Michael' 'alpha.sm'
+'DEV.Michael' 'alpha.sf'
+'DEV.Carl' 'beta.sm'
+'DEV.Carl' 'beta.sf'
+'SA.Adrian' 'charlie.sm'
+'SA.Adrian' 'charlie.sf'
+'DEV.Hugo' 'delta.sm'
+'DEV.Hugo' 'delta.sf'
+'SA.Adrian' 'echo.sm'
+'SA.Adrian' 'echo.sf'
+'SA.Robert' 'foxtrot.sm'
+'SA.Robert' 'foxtrot.sf'
+'SA.Robert' 'golf.sm'
+'SA.Robert' 'golf.sf'
+'SA.Robert' 'hotel.sm'
+'SA.Robert' 'hotel.sf'
+'DEV.Charles' 'india.sm'
+'DEV.Charles' 'india.sf'
+'DEV.Charles' 'juliet.se'
+'DEV.Charles' 'juliet.sm'
+'DEV.Charles' 'juliet.sf'
+'DEV.Paul' 'kilo.se'
+'DEV.Paul' 'kilo.sm'
+'DEV.Paul' 'kilo.sf'
+'DEV.Tom' 'lima.sm'
+'DEV.Tom' 'lima.sf'
+'DEV.Frances' 'mike.se'
+'DEV.Frances' 'mike.sm'
+'DEV.Frances' 'mike.sf'
+'DEV.Frances' 'november.se'
+'DEV.Frances' 'november.sm'
+'DEV.Frances' 'november.sf'
+'DEV.Paul' 'oscar.se'
+'DEV.Paul' 'oscar.sm'
+'DEV.Paul' 'oscar.sf'
+'PM.Daniel' 'juliet.e'
+'PM.Daniel' 'kilo.e'
+'PM.Daniel' 'mike.e'
+'PM.Daniel' 'november.e'
+'PM.Daniel' 'oscar.e'
+;
+
