@@ -7,19 +7,21 @@ from amplpy import AMPL, modules
 
 def tasks(today, data):
     buf = str()
+    to_skip = set()
     df = data["tasks"]
     for j in df.index:
         row = df.loc[j]
         start = romz_datetime.diff(today, row["Start day"])
         end = romz_datetime.diff(today, row["End day"])
         if end <= 0:
+            to_skip.add(row["Name"])
             continue
         if start <= 0:
             start = 1
         buf += "'{name}' {start} {end} {work}\n".format(
             name=row["Name"], start=start, end=end, work=row["Work"])
 
-    return buf
+    return buf, to_skip
 
 
 def offday(today, data):
@@ -157,11 +159,13 @@ def expert_bounds(today, data):
     return id, buf
 
 
-def links(data):
+def links(data, to_skip):
     buf = str()
     df = data["links"]
     for j in df.index:
         row = df.loc[j]
+        if row["Task"] in to_skip:
+            continue
         buf += "'{expert}' '{task}'\n".format(expert=row["Expert"], task=row["Task"])
     return buf
 
@@ -209,7 +213,7 @@ def data_file(name, today, data):
         f.write(buf)
         f.write(';\n\n')
 
-        buf = tasks(today, data)
+        buf, to_skip = tasks(today, data)
         f.write('param:\n')
         f.write('TASKN: TASKS TASKE TASKW :=\n')
         f.write(buf)
@@ -261,7 +265,7 @@ def data_file(name, today, data):
         f.write(buf)
         f.write(';\n\n')
 
-        buf = links(data)
+        buf = links(data, to_skip)
         f.write('set LINKS :=\n')
         f.write(buf)
         f.write(';\n\n')
