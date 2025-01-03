@@ -28,8 +28,8 @@ display EBOUND;
 display PAYROLLN;
 display PAYROLLS;
 display PAYROLLE;
-# display PAYROLLBL;
-# display PAYROLLBU;
+display PAYROLLBL;
+display PAYROLLBU;
 
 
 # expand C_dbound;
