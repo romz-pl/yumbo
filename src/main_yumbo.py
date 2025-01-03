@@ -143,41 +143,41 @@ def get_tasks_for_expert(expert_name):
     return tasks[mask]
 
 
-def show_tasks_definition(expert_name):
+def show_tasks_gantt_chart(expert_name):
     tasks = get_tasks_for_expert(expert_name)
     work_done = global_data[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
-
-    if global_data["report"].loc[expert_name, "Gantt?"]:
-        romz_plot_tasks_gantt.plot(tasks, work_done, get_dpi())
-    else:
-        format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}", 'Avg': "{:.2f}"}
-        st.dataframe(tasks.style.format(format), hide_index=True, use_container_width=True)
+    romz_plot_tasks_gantt.plot(tasks, work_done, get_dpi())
 
 
 def show_tasks_per_day(expert_name):
-    if global_data["report"].loc[expert_name, "Workload?"]:
-        invper = global_data["invoicing periods"]
-        schedule = global_data[f"schedule {expert_name}"]
-        invper_bounds = global_data["invoicing periods bounds"]
-        bounds = invper_bounds[ invper_bounds["Expert"] == expert_name ]
-        romz_plot_invoicing_periods_histogram.plot(invper, schedule, bounds, get_dpi())
-    else:
-        schedule = global_data[f"schedule {expert_name}"]
-        romz_plot_tasks_per_day.plot(schedule, get_tstart(), get_tend(), get_dpi())
+    schedule = global_data[f"schedule {expert_name}"]
+    romz_plot_tasks_per_day.plot(schedule, get_tstart(), get_tend(), get_dpi())
+
+
+def show_invoice_period_workload(expert_name):
+    invper = global_data["invoicing periods"]
+    schedule = global_data[f"schedule {expert_name}"]
+    invper_bounds = global_data["invoicing periods bounds"]
+    bounds = invper_bounds[ invper_bounds["Expert"] == expert_name ]
+    romz_plot_invoicing_periods_histogram.plot(invper, schedule, bounds, get_dpi())
 
 
 def show_hours_per_day(expert_name):
     start = get_tstart()
     end = get_tend()
     data = global_data[f"schedule {expert_name}"]
-    if global_data["report"].loc[expert_name, "Stacked?"]:
-        if romz_datetime.length_workdays(start, end, global_data["public holidays"]) > 10:
-            width = 1
-        else:
-            width = 0.9
-        romz_plot_shedule_stacked_histogram.plot(data, start, end, width, get_dpi())
+    romz_plot_hours_per_day.plot(data, start, end, get_dpi())
+
+
+def show_hours_per_day_stacked(expert_name):
+    start = get_tstart()
+    end = get_tend()
+    data = global_data[f"schedule {expert_name}"]
+    if romz_datetime.length_workdays(start, end, global_data["public holidays"]) > 10:
+        width = 1
     else:
-        romz_plot_hours_per_day.plot(data, start, end, get_dpi())
+        width = 0.9
+    romz_plot_shedule_stacked_histogram.plot(data, start, end, width, get_dpi())
 
 
 def show_schedule_as_table(expert_name):
@@ -217,15 +217,26 @@ def show_commitment_per_task(expert_name):
 
 def customise_report():
     st.subheader("Customise report", divider="blue")
+    max_col_no = 4
+    report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no)
+
+    for ii in range(1, max_col_no + 1):
+        global_data[f"report_column_{ii}"] = st.selectbox(
+            f"Col {ii}",
+            ("Task's Gantt chart", "Tasks per day", "Hours per day", "Hours per day stacked", "Invoice period workload"),
+            disabled= (ii > report_column_no)
+        )
+
+
+
+    global_data["report_column_no"] = report_column_no
     expert = global_data["experts"]["Name"].to_numpy()
     rowno = len(expert)
-    colno = 7
+    colno = 4
     df = pd.DataFrame(np.zeros(rowno * colno, dtype='bool').reshape((rowno, colno)),
         index = expert,
-        columns = ["Expert", "Show?", "Stacked?", "Gantt?", "Table?", "Workload?", "Commitment?"])
+        columns = ["Expert", "Show?", "Table?", "Commitment?"])
     df["Expert"] = expert
-    df["Gantt?"] = np.ones(rowno, dtype='bool')
-    df["Stacked?"] = np.ones(rowno, dtype='bool')
 
     edited_df = st.data_editor(
         df,
@@ -234,10 +245,7 @@ def customise_report():
         column_config = {
             "Expert": st.column_config.TextColumn(disabled=True, pinned=True),
             "Show?": st.column_config.CheckboxColumn(),
-            "Stacked?": st.column_config.CheckboxColumn(),
-            "Gantt?": st.column_config.CheckboxColumn(),
             "Table?": st.column_config.CheckboxColumn(),
-            "Workload?": st.column_config.CheckboxColumn(),
             "Commitment?": st.column_config.CheckboxColumn(),
         }
     )
@@ -262,7 +270,7 @@ def show_sidebar(uploaded_file):
     show_invoicing_periods_bounds()
     return new_input
 
-def show_tasks_definition_summary():
+def show_tasks_gantt_chart_summary():
     romz_plot_tasks_gantt.plot_summary(global_data["tasks"], get_dpi())
 
 
@@ -284,7 +292,7 @@ def show_summary():
     st.subheader(":blue[All experts overview]", divider="blue")
     col1, col2, col3 = st.columns(3)
     with col1:
-        show_tasks_definition_summary()
+        show_tasks_gantt_chart_summary()
     with col2:
         show_tasks_per_day_summary()
     with col3:
@@ -293,6 +301,25 @@ def show_summary():
 def show_solver_output():
     st.subheader(f":green[Solver output at {global_data['solver timestamp']}]", divider="blue")
     st.code(global_data["solver output"])
+
+def show_one_row(expert_name):
+    report_column_no = global_data["report_column_no"]
+    col_list = st.columns(report_column_no)
+    for ii, col in enumerate(col_list):
+        with col:
+            chart_name  = global_data[f"report_column_{ii+1}"]
+            if chart_name == "Task's Gantt chart":
+                show_tasks_gantt_chart(expert_name)
+            elif chart_name == "Tasks per day":
+                show_tasks_per_day(expert_name)
+            elif chart_name == "Hours per day":
+                show_hours_per_day(expert_name)
+            elif chart_name == "Hours per day stacked":
+                show_hours_per_day_stacked(expert_name)
+            elif chart_name == "Invoice period workload":
+                show_invoice_period_workload(expert_name)
+            else:
+                st.write(chart_name)
 
 
 def show_main_panel():
@@ -303,13 +330,14 @@ def show_main_panel():
         expert_name = experts.loc[e, "Name"]
         st.subheader(":blue[{name}] {comment}".format(name=expert_name, comment=experts.loc[e, "Comment"]), divider="blue")
         if global_data["report"].loc[expert_name, "Show?"]:
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                show_tasks_definition(expert_name)
-            with col2:
-                show_tasks_per_day(expert_name)
-            with col3:
-                show_hours_per_day(expert_name)
+            show_one_row(expert_name)
+            # col1, col2, col3 = st.columns(3)
+            # with col1:
+            #     show_tasks_gantt_chart(expert_name)
+            # with col2:
+            #     show_tasks_per_day(expert_name)
+            # with col3:
+            #     show_hours_per_day(expert_name)
 
             if global_data["report"].loc[expert_name, "Table?"]:
                 show_schedule_as_table(expert_name)
