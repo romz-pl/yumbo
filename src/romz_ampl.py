@@ -274,22 +274,22 @@ def data_file(name, today, data):
 
     return ampl_data_file
 
+
 def save_schedule(ampl, data):
     today = data["misc"].loc[0, "Today"]
     tasks_name = data["tasks"]["Name"]
     experts_name = data["experts"]["Name"]
 
-    day_no = int(ampl.get_data("DAY_NO").to_pandas().iloc[:, 0])
-    tomorrow = today + datetime.timedelta(days=1)
-    days = pd.date_range(start=tomorrow, periods=day_no, freq='D')
+    day_no = int(ampl.get_data("DAY_NO").to_pandas().iloc[0, 0])
+    days = pd.date_range(start=today + pd.Timedelta(days=1), periods=day_no, freq='D')
 
     for en in experts_name:
-        df = pd.DataFrame(
-            {
-                tn: ampl.get_data(f"{{d in 1..DAY_NO}} X['{en}', d, '{tn}']").to_pandas().iloc[:, 0]
-                for tn in tasks_name
-            }
-        ).transpose()
+        schedule = {
+            tn: ampl.get_data(f"{{d in 1..DAY_NO}} X['{en}', d, '{tn}']").to_pandas().iloc[:, 0]
+            for tn in tasks_name
+        }
+        # Create DataFrame from fetched data
+        df = pd.DataFrame(schedule).T
         df.columns = days
         data[f"schedule {en}"] = df
 
