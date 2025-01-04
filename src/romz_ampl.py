@@ -141,12 +141,7 @@ def ubsum(today, data):
 
 
 def experts(data):
-    buf = str()
-    df = data["experts"]
-    for j in df.index:
-        row = df.loc[j]
-        buf += "'{name}'\n".format(name=row["Name"])
-    return buf
+    return "\n".join(f"'{name}'" for name in data["experts"]["Name"])
 
 
 def expert_bounds(today, data):
