@@ -100,25 +100,49 @@ def xbsum(today, data):
     return id, buf
 
 
+# def ubday(today, data):
+#     id = 0
+#     buf = str()
+#     holidays = data["public holidays"]["Date"].to_numpy()
+#     df = data["ubday"]
+#     for j in df.index:
+#         row = df.loc[j]
+#         expert = row["Expert"]
+#         lower = row["Lower"]
+#         upper = row["Upper"]
+#         d = row["Start day"]
+#         while d <= row["End day"]:
+#             if d.weekday() < 5 and d not in holidays:
+#                 day = (d - today).days
+#                 id += 1
+#                 buf += f"{id} '{expert}' {day} {lower} {upper}\n"
+#             d += datetime.timedelta(days=1)
+
+#     return id, buf
+
 def ubday(today, data):
-    id = 0
-    buf = str()
-    holidays = data["public holidays"]["Date"].to_numpy()
     df = data["ubday"]
-    for j in df.index:
-        row = df.loc[j]
+    holidays = set(data["public holidays"]["Date"])
+
+    result = []
+    id = 0
+
+    for _, row in df.iterrows():
         expert = row["Expert"]
         lower = row["Lower"]
         upper = row["Upper"]
-        d = row["Start day"]
-        while d <= row["End day"]:
-            if d.weekday() < 5 and d not in holidays:
-                day = (d - today).days
-                id += 1
-                buf += f"{id} '{expert}' {day} {lower} {upper}\n"
-            d += datetime.timedelta(days=1)
 
-    return id, buf
+        # Generate business days excluding holidays
+        valid_days = pd.bdate_range(start=row["Start day"], end=row["End day"], freq='C', holidays=holidays)
+
+        # Format the output
+        for day in valid_days:
+            id += 1
+            relative_day = (day - today).days
+            result.append(f"{id} '{expert}' {relative_day} {lower} {upper}")
+
+    return id, "\n".join(result)
+
 
 
 def ubsum(today, data):
