@@ -14,10 +14,11 @@ def plot_summary(df, dpi):
 
     # ax.bar_label(rects, labels=df["Name"], size=6, label_type='center')
 
+    ax.xaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
     ax.yaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
-    ax.set_xticks(df["End day"])
+    # ax.set_xticks(df["End day"])
     # ax.xaxis.set_minor_locator(tck.AutoMinorLocator())
-    ax.tick_params(axis='x', rotation=90, labelsize='x-small')
+    ax.tick_params(axis='x', rotation=0, labelsize='x-small')
     ax.tick_params(axis='y', rotation=0, labelsize='x-small')
     ax.yaxis.grid()
     ax.set_axisbelow(True)
@@ -38,12 +39,13 @@ def plot(df, work_done, dpi):
 
     ll = ["%d of %d" % (d, w) for w, d in zip(df["Work"].to_numpy(), work_done.to_numpy()) ]
     ax.bar_label(rects, labels=ll, size=6, label_type='center')
-    ax.vlines(df["End day"], -0.6, df["Name"], linestyles='dashed', color="tab:orange")
+    # ax.vlines(df["End day"], -0.6, df["Name"], linestyles='dashed', color="tab:orange")
 
+    ax.xaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
     ax.yaxis.set_major_locator(tck.MultipleLocator(1))
     # ax.xaxis.set_minor_locator(tck.AutoMinorLocator())
-    ax.set_xticks(df["End day"])
-    ax.tick_params(axis='x', rotation=90, labelsize='x-small')
+    # ax.set_xticks(df["End day"])
+    ax.tick_params(axis='x', rotation=0, labelsize='x-small')
     ax.tick_params(axis='y', rotation=0, labelsize='x-small')
     # matplotlib.artist.setp(ax.get_yticklabels(), rotation=20, ha='center', rotation_mode='anchor')
     ax.yaxis.grid()
