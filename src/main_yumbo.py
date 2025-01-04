@@ -277,6 +277,7 @@ def show_sidebar(uploaded_file):
     show_invoicing_periods_bounds()
     return new_input
 
+
 def show_tasks_gantt_chart_summary():
     romz_plot_tasks_gantt.plot_summary(global_data["tasks"], get_dpi(), get_Today())
 
