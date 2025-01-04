@@ -274,14 +274,14 @@ def data_file(name, today, data):
 
     return ampl_data_file
 
-
 def save_schedule(ampl, data):
     today = data["misc"].loc[0, "Today"]
     tasks_name = data["tasks"]["Name"]
     experts_name = data["experts"]["Name"]
 
-    day_numbers = ampl.get_data("{d in 1..DAY_NO} d").to_pandas().iloc[:, 0]
-    days = [romz_datetime.plus_delta(today, d) for d in day_numbers]
+    day_no = int(ampl.get_data("DAY_NO").to_pandas().iloc[:, 0])
+    tomorrow = today + datetime.timedelta(days=1)
+    days = pd.date_range(start=tomorrow, periods=day_no, freq='D')
 
     for en in experts_name:
         df = pd.DataFrame(
