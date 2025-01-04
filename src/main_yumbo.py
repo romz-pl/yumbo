@@ -172,12 +172,11 @@ def show_hours_per_day(expert_name):
 def show_hours_per_day_stacked(expert_name):
     start = get_tstart()
     end = get_tend()
-    data = global_data[f"schedule {expert_name}"]
-    if romz_datetime.length_workdays(start, end, global_data["public holidays"]) > 10:
+    if pd.bdate_range(start=start, end=end, freq='C', holidays = global_data["public holidays"]["Date"]).size > 10:
         width = 1
     else:
         width = 0.9
-    romz_plot_shedule_stacked_histogram.plot(data, start, end, width, get_dpi())
+    romz_plot_shedule_stacked_histogram.plot(global_data[f"schedule {expert_name}"], start, end, width, get_dpi())
 
 
 def show_schedule_as_table(expert_name):

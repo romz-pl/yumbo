@@ -10,8 +10,15 @@ def parse_date_columns(df, date_columns, date_format):
 
 # Helper function to calculate Days and Workdays
 def add_days_and_workdays(df, holidays, date_columns):
-    df["Days"] = [romz_datetime.length(df.loc[j, date_columns[0]], df.loc[j, date_columns[1]]) for j in df.index]
-    df["Workdays"] = [romz_datetime.length_workdays(df.loc[j, date_columns[0]], df.loc[j, date_columns[1]], holidays) for j in df.index]
+    df["Days"] = [pd.bdate_range(start=df.loc[j, date_columns[0]],
+                                 end=df.loc[j, date_columns[1]],
+                                 freq='D').size for j in df.index]
+
+
+    df["Workdays"] = [pd.bdate_range(start=df.loc[j, date_columns[0]],
+                                     end=df.loc[j, date_columns[1]],
+                                     freq='C',
+                                     holidays=holidays["Date"]).size for j in df.index]
     return df
 
 def read_tasks(xlsx, holidays):
