@@ -29,20 +29,15 @@ def tasks(today, data):
 
 
 def offday(today, data):
-    id = 0
-    buf = str()
-    holidays = data["public holidays"]["Date"].to_numpy()
     min_date = max(data["tasks"]["Start day"].min(), today)
     max_date = data["tasks"]["End day"].max()
-    d = min_date
-    while d <= max_date:
-        if d.weekday() >= 5 or d in holidays:
-            day = (d - today).days
-            id += 1
-            buf += f"{id} {day}\n"
-        d += datetime.timedelta(days=1)
+    weekends = pd.bdate_range(start=min_date, end=max_date, freq='C', weekmask='Sun Sat')
+    off_days = weekends.union(data["public holidays"]["Date"]) - today
 
-    return id, buf
+    # Create the result buffer
+    buf = "\n".join(f"{id+1} {day}" for id, day in enumerate(off_days.days))
+
+    return off_days.size, buf
 
 
 def xbday(today, data):
