@@ -3,9 +3,11 @@ import streamlit as st
 from matplotlib.figure import Figure
 import matplotlib.ticker as tck
 import matplotlib.artist
+import numpy as np
+import streamlit as st
 
 
-def plot_summary(df, dpi):
+def plot_summary(df, dpi, today):
     fig = Figure(figsize=(8, 4))
     ax = fig.subplots()
     ax.set_title("Task's Gantt chart")
@@ -22,6 +24,7 @@ def plot_summary(df, dpi):
     ax.tick_params(axis='y', rotation=0, labelsize='x-small')
     ax.yaxis.grid()
     ax.set_axisbelow(True)
+    ax.set_xlim(left=np.datetime64(today))
     ax.set_ylim(bottom=-0.6)
     fig.tight_layout()
     buf = io.BytesIO()
@@ -30,7 +33,7 @@ def plot_summary(df, dpi):
     buf.close()
 
 
-def plot(df, work_done, dpi):
+def plot(df, work_done, dpi, today):
     fig = Figure(figsize=(8, 4))
     ax = fig.subplots()
     ax.set_title("Task's Gantt chart")
@@ -50,6 +53,7 @@ def plot(df, work_done, dpi):
     # matplotlib.artist.setp(ax.get_yticklabels(), rotation=20, ha='center', rotation_mode='anchor')
     ax.yaxis.grid()
     ax.set_axisbelow(True)
+    ax.set_xlim(left=np.datetime64(today))
     ax.set_ylim(bottom=-0.6)
     fig.tight_layout()
     buf = io.BytesIO()

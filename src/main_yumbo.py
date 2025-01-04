@@ -146,7 +146,7 @@ def get_tasks_for_expert(expert_name):
 def show_tasks_gantt_chart(expert_name):
     tasks = get_tasks_for_expert(expert_name)
     work_done = global_data[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
-    romz_plot_tasks_gantt.plot(tasks, work_done, get_dpi())
+    romz_plot_tasks_gantt.plot(tasks, work_done, get_dpi(), get_Today())
 
 
 def show_tasks_per_day(expert_name):
@@ -278,7 +278,7 @@ def show_sidebar(uploaded_file):
     return new_input
 
 def show_tasks_gantt_chart_summary():
-    romz_plot_tasks_gantt.plot_summary(global_data["tasks"], get_dpi())
+    romz_plot_tasks_gantt.plot_summary(global_data["tasks"], get_dpi(), get_Today())
 
 
 def show_tasks_per_day_summary():
