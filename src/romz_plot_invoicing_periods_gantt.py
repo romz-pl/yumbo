@@ -5,23 +5,53 @@ import matplotlib.ticker as tck
 
 
 def plot(data):
+    # Extract dataframe
     df = data["invoicing periods"]
+
+    # Create figure and axis
     fig = Figure(figsize=(8, 4))
     ax = fig.subplots()
-    rects = plt.barh(y=df["Name"], width=df["Days"], left=df["Start day"], height=1.0, color="tab:green", alpha=0.5)
-    ax.bar_label(rects, label_type='center')
-    ax.vlines(df["End day"], 0, df["Name"], linestyles='dashed', color="tab:green")
+
+    # Plot horizontal bars
+    rects = ax.barh(
+        y=df["Name"],
+        width=df["Days"],
+        left=df["Start day"],
+        height=1.0,
+        color="tab:green",
+        alpha=0.5,
+    )
+
+    # Add labels to bars
+    ax.bar_label(rects, label_type="center")
+
+    # Add vertical lines for end days
+    ax.vlines(
+        df["End day"],
+        ymin=-0.5,
+        ymax=len(df["Name"]) - 0.5,
+        linestyles="dashed",
+        color="tab:green",
+    )
+
+    # Format the x-axis
     ax.xaxis_date()
-    ax.set_title("Invoicing periods Gantt chart")
-    ax.yaxis.grid(True, alpha=0.5)
-    ax.set_ylim(bottom=0)
+    ax.set_title("Invoicing Periods Gantt Chart")
     ax.set_xticks(df["End day"])
     ax.xaxis.set_minor_locator(tck.MultipleLocator(5))
-    ax.tick_params(axis='y', labelsize='small')
-    ax.tick_params(axis='x', rotation=90, labelsize='small')
+    ax.tick_params(axis="x", rotation=90, labelsize="small")
 
+    # Format the y-axis
+    ax.set_ylim(bottom=-0.5, top=len(df["Name"]) - 0.5)
+    ax.yaxis.grid(True, alpha=0.5)
+    ax.tick_params(axis="y", labelsize="small")
+
+    # Adjust layout
     fig.tight_layout()
-    buf = io.BytesIO()
-    fig.savefig(buf, format='png', dpi=150, pil_kwargs={'compress_level': 1})
-    st.image(buf)
-    buf.close()
+
+    # Save the figure to a buffer and display
+    with io.BytesIO() as buf:
+        fig.savefig(buf, format="png", dpi=150, pil_kwargs={"compress_level": 1})
+        buf.seek(0)
+        st.image(buf)
+
