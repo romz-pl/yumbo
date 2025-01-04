@@ -29,15 +29,26 @@ def tasks(today, data):
 
 
 def offday(today, data):
+    # Determine the date range
     min_date = max(data["tasks"]["Start day"].min(), today)
     max_date = data["tasks"]["End day"].max()
-    weekends = pd.bdate_range(start=min_date, end=max_date, freq='C', weekmask='Sun Sat')
-    off_days = weekends.union(data["public holidays"]["Date"]) - today
+
+    # Generate weekends within the range using a mask for Saturdays and Sundays
+    weekends = pd.bdate_range(start=min_date, end=max_date, freq='C', weekmask='Sat Sun')
+
+    # Filter holidays to include only dates after 'today'
+    holidays = data["public holidays"]["Date"]
+    holidays = holidays[holidays > today]
+
+    # Combine weekends and holidays into a sorted list
+    # The set off_days is the union of weekends and holidays.
+    # Sorting is not necessary. However, it does give deterministic (repetitive) results.
+    off_days = sorted(set(weekends.union(holidays)))
 
     # Create the result buffer
-    buf = "\n".join(f"{id+1} {day}" for id, day in enumerate(off_days.days))
+    buf = "\n".join(f"{idx + 1} {(day - today).days}" for idx, day in enumerate(off_days))
 
-    return off_days.size, buf
+    return len(off_days), buf
 
 
 def xbday(today, data):
