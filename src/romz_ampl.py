@@ -11,8 +11,8 @@ def tasks(today, data):
     df = data["tasks"]
     for j in df.index:
         row = df.loc[j]
-        start = romz_datetime.diff(today, row["Start day"])
-        end = romz_datetime.diff(today, row["End day"])
+        start = (row["Start day"] - today).days
+        end = (row["End day"] - today).days
         if end <= 0:
             to_skip.add(row["Name"])
             continue
@@ -37,7 +37,7 @@ def offday(today, data):
     d = min_date
     while d <= max_date:
         if d.weekday() >= 5 or d in holidays:
-            day = romz_datetime.diff(today, d)
+            day = (d - today).days
             id += 1
             buf += f"{id} {day}\n"
         d += datetime.timedelta(days=1)
@@ -68,7 +68,7 @@ def xbday(today, data):
             if d.weekday() >= 5 or d in holidays:
                 d += datetime.timedelta(days=1)
                 continue
-            day = romz_datetime.diff(today, d)
+            day = (d - today).days
             id += 1
             buf += f"{id} '{expert_name}' '{task_name}' {day} {lower} {upper}\n"
             d += datetime.timedelta(days=1)
@@ -84,8 +84,8 @@ def xbsum(today, data):
         row = df.loc[j]
         expert = row["Expert"]
         task = row["Task"]
-        start = romz_datetime.diff(today, row["Start day"])
-        end = romz_datetime.diff(today, row["End day"])
+        start = (row["Start day"] - today).days
+        end = (row["End day"] - today).days
         lower = row["Lower"]
         upper = row["Upper"]
         id += 1
@@ -107,7 +107,7 @@ def ubday(today, data):
         d = row["Start day"]
         while d <= row["End day"]:
             if d.weekday() < 5 and d not in holidays:
-                day = romz_datetime.diff(today, d)
+                day = (d - today).days
                 id += 1
                 buf += f"{id} '{expert}' {day} {lower} {upper}\n"
             d += datetime.timedelta(days=1)
@@ -124,8 +124,8 @@ def ubsum(today, data):
         row = df.loc[j]
         expert = row["Expert"]
         task = row["Task"]
-        start = romz_datetime.diff(today, row["Start day"])
-        end = romz_datetime.diff(today, row["End day"])
+        start = (row["Start day"] - today).days
+        end = (row["End day"] - today).days
         lower = row["Lower"]
         upper = row["Upper"]
         id += 1
@@ -149,8 +149,8 @@ def expert_bounds(today, data):
     df = data["expert bounds"]
     for j in df.index: 
         row = df.loc[j]
-        start = romz_datetime.diff(today, row["Start day"])
-        end = romz_datetime.diff(today, row["End day"])
+        start = (row["Start day"] - today).days
+        end = (row["End day"] - today).days
         if end <= 0:
             continue
         if start <= 0:
@@ -177,8 +177,8 @@ def invoicing_periods(today, data):
     df = data["invoicing periods"]
     for j in df.index:
         row = df.loc[j]
-        start = romz_datetime.diff(today, row["Start day"])
-        end = romz_datetime.diff(today, row["End day"])
+        start = (row["Start day"] - today).days
+        end = (row["End day"] - today).days
         if end <= 0:
             continue
         if start <= 0:
