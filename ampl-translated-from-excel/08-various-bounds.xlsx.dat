@@ -184,8 +184,7 @@ param UBSUM:
 2 'DEV.Hubert' 'DEV.p11.m' 1 5 3 3
 3 'DEV.Jarosław' 'DEV.p16.m' 1 5 3 3
 4 'DEV.Jarosław' 'DEV.p18.m' 1 5 3 3
-5 'DEV.Paweł' 'DEV.p19.m' 1 5 2 2
-;
+5 'DEV.Paweł' 'DEV.p19.m' 1 5 2 2;
 
 set LINKS :=
 'DEV.Alojzy' 'DEV.p1.m'

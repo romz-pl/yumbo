@@ -122,22 +122,13 @@ def ubday(today, data):
 
 
 def ubsum(today, data):
-    id = 0
-    buf = str()
-    holidays = data["public holidays"]["Date"].to_numpy()
     df = data["ubsum"]
-    for j in df.index:
-        row = df.loc[j]
-        expert = row["Expert"]
-        task = row["Task"]
-        start = (row["Start day"] - today).days
-        end = (row["End day"] - today).days
-        lower = row["Lower"]
-        upper = row["Upper"]
-        id += 1
-        buf += f"{id} '{expert}' '{task}' {start} {end} {lower} {upper}\n"
-
-    return id, buf
+    result = [
+        f"{id+1} '{row['Expert']}' '{row['Task']}' {(row['Start day'] - today).days} "
+        f"{(row['End day'] - today).days} {row.Lower} {row.Upper}"
+        for id, row in df.iterrows()
+    ]
+    return len(result), "\n".join(result)
 
 
 def experts(data):
@@ -149,11 +140,10 @@ def expert_bounds(today, data):
     result = [
         f"{id+1} '{row['Expert']}' {max(1, (row['Start day'] - today).days)} "
         f"{(row['End day'] - today).days} {row['Lower']} {row['Upper']}"
-        for id, row in enumerate(df.itertuples(index=False))
+        for id, row in df.iterrows()
         if (row.End_day - today).days > 0
     ]
     return len(result), "\n".join(result)
-
 
 
 def links(data):
