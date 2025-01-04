@@ -223,7 +223,7 @@ def customise_report():
     for ii in range(1, max_col_no + 1):
         global_data[f"report_column_{ii}"] = st.selectbox(
             f"Col {ii}",
-            ("Task's Gantt chart", "Tasks per day", "Hours per day", "Hours per day stacked", "Invoice period workload"),
+            ("Task's Gantt chart", "Tasks per day", "Hours per day stacked", "Hours per day", "Invoice period workload"),
             disabled = (ii > report_column_no),
             index = (ii - 1)
         )
