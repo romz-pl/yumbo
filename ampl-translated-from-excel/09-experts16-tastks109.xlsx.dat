@@ -145,8 +145,7 @@ PAYROLLN: PAYROLLS PAYROLLE :=
 'September.2025' 231 259
 'October.2025' 260 289
 'November.2025' 290 317
-'December.2025' 318 346
-;
+'December.2025' 318 346;
 
 param:
 EXPPAY: PAYROLLBL PAYROLLBU :=

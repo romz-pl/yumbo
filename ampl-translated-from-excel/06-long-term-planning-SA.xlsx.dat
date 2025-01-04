@@ -1,8 +1,7 @@
 param HOURS_PER_DAY := 8;
 
 set EXPERTN :=
-'Bożydar'
-;
+'Bożydar';
 
 param EBOUND_NO := 0;
 
@@ -35,8 +34,7 @@ PAYROLLN: PAYROLLS PAYROLLE :=
 '25.Feb' 57 85
 '25.Mar' 86 116
 '25.Apr' 117 145
-'25.May' 146 179
-;
+'25.May' 146 179;
 
 param:
 EXPPAY: PAYROLLBL PAYROLLBU :=
@@ -858,6 +856,5 @@ set LINKS :=
 'Bożydar' 'p5.f'
 'Bożydar' 'p6.e'
 'Bożydar' 'p6.m'
-'Bożydar' 'p6.f'
-;
+'Bożydar' 'p6.f';
 

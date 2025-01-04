@@ -5,8 +5,7 @@ set EXPERTN :=
 'Eugeniusz'
 'Ignacy'
 'Pafnucy'
-'Romuald'
-;
+'Romuald';
 
 param EBOUND_NO := 0;
 
@@ -39,8 +38,7 @@ PAYROLLN: PAYROLLS PAYROLLE :=
 '25.Feb' 32 60
 '25.Mar' 61 91
 '25.Apr' 92 120
-'25.May' 121 154
-;
+'25.May' 121 154;
 
 param:
 EXPPAY: PAYROLLBL PAYROLLBU :=
@@ -182,6 +180,5 @@ set LINKS :=
 'Romuald' 'p31'
 'Romuald' 'p32'
 'Romuald' 'p33'
-'Romuald' 'p34'
-;
+'Romuald' 'p34';
 

@@ -170,30 +170,13 @@ def links(data):
 
 
 def invoicing_periods(today, data):
-    buf = str()
     df = data["invoicing periods"]
-    for j in df.index:
-        row = df.loc[j]
-        start = (row["Start day"] - today).days
-        end = (row["End day"] - today).days
-        if end <= 0:
-            continue
-        if start <= 0:
-            start = 1
-        buf += "'{name}' {start} {end}\n".format(name=row["Name"], start=start, end=end)
-
-    return buf
-
-
-# def invoicing_periods(today, data):
-#     df = data["invoicing periods"]
-#     result = [
-#         f"'{row['Name']}' {max(1, (row['Start day'] - today).days)} {(row['End day'] - today).days}"
-#         for _, row in df.iterrows()
-#         if (row["End day"] - today).days > 0
-#     ]
-#     return "\n".join(result)
-
+    result = [
+        f"'{row['Name']}' {max(1, (row['Start day'] - today).days)} {(row['End day'] - today).days}"
+        for _, row in df.iterrows()
+        if (row["End day"] - today).days > 0
+    ]
+    return "\n".join(result)
 
 
 def invoicing_periods_bounds(today, data):
