@@ -4,6 +4,7 @@ from matplotlib.figure import Figure
 import matplotlib.ticker as tck
 import pandas as pd
 
+
 def plot(invper, schedule, bounds, dpi):
     if bounds.empty:
         st.write(":green[No limits have been set for the invoicing periods.]")
