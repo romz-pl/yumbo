@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import romz_datetime
 from amplpy import AMPL, modules
-import streamlit as st
+
 
 def tasks(today, data):
     buf = str()
@@ -294,7 +294,6 @@ def save_schedule(ampl, data):
         data[f"schedule {en}"] = df
 
 
-
 def save_day_no(ampl, data):
     data["DAY_NO"] = ampl.get_parameter("DAY_NO").to_pandas().astype(int).iat[0,0]
 
@@ -310,8 +309,6 @@ def set_ampl_license():
     if uuid is not None:
         modules.activate(uuid)
 
-
-import streamlit as st
 
 def solve(name, today, data):
     file = data_file(name, today, data)
