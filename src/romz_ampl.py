@@ -186,13 +186,11 @@ def invoicing_periods(today, data):
 
 
 def invoicing_periods_bounds(today, data):
-    buf = str()
     df = data["invoicing periods bounds"]
-    for j in df.index:
-        row = df.loc[j]
-        buf += "'{expert}' '{period}' {lower} {upper}\n".format(
-            expert=row["Expert"], period=row["Period"], lower=row["Lower"], upper=row["Upper"])
-    return buf
+    return "\n".join(
+        f"'{expert}' '{period}' {lower} {upper}"
+        for expert, period, lower, upper in zip(df["Expert"], df["Period"], df["Lower"], df["Upper"])
+    )
 
 
 def data_file(name, today, data):
