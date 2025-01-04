@@ -21,9 +21,5 @@ def diff(d1, d2):
     return (d2 - d1).days
 
 
-def length(d1, d2):
-    return diff(d1, d2) + 1
-
-
 def plus_delta(dd, delta):
     return to_string(dd + datetime.timedelta(days=delta))
