@@ -218,13 +218,14 @@ def show_commitment_per_task(expert_name):
 def customise_report():
     st.subheader("Customise report", divider="blue")
     max_col_no = 4
-    report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no)
+    report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=3)
 
     for ii in range(1, max_col_no + 1):
         global_data[f"report_column_{ii}"] = st.selectbox(
             f"Col {ii}",
             ("Task's Gantt chart", "Tasks per day", "Hours per day", "Hours per day stacked", "Invoice period workload"),
-            disabled= (ii > report_column_no)
+            disabled = (ii > report_column_no),
+            index = (ii - 1)
         )
     global_data["report_column_no"] = report_column_no
 
