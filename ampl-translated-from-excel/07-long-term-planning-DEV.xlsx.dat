@@ -5,8 +5,7 @@ set EXPERTN :=
 'Bartłomiej'
 'Franciszek'
 'Paweł'
-'Wojciech'
-;
+'Wojciech';
 
 param EBOUND_NO := 0;
 
@@ -1815,6 +1814,5 @@ set LINKS :=
 'Alojzy' 'p6.m'
 'Bartłomiej' 'p6.m'
 'Paweł' 'p6.m'
-'Wojciech' 'p6.m'
-;
+'Wojciech' 'p6.m';
 

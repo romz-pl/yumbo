@@ -185,6 +185,17 @@ def invoicing_periods(today, data):
     return buf
 
 
+# def invoicing_periods(today, data):
+#     df = data["invoicing periods"]
+#     result = [
+#         f"'{row['Name']}' {max(1, (row['Start day'] - today).days)} {(row['End day'] - today).days}"
+#         for _, row in df.iterrows()
+#         if (row["End day"] - today).days > 0
+#     ]
+#     return "\n".join(result)
+
+
+
 def invoicing_periods_bounds(today, data):
     df = data["invoicing periods bounds"]
     return "\n".join(
