@@ -1769,8 +1769,7 @@ param XBDAY:
 1634 'Wojciech' 'p6.m' 251 0 8
 1635 'Wojciech' 'p6.m' 252 0 8
 1636 'Wojciech' 'p6.m' 253 0 8
-1637 'Wojciech' 'p6.m' 254 0 8
-;
+1637 'Wojciech' 'p6.m' 254 0 8;
 
 param XBSUM_NO := 0;
 

@@ -52,34 +52,45 @@ def offday(today, data):
 
 
 def xbday(today, data):
-    id = 0
-    buf = str()
+    # Preprocessing for efficient lookups
     df = data["xbday"]
-    df_tasks = data["tasks"]
-    holidays = data["public holidays"]["Date"].to_numpy()
-    for j in df.index:
-        row = df.loc[j]
-        task_name = row["Task"]
-        expert_name = row["Expert"]
-        lower = row["Lower"]
-        upper = row["Upper"]
-        task_row = df_tasks[ df_tasks["Name"] == task_name ]
-        task_start_day = task_row["Start day"].array[0]
-        task_end_day = task_row["End day"].array[0]
-        d = row["Start day"]
-        while d <= row["End day"]:
-            if d < task_start_day or d > task_end_day:
-                d += datetime.timedelta(days=1)
-                continue
-            if d.weekday() >= 5 or d in holidays:
-                d += datetime.timedelta(days=1)
-                continue
-            day = (d - today).days
-            id += 1
-            buf += f"{id} '{expert_name}' '{task_name}' {day} {lower} {upper}\n"
-            d += datetime.timedelta(days=1)
+    df_tasks = data["tasks"].set_index("Name")  # Set "Name" as index for quick task lookup
+    holidays = set(data["public holidays"]["Date"])  # Convert holidays to a set for faster checks
 
-    return id, buf
+    result = []
+    id_counter = 0
+
+    # Iterate efficiently using itertuples
+    for row in df.itertuples(index=False):
+        task_name = row.Task
+        expert_name = row.Expert
+        lower = row.Lower
+        upper = row.Upper
+
+        # Calculate valid date range considering task bounds and xbday range
+        task_start, task_end = df_tasks.loc[task_name, ["Start day", "End day"]]
+        range_start = max(row._2, task_start)  # _2 corresponds to "Start day" in xbday
+        range_end = min(row._3, task_end)      # _3 corresponds to "End day" in xbday
+
+        # Generate business days using pandas
+        valid_days = pd.bdate_range(
+            start=range_start,
+            end=range_end,
+            freq="C",
+            holidays=holidays,
+            weekmask="Mon Tue Wed Thu Fri"
+        )
+
+        # Process valid days
+        for d in valid_days:
+            day_offset = (d - today).days
+            id_counter += 1
+            result.append(f"{id_counter} '{expert_name}' '{task_name}' {day_offset} {lower} {upper}")
+
+    # Combine results into a single string and return
+    return id_counter, "\n".join(result)
+
+
 
 
 def xbsum(today, data):

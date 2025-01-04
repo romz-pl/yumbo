@@ -820,8 +820,7 @@ param XBDAY:
 689 'Bożydar' 'p6.f' 279 2 2
 690 'Bożydar' 'p6.f' 280 2 2
 691 'Bożydar' 'p6.f' 281 2 2
-692 'Bożydar' 'p6.f' 282 2 2
-;
+692 'Bożydar' 'p6.f' 282 2 2;
 
 param XBSUM_NO := 0;
 

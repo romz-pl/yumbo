@@ -453,8 +453,7 @@ param XBDAY:
 342 'Romuald' 'p34' 29 2 2
 343 'Romuald' 'p34' 30 2 2
 344 'Romuald' 'p34' 31 2 2
-345 'Romuald' 'p34' 32 2 2
-;
+345 'Romuald' 'p34' 32 2 2;
 
 param XBSUM_NO := 0;
 

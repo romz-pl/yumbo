@@ -124,8 +124,7 @@ param XBDAY:
 15 'DEV.Cezary' 'DEV.p3.m' 8 3 3
 16 'DEV.Cezary' 'DEV.p3.m' 9 3 3
 17 'DEV.Cezary' 'DEV.p3.m' 11 3 3
-18 'DEV.Cezary' 'DEV.p3.m' 12 3 3
-;
+18 'DEV.Cezary' 'DEV.p3.m' 12 3 3;
 
 param XBSUM_NO := 1;
 

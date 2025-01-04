@@ -527,8 +527,7 @@ param XBDAY:
 414 'Radosław' 'p4.f' 237 0 2
 415 'Radosław' 'p4.f' 238 0 2
 416 'Radosław' 'p4.f' 239 0 2
-417 'Radosław' 'p4.f' 240 0 2
-;
+417 'Radosław' 'p4.f' 240 0 2;
 
 param XBSUM_NO := 0;
 

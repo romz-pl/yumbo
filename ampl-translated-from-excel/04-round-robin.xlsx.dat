@@ -144,8 +144,7 @@ param XBDAY:
 33 'Romuald' 'p30' 8 8 8
 34 'Romuald' 'p31' 9 8 8
 35 'Romuald' 'p32' 11 8 8
-36 'Romuald' 'p33' 12 8 8
-;
+36 'Romuald' 'p33' 12 8 8;
 
 param XBSUM_NO := 0;
 
