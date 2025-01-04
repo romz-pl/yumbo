@@ -165,12 +165,8 @@ def expert_bounds(today, data):
 
 
 def links(data):
-    buf = str()
     df = data["links"]
-    for j in df.index:
-        row = df.loc[j]
-        buf += "'{expert}' '{task}'\n".format(expert=row["Expert"], task=row["Task"])
-    return buf
+    return "\n".join(f"'{expert}' '{task}'" for expert, task in zip(df["Expert"], df["Task"]))
 
 
 def invoicing_periods(today, data):
