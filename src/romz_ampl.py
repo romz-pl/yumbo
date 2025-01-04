@@ -145,23 +145,15 @@ def experts(data):
 
 
 def expert_bounds(today, data):
-    id = 0
-    buf = str()
     df = data["expert bounds"]
-    for j in df.index: 
-        row = df.loc[j]
-        start = (row["Start day"] - today).days
-        end = (row["End day"] - today).days
-        if end <= 0:
-            continue
-        if start <= 0:
-            start = 1
+    result = [
+        f"{id+1} '{row['Expert']}' {max(1, (row['Start day'] - today).days)} "
+        f"{(row['End day'] - today).days} {row['Lower']} {row['Upper']}"
+        for id, row in enumerate(df.itertuples(index=False))
+        if (row.End_day - today).days > 0
+    ]
+    return len(result), "\n".join(result)
 
-        id += 1
-        buf += "{id} '{expert}' {start} {end} {lower} {upper}\n".format(
-            id=id, expert=row["Expert"], start=start, end=end, lower=row["Lower"], upper=row["Upper"])
-
-    return id, buf
 
 
 def links(data):
