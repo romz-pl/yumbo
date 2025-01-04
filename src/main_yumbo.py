@@ -261,7 +261,8 @@ def customise_report():
 
 def show_sidebar(uploaded_file):
     new_input = prepare_global_data(uploaded_file)
-    st.subheader("Today: :green[{}]".format(get_Today().date()), divider="blue")
+    st.subheader("Today: :green[{today}]".format(today=get_Today().date()), divider="blue")
+    st.subheader("Python date format: :green[{format}]".format(format=romz_datetime.format()), divider="blue")
     st.subheader("Hours per day: :green[{}]".format(get_Hours_per_day()), divider="blue")
     customise_report()
     show_tasks()
