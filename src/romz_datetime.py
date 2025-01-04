@@ -1,4 +1,7 @@
 import datetime
+import pandas as pd
+import numpy as np
+
 
 def format():
     return "%Y-%m-%d"
@@ -26,13 +29,18 @@ def length(d1, d2):
 
 
 def length_workdays(d1, d2, holidays):
-    d = d1
-    cnt = 0
-    while d <= d2:
-        if d.weekday() < 5 and d not in holidays:
-            cnt += 1
-        d += datetime.timedelta(days=1)
-    return cnt
+    # Generate a date range between d1 and d2
+    # 'B' frequency means business days (weekdays)
+    date_range = pd.date_range(start=d1, end=d2, freq='B')
+
+    # Convert holidays to a set for faster lookup
+    holidays_set = set(holidays)
+
+    # Filter the business days that are not in holidays
+    workdays = np.setdiff1d(date_range, holidays_set)
+
+    return len(workdays)
+
 
 
 def plus_delta(dd, delta):
