@@ -15,6 +15,3 @@ def from_string(d):
 
 def to_string(d):
     return d.strftime(format())
-
-def plus_delta(dd, delta):
-    return to_string(dd + datetime.timedelta(days=delta))
