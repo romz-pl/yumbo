@@ -2,13 +2,14 @@ import io
 import streamlit as st
 from matplotlib.figure import Figure
 import matplotlib.ticker as tck
+import romz_datetime
 import pandas as pd
 
 
 def plot(task, schedule, bounds, dpi):
     # Generate task-specific data
     x_task = pd.date_range(start=task["Start day"], end=task["End day"], freq="D")
-    y_task = schedule.loc[task["Name"], x_task.strftime("%Y-%m-%d")]
+    y_task = schedule.loc[task["Name"], x_task.strftime(romz_datetime.format())]
 
     # Create figure and axis
     fig = Figure(figsize=(8, 4))
