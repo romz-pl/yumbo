@@ -83,42 +83,25 @@ def xbday(today, data):
 
 
 def xbsum(today, data):
-    id = 0
-    buf = str()
     df = data["xbsum"]
-    for j in df.index:
-        row = df.loc[j]
-        expert = row["Expert"]
-        task = row["Task"]
-        start = (row["Start day"] - today).days
-        end = (row["End day"] - today).days
-        lower = row["Lower"]
-        upper = row["Upper"]
-        id += 1
-        buf += f"{id} '{expert}' '{task}' {start} {end} {lower} {upper}\n"
+    result = []
 
-    return id, buf
+    # Iterate over rows using itertuples for better performance
+    for idx, row in enumerate(df.itertuples(index=False), start=1):
+        expert = row.Expert
+        task = row.Task
+        start = (row._2 - today).days # _2 <- Start day
+        end = (row._3 - today).days # _3 <- End day
+        lower = row.Lower
+        upper = row.Upper
+
+        # Append formatted string to result list
+        result.append(f"{idx} '{expert}' '{task}' {start} {end} {lower} {upper}")
+
+    # Join the result list with newline characters
+    return len(result), "\n".join(result)
 
 
-# def ubday(today, data):
-#     id = 0
-#     buf = str()
-#     holidays = data["public holidays"]["Date"].to_numpy()
-#     df = data["ubday"]
-#     for j in df.index:
-#         row = df.loc[j]
-#         expert = row["Expert"]
-#         lower = row["Lower"]
-#         upper = row["Upper"]
-#         d = row["Start day"]
-#         while d <= row["End day"]:
-#             if d.weekday() < 5 and d not in holidays:
-#                 day = (d - today).days
-#                 id += 1
-#                 buf += f"{id} '{expert}' {day} {lower} {upper}\n"
-#             d += datetime.timedelta(days=1)
-
-#     return id, buf
 
 def ubday(today, data):
     df = data["ubday"]
