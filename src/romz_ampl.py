@@ -145,10 +145,9 @@ def experts(data):
 def expert_bounds(today, data):
     df = data["expert bounds"]
     result = [
-        f"{id+1} '{row['Expert']}' {max(1, (row['Start day'] - today).days)} "
+        f"{id+1} '{row['Expert']}' {(row['Start day'] - today).days} "
         f"{(row['End day'] - today).days} {row['Lower']} {row['Upper']}"
         for id, row in df.iterrows()
-        if (row.End_day - today).days > 0
     ]
     return len(result), "\n".join(result)
 
@@ -161,9 +160,8 @@ def links(data):
 def invoicing_periods(today, data):
     df = data["invoicing periods"]
     result = [
-        f"'{row['Name']}' {max(1, (row['Start day'] - today).days)} {(row['End day'] - today).days}"
+        f"'{row['Name']}' {(row['Start day'] - today).days} {(row['End day'] - today).days}"
         for _, row in df.iterrows()
-        if (row["End day"] - today).days > 0
     ]
     return "\n".join(result)
 
