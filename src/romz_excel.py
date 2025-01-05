@@ -1,7 +1,6 @@
 import pandas as pd
 import romz_datetime
 
-
 # Helper function to handle the date columns parsing
 def parse_date_columns(df, date_columns, date_format):
     for column in date_columns:
@@ -79,6 +78,56 @@ def read_links(xlsx):
 def read_invoicing_periods_bounds(xlsx):
     return xlsx.parse(sheet_name="invoicing periods bounds")
 
+def remove_before_today(data):
+    today = data["misc"].at[0, "Today"]
+
+    # Filter datasets using dictionary comprehension
+    datasets_to_filter = {
+        "tasks": "End day",
+        "xbday": "End day",
+        "xbsum": "End day",
+        "ubday": "End day",
+        "ubsum": "End day",
+        "expert bounds": "End day",
+        "invoicing periods": "End day",
+        "public holidays": "Date",
+    }
+
+    for key, column in datasets_to_filter.items():
+        data[key] = data[key].loc[data[key][column] > today]
+
+    # Update dependent datasets
+    valid_task_names = set(data["tasks"]["Name"])
+    key = "links"
+    data[key] = data[key][data[key]["Task"].isin(valid_task_names)]
+
+    valid_periods = set(data["invoicing periods"]["Name"])
+    key = "invoicing periods bounds"
+    data[key] = data[key][ data[key]["Period"].isin(valid_periods) ]
+
+
+def adjust_start_days(data):
+    today = data["misc"].at[0, "Today"]
+    tomorrow = today + pd.Timedelta(days=1)
+
+    # List of DataFrame keys and the column to update
+    targets = [
+        "tasks",
+        "xbday",
+        "xbsum",
+        "ubday",
+        "ubsum",
+        "expert bounds",
+        "invoicing periods",
+    ]
+
+    # Apply the adjustment to each target DataFrame
+    for key in targets:
+        col = "Start day"
+        assert(col in data[key].columns)
+        data[key].loc[data[key][col] < tomorrow, col] = tomorrow
+
+
 def read(file_path):
     xlsx = pd.ExcelFile(file_path)
     data = dict()
@@ -95,4 +144,8 @@ def read(file_path):
     data["expert bounds"] = read_expert_bounds(xlsx)
     data["invoicing periods bounds"] = read_invoicing_periods_bounds(xlsx)
     data["links"] = read_links(xlsx)
+
+    remove_before_today(data)
+    adjust_start_days(data)
+
     return data
