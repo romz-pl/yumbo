@@ -127,7 +127,6 @@ def ubday(today, data):
     return id, "\n".join(result)
 
 
-
 def ubsum(today, data):
     df = data["ubsum"]
     result = [
