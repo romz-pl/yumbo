@@ -259,7 +259,7 @@ def save_schedule(ampl, data):
     experts_name = data["experts"]["Name"]
 
     day_no = int(ampl.get_data("DAY_NO").to_pandas().iloc[0, 0])
-    days = pd.date_range(start=today + pd.Timedelta(days=1), periods=day_no, freq='D')
+    days = pd.date_range(start=today + pd.Timedelta(days=1), periods=day_no, freq='D').astype("str")
 
     for en in experts_name:
         schedule = {
