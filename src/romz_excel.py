@@ -144,8 +144,6 @@ def read(file_path):
     data["expert bounds"] = read_expert_bounds(xlsx)
     data["invoicing periods bounds"] = read_invoicing_periods_bounds(xlsx)
     data["links"] = read_links(xlsx)
-
     remove_before_today(data)
     adjust_start_days(data)
-
     return data
