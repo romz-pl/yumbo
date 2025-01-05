@@ -81,7 +81,6 @@ def read_invoicing_periods_bounds(xlsx):
 def df_diff(df1, df2):
     return df1.merge(df2, how='outer', indicator=True).query('_merge == "left_only"').drop(columns='_merge')
 
-import streamlit as st
 def remove_before_today(data):
     today = data["misc"].at[0, "Today"]
 
