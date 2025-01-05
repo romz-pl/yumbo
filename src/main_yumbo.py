@@ -17,69 +17,74 @@ import romz_plot_tasks_gantt
 import romz_plot_tasks_per_day
 
 def get_Hours_per_day():
-    return global_data["misc"].loc[0, "Hours per day"]
+    return global_data["misc"].iloc[0]["Hours per day"]
 
 
 def get_Today():
-    return global_data["misc"].loc[0, "Today"]
+    return global_data["misc"].iloc[0]["Today"]
 
 
 def get_dpi():
-    return int(global_data["misc"].loc[0, "dpi"])
+    return int(global_data["misc"].iloc[0]["dpi"])
 
 
 def get_last_date():
     return (get_Today() + datetime.timedelta(days=int(global_data["DAY_NO"]))).date()
 
 def get_tstart():
-    return global_data["misc"].loc[0, "T:start"]
+    return global_data["misc"].iloc[0]["T:start"]
 
 
 def get_tend():
-    return global_data["misc"].loc[0, "T:end"]
+    return global_data["misc"].iloc[0]["T:end"]
 
 
 def get_hstart():
-    return global_data["misc"].loc[0, "H:start"]
+    return global_data["misc"].iloc[0]["H:start"]
 
 
 def get_hend():
-    return global_data["misc"].loc[0, "H:end"]
+    return global_data["misc"].iloc[0]["H:end"]
 
 
 def show_tasks():
     st.subheader("Tasks definition", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}", 'Avg': "{:.2f}"}
-    st.dataframe(global_data["tasks"].style.format(format), hide_index=True, use_container_width=True)
+    df = global_data["tasks"].style.format(format)
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_links():
     st.subheader("Links", divider="blue")
-    st.dataframe(global_data["links"].style.format(format), hide_index=True, use_container_width=True)
+    st.dataframe(global_data["links"], hide_index=True, use_container_width=True)
 
 
 def show_xbday():
     st.subheader("Bounds xbday", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    st.dataframe(global_data["xbday"].style.format(format), hide_index=True, use_container_width=True)
+    df = global_data["xbday"].style.format(format)
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_xbsum():
     st.subheader("Bounds xbsum", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    st.dataframe(global_data["xbsum"].style.format(format), hide_index=True, use_container_width=True)
+    df = global_data["xbsum"].style.format(format)
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_ubday():
     st.subheader("Bounds ubday", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    st.dataframe(global_data["ubday"].style.format(format), hide_index=True, use_container_width=True)
+    df = global_data["ubday"].style.format(format)
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_ubsum():
     st.subheader("Bounds ubsum", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    st.dataframe(global_data["ubsum"].style.format(format), hide_index=True, use_container_width=True)
+    df = global_data["ubsum"].style.format(format)
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_experts():
@@ -90,19 +95,21 @@ def show_experts():
 def show_expert_bounds():
     st.subheader("Expert bounds and preferences", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    st.dataframe(global_data["expert bounds"].style.format(format), hide_index=True, use_container_width=True)
+    df = global_data["expert bounds"].style.format(format)
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_invoicing_periods():
     st.subheader("Invoicing periods", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    st.dataframe(global_data["invoicing periods"].style.format(format), hide_index=True, use_container_width=True)
+    df = global_data["invoicing periods"].style.format(format)
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 
 def show_invoicing_periods_bounds():
     st.subheader("Invoicing periods bounds", divider="blue")
-    st.dataframe(global_data["invoicing periods bounds"].style.format(format), hide_index=True, use_container_width=True)
+    st.dataframe(global_data["invoicing periods bounds"], hide_index=True, use_container_width=True)
 
 
 def load_excel_file():
@@ -138,9 +145,13 @@ def prepare_global_data(uploaded_file):
 def get_tasks_for_expert(expert_name):
     tasks = global_data["tasks"]
     links = global_data["links"]
-    tasks_for_expert = links[ links["Expert"] == expert_name ]
-    mask = tasks["Name"].isin(tasks_for_expert["Task"].array)
-    return tasks[mask]
+
+    # Filter the tasks related to the expert
+    tasks_for_expert = links[links["Expert"] == expert_name]["Task"]
+
+    # Use .isin() to filter tasks directly
+    return tasks[tasks["Name"].isin(tasks_for_expert)]
+
 
 
 def show_tasks_gantt_chart(expert_name):
@@ -183,12 +194,19 @@ def show_schedule_as_table(expert_name):
     tasks = get_tasks_for_expert(expert_name)
     start_date = romz_datetime.to_string(tasks["Start day"].min())
     end_date = romz_datetime.to_string(tasks["End day"].max())
-    df = global_data[f"schedule {expert_name}"]
-    df = df.loc[tasks["Name"].to_list(), start_date : end_date ]
 
-    df = df.style.highlight_between(left=0.5, right=None, props='color:white; background-color:purple;')\
-                 .highlight_between(left=None, right=0.5, props='color:white; background-color:white;')
-    st.dataframe(df)
+    # Retrieve the relevant schedule data
+    df = global_data[f"schedule {expert_name}"].loc[tasks["Name"], start_date:end_date]
+
+    # Apply styling to the DataFrame
+    styled_df = df.style.highlight_between(
+        left=0.5, right=None, props='color:white; background-color:purple;'
+    ).highlight_between(
+        left=None, right=0.5, props='color:white; background-color:white;'
+    )
+
+    st.dataframe(styled_df)
+
 
 
 def show_commitment_per_task(expert_name):
