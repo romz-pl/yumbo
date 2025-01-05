@@ -4,28 +4,21 @@ import os
 import romz_datetime
 from amplpy import AMPL, modules
 
-
 def tasks(today, data):
-    buf = str()
-    to_skip = set()
     df = data["tasks"]
-    for j in df.index:
-        row = df.loc[j]
-        start = (row["Start day"] - today).days
-        end = (row["End day"] - today).days
-        if end <= 0:
-            to_skip.add(row["Name"])
-            continue
-        if start <= 0:
-            start = 1
-        buf += "'{name}' {start} {end} {work}\n".format(
-            name=row["Name"], start=start, end=end, work=row["Work"])
 
+    # Calculate start and end days relative to today
+    df["Start Relative"] = (df["Start day"] - today).dt.days
+    df["End Relative"] = (df["End day"] - today).dt.days
 
-    data["tasks"] = data["tasks"][ ~data["tasks"]["Name"].isin(to_skip) ]
-    data["links"] = data["links"][ ~data["links"]["Task"].isin(to_skip) ]
+    # Use vectorized string formatting for better performance
+    formatted_rows = df.apply(
+        lambda row: f"'{row['Name']}' {row['Start Relative']} {row['End Relative']} {row['Work']}\n",
+        axis=1,
+    )
 
-    return buf
+    return ''.join(formatted_rows)
+
 
 
 def offday(today, data):
