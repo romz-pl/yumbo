@@ -1,0 +1,157 @@
+param HOURS_PER_DAY := 8;
+
+set EXPERTN :=
+'PM.Angel';
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'charlie.pm' 2 157 80
+'charlie.pf' 158 188 10
+'delta.pm' 2 57 25
+'delta.pf' 58 103 5
+'juliet.pe' 158 188 10
+'juliet.pm' 189 57 50
+'juliet.pf' 58 103 5
+'mike.pe' 158 188 10
+'mike.pm' 189 57 50
+'mike.pf' 58 103 5
+'november.pe' 158 188 10
+'november.pm' 189 57 55
+'november.pf' 58 103 5
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'January.2025' 1 16
+'February.2025' 17 45
+'March.2025' 46 76
+'April.2025' 77 105
+'May.2025' 106 139
+'June.2025' 140 170
+'July.2025' 171 199
+'August.2025' 200 230
+'September.2025' 231 259
+'October.2025' 260 289
+'November.2025' 290 317
+'December.2025' 318 346;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+'PM.Angel' 'January.2025' 0 180
+'PM.Angel' 'February.2025' 0 180
+'PM.Angel' 'March.2025' 0 180
+'PM.Angel' 'April.2025' 0 180
+'PM.Angel' 'May.2025' 0 180
+'PM.Angel' 'June.2025' 0 180
+'PM.Angel' 'July.2025' 0 180
+'PM.Angel' 'August.2025' 0 180
+'PM.Angel' 'September.2025' 0 180
+'PM.Angel' 'October.2025' 0 180
+'PM.Angel' 'November.2025' 0 180
+'PM.Angel' 'December.2025' 0 180;
+
+param OFFDAY_NO := 56;
+
+param OFFDAY :=
+1 2
+2 5
+3 6
+4 12
+5 13
+6 19
+7 20
+8 26
+9 27
+10 33
+11 34
+12 40
+13 41
+14 47
+15 48
+16 54
+17 55
+18 61
+19 62
+20 68
+21 69
+22 75
+23 76
+24 82
+25 83
+26 89
+27 90
+28 96
+29 97
+30 103
+31 104
+32 110
+33 111
+34 117
+35 118
+36 122
+37 124
+38 125
+39 131
+40 132
+41 138
+42 139
+43 145
+44 146
+45 152
+46 153
+47 159
+48 160
+49 166
+50 167
+51 173
+52 174
+53 180
+54 181
+55 187
+56 188;
+
+param XBDAY_NO := 0;
+
+param XBDAY:
+1   2   3   4   5 :=
+;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 0;
+
+param UBDAY:
+1   2   3   4 :=
+;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'PM.Angel' 'charlie.pm'
+'PM.Angel' 'charlie.pf'
+'PM.Angel' 'delta.pm'
+'PM.Angel' 'delta.pf'
+'PM.Angel' 'juliet.pe'
+'PM.Angel' 'juliet.pm'
+'PM.Angel' 'juliet.pf'
+'PM.Angel' 'mike.pe'
+'PM.Angel' 'mike.pm'
+'PM.Angel' 'mike.pf'
+'PM.Angel' 'november.pe'
+'PM.Angel' 'november.pm'
+'PM.Angel' 'november.pf';
+
