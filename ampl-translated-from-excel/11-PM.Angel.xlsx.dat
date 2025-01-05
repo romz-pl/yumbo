@@ -3,11 +3,11 @@ param HOURS_PER_DAY := 8;
 set EXPERTN :=
 'PM.Angel';
 
-param EBOUND_NO := 0;
+param EBOUND_NO := 1;
 
 param EBOUND:
 1   2   3   4   5 :=
-;
+1 'PM.Angel' 2 367 0 2;
 
 param:
 TASKN: TASKS TASKE TASKW :=
@@ -15,15 +15,15 @@ TASKN: TASKS TASKE TASKW :=
 'charlie.pf' 158 188 10
 'delta.pm' 2 57 25
 'delta.pf' 58 103 5
-'juliet.pe' 158 188 10
-'juliet.pm' 189 57 50
-'juliet.pf' 58 103 5
-'mike.pe' 158 188 10
-'mike.pm' 189 57 50
-'mike.pf' 58 103 5
-'november.pe' 158 188 10
-'november.pm' 189 57 55
-'november.pf' 58 103 5
+'juliet.pe' 42 59 10
+'juliet.pm' 60 182 50
+'juliet.pf' 183 228 5
+'mike.pe' 101 111 10
+'mike.pm' 112 269 50
+'mike.pf' 270 304 5
+'november.pe' 147 166 10
+'november.pm' 167 365 55
+'november.pf' 366 397 5
 ;
 
 param:
@@ -56,7 +56,7 @@ EXPPAY: PAYROLLBL PAYROLLBU :=
 'PM.Angel' 'November.2025' 0 180
 'PM.Angel' 'December.2025' 0 180;
 
-param OFFDAY_NO := 56;
+param OFFDAY_NO := 115;
 
 param OFFDAY :=
 1 2
@@ -114,13 +114,733 @@ param OFFDAY :=
 53 180
 54 181
 55 187
-56 188;
+56 188
+57 194
+58 195
+59 201
+60 202
+61 208
+62 209
+63 215
+64 216
+65 222
+66 223
+67 229
+68 230
+69 236
+70 237
+71 243
+72 244
+73 250
+74 251
+75 257
+76 258
+77 264
+78 265
+79 271
+80 272
+81 278
+82 279
+83 285
+84 286
+85 292
+86 293
+87 299
+88 300
+89 306
+90 307
+91 313
+92 314
+93 320
+94 321
+95 327
+96 328
+97 334
+98 335
+99 341
+100 342
+101 348
+102 349
+103 355
+104 356
+105 362
+106 363
+107 369
+108 370
+109 376
+110 377
+111 383
+112 384
+113 390
+114 391
+115 397;
 
-param XBDAY_NO := 0;
+param XBDAY_NO := 662;
 
 param XBDAY:
 1   2   3   4   5 :=
-;
+1 'PM.Angel' 'charlie.pm' 3 0 1
+2 'PM.Angel' 'charlie.pm' 4 0 1
+3 'PM.Angel' 'charlie.pm' 7 0 1
+4 'PM.Angel' 'charlie.pm' 8 0 1
+5 'PM.Angel' 'charlie.pm' 9 0 1
+6 'PM.Angel' 'charlie.pm' 10 0 1
+7 'PM.Angel' 'charlie.pm' 11 0 1
+8 'PM.Angel' 'charlie.pm' 14 0 1
+9 'PM.Angel' 'charlie.pm' 15 0 1
+10 'PM.Angel' 'charlie.pm' 16 0 1
+11 'PM.Angel' 'charlie.pm' 17 0 1
+12 'PM.Angel' 'charlie.pm' 18 0 1
+13 'PM.Angel' 'charlie.pm' 21 0 1
+14 'PM.Angel' 'charlie.pm' 22 0 1
+15 'PM.Angel' 'charlie.pm' 23 0 1
+16 'PM.Angel' 'charlie.pm' 24 0 1
+17 'PM.Angel' 'charlie.pm' 25 0 1
+18 'PM.Angel' 'charlie.pm' 28 0 1
+19 'PM.Angel' 'charlie.pm' 29 0 1
+20 'PM.Angel' 'charlie.pm' 30 0 1
+21 'PM.Angel' 'charlie.pm' 31 0 1
+22 'PM.Angel' 'charlie.pm' 32 0 1
+23 'PM.Angel' 'charlie.pm' 35 0 1
+24 'PM.Angel' 'charlie.pm' 36 0 1
+25 'PM.Angel' 'charlie.pm' 37 0 1
+26 'PM.Angel' 'charlie.pm' 38 0 1
+27 'PM.Angel' 'charlie.pm' 39 0 1
+28 'PM.Angel' 'charlie.pm' 42 0 1
+29 'PM.Angel' 'charlie.pm' 43 0 1
+30 'PM.Angel' 'charlie.pm' 44 0 1
+31 'PM.Angel' 'charlie.pm' 45 0 1
+32 'PM.Angel' 'charlie.pm' 46 0 1
+33 'PM.Angel' 'charlie.pm' 49 0 1
+34 'PM.Angel' 'charlie.pm' 50 0 1
+35 'PM.Angel' 'charlie.pm' 51 0 1
+36 'PM.Angel' 'charlie.pm' 52 0 1
+37 'PM.Angel' 'charlie.pm' 53 0 1
+38 'PM.Angel' 'charlie.pm' 56 0 1
+39 'PM.Angel' 'charlie.pm' 57 0 1
+40 'PM.Angel' 'charlie.pm' 58 0 1
+41 'PM.Angel' 'charlie.pm' 59 0 1
+42 'PM.Angel' 'charlie.pm' 60 0 1
+43 'PM.Angel' 'charlie.pm' 63 0 1
+44 'PM.Angel' 'charlie.pm' 64 0 1
+45 'PM.Angel' 'charlie.pm' 65 0 1
+46 'PM.Angel' 'charlie.pm' 66 0 1
+47 'PM.Angel' 'charlie.pm' 67 0 1
+48 'PM.Angel' 'charlie.pm' 70 0 1
+49 'PM.Angel' 'charlie.pm' 71 0 1
+50 'PM.Angel' 'charlie.pm' 72 0 1
+51 'PM.Angel' 'charlie.pm' 73 0 1
+52 'PM.Angel' 'charlie.pm' 74 0 1
+53 'PM.Angel' 'charlie.pm' 77 0 1
+54 'PM.Angel' 'charlie.pm' 78 0 1
+55 'PM.Angel' 'charlie.pm' 79 0 1
+56 'PM.Angel' 'charlie.pm' 80 0 1
+57 'PM.Angel' 'charlie.pm' 81 0 1
+58 'PM.Angel' 'charlie.pm' 84 0 1
+59 'PM.Angel' 'charlie.pm' 85 0 1
+60 'PM.Angel' 'charlie.pm' 86 0 1
+61 'PM.Angel' 'charlie.pm' 87 0 1
+62 'PM.Angel' 'charlie.pm' 88 0 1
+63 'PM.Angel' 'charlie.pm' 91 0 1
+64 'PM.Angel' 'charlie.pm' 92 0 1
+65 'PM.Angel' 'charlie.pm' 93 0 1
+66 'PM.Angel' 'charlie.pm' 94 0 1
+67 'PM.Angel' 'charlie.pm' 95 0 1
+68 'PM.Angel' 'charlie.pm' 98 0 1
+69 'PM.Angel' 'charlie.pm' 99 0 1
+70 'PM.Angel' 'charlie.pm' 100 0 1
+71 'PM.Angel' 'charlie.pm' 101 0 1
+72 'PM.Angel' 'charlie.pm' 102 0 1
+73 'PM.Angel' 'charlie.pm' 105 0 1
+74 'PM.Angel' 'charlie.pm' 106 0 1
+75 'PM.Angel' 'charlie.pm' 107 0 1
+76 'PM.Angel' 'charlie.pm' 108 0 1
+77 'PM.Angel' 'charlie.pm' 109 0 1
+78 'PM.Angel' 'charlie.pm' 112 0 1
+79 'PM.Angel' 'charlie.pm' 113 0 1
+80 'PM.Angel' 'charlie.pm' 114 0 1
+81 'PM.Angel' 'charlie.pm' 115 0 1
+82 'PM.Angel' 'charlie.pm' 116 0 1
+83 'PM.Angel' 'charlie.pm' 119 0 1
+84 'PM.Angel' 'charlie.pm' 120 0 1
+85 'PM.Angel' 'charlie.pm' 121 0 1
+86 'PM.Angel' 'charlie.pm' 123 0 1
+87 'PM.Angel' 'charlie.pm' 126 0 1
+88 'PM.Angel' 'charlie.pm' 127 0 1
+89 'PM.Angel' 'charlie.pm' 128 0 1
+90 'PM.Angel' 'charlie.pm' 129 0 1
+91 'PM.Angel' 'charlie.pm' 130 0 1
+92 'PM.Angel' 'charlie.pm' 133 0 1
+93 'PM.Angel' 'charlie.pm' 134 0 1
+94 'PM.Angel' 'charlie.pm' 135 0 1
+95 'PM.Angel' 'charlie.pm' 136 0 1
+96 'PM.Angel' 'charlie.pm' 137 0 1
+97 'PM.Angel' 'charlie.pm' 140 0 1
+98 'PM.Angel' 'charlie.pm' 141 0 1
+99 'PM.Angel' 'charlie.pm' 142 0 1
+100 'PM.Angel' 'charlie.pm' 143 0 1
+101 'PM.Angel' 'charlie.pm' 144 0 1
+102 'PM.Angel' 'charlie.pm' 147 0 1
+103 'PM.Angel' 'charlie.pm' 148 0 1
+104 'PM.Angel' 'charlie.pm' 149 0 1
+105 'PM.Angel' 'charlie.pm' 150 0 1
+106 'PM.Angel' 'charlie.pm' 151 0 1
+107 'PM.Angel' 'charlie.pm' 154 0 1
+108 'PM.Angel' 'charlie.pm' 155 0 1
+109 'PM.Angel' 'charlie.pm' 156 0 1
+110 'PM.Angel' 'charlie.pm' 157 0 1
+111 'PM.Angel' 'charlie.pf' 158 0 1
+112 'PM.Angel' 'charlie.pf' 161 0 1
+113 'PM.Angel' 'charlie.pf' 162 0 1
+114 'PM.Angel' 'charlie.pf' 163 0 1
+115 'PM.Angel' 'charlie.pf' 164 0 1
+116 'PM.Angel' 'charlie.pf' 165 0 1
+117 'PM.Angel' 'charlie.pf' 168 0 1
+118 'PM.Angel' 'charlie.pf' 169 0 1
+119 'PM.Angel' 'charlie.pf' 170 0 1
+120 'PM.Angel' 'charlie.pf' 171 0 1
+121 'PM.Angel' 'charlie.pf' 172 0 1
+122 'PM.Angel' 'charlie.pf' 175 0 1
+123 'PM.Angel' 'charlie.pf' 176 0 1
+124 'PM.Angel' 'charlie.pf' 177 0 1
+125 'PM.Angel' 'charlie.pf' 178 0 1
+126 'PM.Angel' 'charlie.pf' 179 0 1
+127 'PM.Angel' 'charlie.pf' 182 0 1
+128 'PM.Angel' 'charlie.pf' 183 0 1
+129 'PM.Angel' 'charlie.pf' 184 0 1
+130 'PM.Angel' 'charlie.pf' 185 0 1
+131 'PM.Angel' 'charlie.pf' 186 0 1
+132 'PM.Angel' 'delta.pm' 3 0 1
+133 'PM.Angel' 'delta.pm' 4 0 1
+134 'PM.Angel' 'delta.pm' 7 0 1
+135 'PM.Angel' 'delta.pm' 8 0 1
+136 'PM.Angel' 'delta.pm' 9 0 1
+137 'PM.Angel' 'delta.pm' 10 0 1
+138 'PM.Angel' 'delta.pm' 11 0 1
+139 'PM.Angel' 'delta.pm' 14 0 1
+140 'PM.Angel' 'delta.pm' 15 0 1
+141 'PM.Angel' 'delta.pm' 16 0 1
+142 'PM.Angel' 'delta.pm' 17 0 1
+143 'PM.Angel' 'delta.pm' 18 0 1
+144 'PM.Angel' 'delta.pm' 21 0 1
+145 'PM.Angel' 'delta.pm' 22 0 1
+146 'PM.Angel' 'delta.pm' 23 0 1
+147 'PM.Angel' 'delta.pm' 24 0 1
+148 'PM.Angel' 'delta.pm' 25 0 1
+149 'PM.Angel' 'delta.pm' 28 0 1
+150 'PM.Angel' 'delta.pm' 29 0 1
+151 'PM.Angel' 'delta.pm' 30 0 1
+152 'PM.Angel' 'delta.pm' 31 0 1
+153 'PM.Angel' 'delta.pm' 32 0 1
+154 'PM.Angel' 'delta.pm' 35 0 1
+155 'PM.Angel' 'delta.pm' 36 0 1
+156 'PM.Angel' 'delta.pm' 37 0 1
+157 'PM.Angel' 'delta.pm' 38 0 1
+158 'PM.Angel' 'delta.pm' 39 0 1
+159 'PM.Angel' 'delta.pm' 42 0 1
+160 'PM.Angel' 'delta.pm' 43 0 1
+161 'PM.Angel' 'delta.pm' 44 0 1
+162 'PM.Angel' 'delta.pm' 45 0 1
+163 'PM.Angel' 'delta.pm' 46 0 1
+164 'PM.Angel' 'delta.pm' 49 0 1
+165 'PM.Angel' 'delta.pm' 50 0 1
+166 'PM.Angel' 'delta.pm' 51 0 1
+167 'PM.Angel' 'delta.pm' 52 0 1
+168 'PM.Angel' 'delta.pm' 53 0 1
+169 'PM.Angel' 'delta.pm' 56 0 1
+170 'PM.Angel' 'delta.pm' 57 0 1
+171 'PM.Angel' 'delta.pf' 58 0 1
+172 'PM.Angel' 'delta.pf' 59 0 1
+173 'PM.Angel' 'delta.pf' 60 0 1
+174 'PM.Angel' 'delta.pf' 63 0 1
+175 'PM.Angel' 'delta.pf' 64 0 1
+176 'PM.Angel' 'delta.pf' 65 0 1
+177 'PM.Angel' 'delta.pf' 66 0 1
+178 'PM.Angel' 'delta.pf' 67 0 1
+179 'PM.Angel' 'delta.pf' 70 0 1
+180 'PM.Angel' 'delta.pf' 71 0 1
+181 'PM.Angel' 'delta.pf' 72 0 1
+182 'PM.Angel' 'delta.pf' 73 0 1
+183 'PM.Angel' 'delta.pf' 74 0 1
+184 'PM.Angel' 'delta.pf' 77 0 1
+185 'PM.Angel' 'delta.pf' 78 0 1
+186 'PM.Angel' 'delta.pf' 79 0 1
+187 'PM.Angel' 'delta.pf' 80 0 1
+188 'PM.Angel' 'delta.pf' 81 0 1
+189 'PM.Angel' 'delta.pf' 84 0 1
+190 'PM.Angel' 'delta.pf' 85 0 1
+191 'PM.Angel' 'delta.pf' 86 0 1
+192 'PM.Angel' 'delta.pf' 87 0 1
+193 'PM.Angel' 'delta.pf' 88 0 1
+194 'PM.Angel' 'delta.pf' 91 0 1
+195 'PM.Angel' 'delta.pf' 92 0 1
+196 'PM.Angel' 'delta.pf' 93 0 1
+197 'PM.Angel' 'delta.pf' 94 0 1
+198 'PM.Angel' 'delta.pf' 95 0 1
+199 'PM.Angel' 'delta.pf' 98 0 1
+200 'PM.Angel' 'delta.pf' 99 0 1
+201 'PM.Angel' 'delta.pf' 100 0 1
+202 'PM.Angel' 'delta.pf' 101 0 1
+203 'PM.Angel' 'delta.pf' 102 0 1
+204 'PM.Angel' 'juliet.pe' 42 0 1
+205 'PM.Angel' 'juliet.pe' 43 0 1
+206 'PM.Angel' 'juliet.pe' 44 0 1
+207 'PM.Angel' 'juliet.pe' 45 0 1
+208 'PM.Angel' 'juliet.pe' 46 0 1
+209 'PM.Angel' 'juliet.pe' 49 0 1
+210 'PM.Angel' 'juliet.pe' 50 0 1
+211 'PM.Angel' 'juliet.pe' 51 0 1
+212 'PM.Angel' 'juliet.pe' 52 0 1
+213 'PM.Angel' 'juliet.pe' 53 0 1
+214 'PM.Angel' 'juliet.pe' 56 0 1
+215 'PM.Angel' 'juliet.pe' 57 0 1
+216 'PM.Angel' 'juliet.pe' 58 0 1
+217 'PM.Angel' 'juliet.pe' 59 0 1
+218 'PM.Angel' 'juliet.pm' 60 0 1
+219 'PM.Angel' 'juliet.pm' 63 0 1
+220 'PM.Angel' 'juliet.pm' 64 0 1
+221 'PM.Angel' 'juliet.pm' 65 0 1
+222 'PM.Angel' 'juliet.pm' 66 0 1
+223 'PM.Angel' 'juliet.pm' 67 0 1
+224 'PM.Angel' 'juliet.pm' 70 0 1
+225 'PM.Angel' 'juliet.pm' 71 0 1
+226 'PM.Angel' 'juliet.pm' 72 0 1
+227 'PM.Angel' 'juliet.pm' 73 0 1
+228 'PM.Angel' 'juliet.pm' 74 0 1
+229 'PM.Angel' 'juliet.pm' 77 0 1
+230 'PM.Angel' 'juliet.pm' 78 0 1
+231 'PM.Angel' 'juliet.pm' 79 0 1
+232 'PM.Angel' 'juliet.pm' 80 0 1
+233 'PM.Angel' 'juliet.pm' 81 0 1
+234 'PM.Angel' 'juliet.pm' 84 0 1
+235 'PM.Angel' 'juliet.pm' 85 0 1
+236 'PM.Angel' 'juliet.pm' 86 0 1
+237 'PM.Angel' 'juliet.pm' 87 0 1
+238 'PM.Angel' 'juliet.pm' 88 0 1
+239 'PM.Angel' 'juliet.pm' 91 0 1
+240 'PM.Angel' 'juliet.pm' 92 0 1
+241 'PM.Angel' 'juliet.pm' 93 0 1
+242 'PM.Angel' 'juliet.pm' 94 0 1
+243 'PM.Angel' 'juliet.pm' 95 0 1
+244 'PM.Angel' 'juliet.pm' 98 0 1
+245 'PM.Angel' 'juliet.pm' 99 0 1
+246 'PM.Angel' 'juliet.pm' 100 0 1
+247 'PM.Angel' 'juliet.pm' 101 0 1
+248 'PM.Angel' 'juliet.pm' 102 0 1
+249 'PM.Angel' 'juliet.pm' 105 0 1
+250 'PM.Angel' 'juliet.pm' 106 0 1
+251 'PM.Angel' 'juliet.pm' 107 0 1
+252 'PM.Angel' 'juliet.pm' 108 0 1
+253 'PM.Angel' 'juliet.pm' 109 0 1
+254 'PM.Angel' 'juliet.pm' 112 0 1
+255 'PM.Angel' 'juliet.pm' 113 0 1
+256 'PM.Angel' 'juliet.pm' 114 0 1
+257 'PM.Angel' 'juliet.pm' 115 0 1
+258 'PM.Angel' 'juliet.pm' 116 0 1
+259 'PM.Angel' 'juliet.pm' 119 0 1
+260 'PM.Angel' 'juliet.pm' 120 0 1
+261 'PM.Angel' 'juliet.pm' 121 0 1
+262 'PM.Angel' 'juliet.pm' 123 0 1
+263 'PM.Angel' 'juliet.pm' 126 0 1
+264 'PM.Angel' 'juliet.pm' 127 0 1
+265 'PM.Angel' 'juliet.pm' 128 0 1
+266 'PM.Angel' 'juliet.pm' 129 0 1
+267 'PM.Angel' 'juliet.pm' 130 0 1
+268 'PM.Angel' 'juliet.pm' 133 0 1
+269 'PM.Angel' 'juliet.pm' 134 0 1
+270 'PM.Angel' 'juliet.pm' 135 0 1
+271 'PM.Angel' 'juliet.pm' 136 0 1
+272 'PM.Angel' 'juliet.pm' 137 0 1
+273 'PM.Angel' 'juliet.pm' 140 0 1
+274 'PM.Angel' 'juliet.pm' 141 0 1
+275 'PM.Angel' 'juliet.pm' 142 0 1
+276 'PM.Angel' 'juliet.pm' 143 0 1
+277 'PM.Angel' 'juliet.pm' 144 0 1
+278 'PM.Angel' 'juliet.pm' 147 0 1
+279 'PM.Angel' 'juliet.pm' 148 0 1
+280 'PM.Angel' 'juliet.pm' 149 0 1
+281 'PM.Angel' 'juliet.pm' 150 0 1
+282 'PM.Angel' 'juliet.pm' 151 0 1
+283 'PM.Angel' 'juliet.pm' 154 0 1
+284 'PM.Angel' 'juliet.pm' 155 0 1
+285 'PM.Angel' 'juliet.pm' 156 0 1
+286 'PM.Angel' 'juliet.pm' 157 0 1
+287 'PM.Angel' 'juliet.pm' 158 0 1
+288 'PM.Angel' 'juliet.pm' 161 0 1
+289 'PM.Angel' 'juliet.pm' 162 0 1
+290 'PM.Angel' 'juliet.pm' 163 0 1
+291 'PM.Angel' 'juliet.pm' 164 0 1
+292 'PM.Angel' 'juliet.pm' 165 0 1
+293 'PM.Angel' 'juliet.pm' 168 0 1
+294 'PM.Angel' 'juliet.pm' 169 0 1
+295 'PM.Angel' 'juliet.pm' 170 0 1
+296 'PM.Angel' 'juliet.pm' 171 0 1
+297 'PM.Angel' 'juliet.pm' 172 0 1
+298 'PM.Angel' 'juliet.pm' 175 0 1
+299 'PM.Angel' 'juliet.pm' 176 0 1
+300 'PM.Angel' 'juliet.pm' 177 0 1
+301 'PM.Angel' 'juliet.pm' 178 0 1
+302 'PM.Angel' 'juliet.pm' 179 0 1
+303 'PM.Angel' 'juliet.pm' 182 0 1
+304 'PM.Angel' 'juliet.pf' 183 0 1
+305 'PM.Angel' 'juliet.pf' 184 0 1
+306 'PM.Angel' 'juliet.pf' 185 0 1
+307 'PM.Angel' 'juliet.pf' 186 0 1
+308 'PM.Angel' 'juliet.pf' 189 0 1
+309 'PM.Angel' 'juliet.pf' 190 0 1
+310 'PM.Angel' 'juliet.pf' 191 0 1
+311 'PM.Angel' 'juliet.pf' 192 0 1
+312 'PM.Angel' 'juliet.pf' 193 0 1
+313 'PM.Angel' 'juliet.pf' 196 0 1
+314 'PM.Angel' 'juliet.pf' 197 0 1
+315 'PM.Angel' 'juliet.pf' 198 0 1
+316 'PM.Angel' 'juliet.pf' 199 0 1
+317 'PM.Angel' 'juliet.pf' 200 0 1
+318 'PM.Angel' 'juliet.pf' 203 0 1
+319 'PM.Angel' 'juliet.pf' 204 0 1
+320 'PM.Angel' 'juliet.pf' 205 0 1
+321 'PM.Angel' 'juliet.pf' 206 0 1
+322 'PM.Angel' 'juliet.pf' 207 0 1
+323 'PM.Angel' 'juliet.pf' 210 0 1
+324 'PM.Angel' 'juliet.pf' 211 0 1
+325 'PM.Angel' 'juliet.pf' 212 0 1
+326 'PM.Angel' 'juliet.pf' 213 0 1
+327 'PM.Angel' 'juliet.pf' 214 0 1
+328 'PM.Angel' 'juliet.pf' 217 0 1
+329 'PM.Angel' 'juliet.pf' 218 0 1
+330 'PM.Angel' 'juliet.pf' 219 0 1
+331 'PM.Angel' 'juliet.pf' 220 0 1
+332 'PM.Angel' 'juliet.pf' 221 0 1
+333 'PM.Angel' 'juliet.pf' 224 0 1
+334 'PM.Angel' 'juliet.pf' 225 0 1
+335 'PM.Angel' 'juliet.pf' 226 0 1
+336 'PM.Angel' 'juliet.pf' 227 0 1
+337 'PM.Angel' 'juliet.pf' 228 0 1
+338 'PM.Angel' 'mike.pe' 101 1 2
+339 'PM.Angel' 'mike.pe' 102 1 2
+340 'PM.Angel' 'mike.pe' 105 1 2
+341 'PM.Angel' 'mike.pe' 106 1 2
+342 'PM.Angel' 'mike.pe' 107 1 2
+343 'PM.Angel' 'mike.pe' 108 1 2
+344 'PM.Angel' 'mike.pe' 109 1 2
+345 'PM.Angel' 'mike.pm' 112 0 1
+346 'PM.Angel' 'mike.pm' 113 0 1
+347 'PM.Angel' 'mike.pm' 114 0 1
+348 'PM.Angel' 'mike.pm' 115 0 1
+349 'PM.Angel' 'mike.pm' 116 0 1
+350 'PM.Angel' 'mike.pm' 119 0 1
+351 'PM.Angel' 'mike.pm' 120 0 1
+352 'PM.Angel' 'mike.pm' 121 0 1
+353 'PM.Angel' 'mike.pm' 123 0 1
+354 'PM.Angel' 'mike.pm' 126 0 1
+355 'PM.Angel' 'mike.pm' 127 0 1
+356 'PM.Angel' 'mike.pm' 128 0 1
+357 'PM.Angel' 'mike.pm' 129 0 1
+358 'PM.Angel' 'mike.pm' 130 0 1
+359 'PM.Angel' 'mike.pm' 133 0 1
+360 'PM.Angel' 'mike.pm' 134 0 1
+361 'PM.Angel' 'mike.pm' 135 0 1
+362 'PM.Angel' 'mike.pm' 136 0 1
+363 'PM.Angel' 'mike.pm' 137 0 1
+364 'PM.Angel' 'mike.pm' 140 0 1
+365 'PM.Angel' 'mike.pm' 141 0 1
+366 'PM.Angel' 'mike.pm' 142 0 1
+367 'PM.Angel' 'mike.pm' 143 0 1
+368 'PM.Angel' 'mike.pm' 144 0 1
+369 'PM.Angel' 'mike.pm' 147 0 1
+370 'PM.Angel' 'mike.pm' 148 0 1
+371 'PM.Angel' 'mike.pm' 149 0 1
+372 'PM.Angel' 'mike.pm' 150 0 1
+373 'PM.Angel' 'mike.pm' 151 0 1
+374 'PM.Angel' 'mike.pm' 154 0 1
+375 'PM.Angel' 'mike.pm' 155 0 1
+376 'PM.Angel' 'mike.pm' 156 0 1
+377 'PM.Angel' 'mike.pm' 157 0 1
+378 'PM.Angel' 'mike.pm' 158 0 1
+379 'PM.Angel' 'mike.pm' 161 0 1
+380 'PM.Angel' 'mike.pm' 162 0 1
+381 'PM.Angel' 'mike.pm' 163 0 1
+382 'PM.Angel' 'mike.pm' 164 0 1
+383 'PM.Angel' 'mike.pm' 165 0 1
+384 'PM.Angel' 'mike.pm' 168 0 1
+385 'PM.Angel' 'mike.pm' 169 0 1
+386 'PM.Angel' 'mike.pm' 170 0 1
+387 'PM.Angel' 'mike.pm' 171 0 1
+388 'PM.Angel' 'mike.pm' 172 0 1
+389 'PM.Angel' 'mike.pm' 175 0 1
+390 'PM.Angel' 'mike.pm' 176 0 1
+391 'PM.Angel' 'mike.pm' 177 0 1
+392 'PM.Angel' 'mike.pm' 178 0 1
+393 'PM.Angel' 'mike.pm' 179 0 1
+394 'PM.Angel' 'mike.pm' 182 0 1
+395 'PM.Angel' 'mike.pm' 183 0 1
+396 'PM.Angel' 'mike.pm' 184 0 1
+397 'PM.Angel' 'mike.pm' 185 0 1
+398 'PM.Angel' 'mike.pm' 186 0 1
+399 'PM.Angel' 'mike.pm' 189 0 1
+400 'PM.Angel' 'mike.pm' 190 0 1
+401 'PM.Angel' 'mike.pm' 191 0 1
+402 'PM.Angel' 'mike.pm' 192 0 1
+403 'PM.Angel' 'mike.pm' 193 0 1
+404 'PM.Angel' 'mike.pm' 196 0 1
+405 'PM.Angel' 'mike.pm' 197 0 1
+406 'PM.Angel' 'mike.pm' 198 0 1
+407 'PM.Angel' 'mike.pm' 199 0 1
+408 'PM.Angel' 'mike.pm' 200 0 1
+409 'PM.Angel' 'mike.pm' 203 0 1
+410 'PM.Angel' 'mike.pm' 204 0 1
+411 'PM.Angel' 'mike.pm' 205 0 1
+412 'PM.Angel' 'mike.pm' 206 0 1
+413 'PM.Angel' 'mike.pm' 207 0 1
+414 'PM.Angel' 'mike.pm' 210 0 1
+415 'PM.Angel' 'mike.pm' 211 0 1
+416 'PM.Angel' 'mike.pm' 212 0 1
+417 'PM.Angel' 'mike.pm' 213 0 1
+418 'PM.Angel' 'mike.pm' 214 0 1
+419 'PM.Angel' 'mike.pm' 217 0 1
+420 'PM.Angel' 'mike.pm' 218 0 1
+421 'PM.Angel' 'mike.pm' 219 0 1
+422 'PM.Angel' 'mike.pm' 220 0 1
+423 'PM.Angel' 'mike.pm' 221 0 1
+424 'PM.Angel' 'mike.pm' 224 0 1
+425 'PM.Angel' 'mike.pm' 225 0 1
+426 'PM.Angel' 'mike.pm' 226 0 1
+427 'PM.Angel' 'mike.pm' 227 0 1
+428 'PM.Angel' 'mike.pm' 228 0 1
+429 'PM.Angel' 'mike.pm' 231 0 1
+430 'PM.Angel' 'mike.pm' 232 0 1
+431 'PM.Angel' 'mike.pm' 233 0 1
+432 'PM.Angel' 'mike.pm' 234 0 1
+433 'PM.Angel' 'mike.pm' 235 0 1
+434 'PM.Angel' 'mike.pm' 238 0 1
+435 'PM.Angel' 'mike.pm' 239 0 1
+436 'PM.Angel' 'mike.pm' 240 0 1
+437 'PM.Angel' 'mike.pm' 241 0 1
+438 'PM.Angel' 'mike.pm' 242 0 1
+439 'PM.Angel' 'mike.pm' 245 0 1
+440 'PM.Angel' 'mike.pm' 246 0 1
+441 'PM.Angel' 'mike.pm' 247 0 1
+442 'PM.Angel' 'mike.pm' 248 0 1
+443 'PM.Angel' 'mike.pm' 249 0 1
+444 'PM.Angel' 'mike.pm' 252 0 1
+445 'PM.Angel' 'mike.pm' 253 0 1
+446 'PM.Angel' 'mike.pm' 254 0 1
+447 'PM.Angel' 'mike.pm' 255 0 1
+448 'PM.Angel' 'mike.pm' 256 0 1
+449 'PM.Angel' 'mike.pm' 259 0 1
+450 'PM.Angel' 'mike.pm' 260 0 1
+451 'PM.Angel' 'mike.pm' 261 0 1
+452 'PM.Angel' 'mike.pm' 262 0 1
+453 'PM.Angel' 'mike.pm' 263 0 1
+454 'PM.Angel' 'mike.pm' 266 0 1
+455 'PM.Angel' 'mike.pm' 267 0 1
+456 'PM.Angel' 'mike.pm' 268 0 1
+457 'PM.Angel' 'mike.pm' 269 0 1
+458 'PM.Angel' 'mike.pf' 270 0 1
+459 'PM.Angel' 'mike.pf' 273 0 1
+460 'PM.Angel' 'mike.pf' 274 0 1
+461 'PM.Angel' 'mike.pf' 275 0 1
+462 'PM.Angel' 'mike.pf' 276 0 1
+463 'PM.Angel' 'mike.pf' 277 0 1
+464 'PM.Angel' 'mike.pf' 280 0 1
+465 'PM.Angel' 'mike.pf' 281 0 1
+466 'PM.Angel' 'mike.pf' 282 0 1
+467 'PM.Angel' 'mike.pf' 283 0 1
+468 'PM.Angel' 'mike.pf' 284 0 1
+469 'PM.Angel' 'mike.pf' 287 0 1
+470 'PM.Angel' 'mike.pf' 288 0 1
+471 'PM.Angel' 'mike.pf' 289 0 1
+472 'PM.Angel' 'mike.pf' 290 0 1
+473 'PM.Angel' 'mike.pf' 291 0 1
+474 'PM.Angel' 'mike.pf' 294 0 1
+475 'PM.Angel' 'mike.pf' 295 0 1
+476 'PM.Angel' 'mike.pf' 296 0 1
+477 'PM.Angel' 'mike.pf' 297 0 1
+478 'PM.Angel' 'mike.pf' 298 0 1
+479 'PM.Angel' 'mike.pf' 301 0 1
+480 'PM.Angel' 'mike.pf' 302 0 1
+481 'PM.Angel' 'mike.pf' 303 0 1
+482 'PM.Angel' 'mike.pf' 304 0 1
+483 'PM.Angel' 'november.pe' 147 0 1
+484 'PM.Angel' 'november.pe' 148 0 1
+485 'PM.Angel' 'november.pe' 149 0 1
+486 'PM.Angel' 'november.pe' 150 0 1
+487 'PM.Angel' 'november.pe' 151 0 1
+488 'PM.Angel' 'november.pe' 154 0 1
+489 'PM.Angel' 'november.pe' 155 0 1
+490 'PM.Angel' 'november.pe' 156 0 1
+491 'PM.Angel' 'november.pe' 157 0 1
+492 'PM.Angel' 'november.pe' 158 0 1
+493 'PM.Angel' 'november.pe' 161 0 1
+494 'PM.Angel' 'november.pe' 162 0 1
+495 'PM.Angel' 'november.pe' 163 0 1
+496 'PM.Angel' 'november.pe' 164 0 1
+497 'PM.Angel' 'november.pe' 165 0 1
+498 'PM.Angel' 'november.pm' 168 0 1
+499 'PM.Angel' 'november.pm' 169 0 1
+500 'PM.Angel' 'november.pm' 170 0 1
+501 'PM.Angel' 'november.pm' 171 0 1
+502 'PM.Angel' 'november.pm' 172 0 1
+503 'PM.Angel' 'november.pm' 175 0 1
+504 'PM.Angel' 'november.pm' 176 0 1
+505 'PM.Angel' 'november.pm' 177 0 1
+506 'PM.Angel' 'november.pm' 178 0 1
+507 'PM.Angel' 'november.pm' 179 0 1
+508 'PM.Angel' 'november.pm' 182 0 1
+509 'PM.Angel' 'november.pm' 183 0 1
+510 'PM.Angel' 'november.pm' 184 0 1
+511 'PM.Angel' 'november.pm' 185 0 1
+512 'PM.Angel' 'november.pm' 186 0 1
+513 'PM.Angel' 'november.pm' 189 0 1
+514 'PM.Angel' 'november.pm' 190 0 1
+515 'PM.Angel' 'november.pm' 191 0 1
+516 'PM.Angel' 'november.pm' 192 0 1
+517 'PM.Angel' 'november.pm' 193 0 1
+518 'PM.Angel' 'november.pm' 196 0 1
+519 'PM.Angel' 'november.pm' 197 0 1
+520 'PM.Angel' 'november.pm' 198 0 1
+521 'PM.Angel' 'november.pm' 199 0 1
+522 'PM.Angel' 'november.pm' 200 0 1
+523 'PM.Angel' 'november.pm' 203 0 1
+524 'PM.Angel' 'november.pm' 204 0 1
+525 'PM.Angel' 'november.pm' 205 0 1
+526 'PM.Angel' 'november.pm' 206 0 1
+527 'PM.Angel' 'november.pm' 207 0 1
+528 'PM.Angel' 'november.pm' 210 0 1
+529 'PM.Angel' 'november.pm' 211 0 1
+530 'PM.Angel' 'november.pm' 212 0 1
+531 'PM.Angel' 'november.pm' 213 0 1
+532 'PM.Angel' 'november.pm' 214 0 1
+533 'PM.Angel' 'november.pm' 217 0 1
+534 'PM.Angel' 'november.pm' 218 0 1
+535 'PM.Angel' 'november.pm' 219 0 1
+536 'PM.Angel' 'november.pm' 220 0 1
+537 'PM.Angel' 'november.pm' 221 0 1
+538 'PM.Angel' 'november.pm' 224 0 1
+539 'PM.Angel' 'november.pm' 225 0 1
+540 'PM.Angel' 'november.pm' 226 0 1
+541 'PM.Angel' 'november.pm' 227 0 1
+542 'PM.Angel' 'november.pm' 228 0 1
+543 'PM.Angel' 'november.pm' 231 0 1
+544 'PM.Angel' 'november.pm' 232 0 1
+545 'PM.Angel' 'november.pm' 233 0 1
+546 'PM.Angel' 'november.pm' 234 0 1
+547 'PM.Angel' 'november.pm' 235 0 1
+548 'PM.Angel' 'november.pm' 238 0 1
+549 'PM.Angel' 'november.pm' 239 0 1
+550 'PM.Angel' 'november.pm' 240 0 1
+551 'PM.Angel' 'november.pm' 241 0 1
+552 'PM.Angel' 'november.pm' 242 0 1
+553 'PM.Angel' 'november.pm' 245 0 1
+554 'PM.Angel' 'november.pm' 246 0 1
+555 'PM.Angel' 'november.pm' 247 0 1
+556 'PM.Angel' 'november.pm' 248 0 1
+557 'PM.Angel' 'november.pm' 249 0 1
+558 'PM.Angel' 'november.pm' 252 0 1
+559 'PM.Angel' 'november.pm' 253 0 1
+560 'PM.Angel' 'november.pm' 254 0 1
+561 'PM.Angel' 'november.pm' 255 0 1
+562 'PM.Angel' 'november.pm' 256 0 1
+563 'PM.Angel' 'november.pm' 259 0 1
+564 'PM.Angel' 'november.pm' 260 0 1
+565 'PM.Angel' 'november.pm' 261 0 1
+566 'PM.Angel' 'november.pm' 262 0 1
+567 'PM.Angel' 'november.pm' 263 0 1
+568 'PM.Angel' 'november.pm' 266 0 1
+569 'PM.Angel' 'november.pm' 267 0 1
+570 'PM.Angel' 'november.pm' 268 0 1
+571 'PM.Angel' 'november.pm' 269 0 1
+572 'PM.Angel' 'november.pm' 270 0 1
+573 'PM.Angel' 'november.pm' 273 0 1
+574 'PM.Angel' 'november.pm' 274 0 1
+575 'PM.Angel' 'november.pm' 275 0 1
+576 'PM.Angel' 'november.pm' 276 0 1
+577 'PM.Angel' 'november.pm' 277 0 1
+578 'PM.Angel' 'november.pm' 280 0 1
+579 'PM.Angel' 'november.pm' 281 0 1
+580 'PM.Angel' 'november.pm' 282 0 1
+581 'PM.Angel' 'november.pm' 283 0 1
+582 'PM.Angel' 'november.pm' 284 0 1
+583 'PM.Angel' 'november.pm' 287 0 1
+584 'PM.Angel' 'november.pm' 288 0 1
+585 'PM.Angel' 'november.pm' 289 0 1
+586 'PM.Angel' 'november.pm' 290 0 1
+587 'PM.Angel' 'november.pm' 291 0 1
+588 'PM.Angel' 'november.pm' 294 0 1
+589 'PM.Angel' 'november.pm' 295 0 1
+590 'PM.Angel' 'november.pm' 296 0 1
+591 'PM.Angel' 'november.pm' 297 0 1
+592 'PM.Angel' 'november.pm' 298 0 1
+593 'PM.Angel' 'november.pm' 301 0 1
+594 'PM.Angel' 'november.pm' 302 0 1
+595 'PM.Angel' 'november.pm' 303 0 1
+596 'PM.Angel' 'november.pm' 304 0 1
+597 'PM.Angel' 'november.pm' 305 0 1
+598 'PM.Angel' 'november.pm' 308 0 1
+599 'PM.Angel' 'november.pm' 309 0 1
+600 'PM.Angel' 'november.pm' 310 0 1
+601 'PM.Angel' 'november.pm' 311 0 1
+602 'PM.Angel' 'november.pm' 312 0 1
+603 'PM.Angel' 'november.pm' 315 0 1
+604 'PM.Angel' 'november.pm' 316 0 1
+605 'PM.Angel' 'november.pm' 317 0 1
+606 'PM.Angel' 'november.pm' 318 0 1
+607 'PM.Angel' 'november.pm' 319 0 1
+608 'PM.Angel' 'november.pm' 322 0 1
+609 'PM.Angel' 'november.pm' 323 0 1
+610 'PM.Angel' 'november.pm' 324 0 1
+611 'PM.Angel' 'november.pm' 325 0 1
+612 'PM.Angel' 'november.pm' 326 0 1
+613 'PM.Angel' 'november.pm' 329 0 1
+614 'PM.Angel' 'november.pm' 330 0 1
+615 'PM.Angel' 'november.pm' 331 0 1
+616 'PM.Angel' 'november.pm' 332 0 1
+617 'PM.Angel' 'november.pm' 333 0 1
+618 'PM.Angel' 'november.pm' 336 0 1
+619 'PM.Angel' 'november.pm' 337 0 1
+620 'PM.Angel' 'november.pm' 338 0 1
+621 'PM.Angel' 'november.pm' 339 0 1
+622 'PM.Angel' 'november.pm' 340 0 1
+623 'PM.Angel' 'november.pm' 343 0 1
+624 'PM.Angel' 'november.pm' 344 0 1
+625 'PM.Angel' 'november.pm' 345 0 1
+626 'PM.Angel' 'november.pm' 346 0 1
+627 'PM.Angel' 'november.pm' 347 0 1
+628 'PM.Angel' 'november.pm' 350 0 1
+629 'PM.Angel' 'november.pm' 351 0 1
+630 'PM.Angel' 'november.pm' 352 0 1
+631 'PM.Angel' 'november.pm' 353 0 1
+632 'PM.Angel' 'november.pm' 354 0 1
+633 'PM.Angel' 'november.pm' 357 0 1
+634 'PM.Angel' 'november.pm' 358 0 1
+635 'PM.Angel' 'november.pm' 359 0 1
+636 'PM.Angel' 'november.pm' 360 0 1
+637 'PM.Angel' 'november.pm' 361 0 1
+638 'PM.Angel' 'november.pm' 364 0 1
+639 'PM.Angel' 'november.pm' 365 0 1
+640 'PM.Angel' 'november.pf' 366 0 1
+641 'PM.Angel' 'november.pf' 367 0 1
+642 'PM.Angel' 'november.pf' 368 0 1
+643 'PM.Angel' 'november.pf' 371 0 1
+644 'PM.Angel' 'november.pf' 372 0 1
+645 'PM.Angel' 'november.pf' 373 0 1
+646 'PM.Angel' 'november.pf' 374 0 1
+647 'PM.Angel' 'november.pf' 375 0 1
+648 'PM.Angel' 'november.pf' 378 0 1
+649 'PM.Angel' 'november.pf' 379 0 1
+650 'PM.Angel' 'november.pf' 380 0 1
+651 'PM.Angel' 'november.pf' 381 0 1
+652 'PM.Angel' 'november.pf' 382 0 1
+653 'PM.Angel' 'november.pf' 385 0 1
+654 'PM.Angel' 'november.pf' 386 0 1
+655 'PM.Angel' 'november.pf' 387 0 1
+656 'PM.Angel' 'november.pf' 388 0 1
+657 'PM.Angel' 'november.pf' 389 0 1
+658 'PM.Angel' 'november.pf' 392 0 1
+659 'PM.Angel' 'november.pf' 393 0 1
+660 'PM.Angel' 'november.pf' 394 0 1
+661 'PM.Angel' 'november.pf' 395 0 1
+662 'PM.Angel' 'november.pf' 396 0 1;
 
 param XBSUM_NO := 0;
 
@@ -128,11 +848,270 @@ param XBSUM:
 1   2   3   4   5   6 :=
 ;
 
-param UBDAY_NO := 0;
+param UBDAY_NO := 260;
 
 param UBDAY:
 1   2   3   4 :=
-;
+1 'PM.Angel' 3 0 2
+2 'PM.Angel' 4 0 2
+3 'PM.Angel' 7 0 2
+4 'PM.Angel' 8 0 2
+5 'PM.Angel' 9 0 2
+6 'PM.Angel' 10 0 2
+7 'PM.Angel' 11 0 2
+8 'PM.Angel' 14 0 2
+9 'PM.Angel' 15 0 2
+10 'PM.Angel' 16 0 2
+11 'PM.Angel' 17 0 2
+12 'PM.Angel' 18 0 2
+13 'PM.Angel' 21 0 2
+14 'PM.Angel' 22 0 2
+15 'PM.Angel' 23 0 2
+16 'PM.Angel' 24 0 2
+17 'PM.Angel' 25 0 2
+18 'PM.Angel' 28 0 2
+19 'PM.Angel' 29 0 2
+20 'PM.Angel' 30 0 2
+21 'PM.Angel' 31 0 2
+22 'PM.Angel' 32 0 2
+23 'PM.Angel' 35 0 2
+24 'PM.Angel' 36 0 2
+25 'PM.Angel' 37 0 2
+26 'PM.Angel' 38 0 2
+27 'PM.Angel' 39 0 2
+28 'PM.Angel' 42 0 2
+29 'PM.Angel' 43 0 2
+30 'PM.Angel' 44 0 2
+31 'PM.Angel' 45 0 2
+32 'PM.Angel' 46 0 2
+33 'PM.Angel' 49 0 2
+34 'PM.Angel' 50 0 2
+35 'PM.Angel' 51 0 2
+36 'PM.Angel' 52 0 2
+37 'PM.Angel' 53 0 2
+38 'PM.Angel' 56 0 2
+39 'PM.Angel' 57 0 2
+40 'PM.Angel' 58 0 2
+41 'PM.Angel' 59 0 2
+42 'PM.Angel' 60 0 2
+43 'PM.Angel' 63 0 2
+44 'PM.Angel' 64 0 2
+45 'PM.Angel' 65 0 2
+46 'PM.Angel' 66 0 2
+47 'PM.Angel' 67 0 2
+48 'PM.Angel' 70 0 2
+49 'PM.Angel' 71 0 2
+50 'PM.Angel' 72 0 2
+51 'PM.Angel' 73 0 2
+52 'PM.Angel' 74 0 2
+53 'PM.Angel' 77 0 2
+54 'PM.Angel' 78 0 2
+55 'PM.Angel' 79 0 2
+56 'PM.Angel' 80 0 2
+57 'PM.Angel' 81 0 2
+58 'PM.Angel' 84 0 2
+59 'PM.Angel' 85 0 2
+60 'PM.Angel' 86 0 2
+61 'PM.Angel' 87 0 2
+62 'PM.Angel' 88 0 2
+63 'PM.Angel' 91 0 2
+64 'PM.Angel' 92 0 2
+65 'PM.Angel' 93 0 2
+66 'PM.Angel' 94 0 2
+67 'PM.Angel' 95 0 2
+68 'PM.Angel' 98 0 2
+69 'PM.Angel' 99 0 2
+70 'PM.Angel' 100 0 2
+71 'PM.Angel' 101 0 2
+72 'PM.Angel' 102 0 2
+73 'PM.Angel' 105 0 2
+74 'PM.Angel' 106 0 2
+75 'PM.Angel' 107 0 2
+76 'PM.Angel' 108 0 2
+77 'PM.Angel' 109 0 2
+78 'PM.Angel' 112 0 2
+79 'PM.Angel' 113 0 2
+80 'PM.Angel' 114 0 2
+81 'PM.Angel' 115 0 2
+82 'PM.Angel' 116 0 2
+83 'PM.Angel' 119 0 2
+84 'PM.Angel' 120 0 2
+85 'PM.Angel' 121 0 2
+86 'PM.Angel' 123 0 2
+87 'PM.Angel' 126 0 2
+88 'PM.Angel' 127 0 2
+89 'PM.Angel' 128 0 2
+90 'PM.Angel' 129 0 2
+91 'PM.Angel' 130 0 2
+92 'PM.Angel' 133 0 2
+93 'PM.Angel' 134 0 2
+94 'PM.Angel' 135 0 2
+95 'PM.Angel' 136 0 2
+96 'PM.Angel' 137 0 2
+97 'PM.Angel' 140 0 2
+98 'PM.Angel' 141 0 2
+99 'PM.Angel' 142 0 2
+100 'PM.Angel' 143 0 2
+101 'PM.Angel' 144 0 2
+102 'PM.Angel' 147 0 2
+103 'PM.Angel' 148 0 2
+104 'PM.Angel' 149 0 2
+105 'PM.Angel' 150 0 2
+106 'PM.Angel' 151 0 2
+107 'PM.Angel' 154 0 2
+108 'PM.Angel' 155 0 2
+109 'PM.Angel' 156 0 2
+110 'PM.Angel' 157 0 2
+111 'PM.Angel' 158 0 2
+112 'PM.Angel' 161 0 2
+113 'PM.Angel' 162 0 2
+114 'PM.Angel' 163 0 2
+115 'PM.Angel' 164 0 2
+116 'PM.Angel' 165 0 2
+117 'PM.Angel' 168 0 2
+118 'PM.Angel' 169 0 2
+119 'PM.Angel' 170 0 2
+120 'PM.Angel' 171 0 2
+121 'PM.Angel' 172 0 2
+122 'PM.Angel' 175 0 2
+123 'PM.Angel' 176 0 2
+124 'PM.Angel' 177 0 2
+125 'PM.Angel' 178 0 2
+126 'PM.Angel' 179 0 2
+127 'PM.Angel' 182 0 2
+128 'PM.Angel' 183 0 2
+129 'PM.Angel' 184 0 2
+130 'PM.Angel' 185 0 2
+131 'PM.Angel' 186 0 2
+132 'PM.Angel' 189 0 2
+133 'PM.Angel' 190 0 2
+134 'PM.Angel' 191 0 2
+135 'PM.Angel' 192 0 2
+136 'PM.Angel' 193 0 2
+137 'PM.Angel' 196 0 2
+138 'PM.Angel' 197 0 2
+139 'PM.Angel' 198 0 2
+140 'PM.Angel' 199 0 2
+141 'PM.Angel' 200 0 2
+142 'PM.Angel' 203 0 2
+143 'PM.Angel' 204 0 2
+144 'PM.Angel' 205 0 2
+145 'PM.Angel' 206 0 2
+146 'PM.Angel' 207 0 2
+147 'PM.Angel' 210 0 2
+148 'PM.Angel' 211 0 2
+149 'PM.Angel' 212 0 2
+150 'PM.Angel' 213 0 2
+151 'PM.Angel' 214 0 2
+152 'PM.Angel' 217 0 2
+153 'PM.Angel' 218 0 2
+154 'PM.Angel' 219 0 2
+155 'PM.Angel' 220 0 2
+156 'PM.Angel' 221 0 2
+157 'PM.Angel' 224 0 2
+158 'PM.Angel' 225 0 2
+159 'PM.Angel' 226 0 2
+160 'PM.Angel' 227 0 2
+161 'PM.Angel' 228 0 2
+162 'PM.Angel' 231 0 2
+163 'PM.Angel' 232 0 2
+164 'PM.Angel' 233 0 2
+165 'PM.Angel' 234 0 2
+166 'PM.Angel' 235 0 2
+167 'PM.Angel' 238 0 2
+168 'PM.Angel' 239 0 2
+169 'PM.Angel' 240 0 2
+170 'PM.Angel' 241 0 2
+171 'PM.Angel' 242 0 2
+172 'PM.Angel' 245 0 2
+173 'PM.Angel' 246 0 2
+174 'PM.Angel' 247 0 2
+175 'PM.Angel' 248 0 2
+176 'PM.Angel' 249 0 2
+177 'PM.Angel' 252 0 2
+178 'PM.Angel' 253 0 2
+179 'PM.Angel' 254 0 2
+180 'PM.Angel' 255 0 2
+181 'PM.Angel' 256 0 2
+182 'PM.Angel' 259 0 2
+183 'PM.Angel' 260 0 2
+184 'PM.Angel' 261 0 2
+185 'PM.Angel' 262 0 2
+186 'PM.Angel' 263 0 2
+187 'PM.Angel' 266 0 2
+188 'PM.Angel' 267 0 2
+189 'PM.Angel' 268 0 2
+190 'PM.Angel' 269 0 2
+191 'PM.Angel' 270 0 2
+192 'PM.Angel' 273 0 2
+193 'PM.Angel' 274 0 2
+194 'PM.Angel' 275 0 2
+195 'PM.Angel' 276 0 2
+196 'PM.Angel' 277 0 2
+197 'PM.Angel' 280 0 2
+198 'PM.Angel' 281 0 2
+199 'PM.Angel' 282 0 2
+200 'PM.Angel' 283 0 2
+201 'PM.Angel' 284 0 2
+202 'PM.Angel' 287 0 2
+203 'PM.Angel' 288 0 2
+204 'PM.Angel' 289 0 2
+205 'PM.Angel' 290 0 2
+206 'PM.Angel' 291 0 2
+207 'PM.Angel' 294 0 2
+208 'PM.Angel' 295 0 2
+209 'PM.Angel' 296 0 2
+210 'PM.Angel' 297 0 2
+211 'PM.Angel' 298 0 2
+212 'PM.Angel' 301 0 2
+213 'PM.Angel' 302 0 2
+214 'PM.Angel' 303 0 2
+215 'PM.Angel' 304 0 2
+216 'PM.Angel' 305 0 2
+217 'PM.Angel' 308 0 2
+218 'PM.Angel' 309 0 2
+219 'PM.Angel' 310 0 2
+220 'PM.Angel' 311 0 2
+221 'PM.Angel' 312 0 2
+222 'PM.Angel' 315 0 2
+223 'PM.Angel' 316 0 2
+224 'PM.Angel' 317 0 2
+225 'PM.Angel' 318 0 2
+226 'PM.Angel' 319 0 2
+227 'PM.Angel' 322 0 2
+228 'PM.Angel' 323 0 2
+229 'PM.Angel' 324 0 2
+230 'PM.Angel' 325 0 2
+231 'PM.Angel' 326 0 2
+232 'PM.Angel' 329 0 2
+233 'PM.Angel' 330 0 2
+234 'PM.Angel' 331 0 2
+235 'PM.Angel' 332 0 2
+236 'PM.Angel' 333 0 2
+237 'PM.Angel' 336 0 2
+238 'PM.Angel' 337 0 2
+239 'PM.Angel' 338 0 2
+240 'PM.Angel' 339 0 2
+241 'PM.Angel' 340 0 2
+242 'PM.Angel' 343 0 2
+243 'PM.Angel' 344 0 2
+244 'PM.Angel' 345 0 2
+245 'PM.Angel' 346 0 2
+246 'PM.Angel' 347 0 2
+247 'PM.Angel' 350 0 2
+248 'PM.Angel' 351 0 2
+249 'PM.Angel' 352 0 2
+250 'PM.Angel' 353 0 2
+251 'PM.Angel' 354 0 2
+252 'PM.Angel' 357 0 2
+253 'PM.Angel' 358 0 2
+254 'PM.Angel' 359 0 2
+255 'PM.Angel' 360 0 2
+256 'PM.Angel' 361 0 2
+257 'PM.Angel' 364 0 2
+258 'PM.Angel' 365 0 2
+259 'PM.Angel' 366 0 2
+260 'PM.Angel' 367 0 2;
 
 param UBSUM_NO := 0;
 
