@@ -20,18 +20,14 @@ def tasks(today, data):
     return ''.join(formatted_rows)
 
 
-
 def offday(today, data):
     # Determine the date range
-    min_date = max(data["tasks"]["Start day"].min(), today)
+    min_date = data["tasks"]["Start day"].min()
     max_date = data["tasks"]["End day"].max()
 
     # Generate weekends within the range using a mask for Saturdays and Sundays
     weekends = pd.bdate_range(start=min_date, end=max_date, freq='C', weekmask='Sat Sun')
-
-    # Filter holidays to include only dates after 'today'
     holidays = data["public holidays"]["Date"]
-    holidays = holidays[holidays > today]
 
     # Combine weekends and holidays into a sorted list
     # The set off_days is the union of weekends and holidays.
