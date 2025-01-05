@@ -293,25 +293,31 @@ def solve(name, today, data):
 
     set_ampl_license()
     ampl = AMPL()
-    solver = data["misc"].loc[0, "Solver"]
+    solver = data["misc"].iloc[0]["Solver"]
     ampl.set_option("solver", solver)
 
-    if solver == "highs":
-        ampl.option["highs_options"] = "outlev=1"
+    # Set solver-specific options
+    solver_options = {
+        "highs": "outlev=1",
+        "scip": "tech:outlev-native=5"
+    }
 
-    if solver == "scip":
-        ampl.option["scip_options"] = "tech:outlev-native=5"
+    if solver in solver_options:
+        ampl.option[f"{solver}_options"] = solver_options[solver]
 
-
-    dirname1 = os.path.dirname(__file__)
-    dirname2 = os.path.dirname(dirname1)
-    ampl.cd(dirname2)
+    # Change directory to AMPL's working directory
+    ampl.cd(os.path.dirname(os.path.dirname(__file__)))
 
     ampl.read("./res/ampl_mathematical_model.mod.py")
     ampl.read_data(file)
-    # ampl.solve()
+
+    # Capture solver output and timestamp
     data["solver output"] = ampl.get_output("solve;")
-    data["solver timestamp"] = "{d}".format(d=datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p"))
+    data["solver timestamp"] = datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")
+
+    # Check if solving was successful
     if ampl.solve_result != "solved":
         raise Exception(f"Failed to solve AMPL problem. AMPL returned flag: {ampl.solve_result}")
+
     save(ampl, data)
+
