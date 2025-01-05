@@ -21,62 +21,62 @@ def add_days_and_workdays(df, holidays, date_columns):
     return df
 
 def read_tasks(xlsx, holidays):
-    df = xlsx.parse(sheet_name="tasks")
+    df = xlsx.parse(sheet_name="tasks", usecols="A:D")
     df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
     df = add_days_and_workdays(df, holidays, ["Start day", "End day"])
     df["Avg"] = df["Work"] / df["Workdays"]
     return df
 
 def read_invoicing_periods(xlsx, holidays):
-    df = xlsx.parse(sheet_name="invoicing periods")
+    df = xlsx.parse(sheet_name="invoicing periods", usecols="A:C")
     df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
     df = add_days_and_workdays(df, holidays, ["Start day", "End day"])
     return df
 
 def read_xbday(xlsx):
-    df = xlsx.parse(sheet_name="xbday")
+    df = xlsx.parse(sheet_name="xbday", usecols="A:F")
     df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
     return df
 
 def read_xbsum(xlsx):
-    df = xlsx.parse(sheet_name="xbsum")
+    df = xlsx.parse(sheet_name="xbsum", usecols="A:F")
     df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
     return df
 
 def read_ubday(xlsx):
-    df = xlsx.parse(sheet_name="ubday")
+    df = xlsx.parse(sheet_name="ubday", usecols="A:E")
     df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
     return df
 
 def read_ubsum(xlsx):
-    df = xlsx.parse(sheet_name="ubsum")
+    df = xlsx.parse(sheet_name="ubsum", usecols="A:F")
     df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
     return df
 
 def read_experts(xlsx):
-    return xlsx.parse(sheet_name="experts")
+    return xlsx.parse(sheet_name="experts", usecols="A:B")
 
 def read_expert_bounds(xlsx):
-    df = xlsx.parse(sheet_name="expert bounds")
+    df = xlsx.parse(sheet_name="expert bounds", usecols="A:E")
     df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
     return df
 
 def read_public_holidays(xlsx):
-    df = xlsx.parse(sheet_name="public holidays")
+    df = xlsx.parse(sheet_name="public holidays", usecols="A:A")
     df = parse_date_columns(df, ["Date"], romz_datetime.format())
     return df
 
 def read_misc(xlsx):
-    df = xlsx.parse(sheet_name="misc")
+    df = xlsx.parse(sheet_name="misc", usecols="A:H")
     for v in ["Today", "T:start", "T:end", "H:start", "H:end"]:
         df[v] = pd.to_datetime(df[v], format=romz_datetime.format())
     return df
 
 def read_links(xlsx):
-    return xlsx.parse(sheet_name="links")
+    return xlsx.parse(sheet_name="links", usecols="A:B")
 
 def read_invoicing_periods_bounds(xlsx):
-    return xlsx.parse(sheet_name="invoicing periods bounds")
+    return xlsx.parse(sheet_name="invoicing periods bounds", usecols="A:D")
 
 def df_diff(df1, df2):
     return df1.merge(df2, how='outer', indicator=True).query('_merge == "left_only"').drop(columns='_merge')
