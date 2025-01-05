@@ -58,7 +58,12 @@ EXPPAY: PAYROLLBL PAYROLLBU :=
 'DEV.Paweł' '25.Feb' 100 200
 'DEV.Paweł' '25.Mar' 100 200
 'DEV.Paweł' '25.Apr' 0 200
-'DEV.Paweł' '25.May' 0 200;
+'DEV.Paweł' '25.May' 0 200
+'DEV.Alojzy' '25.Jan' 0 202
+'DEV.Alojzy' '25.Feb' 0 203
+'DEV.Alojzy' '25.Mar' 0 204
+'DEV.Alojzy' '25.Apr' 0 205
+'DEV.Alojzy' '25.May' 0 206;
 
 param OFFDAY_NO := 39;
 

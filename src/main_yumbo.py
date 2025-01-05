@@ -15,6 +15,7 @@ import romz_plot_shedule_stacked_histogram
 import romz_plot_task
 import romz_plot_tasks_gantt
 import romz_plot_tasks_per_day
+import romz_skiped_items
 
 def get_Hours_per_day():
     return global_data["misc"].iloc[0]["Hours per day"]
@@ -278,6 +279,8 @@ def customise_report():
 
 def show_sidebar(uploaded_file):
     new_input = prepare_global_data(uploaded_file)
+    global_data["show_skiped_items"] = st.checkbox("Show skiped items in Excel input file?")
+    st.divider()
     st.subheader("Today: :green[{today}]".format(today=get_Today().date()), divider="blue")
     st.subheader("Python date format: :green[{format}]".format(format=romz_datetime.format()), divider="blue")
     st.subheader("Hours per day: :green[{}]".format(get_Hours_per_day()), divider="blue")
@@ -348,6 +351,7 @@ def show_one_row(expert_name):
                 st.write(chart_name)
 
 
+
 def show_main_panel():
     show_summary()
 
@@ -397,11 +401,13 @@ def main():
             return
         new_input = show_sidebar(uploaded_file)
 
+    romz_skiped_items.show(global_data)
+
     if new_input:
         try:
             romz_ampl.solve(uploaded_file.name, get_Today(), global_data)
         except Exception as e:
-            st.subheader(":red[Exception during solving process.] {m}".format(m=repr(e)))
+            st.subheader(f":red[Exception during solving process.] {e}")
             return
 
     show_main_panel()
