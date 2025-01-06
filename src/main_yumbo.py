@@ -235,6 +235,8 @@ def show_commitment_per_task(expert_name):
 
 def customise_report():
     st.subheader("Customise report", divider="blue")
+    global_data["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
+
     max_col_no = 4
     report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=3)
 
@@ -273,8 +275,6 @@ def customise_report():
     )
 
     global_data["report"] = edited_df
-
-    global_data["show_experts_overview"] = st.checkbox("Show experts overview?")
 
 
 def show_sidebar(uploaded_file):
