@@ -175,15 +175,15 @@ def show_invoice_period_workload(expert_name):
 
 
 def show_hours_per_day(expert_name):
-    start = get_tstart()
-    end = get_tend()
+    start = get_hstart()
+    end = get_hend()
     data = global_data[f"schedule {expert_name}"]
     romz_plot_hours_per_day.plot(data, start, end, get_dpi())
 
 
 def show_hours_per_day_stacked(expert_name):
-    start = get_tstart()
-    end = get_tend()
+    start = get_hstart()
+    end = get_hend()
     if pd.bdate_range(start=start, end=end, freq='C', holidays = global_data["public holidays"]["Date"]).size > 10:
         width = 1
     else:
