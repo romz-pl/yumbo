@@ -279,7 +279,7 @@ def customise_report():
 
 def show_sidebar(uploaded_file):
     new_input = prepare_global_data(uploaded_file)
-    global_data["show_skiped_items"] = st.checkbox("Show skiped items in Excel input file?")
+    global_data["show_skiped_items"] = st.checkbox("Show skipped items in Excel input file?")
     st.divider()
     st.subheader("Today: :green[{today}]".format(today=get_Today().date()), divider="blue")
     st.subheader("Python date format: :green[{format}]".format(format=romz_datetime.format()), divider="blue")
