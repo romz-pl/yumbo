@@ -355,7 +355,7 @@ def show_one_row(expert_name):
 def show_main_panel():
     show_summary()
 
-    experts = global_data["experts"]
+    experts = global_data["experts"].sort_values(by='Name')
     for e in experts.index:
         expert_name = experts.loc[e, "Name"]
         st.subheader(":blue[{name}] {comment}".format(name=expert_name, comment=experts.loc[e, "Comment"]), divider="blue")
