@@ -1,0 +1,1322 @@
+param HOURS_PER_DAY := 8;
+
+set EXPERTN :=
+'PM.Lisa';
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'echo.pm' 2 75 20
+'echo.pf' 93 138 5
+'foxtrot.pm' 2 92 20
+'foxtrot.pf' 93 123 5
+'golf.pm' 2 133 40
+'golf.pf' 134 179 10
+'hotel.pm' 2 245 80
+'hotel.pf' 246 291 10
+'kilo.pe' 61 84 10
+'kilo.pm' 85 214 50
+'kilo.pf' 215 260 5
+'lima.pm' 1 306 100
+'lima.pf' 307 335 20
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'January.2025' 1 16
+'February.2025' 17 45
+'March.2025' 46 76
+'April.2025' 77 105
+'May.2025' 106 139
+'June.2025' 140 170
+'July.2025' 171 199
+'August.2025' 200 230
+'September.2025' 231 259
+'October.2025' 260 289
+'November.2025' 290 317
+'December.2025' 318 346;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+'PM.Lisa' 'January.2025' 0 180
+'PM.Lisa' 'February.2025' 0 180
+'PM.Lisa' 'March.2025' 0 180
+'PM.Lisa' 'April.2025' 0 180
+'PM.Lisa' 'May.2025' 0 180
+'PM.Lisa' 'June.2025' 0 180
+'PM.Lisa' 'July.2025' 0 180
+'PM.Lisa' 'August.2025' 0 180
+'PM.Lisa' 'September.2025' 0 180
+'PM.Lisa' 'October.2025' 0 180
+'PM.Lisa' 'November.2025' 0 180
+'PM.Lisa' 'December.2025' 0 180;
+
+param OFFDAY_NO := 98;
+
+param OFFDAY :=
+1 2
+2 5
+3 6
+4 12
+5 13
+6 19
+7 20
+8 26
+9 27
+10 33
+11 34
+12 40
+13 41
+14 47
+15 48
+16 54
+17 55
+18 61
+19 62
+20 68
+21 69
+22 75
+23 76
+24 82
+25 83
+26 89
+27 90
+28 96
+29 97
+30 103
+31 104
+32 110
+33 111
+34 117
+35 118
+36 122
+37 124
+38 125
+39 131
+40 132
+41 138
+42 139
+43 145
+44 146
+45 152
+46 153
+47 159
+48 160
+49 166
+50 167
+51 173
+52 174
+53 180
+54 181
+55 187
+56 188
+57 194
+58 195
+59 201
+60 202
+61 208
+62 209
+63 215
+64 216
+65 222
+66 223
+67 229
+68 230
+69 236
+70 237
+71 243
+72 244
+73 250
+74 251
+75 257
+76 258
+77 264
+78 265
+79 271
+80 272
+81 278
+82 279
+83 285
+84 286
+85 292
+86 293
+87 299
+88 300
+89 306
+90 307
+91 313
+92 314
+93 320
+94 321
+95 327
+96 328
+97 334
+98 335;
+
+param XBDAY_NO := 880;
+
+param XBDAY:
+1   2   3   4   5 :=
+1 'PM.Lisa' 'echo.pm' 3 0 1
+2 'PM.Lisa' 'echo.pm' 4 0 1
+3 'PM.Lisa' 'echo.pm' 7 0 1
+4 'PM.Lisa' 'echo.pm' 8 0 1
+5 'PM.Lisa' 'echo.pm' 9 0 1
+6 'PM.Lisa' 'echo.pm' 10 0 1
+7 'PM.Lisa' 'echo.pm' 11 0 1
+8 'PM.Lisa' 'echo.pm' 14 0 1
+9 'PM.Lisa' 'echo.pm' 15 0 1
+10 'PM.Lisa' 'echo.pm' 16 0 1
+11 'PM.Lisa' 'echo.pm' 17 0 1
+12 'PM.Lisa' 'echo.pm' 18 0 1
+13 'PM.Lisa' 'echo.pm' 21 0 1
+14 'PM.Lisa' 'echo.pm' 22 0 1
+15 'PM.Lisa' 'echo.pm' 23 0 1
+16 'PM.Lisa' 'echo.pm' 24 0 1
+17 'PM.Lisa' 'echo.pm' 25 0 1
+18 'PM.Lisa' 'echo.pm' 28 0 1
+19 'PM.Lisa' 'echo.pm' 29 0 1
+20 'PM.Lisa' 'echo.pm' 30 0 1
+21 'PM.Lisa' 'echo.pm' 31 0 1
+22 'PM.Lisa' 'echo.pm' 32 0 1
+23 'PM.Lisa' 'echo.pm' 35 0 1
+24 'PM.Lisa' 'echo.pm' 36 0 1
+25 'PM.Lisa' 'echo.pm' 37 0 1
+26 'PM.Lisa' 'echo.pm' 38 0 1
+27 'PM.Lisa' 'echo.pm' 39 0 1
+28 'PM.Lisa' 'echo.pm' 42 0 1
+29 'PM.Lisa' 'echo.pm' 43 0 1
+30 'PM.Lisa' 'echo.pm' 44 0 1
+31 'PM.Lisa' 'echo.pm' 45 0 1
+32 'PM.Lisa' 'echo.pm' 46 0 1
+33 'PM.Lisa' 'echo.pm' 49 0 1
+34 'PM.Lisa' 'echo.pm' 50 0 1
+35 'PM.Lisa' 'echo.pm' 51 0 1
+36 'PM.Lisa' 'echo.pm' 52 0 1
+37 'PM.Lisa' 'echo.pm' 53 0 1
+38 'PM.Lisa' 'echo.pm' 56 0 1
+39 'PM.Lisa' 'echo.pm' 57 0 1
+40 'PM.Lisa' 'echo.pm' 58 0 1
+41 'PM.Lisa' 'echo.pm' 59 0 1
+42 'PM.Lisa' 'echo.pm' 60 0 1
+43 'PM.Lisa' 'echo.pm' 63 0 1
+44 'PM.Lisa' 'echo.pm' 64 0 1
+45 'PM.Lisa' 'echo.pm' 65 0 1
+46 'PM.Lisa' 'echo.pm' 66 0 1
+47 'PM.Lisa' 'echo.pm' 67 0 1
+48 'PM.Lisa' 'echo.pm' 70 0 1
+49 'PM.Lisa' 'echo.pm' 71 0 1
+50 'PM.Lisa' 'echo.pm' 72 0 1
+51 'PM.Lisa' 'echo.pm' 73 0 1
+52 'PM.Lisa' 'echo.pm' 74 0 1
+53 'PM.Lisa' 'echo.pf' 93 0 1
+54 'PM.Lisa' 'echo.pf' 94 0 1
+55 'PM.Lisa' 'echo.pf' 95 0 1
+56 'PM.Lisa' 'echo.pf' 98 0 1
+57 'PM.Lisa' 'echo.pf' 99 0 1
+58 'PM.Lisa' 'echo.pf' 100 0 1
+59 'PM.Lisa' 'echo.pf' 101 0 1
+60 'PM.Lisa' 'echo.pf' 102 0 1
+61 'PM.Lisa' 'echo.pf' 105 0 1
+62 'PM.Lisa' 'echo.pf' 106 0 1
+63 'PM.Lisa' 'echo.pf' 107 0 1
+64 'PM.Lisa' 'echo.pf' 108 0 1
+65 'PM.Lisa' 'echo.pf' 109 0 1
+66 'PM.Lisa' 'echo.pf' 112 0 1
+67 'PM.Lisa' 'echo.pf' 113 0 1
+68 'PM.Lisa' 'echo.pf' 114 0 1
+69 'PM.Lisa' 'echo.pf' 115 0 1
+70 'PM.Lisa' 'echo.pf' 116 0 1
+71 'PM.Lisa' 'echo.pf' 119 0 1
+72 'PM.Lisa' 'echo.pf' 120 0 1
+73 'PM.Lisa' 'echo.pf' 121 0 1
+74 'PM.Lisa' 'echo.pf' 123 0 1
+75 'PM.Lisa' 'echo.pf' 126 0 1
+76 'PM.Lisa' 'echo.pf' 127 0 1
+77 'PM.Lisa' 'echo.pf' 128 0 1
+78 'PM.Lisa' 'echo.pf' 129 0 1
+79 'PM.Lisa' 'echo.pf' 130 0 1
+80 'PM.Lisa' 'echo.pf' 133 0 1
+81 'PM.Lisa' 'echo.pf' 134 0 1
+82 'PM.Lisa' 'echo.pf' 135 0 1
+83 'PM.Lisa' 'echo.pf' 136 0 1
+84 'PM.Lisa' 'echo.pf' 137 0 1
+85 'PM.Lisa' 'foxtrot.pm' 3 0 1
+86 'PM.Lisa' 'foxtrot.pm' 4 0 1
+87 'PM.Lisa' 'foxtrot.pm' 7 0 1
+88 'PM.Lisa' 'foxtrot.pm' 8 0 1
+89 'PM.Lisa' 'foxtrot.pm' 9 0 1
+90 'PM.Lisa' 'foxtrot.pm' 10 0 1
+91 'PM.Lisa' 'foxtrot.pm' 11 0 1
+92 'PM.Lisa' 'foxtrot.pm' 14 0 1
+93 'PM.Lisa' 'foxtrot.pm' 15 0 1
+94 'PM.Lisa' 'foxtrot.pm' 16 0 1
+95 'PM.Lisa' 'foxtrot.pm' 17 0 1
+96 'PM.Lisa' 'foxtrot.pm' 18 0 1
+97 'PM.Lisa' 'foxtrot.pm' 21 0 1
+98 'PM.Lisa' 'foxtrot.pm' 22 0 1
+99 'PM.Lisa' 'foxtrot.pm' 23 0 1
+100 'PM.Lisa' 'foxtrot.pm' 24 0 1
+101 'PM.Lisa' 'foxtrot.pm' 25 0 1
+102 'PM.Lisa' 'foxtrot.pm' 28 0 1
+103 'PM.Lisa' 'foxtrot.pm' 29 0 1
+104 'PM.Lisa' 'foxtrot.pm' 30 0 1
+105 'PM.Lisa' 'foxtrot.pm' 31 0 1
+106 'PM.Lisa' 'foxtrot.pm' 32 0 1
+107 'PM.Lisa' 'foxtrot.pm' 35 0 1
+108 'PM.Lisa' 'foxtrot.pm' 36 0 1
+109 'PM.Lisa' 'foxtrot.pm' 37 0 1
+110 'PM.Lisa' 'foxtrot.pm' 38 0 1
+111 'PM.Lisa' 'foxtrot.pm' 39 0 1
+112 'PM.Lisa' 'foxtrot.pm' 42 0 1
+113 'PM.Lisa' 'foxtrot.pm' 43 0 1
+114 'PM.Lisa' 'foxtrot.pm' 44 0 1
+115 'PM.Lisa' 'foxtrot.pm' 45 0 1
+116 'PM.Lisa' 'foxtrot.pm' 46 0 1
+117 'PM.Lisa' 'foxtrot.pm' 49 0 1
+118 'PM.Lisa' 'foxtrot.pm' 50 0 1
+119 'PM.Lisa' 'foxtrot.pm' 51 0 1
+120 'PM.Lisa' 'foxtrot.pm' 52 0 1
+121 'PM.Lisa' 'foxtrot.pm' 53 0 1
+122 'PM.Lisa' 'foxtrot.pm' 56 0 1
+123 'PM.Lisa' 'foxtrot.pm' 57 0 1
+124 'PM.Lisa' 'foxtrot.pm' 58 0 1
+125 'PM.Lisa' 'foxtrot.pm' 59 0 1
+126 'PM.Lisa' 'foxtrot.pm' 60 0 1
+127 'PM.Lisa' 'foxtrot.pm' 63 0 1
+128 'PM.Lisa' 'foxtrot.pm' 64 0 1
+129 'PM.Lisa' 'foxtrot.pm' 65 0 1
+130 'PM.Lisa' 'foxtrot.pm' 66 0 1
+131 'PM.Lisa' 'foxtrot.pm' 67 0 1
+132 'PM.Lisa' 'foxtrot.pm' 70 0 1
+133 'PM.Lisa' 'foxtrot.pm' 71 0 1
+134 'PM.Lisa' 'foxtrot.pm' 72 0 1
+135 'PM.Lisa' 'foxtrot.pm' 73 0 1
+136 'PM.Lisa' 'foxtrot.pm' 74 0 1
+137 'PM.Lisa' 'foxtrot.pm' 77 0 1
+138 'PM.Lisa' 'foxtrot.pm' 78 0 1
+139 'PM.Lisa' 'foxtrot.pm' 79 0 1
+140 'PM.Lisa' 'foxtrot.pm' 80 0 1
+141 'PM.Lisa' 'foxtrot.pm' 81 0 1
+142 'PM.Lisa' 'foxtrot.pm' 84 0 1
+143 'PM.Lisa' 'foxtrot.pm' 85 0 1
+144 'PM.Lisa' 'foxtrot.pm' 86 0 1
+145 'PM.Lisa' 'foxtrot.pm' 87 0 1
+146 'PM.Lisa' 'foxtrot.pm' 88 0 1
+147 'PM.Lisa' 'foxtrot.pm' 91 0 1
+148 'PM.Lisa' 'foxtrot.pm' 92 0 1
+149 'PM.Lisa' 'foxtrot.pf' 93 0 1
+150 'PM.Lisa' 'foxtrot.pf' 94 0 1
+151 'PM.Lisa' 'foxtrot.pf' 95 0 1
+152 'PM.Lisa' 'foxtrot.pf' 98 0 1
+153 'PM.Lisa' 'foxtrot.pf' 99 0 1
+154 'PM.Lisa' 'foxtrot.pf' 100 0 1
+155 'PM.Lisa' 'foxtrot.pf' 101 0 1
+156 'PM.Lisa' 'foxtrot.pf' 102 0 1
+157 'PM.Lisa' 'foxtrot.pf' 105 0 1
+158 'PM.Lisa' 'foxtrot.pf' 106 0 1
+159 'PM.Lisa' 'foxtrot.pf' 107 0 1
+160 'PM.Lisa' 'foxtrot.pf' 108 0 1
+161 'PM.Lisa' 'foxtrot.pf' 109 0 1
+162 'PM.Lisa' 'foxtrot.pf' 112 0 1
+163 'PM.Lisa' 'foxtrot.pf' 113 0 1
+164 'PM.Lisa' 'foxtrot.pf' 114 0 1
+165 'PM.Lisa' 'foxtrot.pf' 115 0 1
+166 'PM.Lisa' 'foxtrot.pf' 116 0 1
+167 'PM.Lisa' 'foxtrot.pf' 119 0 1
+168 'PM.Lisa' 'foxtrot.pf' 120 0 1
+169 'PM.Lisa' 'foxtrot.pf' 121 0 1
+170 'PM.Lisa' 'foxtrot.pf' 123 0 1
+171 'PM.Lisa' 'golf.pm' 3 0 1
+172 'PM.Lisa' 'golf.pm' 4 0 1
+173 'PM.Lisa' 'golf.pm' 7 0 1
+174 'PM.Lisa' 'golf.pm' 8 0 1
+175 'PM.Lisa' 'golf.pm' 9 0 1
+176 'PM.Lisa' 'golf.pm' 10 0 1
+177 'PM.Lisa' 'golf.pm' 11 0 1
+178 'PM.Lisa' 'golf.pm' 14 0 1
+179 'PM.Lisa' 'golf.pm' 15 0 1
+180 'PM.Lisa' 'golf.pm' 16 0 1
+181 'PM.Lisa' 'golf.pm' 17 0 1
+182 'PM.Lisa' 'golf.pm' 18 0 1
+183 'PM.Lisa' 'golf.pm' 21 0 1
+184 'PM.Lisa' 'golf.pm' 22 0 1
+185 'PM.Lisa' 'golf.pm' 23 0 1
+186 'PM.Lisa' 'golf.pm' 24 0 1
+187 'PM.Lisa' 'golf.pm' 25 0 1
+188 'PM.Lisa' 'golf.pm' 28 0 1
+189 'PM.Lisa' 'golf.pm' 29 0 1
+190 'PM.Lisa' 'golf.pm' 30 0 1
+191 'PM.Lisa' 'golf.pm' 31 0 1
+192 'PM.Lisa' 'golf.pm' 32 0 1
+193 'PM.Lisa' 'golf.pm' 35 0 1
+194 'PM.Lisa' 'golf.pm' 36 0 1
+195 'PM.Lisa' 'golf.pm' 37 0 1
+196 'PM.Lisa' 'golf.pm' 38 0 1
+197 'PM.Lisa' 'golf.pm' 39 0 1
+198 'PM.Lisa' 'golf.pm' 42 0 1
+199 'PM.Lisa' 'golf.pm' 43 0 1
+200 'PM.Lisa' 'golf.pm' 44 0 1
+201 'PM.Lisa' 'golf.pm' 45 0 1
+202 'PM.Lisa' 'golf.pm' 46 0 1
+203 'PM.Lisa' 'golf.pm' 49 0 1
+204 'PM.Lisa' 'golf.pm' 50 0 1
+205 'PM.Lisa' 'golf.pm' 51 0 1
+206 'PM.Lisa' 'golf.pm' 52 0 1
+207 'PM.Lisa' 'golf.pm' 53 0 1
+208 'PM.Lisa' 'golf.pm' 56 0 1
+209 'PM.Lisa' 'golf.pm' 57 0 1
+210 'PM.Lisa' 'golf.pm' 58 0 1
+211 'PM.Lisa' 'golf.pm' 59 0 1
+212 'PM.Lisa' 'golf.pm' 60 0 1
+213 'PM.Lisa' 'golf.pm' 63 0 1
+214 'PM.Lisa' 'golf.pm' 64 0 1
+215 'PM.Lisa' 'golf.pm' 65 0 1
+216 'PM.Lisa' 'golf.pm' 66 0 1
+217 'PM.Lisa' 'golf.pm' 67 0 1
+218 'PM.Lisa' 'golf.pm' 70 0 1
+219 'PM.Lisa' 'golf.pm' 71 0 1
+220 'PM.Lisa' 'golf.pm' 72 0 1
+221 'PM.Lisa' 'golf.pm' 73 0 1
+222 'PM.Lisa' 'golf.pm' 74 0 1
+223 'PM.Lisa' 'golf.pm' 77 0 1
+224 'PM.Lisa' 'golf.pm' 78 0 1
+225 'PM.Lisa' 'golf.pm' 79 0 1
+226 'PM.Lisa' 'golf.pm' 80 0 1
+227 'PM.Lisa' 'golf.pm' 81 0 1
+228 'PM.Lisa' 'golf.pm' 84 0 1
+229 'PM.Lisa' 'golf.pm' 85 0 1
+230 'PM.Lisa' 'golf.pm' 86 0 1
+231 'PM.Lisa' 'golf.pm' 87 0 1
+232 'PM.Lisa' 'golf.pm' 88 0 1
+233 'PM.Lisa' 'golf.pm' 91 0 1
+234 'PM.Lisa' 'golf.pm' 92 0 1
+235 'PM.Lisa' 'golf.pm' 93 0 1
+236 'PM.Lisa' 'golf.pm' 94 0 1
+237 'PM.Lisa' 'golf.pm' 95 0 1
+238 'PM.Lisa' 'golf.pm' 98 0 1
+239 'PM.Lisa' 'golf.pm' 99 0 1
+240 'PM.Lisa' 'golf.pm' 100 0 1
+241 'PM.Lisa' 'golf.pm' 101 0 1
+242 'PM.Lisa' 'golf.pm' 102 0 1
+243 'PM.Lisa' 'golf.pm' 105 0 1
+244 'PM.Lisa' 'golf.pm' 106 0 1
+245 'PM.Lisa' 'golf.pm' 107 0 1
+246 'PM.Lisa' 'golf.pm' 108 0 1
+247 'PM.Lisa' 'golf.pm' 109 0 1
+248 'PM.Lisa' 'golf.pm' 112 0 1
+249 'PM.Lisa' 'golf.pm' 113 0 1
+250 'PM.Lisa' 'golf.pm' 114 0 1
+251 'PM.Lisa' 'golf.pm' 115 0 1
+252 'PM.Lisa' 'golf.pm' 116 0 1
+253 'PM.Lisa' 'golf.pm' 119 0 1
+254 'PM.Lisa' 'golf.pm' 120 0 1
+255 'PM.Lisa' 'golf.pm' 121 0 1
+256 'PM.Lisa' 'golf.pm' 123 0 1
+257 'PM.Lisa' 'golf.pm' 126 0 1
+258 'PM.Lisa' 'golf.pm' 127 0 1
+259 'PM.Lisa' 'golf.pm' 128 0 1
+260 'PM.Lisa' 'golf.pm' 129 0 1
+261 'PM.Lisa' 'golf.pm' 130 0 1
+262 'PM.Lisa' 'golf.pm' 133 0 1
+263 'PM.Lisa' 'golf.pf' 134 0 1
+264 'PM.Lisa' 'golf.pf' 135 0 1
+265 'PM.Lisa' 'golf.pf' 136 0 1
+266 'PM.Lisa' 'golf.pf' 137 0 1
+267 'PM.Lisa' 'golf.pf' 140 0 1
+268 'PM.Lisa' 'golf.pf' 141 0 1
+269 'PM.Lisa' 'golf.pf' 142 0 1
+270 'PM.Lisa' 'golf.pf' 143 0 1
+271 'PM.Lisa' 'golf.pf' 144 0 1
+272 'PM.Lisa' 'golf.pf' 147 0 1
+273 'PM.Lisa' 'golf.pf' 148 0 1
+274 'PM.Lisa' 'golf.pf' 149 0 1
+275 'PM.Lisa' 'golf.pf' 150 0 1
+276 'PM.Lisa' 'golf.pf' 151 0 1
+277 'PM.Lisa' 'golf.pf' 154 0 1
+278 'PM.Lisa' 'golf.pf' 155 0 1
+279 'PM.Lisa' 'golf.pf' 156 0 1
+280 'PM.Lisa' 'golf.pf' 157 0 1
+281 'PM.Lisa' 'golf.pf' 158 0 1
+282 'PM.Lisa' 'golf.pf' 161 0 1
+283 'PM.Lisa' 'golf.pf' 162 0 1
+284 'PM.Lisa' 'golf.pf' 163 0 1
+285 'PM.Lisa' 'golf.pf' 164 0 1
+286 'PM.Lisa' 'golf.pf' 165 0 1
+287 'PM.Lisa' 'golf.pf' 168 0 1
+288 'PM.Lisa' 'golf.pf' 169 0 1
+289 'PM.Lisa' 'golf.pf' 170 0 1
+290 'PM.Lisa' 'golf.pf' 171 0 1
+291 'PM.Lisa' 'golf.pf' 172 0 1
+292 'PM.Lisa' 'golf.pf' 175 0 1
+293 'PM.Lisa' 'golf.pf' 176 0 1
+294 'PM.Lisa' 'golf.pf' 177 0 1
+295 'PM.Lisa' 'golf.pf' 178 0 1
+296 'PM.Lisa' 'golf.pf' 179 0 1
+297 'PM.Lisa' 'hotel.pm' 3 0 1
+298 'PM.Lisa' 'hotel.pm' 4 0 1
+299 'PM.Lisa' 'hotel.pm' 7 0 1
+300 'PM.Lisa' 'hotel.pm' 8 0 1
+301 'PM.Lisa' 'hotel.pm' 9 0 1
+302 'PM.Lisa' 'hotel.pm' 10 0 1
+303 'PM.Lisa' 'hotel.pm' 11 0 1
+304 'PM.Lisa' 'hotel.pm' 14 0 1
+305 'PM.Lisa' 'hotel.pm' 15 0 1
+306 'PM.Lisa' 'hotel.pm' 16 0 1
+307 'PM.Lisa' 'hotel.pm' 17 0 1
+308 'PM.Lisa' 'hotel.pm' 18 0 1
+309 'PM.Lisa' 'hotel.pm' 21 0 1
+310 'PM.Lisa' 'hotel.pm' 22 0 1
+311 'PM.Lisa' 'hotel.pm' 23 0 1
+312 'PM.Lisa' 'hotel.pm' 24 0 1
+313 'PM.Lisa' 'hotel.pm' 25 0 1
+314 'PM.Lisa' 'hotel.pm' 28 0 1
+315 'PM.Lisa' 'hotel.pm' 29 0 1
+316 'PM.Lisa' 'hotel.pm' 30 0 1
+317 'PM.Lisa' 'hotel.pm' 31 0 1
+318 'PM.Lisa' 'hotel.pm' 32 0 1
+319 'PM.Lisa' 'hotel.pm' 35 0 1
+320 'PM.Lisa' 'hotel.pm' 36 0 1
+321 'PM.Lisa' 'hotel.pm' 37 0 1
+322 'PM.Lisa' 'hotel.pm' 38 0 1
+323 'PM.Lisa' 'hotel.pm' 39 0 1
+324 'PM.Lisa' 'hotel.pm' 42 0 1
+325 'PM.Lisa' 'hotel.pm' 43 0 1
+326 'PM.Lisa' 'hotel.pm' 44 0 1
+327 'PM.Lisa' 'hotel.pm' 45 0 1
+328 'PM.Lisa' 'hotel.pm' 46 0 1
+329 'PM.Lisa' 'hotel.pm' 49 0 1
+330 'PM.Lisa' 'hotel.pm' 50 0 1
+331 'PM.Lisa' 'hotel.pm' 51 0 1
+332 'PM.Lisa' 'hotel.pm' 52 0 1
+333 'PM.Lisa' 'hotel.pm' 53 0 1
+334 'PM.Lisa' 'hotel.pm' 56 0 1
+335 'PM.Lisa' 'hotel.pm' 57 0 1
+336 'PM.Lisa' 'hotel.pm' 58 0 1
+337 'PM.Lisa' 'hotel.pm' 59 0 1
+338 'PM.Lisa' 'hotel.pm' 60 0 1
+339 'PM.Lisa' 'hotel.pm' 63 0 1
+340 'PM.Lisa' 'hotel.pm' 64 0 1
+341 'PM.Lisa' 'hotel.pm' 65 0 1
+342 'PM.Lisa' 'hotel.pm' 66 0 1
+343 'PM.Lisa' 'hotel.pm' 67 0 1
+344 'PM.Lisa' 'hotel.pm' 70 0 1
+345 'PM.Lisa' 'hotel.pm' 71 0 1
+346 'PM.Lisa' 'hotel.pm' 72 0 1
+347 'PM.Lisa' 'hotel.pm' 73 0 1
+348 'PM.Lisa' 'hotel.pm' 74 0 1
+349 'PM.Lisa' 'hotel.pm' 77 0 1
+350 'PM.Lisa' 'hotel.pm' 78 0 1
+351 'PM.Lisa' 'hotel.pm' 79 0 1
+352 'PM.Lisa' 'hotel.pm' 80 0 1
+353 'PM.Lisa' 'hotel.pm' 81 0 1
+354 'PM.Lisa' 'hotel.pm' 84 0 1
+355 'PM.Lisa' 'hotel.pm' 85 0 1
+356 'PM.Lisa' 'hotel.pm' 86 0 1
+357 'PM.Lisa' 'hotel.pm' 87 0 1
+358 'PM.Lisa' 'hotel.pm' 88 0 1
+359 'PM.Lisa' 'hotel.pm' 91 0 1
+360 'PM.Lisa' 'hotel.pm' 92 0 1
+361 'PM.Lisa' 'hotel.pm' 93 0 1
+362 'PM.Lisa' 'hotel.pm' 94 0 1
+363 'PM.Lisa' 'hotel.pm' 95 0 1
+364 'PM.Lisa' 'hotel.pm' 98 0 1
+365 'PM.Lisa' 'hotel.pm' 99 0 1
+366 'PM.Lisa' 'hotel.pm' 100 0 1
+367 'PM.Lisa' 'hotel.pm' 101 0 1
+368 'PM.Lisa' 'hotel.pm' 102 0 1
+369 'PM.Lisa' 'hotel.pm' 105 0 1
+370 'PM.Lisa' 'hotel.pm' 106 0 1
+371 'PM.Lisa' 'hotel.pm' 107 0 1
+372 'PM.Lisa' 'hotel.pm' 108 0 1
+373 'PM.Lisa' 'hotel.pm' 109 0 1
+374 'PM.Lisa' 'hotel.pm' 112 0 1
+375 'PM.Lisa' 'hotel.pm' 113 0 1
+376 'PM.Lisa' 'hotel.pm' 114 0 1
+377 'PM.Lisa' 'hotel.pm' 115 0 1
+378 'PM.Lisa' 'hotel.pm' 116 0 1
+379 'PM.Lisa' 'hotel.pm' 119 0 1
+380 'PM.Lisa' 'hotel.pm' 120 0 1
+381 'PM.Lisa' 'hotel.pm' 121 0 1
+382 'PM.Lisa' 'hotel.pm' 123 0 1
+383 'PM.Lisa' 'hotel.pm' 126 0 1
+384 'PM.Lisa' 'hotel.pm' 127 0 1
+385 'PM.Lisa' 'hotel.pm' 128 0 1
+386 'PM.Lisa' 'hotel.pm' 129 0 1
+387 'PM.Lisa' 'hotel.pm' 130 0 1
+388 'PM.Lisa' 'hotel.pm' 133 0 1
+389 'PM.Lisa' 'hotel.pm' 134 0 1
+390 'PM.Lisa' 'hotel.pm' 135 0 1
+391 'PM.Lisa' 'hotel.pm' 136 0 1
+392 'PM.Lisa' 'hotel.pm' 137 0 1
+393 'PM.Lisa' 'hotel.pm' 140 0 1
+394 'PM.Lisa' 'hotel.pm' 141 0 1
+395 'PM.Lisa' 'hotel.pm' 142 0 1
+396 'PM.Lisa' 'hotel.pm' 143 0 1
+397 'PM.Lisa' 'hotel.pm' 144 0 1
+398 'PM.Lisa' 'hotel.pm' 147 0 1
+399 'PM.Lisa' 'hotel.pm' 148 0 1
+400 'PM.Lisa' 'hotel.pm' 149 0 1
+401 'PM.Lisa' 'hotel.pm' 150 0 1
+402 'PM.Lisa' 'hotel.pm' 151 0 1
+403 'PM.Lisa' 'hotel.pm' 154 0 1
+404 'PM.Lisa' 'hotel.pm' 155 0 1
+405 'PM.Lisa' 'hotel.pm' 156 0 1
+406 'PM.Lisa' 'hotel.pm' 157 0 1
+407 'PM.Lisa' 'hotel.pm' 158 0 1
+408 'PM.Lisa' 'hotel.pm' 161 0 1
+409 'PM.Lisa' 'hotel.pm' 162 0 1
+410 'PM.Lisa' 'hotel.pm' 163 0 1
+411 'PM.Lisa' 'hotel.pm' 164 0 1
+412 'PM.Lisa' 'hotel.pm' 165 0 1
+413 'PM.Lisa' 'hotel.pm' 168 0 1
+414 'PM.Lisa' 'hotel.pm' 169 0 1
+415 'PM.Lisa' 'hotel.pm' 170 0 1
+416 'PM.Lisa' 'hotel.pm' 171 0 1
+417 'PM.Lisa' 'hotel.pm' 172 0 1
+418 'PM.Lisa' 'hotel.pm' 175 0 1
+419 'PM.Lisa' 'hotel.pm' 176 0 1
+420 'PM.Lisa' 'hotel.pm' 177 0 1
+421 'PM.Lisa' 'hotel.pm' 178 0 1
+422 'PM.Lisa' 'hotel.pm' 179 0 1
+423 'PM.Lisa' 'hotel.pm' 182 0 1
+424 'PM.Lisa' 'hotel.pm' 183 0 1
+425 'PM.Lisa' 'hotel.pm' 184 0 1
+426 'PM.Lisa' 'hotel.pm' 185 0 1
+427 'PM.Lisa' 'hotel.pm' 186 0 1
+428 'PM.Lisa' 'hotel.pm' 189 0 1
+429 'PM.Lisa' 'hotel.pm' 190 0 1
+430 'PM.Lisa' 'hotel.pm' 191 0 1
+431 'PM.Lisa' 'hotel.pm' 192 0 1
+432 'PM.Lisa' 'hotel.pm' 193 0 1
+433 'PM.Lisa' 'hotel.pm' 196 0 1
+434 'PM.Lisa' 'hotel.pm' 197 0 1
+435 'PM.Lisa' 'hotel.pm' 198 0 1
+436 'PM.Lisa' 'hotel.pm' 199 0 1
+437 'PM.Lisa' 'hotel.pm' 200 0 1
+438 'PM.Lisa' 'hotel.pm' 203 0 1
+439 'PM.Lisa' 'hotel.pm' 204 0 1
+440 'PM.Lisa' 'hotel.pm' 205 0 1
+441 'PM.Lisa' 'hotel.pm' 206 0 1
+442 'PM.Lisa' 'hotel.pm' 207 0 1
+443 'PM.Lisa' 'hotel.pm' 210 0 1
+444 'PM.Lisa' 'hotel.pm' 211 0 1
+445 'PM.Lisa' 'hotel.pm' 212 0 1
+446 'PM.Lisa' 'hotel.pm' 213 0 1
+447 'PM.Lisa' 'hotel.pm' 214 0 1
+448 'PM.Lisa' 'hotel.pm' 217 0 1
+449 'PM.Lisa' 'hotel.pm' 218 0 1
+450 'PM.Lisa' 'hotel.pm' 219 0 1
+451 'PM.Lisa' 'hotel.pm' 220 0 1
+452 'PM.Lisa' 'hotel.pm' 221 0 1
+453 'PM.Lisa' 'hotel.pm' 224 0 1
+454 'PM.Lisa' 'hotel.pm' 225 0 1
+455 'PM.Lisa' 'hotel.pm' 226 0 1
+456 'PM.Lisa' 'hotel.pm' 227 0 1
+457 'PM.Lisa' 'hotel.pm' 228 0 1
+458 'PM.Lisa' 'hotel.pm' 231 0 1
+459 'PM.Lisa' 'hotel.pm' 232 0 1
+460 'PM.Lisa' 'hotel.pm' 233 0 1
+461 'PM.Lisa' 'hotel.pm' 234 0 1
+462 'PM.Lisa' 'hotel.pm' 235 0 1
+463 'PM.Lisa' 'hotel.pm' 238 0 1
+464 'PM.Lisa' 'hotel.pm' 239 0 1
+465 'PM.Lisa' 'hotel.pm' 240 0 1
+466 'PM.Lisa' 'hotel.pm' 241 0 1
+467 'PM.Lisa' 'hotel.pm' 242 0 1
+468 'PM.Lisa' 'hotel.pm' 245 0 1
+469 'PM.Lisa' 'hotel.pf' 246 0 1
+470 'PM.Lisa' 'hotel.pf' 247 0 1
+471 'PM.Lisa' 'hotel.pf' 248 0 1
+472 'PM.Lisa' 'hotel.pf' 249 0 1
+473 'PM.Lisa' 'hotel.pf' 252 0 1
+474 'PM.Lisa' 'hotel.pf' 253 0 1
+475 'PM.Lisa' 'hotel.pf' 254 0 1
+476 'PM.Lisa' 'hotel.pf' 255 0 1
+477 'PM.Lisa' 'hotel.pf' 256 0 1
+478 'PM.Lisa' 'hotel.pf' 259 0 1
+479 'PM.Lisa' 'hotel.pf' 260 0 1
+480 'PM.Lisa' 'hotel.pf' 261 0 1
+481 'PM.Lisa' 'hotel.pf' 262 0 1
+482 'PM.Lisa' 'hotel.pf' 263 0 1
+483 'PM.Lisa' 'hotel.pf' 266 0 1
+484 'PM.Lisa' 'hotel.pf' 267 0 1
+485 'PM.Lisa' 'hotel.pf' 268 0 1
+486 'PM.Lisa' 'hotel.pf' 269 0 1
+487 'PM.Lisa' 'hotel.pf' 270 0 1
+488 'PM.Lisa' 'hotel.pf' 273 0 1
+489 'PM.Lisa' 'hotel.pf' 274 0 1
+490 'PM.Lisa' 'hotel.pf' 275 0 1
+491 'PM.Lisa' 'hotel.pf' 276 0 1
+492 'PM.Lisa' 'hotel.pf' 277 0 1
+493 'PM.Lisa' 'hotel.pf' 280 0 1
+494 'PM.Lisa' 'hotel.pf' 281 0 1
+495 'PM.Lisa' 'hotel.pf' 282 0 1
+496 'PM.Lisa' 'hotel.pf' 283 0 1
+497 'PM.Lisa' 'hotel.pf' 284 0 1
+498 'PM.Lisa' 'hotel.pf' 287 0 1
+499 'PM.Lisa' 'hotel.pf' 288 0 1
+500 'PM.Lisa' 'hotel.pf' 289 0 1
+501 'PM.Lisa' 'hotel.pf' 290 0 1
+502 'PM.Lisa' 'hotel.pf' 291 0 1
+503 'PM.Lisa' 'kilo.pe' 63 0 1
+504 'PM.Lisa' 'kilo.pe' 64 0 1
+505 'PM.Lisa' 'kilo.pe' 65 0 1
+506 'PM.Lisa' 'kilo.pe' 66 0 1
+507 'PM.Lisa' 'kilo.pe' 67 0 1
+508 'PM.Lisa' 'kilo.pe' 70 0 1
+509 'PM.Lisa' 'kilo.pe' 71 0 1
+510 'PM.Lisa' 'kilo.pe' 72 0 1
+511 'PM.Lisa' 'kilo.pe' 73 0 1
+512 'PM.Lisa' 'kilo.pe' 74 0 1
+513 'PM.Lisa' 'kilo.pe' 77 0 1
+514 'PM.Lisa' 'kilo.pe' 78 0 1
+515 'PM.Lisa' 'kilo.pe' 79 0 1
+516 'PM.Lisa' 'kilo.pe' 80 0 1
+517 'PM.Lisa' 'kilo.pe' 81 0 1
+518 'PM.Lisa' 'kilo.pe' 84 0 1
+519 'PM.Lisa' 'kilo.pm' 85 0 1
+520 'PM.Lisa' 'kilo.pm' 86 0 1
+521 'PM.Lisa' 'kilo.pm' 87 0 1
+522 'PM.Lisa' 'kilo.pm' 88 0 1
+523 'PM.Lisa' 'kilo.pm' 91 0 1
+524 'PM.Lisa' 'kilo.pm' 92 0 1
+525 'PM.Lisa' 'kilo.pm' 93 0 1
+526 'PM.Lisa' 'kilo.pm' 94 0 1
+527 'PM.Lisa' 'kilo.pm' 95 0 1
+528 'PM.Lisa' 'kilo.pm' 98 0 1
+529 'PM.Lisa' 'kilo.pm' 99 0 1
+530 'PM.Lisa' 'kilo.pm' 100 0 1
+531 'PM.Lisa' 'kilo.pm' 101 0 1
+532 'PM.Lisa' 'kilo.pm' 102 0 1
+533 'PM.Lisa' 'kilo.pm' 105 0 1
+534 'PM.Lisa' 'kilo.pm' 106 0 1
+535 'PM.Lisa' 'kilo.pm' 107 0 1
+536 'PM.Lisa' 'kilo.pm' 108 0 1
+537 'PM.Lisa' 'kilo.pm' 109 0 1
+538 'PM.Lisa' 'kilo.pm' 112 0 1
+539 'PM.Lisa' 'kilo.pm' 113 0 1
+540 'PM.Lisa' 'kilo.pm' 114 0 1
+541 'PM.Lisa' 'kilo.pm' 115 0 1
+542 'PM.Lisa' 'kilo.pm' 116 0 1
+543 'PM.Lisa' 'kilo.pm' 119 0 1
+544 'PM.Lisa' 'kilo.pm' 120 0 1
+545 'PM.Lisa' 'kilo.pm' 121 0 1
+546 'PM.Lisa' 'kilo.pm' 123 0 1
+547 'PM.Lisa' 'kilo.pm' 126 0 1
+548 'PM.Lisa' 'kilo.pm' 127 0 1
+549 'PM.Lisa' 'kilo.pm' 128 0 1
+550 'PM.Lisa' 'kilo.pm' 129 0 1
+551 'PM.Lisa' 'kilo.pm' 130 0 1
+552 'PM.Lisa' 'kilo.pm' 133 0 1
+553 'PM.Lisa' 'kilo.pm' 134 0 1
+554 'PM.Lisa' 'kilo.pm' 135 0 1
+555 'PM.Lisa' 'kilo.pm' 136 0 1
+556 'PM.Lisa' 'kilo.pm' 137 0 1
+557 'PM.Lisa' 'kilo.pm' 140 0 1
+558 'PM.Lisa' 'kilo.pm' 141 0 1
+559 'PM.Lisa' 'kilo.pm' 142 0 1
+560 'PM.Lisa' 'kilo.pm' 143 0 1
+561 'PM.Lisa' 'kilo.pm' 144 0 1
+562 'PM.Lisa' 'kilo.pm' 147 0 1
+563 'PM.Lisa' 'kilo.pm' 148 0 1
+564 'PM.Lisa' 'kilo.pm' 149 0 1
+565 'PM.Lisa' 'kilo.pm' 150 0 1
+566 'PM.Lisa' 'kilo.pm' 151 0 1
+567 'PM.Lisa' 'kilo.pm' 154 0 1
+568 'PM.Lisa' 'kilo.pm' 155 0 1
+569 'PM.Lisa' 'kilo.pm' 156 0 1
+570 'PM.Lisa' 'kilo.pm' 157 0 1
+571 'PM.Lisa' 'kilo.pm' 158 0 1
+572 'PM.Lisa' 'kilo.pm' 161 0 1
+573 'PM.Lisa' 'kilo.pm' 162 0 1
+574 'PM.Lisa' 'kilo.pm' 163 0 1
+575 'PM.Lisa' 'kilo.pm' 164 0 1
+576 'PM.Lisa' 'kilo.pm' 165 0 1
+577 'PM.Lisa' 'kilo.pm' 168 0 1
+578 'PM.Lisa' 'kilo.pm' 169 0 1
+579 'PM.Lisa' 'kilo.pm' 170 0 1
+580 'PM.Lisa' 'kilo.pm' 171 0 1
+581 'PM.Lisa' 'kilo.pm' 172 0 1
+582 'PM.Lisa' 'kilo.pm' 175 0 1
+583 'PM.Lisa' 'kilo.pm' 176 0 1
+584 'PM.Lisa' 'kilo.pm' 177 0 1
+585 'PM.Lisa' 'kilo.pm' 178 0 1
+586 'PM.Lisa' 'kilo.pm' 179 0 1
+587 'PM.Lisa' 'kilo.pm' 182 0 1
+588 'PM.Lisa' 'kilo.pm' 183 0 1
+589 'PM.Lisa' 'kilo.pm' 184 0 1
+590 'PM.Lisa' 'kilo.pm' 185 0 1
+591 'PM.Lisa' 'kilo.pm' 186 0 1
+592 'PM.Lisa' 'kilo.pm' 189 0 1
+593 'PM.Lisa' 'kilo.pm' 190 0 1
+594 'PM.Lisa' 'kilo.pm' 191 0 1
+595 'PM.Lisa' 'kilo.pm' 192 0 1
+596 'PM.Lisa' 'kilo.pm' 193 0 1
+597 'PM.Lisa' 'kilo.pm' 196 0 1
+598 'PM.Lisa' 'kilo.pm' 197 0 1
+599 'PM.Lisa' 'kilo.pm' 198 0 1
+600 'PM.Lisa' 'kilo.pm' 199 0 1
+601 'PM.Lisa' 'kilo.pm' 200 0 1
+602 'PM.Lisa' 'kilo.pm' 203 0 1
+603 'PM.Lisa' 'kilo.pm' 204 0 1
+604 'PM.Lisa' 'kilo.pm' 205 0 1
+605 'PM.Lisa' 'kilo.pm' 206 0 1
+606 'PM.Lisa' 'kilo.pm' 207 0 1
+607 'PM.Lisa' 'kilo.pm' 210 0 1
+608 'PM.Lisa' 'kilo.pm' 211 0 1
+609 'PM.Lisa' 'kilo.pm' 212 0 1
+610 'PM.Lisa' 'kilo.pm' 213 0 1
+611 'PM.Lisa' 'kilo.pm' 214 0 1
+612 'PM.Lisa' 'kilo.pf' 217 0 1
+613 'PM.Lisa' 'kilo.pf' 218 0 1
+614 'PM.Lisa' 'kilo.pf' 219 0 1
+615 'PM.Lisa' 'kilo.pf' 220 0 1
+616 'PM.Lisa' 'kilo.pf' 221 0 1
+617 'PM.Lisa' 'kilo.pf' 224 0 1
+618 'PM.Lisa' 'kilo.pf' 225 0 1
+619 'PM.Lisa' 'kilo.pf' 226 0 1
+620 'PM.Lisa' 'kilo.pf' 227 0 1
+621 'PM.Lisa' 'kilo.pf' 228 0 1
+622 'PM.Lisa' 'kilo.pf' 231 0 1
+623 'PM.Lisa' 'kilo.pf' 232 0 1
+624 'PM.Lisa' 'kilo.pf' 233 0 1
+625 'PM.Lisa' 'kilo.pf' 234 0 1
+626 'PM.Lisa' 'kilo.pf' 235 0 1
+627 'PM.Lisa' 'kilo.pf' 238 0 1
+628 'PM.Lisa' 'kilo.pf' 239 0 1
+629 'PM.Lisa' 'kilo.pf' 240 0 1
+630 'PM.Lisa' 'kilo.pf' 241 0 1
+631 'PM.Lisa' 'kilo.pf' 242 0 1
+632 'PM.Lisa' 'kilo.pf' 245 0 1
+633 'PM.Lisa' 'kilo.pf' 246 0 1
+634 'PM.Lisa' 'kilo.pf' 247 0 1
+635 'PM.Lisa' 'kilo.pf' 248 0 1
+636 'PM.Lisa' 'kilo.pf' 249 0 1
+637 'PM.Lisa' 'kilo.pf' 252 0 1
+638 'PM.Lisa' 'kilo.pf' 253 0 1
+639 'PM.Lisa' 'kilo.pf' 254 0 1
+640 'PM.Lisa' 'kilo.pf' 255 0 1
+641 'PM.Lisa' 'kilo.pf' 256 0 1
+642 'PM.Lisa' 'kilo.pf' 259 0 1
+643 'PM.Lisa' 'kilo.pf' 260 0 1
+644 'PM.Lisa' 'lima.pm' 1 0 1
+645 'PM.Lisa' 'lima.pm' 3 0 1
+646 'PM.Lisa' 'lima.pm' 4 0 1
+647 'PM.Lisa' 'lima.pm' 7 0 1
+648 'PM.Lisa' 'lima.pm' 8 0 1
+649 'PM.Lisa' 'lima.pm' 9 0 1
+650 'PM.Lisa' 'lima.pm' 10 0 1
+651 'PM.Lisa' 'lima.pm' 11 0 1
+652 'PM.Lisa' 'lima.pm' 14 0 1
+653 'PM.Lisa' 'lima.pm' 15 0 1
+654 'PM.Lisa' 'lima.pm' 16 0 1
+655 'PM.Lisa' 'lima.pm' 17 0 1
+656 'PM.Lisa' 'lima.pm' 18 0 1
+657 'PM.Lisa' 'lima.pm' 21 0 1
+658 'PM.Lisa' 'lima.pm' 22 0 1
+659 'PM.Lisa' 'lima.pm' 23 0 1
+660 'PM.Lisa' 'lima.pm' 24 0 1
+661 'PM.Lisa' 'lima.pm' 25 0 1
+662 'PM.Lisa' 'lima.pm' 28 0 1
+663 'PM.Lisa' 'lima.pm' 29 0 1
+664 'PM.Lisa' 'lima.pm' 30 0 1
+665 'PM.Lisa' 'lima.pm' 31 0 1
+666 'PM.Lisa' 'lima.pm' 32 0 1
+667 'PM.Lisa' 'lima.pm' 35 0 1
+668 'PM.Lisa' 'lima.pm' 36 0 1
+669 'PM.Lisa' 'lima.pm' 37 0 1
+670 'PM.Lisa' 'lima.pm' 38 0 1
+671 'PM.Lisa' 'lima.pm' 39 0 1
+672 'PM.Lisa' 'lima.pm' 42 0 1
+673 'PM.Lisa' 'lima.pm' 43 0 1
+674 'PM.Lisa' 'lima.pm' 44 0 1
+675 'PM.Lisa' 'lima.pm' 45 0 1
+676 'PM.Lisa' 'lima.pm' 46 0 1
+677 'PM.Lisa' 'lima.pm' 49 0 1
+678 'PM.Lisa' 'lima.pm' 50 0 1
+679 'PM.Lisa' 'lima.pm' 51 0 1
+680 'PM.Lisa' 'lima.pm' 52 0 1
+681 'PM.Lisa' 'lima.pm' 53 0 1
+682 'PM.Lisa' 'lima.pm' 56 0 1
+683 'PM.Lisa' 'lima.pm' 57 0 1
+684 'PM.Lisa' 'lima.pm' 58 0 1
+685 'PM.Lisa' 'lima.pm' 59 0 1
+686 'PM.Lisa' 'lima.pm' 60 0 1
+687 'PM.Lisa' 'lima.pm' 63 0 1
+688 'PM.Lisa' 'lima.pm' 64 0 1
+689 'PM.Lisa' 'lima.pm' 65 0 1
+690 'PM.Lisa' 'lima.pm' 66 0 1
+691 'PM.Lisa' 'lima.pm' 67 0 1
+692 'PM.Lisa' 'lima.pm' 70 0 1
+693 'PM.Lisa' 'lima.pm' 71 0 1
+694 'PM.Lisa' 'lima.pm' 72 0 1
+695 'PM.Lisa' 'lima.pm' 73 0 1
+696 'PM.Lisa' 'lima.pm' 74 0 1
+697 'PM.Lisa' 'lima.pm' 77 0 1
+698 'PM.Lisa' 'lima.pm' 78 0 1
+699 'PM.Lisa' 'lima.pm' 79 0 1
+700 'PM.Lisa' 'lima.pm' 80 0 1
+701 'PM.Lisa' 'lima.pm' 81 0 1
+702 'PM.Lisa' 'lima.pm' 84 0 1
+703 'PM.Lisa' 'lima.pm' 85 0 1
+704 'PM.Lisa' 'lima.pm' 86 0 1
+705 'PM.Lisa' 'lima.pm' 87 0 1
+706 'PM.Lisa' 'lima.pm' 88 0 1
+707 'PM.Lisa' 'lima.pm' 91 0 1
+708 'PM.Lisa' 'lima.pm' 92 0 1
+709 'PM.Lisa' 'lima.pm' 93 0 1
+710 'PM.Lisa' 'lima.pm' 94 0 1
+711 'PM.Lisa' 'lima.pm' 95 0 1
+712 'PM.Lisa' 'lima.pm' 98 0 1
+713 'PM.Lisa' 'lima.pm' 99 0 1
+714 'PM.Lisa' 'lima.pm' 100 0 1
+715 'PM.Lisa' 'lima.pm' 101 0 1
+716 'PM.Lisa' 'lima.pm' 102 0 1
+717 'PM.Lisa' 'lima.pm' 105 0 1
+718 'PM.Lisa' 'lima.pm' 106 0 1
+719 'PM.Lisa' 'lima.pm' 107 0 1
+720 'PM.Lisa' 'lima.pm' 108 0 1
+721 'PM.Lisa' 'lima.pm' 109 0 1
+722 'PM.Lisa' 'lima.pm' 112 0 1
+723 'PM.Lisa' 'lima.pm' 113 0 1
+724 'PM.Lisa' 'lima.pm' 114 0 1
+725 'PM.Lisa' 'lima.pm' 115 0 1
+726 'PM.Lisa' 'lima.pm' 116 0 1
+727 'PM.Lisa' 'lima.pm' 119 0 1
+728 'PM.Lisa' 'lima.pm' 120 0 1
+729 'PM.Lisa' 'lima.pm' 121 0 1
+730 'PM.Lisa' 'lima.pm' 123 0 1
+731 'PM.Lisa' 'lima.pm' 126 0 1
+732 'PM.Lisa' 'lima.pm' 127 0 1
+733 'PM.Lisa' 'lima.pm' 128 0 1
+734 'PM.Lisa' 'lima.pm' 129 0 1
+735 'PM.Lisa' 'lima.pm' 130 0 1
+736 'PM.Lisa' 'lima.pm' 133 0 1
+737 'PM.Lisa' 'lima.pm' 134 0 1
+738 'PM.Lisa' 'lima.pm' 135 0 1
+739 'PM.Lisa' 'lima.pm' 136 0 1
+740 'PM.Lisa' 'lima.pm' 137 0 1
+741 'PM.Lisa' 'lima.pm' 140 0 1
+742 'PM.Lisa' 'lima.pm' 141 0 1
+743 'PM.Lisa' 'lima.pm' 142 0 1
+744 'PM.Lisa' 'lima.pm' 143 0 1
+745 'PM.Lisa' 'lima.pm' 144 0 1
+746 'PM.Lisa' 'lima.pm' 147 0 1
+747 'PM.Lisa' 'lima.pm' 148 0 1
+748 'PM.Lisa' 'lima.pm' 149 0 1
+749 'PM.Lisa' 'lima.pm' 150 0 1
+750 'PM.Lisa' 'lima.pm' 151 0 1
+751 'PM.Lisa' 'lima.pm' 154 0 1
+752 'PM.Lisa' 'lima.pm' 155 0 1
+753 'PM.Lisa' 'lima.pm' 156 0 1
+754 'PM.Lisa' 'lima.pm' 157 0 1
+755 'PM.Lisa' 'lima.pm' 158 0 1
+756 'PM.Lisa' 'lima.pm' 161 0 1
+757 'PM.Lisa' 'lima.pm' 162 0 1
+758 'PM.Lisa' 'lima.pm' 163 0 1
+759 'PM.Lisa' 'lima.pm' 164 0 1
+760 'PM.Lisa' 'lima.pm' 165 0 1
+761 'PM.Lisa' 'lima.pm' 168 0 1
+762 'PM.Lisa' 'lima.pm' 169 0 1
+763 'PM.Lisa' 'lima.pm' 170 0 1
+764 'PM.Lisa' 'lima.pm' 171 0 1
+765 'PM.Lisa' 'lima.pm' 172 0 1
+766 'PM.Lisa' 'lima.pm' 175 0 1
+767 'PM.Lisa' 'lima.pm' 176 0 1
+768 'PM.Lisa' 'lima.pm' 177 0 1
+769 'PM.Lisa' 'lima.pm' 178 0 1
+770 'PM.Lisa' 'lima.pm' 179 0 1
+771 'PM.Lisa' 'lima.pm' 182 0 1
+772 'PM.Lisa' 'lima.pm' 183 0 1
+773 'PM.Lisa' 'lima.pm' 184 0 1
+774 'PM.Lisa' 'lima.pm' 185 0 1
+775 'PM.Lisa' 'lima.pm' 186 0 1
+776 'PM.Lisa' 'lima.pm' 189 0 1
+777 'PM.Lisa' 'lima.pm' 190 0 1
+778 'PM.Lisa' 'lima.pm' 191 0 1
+779 'PM.Lisa' 'lima.pm' 192 0 1
+780 'PM.Lisa' 'lima.pm' 193 0 1
+781 'PM.Lisa' 'lima.pm' 196 0 1
+782 'PM.Lisa' 'lima.pm' 197 0 1
+783 'PM.Lisa' 'lima.pm' 198 0 1
+784 'PM.Lisa' 'lima.pm' 199 0 1
+785 'PM.Lisa' 'lima.pm' 200 0 1
+786 'PM.Lisa' 'lima.pm' 203 0 1
+787 'PM.Lisa' 'lima.pm' 204 0 1
+788 'PM.Lisa' 'lima.pm' 205 0 1
+789 'PM.Lisa' 'lima.pm' 206 0 1
+790 'PM.Lisa' 'lima.pm' 207 0 1
+791 'PM.Lisa' 'lima.pm' 210 0 1
+792 'PM.Lisa' 'lima.pm' 211 0 1
+793 'PM.Lisa' 'lima.pm' 212 0 1
+794 'PM.Lisa' 'lima.pm' 213 0 1
+795 'PM.Lisa' 'lima.pm' 214 0 1
+796 'PM.Lisa' 'lima.pm' 217 0 1
+797 'PM.Lisa' 'lima.pm' 218 0 1
+798 'PM.Lisa' 'lima.pm' 219 0 1
+799 'PM.Lisa' 'lima.pm' 220 0 1
+800 'PM.Lisa' 'lima.pm' 221 0 1
+801 'PM.Lisa' 'lima.pm' 224 0 1
+802 'PM.Lisa' 'lima.pm' 225 0 1
+803 'PM.Lisa' 'lima.pm' 226 0 1
+804 'PM.Lisa' 'lima.pm' 227 0 1
+805 'PM.Lisa' 'lima.pm' 228 0 1
+806 'PM.Lisa' 'lima.pm' 231 0 1
+807 'PM.Lisa' 'lima.pm' 232 0 1
+808 'PM.Lisa' 'lima.pm' 233 0 1
+809 'PM.Lisa' 'lima.pm' 234 0 1
+810 'PM.Lisa' 'lima.pm' 235 0 1
+811 'PM.Lisa' 'lima.pm' 238 0 1
+812 'PM.Lisa' 'lima.pm' 239 0 1
+813 'PM.Lisa' 'lima.pm' 240 0 1
+814 'PM.Lisa' 'lima.pm' 241 0 1
+815 'PM.Lisa' 'lima.pm' 242 0 1
+816 'PM.Lisa' 'lima.pm' 245 0 1
+817 'PM.Lisa' 'lima.pm' 246 0 1
+818 'PM.Lisa' 'lima.pm' 247 0 1
+819 'PM.Lisa' 'lima.pm' 248 0 1
+820 'PM.Lisa' 'lima.pm' 249 0 1
+821 'PM.Lisa' 'lima.pm' 252 0 1
+822 'PM.Lisa' 'lima.pm' 253 0 1
+823 'PM.Lisa' 'lima.pm' 254 0 1
+824 'PM.Lisa' 'lima.pm' 255 0 1
+825 'PM.Lisa' 'lima.pm' 256 0 1
+826 'PM.Lisa' 'lima.pm' 259 0 1
+827 'PM.Lisa' 'lima.pm' 260 0 1
+828 'PM.Lisa' 'lima.pm' 261 0 1
+829 'PM.Lisa' 'lima.pm' 262 0 1
+830 'PM.Lisa' 'lima.pm' 263 0 1
+831 'PM.Lisa' 'lima.pm' 266 0 1
+832 'PM.Lisa' 'lima.pm' 267 0 1
+833 'PM.Lisa' 'lima.pm' 268 0 1
+834 'PM.Lisa' 'lima.pm' 269 0 1
+835 'PM.Lisa' 'lima.pm' 270 0 1
+836 'PM.Lisa' 'lima.pm' 273 0 1
+837 'PM.Lisa' 'lima.pm' 274 0 1
+838 'PM.Lisa' 'lima.pm' 275 0 1
+839 'PM.Lisa' 'lima.pm' 276 0 1
+840 'PM.Lisa' 'lima.pm' 277 0 1
+841 'PM.Lisa' 'lima.pm' 280 0 1
+842 'PM.Lisa' 'lima.pm' 281 0 1
+843 'PM.Lisa' 'lima.pm' 282 0 1
+844 'PM.Lisa' 'lima.pm' 283 0 1
+845 'PM.Lisa' 'lima.pm' 284 0 1
+846 'PM.Lisa' 'lima.pm' 287 0 1
+847 'PM.Lisa' 'lima.pm' 288 0 1
+848 'PM.Lisa' 'lima.pm' 289 0 1
+849 'PM.Lisa' 'lima.pm' 290 0 1
+850 'PM.Lisa' 'lima.pm' 291 0 1
+851 'PM.Lisa' 'lima.pm' 294 0 1
+852 'PM.Lisa' 'lima.pm' 295 0 1
+853 'PM.Lisa' 'lima.pm' 296 0 1
+854 'PM.Lisa' 'lima.pm' 297 0 1
+855 'PM.Lisa' 'lima.pm' 298 0 1
+856 'PM.Lisa' 'lima.pm' 301 0 1
+857 'PM.Lisa' 'lima.pm' 302 0 1
+858 'PM.Lisa' 'lima.pm' 303 0 1
+859 'PM.Lisa' 'lima.pm' 304 0 1
+860 'PM.Lisa' 'lima.pm' 305 0 1
+861 'PM.Lisa' 'lima.pf' 308 0 1
+862 'PM.Lisa' 'lima.pf' 309 0 1
+863 'PM.Lisa' 'lima.pf' 310 0 1
+864 'PM.Lisa' 'lima.pf' 311 0 1
+865 'PM.Lisa' 'lima.pf' 312 0 1
+866 'PM.Lisa' 'lima.pf' 315 0 1
+867 'PM.Lisa' 'lima.pf' 316 0 1
+868 'PM.Lisa' 'lima.pf' 317 0 1
+869 'PM.Lisa' 'lima.pf' 318 0 1
+870 'PM.Lisa' 'lima.pf' 319 0 1
+871 'PM.Lisa' 'lima.pf' 322 0 1
+872 'PM.Lisa' 'lima.pf' 323 0 1
+873 'PM.Lisa' 'lima.pf' 324 0 1
+874 'PM.Lisa' 'lima.pf' 325 0 1
+875 'PM.Lisa' 'lima.pf' 326 0 1
+876 'PM.Lisa' 'lima.pf' 329 0 1
+877 'PM.Lisa' 'lima.pf' 330 0 1
+878 'PM.Lisa' 'lima.pf' 331 0 1
+879 'PM.Lisa' 'lima.pf' 332 0 1
+880 'PM.Lisa' 'lima.pf' 333 0 1;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 245;
+
+param UBDAY:
+1   2   3   4 :=
+1 'PM.Lisa' 3 0 2
+2 'PM.Lisa' 4 0 2
+3 'PM.Lisa' 7 0 2
+4 'PM.Lisa' 8 0 2
+5 'PM.Lisa' 9 0 2
+6 'PM.Lisa' 10 0 2
+7 'PM.Lisa' 11 0 2
+8 'PM.Lisa' 14 0 2
+9 'PM.Lisa' 15 0 2
+10 'PM.Lisa' 16 0 2
+11 'PM.Lisa' 17 0 2
+12 'PM.Lisa' 18 0 2
+13 'PM.Lisa' 21 0 2
+14 'PM.Lisa' 22 0 2
+15 'PM.Lisa' 23 0 2
+16 'PM.Lisa' 24 0 2
+17 'PM.Lisa' 25 0 2
+18 'PM.Lisa' 28 0 2
+19 'PM.Lisa' 29 0 2
+20 'PM.Lisa' 30 0 2
+21 'PM.Lisa' 31 0 2
+22 'PM.Lisa' 32 0 2
+23 'PM.Lisa' 35 0 2
+24 'PM.Lisa' 36 0 2
+25 'PM.Lisa' 37 0 2
+26 'PM.Lisa' 38 0 2
+27 'PM.Lisa' 39 0 2
+28 'PM.Lisa' 42 0 2
+29 'PM.Lisa' 43 0 2
+30 'PM.Lisa' 44 0 2
+31 'PM.Lisa' 45 0 2
+32 'PM.Lisa' 46 0 2
+33 'PM.Lisa' 49 0 2
+34 'PM.Lisa' 50 0 2
+35 'PM.Lisa' 51 0 2
+36 'PM.Lisa' 52 0 2
+37 'PM.Lisa' 53 0 2
+38 'PM.Lisa' 56 0 2
+39 'PM.Lisa' 57 0 2
+40 'PM.Lisa' 58 0 2
+41 'PM.Lisa' 59 0 2
+42 'PM.Lisa' 60 0 2
+43 'PM.Lisa' 63 0 2
+44 'PM.Lisa' 64 0 2
+45 'PM.Lisa' 65 0 2
+46 'PM.Lisa' 66 0 2
+47 'PM.Lisa' 67 0 2
+48 'PM.Lisa' 70 0 2
+49 'PM.Lisa' 71 0 2
+50 'PM.Lisa' 72 0 2
+51 'PM.Lisa' 73 0 2
+52 'PM.Lisa' 74 0 2
+53 'PM.Lisa' 77 0 2
+54 'PM.Lisa' 78 0 2
+55 'PM.Lisa' 79 0 2
+56 'PM.Lisa' 80 0 2
+57 'PM.Lisa' 81 0 2
+58 'PM.Lisa' 84 0 2
+59 'PM.Lisa' 85 0 2
+60 'PM.Lisa' 86 0 2
+61 'PM.Lisa' 87 0 2
+62 'PM.Lisa' 88 0 2
+63 'PM.Lisa' 91 0 2
+64 'PM.Lisa' 92 0 2
+65 'PM.Lisa' 93 0 2
+66 'PM.Lisa' 94 0 2
+67 'PM.Lisa' 95 0 2
+68 'PM.Lisa' 98 0 2
+69 'PM.Lisa' 99 0 2
+70 'PM.Lisa' 100 0 2
+71 'PM.Lisa' 101 0 2
+72 'PM.Lisa' 102 0 2
+73 'PM.Lisa' 105 0 2
+74 'PM.Lisa' 106 0 2
+75 'PM.Lisa' 107 0 2
+76 'PM.Lisa' 108 0 2
+77 'PM.Lisa' 109 0 2
+78 'PM.Lisa' 112 0 2
+79 'PM.Lisa' 113 0 2
+80 'PM.Lisa' 114 0 2
+81 'PM.Lisa' 115 0 2
+82 'PM.Lisa' 116 0 2
+83 'PM.Lisa' 119 0 2
+84 'PM.Lisa' 120 0 2
+85 'PM.Lisa' 121 0 2
+86 'PM.Lisa' 123 0 2
+87 'PM.Lisa' 126 0 2
+88 'PM.Lisa' 127 0 2
+89 'PM.Lisa' 128 0 2
+90 'PM.Lisa' 129 0 2
+91 'PM.Lisa' 130 0 2
+92 'PM.Lisa' 133 0 2
+93 'PM.Lisa' 134 0 2
+94 'PM.Lisa' 135 0 2
+95 'PM.Lisa' 136 0 2
+96 'PM.Lisa' 137 0 2
+97 'PM.Lisa' 140 0 2
+98 'PM.Lisa' 141 0 2
+99 'PM.Lisa' 142 0 2
+100 'PM.Lisa' 143 0 2
+101 'PM.Lisa' 144 0 2
+102 'PM.Lisa' 147 0 2
+103 'PM.Lisa' 148 0 2
+104 'PM.Lisa' 149 0 2
+105 'PM.Lisa' 150 0 2
+106 'PM.Lisa' 151 0 2
+107 'PM.Lisa' 154 0 2
+108 'PM.Lisa' 155 0 2
+109 'PM.Lisa' 156 0 2
+110 'PM.Lisa' 157 0 2
+111 'PM.Lisa' 158 0 2
+112 'PM.Lisa' 161 0 2
+113 'PM.Lisa' 162 0 2
+114 'PM.Lisa' 163 0 2
+115 'PM.Lisa' 164 0 2
+116 'PM.Lisa' 165 0 2
+117 'PM.Lisa' 168 0 2
+118 'PM.Lisa' 169 0 2
+119 'PM.Lisa' 170 0 2
+120 'PM.Lisa' 171 0 2
+121 'PM.Lisa' 172 0 2
+122 'PM.Lisa' 175 0 2
+123 'PM.Lisa' 176 0 2
+124 'PM.Lisa' 177 0 2
+125 'PM.Lisa' 178 0 2
+126 'PM.Lisa' 179 0 2
+127 'PM.Lisa' 182 0 2
+128 'PM.Lisa' 183 0 2
+129 'PM.Lisa' 184 0 2
+130 'PM.Lisa' 185 0 2
+131 'PM.Lisa' 186 0 2
+132 'PM.Lisa' 189 0 2
+133 'PM.Lisa' 190 0 2
+134 'PM.Lisa' 191 0 2
+135 'PM.Lisa' 192 0 2
+136 'PM.Lisa' 193 0 2
+137 'PM.Lisa' 196 0 2
+138 'PM.Lisa' 197 0 2
+139 'PM.Lisa' 198 0 2
+140 'PM.Lisa' 199 0 2
+141 'PM.Lisa' 200 0 2
+142 'PM.Lisa' 203 0 2
+143 'PM.Lisa' 204 0 2
+144 'PM.Lisa' 205 0 2
+145 'PM.Lisa' 206 0 2
+146 'PM.Lisa' 207 0 2
+147 'PM.Lisa' 210 0 2
+148 'PM.Lisa' 211 0 2
+149 'PM.Lisa' 212 0 2
+150 'PM.Lisa' 213 0 2
+151 'PM.Lisa' 214 0 2
+152 'PM.Lisa' 217 0 2
+153 'PM.Lisa' 218 0 2
+154 'PM.Lisa' 219 0 2
+155 'PM.Lisa' 220 0 2
+156 'PM.Lisa' 221 0 2
+157 'PM.Lisa' 224 0 2
+158 'PM.Lisa' 225 0 2
+159 'PM.Lisa' 226 0 2
+160 'PM.Lisa' 227 0 2
+161 'PM.Lisa' 228 0 2
+162 'PM.Lisa' 231 0 2
+163 'PM.Lisa' 232 0 2
+164 'PM.Lisa' 233 0 2
+165 'PM.Lisa' 234 0 2
+166 'PM.Lisa' 235 0 2
+167 'PM.Lisa' 238 0 2
+168 'PM.Lisa' 239 0 2
+169 'PM.Lisa' 240 0 2
+170 'PM.Lisa' 241 0 2
+171 'PM.Lisa' 242 0 2
+172 'PM.Lisa' 245 0 2
+173 'PM.Lisa' 246 0 2
+174 'PM.Lisa' 247 0 2
+175 'PM.Lisa' 248 0 2
+176 'PM.Lisa' 249 0 2
+177 'PM.Lisa' 252 0 2
+178 'PM.Lisa' 253 0 2
+179 'PM.Lisa' 254 0 2
+180 'PM.Lisa' 255 0 2
+181 'PM.Lisa' 256 0 2
+182 'PM.Lisa' 259 0 2
+183 'PM.Lisa' 260 0 2
+184 'PM.Lisa' 261 0 2
+185 'PM.Lisa' 262 0 2
+186 'PM.Lisa' 263 0 2
+187 'PM.Lisa' 266 0 2
+188 'PM.Lisa' 267 0 2
+189 'PM.Lisa' 268 0 2
+190 'PM.Lisa' 269 0 2
+191 'PM.Lisa' 270 0 2
+192 'PM.Lisa' 273 0 2
+193 'PM.Lisa' 274 0 2
+194 'PM.Lisa' 275 0 2
+195 'PM.Lisa' 276 0 2
+196 'PM.Lisa' 277 0 2
+197 'PM.Lisa' 280 0 2
+198 'PM.Lisa' 281 0 2
+199 'PM.Lisa' 282 0 2
+200 'PM.Lisa' 283 0 2
+201 'PM.Lisa' 284 0 2
+202 'PM.Lisa' 287 0 2
+203 'PM.Lisa' 288 0 2
+204 'PM.Lisa' 289 0 2
+205 'PM.Lisa' 290 0 2
+206 'PM.Lisa' 291 0 2
+207 'PM.Lisa' 294 0 2
+208 'PM.Lisa' 295 0 2
+209 'PM.Lisa' 296 0 2
+210 'PM.Lisa' 297 0 2
+211 'PM.Lisa' 298 0 2
+212 'PM.Lisa' 301 0 2
+213 'PM.Lisa' 302 0 2
+214 'PM.Lisa' 303 0 2
+215 'PM.Lisa' 304 0 2
+216 'PM.Lisa' 305 0 2
+217 'PM.Lisa' 308 0 2
+218 'PM.Lisa' 309 0 2
+219 'PM.Lisa' 310 0 2
+220 'PM.Lisa' 311 0 2
+221 'PM.Lisa' 312 0 2
+222 'PM.Lisa' 315 0 2
+223 'PM.Lisa' 316 0 2
+224 'PM.Lisa' 317 0 2
+225 'PM.Lisa' 318 0 2
+226 'PM.Lisa' 319 0 2
+227 'PM.Lisa' 322 0 2
+228 'PM.Lisa' 323 0 2
+229 'PM.Lisa' 324 0 2
+230 'PM.Lisa' 325 0 2
+231 'PM.Lisa' 326 0 2
+232 'PM.Lisa' 329 0 2
+233 'PM.Lisa' 330 0 2
+234 'PM.Lisa' 331 0 2
+235 'PM.Lisa' 332 0 2
+236 'PM.Lisa' 333 0 2
+237 'PM.Lisa' 336 0 2
+238 'PM.Lisa' 337 0 2
+239 'PM.Lisa' 338 0 2
+240 'PM.Lisa' 339 0 2
+241 'PM.Lisa' 340 0 2
+242 'PM.Lisa' 343 0 2
+243 'PM.Lisa' 344 0 2
+244 'PM.Lisa' 345 0 2
+245 'PM.Lisa' 346 0 2;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'PM.Lisa' 'echo.pm'
+'PM.Lisa' 'echo.pf'
+'PM.Lisa' 'foxtrot.pm'
+'PM.Lisa' 'foxtrot.pf'
+'PM.Lisa' 'golf.pm'
+'PM.Lisa' 'golf.pf'
+'PM.Lisa' 'hotel.pm'
+'PM.Lisa' 'hotel.pf'
+'PM.Lisa' 'kilo.pe'
+'PM.Lisa' 'kilo.pm'
+'PM.Lisa' 'kilo.pf'
+'PM.Lisa' 'lima.pm'
+'PM.Lisa' 'lima.pf';
+
