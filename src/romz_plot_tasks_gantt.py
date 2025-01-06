@@ -63,7 +63,7 @@ def plot(df, work_done, dpi, today):
 
     # Add labels to the bars
     labels = [
-        f"{done} of {work}" for work, done in zip(df["Work"].to_numpy(), work_done.to_numpy())
+        f"{round(done)} of {work}" for work, done in zip(df["Work"].to_numpy(), work_done.to_numpy())
     ]
     ax.bar_label(rects, labels=labels, size=6, label_type="center")
 
