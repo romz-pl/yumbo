@@ -29,33 +29,33 @@ TASKN: TASKS TASKE TASKW :=
 
 param:
 PAYROLLN: PAYROLLS PAYROLLE :=
-'January.2025' 1 16
-'February.2025' 17 45
-'March.2025' 46 76
-'April.2025' 77 105
-'May.2025' 106 139
-'June.2025' 140 170
-'July.2025' 171 199
-'August.2025' 200 230
-'September.2025' 231 259
-'October.2025' 260 289
-'November.2025' 290 317
-'December.2025' 318 346;
+'Jan.25' 1 16
+'Feb.25' 17 45
+'Mar.25' 46 76
+'Apr.25' 77 105
+'May.25' 106 139
+'Jun.25' 140 170
+'Jul.25' 171 199
+'Aug.25' 200 230
+'Sep.25' 231 259
+'Oct.25' 260 289
+'Nov.25' 290 317
+'Dec.25' 318 346;
 
 param:
 EXPPAY: PAYROLLBL PAYROLLBU :=
-'PM.Daniel' 'January.2025' 0 180
-'PM.Daniel' 'February.2025' 0 180
-'PM.Daniel' 'March.2025' 0 180
-'PM.Daniel' 'April.2025' 0 180
-'PM.Daniel' 'May.2025' 0 180
-'PM.Daniel' 'June.2025' 0 180
-'PM.Daniel' 'July.2025' 0 180
-'PM.Daniel' 'August.2025' 0 180
-'PM.Daniel' 'September.2025' 0 180
-'PM.Daniel' 'October.2025' 0 180
-'PM.Daniel' 'November.2025' 0 180
-'PM.Daniel' 'December.2025' 0 180;
+'PM.Daniel' 'Jan.25' 0 180
+'PM.Daniel' 'Feb.25' 0 180
+'PM.Daniel' 'Mar.25' 0 180
+'PM.Daniel' 'Apr.25' 0 180
+'PM.Daniel' 'May.25' 0 180
+'PM.Daniel' 'Jun.25' 0 180
+'PM.Daniel' 'Jul.25' 0 180
+'PM.Daniel' 'Aug.25' 0 180
+'PM.Daniel' 'Sep.25' 0 180
+'PM.Daniel' 'Oct.25' 0 180
+'PM.Daniel' 'Nov.25' 0 180
+'PM.Daniel' 'Dec.25' 0 180;
 
 param OFFDAY_NO := 115;
 
