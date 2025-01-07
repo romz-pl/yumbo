@@ -15,7 +15,6 @@ import romz_plot_shedule_stacked_histogram
 import romz_plot_task
 import romz_plot_tasks_gantt
 import romz_plot_tasks_per_day
-import romz_skiped_items
 
 def get_Hours_per_day():
     return global_data["misc"].iloc[0]["Hours per day"]
