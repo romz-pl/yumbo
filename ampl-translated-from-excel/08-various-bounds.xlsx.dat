@@ -13,11 +13,12 @@ set EXPERTN :=
 'DEV.Jarosław'
 'DEV.Paweł';
 
-param EBOUND_NO := 0;
+param EBOUND_NO := 2;
 
 param EBOUND:
 1   2   3   4   5 :=
-;
+1 'DEV.Alojzy' 1 48 0 5
+2 'DEV.Alojzy' 49 76 0 7;
 
 param:
 TASKN: TASKS TASKE TASKW :=
@@ -46,6 +47,8 @@ TASKN: TASKS TASKE TASKW :=
 
 param:
 PAYROLLN: PAYROLLS PAYROLLE :=
+'24.Nov' 1 -15
+'24.Dec' 1 -5
 '25.Jan' 1 31
 '25.Feb' 32 60
 '25.Mar' 61 91
@@ -59,6 +62,8 @@ EXPPAY: PAYROLLBL PAYROLLBU :=
 'DEV.Paweł' '25.Mar' 100 200
 'DEV.Paweł' '25.Apr' 0 200
 'DEV.Paweł' '25.May' 0 200
+'DEV.Alojzy' '24.Nov' 0 200
+'DEV.Alojzy' '24.Dec' 0 201
 'DEV.Alojzy' '25.Jan' 0 202
 'DEV.Alojzy' '25.Feb' 0 203
 'DEV.Alojzy' '25.Mar' 0 204
