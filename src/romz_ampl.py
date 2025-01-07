@@ -296,7 +296,8 @@ def solve(name, today, data):
     # Set solver-specific options
     solver_options = {
         "highs": "outlev=1",
-        "scip": "tech:outlev-native=5"
+        "gcg": "tech:outlev-native=4",
+        "scip": "tech:outlev-native=5",
     }
 
     if solver in solver_options:
