@@ -81,68 +81,6 @@ def read_invoicing_periods_bounds(xlsx):
 def df_diff(df1, df2):
     return df1.merge(df2, how='outer', indicator=True).query('_merge == "left_only"').drop(columns='_merge')
 
-def remove_before_today(data):
-    today = data["misc"].at[0, "Today"]
-
-    datasets_all = [
-        "experts",
-        "tasks",
-        "links",
-        "xbday",
-        "xbsum",
-        "ubday",
-        "ubsum",
-        "expert bounds",
-        "invoicing periods",
-        "invoicing periods bounds",
-        "public holidays",
-        "misc",
-    ]
-
-    # Copy the datasets before modifying them.
-    for key in datasets_all:
-        data[f"skiped:{key}"] = data[f"{key}"].copy()
-
-    datasets_to_filter = {
-        "tasks": "End day",
-        "xbday": "End day",
-        "xbsum": "End day",
-        "ubday": "End day",
-        "ubsum": "End day",
-        "expert bounds": "End day",
-        "invoicing periods": "End day",
-        "public holidays": "Date",
-    }
-
-    # Filter datasets based on "TODAY" date
-    for key, column in datasets_to_filter.items():
-        data[key] = data[key].loc[data[key][column] > today]
-
-    # Remove "links" that do not have valid "tasks".
-    valid_task = set(data["tasks"]["Name"])
-    key = "links"
-    data[key] = data[key][data[key]["Task"].isin(valid_task)]
-
-    # Remove "invoicing periods bounds" that do not have valid "invoicing periods".
-    valid_periods = set(data["invoicing periods"]["Name"])
-    key = "invoicing periods bounds"
-    data[key] = data[key][data[key]["Period"].isin(valid_periods)]
-
-    # Remove "experts" that do not have assigned "tasks".
-    valid_experts = set(data["links"]["Expert"])
-    key = "experts"
-    data[key] = data[key][data[key]["Name"].isin(valid_experts)]
-
-    # Remove "tasks" that do not have any assigned "expert".
-    valid_task = set(data["links"]["Task"])
-    key = "tasks"
-    data[key] = data[key][data[key]["Name"].isin(valid_task)]
-
-    # Calculate the difference between the original and modified dataframes.
-    for key in datasets_all:
-        data[f"skiped:{key}"] = df_diff(data[f"skiped:{key}"], data[f"{key}"])
-
-
 def adjust_start_days(data):
     today = data["misc"].at[0, "Today"]
     tomorrow = today + pd.Timedelta(days=1)
@@ -181,6 +119,5 @@ def read(file_path):
     data["expert bounds"] = read_expert_bounds(xlsx)
     data["invoicing periods bounds"] = read_invoicing_periods_bounds(xlsx)
     data["links"] = read_links(xlsx)
-    remove_before_today(data)
     adjust_start_days(data)
     return data
