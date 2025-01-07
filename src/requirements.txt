@@ -1,6 +1,7 @@
 --index-url https://pypi.ampl.com
 --extra-index-url https://pypi.org/simple
 ampl_module_base
+ampl_module_gcg
 ampl_module_highs
 ampl_module_gurobi
 ampl-module_scip
