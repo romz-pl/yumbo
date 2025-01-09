@@ -4,6 +4,7 @@ import os
 import romz_datetime
 from amplpy import AMPL, modules
 
+
 def tasks(today, data):
     df = data["tasks"]
 
