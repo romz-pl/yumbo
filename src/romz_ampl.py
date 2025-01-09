@@ -17,6 +17,8 @@ def tasks(today, data):
         axis=1,
     )
 
+    df.drop(columns=["Start Relative", "End Relative"], inplace=True)
+
     return ''.join(formatted_rows)
 
 
