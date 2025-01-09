@@ -1,0 +1,4827 @@
+param HOURS_PER_DAY := 8;
+
+set EXPERTN :=
+'PM.Daniel'
+'PM.Angel'
+'DEV.Paul'
+'SA.Adrian'
+'SA.Robert'
+'DEV.Hugo'
+'DEV.Frances'
+'DEV.Tom'
+'PM.Lisa'
+'DEV.Charles'
+'DEV.Francis'
+'DEV.Carl'
+'DEV.Lars'
+'DEV.Martin'
+'DEV.Michael';
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'alpha.m' 2 92 450
+'alpha.f' 93 123 60
+'alpha.pm' 2 92 45
+'alpha.pf' 93 123 5
+'alpha.sm' 2 92 10
+'alpha.sf' 93 123 5
+'beta.m' 2 172 650
+'beta.f' 173 218 30
+'beta.pm' 2 172 65
+'beta.pf' 173 218 5
+'beta.sm' 2 172 10
+'beta.sf' 173 218 5
+'charlie.m' 2 157 800
+'charlie.f' 158 188 100
+'charlie.pm' 2 157 80
+'charlie.pf' 158 188 10
+'charlie.sm' 2 157 15
+'charlie.sf' 158 188 5
+'delta.m' 2 57 220
+'delta.f' 58 103 20
+'delta.pm' 2 57 25
+'delta.pf' 58 103 5
+'delta.sm' 2 57 5
+'delta.sf' 58 103 5
+'echo.m' 2 75 250
+'echo.f' 93 138 25
+'echo.pm' 2 75 20
+'echo.pf' 93 138 5
+'echo.sm' 2 75 5
+'echo.sf' 93 138 8
+'foxtrot.m' 2 92 150
+'foxtrot.f' 93 123 25
+'foxtrot.pm' 2 92 20
+'foxtrot.pf' 93 123 5
+'foxtrot.sm' 2 92 8
+'foxtrot.sf' 93 123 8
+'golf.m' 2 133 350
+'golf.f' 134 179 30
+'golf.pm' 2 133 40
+'golf.pf' 134 179 10
+'golf.sm' 2 133 10
+'golf.sf' 134 179 8
+'hotel.m' 2 245 750
+'hotel.f' 246 291 70
+'hotel.pm' 2 245 80
+'hotel.pf' 246 291 10
+'hotel.sm' 2 245 15
+'hotel.sf' 246 291 5
+'india.m' 2 275 1100
+'india.f' 276 306 200
+'india.pm' 2 275 130
+'india.pf' 276 306 25
+'india.sm' 2 275 30
+'india.sf' 276 306 12
+'juliet.e' 42 59 10
+'juliet.m' 60 182 450
+'juliet.f' 183 228 35
+'juliet.pe' 42 59 10
+'juliet.pm' 60 182 50
+'juliet.pf' 183 228 5
+'juliet.se' 42 59 10
+'juliet.sm' 60 182 10
+'juliet.sf' 183 228 5
+'kilo.e' 61 84 20
+'kilo.m' 85 214 550
+'kilo.f' 215 260 40
+'kilo.pe' 61 84 10
+'kilo.pm' 85 214 50
+'kilo.pf' 215 260 5
+'kilo.se' 61 84 15
+'kilo.sm' 85 214 10
+'kilo.sf' 215 260 5
+'lima.e' 81 110 30
+'lima.m' 111 306 1050
+'lima.f' 307 335 120
+'lima.pe' 81 110 25
+'lima.pm' 111 306 100
+'lima.pf' 307 335 20
+'lima.se' 81 110 36
+'lima.sm' 111 306 10
+'lima.sf' 307 335 5
+'mike.e' 101 111 10
+'mike.m' 116 269 450
+'mike.f' 270 304 60
+'mike.pe' 101 111 10
+'mike.pm' 112 269 50
+'mike.pf' 270 304 5
+'mike.se' 101 111 15
+'mike.sm' 112 269 10
+'mike.sf' 270 304 5
+'november.e' 147 166 10
+'november.m' 167 365 550
+'november.f' 366 397 30
+'november.pe' 147 166 10
+'november.pm' 167 365 55
+'november.pf' 366 397 5
+'november.se' 147 166 10
+'november.sm' 167 365 10
+'november.sf' 366 397 5
+'oscar.e' 177 191 15
+'oscar.m' 192 365 600
+'oscar.f' 366 397 40
+'oscar.pe' 177 191 15
+'oscar.pm' 192 365 70
+'oscar.pf' 366 397 10
+'oscar.se' 177 191 10
+'oscar.sm' 192 365 10
+'oscar.sf' 366 397 8
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'Jan.25' 1 16
+'Feb.25' 17 45
+'Mar.25' 46 76
+'Apr.25' 77 105
+'May.25' 106 139
+'Jun.25' 140 170
+'Jul.25' 171 199
+'Aug.25' 200 230
+'Sep.25' 231 259
+'Oct.25' 260 289
+'Nov.25' 290 317
+'Dec.25' 318 346;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+'DEV.Carl' 'Jan.25' 0 180
+'DEV.Carl' 'Feb.25' 0 180
+'DEV.Carl' 'Mar.25' 0 180
+'DEV.Carl' 'Apr.25' 0 180
+'DEV.Carl' 'May.25' 0 180
+'DEV.Carl' 'Jun.25' 0 180
+'DEV.Carl' 'Jul.25' 0 180
+'DEV.Carl' 'Aug.25' 0 180
+'DEV.Carl' 'Sep.25' 0 180
+'DEV.Carl' 'Oct.25' 0 180
+'DEV.Carl' 'Nov.25' 0 180
+'DEV.Carl' 'Dec.25' 0 180
+'DEV.Charles' 'Jan.25' 0 180
+'DEV.Charles' 'Feb.25' 0 180
+'DEV.Charles' 'Mar.25' 0 180
+'DEV.Charles' 'Apr.25' 0 180
+'DEV.Charles' 'May.25' 0 180
+'DEV.Charles' 'Jun.25' 0 180
+'DEV.Charles' 'Jul.25' 0 180
+'DEV.Charles' 'Aug.25' 0 180
+'DEV.Charles' 'Sep.25' 0 180
+'DEV.Charles' 'Oct.25' 0 180
+'DEV.Charles' 'Nov.25' 0 180
+'DEV.Charles' 'Dec.25' 0 180
+'DEV.Frances' 'Jan.25' 0 180
+'DEV.Frances' 'Feb.25' 0 180
+'DEV.Frances' 'Mar.25' 0 180
+'DEV.Frances' 'Apr.25' 0 180
+'DEV.Frances' 'May.25' 0 180
+'DEV.Frances' 'Jun.25' 0 180
+'DEV.Frances' 'Jul.25' 0 180
+'DEV.Frances' 'Aug.25' 0 180
+'DEV.Frances' 'Sep.25' 0 180
+'DEV.Frances' 'Oct.25' 0 180
+'DEV.Frances' 'Nov.25' 0 180
+'DEV.Frances' 'Dec.25' 0 180
+'DEV.Francis' 'Jan.25' 0 180
+'DEV.Francis' 'Feb.25' 0 180
+'DEV.Francis' 'Mar.25' 0 180
+'DEV.Francis' 'Apr.25' 0 180
+'DEV.Francis' 'May.25' 0 180
+'DEV.Francis' 'Jun.25' 0 180
+'DEV.Francis' 'Jul.25' 0 180
+'DEV.Francis' 'Aug.25' 0 180
+'DEV.Francis' 'Sep.25' 0 180
+'DEV.Francis' 'Oct.25' 0 180
+'DEV.Francis' 'Nov.25' 0 180
+'DEV.Francis' 'Dec.25' 0 180
+'DEV.Hugo' 'Jan.25' 0 180
+'DEV.Hugo' 'Feb.25' 0 180
+'DEV.Hugo' 'Mar.25' 0 180
+'DEV.Hugo' 'Apr.25' 0 180
+'DEV.Hugo' 'May.25' 0 180
+'DEV.Hugo' 'Jun.25' 0 180
+'DEV.Hugo' 'Jul.25' 0 180
+'DEV.Hugo' 'Aug.25' 0 180
+'DEV.Hugo' 'Sep.25' 0 180
+'DEV.Hugo' 'Oct.25' 0 180
+'DEV.Hugo' 'Nov.25' 0 180
+'DEV.Hugo' 'Dec.25' 0 180
+'DEV.Lars' 'Jan.25' 0 180
+'DEV.Lars' 'Feb.25' 0 180
+'DEV.Lars' 'Mar.25' 0 180
+'DEV.Lars' 'Apr.25' 0 180
+'DEV.Lars' 'May.25' 0 180
+'DEV.Lars' 'Jun.25' 0 180
+'DEV.Lars' 'Jul.25' 0 180
+'DEV.Lars' 'Aug.25' 0 180
+'DEV.Lars' 'Sep.25' 0 180
+'DEV.Lars' 'Oct.25' 0 180
+'DEV.Lars' 'Nov.25' 0 180
+'DEV.Lars' 'Dec.25' 0 180
+'DEV.Martin' 'Jan.25' 0 180
+'DEV.Martin' 'Feb.25' 0 180
+'DEV.Martin' 'Mar.25' 0 180
+'DEV.Martin' 'Apr.25' 0 180
+'DEV.Martin' 'May.25' 0 180
+'DEV.Martin' 'Jun.25' 0 180
+'DEV.Martin' 'Jul.25' 0 180
+'DEV.Martin' 'Aug.25' 0 180
+'DEV.Martin' 'Sep.25' 0 180
+'DEV.Martin' 'Oct.25' 0 180
+'DEV.Martin' 'Nov.25' 0 180
+'DEV.Martin' 'Dec.25' 0 180
+'DEV.Michael' 'Jan.25' 0 180
+'DEV.Michael' 'Feb.25' 0 180
+'DEV.Michael' 'Mar.25' 0 180
+'DEV.Michael' 'Apr.25' 0 180
+'DEV.Michael' 'May.25' 0 180
+'DEV.Michael' 'Jun.25' 0 180
+'DEV.Michael' 'Jul.25' 0 180
+'DEV.Michael' 'Aug.25' 0 180
+'DEV.Michael' 'Sep.25' 0 180
+'DEV.Michael' 'Oct.25' 0 180
+'DEV.Michael' 'Nov.25' 0 180
+'DEV.Michael' 'Dec.25' 0 180
+'DEV.Paul' 'Jan.25' 0 180
+'DEV.Paul' 'Feb.25' 0 180
+'DEV.Paul' 'Mar.25' 0 180
+'DEV.Paul' 'Apr.25' 0 180
+'DEV.Paul' 'May.25' 0 180
+'DEV.Paul' 'Jun.25' 0 180
+'DEV.Paul' 'Jul.25' 0 180
+'DEV.Paul' 'Aug.25' 0 180
+'DEV.Paul' 'Sep.25' 0 180
+'DEV.Paul' 'Oct.25' 0 180
+'DEV.Paul' 'Nov.25' 0 180
+'DEV.Paul' 'Dec.25' 0 180
+'DEV.Tom' 'Jan.25' 0 180
+'DEV.Tom' 'Feb.25' 0 180
+'DEV.Tom' 'Mar.25' 0 180
+'DEV.Tom' 'Apr.25' 0 180
+'DEV.Tom' 'May.25' 0 180
+'DEV.Tom' 'Jun.25' 0 180
+'DEV.Tom' 'Jul.25' 0 180
+'DEV.Tom' 'Aug.25' 0 180
+'DEV.Tom' 'Sep.25' 0 180
+'DEV.Tom' 'Oct.25' 0 180
+'DEV.Tom' 'Nov.25' 0 180
+'DEV.Tom' 'Dec.25' 0 180
+'PM.Angel' 'Jan.25' 0 180
+'PM.Angel' 'Feb.25' 0 180
+'PM.Angel' 'Mar.25' 0 180
+'PM.Angel' 'Apr.25' 0 180
+'PM.Angel' 'May.25' 0 180
+'PM.Angel' 'Jun.25' 0 180
+'PM.Angel' 'Jul.25' 0 180
+'PM.Angel' 'Aug.25' 0 180
+'PM.Angel' 'Sep.25' 0 180
+'PM.Angel' 'Oct.25' 0 180
+'PM.Angel' 'Nov.25' 0 180
+'PM.Angel' 'Dec.25' 0 180
+'PM.Daniel' 'Jan.25' 0 180
+'PM.Daniel' 'Feb.25' 0 180
+'PM.Daniel' 'Mar.25' 0 180
+'PM.Daniel' 'Apr.25' 0 180
+'PM.Daniel' 'May.25' 0 180
+'PM.Daniel' 'Jun.25' 0 180
+'PM.Daniel' 'Jul.25' 0 180
+'PM.Daniel' 'Aug.25' 0 180
+'PM.Daniel' 'Sep.25' 0 180
+'PM.Daniel' 'Oct.25' 0 180
+'PM.Daniel' 'Nov.25' 0 180
+'PM.Daniel' 'Dec.25' 0 180
+'PM.Lisa' 'Jan.25' 0 180
+'PM.Lisa' 'Feb.25' 0 180
+'PM.Lisa' 'Mar.25' 0 180
+'PM.Lisa' 'Apr.25' 0 180
+'PM.Lisa' 'May.25' 0 180
+'PM.Lisa' 'Jun.25' 0 180
+'PM.Lisa' 'Jul.25' 0 180
+'PM.Lisa' 'Aug.25' 0 180
+'PM.Lisa' 'Sep.25' 0 180
+'PM.Lisa' 'Oct.25' 0 180
+'PM.Lisa' 'Nov.25' 0 180
+'PM.Lisa' 'Dec.25' 0 180
+'SA.Adrian' 'Jan.25' 0 180
+'SA.Adrian' 'Feb.25' 0 180
+'SA.Adrian' 'Mar.25' 0 180
+'SA.Adrian' 'Apr.25' 0 180
+'SA.Adrian' 'May.25' 0 180
+'SA.Adrian' 'Jun.25' 0 180
+'SA.Adrian' 'Jul.25' 0 180
+'SA.Adrian' 'Aug.25' 0 180
+'SA.Adrian' 'Sep.25' 0 180
+'SA.Adrian' 'Oct.25' 0 180
+'SA.Adrian' 'Nov.25' 0 180
+'SA.Adrian' 'Dec.25' 0 180
+'SA.Robert' 'Jan.25' 0 180
+'SA.Robert' 'Feb.25' 0 180
+'SA.Robert' 'Mar.25' 0 180
+'SA.Robert' 'Apr.25' 0 180
+'SA.Robert' 'May.25' 0 180
+'SA.Robert' 'Jun.25' 0 180
+'SA.Robert' 'Jul.25' 0 180
+'SA.Robert' 'Aug.25' 0 180
+'SA.Robert' 'Sep.25' 0 180
+'SA.Robert' 'Oct.25' 0 180
+'SA.Robert' 'Nov.25' 0 180
+'SA.Robert' 'Dec.25' 0 180;
+
+param OFFDAY_NO := 115;
+
+param OFFDAY :=
+1 2
+2 5
+3 6
+4 12
+5 13
+6 19
+7 20
+8 26
+9 27
+10 33
+11 34
+12 40
+13 41
+14 47
+15 48
+16 54
+17 55
+18 61
+19 62
+20 68
+21 69
+22 75
+23 76
+24 82
+25 83
+26 89
+27 90
+28 96
+29 97
+30 103
+31 104
+32 110
+33 111
+34 117
+35 118
+36 122
+37 124
+38 125
+39 131
+40 132
+41 138
+42 139
+43 145
+44 146
+45 152
+46 153
+47 159
+48 160
+49 166
+50 167
+51 173
+52 174
+53 180
+54 181
+55 187
+56 188
+57 194
+58 195
+59 201
+60 202
+61 208
+62 209
+63 215
+64 216
+65 222
+66 223
+67 229
+68 230
+69 236
+70 237
+71 243
+72 244
+73 250
+74 251
+75 257
+76 258
+77 264
+78 265
+79 271
+80 272
+81 278
+82 279
+83 285
+84 286
+85 292
+86 293
+87 299
+88 300
+89 306
+90 307
+91 313
+92 314
+93 320
+94 321
+95 327
+96 328
+97 334
+98 335
+99 341
+100 342
+101 348
+102 349
+103 355
+104 356
+105 362
+106 363
+107 369
+108 370
+109 376
+110 377
+111 383
+112 384
+113 390
+114 391
+115 397;
+
+param XBDAY_NO := 4196;
+
+param XBDAY:
+1   2   3   4   5 :=
+1 'PM.Daniel' 'alpha.pm' 3 0 2
+2 'PM.Daniel' 'alpha.pm' 4 0 2
+3 'PM.Daniel' 'alpha.pm' 7 0 2
+4 'PM.Daniel' 'alpha.pm' 8 0 2
+5 'PM.Daniel' 'alpha.pm' 9 0 2
+6 'PM.Daniel' 'alpha.pm' 10 0 2
+7 'PM.Daniel' 'alpha.pm' 11 0 2
+8 'PM.Daniel' 'alpha.pm' 14 0 2
+9 'PM.Daniel' 'alpha.pm' 15 0 2
+10 'PM.Daniel' 'alpha.pm' 16 0 2
+11 'PM.Daniel' 'alpha.pm' 17 0 2
+12 'PM.Daniel' 'alpha.pm' 18 0 2
+13 'PM.Daniel' 'alpha.pm' 21 0 2
+14 'PM.Daniel' 'alpha.pm' 22 0 2
+15 'PM.Daniel' 'alpha.pm' 23 0 2
+16 'PM.Daniel' 'alpha.pm' 24 0 2
+17 'PM.Daniel' 'alpha.pm' 25 0 2
+18 'PM.Daniel' 'alpha.pm' 28 0 2
+19 'PM.Daniel' 'alpha.pm' 29 0 2
+20 'PM.Daniel' 'alpha.pm' 30 0 2
+21 'PM.Daniel' 'alpha.pm' 31 0 2
+22 'PM.Daniel' 'alpha.pm' 32 0 2
+23 'PM.Daniel' 'alpha.pm' 35 0 2
+24 'PM.Daniel' 'alpha.pm' 36 0 2
+25 'PM.Daniel' 'alpha.pm' 37 0 2
+26 'PM.Daniel' 'alpha.pm' 38 0 2
+27 'PM.Daniel' 'alpha.pm' 39 0 2
+28 'PM.Daniel' 'alpha.pm' 42 0 2
+29 'PM.Daniel' 'alpha.pm' 43 0 2
+30 'PM.Daniel' 'alpha.pm' 44 0 2
+31 'PM.Daniel' 'alpha.pm' 45 0 2
+32 'PM.Daniel' 'alpha.pm' 46 0 2
+33 'PM.Daniel' 'alpha.pm' 49 0 2
+34 'PM.Daniel' 'alpha.pm' 50 0 2
+35 'PM.Daniel' 'alpha.pm' 51 0 2
+36 'PM.Daniel' 'alpha.pm' 52 0 2
+37 'PM.Daniel' 'alpha.pm' 53 0 2
+38 'PM.Daniel' 'alpha.pm' 56 0 2
+39 'PM.Daniel' 'alpha.pm' 57 0 2
+40 'PM.Daniel' 'alpha.pm' 58 0 2
+41 'PM.Daniel' 'alpha.pm' 59 0 2
+42 'PM.Daniel' 'alpha.pm' 60 0 2
+43 'PM.Daniel' 'alpha.pm' 63 0 2
+44 'PM.Daniel' 'alpha.pm' 64 0 2
+45 'PM.Daniel' 'alpha.pm' 65 0 2
+46 'PM.Daniel' 'alpha.pm' 66 0 2
+47 'PM.Daniel' 'alpha.pm' 67 0 2
+48 'PM.Daniel' 'alpha.pm' 70 0 2
+49 'PM.Daniel' 'alpha.pm' 71 0 2
+50 'PM.Daniel' 'alpha.pm' 72 0 2
+51 'PM.Daniel' 'alpha.pm' 73 0 2
+52 'PM.Daniel' 'alpha.pm' 74 0 2
+53 'PM.Daniel' 'alpha.pm' 77 0 2
+54 'PM.Daniel' 'alpha.pm' 78 0 2
+55 'PM.Daniel' 'alpha.pm' 79 0 2
+56 'PM.Daniel' 'alpha.pm' 80 0 2
+57 'PM.Daniel' 'alpha.pm' 81 0 2
+58 'PM.Daniel' 'alpha.pm' 84 0 2
+59 'PM.Daniel' 'alpha.pm' 85 0 2
+60 'PM.Daniel' 'alpha.pm' 86 0 2
+61 'PM.Daniel' 'alpha.pm' 87 0 2
+62 'PM.Daniel' 'alpha.pm' 88 0 2
+63 'PM.Daniel' 'alpha.pm' 91 0 2
+64 'PM.Daniel' 'alpha.pm' 92 0 2
+65 'PM.Daniel' 'alpha.pf' 93 0 2
+66 'PM.Daniel' 'alpha.pf' 94 0 2
+67 'PM.Daniel' 'alpha.pf' 95 0 2
+68 'PM.Daniel' 'alpha.pf' 98 0 2
+69 'PM.Daniel' 'alpha.pf' 99 0 2
+70 'PM.Daniel' 'alpha.pf' 100 0 2
+71 'PM.Daniel' 'alpha.pf' 101 0 2
+72 'PM.Daniel' 'alpha.pf' 102 0 2
+73 'PM.Daniel' 'alpha.pf' 105 0 2
+74 'PM.Daniel' 'alpha.pf' 106 0 2
+75 'PM.Daniel' 'alpha.pf' 107 0 2
+76 'PM.Daniel' 'alpha.pf' 108 0 2
+77 'PM.Daniel' 'alpha.pf' 109 0 2
+78 'PM.Daniel' 'alpha.pf' 112 0 2
+79 'PM.Daniel' 'alpha.pf' 113 0 2
+80 'PM.Daniel' 'alpha.pf' 114 0 2
+81 'PM.Daniel' 'alpha.pf' 115 0 2
+82 'PM.Daniel' 'alpha.pf' 116 0 2
+83 'PM.Daniel' 'alpha.pf' 119 0 2
+84 'PM.Daniel' 'alpha.pf' 120 0 2
+85 'PM.Daniel' 'alpha.pf' 121 0 2
+86 'PM.Daniel' 'alpha.pf' 123 0 2
+87 'PM.Daniel' 'beta.pm' 3 0 2
+88 'PM.Daniel' 'beta.pm' 4 0 2
+89 'PM.Daniel' 'beta.pm' 7 0 2
+90 'PM.Daniel' 'beta.pm' 8 0 2
+91 'PM.Daniel' 'beta.pm' 9 0 2
+92 'PM.Daniel' 'beta.pm' 10 0 2
+93 'PM.Daniel' 'beta.pm' 11 0 2
+94 'PM.Daniel' 'beta.pm' 14 0 2
+95 'PM.Daniel' 'beta.pm' 15 0 2
+96 'PM.Daniel' 'beta.pm' 16 0 2
+97 'PM.Daniel' 'beta.pm' 17 0 2
+98 'PM.Daniel' 'beta.pm' 18 0 2
+99 'PM.Daniel' 'beta.pm' 21 0 2
+100 'PM.Daniel' 'beta.pm' 22 0 2
+101 'PM.Daniel' 'beta.pm' 23 0 2
+102 'PM.Daniel' 'beta.pm' 24 0 2
+103 'PM.Daniel' 'beta.pm' 25 0 2
+104 'PM.Daniel' 'beta.pm' 28 0 2
+105 'PM.Daniel' 'beta.pm' 29 0 2
+106 'PM.Daniel' 'beta.pm' 30 0 2
+107 'PM.Daniel' 'beta.pm' 31 0 2
+108 'PM.Daniel' 'beta.pm' 32 0 2
+109 'PM.Daniel' 'beta.pm' 35 0 2
+110 'PM.Daniel' 'beta.pm' 36 0 2
+111 'PM.Daniel' 'beta.pm' 37 0 2
+112 'PM.Daniel' 'beta.pm' 38 0 2
+113 'PM.Daniel' 'beta.pm' 39 0 2
+114 'PM.Daniel' 'beta.pm' 42 0 2
+115 'PM.Daniel' 'beta.pm' 43 0 2
+116 'PM.Daniel' 'beta.pm' 44 0 2
+117 'PM.Daniel' 'beta.pm' 45 0 2
+118 'PM.Daniel' 'beta.pm' 46 0 2
+119 'PM.Daniel' 'beta.pm' 49 0 2
+120 'PM.Daniel' 'beta.pm' 50 0 2
+121 'PM.Daniel' 'beta.pm' 51 0 2
+122 'PM.Daniel' 'beta.pm' 52 0 2
+123 'PM.Daniel' 'beta.pm' 53 0 2
+124 'PM.Daniel' 'beta.pm' 56 0 2
+125 'PM.Daniel' 'beta.pm' 57 0 2
+126 'PM.Daniel' 'beta.pm' 58 0 2
+127 'PM.Daniel' 'beta.pm' 59 0 2
+128 'PM.Daniel' 'beta.pm' 60 0 2
+129 'PM.Daniel' 'beta.pm' 63 0 2
+130 'PM.Daniel' 'beta.pm' 64 0 2
+131 'PM.Daniel' 'beta.pm' 65 0 2
+132 'PM.Daniel' 'beta.pm' 66 0 2
+133 'PM.Daniel' 'beta.pm' 67 0 2
+134 'PM.Daniel' 'beta.pm' 70 0 2
+135 'PM.Daniel' 'beta.pm' 71 0 2
+136 'PM.Daniel' 'beta.pm' 72 0 2
+137 'PM.Daniel' 'beta.pm' 73 0 2
+138 'PM.Daniel' 'beta.pm' 74 0 2
+139 'PM.Daniel' 'beta.pm' 77 0 2
+140 'PM.Daniel' 'beta.pm' 78 0 2
+141 'PM.Daniel' 'beta.pm' 79 0 2
+142 'PM.Daniel' 'beta.pm' 80 0 2
+143 'PM.Daniel' 'beta.pm' 81 0 2
+144 'PM.Daniel' 'beta.pm' 84 0 2
+145 'PM.Daniel' 'beta.pm' 85 0 2
+146 'PM.Daniel' 'beta.pm' 86 0 2
+147 'PM.Daniel' 'beta.pm' 87 0 2
+148 'PM.Daniel' 'beta.pm' 88 0 2
+149 'PM.Daniel' 'beta.pm' 91 0 2
+150 'PM.Daniel' 'beta.pm' 92 0 2
+151 'PM.Daniel' 'beta.pm' 93 0 2
+152 'PM.Daniel' 'beta.pm' 94 0 2
+153 'PM.Daniel' 'beta.pm' 95 0 2
+154 'PM.Daniel' 'beta.pm' 98 0 2
+155 'PM.Daniel' 'beta.pm' 99 0 2
+156 'PM.Daniel' 'beta.pm' 100 0 2
+157 'PM.Daniel' 'beta.pm' 101 0 2
+158 'PM.Daniel' 'beta.pm' 102 0 2
+159 'PM.Daniel' 'beta.pm' 105 0 2
+160 'PM.Daniel' 'beta.pm' 106 0 2
+161 'PM.Daniel' 'beta.pm' 107 0 2
+162 'PM.Daniel' 'beta.pm' 108 0 2
+163 'PM.Daniel' 'beta.pm' 109 0 2
+164 'PM.Daniel' 'beta.pm' 112 0 2
+165 'PM.Daniel' 'beta.pm' 113 0 2
+166 'PM.Daniel' 'beta.pm' 114 0 2
+167 'PM.Daniel' 'beta.pm' 115 0 2
+168 'PM.Daniel' 'beta.pm' 116 0 2
+169 'PM.Daniel' 'beta.pm' 119 0 2
+170 'PM.Daniel' 'beta.pm' 120 0 2
+171 'PM.Daniel' 'beta.pm' 121 0 2
+172 'PM.Daniel' 'beta.pm' 123 0 2
+173 'PM.Daniel' 'beta.pm' 126 0 2
+174 'PM.Daniel' 'beta.pm' 127 0 2
+175 'PM.Daniel' 'beta.pm' 128 0 2
+176 'PM.Daniel' 'beta.pm' 129 0 2
+177 'PM.Daniel' 'beta.pm' 130 0 2
+178 'PM.Daniel' 'beta.pm' 133 0 2
+179 'PM.Daniel' 'beta.pm' 134 0 2
+180 'PM.Daniel' 'beta.pm' 135 0 2
+181 'PM.Daniel' 'beta.pm' 136 0 2
+182 'PM.Daniel' 'beta.pm' 137 0 2
+183 'PM.Daniel' 'beta.pm' 140 0 2
+184 'PM.Daniel' 'beta.pm' 141 0 2
+185 'PM.Daniel' 'beta.pm' 142 0 2
+186 'PM.Daniel' 'beta.pm' 143 0 2
+187 'PM.Daniel' 'beta.pm' 144 0 2
+188 'PM.Daniel' 'beta.pm' 147 0 2
+189 'PM.Daniel' 'beta.pm' 148 0 2
+190 'PM.Daniel' 'beta.pm' 149 0 2
+191 'PM.Daniel' 'beta.pm' 150 0 2
+192 'PM.Daniel' 'beta.pm' 151 0 2
+193 'PM.Daniel' 'beta.pm' 154 0 2
+194 'PM.Daniel' 'beta.pm' 155 0 2
+195 'PM.Daniel' 'beta.pm' 156 0 2
+196 'PM.Daniel' 'beta.pm' 157 0 2
+197 'PM.Daniel' 'beta.pm' 158 0 2
+198 'PM.Daniel' 'beta.pm' 161 0 2
+199 'PM.Daniel' 'beta.pm' 162 0 2
+200 'PM.Daniel' 'beta.pm' 163 0 2
+201 'PM.Daniel' 'beta.pm' 164 0 2
+202 'PM.Daniel' 'beta.pm' 165 0 2
+203 'PM.Daniel' 'beta.pm' 168 0 2
+204 'PM.Daniel' 'beta.pm' 169 0 2
+205 'PM.Daniel' 'beta.pm' 170 0 2
+206 'PM.Daniel' 'beta.pm' 171 0 2
+207 'PM.Daniel' 'beta.pm' 172 0 2
+208 'PM.Daniel' 'beta.pf' 175 0 2
+209 'PM.Daniel' 'beta.pf' 176 0 2
+210 'PM.Daniel' 'beta.pf' 177 0 2
+211 'PM.Daniel' 'beta.pf' 178 0 2
+212 'PM.Daniel' 'beta.pf' 179 0 2
+213 'PM.Daniel' 'beta.pf' 182 0 2
+214 'PM.Daniel' 'beta.pf' 183 0 2
+215 'PM.Daniel' 'beta.pf' 184 0 2
+216 'PM.Daniel' 'beta.pf' 185 0 2
+217 'PM.Daniel' 'beta.pf' 186 0 2
+218 'PM.Daniel' 'beta.pf' 189 0 2
+219 'PM.Daniel' 'beta.pf' 190 0 2
+220 'PM.Daniel' 'beta.pf' 191 0 2
+221 'PM.Daniel' 'beta.pf' 192 0 2
+222 'PM.Daniel' 'beta.pf' 193 0 2
+223 'PM.Daniel' 'beta.pf' 196 0 2
+224 'PM.Daniel' 'beta.pf' 197 0 2
+225 'PM.Daniel' 'beta.pf' 198 0 2
+226 'PM.Daniel' 'beta.pf' 199 0 2
+227 'PM.Daniel' 'beta.pf' 200 0 2
+228 'PM.Daniel' 'beta.pf' 203 0 2
+229 'PM.Daniel' 'beta.pf' 204 0 2
+230 'PM.Daniel' 'beta.pf' 205 0 2
+231 'PM.Daniel' 'beta.pf' 206 0 2
+232 'PM.Daniel' 'beta.pf' 207 0 2
+233 'PM.Daniel' 'beta.pf' 210 0 2
+234 'PM.Daniel' 'beta.pf' 211 0 2
+235 'PM.Daniel' 'beta.pf' 212 0 2
+236 'PM.Daniel' 'beta.pf' 213 0 2
+237 'PM.Daniel' 'beta.pf' 214 0 2
+238 'PM.Daniel' 'beta.pf' 217 0 2
+239 'PM.Daniel' 'beta.pf' 218 0 2
+240 'PM.Angel' 'charlie.pm' 3 0 3
+241 'PM.Angel' 'charlie.pm' 4 0 3
+242 'PM.Angel' 'charlie.pm' 7 0 3
+243 'PM.Angel' 'charlie.pm' 8 0 3
+244 'PM.Angel' 'charlie.pm' 9 0 3
+245 'PM.Angel' 'charlie.pm' 10 0 3
+246 'PM.Angel' 'charlie.pm' 11 0 3
+247 'PM.Angel' 'charlie.pm' 14 0 3
+248 'PM.Angel' 'charlie.pm' 15 0 3
+249 'PM.Angel' 'charlie.pm' 16 0 3
+250 'PM.Angel' 'charlie.pm' 17 0 3
+251 'PM.Angel' 'charlie.pm' 18 0 3
+252 'PM.Angel' 'charlie.pm' 21 0 3
+253 'PM.Angel' 'charlie.pm' 22 0 3
+254 'PM.Angel' 'charlie.pm' 23 0 3
+255 'PM.Angel' 'charlie.pm' 24 0 3
+256 'PM.Angel' 'charlie.pm' 25 0 3
+257 'PM.Angel' 'charlie.pm' 28 0 3
+258 'PM.Angel' 'charlie.pm' 29 0 3
+259 'PM.Angel' 'charlie.pm' 30 0 3
+260 'PM.Angel' 'charlie.pm' 31 0 3
+261 'PM.Angel' 'charlie.pm' 32 0 3
+262 'PM.Angel' 'charlie.pm' 35 0 3
+263 'PM.Angel' 'charlie.pm' 36 0 3
+264 'PM.Angel' 'charlie.pm' 37 0 3
+265 'PM.Angel' 'charlie.pm' 38 0 3
+266 'PM.Angel' 'charlie.pm' 39 0 3
+267 'PM.Angel' 'charlie.pm' 42 0 3
+268 'PM.Angel' 'charlie.pm' 43 0 3
+269 'PM.Angel' 'charlie.pm' 44 0 3
+270 'PM.Angel' 'charlie.pm' 45 0 3
+271 'PM.Angel' 'charlie.pm' 46 0 3
+272 'PM.Angel' 'charlie.pm' 49 0 3
+273 'PM.Angel' 'charlie.pm' 50 0 3
+274 'PM.Angel' 'charlie.pm' 51 0 3
+275 'PM.Angel' 'charlie.pm' 52 0 3
+276 'PM.Angel' 'charlie.pm' 53 0 3
+277 'PM.Angel' 'charlie.pm' 56 0 3
+278 'PM.Angel' 'charlie.pm' 57 0 3
+279 'PM.Angel' 'charlie.pm' 58 0 3
+280 'PM.Angel' 'charlie.pm' 59 0 3
+281 'PM.Angel' 'charlie.pm' 60 0 3
+282 'PM.Angel' 'charlie.pm' 63 0 3
+283 'PM.Angel' 'charlie.pm' 64 0 3
+284 'PM.Angel' 'charlie.pm' 65 0 3
+285 'PM.Angel' 'charlie.pm' 66 0 3
+286 'PM.Angel' 'charlie.pm' 67 0 3
+287 'PM.Angel' 'charlie.pm' 70 0 3
+288 'PM.Angel' 'charlie.pm' 71 0 3
+289 'PM.Angel' 'charlie.pm' 72 0 3
+290 'PM.Angel' 'charlie.pm' 73 0 3
+291 'PM.Angel' 'charlie.pm' 74 0 3
+292 'PM.Angel' 'charlie.pm' 77 0 3
+293 'PM.Angel' 'charlie.pm' 78 0 3
+294 'PM.Angel' 'charlie.pm' 79 0 3
+295 'PM.Angel' 'charlie.pm' 80 0 3
+296 'PM.Angel' 'charlie.pm' 81 0 3
+297 'PM.Angel' 'charlie.pm' 84 0 3
+298 'PM.Angel' 'charlie.pm' 85 0 3
+299 'PM.Angel' 'charlie.pm' 86 0 3
+300 'PM.Angel' 'charlie.pm' 87 0 3
+301 'PM.Angel' 'charlie.pm' 88 0 3
+302 'PM.Angel' 'charlie.pm' 91 0 3
+303 'PM.Angel' 'charlie.pm' 92 0 3
+304 'PM.Angel' 'charlie.pm' 93 0 3
+305 'PM.Angel' 'charlie.pm' 94 0 3
+306 'PM.Angel' 'charlie.pm' 95 0 3
+307 'PM.Angel' 'charlie.pm' 98 0 3
+308 'PM.Angel' 'charlie.pm' 99 0 3
+309 'PM.Angel' 'charlie.pm' 100 0 3
+310 'PM.Angel' 'charlie.pm' 101 0 3
+311 'PM.Angel' 'charlie.pm' 102 0 3
+312 'PM.Angel' 'charlie.pm' 105 0 3
+313 'PM.Angel' 'charlie.pm' 106 0 3
+314 'PM.Angel' 'charlie.pm' 107 0 3
+315 'PM.Angel' 'charlie.pm' 108 0 3
+316 'PM.Angel' 'charlie.pm' 109 0 3
+317 'PM.Angel' 'charlie.pm' 112 0 3
+318 'PM.Angel' 'charlie.pm' 113 0 3
+319 'PM.Angel' 'charlie.pm' 114 0 3
+320 'PM.Angel' 'charlie.pm' 115 0 3
+321 'PM.Angel' 'charlie.pm' 116 0 3
+322 'PM.Angel' 'charlie.pm' 119 0 3
+323 'PM.Angel' 'charlie.pm' 120 0 3
+324 'PM.Angel' 'charlie.pm' 121 0 3
+325 'PM.Angel' 'charlie.pm' 123 0 3
+326 'PM.Angel' 'charlie.pm' 126 0 3
+327 'PM.Angel' 'charlie.pm' 127 0 3
+328 'PM.Angel' 'charlie.pm' 128 0 3
+329 'PM.Angel' 'charlie.pm' 129 0 3
+330 'PM.Angel' 'charlie.pm' 130 0 3
+331 'PM.Angel' 'charlie.pm' 133 0 3
+332 'PM.Angel' 'charlie.pm' 134 0 3
+333 'PM.Angel' 'charlie.pm' 135 0 3
+334 'PM.Angel' 'charlie.pm' 136 0 3
+335 'PM.Angel' 'charlie.pm' 137 0 3
+336 'PM.Angel' 'charlie.pm' 140 0 3
+337 'PM.Angel' 'charlie.pm' 141 0 3
+338 'PM.Angel' 'charlie.pm' 142 0 3
+339 'PM.Angel' 'charlie.pm' 143 0 3
+340 'PM.Angel' 'charlie.pm' 144 0 3
+341 'PM.Angel' 'charlie.pm' 147 0 3
+342 'PM.Angel' 'charlie.pm' 148 0 3
+343 'PM.Angel' 'charlie.pm' 149 0 3
+344 'PM.Angel' 'charlie.pm' 150 0 3
+345 'PM.Angel' 'charlie.pm' 151 0 3
+346 'PM.Angel' 'charlie.pm' 154 0 3
+347 'PM.Angel' 'charlie.pm' 155 0 3
+348 'PM.Angel' 'charlie.pm' 156 0 3
+349 'PM.Angel' 'charlie.pm' 157 0 3
+350 'PM.Angel' 'charlie.pf' 158 0 3
+351 'PM.Angel' 'charlie.pf' 161 0 3
+352 'PM.Angel' 'charlie.pf' 162 0 3
+353 'PM.Angel' 'charlie.pf' 163 0 3
+354 'PM.Angel' 'charlie.pf' 164 0 3
+355 'PM.Angel' 'charlie.pf' 165 0 3
+356 'PM.Angel' 'charlie.pf' 168 0 3
+357 'PM.Angel' 'charlie.pf' 169 0 3
+358 'PM.Angel' 'charlie.pf' 170 0 3
+359 'PM.Angel' 'charlie.pf' 171 0 3
+360 'PM.Angel' 'charlie.pf' 172 0 3
+361 'PM.Angel' 'charlie.pf' 175 0 3
+362 'PM.Angel' 'charlie.pf' 176 0 3
+363 'PM.Angel' 'charlie.pf' 177 0 3
+364 'PM.Angel' 'charlie.pf' 178 0 3
+365 'PM.Angel' 'charlie.pf' 179 0 3
+366 'PM.Angel' 'charlie.pf' 182 0 3
+367 'PM.Angel' 'charlie.pf' 183 0 3
+368 'PM.Angel' 'charlie.pf' 184 0 3
+369 'PM.Angel' 'charlie.pf' 185 0 3
+370 'PM.Angel' 'charlie.pf' 186 0 3
+371 'PM.Angel' 'delta.pm' 3 0 2
+372 'PM.Angel' 'delta.pm' 4 0 2
+373 'PM.Angel' 'delta.pm' 7 0 2
+374 'PM.Angel' 'delta.pm' 8 0 2
+375 'PM.Angel' 'delta.pm' 9 0 2
+376 'PM.Angel' 'delta.pm' 10 0 2
+377 'PM.Angel' 'delta.pm' 11 0 2
+378 'PM.Angel' 'delta.pm' 14 0 2
+379 'PM.Angel' 'delta.pm' 15 0 2
+380 'PM.Angel' 'delta.pm' 16 0 2
+381 'PM.Angel' 'delta.pm' 17 0 2
+382 'PM.Angel' 'delta.pm' 18 0 2
+383 'PM.Angel' 'delta.pm' 21 0 2
+384 'PM.Angel' 'delta.pm' 22 0 2
+385 'PM.Angel' 'delta.pm' 23 0 2
+386 'PM.Angel' 'delta.pm' 24 0 2
+387 'PM.Angel' 'delta.pm' 25 0 2
+388 'PM.Angel' 'delta.pm' 28 0 2
+389 'PM.Angel' 'delta.pm' 29 0 2
+390 'PM.Angel' 'delta.pm' 30 0 2
+391 'PM.Angel' 'delta.pm' 31 0 2
+392 'PM.Angel' 'delta.pm' 32 0 2
+393 'PM.Angel' 'delta.pm' 35 0 2
+394 'PM.Angel' 'delta.pm' 36 0 2
+395 'PM.Angel' 'delta.pm' 37 0 2
+396 'PM.Angel' 'delta.pm' 38 0 2
+397 'PM.Angel' 'delta.pm' 39 0 2
+398 'PM.Angel' 'delta.pm' 42 0 2
+399 'PM.Angel' 'delta.pm' 43 0 2
+400 'PM.Angel' 'delta.pm' 44 0 2
+401 'PM.Angel' 'delta.pm' 45 0 2
+402 'PM.Angel' 'delta.pm' 46 0 2
+403 'PM.Angel' 'delta.pm' 49 0 2
+404 'PM.Angel' 'delta.pm' 50 0 2
+405 'PM.Angel' 'delta.pm' 51 0 2
+406 'PM.Angel' 'delta.pm' 52 0 2
+407 'PM.Angel' 'delta.pm' 53 0 2
+408 'PM.Angel' 'delta.pm' 56 0 2
+409 'PM.Angel' 'delta.pm' 57 0 2
+410 'PM.Angel' 'delta.pf' 58 0 2
+411 'PM.Angel' 'delta.pf' 59 0 2
+412 'PM.Angel' 'delta.pf' 60 0 2
+413 'PM.Angel' 'delta.pf' 63 0 2
+414 'PM.Angel' 'delta.pf' 64 0 2
+415 'PM.Angel' 'delta.pf' 65 0 2
+416 'PM.Angel' 'delta.pf' 66 0 2
+417 'PM.Angel' 'delta.pf' 67 0 2
+418 'PM.Angel' 'delta.pf' 70 0 2
+419 'PM.Angel' 'delta.pf' 71 0 2
+420 'PM.Angel' 'delta.pf' 72 0 2
+421 'PM.Angel' 'delta.pf' 73 0 2
+422 'PM.Angel' 'delta.pf' 74 0 2
+423 'PM.Angel' 'delta.pf' 77 0 2
+424 'PM.Angel' 'delta.pf' 78 0 2
+425 'PM.Angel' 'delta.pf' 79 0 2
+426 'PM.Angel' 'delta.pf' 80 0 2
+427 'PM.Angel' 'delta.pf' 81 0 2
+428 'PM.Angel' 'delta.pf' 84 0 2
+429 'PM.Angel' 'delta.pf' 85 0 2
+430 'PM.Angel' 'delta.pf' 86 0 2
+431 'PM.Angel' 'delta.pf' 87 0 2
+432 'PM.Angel' 'delta.pf' 88 0 2
+433 'PM.Angel' 'delta.pf' 91 0 2
+434 'PM.Angel' 'delta.pf' 92 0 2
+435 'PM.Angel' 'delta.pf' 93 0 2
+436 'PM.Angel' 'delta.pf' 94 0 2
+437 'PM.Angel' 'delta.pf' 95 0 2
+438 'PM.Angel' 'delta.pf' 98 0 2
+439 'PM.Angel' 'delta.pf' 99 0 2
+440 'PM.Angel' 'delta.pf' 100 0 2
+441 'PM.Angel' 'delta.pf' 101 0 2
+442 'PM.Angel' 'delta.pf' 102 0 2
+443 'PM.Lisa' 'echo.pm' 3 0 2
+444 'PM.Lisa' 'echo.pm' 4 0 2
+445 'PM.Lisa' 'echo.pm' 7 0 2
+446 'PM.Lisa' 'echo.pm' 8 0 2
+447 'PM.Lisa' 'echo.pm' 9 0 2
+448 'PM.Lisa' 'echo.pm' 10 0 2
+449 'PM.Lisa' 'echo.pm' 11 0 2
+450 'PM.Lisa' 'echo.pm' 14 0 2
+451 'PM.Lisa' 'echo.pm' 15 0 2
+452 'PM.Lisa' 'echo.pm' 16 0 2
+453 'PM.Lisa' 'echo.pm' 17 0 2
+454 'PM.Lisa' 'echo.pm' 18 0 2
+455 'PM.Lisa' 'echo.pm' 21 0 2
+456 'PM.Lisa' 'echo.pm' 22 0 2
+457 'PM.Lisa' 'echo.pm' 23 0 2
+458 'PM.Lisa' 'echo.pm' 24 0 2
+459 'PM.Lisa' 'echo.pm' 25 0 2
+460 'PM.Lisa' 'echo.pm' 28 0 2
+461 'PM.Lisa' 'echo.pm' 29 0 2
+462 'PM.Lisa' 'echo.pm' 30 0 2
+463 'PM.Lisa' 'echo.pm' 31 0 2
+464 'PM.Lisa' 'echo.pm' 32 0 2
+465 'PM.Lisa' 'echo.pm' 35 0 2
+466 'PM.Lisa' 'echo.pm' 36 0 2
+467 'PM.Lisa' 'echo.pm' 37 0 2
+468 'PM.Lisa' 'echo.pm' 38 0 2
+469 'PM.Lisa' 'echo.pm' 39 0 2
+470 'PM.Lisa' 'echo.pm' 42 0 2
+471 'PM.Lisa' 'echo.pm' 43 0 2
+472 'PM.Lisa' 'echo.pm' 44 0 2
+473 'PM.Lisa' 'echo.pm' 45 0 2
+474 'PM.Lisa' 'echo.pm' 46 0 2
+475 'PM.Lisa' 'echo.pm' 49 0 2
+476 'PM.Lisa' 'echo.pm' 50 0 2
+477 'PM.Lisa' 'echo.pm' 51 0 2
+478 'PM.Lisa' 'echo.pm' 52 0 2
+479 'PM.Lisa' 'echo.pm' 53 0 2
+480 'PM.Lisa' 'echo.pm' 56 0 2
+481 'PM.Lisa' 'echo.pm' 57 0 2
+482 'PM.Lisa' 'echo.pm' 58 0 2
+483 'PM.Lisa' 'echo.pm' 59 0 2
+484 'PM.Lisa' 'echo.pm' 60 0 2
+485 'PM.Lisa' 'echo.pm' 63 0 2
+486 'PM.Lisa' 'echo.pm' 64 0 2
+487 'PM.Lisa' 'echo.pm' 65 0 2
+488 'PM.Lisa' 'echo.pm' 66 0 2
+489 'PM.Lisa' 'echo.pm' 67 0 2
+490 'PM.Lisa' 'echo.pm' 70 0 2
+491 'PM.Lisa' 'echo.pm' 71 0 2
+492 'PM.Lisa' 'echo.pm' 72 0 2
+493 'PM.Lisa' 'echo.pm' 73 0 2
+494 'PM.Lisa' 'echo.pm' 74 0 2
+495 'PM.Lisa' 'echo.pf' 93 0 2
+496 'PM.Lisa' 'echo.pf' 94 0 2
+497 'PM.Lisa' 'echo.pf' 95 0 2
+498 'PM.Lisa' 'echo.pf' 98 0 2
+499 'PM.Lisa' 'echo.pf' 99 0 2
+500 'PM.Lisa' 'echo.pf' 100 0 2
+501 'PM.Lisa' 'echo.pf' 101 0 2
+502 'PM.Lisa' 'echo.pf' 102 0 2
+503 'PM.Lisa' 'echo.pf' 105 0 2
+504 'PM.Lisa' 'echo.pf' 106 0 2
+505 'PM.Lisa' 'echo.pf' 107 0 2
+506 'PM.Lisa' 'echo.pf' 108 0 2
+507 'PM.Lisa' 'echo.pf' 109 0 2
+508 'PM.Lisa' 'echo.pf' 112 0 2
+509 'PM.Lisa' 'echo.pf' 113 0 2
+510 'PM.Lisa' 'echo.pf' 114 0 2
+511 'PM.Lisa' 'echo.pf' 115 0 2
+512 'PM.Lisa' 'echo.pf' 116 0 2
+513 'PM.Lisa' 'echo.pf' 119 0 2
+514 'PM.Lisa' 'echo.pf' 120 0 2
+515 'PM.Lisa' 'echo.pf' 121 0 2
+516 'PM.Lisa' 'echo.pf' 123 0 2
+517 'PM.Lisa' 'echo.pf' 126 0 2
+518 'PM.Lisa' 'echo.pf' 127 0 2
+519 'PM.Lisa' 'echo.pf' 128 0 2
+520 'PM.Lisa' 'echo.pf' 129 0 2
+521 'PM.Lisa' 'echo.pf' 130 0 2
+522 'PM.Lisa' 'echo.pf' 133 0 2
+523 'PM.Lisa' 'echo.pf' 134 0 2
+524 'PM.Lisa' 'echo.pf' 135 0 2
+525 'PM.Lisa' 'echo.pf' 136 0 2
+526 'PM.Lisa' 'echo.pf' 137 0 2
+527 'PM.Lisa' 'foxtrot.pm' 3 0 2
+528 'PM.Lisa' 'foxtrot.pm' 4 0 2
+529 'PM.Lisa' 'foxtrot.pm' 7 0 2
+530 'PM.Lisa' 'foxtrot.pm' 8 0 2
+531 'PM.Lisa' 'foxtrot.pm' 9 0 2
+532 'PM.Lisa' 'foxtrot.pm' 10 0 2
+533 'PM.Lisa' 'foxtrot.pm' 11 0 2
+534 'PM.Lisa' 'foxtrot.pm' 14 0 2
+535 'PM.Lisa' 'foxtrot.pm' 15 0 2
+536 'PM.Lisa' 'foxtrot.pm' 16 0 2
+537 'PM.Lisa' 'foxtrot.pm' 17 0 2
+538 'PM.Lisa' 'foxtrot.pm' 18 0 2
+539 'PM.Lisa' 'foxtrot.pm' 21 0 2
+540 'PM.Lisa' 'foxtrot.pm' 22 0 2
+541 'PM.Lisa' 'foxtrot.pm' 23 0 2
+542 'PM.Lisa' 'foxtrot.pm' 24 0 2
+543 'PM.Lisa' 'foxtrot.pm' 25 0 2
+544 'PM.Lisa' 'foxtrot.pm' 28 0 2
+545 'PM.Lisa' 'foxtrot.pm' 29 0 2
+546 'PM.Lisa' 'foxtrot.pm' 30 0 2
+547 'PM.Lisa' 'foxtrot.pm' 31 0 2
+548 'PM.Lisa' 'foxtrot.pm' 32 0 2
+549 'PM.Lisa' 'foxtrot.pm' 35 0 2
+550 'PM.Lisa' 'foxtrot.pm' 36 0 2
+551 'PM.Lisa' 'foxtrot.pm' 37 0 2
+552 'PM.Lisa' 'foxtrot.pm' 38 0 2
+553 'PM.Lisa' 'foxtrot.pm' 39 0 2
+554 'PM.Lisa' 'foxtrot.pm' 42 0 2
+555 'PM.Lisa' 'foxtrot.pm' 43 0 2
+556 'PM.Lisa' 'foxtrot.pm' 44 0 2
+557 'PM.Lisa' 'foxtrot.pm' 45 0 2
+558 'PM.Lisa' 'foxtrot.pm' 46 0 2
+559 'PM.Lisa' 'foxtrot.pm' 49 0 2
+560 'PM.Lisa' 'foxtrot.pm' 50 0 2
+561 'PM.Lisa' 'foxtrot.pm' 51 0 2
+562 'PM.Lisa' 'foxtrot.pm' 52 0 2
+563 'PM.Lisa' 'foxtrot.pm' 53 0 2
+564 'PM.Lisa' 'foxtrot.pm' 56 0 2
+565 'PM.Lisa' 'foxtrot.pm' 57 0 2
+566 'PM.Lisa' 'foxtrot.pm' 58 0 2
+567 'PM.Lisa' 'foxtrot.pm' 59 0 2
+568 'PM.Lisa' 'foxtrot.pm' 60 0 2
+569 'PM.Lisa' 'foxtrot.pm' 63 0 2
+570 'PM.Lisa' 'foxtrot.pm' 64 0 2
+571 'PM.Lisa' 'foxtrot.pm' 65 0 2
+572 'PM.Lisa' 'foxtrot.pm' 66 0 2
+573 'PM.Lisa' 'foxtrot.pm' 67 0 2
+574 'PM.Lisa' 'foxtrot.pm' 70 0 2
+575 'PM.Lisa' 'foxtrot.pm' 71 0 2
+576 'PM.Lisa' 'foxtrot.pm' 72 0 2
+577 'PM.Lisa' 'foxtrot.pm' 73 0 2
+578 'PM.Lisa' 'foxtrot.pm' 74 0 2
+579 'PM.Lisa' 'foxtrot.pm' 77 0 2
+580 'PM.Lisa' 'foxtrot.pm' 78 0 2
+581 'PM.Lisa' 'foxtrot.pm' 79 0 2
+582 'PM.Lisa' 'foxtrot.pm' 80 0 2
+583 'PM.Lisa' 'foxtrot.pm' 81 0 2
+584 'PM.Lisa' 'foxtrot.pm' 84 0 2
+585 'PM.Lisa' 'foxtrot.pm' 85 0 2
+586 'PM.Lisa' 'foxtrot.pm' 86 0 2
+587 'PM.Lisa' 'foxtrot.pm' 87 0 2
+588 'PM.Lisa' 'foxtrot.pm' 88 0 2
+589 'PM.Lisa' 'foxtrot.pm' 91 0 2
+590 'PM.Lisa' 'foxtrot.pm' 92 0 2
+591 'PM.Lisa' 'foxtrot.pf' 93 0 2
+592 'PM.Lisa' 'foxtrot.pf' 94 0 2
+593 'PM.Lisa' 'foxtrot.pf' 95 0 2
+594 'PM.Lisa' 'foxtrot.pf' 98 0 2
+595 'PM.Lisa' 'foxtrot.pf' 99 0 2
+596 'PM.Lisa' 'foxtrot.pf' 100 0 2
+597 'PM.Lisa' 'foxtrot.pf' 101 0 2
+598 'PM.Lisa' 'foxtrot.pf' 102 0 2
+599 'PM.Lisa' 'foxtrot.pf' 105 0 2
+600 'PM.Lisa' 'foxtrot.pf' 106 0 2
+601 'PM.Lisa' 'foxtrot.pf' 107 0 2
+602 'PM.Lisa' 'foxtrot.pf' 108 0 2
+603 'PM.Lisa' 'foxtrot.pf' 109 0 2
+604 'PM.Lisa' 'foxtrot.pf' 112 0 2
+605 'PM.Lisa' 'foxtrot.pf' 113 0 2
+606 'PM.Lisa' 'foxtrot.pf' 114 0 2
+607 'PM.Lisa' 'foxtrot.pf' 115 0 2
+608 'PM.Lisa' 'foxtrot.pf' 116 0 2
+609 'PM.Lisa' 'foxtrot.pf' 119 0 2
+610 'PM.Lisa' 'foxtrot.pf' 120 0 2
+611 'PM.Lisa' 'foxtrot.pf' 121 0 2
+612 'PM.Lisa' 'foxtrot.pf' 123 0 2
+613 'PM.Lisa' 'golf.pm' 3 0 2
+614 'PM.Lisa' 'golf.pm' 4 0 2
+615 'PM.Lisa' 'golf.pm' 7 0 2
+616 'PM.Lisa' 'golf.pm' 8 0 2
+617 'PM.Lisa' 'golf.pm' 9 0 2
+618 'PM.Lisa' 'golf.pm' 10 0 2
+619 'PM.Lisa' 'golf.pm' 11 0 2
+620 'PM.Lisa' 'golf.pm' 14 0 2
+621 'PM.Lisa' 'golf.pm' 15 0 2
+622 'PM.Lisa' 'golf.pm' 16 0 2
+623 'PM.Lisa' 'golf.pm' 17 0 2
+624 'PM.Lisa' 'golf.pm' 18 0 2
+625 'PM.Lisa' 'golf.pm' 21 0 2
+626 'PM.Lisa' 'golf.pm' 22 0 2
+627 'PM.Lisa' 'golf.pm' 23 0 2
+628 'PM.Lisa' 'golf.pm' 24 0 2
+629 'PM.Lisa' 'golf.pm' 25 0 2
+630 'PM.Lisa' 'golf.pm' 28 0 2
+631 'PM.Lisa' 'golf.pm' 29 0 2
+632 'PM.Lisa' 'golf.pm' 30 0 2
+633 'PM.Lisa' 'golf.pm' 31 0 2
+634 'PM.Lisa' 'golf.pm' 32 0 2
+635 'PM.Lisa' 'golf.pm' 35 0 2
+636 'PM.Lisa' 'golf.pm' 36 0 2
+637 'PM.Lisa' 'golf.pm' 37 0 2
+638 'PM.Lisa' 'golf.pm' 38 0 2
+639 'PM.Lisa' 'golf.pm' 39 0 2
+640 'PM.Lisa' 'golf.pm' 42 0 2
+641 'PM.Lisa' 'golf.pm' 43 0 2
+642 'PM.Lisa' 'golf.pm' 44 0 2
+643 'PM.Lisa' 'golf.pm' 45 0 2
+644 'PM.Lisa' 'golf.pm' 46 0 2
+645 'PM.Lisa' 'golf.pm' 49 0 2
+646 'PM.Lisa' 'golf.pm' 50 0 2
+647 'PM.Lisa' 'golf.pm' 51 0 2
+648 'PM.Lisa' 'golf.pm' 52 0 2
+649 'PM.Lisa' 'golf.pm' 53 0 2
+650 'PM.Lisa' 'golf.pm' 56 0 2
+651 'PM.Lisa' 'golf.pm' 57 0 2
+652 'PM.Lisa' 'golf.pm' 58 0 2
+653 'PM.Lisa' 'golf.pm' 59 0 2
+654 'PM.Lisa' 'golf.pm' 60 0 2
+655 'PM.Lisa' 'golf.pm' 63 0 2
+656 'PM.Lisa' 'golf.pm' 64 0 2
+657 'PM.Lisa' 'golf.pm' 65 0 2
+658 'PM.Lisa' 'golf.pm' 66 0 2
+659 'PM.Lisa' 'golf.pm' 67 0 2
+660 'PM.Lisa' 'golf.pm' 70 0 2
+661 'PM.Lisa' 'golf.pm' 71 0 2
+662 'PM.Lisa' 'golf.pm' 72 0 2
+663 'PM.Lisa' 'golf.pm' 73 0 2
+664 'PM.Lisa' 'golf.pm' 74 0 2
+665 'PM.Lisa' 'golf.pm' 77 0 2
+666 'PM.Lisa' 'golf.pm' 78 0 2
+667 'PM.Lisa' 'golf.pm' 79 0 2
+668 'PM.Lisa' 'golf.pm' 80 0 2
+669 'PM.Lisa' 'golf.pm' 81 0 2
+670 'PM.Lisa' 'golf.pm' 84 0 2
+671 'PM.Lisa' 'golf.pm' 85 0 2
+672 'PM.Lisa' 'golf.pm' 86 0 2
+673 'PM.Lisa' 'golf.pm' 87 0 2
+674 'PM.Lisa' 'golf.pm' 88 0 2
+675 'PM.Lisa' 'golf.pm' 91 0 2
+676 'PM.Lisa' 'golf.pm' 92 0 2
+677 'PM.Lisa' 'golf.pm' 93 0 2
+678 'PM.Lisa' 'golf.pm' 94 0 2
+679 'PM.Lisa' 'golf.pm' 95 0 2
+680 'PM.Lisa' 'golf.pm' 98 0 2
+681 'PM.Lisa' 'golf.pm' 99 0 2
+682 'PM.Lisa' 'golf.pm' 100 0 2
+683 'PM.Lisa' 'golf.pm' 101 0 2
+684 'PM.Lisa' 'golf.pm' 102 0 2
+685 'PM.Lisa' 'golf.pm' 105 0 2
+686 'PM.Lisa' 'golf.pm' 106 0 2
+687 'PM.Lisa' 'golf.pm' 107 0 2
+688 'PM.Lisa' 'golf.pm' 108 0 2
+689 'PM.Lisa' 'golf.pm' 109 0 2
+690 'PM.Lisa' 'golf.pm' 112 0 2
+691 'PM.Lisa' 'golf.pm' 113 0 2
+692 'PM.Lisa' 'golf.pm' 114 0 2
+693 'PM.Lisa' 'golf.pm' 115 0 2
+694 'PM.Lisa' 'golf.pm' 116 0 2
+695 'PM.Lisa' 'golf.pm' 119 0 2
+696 'PM.Lisa' 'golf.pm' 120 0 2
+697 'PM.Lisa' 'golf.pm' 121 0 2
+698 'PM.Lisa' 'golf.pm' 123 0 2
+699 'PM.Lisa' 'golf.pm' 126 0 2
+700 'PM.Lisa' 'golf.pm' 127 0 2
+701 'PM.Lisa' 'golf.pm' 128 0 2
+702 'PM.Lisa' 'golf.pm' 129 0 2
+703 'PM.Lisa' 'golf.pm' 130 0 2
+704 'PM.Lisa' 'golf.pm' 133 0 2
+705 'PM.Lisa' 'golf.pf' 134 0 2
+706 'PM.Lisa' 'golf.pf' 135 0 2
+707 'PM.Lisa' 'golf.pf' 136 0 2
+708 'PM.Lisa' 'golf.pf' 137 0 2
+709 'PM.Lisa' 'golf.pf' 140 0 2
+710 'PM.Lisa' 'golf.pf' 141 0 2
+711 'PM.Lisa' 'golf.pf' 142 0 2
+712 'PM.Lisa' 'golf.pf' 143 0 2
+713 'PM.Lisa' 'golf.pf' 144 0 2
+714 'PM.Lisa' 'golf.pf' 147 0 2
+715 'PM.Lisa' 'golf.pf' 148 0 2
+716 'PM.Lisa' 'golf.pf' 149 0 2
+717 'PM.Lisa' 'golf.pf' 150 0 2
+718 'PM.Lisa' 'golf.pf' 151 0 2
+719 'PM.Lisa' 'golf.pf' 154 0 2
+720 'PM.Lisa' 'golf.pf' 155 0 2
+721 'PM.Lisa' 'golf.pf' 156 0 2
+722 'PM.Lisa' 'golf.pf' 157 0 2
+723 'PM.Lisa' 'golf.pf' 158 0 2
+724 'PM.Lisa' 'golf.pf' 161 0 2
+725 'PM.Lisa' 'golf.pf' 162 0 2
+726 'PM.Lisa' 'golf.pf' 163 0 2
+727 'PM.Lisa' 'golf.pf' 164 0 2
+728 'PM.Lisa' 'golf.pf' 165 0 2
+729 'PM.Lisa' 'golf.pf' 168 0 2
+730 'PM.Lisa' 'golf.pf' 169 0 2
+731 'PM.Lisa' 'golf.pf' 170 0 2
+732 'PM.Lisa' 'golf.pf' 171 0 2
+733 'PM.Lisa' 'golf.pf' 172 0 2
+734 'PM.Lisa' 'golf.pf' 175 0 2
+735 'PM.Lisa' 'golf.pf' 176 0 2
+736 'PM.Lisa' 'golf.pf' 177 0 2
+737 'PM.Lisa' 'golf.pf' 178 0 2
+738 'PM.Lisa' 'golf.pf' 179 0 2
+739 'PM.Lisa' 'hotel.pm' 3 0 3
+740 'PM.Lisa' 'hotel.pm' 4 0 3
+741 'PM.Lisa' 'hotel.pm' 7 0 3
+742 'PM.Lisa' 'hotel.pm' 8 0 3
+743 'PM.Lisa' 'hotel.pm' 9 0 3
+744 'PM.Lisa' 'hotel.pm' 10 0 3
+745 'PM.Lisa' 'hotel.pm' 11 0 3
+746 'PM.Lisa' 'hotel.pm' 14 0 3
+747 'PM.Lisa' 'hotel.pm' 15 0 3
+748 'PM.Lisa' 'hotel.pm' 16 0 3
+749 'PM.Lisa' 'hotel.pm' 17 0 3
+750 'PM.Lisa' 'hotel.pm' 18 0 3
+751 'PM.Lisa' 'hotel.pm' 21 0 3
+752 'PM.Lisa' 'hotel.pm' 22 0 3
+753 'PM.Lisa' 'hotel.pm' 23 0 3
+754 'PM.Lisa' 'hotel.pm' 24 0 3
+755 'PM.Lisa' 'hotel.pm' 25 0 3
+756 'PM.Lisa' 'hotel.pm' 28 0 3
+757 'PM.Lisa' 'hotel.pm' 29 0 3
+758 'PM.Lisa' 'hotel.pm' 30 0 3
+759 'PM.Lisa' 'hotel.pm' 31 0 3
+760 'PM.Lisa' 'hotel.pm' 32 0 3
+761 'PM.Lisa' 'hotel.pm' 35 0 3
+762 'PM.Lisa' 'hotel.pm' 36 0 3
+763 'PM.Lisa' 'hotel.pm' 37 0 3
+764 'PM.Lisa' 'hotel.pm' 38 0 3
+765 'PM.Lisa' 'hotel.pm' 39 0 3
+766 'PM.Lisa' 'hotel.pm' 42 0 3
+767 'PM.Lisa' 'hotel.pm' 43 0 3
+768 'PM.Lisa' 'hotel.pm' 44 0 3
+769 'PM.Lisa' 'hotel.pm' 45 0 3
+770 'PM.Lisa' 'hotel.pm' 46 0 3
+771 'PM.Lisa' 'hotel.pm' 49 0 3
+772 'PM.Lisa' 'hotel.pm' 50 0 3
+773 'PM.Lisa' 'hotel.pm' 51 0 3
+774 'PM.Lisa' 'hotel.pm' 52 0 3
+775 'PM.Lisa' 'hotel.pm' 53 0 3
+776 'PM.Lisa' 'hotel.pm' 56 0 3
+777 'PM.Lisa' 'hotel.pm' 57 0 3
+778 'PM.Lisa' 'hotel.pm' 58 0 3
+779 'PM.Lisa' 'hotel.pm' 59 0 3
+780 'PM.Lisa' 'hotel.pm' 60 0 3
+781 'PM.Lisa' 'hotel.pm' 63 0 3
+782 'PM.Lisa' 'hotel.pm' 64 0 3
+783 'PM.Lisa' 'hotel.pm' 65 0 3
+784 'PM.Lisa' 'hotel.pm' 66 0 3
+785 'PM.Lisa' 'hotel.pm' 67 0 3
+786 'PM.Lisa' 'hotel.pm' 70 0 3
+787 'PM.Lisa' 'hotel.pm' 71 0 3
+788 'PM.Lisa' 'hotel.pm' 72 0 3
+789 'PM.Lisa' 'hotel.pm' 73 0 3
+790 'PM.Lisa' 'hotel.pm' 74 0 3
+791 'PM.Lisa' 'hotel.pm' 77 0 3
+792 'PM.Lisa' 'hotel.pm' 78 0 3
+793 'PM.Lisa' 'hotel.pm' 79 0 3
+794 'PM.Lisa' 'hotel.pm' 80 0 3
+795 'PM.Lisa' 'hotel.pm' 81 0 3
+796 'PM.Lisa' 'hotel.pm' 84 0 3
+797 'PM.Lisa' 'hotel.pm' 85 0 3
+798 'PM.Lisa' 'hotel.pm' 86 0 3
+799 'PM.Lisa' 'hotel.pm' 87 0 3
+800 'PM.Lisa' 'hotel.pm' 88 0 3
+801 'PM.Lisa' 'hotel.pm' 91 0 3
+802 'PM.Lisa' 'hotel.pm' 92 0 3
+803 'PM.Lisa' 'hotel.pm' 93 0 3
+804 'PM.Lisa' 'hotel.pm' 94 0 3
+805 'PM.Lisa' 'hotel.pm' 95 0 3
+806 'PM.Lisa' 'hotel.pm' 98 0 3
+807 'PM.Lisa' 'hotel.pm' 99 0 3
+808 'PM.Lisa' 'hotel.pm' 100 0 3
+809 'PM.Lisa' 'hotel.pm' 101 0 3
+810 'PM.Lisa' 'hotel.pm' 102 0 3
+811 'PM.Lisa' 'hotel.pm' 105 0 3
+812 'PM.Lisa' 'hotel.pm' 106 0 3
+813 'PM.Lisa' 'hotel.pm' 107 0 3
+814 'PM.Lisa' 'hotel.pm' 108 0 3
+815 'PM.Lisa' 'hotel.pm' 109 0 3
+816 'PM.Lisa' 'hotel.pm' 112 0 3
+817 'PM.Lisa' 'hotel.pm' 113 0 3
+818 'PM.Lisa' 'hotel.pm' 114 0 3
+819 'PM.Lisa' 'hotel.pm' 115 0 3
+820 'PM.Lisa' 'hotel.pm' 116 0 3
+821 'PM.Lisa' 'hotel.pm' 119 0 3
+822 'PM.Lisa' 'hotel.pm' 120 0 3
+823 'PM.Lisa' 'hotel.pm' 121 0 3
+824 'PM.Lisa' 'hotel.pm' 123 0 3
+825 'PM.Lisa' 'hotel.pm' 126 0 3
+826 'PM.Lisa' 'hotel.pm' 127 0 3
+827 'PM.Lisa' 'hotel.pm' 128 0 3
+828 'PM.Lisa' 'hotel.pm' 129 0 3
+829 'PM.Lisa' 'hotel.pm' 130 0 3
+830 'PM.Lisa' 'hotel.pm' 133 0 3
+831 'PM.Lisa' 'hotel.pm' 134 0 3
+832 'PM.Lisa' 'hotel.pm' 135 0 3
+833 'PM.Lisa' 'hotel.pm' 136 0 3
+834 'PM.Lisa' 'hotel.pm' 137 0 3
+835 'PM.Lisa' 'hotel.pm' 140 0 3
+836 'PM.Lisa' 'hotel.pm' 141 0 3
+837 'PM.Lisa' 'hotel.pm' 142 0 3
+838 'PM.Lisa' 'hotel.pm' 143 0 3
+839 'PM.Lisa' 'hotel.pm' 144 0 3
+840 'PM.Lisa' 'hotel.pm' 147 0 3
+841 'PM.Lisa' 'hotel.pm' 148 0 3
+842 'PM.Lisa' 'hotel.pm' 149 0 3
+843 'PM.Lisa' 'hotel.pm' 150 0 3
+844 'PM.Lisa' 'hotel.pm' 151 0 3
+845 'PM.Lisa' 'hotel.pm' 154 0 3
+846 'PM.Lisa' 'hotel.pm' 155 0 3
+847 'PM.Lisa' 'hotel.pm' 156 0 3
+848 'PM.Lisa' 'hotel.pm' 157 0 3
+849 'PM.Lisa' 'hotel.pm' 158 0 3
+850 'PM.Lisa' 'hotel.pm' 161 0 3
+851 'PM.Lisa' 'hotel.pm' 162 0 3
+852 'PM.Lisa' 'hotel.pm' 163 0 3
+853 'PM.Lisa' 'hotel.pm' 164 0 3
+854 'PM.Lisa' 'hotel.pm' 165 0 3
+855 'PM.Lisa' 'hotel.pm' 168 0 3
+856 'PM.Lisa' 'hotel.pm' 169 0 3
+857 'PM.Lisa' 'hotel.pm' 170 0 3
+858 'PM.Lisa' 'hotel.pm' 171 0 3
+859 'PM.Lisa' 'hotel.pm' 172 0 3
+860 'PM.Lisa' 'hotel.pm' 175 0 3
+861 'PM.Lisa' 'hotel.pm' 176 0 3
+862 'PM.Lisa' 'hotel.pm' 177 0 3
+863 'PM.Lisa' 'hotel.pm' 178 0 3
+864 'PM.Lisa' 'hotel.pm' 179 0 3
+865 'PM.Lisa' 'hotel.pm' 182 0 3
+866 'PM.Lisa' 'hotel.pm' 183 0 3
+867 'PM.Lisa' 'hotel.pm' 184 0 3
+868 'PM.Lisa' 'hotel.pm' 185 0 3
+869 'PM.Lisa' 'hotel.pm' 186 0 3
+870 'PM.Lisa' 'hotel.pm' 189 0 3
+871 'PM.Lisa' 'hotel.pm' 190 0 3
+872 'PM.Lisa' 'hotel.pm' 191 0 3
+873 'PM.Lisa' 'hotel.pm' 192 0 3
+874 'PM.Lisa' 'hotel.pm' 193 0 3
+875 'PM.Lisa' 'hotel.pm' 196 0 3
+876 'PM.Lisa' 'hotel.pm' 197 0 3
+877 'PM.Lisa' 'hotel.pm' 198 0 3
+878 'PM.Lisa' 'hotel.pm' 199 0 3
+879 'PM.Lisa' 'hotel.pm' 200 0 3
+880 'PM.Lisa' 'hotel.pm' 203 0 3
+881 'PM.Lisa' 'hotel.pm' 204 0 3
+882 'PM.Lisa' 'hotel.pm' 205 0 3
+883 'PM.Lisa' 'hotel.pm' 206 0 3
+884 'PM.Lisa' 'hotel.pm' 207 0 3
+885 'PM.Lisa' 'hotel.pm' 210 0 3
+886 'PM.Lisa' 'hotel.pm' 211 0 3
+887 'PM.Lisa' 'hotel.pm' 212 0 3
+888 'PM.Lisa' 'hotel.pm' 213 0 3
+889 'PM.Lisa' 'hotel.pm' 214 0 3
+890 'PM.Lisa' 'hotel.pm' 217 0 3
+891 'PM.Lisa' 'hotel.pm' 218 0 3
+892 'PM.Lisa' 'hotel.pm' 219 0 3
+893 'PM.Lisa' 'hotel.pm' 220 0 3
+894 'PM.Lisa' 'hotel.pm' 221 0 3
+895 'PM.Lisa' 'hotel.pm' 224 0 3
+896 'PM.Lisa' 'hotel.pm' 225 0 3
+897 'PM.Lisa' 'hotel.pm' 226 0 3
+898 'PM.Lisa' 'hotel.pm' 227 0 3
+899 'PM.Lisa' 'hotel.pm' 228 0 3
+900 'PM.Lisa' 'hotel.pm' 231 0 3
+901 'PM.Lisa' 'hotel.pm' 232 0 3
+902 'PM.Lisa' 'hotel.pm' 233 0 3
+903 'PM.Lisa' 'hotel.pm' 234 0 3
+904 'PM.Lisa' 'hotel.pm' 235 0 3
+905 'PM.Lisa' 'hotel.pm' 238 0 3
+906 'PM.Lisa' 'hotel.pm' 239 0 3
+907 'PM.Lisa' 'hotel.pm' 240 0 3
+908 'PM.Lisa' 'hotel.pm' 241 0 3
+909 'PM.Lisa' 'hotel.pm' 242 0 3
+910 'PM.Lisa' 'hotel.pm' 245 0 3
+911 'PM.Lisa' 'hotel.pf' 246 0 3
+912 'PM.Lisa' 'hotel.pf' 247 0 3
+913 'PM.Lisa' 'hotel.pf' 248 0 3
+914 'PM.Lisa' 'hotel.pf' 249 0 3
+915 'PM.Lisa' 'hotel.pf' 252 0 3
+916 'PM.Lisa' 'hotel.pf' 253 0 3
+917 'PM.Lisa' 'hotel.pf' 254 0 3
+918 'PM.Lisa' 'hotel.pf' 255 0 3
+919 'PM.Lisa' 'hotel.pf' 256 0 3
+920 'PM.Lisa' 'hotel.pf' 259 0 3
+921 'PM.Lisa' 'hotel.pf' 260 0 3
+922 'PM.Lisa' 'hotel.pf' 261 0 3
+923 'PM.Lisa' 'hotel.pf' 262 0 3
+924 'PM.Lisa' 'hotel.pf' 263 0 3
+925 'PM.Lisa' 'hotel.pf' 266 0 3
+926 'PM.Lisa' 'hotel.pf' 267 0 3
+927 'PM.Lisa' 'hotel.pf' 268 0 3
+928 'PM.Lisa' 'hotel.pf' 269 0 3
+929 'PM.Lisa' 'hotel.pf' 270 0 3
+930 'PM.Lisa' 'hotel.pf' 273 0 3
+931 'PM.Lisa' 'hotel.pf' 274 0 3
+932 'PM.Lisa' 'hotel.pf' 275 0 3
+933 'PM.Lisa' 'hotel.pf' 276 0 3
+934 'PM.Lisa' 'hotel.pf' 277 0 3
+935 'PM.Lisa' 'hotel.pf' 280 0 3
+936 'PM.Lisa' 'hotel.pf' 281 0 3
+937 'PM.Lisa' 'hotel.pf' 282 0 3
+938 'PM.Lisa' 'hotel.pf' 283 0 3
+939 'PM.Lisa' 'hotel.pf' 284 0 3
+940 'PM.Lisa' 'hotel.pf' 287 0 3
+941 'PM.Lisa' 'hotel.pf' 288 0 3
+942 'PM.Lisa' 'hotel.pf' 289 0 3
+943 'PM.Lisa' 'hotel.pf' 290 0 3
+944 'PM.Lisa' 'hotel.pf' 291 0 3
+945 'PM.Daniel' 'india.pm' 3 0 3
+946 'PM.Daniel' 'india.pm' 4 0 3
+947 'PM.Daniel' 'india.pm' 7 0 3
+948 'PM.Daniel' 'india.pm' 8 0 3
+949 'PM.Daniel' 'india.pm' 9 0 3
+950 'PM.Daniel' 'india.pm' 10 0 3
+951 'PM.Daniel' 'india.pm' 11 0 3
+952 'PM.Daniel' 'india.pm' 14 0 3
+953 'PM.Daniel' 'india.pm' 15 0 3
+954 'PM.Daniel' 'india.pm' 16 0 3
+955 'PM.Daniel' 'india.pm' 17 0 3
+956 'PM.Daniel' 'india.pm' 18 0 3
+957 'PM.Daniel' 'india.pm' 21 0 3
+958 'PM.Daniel' 'india.pm' 22 0 3
+959 'PM.Daniel' 'india.pm' 23 0 3
+960 'PM.Daniel' 'india.pm' 24 0 3
+961 'PM.Daniel' 'india.pm' 25 0 3
+962 'PM.Daniel' 'india.pm' 28 0 3
+963 'PM.Daniel' 'india.pm' 29 0 3
+964 'PM.Daniel' 'india.pm' 30 0 3
+965 'PM.Daniel' 'india.pm' 31 0 3
+966 'PM.Daniel' 'india.pm' 32 0 3
+967 'PM.Daniel' 'india.pm' 35 0 3
+968 'PM.Daniel' 'india.pm' 36 0 3
+969 'PM.Daniel' 'india.pm' 37 0 3
+970 'PM.Daniel' 'india.pm' 38 0 3
+971 'PM.Daniel' 'india.pm' 39 0 3
+972 'PM.Daniel' 'india.pm' 42 0 3
+973 'PM.Daniel' 'india.pm' 43 0 3
+974 'PM.Daniel' 'india.pm' 44 0 3
+975 'PM.Daniel' 'india.pm' 45 0 3
+976 'PM.Daniel' 'india.pm' 46 0 3
+977 'PM.Daniel' 'india.pm' 49 0 3
+978 'PM.Daniel' 'india.pm' 50 0 3
+979 'PM.Daniel' 'india.pm' 51 0 3
+980 'PM.Daniel' 'india.pm' 52 0 3
+981 'PM.Daniel' 'india.pm' 53 0 3
+982 'PM.Daniel' 'india.pm' 56 0 3
+983 'PM.Daniel' 'india.pm' 57 0 3
+984 'PM.Daniel' 'india.pm' 58 0 3
+985 'PM.Daniel' 'india.pm' 59 0 3
+986 'PM.Daniel' 'india.pm' 60 0 3
+987 'PM.Daniel' 'india.pm' 63 0 3
+988 'PM.Daniel' 'india.pm' 64 0 3
+989 'PM.Daniel' 'india.pm' 65 0 3
+990 'PM.Daniel' 'india.pm' 66 0 3
+991 'PM.Daniel' 'india.pm' 67 0 3
+992 'PM.Daniel' 'india.pm' 70 0 3
+993 'PM.Daniel' 'india.pm' 71 0 3
+994 'PM.Daniel' 'india.pm' 72 0 3
+995 'PM.Daniel' 'india.pm' 73 0 3
+996 'PM.Daniel' 'india.pm' 74 0 3
+997 'PM.Daniel' 'india.pm' 77 0 3
+998 'PM.Daniel' 'india.pm' 78 0 3
+999 'PM.Daniel' 'india.pm' 79 0 3
+1000 'PM.Daniel' 'india.pm' 80 0 3
+1001 'PM.Daniel' 'india.pm' 81 0 3
+1002 'PM.Daniel' 'india.pm' 84 0 3
+1003 'PM.Daniel' 'india.pm' 85 0 3
+1004 'PM.Daniel' 'india.pm' 86 0 3
+1005 'PM.Daniel' 'india.pm' 87 0 3
+1006 'PM.Daniel' 'india.pm' 88 0 3
+1007 'PM.Daniel' 'india.pm' 91 0 3
+1008 'PM.Daniel' 'india.pm' 92 0 3
+1009 'PM.Daniel' 'india.pm' 93 0 3
+1010 'PM.Daniel' 'india.pm' 94 0 3
+1011 'PM.Daniel' 'india.pm' 95 0 3
+1012 'PM.Daniel' 'india.pm' 98 0 3
+1013 'PM.Daniel' 'india.pm' 99 0 3
+1014 'PM.Daniel' 'india.pm' 100 0 3
+1015 'PM.Daniel' 'india.pm' 101 0 3
+1016 'PM.Daniel' 'india.pm' 102 0 3
+1017 'PM.Daniel' 'india.pm' 105 0 3
+1018 'PM.Daniel' 'india.pm' 106 0 3
+1019 'PM.Daniel' 'india.pm' 107 0 3
+1020 'PM.Daniel' 'india.pm' 108 0 3
+1021 'PM.Daniel' 'india.pm' 109 0 3
+1022 'PM.Daniel' 'india.pm' 112 0 3
+1023 'PM.Daniel' 'india.pm' 113 0 3
+1024 'PM.Daniel' 'india.pm' 114 0 3
+1025 'PM.Daniel' 'india.pm' 115 0 3
+1026 'PM.Daniel' 'india.pm' 116 0 3
+1027 'PM.Daniel' 'india.pm' 119 0 3
+1028 'PM.Daniel' 'india.pm' 120 0 3
+1029 'PM.Daniel' 'india.pm' 121 0 3
+1030 'PM.Daniel' 'india.pm' 123 0 3
+1031 'PM.Daniel' 'india.pm' 126 0 3
+1032 'PM.Daniel' 'india.pm' 127 0 3
+1033 'PM.Daniel' 'india.pm' 128 0 3
+1034 'PM.Daniel' 'india.pm' 129 0 3
+1035 'PM.Daniel' 'india.pm' 130 0 3
+1036 'PM.Daniel' 'india.pm' 133 0 3
+1037 'PM.Daniel' 'india.pm' 134 0 3
+1038 'PM.Daniel' 'india.pm' 135 0 3
+1039 'PM.Daniel' 'india.pm' 136 0 3
+1040 'PM.Daniel' 'india.pm' 137 0 3
+1041 'PM.Daniel' 'india.pm' 140 0 3
+1042 'PM.Daniel' 'india.pm' 141 0 3
+1043 'PM.Daniel' 'india.pm' 142 0 3
+1044 'PM.Daniel' 'india.pm' 143 0 3
+1045 'PM.Daniel' 'india.pm' 144 0 3
+1046 'PM.Daniel' 'india.pm' 147 0 3
+1047 'PM.Daniel' 'india.pm' 148 0 3
+1048 'PM.Daniel' 'india.pm' 149 0 3
+1049 'PM.Daniel' 'india.pm' 150 0 3
+1050 'PM.Daniel' 'india.pm' 151 0 3
+1051 'PM.Daniel' 'india.pm' 154 0 3
+1052 'PM.Daniel' 'india.pm' 155 0 3
+1053 'PM.Daniel' 'india.pm' 156 0 3
+1054 'PM.Daniel' 'india.pm' 157 0 3
+1055 'PM.Daniel' 'india.pm' 158 0 3
+1056 'PM.Daniel' 'india.pm' 161 0 3
+1057 'PM.Daniel' 'india.pm' 162 0 3
+1058 'PM.Daniel' 'india.pm' 163 0 3
+1059 'PM.Daniel' 'india.pm' 164 0 3
+1060 'PM.Daniel' 'india.pm' 165 0 3
+1061 'PM.Daniel' 'india.pm' 168 0 3
+1062 'PM.Daniel' 'india.pm' 169 0 3
+1063 'PM.Daniel' 'india.pm' 170 0 3
+1064 'PM.Daniel' 'india.pm' 171 0 3
+1065 'PM.Daniel' 'india.pm' 172 0 3
+1066 'PM.Daniel' 'india.pm' 175 0 3
+1067 'PM.Daniel' 'india.pm' 176 0 3
+1068 'PM.Daniel' 'india.pm' 177 0 3
+1069 'PM.Daniel' 'india.pm' 178 0 3
+1070 'PM.Daniel' 'india.pm' 179 0 3
+1071 'PM.Daniel' 'india.pm' 182 0 3
+1072 'PM.Daniel' 'india.pm' 183 0 3
+1073 'PM.Daniel' 'india.pm' 184 0 3
+1074 'PM.Daniel' 'india.pm' 185 0 3
+1075 'PM.Daniel' 'india.pm' 186 0 3
+1076 'PM.Daniel' 'india.pm' 189 0 3
+1077 'PM.Daniel' 'india.pm' 190 0 3
+1078 'PM.Daniel' 'india.pm' 191 0 3
+1079 'PM.Daniel' 'india.pm' 192 0 3
+1080 'PM.Daniel' 'india.pm' 193 0 3
+1081 'PM.Daniel' 'india.pm' 196 0 3
+1082 'PM.Daniel' 'india.pm' 197 0 3
+1083 'PM.Daniel' 'india.pm' 198 0 3
+1084 'PM.Daniel' 'india.pm' 199 0 3
+1085 'PM.Daniel' 'india.pm' 200 0 3
+1086 'PM.Daniel' 'india.pm' 203 0 3
+1087 'PM.Daniel' 'india.pm' 204 0 3
+1088 'PM.Daniel' 'india.pm' 205 0 3
+1089 'PM.Daniel' 'india.pm' 206 0 3
+1090 'PM.Daniel' 'india.pm' 207 0 3
+1091 'PM.Daniel' 'india.pm' 210 0 3
+1092 'PM.Daniel' 'india.pm' 211 0 3
+1093 'PM.Daniel' 'india.pm' 212 0 3
+1094 'PM.Daniel' 'india.pm' 213 0 3
+1095 'PM.Daniel' 'india.pm' 214 0 3
+1096 'PM.Daniel' 'india.pm' 217 0 3
+1097 'PM.Daniel' 'india.pm' 218 0 3
+1098 'PM.Daniel' 'india.pm' 219 0 3
+1099 'PM.Daniel' 'india.pm' 220 0 3
+1100 'PM.Daniel' 'india.pm' 221 0 3
+1101 'PM.Daniel' 'india.pm' 224 0 3
+1102 'PM.Daniel' 'india.pm' 225 0 3
+1103 'PM.Daniel' 'india.pm' 226 0 3
+1104 'PM.Daniel' 'india.pm' 227 0 3
+1105 'PM.Daniel' 'india.pm' 228 0 3
+1106 'PM.Daniel' 'india.pm' 231 0 3
+1107 'PM.Daniel' 'india.pm' 232 0 3
+1108 'PM.Daniel' 'india.pm' 233 0 3
+1109 'PM.Daniel' 'india.pm' 234 0 3
+1110 'PM.Daniel' 'india.pm' 235 0 3
+1111 'PM.Daniel' 'india.pm' 238 0 3
+1112 'PM.Daniel' 'india.pm' 239 0 3
+1113 'PM.Daniel' 'india.pm' 240 0 3
+1114 'PM.Daniel' 'india.pm' 241 0 3
+1115 'PM.Daniel' 'india.pm' 242 0 3
+1116 'PM.Daniel' 'india.pm' 245 0 3
+1117 'PM.Daniel' 'india.pm' 246 0 3
+1118 'PM.Daniel' 'india.pm' 247 0 3
+1119 'PM.Daniel' 'india.pm' 248 0 3
+1120 'PM.Daniel' 'india.pm' 249 0 3
+1121 'PM.Daniel' 'india.pm' 252 0 3
+1122 'PM.Daniel' 'india.pm' 253 0 3
+1123 'PM.Daniel' 'india.pm' 254 0 3
+1124 'PM.Daniel' 'india.pm' 255 0 3
+1125 'PM.Daniel' 'india.pm' 256 0 3
+1126 'PM.Daniel' 'india.pm' 259 0 3
+1127 'PM.Daniel' 'india.pm' 260 0 3
+1128 'PM.Daniel' 'india.pm' 261 0 3
+1129 'PM.Daniel' 'india.pm' 262 0 3
+1130 'PM.Daniel' 'india.pm' 263 0 3
+1131 'PM.Daniel' 'india.pm' 266 0 3
+1132 'PM.Daniel' 'india.pm' 267 0 3
+1133 'PM.Daniel' 'india.pm' 268 0 3
+1134 'PM.Daniel' 'india.pm' 269 0 3
+1135 'PM.Daniel' 'india.pm' 270 0 3
+1136 'PM.Daniel' 'india.pm' 273 0 3
+1137 'PM.Daniel' 'india.pm' 274 0 3
+1138 'PM.Daniel' 'india.pm' 275 0 3
+1139 'PM.Daniel' 'india.pf' 276 0 3
+1140 'PM.Daniel' 'india.pf' 277 0 3
+1141 'PM.Daniel' 'india.pf' 280 0 3
+1142 'PM.Daniel' 'india.pf' 281 0 3
+1143 'PM.Daniel' 'india.pf' 282 0 3
+1144 'PM.Daniel' 'india.pf' 283 0 3
+1145 'PM.Daniel' 'india.pf' 284 0 3
+1146 'PM.Daniel' 'india.pf' 287 0 3
+1147 'PM.Daniel' 'india.pf' 288 0 3
+1148 'PM.Daniel' 'india.pf' 289 0 3
+1149 'PM.Daniel' 'india.pf' 290 0 3
+1150 'PM.Daniel' 'india.pf' 291 0 3
+1151 'PM.Daniel' 'india.pf' 294 0 3
+1152 'PM.Daniel' 'india.pf' 295 0 3
+1153 'PM.Daniel' 'india.pf' 296 0 3
+1154 'PM.Daniel' 'india.pf' 297 0 3
+1155 'PM.Daniel' 'india.pf' 298 0 3
+1156 'PM.Daniel' 'india.pf' 301 0 3
+1157 'PM.Daniel' 'india.pf' 302 0 3
+1158 'PM.Daniel' 'india.pf' 303 0 3
+1159 'PM.Daniel' 'india.pf' 304 0 3
+1160 'PM.Daniel' 'india.pf' 305 0 3
+1161 'PM.Angel' 'juliet.pe' 42 0 2
+1162 'PM.Angel' 'juliet.pe' 43 0 2
+1163 'PM.Angel' 'juliet.pe' 44 0 2
+1164 'PM.Angel' 'juliet.pe' 45 0 2
+1165 'PM.Angel' 'juliet.pe' 46 0 2
+1166 'PM.Angel' 'juliet.pe' 49 0 2
+1167 'PM.Angel' 'juliet.pe' 50 0 2
+1168 'PM.Angel' 'juliet.pe' 51 0 2
+1169 'PM.Angel' 'juliet.pe' 52 0 2
+1170 'PM.Angel' 'juliet.pe' 53 0 2
+1171 'PM.Angel' 'juliet.pe' 56 0 2
+1172 'PM.Angel' 'juliet.pe' 57 0 2
+1173 'PM.Angel' 'juliet.pe' 58 0 2
+1174 'PM.Angel' 'juliet.pe' 59 0 2
+1175 'PM.Angel' 'juliet.pm' 60 0 2
+1176 'PM.Angel' 'juliet.pm' 63 0 2
+1177 'PM.Angel' 'juliet.pm' 64 0 2
+1178 'PM.Angel' 'juliet.pm' 65 0 2
+1179 'PM.Angel' 'juliet.pm' 66 0 2
+1180 'PM.Angel' 'juliet.pm' 67 0 2
+1181 'PM.Angel' 'juliet.pm' 70 0 2
+1182 'PM.Angel' 'juliet.pm' 71 0 2
+1183 'PM.Angel' 'juliet.pm' 72 0 2
+1184 'PM.Angel' 'juliet.pm' 73 0 2
+1185 'PM.Angel' 'juliet.pm' 74 0 2
+1186 'PM.Angel' 'juliet.pm' 77 0 2
+1187 'PM.Angel' 'juliet.pm' 78 0 2
+1188 'PM.Angel' 'juliet.pm' 79 0 2
+1189 'PM.Angel' 'juliet.pm' 80 0 2
+1190 'PM.Angel' 'juliet.pm' 81 0 2
+1191 'PM.Angel' 'juliet.pm' 84 0 2
+1192 'PM.Angel' 'juliet.pm' 85 0 2
+1193 'PM.Angel' 'juliet.pm' 86 0 2
+1194 'PM.Angel' 'juliet.pm' 87 0 2
+1195 'PM.Angel' 'juliet.pm' 88 0 2
+1196 'PM.Angel' 'juliet.pm' 91 0 2
+1197 'PM.Angel' 'juliet.pm' 92 0 2
+1198 'PM.Angel' 'juliet.pm' 93 0 2
+1199 'PM.Angel' 'juliet.pm' 94 0 2
+1200 'PM.Angel' 'juliet.pm' 95 0 2
+1201 'PM.Angel' 'juliet.pm' 98 0 2
+1202 'PM.Angel' 'juliet.pm' 99 0 2
+1203 'PM.Angel' 'juliet.pm' 100 0 2
+1204 'PM.Angel' 'juliet.pm' 101 0 2
+1205 'PM.Angel' 'juliet.pm' 102 0 2
+1206 'PM.Angel' 'juliet.pm' 105 0 2
+1207 'PM.Angel' 'juliet.pm' 106 0 2
+1208 'PM.Angel' 'juliet.pm' 107 0 2
+1209 'PM.Angel' 'juliet.pm' 108 0 2
+1210 'PM.Angel' 'juliet.pm' 109 0 2
+1211 'PM.Angel' 'juliet.pm' 112 0 2
+1212 'PM.Angel' 'juliet.pm' 113 0 2
+1213 'PM.Angel' 'juliet.pm' 114 0 2
+1214 'PM.Angel' 'juliet.pm' 115 0 2
+1215 'PM.Angel' 'juliet.pm' 116 0 2
+1216 'PM.Angel' 'juliet.pm' 119 0 2
+1217 'PM.Angel' 'juliet.pm' 120 0 2
+1218 'PM.Angel' 'juliet.pm' 121 0 2
+1219 'PM.Angel' 'juliet.pm' 123 0 2
+1220 'PM.Angel' 'juliet.pm' 126 0 2
+1221 'PM.Angel' 'juliet.pm' 127 0 2
+1222 'PM.Angel' 'juliet.pm' 128 0 2
+1223 'PM.Angel' 'juliet.pm' 129 0 2
+1224 'PM.Angel' 'juliet.pm' 130 0 2
+1225 'PM.Angel' 'juliet.pm' 133 0 2
+1226 'PM.Angel' 'juliet.pm' 134 0 2
+1227 'PM.Angel' 'juliet.pm' 135 0 2
+1228 'PM.Angel' 'juliet.pm' 136 0 2
+1229 'PM.Angel' 'juliet.pm' 137 0 2
+1230 'PM.Angel' 'juliet.pm' 140 0 2
+1231 'PM.Angel' 'juliet.pm' 141 0 2
+1232 'PM.Angel' 'juliet.pm' 142 0 2
+1233 'PM.Angel' 'juliet.pm' 143 0 2
+1234 'PM.Angel' 'juliet.pm' 144 0 2
+1235 'PM.Angel' 'juliet.pm' 147 0 2
+1236 'PM.Angel' 'juliet.pm' 148 0 2
+1237 'PM.Angel' 'juliet.pm' 149 0 2
+1238 'PM.Angel' 'juliet.pm' 150 0 2
+1239 'PM.Angel' 'juliet.pm' 151 0 2
+1240 'PM.Angel' 'juliet.pm' 154 0 2
+1241 'PM.Angel' 'juliet.pm' 155 0 2
+1242 'PM.Angel' 'juliet.pm' 156 0 2
+1243 'PM.Angel' 'juliet.pm' 157 0 2
+1244 'PM.Angel' 'juliet.pm' 158 0 2
+1245 'PM.Angel' 'juliet.pm' 161 0 2
+1246 'PM.Angel' 'juliet.pm' 162 0 2
+1247 'PM.Angel' 'juliet.pm' 163 0 2
+1248 'PM.Angel' 'juliet.pm' 164 0 2
+1249 'PM.Angel' 'juliet.pm' 165 0 2
+1250 'PM.Angel' 'juliet.pm' 168 0 2
+1251 'PM.Angel' 'juliet.pm' 169 0 2
+1252 'PM.Angel' 'juliet.pm' 170 0 2
+1253 'PM.Angel' 'juliet.pm' 171 0 2
+1254 'PM.Angel' 'juliet.pm' 172 0 2
+1255 'PM.Angel' 'juliet.pm' 175 0 2
+1256 'PM.Angel' 'juliet.pm' 176 0 2
+1257 'PM.Angel' 'juliet.pm' 177 0 2
+1258 'PM.Angel' 'juliet.pm' 178 0 2
+1259 'PM.Angel' 'juliet.pm' 179 0 2
+1260 'PM.Angel' 'juliet.pm' 182 0 2
+1261 'PM.Angel' 'juliet.pf' 183 0 2
+1262 'PM.Angel' 'juliet.pf' 184 0 2
+1263 'PM.Angel' 'juliet.pf' 185 0 2
+1264 'PM.Angel' 'juliet.pf' 186 0 2
+1265 'PM.Angel' 'juliet.pf' 189 0 2
+1266 'PM.Angel' 'juliet.pf' 190 0 2
+1267 'PM.Angel' 'juliet.pf' 191 0 2
+1268 'PM.Angel' 'juliet.pf' 192 0 2
+1269 'PM.Angel' 'juliet.pf' 193 0 2
+1270 'PM.Angel' 'juliet.pf' 196 0 2
+1271 'PM.Angel' 'juliet.pf' 197 0 2
+1272 'PM.Angel' 'juliet.pf' 198 0 2
+1273 'PM.Angel' 'juliet.pf' 199 0 2
+1274 'PM.Angel' 'juliet.pf' 200 0 2
+1275 'PM.Angel' 'juliet.pf' 203 0 2
+1276 'PM.Angel' 'juliet.pf' 204 0 2
+1277 'PM.Angel' 'juliet.pf' 205 0 2
+1278 'PM.Angel' 'juliet.pf' 206 0 2
+1279 'PM.Angel' 'juliet.pf' 207 0 2
+1280 'PM.Angel' 'juliet.pf' 210 0 2
+1281 'PM.Angel' 'juliet.pf' 211 0 2
+1282 'PM.Angel' 'juliet.pf' 212 0 2
+1283 'PM.Angel' 'juliet.pf' 213 0 2
+1284 'PM.Angel' 'juliet.pf' 214 0 2
+1285 'PM.Angel' 'juliet.pf' 217 0 2
+1286 'PM.Angel' 'juliet.pf' 218 0 2
+1287 'PM.Angel' 'juliet.pf' 219 0 2
+1288 'PM.Angel' 'juliet.pf' 220 0 2
+1289 'PM.Angel' 'juliet.pf' 221 0 2
+1290 'PM.Angel' 'juliet.pf' 224 0 2
+1291 'PM.Angel' 'juliet.pf' 225 0 2
+1292 'PM.Angel' 'juliet.pf' 226 0 2
+1293 'PM.Angel' 'juliet.pf' 227 0 2
+1294 'PM.Angel' 'juliet.pf' 228 0 2
+1295 'PM.Lisa' 'kilo.pe' 63 0 2
+1296 'PM.Lisa' 'kilo.pe' 64 0 2
+1297 'PM.Lisa' 'kilo.pe' 65 0 2
+1298 'PM.Lisa' 'kilo.pe' 66 0 2
+1299 'PM.Lisa' 'kilo.pe' 67 0 2
+1300 'PM.Lisa' 'kilo.pe' 70 0 2
+1301 'PM.Lisa' 'kilo.pe' 71 0 2
+1302 'PM.Lisa' 'kilo.pe' 72 0 2
+1303 'PM.Lisa' 'kilo.pe' 73 0 2
+1304 'PM.Lisa' 'kilo.pe' 74 0 2
+1305 'PM.Lisa' 'kilo.pe' 77 0 2
+1306 'PM.Lisa' 'kilo.pe' 78 0 2
+1307 'PM.Lisa' 'kilo.pe' 79 0 2
+1308 'PM.Lisa' 'kilo.pe' 80 0 2
+1309 'PM.Lisa' 'kilo.pe' 81 0 2
+1310 'PM.Lisa' 'kilo.pe' 84 0 2
+1311 'PM.Lisa' 'kilo.pm' 85 0 2
+1312 'PM.Lisa' 'kilo.pm' 86 0 2
+1313 'PM.Lisa' 'kilo.pm' 87 0 2
+1314 'PM.Lisa' 'kilo.pm' 88 0 2
+1315 'PM.Lisa' 'kilo.pm' 91 0 2
+1316 'PM.Lisa' 'kilo.pm' 92 0 2
+1317 'PM.Lisa' 'kilo.pm' 93 0 2
+1318 'PM.Lisa' 'kilo.pm' 94 0 2
+1319 'PM.Lisa' 'kilo.pm' 95 0 2
+1320 'PM.Lisa' 'kilo.pm' 98 0 2
+1321 'PM.Lisa' 'kilo.pm' 99 0 2
+1322 'PM.Lisa' 'kilo.pm' 100 0 2
+1323 'PM.Lisa' 'kilo.pm' 101 0 2
+1324 'PM.Lisa' 'kilo.pm' 102 0 2
+1325 'PM.Lisa' 'kilo.pm' 105 0 2
+1326 'PM.Lisa' 'kilo.pm' 106 0 2
+1327 'PM.Lisa' 'kilo.pm' 107 0 2
+1328 'PM.Lisa' 'kilo.pm' 108 0 2
+1329 'PM.Lisa' 'kilo.pm' 109 0 2
+1330 'PM.Lisa' 'kilo.pm' 112 0 2
+1331 'PM.Lisa' 'kilo.pm' 113 0 2
+1332 'PM.Lisa' 'kilo.pm' 114 0 2
+1333 'PM.Lisa' 'kilo.pm' 115 0 2
+1334 'PM.Lisa' 'kilo.pm' 116 0 2
+1335 'PM.Lisa' 'kilo.pm' 119 0 2
+1336 'PM.Lisa' 'kilo.pm' 120 0 2
+1337 'PM.Lisa' 'kilo.pm' 121 0 2
+1338 'PM.Lisa' 'kilo.pm' 123 0 2
+1339 'PM.Lisa' 'kilo.pm' 126 0 2
+1340 'PM.Lisa' 'kilo.pm' 127 0 2
+1341 'PM.Lisa' 'kilo.pm' 128 0 2
+1342 'PM.Lisa' 'kilo.pm' 129 0 2
+1343 'PM.Lisa' 'kilo.pm' 130 0 2
+1344 'PM.Lisa' 'kilo.pm' 133 0 2
+1345 'PM.Lisa' 'kilo.pm' 134 0 2
+1346 'PM.Lisa' 'kilo.pm' 135 0 2
+1347 'PM.Lisa' 'kilo.pm' 136 0 2
+1348 'PM.Lisa' 'kilo.pm' 137 0 2
+1349 'PM.Lisa' 'kilo.pm' 140 0 2
+1350 'PM.Lisa' 'kilo.pm' 141 0 2
+1351 'PM.Lisa' 'kilo.pm' 142 0 2
+1352 'PM.Lisa' 'kilo.pm' 143 0 2
+1353 'PM.Lisa' 'kilo.pm' 144 0 2
+1354 'PM.Lisa' 'kilo.pm' 147 0 2
+1355 'PM.Lisa' 'kilo.pm' 148 0 2
+1356 'PM.Lisa' 'kilo.pm' 149 0 2
+1357 'PM.Lisa' 'kilo.pm' 150 0 2
+1358 'PM.Lisa' 'kilo.pm' 151 0 2
+1359 'PM.Lisa' 'kilo.pm' 154 0 2
+1360 'PM.Lisa' 'kilo.pm' 155 0 2
+1361 'PM.Lisa' 'kilo.pm' 156 0 2
+1362 'PM.Lisa' 'kilo.pm' 157 0 2
+1363 'PM.Lisa' 'kilo.pm' 158 0 2
+1364 'PM.Lisa' 'kilo.pm' 161 0 2
+1365 'PM.Lisa' 'kilo.pm' 162 0 2
+1366 'PM.Lisa' 'kilo.pm' 163 0 2
+1367 'PM.Lisa' 'kilo.pm' 164 0 2
+1368 'PM.Lisa' 'kilo.pm' 165 0 2
+1369 'PM.Lisa' 'kilo.pm' 168 0 2
+1370 'PM.Lisa' 'kilo.pm' 169 0 2
+1371 'PM.Lisa' 'kilo.pm' 170 0 2
+1372 'PM.Lisa' 'kilo.pm' 171 0 2
+1373 'PM.Lisa' 'kilo.pm' 172 0 2
+1374 'PM.Lisa' 'kilo.pm' 175 0 2
+1375 'PM.Lisa' 'kilo.pm' 176 0 2
+1376 'PM.Lisa' 'kilo.pm' 177 0 2
+1377 'PM.Lisa' 'kilo.pm' 178 0 2
+1378 'PM.Lisa' 'kilo.pm' 179 0 2
+1379 'PM.Lisa' 'kilo.pm' 182 0 2
+1380 'PM.Lisa' 'kilo.pm' 183 0 2
+1381 'PM.Lisa' 'kilo.pm' 184 0 2
+1382 'PM.Lisa' 'kilo.pm' 185 0 2
+1383 'PM.Lisa' 'kilo.pm' 186 0 2
+1384 'PM.Lisa' 'kilo.pm' 189 0 2
+1385 'PM.Lisa' 'kilo.pm' 190 0 2
+1386 'PM.Lisa' 'kilo.pm' 191 0 2
+1387 'PM.Lisa' 'kilo.pm' 192 0 2
+1388 'PM.Lisa' 'kilo.pm' 193 0 2
+1389 'PM.Lisa' 'kilo.pm' 196 0 2
+1390 'PM.Lisa' 'kilo.pm' 197 0 2
+1391 'PM.Lisa' 'kilo.pm' 198 0 2
+1392 'PM.Lisa' 'kilo.pm' 199 0 2
+1393 'PM.Lisa' 'kilo.pm' 200 0 2
+1394 'PM.Lisa' 'kilo.pm' 203 0 2
+1395 'PM.Lisa' 'kilo.pm' 204 0 2
+1396 'PM.Lisa' 'kilo.pm' 205 0 2
+1397 'PM.Lisa' 'kilo.pm' 206 0 2
+1398 'PM.Lisa' 'kilo.pm' 207 0 2
+1399 'PM.Lisa' 'kilo.pm' 210 0 2
+1400 'PM.Lisa' 'kilo.pm' 211 0 2
+1401 'PM.Lisa' 'kilo.pm' 212 0 2
+1402 'PM.Lisa' 'kilo.pm' 213 0 2
+1403 'PM.Lisa' 'kilo.pm' 214 0 2
+1404 'PM.Lisa' 'kilo.pf' 217 0 2
+1405 'PM.Lisa' 'kilo.pf' 218 0 2
+1406 'PM.Lisa' 'kilo.pf' 219 0 2
+1407 'PM.Lisa' 'kilo.pf' 220 0 2
+1408 'PM.Lisa' 'kilo.pf' 221 0 2
+1409 'PM.Lisa' 'kilo.pf' 224 0 2
+1410 'PM.Lisa' 'kilo.pf' 225 0 2
+1411 'PM.Lisa' 'kilo.pf' 226 0 2
+1412 'PM.Lisa' 'kilo.pf' 227 0 2
+1413 'PM.Lisa' 'kilo.pf' 228 0 2
+1414 'PM.Lisa' 'kilo.pf' 231 0 2
+1415 'PM.Lisa' 'kilo.pf' 232 0 2
+1416 'PM.Lisa' 'kilo.pf' 233 0 2
+1417 'PM.Lisa' 'kilo.pf' 234 0 2
+1418 'PM.Lisa' 'kilo.pf' 235 0 2
+1419 'PM.Lisa' 'kilo.pf' 238 0 2
+1420 'PM.Lisa' 'kilo.pf' 239 0 2
+1421 'PM.Lisa' 'kilo.pf' 240 0 2
+1422 'PM.Lisa' 'kilo.pf' 241 0 2
+1423 'PM.Lisa' 'kilo.pf' 242 0 2
+1424 'PM.Lisa' 'kilo.pf' 245 0 2
+1425 'PM.Lisa' 'kilo.pf' 246 0 2
+1426 'PM.Lisa' 'kilo.pf' 247 0 2
+1427 'PM.Lisa' 'kilo.pf' 248 0 2
+1428 'PM.Lisa' 'kilo.pf' 249 0 2
+1429 'PM.Lisa' 'kilo.pf' 252 0 2
+1430 'PM.Lisa' 'kilo.pf' 253 0 2
+1431 'PM.Lisa' 'kilo.pf' 254 0 2
+1432 'PM.Lisa' 'kilo.pf' 255 0 2
+1433 'PM.Lisa' 'kilo.pf' 256 0 2
+1434 'PM.Lisa' 'kilo.pf' 259 0 2
+1435 'PM.Lisa' 'kilo.pf' 260 0 2
+1436 'PM.Lisa' 'lima.pe' 81 0 3
+1437 'PM.Lisa' 'lima.pe' 84 0 3
+1438 'PM.Lisa' 'lima.pe' 85 0 3
+1439 'PM.Lisa' 'lima.pe' 86 0 3
+1440 'PM.Lisa' 'lima.pe' 87 0 3
+1441 'PM.Lisa' 'lima.pe' 88 0 3
+1442 'PM.Lisa' 'lima.pe' 91 0 3
+1443 'PM.Lisa' 'lima.pe' 92 0 3
+1444 'PM.Lisa' 'lima.pe' 93 0 3
+1445 'PM.Lisa' 'lima.pe' 94 0 3
+1446 'PM.Lisa' 'lima.pe' 95 0 3
+1447 'PM.Lisa' 'lima.pe' 98 0 3
+1448 'PM.Lisa' 'lima.pe' 99 0 3
+1449 'PM.Lisa' 'lima.pe' 100 0 3
+1450 'PM.Lisa' 'lima.pe' 101 0 3
+1451 'PM.Lisa' 'lima.pe' 102 0 3
+1452 'PM.Lisa' 'lima.pe' 105 0 3
+1453 'PM.Lisa' 'lima.pe' 106 0 3
+1454 'PM.Lisa' 'lima.pe' 107 0 3
+1455 'PM.Lisa' 'lima.pe' 108 0 3
+1456 'PM.Lisa' 'lima.pe' 109 0 3
+1457 'PM.Lisa' 'lima.pm' 112 0 3
+1458 'PM.Lisa' 'lima.pm' 113 0 3
+1459 'PM.Lisa' 'lima.pm' 114 0 3
+1460 'PM.Lisa' 'lima.pm' 115 0 3
+1461 'PM.Lisa' 'lima.pm' 116 0 3
+1462 'PM.Lisa' 'lima.pm' 119 0 3
+1463 'PM.Lisa' 'lima.pm' 120 0 3
+1464 'PM.Lisa' 'lima.pm' 121 0 3
+1465 'PM.Lisa' 'lima.pm' 123 0 3
+1466 'PM.Lisa' 'lima.pm' 126 0 3
+1467 'PM.Lisa' 'lima.pm' 127 0 3
+1468 'PM.Lisa' 'lima.pm' 128 0 3
+1469 'PM.Lisa' 'lima.pm' 129 0 3
+1470 'PM.Lisa' 'lima.pm' 130 0 3
+1471 'PM.Lisa' 'lima.pm' 133 0 3
+1472 'PM.Lisa' 'lima.pm' 134 0 3
+1473 'PM.Lisa' 'lima.pm' 135 0 3
+1474 'PM.Lisa' 'lima.pm' 136 0 3
+1475 'PM.Lisa' 'lima.pm' 137 0 3
+1476 'PM.Lisa' 'lima.pm' 140 0 3
+1477 'PM.Lisa' 'lima.pm' 141 0 3
+1478 'PM.Lisa' 'lima.pm' 142 0 3
+1479 'PM.Lisa' 'lima.pm' 143 0 3
+1480 'PM.Lisa' 'lima.pm' 144 0 3
+1481 'PM.Lisa' 'lima.pm' 147 0 3
+1482 'PM.Lisa' 'lima.pm' 148 0 3
+1483 'PM.Lisa' 'lima.pm' 149 0 3
+1484 'PM.Lisa' 'lima.pm' 150 0 3
+1485 'PM.Lisa' 'lima.pm' 151 0 3
+1486 'PM.Lisa' 'lima.pm' 154 0 3
+1487 'PM.Lisa' 'lima.pm' 155 0 3
+1488 'PM.Lisa' 'lima.pm' 156 0 3
+1489 'PM.Lisa' 'lima.pm' 157 0 3
+1490 'PM.Lisa' 'lima.pm' 158 0 3
+1491 'PM.Lisa' 'lima.pm' 161 0 3
+1492 'PM.Lisa' 'lima.pm' 162 0 3
+1493 'PM.Lisa' 'lima.pm' 163 0 3
+1494 'PM.Lisa' 'lima.pm' 164 0 3
+1495 'PM.Lisa' 'lima.pm' 165 0 3
+1496 'PM.Lisa' 'lima.pm' 168 0 3
+1497 'PM.Lisa' 'lima.pm' 169 0 3
+1498 'PM.Lisa' 'lima.pm' 170 0 3
+1499 'PM.Lisa' 'lima.pm' 171 0 3
+1500 'PM.Lisa' 'lima.pm' 172 0 3
+1501 'PM.Lisa' 'lima.pm' 175 0 3
+1502 'PM.Lisa' 'lima.pm' 176 0 3
+1503 'PM.Lisa' 'lima.pm' 177 0 3
+1504 'PM.Lisa' 'lima.pm' 178 0 3
+1505 'PM.Lisa' 'lima.pm' 179 0 3
+1506 'PM.Lisa' 'lima.pm' 182 0 3
+1507 'PM.Lisa' 'lima.pm' 183 0 3
+1508 'PM.Lisa' 'lima.pm' 184 0 3
+1509 'PM.Lisa' 'lima.pm' 185 0 3
+1510 'PM.Lisa' 'lima.pm' 186 0 3
+1511 'PM.Lisa' 'lima.pm' 189 0 3
+1512 'PM.Lisa' 'lima.pm' 190 0 3
+1513 'PM.Lisa' 'lima.pm' 191 0 3
+1514 'PM.Lisa' 'lima.pm' 192 0 3
+1515 'PM.Lisa' 'lima.pm' 193 0 3
+1516 'PM.Lisa' 'lima.pm' 196 0 3
+1517 'PM.Lisa' 'lima.pm' 197 0 3
+1518 'PM.Lisa' 'lima.pm' 198 0 3
+1519 'PM.Lisa' 'lima.pm' 199 0 3
+1520 'PM.Lisa' 'lima.pm' 200 0 3
+1521 'PM.Lisa' 'lima.pm' 203 0 3
+1522 'PM.Lisa' 'lima.pm' 204 0 3
+1523 'PM.Lisa' 'lima.pm' 205 0 3
+1524 'PM.Lisa' 'lima.pm' 206 0 3
+1525 'PM.Lisa' 'lima.pm' 207 0 3
+1526 'PM.Lisa' 'lima.pm' 210 0 3
+1527 'PM.Lisa' 'lima.pm' 211 0 3
+1528 'PM.Lisa' 'lima.pm' 212 0 3
+1529 'PM.Lisa' 'lima.pm' 213 0 3
+1530 'PM.Lisa' 'lima.pm' 214 0 3
+1531 'PM.Lisa' 'lima.pm' 217 0 3
+1532 'PM.Lisa' 'lima.pm' 218 0 3
+1533 'PM.Lisa' 'lima.pm' 219 0 3
+1534 'PM.Lisa' 'lima.pm' 220 0 3
+1535 'PM.Lisa' 'lima.pm' 221 0 3
+1536 'PM.Lisa' 'lima.pm' 224 0 3
+1537 'PM.Lisa' 'lima.pm' 225 0 3
+1538 'PM.Lisa' 'lima.pm' 226 0 3
+1539 'PM.Lisa' 'lima.pm' 227 0 3
+1540 'PM.Lisa' 'lima.pm' 228 0 3
+1541 'PM.Lisa' 'lima.pm' 231 0 3
+1542 'PM.Lisa' 'lima.pm' 232 0 3
+1543 'PM.Lisa' 'lima.pm' 233 0 3
+1544 'PM.Lisa' 'lima.pm' 234 0 3
+1545 'PM.Lisa' 'lima.pm' 235 0 3
+1546 'PM.Lisa' 'lima.pm' 238 0 3
+1547 'PM.Lisa' 'lima.pm' 239 0 3
+1548 'PM.Lisa' 'lima.pm' 240 0 3
+1549 'PM.Lisa' 'lima.pm' 241 0 3
+1550 'PM.Lisa' 'lima.pm' 242 0 3
+1551 'PM.Lisa' 'lima.pm' 245 0 3
+1552 'PM.Lisa' 'lima.pm' 246 0 3
+1553 'PM.Lisa' 'lima.pm' 247 0 3
+1554 'PM.Lisa' 'lima.pm' 248 0 3
+1555 'PM.Lisa' 'lima.pm' 249 0 3
+1556 'PM.Lisa' 'lima.pm' 252 0 3
+1557 'PM.Lisa' 'lima.pm' 253 0 3
+1558 'PM.Lisa' 'lima.pm' 254 0 3
+1559 'PM.Lisa' 'lima.pm' 255 0 3
+1560 'PM.Lisa' 'lima.pm' 256 0 3
+1561 'PM.Lisa' 'lima.pm' 259 0 3
+1562 'PM.Lisa' 'lima.pm' 260 0 3
+1563 'PM.Lisa' 'lima.pm' 261 0 3
+1564 'PM.Lisa' 'lima.pm' 262 0 3
+1565 'PM.Lisa' 'lima.pm' 263 0 3
+1566 'PM.Lisa' 'lima.pm' 266 0 3
+1567 'PM.Lisa' 'lima.pm' 267 0 3
+1568 'PM.Lisa' 'lima.pm' 268 0 3
+1569 'PM.Lisa' 'lima.pm' 269 0 3
+1570 'PM.Lisa' 'lima.pm' 270 0 3
+1571 'PM.Lisa' 'lima.pm' 273 0 3
+1572 'PM.Lisa' 'lima.pm' 274 0 3
+1573 'PM.Lisa' 'lima.pm' 275 0 3
+1574 'PM.Lisa' 'lima.pm' 276 0 3
+1575 'PM.Lisa' 'lima.pm' 277 0 3
+1576 'PM.Lisa' 'lima.pm' 280 0 3
+1577 'PM.Lisa' 'lima.pm' 281 0 3
+1578 'PM.Lisa' 'lima.pm' 282 0 3
+1579 'PM.Lisa' 'lima.pm' 283 0 3
+1580 'PM.Lisa' 'lima.pm' 284 0 3
+1581 'PM.Lisa' 'lima.pm' 287 0 3
+1582 'PM.Lisa' 'lima.pm' 288 0 3
+1583 'PM.Lisa' 'lima.pm' 289 0 3
+1584 'PM.Lisa' 'lima.pm' 290 0 3
+1585 'PM.Lisa' 'lima.pm' 291 0 3
+1586 'PM.Lisa' 'lima.pm' 294 0 3
+1587 'PM.Lisa' 'lima.pm' 295 0 3
+1588 'PM.Lisa' 'lima.pm' 296 0 3
+1589 'PM.Lisa' 'lima.pm' 297 0 3
+1590 'PM.Lisa' 'lima.pm' 298 0 3
+1591 'PM.Lisa' 'lima.pm' 301 0 3
+1592 'PM.Lisa' 'lima.pm' 302 0 3
+1593 'PM.Lisa' 'lima.pm' 303 0 3
+1594 'PM.Lisa' 'lima.pm' 304 0 3
+1595 'PM.Lisa' 'lima.pm' 305 0 3
+1596 'PM.Lisa' 'lima.pf' 308 0 3
+1597 'PM.Lisa' 'lima.pf' 309 0 3
+1598 'PM.Lisa' 'lima.pf' 310 0 3
+1599 'PM.Lisa' 'lima.pf' 311 0 3
+1600 'PM.Lisa' 'lima.pf' 312 0 3
+1601 'PM.Lisa' 'lima.pf' 315 0 3
+1602 'PM.Lisa' 'lima.pf' 316 0 3
+1603 'PM.Lisa' 'lima.pf' 317 0 3
+1604 'PM.Lisa' 'lima.pf' 318 0 3
+1605 'PM.Lisa' 'lima.pf' 319 0 3
+1606 'PM.Lisa' 'lima.pf' 322 0 3
+1607 'PM.Lisa' 'lima.pf' 323 0 3
+1608 'PM.Lisa' 'lima.pf' 324 0 3
+1609 'PM.Lisa' 'lima.pf' 325 0 3
+1610 'PM.Lisa' 'lima.pf' 326 0 3
+1611 'PM.Lisa' 'lima.pf' 329 0 3
+1612 'PM.Lisa' 'lima.pf' 330 0 3
+1613 'PM.Lisa' 'lima.pf' 331 0 3
+1614 'PM.Lisa' 'lima.pf' 332 0 3
+1615 'PM.Lisa' 'lima.pf' 333 0 3
+1616 'PM.Angel' 'mike.pe' 101 0 2
+1617 'PM.Angel' 'mike.pe' 102 0 2
+1618 'PM.Angel' 'mike.pe' 105 0 2
+1619 'PM.Angel' 'mike.pe' 106 0 2
+1620 'PM.Angel' 'mike.pe' 107 0 2
+1621 'PM.Angel' 'mike.pe' 108 0 2
+1622 'PM.Angel' 'mike.pe' 109 0 2
+1623 'PM.Angel' 'mike.pm' 112 0 2
+1624 'PM.Angel' 'mike.pm' 113 0 2
+1625 'PM.Angel' 'mike.pm' 114 0 2
+1626 'PM.Angel' 'mike.pm' 115 0 2
+1627 'PM.Angel' 'mike.pm' 116 0 2
+1628 'PM.Angel' 'mike.pm' 119 0 2
+1629 'PM.Angel' 'mike.pm' 120 0 2
+1630 'PM.Angel' 'mike.pm' 121 0 2
+1631 'PM.Angel' 'mike.pm' 123 0 2
+1632 'PM.Angel' 'mike.pm' 126 0 2
+1633 'PM.Angel' 'mike.pm' 127 0 2
+1634 'PM.Angel' 'mike.pm' 128 0 2
+1635 'PM.Angel' 'mike.pm' 129 0 2
+1636 'PM.Angel' 'mike.pm' 130 0 2
+1637 'PM.Angel' 'mike.pm' 133 0 2
+1638 'PM.Angel' 'mike.pm' 134 0 2
+1639 'PM.Angel' 'mike.pm' 135 0 2
+1640 'PM.Angel' 'mike.pm' 136 0 2
+1641 'PM.Angel' 'mike.pm' 137 0 2
+1642 'PM.Angel' 'mike.pm' 140 0 2
+1643 'PM.Angel' 'mike.pm' 141 0 2
+1644 'PM.Angel' 'mike.pm' 142 0 2
+1645 'PM.Angel' 'mike.pm' 143 0 2
+1646 'PM.Angel' 'mike.pm' 144 0 2
+1647 'PM.Angel' 'mike.pm' 147 0 2
+1648 'PM.Angel' 'mike.pm' 148 0 2
+1649 'PM.Angel' 'mike.pm' 149 0 2
+1650 'PM.Angel' 'mike.pm' 150 0 2
+1651 'PM.Angel' 'mike.pm' 151 0 2
+1652 'PM.Angel' 'mike.pm' 154 0 2
+1653 'PM.Angel' 'mike.pm' 155 0 2
+1654 'PM.Angel' 'mike.pm' 156 0 2
+1655 'PM.Angel' 'mike.pm' 157 0 2
+1656 'PM.Angel' 'mike.pm' 158 0 2
+1657 'PM.Angel' 'mike.pm' 161 0 2
+1658 'PM.Angel' 'mike.pm' 162 0 2
+1659 'PM.Angel' 'mike.pm' 163 0 2
+1660 'PM.Angel' 'mike.pm' 164 0 2
+1661 'PM.Angel' 'mike.pm' 165 0 2
+1662 'PM.Angel' 'mike.pm' 168 0 2
+1663 'PM.Angel' 'mike.pm' 169 0 2
+1664 'PM.Angel' 'mike.pm' 170 0 2
+1665 'PM.Angel' 'mike.pm' 171 0 2
+1666 'PM.Angel' 'mike.pm' 172 0 2
+1667 'PM.Angel' 'mike.pm' 175 0 2
+1668 'PM.Angel' 'mike.pm' 176 0 2
+1669 'PM.Angel' 'mike.pm' 177 0 2
+1670 'PM.Angel' 'mike.pm' 178 0 2
+1671 'PM.Angel' 'mike.pm' 179 0 2
+1672 'PM.Angel' 'mike.pm' 182 0 2
+1673 'PM.Angel' 'mike.pm' 183 0 2
+1674 'PM.Angel' 'mike.pm' 184 0 2
+1675 'PM.Angel' 'mike.pm' 185 0 2
+1676 'PM.Angel' 'mike.pm' 186 0 2
+1677 'PM.Angel' 'mike.pm' 189 0 2
+1678 'PM.Angel' 'mike.pm' 190 0 2
+1679 'PM.Angel' 'mike.pm' 191 0 2
+1680 'PM.Angel' 'mike.pm' 192 0 2
+1681 'PM.Angel' 'mike.pm' 193 0 2
+1682 'PM.Angel' 'mike.pm' 196 0 2
+1683 'PM.Angel' 'mike.pm' 197 0 2
+1684 'PM.Angel' 'mike.pm' 198 0 2
+1685 'PM.Angel' 'mike.pm' 199 0 2
+1686 'PM.Angel' 'mike.pm' 200 0 2
+1687 'PM.Angel' 'mike.pm' 203 0 2
+1688 'PM.Angel' 'mike.pm' 204 0 2
+1689 'PM.Angel' 'mike.pm' 205 0 2
+1690 'PM.Angel' 'mike.pm' 206 0 2
+1691 'PM.Angel' 'mike.pm' 207 0 2
+1692 'PM.Angel' 'mike.pm' 210 0 2
+1693 'PM.Angel' 'mike.pm' 211 0 2
+1694 'PM.Angel' 'mike.pm' 212 0 2
+1695 'PM.Angel' 'mike.pm' 213 0 2
+1696 'PM.Angel' 'mike.pm' 214 0 2
+1697 'PM.Angel' 'mike.pm' 217 0 2
+1698 'PM.Angel' 'mike.pm' 218 0 2
+1699 'PM.Angel' 'mike.pm' 219 0 2
+1700 'PM.Angel' 'mike.pm' 220 0 2
+1701 'PM.Angel' 'mike.pm' 221 0 2
+1702 'PM.Angel' 'mike.pm' 224 0 2
+1703 'PM.Angel' 'mike.pm' 225 0 2
+1704 'PM.Angel' 'mike.pm' 226 0 2
+1705 'PM.Angel' 'mike.pm' 227 0 2
+1706 'PM.Angel' 'mike.pm' 228 0 2
+1707 'PM.Angel' 'mike.pm' 231 0 2
+1708 'PM.Angel' 'mike.pm' 232 0 2
+1709 'PM.Angel' 'mike.pm' 233 0 2
+1710 'PM.Angel' 'mike.pm' 234 0 2
+1711 'PM.Angel' 'mike.pm' 235 0 2
+1712 'PM.Angel' 'mike.pm' 238 0 2
+1713 'PM.Angel' 'mike.pm' 239 0 2
+1714 'PM.Angel' 'mike.pm' 240 0 2
+1715 'PM.Angel' 'mike.pm' 241 0 2
+1716 'PM.Angel' 'mike.pm' 242 0 2
+1717 'PM.Angel' 'mike.pm' 245 0 2
+1718 'PM.Angel' 'mike.pm' 246 0 2
+1719 'PM.Angel' 'mike.pm' 247 0 2
+1720 'PM.Angel' 'mike.pm' 248 0 2
+1721 'PM.Angel' 'mike.pm' 249 0 2
+1722 'PM.Angel' 'mike.pm' 252 0 2
+1723 'PM.Angel' 'mike.pm' 253 0 2
+1724 'PM.Angel' 'mike.pm' 254 0 2
+1725 'PM.Angel' 'mike.pm' 255 0 2
+1726 'PM.Angel' 'mike.pm' 256 0 2
+1727 'PM.Angel' 'mike.pm' 259 0 2
+1728 'PM.Angel' 'mike.pm' 260 0 2
+1729 'PM.Angel' 'mike.pm' 261 0 2
+1730 'PM.Angel' 'mike.pm' 262 0 2
+1731 'PM.Angel' 'mike.pm' 263 0 2
+1732 'PM.Angel' 'mike.pm' 266 0 2
+1733 'PM.Angel' 'mike.pm' 267 0 2
+1734 'PM.Angel' 'mike.pm' 268 0 2
+1735 'PM.Angel' 'mike.pm' 269 0 2
+1736 'PM.Angel' 'mike.pf' 270 0 2
+1737 'PM.Angel' 'mike.pf' 273 0 2
+1738 'PM.Angel' 'mike.pf' 274 0 2
+1739 'PM.Angel' 'mike.pf' 275 0 2
+1740 'PM.Angel' 'mike.pf' 276 0 2
+1741 'PM.Angel' 'mike.pf' 277 0 2
+1742 'PM.Angel' 'mike.pf' 280 0 2
+1743 'PM.Angel' 'mike.pf' 281 0 2
+1744 'PM.Angel' 'mike.pf' 282 0 2
+1745 'PM.Angel' 'mike.pf' 283 0 2
+1746 'PM.Angel' 'mike.pf' 284 0 2
+1747 'PM.Angel' 'mike.pf' 287 0 2
+1748 'PM.Angel' 'mike.pf' 288 0 2
+1749 'PM.Angel' 'mike.pf' 289 0 2
+1750 'PM.Angel' 'mike.pf' 290 0 2
+1751 'PM.Angel' 'mike.pf' 291 0 2
+1752 'PM.Angel' 'mike.pf' 294 0 2
+1753 'PM.Angel' 'mike.pf' 295 0 2
+1754 'PM.Angel' 'mike.pf' 296 0 2
+1755 'PM.Angel' 'mike.pf' 297 0 2
+1756 'PM.Angel' 'mike.pf' 298 0 2
+1757 'PM.Angel' 'mike.pf' 301 0 2
+1758 'PM.Angel' 'mike.pf' 302 0 2
+1759 'PM.Angel' 'mike.pf' 303 0 2
+1760 'PM.Angel' 'mike.pf' 304 0 2
+1761 'PM.Angel' 'november.pe' 147 0 2
+1762 'PM.Angel' 'november.pe' 148 0 2
+1763 'PM.Angel' 'november.pe' 149 0 2
+1764 'PM.Angel' 'november.pe' 150 0 2
+1765 'PM.Angel' 'november.pe' 151 0 2
+1766 'PM.Angel' 'november.pe' 154 0 2
+1767 'PM.Angel' 'november.pe' 155 0 2
+1768 'PM.Angel' 'november.pe' 156 0 2
+1769 'PM.Angel' 'november.pe' 157 0 2
+1770 'PM.Angel' 'november.pe' 158 0 2
+1771 'PM.Angel' 'november.pe' 161 0 2
+1772 'PM.Angel' 'november.pe' 162 0 2
+1773 'PM.Angel' 'november.pe' 163 0 2
+1774 'PM.Angel' 'november.pe' 164 0 2
+1775 'PM.Angel' 'november.pe' 165 0 2
+1776 'PM.Angel' 'november.pm' 168 0 2
+1777 'PM.Angel' 'november.pm' 169 0 2
+1778 'PM.Angel' 'november.pm' 170 0 2
+1779 'PM.Angel' 'november.pm' 171 0 2
+1780 'PM.Angel' 'november.pm' 172 0 2
+1781 'PM.Angel' 'november.pm' 175 0 2
+1782 'PM.Angel' 'november.pm' 176 0 2
+1783 'PM.Angel' 'november.pm' 177 0 2
+1784 'PM.Angel' 'november.pm' 178 0 2
+1785 'PM.Angel' 'november.pm' 179 0 2
+1786 'PM.Angel' 'november.pm' 182 0 2
+1787 'PM.Angel' 'november.pm' 183 0 2
+1788 'PM.Angel' 'november.pm' 184 0 2
+1789 'PM.Angel' 'november.pm' 185 0 2
+1790 'PM.Angel' 'november.pm' 186 0 2
+1791 'PM.Angel' 'november.pm' 189 0 2
+1792 'PM.Angel' 'november.pm' 190 0 2
+1793 'PM.Angel' 'november.pm' 191 0 2
+1794 'PM.Angel' 'november.pm' 192 0 2
+1795 'PM.Angel' 'november.pm' 193 0 2
+1796 'PM.Angel' 'november.pm' 196 0 2
+1797 'PM.Angel' 'november.pm' 197 0 2
+1798 'PM.Angel' 'november.pm' 198 0 2
+1799 'PM.Angel' 'november.pm' 199 0 2
+1800 'PM.Angel' 'november.pm' 200 0 2
+1801 'PM.Angel' 'november.pm' 203 0 2
+1802 'PM.Angel' 'november.pm' 204 0 2
+1803 'PM.Angel' 'november.pm' 205 0 2
+1804 'PM.Angel' 'november.pm' 206 0 2
+1805 'PM.Angel' 'november.pm' 207 0 2
+1806 'PM.Angel' 'november.pm' 210 0 2
+1807 'PM.Angel' 'november.pm' 211 0 2
+1808 'PM.Angel' 'november.pm' 212 0 2
+1809 'PM.Angel' 'november.pm' 213 0 2
+1810 'PM.Angel' 'november.pm' 214 0 2
+1811 'PM.Angel' 'november.pm' 217 0 2
+1812 'PM.Angel' 'november.pm' 218 0 2
+1813 'PM.Angel' 'november.pm' 219 0 2
+1814 'PM.Angel' 'november.pm' 220 0 2
+1815 'PM.Angel' 'november.pm' 221 0 2
+1816 'PM.Angel' 'november.pm' 224 0 2
+1817 'PM.Angel' 'november.pm' 225 0 2
+1818 'PM.Angel' 'november.pm' 226 0 2
+1819 'PM.Angel' 'november.pm' 227 0 2
+1820 'PM.Angel' 'november.pm' 228 0 2
+1821 'PM.Angel' 'november.pm' 231 0 2
+1822 'PM.Angel' 'november.pm' 232 0 2
+1823 'PM.Angel' 'november.pm' 233 0 2
+1824 'PM.Angel' 'november.pm' 234 0 2
+1825 'PM.Angel' 'november.pm' 235 0 2
+1826 'PM.Angel' 'november.pm' 238 0 2
+1827 'PM.Angel' 'november.pm' 239 0 2
+1828 'PM.Angel' 'november.pm' 240 0 2
+1829 'PM.Angel' 'november.pm' 241 0 2
+1830 'PM.Angel' 'november.pm' 242 0 2
+1831 'PM.Angel' 'november.pm' 245 0 2
+1832 'PM.Angel' 'november.pm' 246 0 2
+1833 'PM.Angel' 'november.pm' 247 0 2
+1834 'PM.Angel' 'november.pm' 248 0 2
+1835 'PM.Angel' 'november.pm' 249 0 2
+1836 'PM.Angel' 'november.pm' 252 0 2
+1837 'PM.Angel' 'november.pm' 253 0 2
+1838 'PM.Angel' 'november.pm' 254 0 2
+1839 'PM.Angel' 'november.pm' 255 0 2
+1840 'PM.Angel' 'november.pm' 256 0 2
+1841 'PM.Angel' 'november.pm' 259 0 2
+1842 'PM.Angel' 'november.pm' 260 0 2
+1843 'PM.Angel' 'november.pm' 261 0 2
+1844 'PM.Angel' 'november.pm' 262 0 2
+1845 'PM.Angel' 'november.pm' 263 0 2
+1846 'PM.Angel' 'november.pm' 266 0 2
+1847 'PM.Angel' 'november.pm' 267 0 2
+1848 'PM.Angel' 'november.pm' 268 0 2
+1849 'PM.Angel' 'november.pm' 269 0 2
+1850 'PM.Angel' 'november.pm' 270 0 2
+1851 'PM.Angel' 'november.pm' 273 0 2
+1852 'PM.Angel' 'november.pm' 274 0 2
+1853 'PM.Angel' 'november.pm' 275 0 2
+1854 'PM.Angel' 'november.pm' 276 0 2
+1855 'PM.Angel' 'november.pm' 277 0 2
+1856 'PM.Angel' 'november.pm' 280 0 2
+1857 'PM.Angel' 'november.pm' 281 0 2
+1858 'PM.Angel' 'november.pm' 282 0 2
+1859 'PM.Angel' 'november.pm' 283 0 2
+1860 'PM.Angel' 'november.pm' 284 0 2
+1861 'PM.Angel' 'november.pm' 287 0 2
+1862 'PM.Angel' 'november.pm' 288 0 2
+1863 'PM.Angel' 'november.pm' 289 0 2
+1864 'PM.Angel' 'november.pm' 290 0 2
+1865 'PM.Angel' 'november.pm' 291 0 2
+1866 'PM.Angel' 'november.pm' 294 0 2
+1867 'PM.Angel' 'november.pm' 295 0 2
+1868 'PM.Angel' 'november.pm' 296 0 2
+1869 'PM.Angel' 'november.pm' 297 0 2
+1870 'PM.Angel' 'november.pm' 298 0 2
+1871 'PM.Angel' 'november.pm' 301 0 2
+1872 'PM.Angel' 'november.pm' 302 0 2
+1873 'PM.Angel' 'november.pm' 303 0 2
+1874 'PM.Angel' 'november.pm' 304 0 2
+1875 'PM.Angel' 'november.pm' 305 0 2
+1876 'PM.Angel' 'november.pm' 308 0 2
+1877 'PM.Angel' 'november.pm' 309 0 2
+1878 'PM.Angel' 'november.pm' 310 0 2
+1879 'PM.Angel' 'november.pm' 311 0 2
+1880 'PM.Angel' 'november.pm' 312 0 2
+1881 'PM.Angel' 'november.pm' 315 0 2
+1882 'PM.Angel' 'november.pm' 316 0 2
+1883 'PM.Angel' 'november.pm' 317 0 2
+1884 'PM.Angel' 'november.pm' 318 0 2
+1885 'PM.Angel' 'november.pm' 319 0 2
+1886 'PM.Angel' 'november.pm' 322 0 2
+1887 'PM.Angel' 'november.pm' 323 0 2
+1888 'PM.Angel' 'november.pm' 324 0 2
+1889 'PM.Angel' 'november.pm' 325 0 2
+1890 'PM.Angel' 'november.pm' 326 0 2
+1891 'PM.Angel' 'november.pm' 329 0 2
+1892 'PM.Angel' 'november.pm' 330 0 2
+1893 'PM.Angel' 'november.pm' 331 0 2
+1894 'PM.Angel' 'november.pm' 332 0 2
+1895 'PM.Angel' 'november.pm' 333 0 2
+1896 'PM.Angel' 'november.pm' 336 0 2
+1897 'PM.Angel' 'november.pm' 337 0 2
+1898 'PM.Angel' 'november.pm' 338 0 2
+1899 'PM.Angel' 'november.pm' 339 0 2
+1900 'PM.Angel' 'november.pm' 340 0 2
+1901 'PM.Angel' 'november.pm' 343 0 2
+1902 'PM.Angel' 'november.pm' 344 0 2
+1903 'PM.Angel' 'november.pm' 345 0 2
+1904 'PM.Angel' 'november.pm' 346 0 2
+1905 'PM.Angel' 'november.pm' 347 0 2
+1906 'PM.Angel' 'november.pm' 350 0 2
+1907 'PM.Angel' 'november.pm' 351 0 2
+1908 'PM.Angel' 'november.pm' 352 0 2
+1909 'PM.Angel' 'november.pm' 353 0 2
+1910 'PM.Angel' 'november.pm' 354 0 2
+1911 'PM.Angel' 'november.pm' 357 0 2
+1912 'PM.Angel' 'november.pm' 358 0 2
+1913 'PM.Angel' 'november.pm' 359 0 2
+1914 'PM.Angel' 'november.pm' 360 0 2
+1915 'PM.Angel' 'november.pm' 361 0 2
+1916 'PM.Angel' 'november.pm' 364 0 2
+1917 'PM.Angel' 'november.pm' 365 0 2
+1918 'PM.Angel' 'november.pf' 366 0 2
+1919 'PM.Angel' 'november.pf' 367 0 2
+1920 'PM.Angel' 'november.pf' 368 0 2
+1921 'PM.Angel' 'november.pf' 371 0 2
+1922 'PM.Angel' 'november.pf' 372 0 2
+1923 'PM.Angel' 'november.pf' 373 0 2
+1924 'PM.Angel' 'november.pf' 374 0 2
+1925 'PM.Angel' 'november.pf' 375 0 2
+1926 'PM.Angel' 'november.pf' 378 0 2
+1927 'PM.Angel' 'november.pf' 379 0 2
+1928 'PM.Angel' 'november.pf' 380 0 2
+1929 'PM.Angel' 'november.pf' 381 0 2
+1930 'PM.Angel' 'november.pf' 382 0 2
+1931 'PM.Angel' 'november.pf' 385 0 2
+1932 'PM.Angel' 'november.pf' 386 0 2
+1933 'PM.Angel' 'november.pf' 387 0 2
+1934 'PM.Angel' 'november.pf' 388 0 2
+1935 'PM.Angel' 'november.pf' 389 0 2
+1936 'PM.Angel' 'november.pf' 392 0 2
+1937 'PM.Angel' 'november.pf' 393 0 2
+1938 'PM.Angel' 'november.pf' 394 0 2
+1939 'PM.Angel' 'november.pf' 395 0 2
+1940 'PM.Angel' 'november.pf' 396 0 2
+1941 'PM.Daniel' 'oscar.pe' 177 0 3
+1942 'PM.Daniel' 'oscar.pe' 178 0 3
+1943 'PM.Daniel' 'oscar.pe' 179 0 3
+1944 'PM.Daniel' 'oscar.pe' 182 0 3
+1945 'PM.Daniel' 'oscar.pe' 183 0 3
+1946 'PM.Daniel' 'oscar.pe' 184 0 3
+1947 'PM.Daniel' 'oscar.pe' 185 0 3
+1948 'PM.Daniel' 'oscar.pe' 186 0 3
+1949 'PM.Daniel' 'oscar.pe' 189 0 3
+1950 'PM.Daniel' 'oscar.pe' 190 0 3
+1951 'PM.Daniel' 'oscar.pe' 191 0 3
+1952 'PM.Daniel' 'oscar.pm' 192 0 3
+1953 'PM.Daniel' 'oscar.pm' 193 0 3
+1954 'PM.Daniel' 'oscar.pm' 196 0 3
+1955 'PM.Daniel' 'oscar.pm' 197 0 3
+1956 'PM.Daniel' 'oscar.pm' 198 0 3
+1957 'PM.Daniel' 'oscar.pm' 199 0 3
+1958 'PM.Daniel' 'oscar.pm' 200 0 3
+1959 'PM.Daniel' 'oscar.pm' 203 0 3
+1960 'PM.Daniel' 'oscar.pm' 204 0 3
+1961 'PM.Daniel' 'oscar.pm' 205 0 3
+1962 'PM.Daniel' 'oscar.pm' 206 0 3
+1963 'PM.Daniel' 'oscar.pm' 207 0 3
+1964 'PM.Daniel' 'oscar.pm' 210 0 3
+1965 'PM.Daniel' 'oscar.pm' 211 0 3
+1966 'PM.Daniel' 'oscar.pm' 212 0 3
+1967 'PM.Daniel' 'oscar.pm' 213 0 3
+1968 'PM.Daniel' 'oscar.pm' 214 0 3
+1969 'PM.Daniel' 'oscar.pm' 217 0 3
+1970 'PM.Daniel' 'oscar.pm' 218 0 3
+1971 'PM.Daniel' 'oscar.pm' 219 0 3
+1972 'PM.Daniel' 'oscar.pm' 220 0 3
+1973 'PM.Daniel' 'oscar.pm' 221 0 3
+1974 'PM.Daniel' 'oscar.pm' 224 0 3
+1975 'PM.Daniel' 'oscar.pm' 225 0 3
+1976 'PM.Daniel' 'oscar.pm' 226 0 3
+1977 'PM.Daniel' 'oscar.pm' 227 0 3
+1978 'PM.Daniel' 'oscar.pm' 228 0 3
+1979 'PM.Daniel' 'oscar.pm' 231 0 3
+1980 'PM.Daniel' 'oscar.pm' 232 0 3
+1981 'PM.Daniel' 'oscar.pm' 233 0 3
+1982 'PM.Daniel' 'oscar.pm' 234 0 3
+1983 'PM.Daniel' 'oscar.pm' 235 0 3
+1984 'PM.Daniel' 'oscar.pm' 238 0 3
+1985 'PM.Daniel' 'oscar.pm' 239 0 3
+1986 'PM.Daniel' 'oscar.pm' 240 0 3
+1987 'PM.Daniel' 'oscar.pm' 241 0 3
+1988 'PM.Daniel' 'oscar.pm' 242 0 3
+1989 'PM.Daniel' 'oscar.pm' 245 0 3
+1990 'PM.Daniel' 'oscar.pm' 246 0 3
+1991 'PM.Daniel' 'oscar.pm' 247 0 3
+1992 'PM.Daniel' 'oscar.pm' 248 0 3
+1993 'PM.Daniel' 'oscar.pm' 249 0 3
+1994 'PM.Daniel' 'oscar.pm' 252 0 3
+1995 'PM.Daniel' 'oscar.pm' 253 0 3
+1996 'PM.Daniel' 'oscar.pm' 254 0 3
+1997 'PM.Daniel' 'oscar.pm' 255 0 3
+1998 'PM.Daniel' 'oscar.pm' 256 0 3
+1999 'PM.Daniel' 'oscar.pm' 259 0 3
+2000 'PM.Daniel' 'oscar.pm' 260 0 3
+2001 'PM.Daniel' 'oscar.pm' 261 0 3
+2002 'PM.Daniel' 'oscar.pm' 262 0 3
+2003 'PM.Daniel' 'oscar.pm' 263 0 3
+2004 'PM.Daniel' 'oscar.pm' 266 0 3
+2005 'PM.Daniel' 'oscar.pm' 267 0 3
+2006 'PM.Daniel' 'oscar.pm' 268 0 3
+2007 'PM.Daniel' 'oscar.pm' 269 0 3
+2008 'PM.Daniel' 'oscar.pm' 270 0 3
+2009 'PM.Daniel' 'oscar.pm' 273 0 3
+2010 'PM.Daniel' 'oscar.pm' 274 0 3
+2011 'PM.Daniel' 'oscar.pm' 275 0 3
+2012 'PM.Daniel' 'oscar.pm' 276 0 3
+2013 'PM.Daniel' 'oscar.pm' 277 0 3
+2014 'PM.Daniel' 'oscar.pm' 280 0 3
+2015 'PM.Daniel' 'oscar.pm' 281 0 3
+2016 'PM.Daniel' 'oscar.pm' 282 0 3
+2017 'PM.Daniel' 'oscar.pm' 283 0 3
+2018 'PM.Daniel' 'oscar.pm' 284 0 3
+2019 'PM.Daniel' 'oscar.pm' 287 0 3
+2020 'PM.Daniel' 'oscar.pm' 288 0 3
+2021 'PM.Daniel' 'oscar.pm' 289 0 3
+2022 'PM.Daniel' 'oscar.pm' 290 0 3
+2023 'PM.Daniel' 'oscar.pm' 291 0 3
+2024 'PM.Daniel' 'oscar.pm' 294 0 3
+2025 'PM.Daniel' 'oscar.pm' 295 0 3
+2026 'PM.Daniel' 'oscar.pm' 296 0 3
+2027 'PM.Daniel' 'oscar.pm' 297 0 3
+2028 'PM.Daniel' 'oscar.pm' 298 0 3
+2029 'PM.Daniel' 'oscar.pm' 301 0 3
+2030 'PM.Daniel' 'oscar.pm' 302 0 3
+2031 'PM.Daniel' 'oscar.pm' 303 0 3
+2032 'PM.Daniel' 'oscar.pm' 304 0 3
+2033 'PM.Daniel' 'oscar.pm' 305 0 3
+2034 'PM.Daniel' 'oscar.pm' 308 0 3
+2035 'PM.Daniel' 'oscar.pm' 309 0 3
+2036 'PM.Daniel' 'oscar.pm' 310 0 3
+2037 'PM.Daniel' 'oscar.pm' 311 0 3
+2038 'PM.Daniel' 'oscar.pm' 312 0 3
+2039 'PM.Daniel' 'oscar.pm' 315 0 3
+2040 'PM.Daniel' 'oscar.pm' 316 0 3
+2041 'PM.Daniel' 'oscar.pm' 317 0 3
+2042 'PM.Daniel' 'oscar.pm' 318 0 3
+2043 'PM.Daniel' 'oscar.pm' 319 0 3
+2044 'PM.Daniel' 'oscar.pm' 322 0 3
+2045 'PM.Daniel' 'oscar.pm' 323 0 3
+2046 'PM.Daniel' 'oscar.pm' 324 0 3
+2047 'PM.Daniel' 'oscar.pm' 325 0 3
+2048 'PM.Daniel' 'oscar.pm' 326 0 3
+2049 'PM.Daniel' 'oscar.pm' 329 0 3
+2050 'PM.Daniel' 'oscar.pm' 330 0 3
+2051 'PM.Daniel' 'oscar.pm' 331 0 3
+2052 'PM.Daniel' 'oscar.pm' 332 0 3
+2053 'PM.Daniel' 'oscar.pm' 333 0 3
+2054 'PM.Daniel' 'oscar.pm' 336 0 3
+2055 'PM.Daniel' 'oscar.pm' 337 0 3
+2056 'PM.Daniel' 'oscar.pm' 338 0 3
+2057 'PM.Daniel' 'oscar.pm' 339 0 3
+2058 'PM.Daniel' 'oscar.pm' 340 0 3
+2059 'PM.Daniel' 'oscar.pm' 343 0 3
+2060 'PM.Daniel' 'oscar.pm' 344 0 3
+2061 'PM.Daniel' 'oscar.pm' 345 0 3
+2062 'PM.Daniel' 'oscar.pm' 346 0 3
+2063 'PM.Daniel' 'oscar.pm' 347 0 3
+2064 'PM.Daniel' 'oscar.pm' 350 0 3
+2065 'PM.Daniel' 'oscar.pm' 351 0 3
+2066 'PM.Daniel' 'oscar.pm' 352 0 3
+2067 'PM.Daniel' 'oscar.pm' 353 0 3
+2068 'PM.Daniel' 'oscar.pm' 354 0 3
+2069 'PM.Daniel' 'oscar.pm' 357 0 3
+2070 'PM.Daniel' 'oscar.pm' 358 0 3
+2071 'PM.Daniel' 'oscar.pm' 359 0 3
+2072 'PM.Daniel' 'oscar.pm' 360 0 3
+2073 'PM.Daniel' 'oscar.pm' 361 0 3
+2074 'PM.Daniel' 'oscar.pm' 364 0 3
+2075 'PM.Daniel' 'oscar.pm' 365 0 3
+2076 'PM.Daniel' 'oscar.pf' 366 0 3
+2077 'PM.Daniel' 'oscar.pf' 367 0 3
+2078 'PM.Daniel' 'oscar.pf' 368 0 3
+2079 'PM.Daniel' 'oscar.pf' 371 0 3
+2080 'PM.Daniel' 'oscar.pf' 372 0 3
+2081 'PM.Daniel' 'oscar.pf' 373 0 3
+2082 'PM.Daniel' 'oscar.pf' 374 0 3
+2083 'PM.Daniel' 'oscar.pf' 375 0 3
+2084 'PM.Daniel' 'oscar.pf' 378 0 3
+2085 'PM.Daniel' 'oscar.pf' 379 0 3
+2086 'PM.Daniel' 'oscar.pf' 380 0 3
+2087 'PM.Daniel' 'oscar.pf' 381 0 3
+2088 'PM.Daniel' 'oscar.pf' 382 0 3
+2089 'PM.Daniel' 'oscar.pf' 385 0 3
+2090 'PM.Daniel' 'oscar.pf' 386 0 3
+2091 'PM.Daniel' 'oscar.pf' 387 0 3
+2092 'PM.Daniel' 'oscar.pf' 388 0 3
+2093 'PM.Daniel' 'oscar.pf' 389 0 3
+2094 'PM.Daniel' 'oscar.pf' 392 0 3
+2095 'PM.Daniel' 'oscar.pf' 393 0 3
+2096 'PM.Daniel' 'oscar.pf' 394 0 3
+2097 'PM.Daniel' 'oscar.pf' 395 0 3
+2098 'PM.Daniel' 'oscar.pf' 396 0 3
+2099 'DEV.Michael' 'alpha.sm' 3 0 3
+2100 'DEV.Michael' 'alpha.sm' 4 0 3
+2101 'DEV.Michael' 'alpha.sm' 7 0 3
+2102 'DEV.Michael' 'alpha.sm' 8 0 3
+2103 'DEV.Michael' 'alpha.sm' 9 0 3
+2104 'DEV.Michael' 'alpha.sm' 10 0 3
+2105 'DEV.Michael' 'alpha.sm' 11 0 3
+2106 'DEV.Michael' 'alpha.sm' 14 0 3
+2107 'DEV.Michael' 'alpha.sm' 15 0 3
+2108 'DEV.Michael' 'alpha.sm' 16 0 3
+2109 'DEV.Michael' 'alpha.sm' 17 0 3
+2110 'DEV.Michael' 'alpha.sm' 18 0 3
+2111 'DEV.Michael' 'alpha.sm' 21 0 3
+2112 'DEV.Michael' 'alpha.sm' 22 0 3
+2113 'DEV.Michael' 'alpha.sm' 23 0 3
+2114 'DEV.Michael' 'alpha.sm' 24 0 3
+2115 'DEV.Michael' 'alpha.sm' 25 0 3
+2116 'DEV.Michael' 'alpha.sm' 28 0 3
+2117 'DEV.Michael' 'alpha.sm' 29 0 3
+2118 'DEV.Michael' 'alpha.sm' 30 0 3
+2119 'DEV.Michael' 'alpha.sm' 31 0 3
+2120 'DEV.Michael' 'alpha.sm' 32 0 3
+2121 'DEV.Michael' 'alpha.sm' 35 0 3
+2122 'DEV.Michael' 'alpha.sm' 36 0 3
+2123 'DEV.Michael' 'alpha.sm' 37 0 3
+2124 'DEV.Michael' 'alpha.sm' 38 0 3
+2125 'DEV.Michael' 'alpha.sm' 39 0 3
+2126 'DEV.Michael' 'alpha.sm' 42 0 3
+2127 'DEV.Michael' 'alpha.sm' 43 0 3
+2128 'DEV.Michael' 'alpha.sm' 44 0 3
+2129 'DEV.Michael' 'alpha.sm' 45 0 3
+2130 'DEV.Michael' 'alpha.sm' 46 0 3
+2131 'DEV.Michael' 'alpha.sm' 49 0 3
+2132 'DEV.Michael' 'alpha.sm' 50 0 3
+2133 'DEV.Michael' 'alpha.sm' 51 0 3
+2134 'DEV.Michael' 'alpha.sm' 52 0 3
+2135 'DEV.Michael' 'alpha.sm' 53 0 3
+2136 'DEV.Michael' 'alpha.sm' 56 0 3
+2137 'DEV.Michael' 'alpha.sm' 57 0 3
+2138 'DEV.Michael' 'alpha.sm' 58 0 3
+2139 'DEV.Michael' 'alpha.sm' 59 0 3
+2140 'DEV.Michael' 'alpha.sm' 60 0 3
+2141 'DEV.Michael' 'alpha.sm' 63 0 3
+2142 'DEV.Michael' 'alpha.sm' 64 0 3
+2143 'DEV.Michael' 'alpha.sm' 65 0 3
+2144 'DEV.Michael' 'alpha.sm' 66 0 3
+2145 'DEV.Michael' 'alpha.sm' 67 0 3
+2146 'DEV.Michael' 'alpha.sm' 70 0 3
+2147 'DEV.Michael' 'alpha.sm' 71 0 3
+2148 'DEV.Michael' 'alpha.sm' 72 0 3
+2149 'DEV.Michael' 'alpha.sm' 73 0 3
+2150 'DEV.Michael' 'alpha.sm' 74 0 3
+2151 'DEV.Michael' 'alpha.sm' 77 0 3
+2152 'DEV.Michael' 'alpha.sm' 78 0 3
+2153 'DEV.Michael' 'alpha.sm' 79 0 3
+2154 'DEV.Michael' 'alpha.sm' 80 0 3
+2155 'DEV.Michael' 'alpha.sm' 81 0 3
+2156 'DEV.Michael' 'alpha.sm' 84 0 3
+2157 'DEV.Michael' 'alpha.sm' 85 0 3
+2158 'DEV.Michael' 'alpha.sm' 86 0 3
+2159 'DEV.Michael' 'alpha.sm' 87 0 3
+2160 'DEV.Michael' 'alpha.sm' 88 0 3
+2161 'DEV.Michael' 'alpha.sm' 91 0 3
+2162 'DEV.Michael' 'alpha.sm' 92 0 3
+2163 'DEV.Michael' 'alpha.sf' 93 0 3
+2164 'DEV.Michael' 'alpha.sf' 94 0 3
+2165 'DEV.Michael' 'alpha.sf' 95 0 3
+2166 'DEV.Michael' 'alpha.sf' 98 0 3
+2167 'DEV.Michael' 'alpha.sf' 99 0 3
+2168 'DEV.Michael' 'alpha.sf' 100 0 3
+2169 'DEV.Michael' 'alpha.sf' 101 0 3
+2170 'DEV.Michael' 'alpha.sf' 102 0 3
+2171 'DEV.Michael' 'alpha.sf' 105 0 3
+2172 'DEV.Michael' 'alpha.sf' 106 0 3
+2173 'DEV.Michael' 'alpha.sf' 107 0 3
+2174 'DEV.Michael' 'alpha.sf' 108 0 3
+2175 'DEV.Michael' 'alpha.sf' 109 0 3
+2176 'DEV.Michael' 'alpha.sf' 112 0 3
+2177 'DEV.Michael' 'alpha.sf' 113 0 3
+2178 'DEV.Michael' 'alpha.sf' 114 0 3
+2179 'DEV.Michael' 'alpha.sf' 115 0 3
+2180 'DEV.Michael' 'alpha.sf' 116 0 3
+2181 'DEV.Michael' 'alpha.sf' 119 0 3
+2182 'DEV.Michael' 'alpha.sf' 120 0 3
+2183 'DEV.Michael' 'alpha.sf' 121 0 3
+2184 'DEV.Michael' 'alpha.sf' 123 0 3
+2185 'DEV.Carl' 'beta.sm' 3 0 3
+2186 'DEV.Carl' 'beta.sm' 4 0 3
+2187 'DEV.Carl' 'beta.sm' 7 0 3
+2188 'DEV.Carl' 'beta.sm' 8 0 3
+2189 'DEV.Carl' 'beta.sm' 9 0 3
+2190 'DEV.Carl' 'beta.sm' 10 0 3
+2191 'DEV.Carl' 'beta.sm' 11 0 3
+2192 'DEV.Carl' 'beta.sm' 14 0 3
+2193 'DEV.Carl' 'beta.sm' 15 0 3
+2194 'DEV.Carl' 'beta.sm' 16 0 3
+2195 'DEV.Carl' 'beta.sm' 17 0 3
+2196 'DEV.Carl' 'beta.sm' 18 0 3
+2197 'DEV.Carl' 'beta.sm' 21 0 3
+2198 'DEV.Carl' 'beta.sm' 22 0 3
+2199 'DEV.Carl' 'beta.sm' 23 0 3
+2200 'DEV.Carl' 'beta.sm' 24 0 3
+2201 'DEV.Carl' 'beta.sm' 25 0 3
+2202 'DEV.Carl' 'beta.sm' 28 0 3
+2203 'DEV.Carl' 'beta.sm' 29 0 3
+2204 'DEV.Carl' 'beta.sm' 30 0 3
+2205 'DEV.Carl' 'beta.sm' 31 0 3
+2206 'DEV.Carl' 'beta.sm' 32 0 3
+2207 'DEV.Carl' 'beta.sm' 35 0 3
+2208 'DEV.Carl' 'beta.sm' 36 0 3
+2209 'DEV.Carl' 'beta.sm' 37 0 3
+2210 'DEV.Carl' 'beta.sm' 38 0 3
+2211 'DEV.Carl' 'beta.sm' 39 0 3
+2212 'DEV.Carl' 'beta.sm' 42 0 3
+2213 'DEV.Carl' 'beta.sm' 43 0 3
+2214 'DEV.Carl' 'beta.sm' 44 0 3
+2215 'DEV.Carl' 'beta.sm' 45 0 3
+2216 'DEV.Carl' 'beta.sm' 46 0 3
+2217 'DEV.Carl' 'beta.sm' 49 0 3
+2218 'DEV.Carl' 'beta.sm' 50 0 3
+2219 'DEV.Carl' 'beta.sm' 51 0 3
+2220 'DEV.Carl' 'beta.sm' 52 0 3
+2221 'DEV.Carl' 'beta.sm' 53 0 3
+2222 'DEV.Carl' 'beta.sm' 56 0 3
+2223 'DEV.Carl' 'beta.sm' 57 0 3
+2224 'DEV.Carl' 'beta.sm' 58 0 3
+2225 'DEV.Carl' 'beta.sm' 59 0 3
+2226 'DEV.Carl' 'beta.sm' 60 0 3
+2227 'DEV.Carl' 'beta.sm' 63 0 3
+2228 'DEV.Carl' 'beta.sm' 64 0 3
+2229 'DEV.Carl' 'beta.sm' 65 0 3
+2230 'DEV.Carl' 'beta.sm' 66 0 3
+2231 'DEV.Carl' 'beta.sm' 67 0 3
+2232 'DEV.Carl' 'beta.sm' 70 0 3
+2233 'DEV.Carl' 'beta.sm' 71 0 3
+2234 'DEV.Carl' 'beta.sm' 72 0 3
+2235 'DEV.Carl' 'beta.sm' 73 0 3
+2236 'DEV.Carl' 'beta.sm' 74 0 3
+2237 'DEV.Carl' 'beta.sm' 77 0 3
+2238 'DEV.Carl' 'beta.sm' 78 0 3
+2239 'DEV.Carl' 'beta.sm' 79 0 3
+2240 'DEV.Carl' 'beta.sm' 80 0 3
+2241 'DEV.Carl' 'beta.sm' 81 0 3
+2242 'DEV.Carl' 'beta.sm' 84 0 3
+2243 'DEV.Carl' 'beta.sm' 85 0 3
+2244 'DEV.Carl' 'beta.sm' 86 0 3
+2245 'DEV.Carl' 'beta.sm' 87 0 3
+2246 'DEV.Carl' 'beta.sm' 88 0 3
+2247 'DEV.Carl' 'beta.sm' 91 0 3
+2248 'DEV.Carl' 'beta.sm' 92 0 3
+2249 'DEV.Carl' 'beta.sm' 93 0 3
+2250 'DEV.Carl' 'beta.sm' 94 0 3
+2251 'DEV.Carl' 'beta.sm' 95 0 3
+2252 'DEV.Carl' 'beta.sm' 98 0 3
+2253 'DEV.Carl' 'beta.sm' 99 0 3
+2254 'DEV.Carl' 'beta.sm' 100 0 3
+2255 'DEV.Carl' 'beta.sm' 101 0 3
+2256 'DEV.Carl' 'beta.sm' 102 0 3
+2257 'DEV.Carl' 'beta.sm' 105 0 3
+2258 'DEV.Carl' 'beta.sm' 106 0 3
+2259 'DEV.Carl' 'beta.sm' 107 0 3
+2260 'DEV.Carl' 'beta.sm' 108 0 3
+2261 'DEV.Carl' 'beta.sm' 109 0 3
+2262 'DEV.Carl' 'beta.sm' 112 0 3
+2263 'DEV.Carl' 'beta.sm' 113 0 3
+2264 'DEV.Carl' 'beta.sm' 114 0 3
+2265 'DEV.Carl' 'beta.sm' 115 0 3
+2266 'DEV.Carl' 'beta.sm' 116 0 3
+2267 'DEV.Carl' 'beta.sm' 119 0 3
+2268 'DEV.Carl' 'beta.sm' 120 0 3
+2269 'DEV.Carl' 'beta.sm' 121 0 3
+2270 'DEV.Carl' 'beta.sm' 123 0 3
+2271 'DEV.Carl' 'beta.sm' 126 0 3
+2272 'DEV.Carl' 'beta.sm' 127 0 3
+2273 'DEV.Carl' 'beta.sm' 128 0 3
+2274 'DEV.Carl' 'beta.sm' 129 0 3
+2275 'DEV.Carl' 'beta.sm' 130 0 3
+2276 'DEV.Carl' 'beta.sm' 133 0 3
+2277 'DEV.Carl' 'beta.sm' 134 0 3
+2278 'DEV.Carl' 'beta.sm' 135 0 3
+2279 'DEV.Carl' 'beta.sm' 136 0 3
+2280 'DEV.Carl' 'beta.sm' 137 0 3
+2281 'DEV.Carl' 'beta.sm' 140 0 3
+2282 'DEV.Carl' 'beta.sm' 141 0 3
+2283 'DEV.Carl' 'beta.sm' 142 0 3
+2284 'DEV.Carl' 'beta.sm' 143 0 3
+2285 'DEV.Carl' 'beta.sm' 144 0 3
+2286 'DEV.Carl' 'beta.sm' 147 0 3
+2287 'DEV.Carl' 'beta.sm' 148 0 3
+2288 'DEV.Carl' 'beta.sm' 149 0 3
+2289 'DEV.Carl' 'beta.sm' 150 0 3
+2290 'DEV.Carl' 'beta.sm' 151 0 3
+2291 'DEV.Carl' 'beta.sm' 154 0 3
+2292 'DEV.Carl' 'beta.sm' 155 0 3
+2293 'DEV.Carl' 'beta.sm' 156 0 3
+2294 'DEV.Carl' 'beta.sm' 157 0 3
+2295 'DEV.Carl' 'beta.sm' 158 0 3
+2296 'DEV.Carl' 'beta.sm' 161 0 3
+2297 'DEV.Carl' 'beta.sm' 162 0 3
+2298 'DEV.Carl' 'beta.sm' 163 0 3
+2299 'DEV.Carl' 'beta.sm' 164 0 3
+2300 'DEV.Carl' 'beta.sm' 165 0 3
+2301 'DEV.Carl' 'beta.sm' 168 0 3
+2302 'DEV.Carl' 'beta.sm' 169 0 3
+2303 'DEV.Carl' 'beta.sm' 170 0 3
+2304 'DEV.Carl' 'beta.sm' 171 0 3
+2305 'DEV.Carl' 'beta.sm' 172 0 3
+2306 'DEV.Carl' 'beta.sf' 175 0 3
+2307 'DEV.Carl' 'beta.sf' 176 0 3
+2308 'DEV.Carl' 'beta.sf' 177 0 3
+2309 'DEV.Carl' 'beta.sf' 178 0 3
+2310 'DEV.Carl' 'beta.sf' 179 0 3
+2311 'DEV.Carl' 'beta.sf' 182 0 3
+2312 'DEV.Carl' 'beta.sf' 183 0 3
+2313 'DEV.Carl' 'beta.sf' 184 0 3
+2314 'DEV.Carl' 'beta.sf' 185 0 3
+2315 'DEV.Carl' 'beta.sf' 186 0 3
+2316 'DEV.Carl' 'beta.sf' 189 0 3
+2317 'DEV.Carl' 'beta.sf' 190 0 3
+2318 'DEV.Carl' 'beta.sf' 191 0 3
+2319 'DEV.Carl' 'beta.sf' 192 0 3
+2320 'DEV.Carl' 'beta.sf' 193 0 3
+2321 'DEV.Carl' 'beta.sf' 196 0 3
+2322 'DEV.Carl' 'beta.sf' 197 0 3
+2323 'DEV.Carl' 'beta.sf' 198 0 3
+2324 'DEV.Carl' 'beta.sf' 199 0 3
+2325 'DEV.Carl' 'beta.sf' 200 0 3
+2326 'DEV.Carl' 'beta.sf' 203 0 3
+2327 'DEV.Carl' 'beta.sf' 204 0 3
+2328 'DEV.Carl' 'beta.sf' 205 0 3
+2329 'DEV.Carl' 'beta.sf' 206 0 3
+2330 'DEV.Carl' 'beta.sf' 207 0 3
+2331 'DEV.Carl' 'beta.sf' 210 0 3
+2332 'DEV.Carl' 'beta.sf' 211 0 3
+2333 'DEV.Carl' 'beta.sf' 212 0 3
+2334 'DEV.Carl' 'beta.sf' 213 0 3
+2335 'DEV.Carl' 'beta.sf' 214 0 3
+2336 'DEV.Carl' 'beta.sf' 217 0 3
+2337 'DEV.Carl' 'beta.sf' 218 0 3
+2338 'SA.Adrian' 'charlie.sm' 3 0 3
+2339 'SA.Adrian' 'charlie.sm' 4 0 3
+2340 'SA.Adrian' 'charlie.sm' 7 0 3
+2341 'SA.Adrian' 'charlie.sm' 8 0 3
+2342 'SA.Adrian' 'charlie.sm' 9 0 3
+2343 'SA.Adrian' 'charlie.sm' 10 0 3
+2344 'SA.Adrian' 'charlie.sm' 11 0 3
+2345 'SA.Adrian' 'charlie.sm' 14 0 3
+2346 'SA.Adrian' 'charlie.sm' 15 0 3
+2347 'SA.Adrian' 'charlie.sm' 16 0 3
+2348 'SA.Adrian' 'charlie.sm' 17 0 3
+2349 'SA.Adrian' 'charlie.sm' 18 0 3
+2350 'SA.Adrian' 'charlie.sm' 21 0 3
+2351 'SA.Adrian' 'charlie.sm' 22 0 3
+2352 'SA.Adrian' 'charlie.sm' 23 0 3
+2353 'SA.Adrian' 'charlie.sm' 24 0 3
+2354 'SA.Adrian' 'charlie.sm' 25 0 3
+2355 'SA.Adrian' 'charlie.sm' 28 0 3
+2356 'SA.Adrian' 'charlie.sm' 29 0 3
+2357 'SA.Adrian' 'charlie.sm' 30 0 3
+2358 'SA.Adrian' 'charlie.sm' 31 0 3
+2359 'SA.Adrian' 'charlie.sm' 32 0 3
+2360 'SA.Adrian' 'charlie.sm' 35 0 3
+2361 'SA.Adrian' 'charlie.sm' 36 0 3
+2362 'SA.Adrian' 'charlie.sm' 37 0 3
+2363 'SA.Adrian' 'charlie.sm' 38 0 3
+2364 'SA.Adrian' 'charlie.sm' 39 0 3
+2365 'SA.Adrian' 'charlie.sm' 42 0 3
+2366 'SA.Adrian' 'charlie.sm' 43 0 3
+2367 'SA.Adrian' 'charlie.sm' 44 0 3
+2368 'SA.Adrian' 'charlie.sm' 45 0 3
+2369 'SA.Adrian' 'charlie.sm' 46 0 3
+2370 'SA.Adrian' 'charlie.sm' 49 0 3
+2371 'SA.Adrian' 'charlie.sm' 50 0 3
+2372 'SA.Adrian' 'charlie.sm' 51 0 3
+2373 'SA.Adrian' 'charlie.sm' 52 0 3
+2374 'SA.Adrian' 'charlie.sm' 53 0 3
+2375 'SA.Adrian' 'charlie.sm' 56 0 3
+2376 'SA.Adrian' 'charlie.sm' 57 0 3
+2377 'SA.Adrian' 'charlie.sm' 58 0 3
+2378 'SA.Adrian' 'charlie.sm' 59 0 3
+2379 'SA.Adrian' 'charlie.sm' 60 0 3
+2380 'SA.Adrian' 'charlie.sm' 63 0 3
+2381 'SA.Adrian' 'charlie.sm' 64 0 3
+2382 'SA.Adrian' 'charlie.sm' 65 0 3
+2383 'SA.Adrian' 'charlie.sm' 66 0 3
+2384 'SA.Adrian' 'charlie.sm' 67 0 3
+2385 'SA.Adrian' 'charlie.sm' 70 0 3
+2386 'SA.Adrian' 'charlie.sm' 71 0 3
+2387 'SA.Adrian' 'charlie.sm' 72 0 3
+2388 'SA.Adrian' 'charlie.sm' 73 0 3
+2389 'SA.Adrian' 'charlie.sm' 74 0 3
+2390 'SA.Adrian' 'charlie.sm' 77 0 3
+2391 'SA.Adrian' 'charlie.sm' 78 0 3
+2392 'SA.Adrian' 'charlie.sm' 79 0 3
+2393 'SA.Adrian' 'charlie.sm' 80 0 3
+2394 'SA.Adrian' 'charlie.sm' 81 0 3
+2395 'SA.Adrian' 'charlie.sm' 84 0 3
+2396 'SA.Adrian' 'charlie.sm' 85 0 3
+2397 'SA.Adrian' 'charlie.sm' 86 0 3
+2398 'SA.Adrian' 'charlie.sm' 87 0 3
+2399 'SA.Adrian' 'charlie.sm' 88 0 3
+2400 'SA.Adrian' 'charlie.sm' 91 0 3
+2401 'SA.Adrian' 'charlie.sm' 92 0 3
+2402 'SA.Adrian' 'charlie.sm' 93 0 3
+2403 'SA.Adrian' 'charlie.sm' 94 0 3
+2404 'SA.Adrian' 'charlie.sm' 95 0 3
+2405 'SA.Adrian' 'charlie.sm' 98 0 3
+2406 'SA.Adrian' 'charlie.sm' 99 0 3
+2407 'SA.Adrian' 'charlie.sm' 100 0 3
+2408 'SA.Adrian' 'charlie.sm' 101 0 3
+2409 'SA.Adrian' 'charlie.sm' 102 0 3
+2410 'SA.Adrian' 'charlie.sm' 105 0 3
+2411 'SA.Adrian' 'charlie.sm' 106 0 3
+2412 'SA.Adrian' 'charlie.sm' 107 0 3
+2413 'SA.Adrian' 'charlie.sm' 108 0 3
+2414 'SA.Adrian' 'charlie.sm' 109 0 3
+2415 'SA.Adrian' 'charlie.sm' 112 0 3
+2416 'SA.Adrian' 'charlie.sm' 113 0 3
+2417 'SA.Adrian' 'charlie.sm' 114 0 3
+2418 'SA.Adrian' 'charlie.sm' 115 0 3
+2419 'SA.Adrian' 'charlie.sm' 116 0 3
+2420 'SA.Adrian' 'charlie.sm' 119 0 3
+2421 'SA.Adrian' 'charlie.sm' 120 0 3
+2422 'SA.Adrian' 'charlie.sm' 121 0 3
+2423 'SA.Adrian' 'charlie.sm' 123 0 3
+2424 'SA.Adrian' 'charlie.sm' 126 0 3
+2425 'SA.Adrian' 'charlie.sm' 127 0 3
+2426 'SA.Adrian' 'charlie.sm' 128 0 3
+2427 'SA.Adrian' 'charlie.sm' 129 0 3
+2428 'SA.Adrian' 'charlie.sm' 130 0 3
+2429 'SA.Adrian' 'charlie.sm' 133 0 3
+2430 'SA.Adrian' 'charlie.sm' 134 0 3
+2431 'SA.Adrian' 'charlie.sm' 135 0 3
+2432 'SA.Adrian' 'charlie.sm' 136 0 3
+2433 'SA.Adrian' 'charlie.sm' 137 0 3
+2434 'SA.Adrian' 'charlie.sm' 140 0 3
+2435 'SA.Adrian' 'charlie.sm' 141 0 3
+2436 'SA.Adrian' 'charlie.sm' 142 0 3
+2437 'SA.Adrian' 'charlie.sm' 143 0 3
+2438 'SA.Adrian' 'charlie.sm' 144 0 3
+2439 'SA.Adrian' 'charlie.sm' 147 0 3
+2440 'SA.Adrian' 'charlie.sm' 148 0 3
+2441 'SA.Adrian' 'charlie.sm' 149 0 3
+2442 'SA.Adrian' 'charlie.sm' 150 0 3
+2443 'SA.Adrian' 'charlie.sm' 151 0 3
+2444 'SA.Adrian' 'charlie.sm' 154 0 3
+2445 'SA.Adrian' 'charlie.sm' 155 0 3
+2446 'SA.Adrian' 'charlie.sm' 156 0 3
+2447 'SA.Adrian' 'charlie.sm' 157 0 3
+2448 'SA.Adrian' 'charlie.sf' 158 0 3
+2449 'SA.Adrian' 'charlie.sf' 161 0 3
+2450 'SA.Adrian' 'charlie.sf' 162 0 3
+2451 'SA.Adrian' 'charlie.sf' 163 0 3
+2452 'SA.Adrian' 'charlie.sf' 164 0 3
+2453 'SA.Adrian' 'charlie.sf' 165 0 3
+2454 'SA.Adrian' 'charlie.sf' 168 0 3
+2455 'SA.Adrian' 'charlie.sf' 169 0 3
+2456 'SA.Adrian' 'charlie.sf' 170 0 3
+2457 'SA.Adrian' 'charlie.sf' 171 0 3
+2458 'SA.Adrian' 'charlie.sf' 172 0 3
+2459 'SA.Adrian' 'charlie.sf' 175 0 3
+2460 'SA.Adrian' 'charlie.sf' 176 0 3
+2461 'SA.Adrian' 'charlie.sf' 177 0 3
+2462 'SA.Adrian' 'charlie.sf' 178 0 3
+2463 'SA.Adrian' 'charlie.sf' 179 0 3
+2464 'SA.Adrian' 'charlie.sf' 182 0 3
+2465 'SA.Adrian' 'charlie.sf' 183 0 3
+2466 'SA.Adrian' 'charlie.sf' 184 0 3
+2467 'SA.Adrian' 'charlie.sf' 185 0 3
+2468 'SA.Adrian' 'charlie.sf' 186 0 3
+2469 'DEV.Hugo' 'delta.sm' 3 0 3
+2470 'DEV.Hugo' 'delta.sm' 4 0 3
+2471 'DEV.Hugo' 'delta.sm' 7 0 3
+2472 'DEV.Hugo' 'delta.sm' 8 0 3
+2473 'DEV.Hugo' 'delta.sm' 9 0 3
+2474 'DEV.Hugo' 'delta.sm' 10 0 3
+2475 'DEV.Hugo' 'delta.sm' 11 0 3
+2476 'DEV.Hugo' 'delta.sm' 14 0 3
+2477 'DEV.Hugo' 'delta.sm' 15 0 3
+2478 'DEV.Hugo' 'delta.sm' 16 0 3
+2479 'DEV.Hugo' 'delta.sm' 17 0 3
+2480 'DEV.Hugo' 'delta.sm' 18 0 3
+2481 'DEV.Hugo' 'delta.sm' 21 0 3
+2482 'DEV.Hugo' 'delta.sm' 22 0 3
+2483 'DEV.Hugo' 'delta.sm' 23 0 3
+2484 'DEV.Hugo' 'delta.sm' 24 0 3
+2485 'DEV.Hugo' 'delta.sm' 25 0 3
+2486 'DEV.Hugo' 'delta.sm' 28 0 3
+2487 'DEV.Hugo' 'delta.sm' 29 0 3
+2488 'DEV.Hugo' 'delta.sm' 30 0 3
+2489 'DEV.Hugo' 'delta.sm' 31 0 3
+2490 'DEV.Hugo' 'delta.sm' 32 0 3
+2491 'DEV.Hugo' 'delta.sm' 35 0 3
+2492 'DEV.Hugo' 'delta.sm' 36 0 3
+2493 'DEV.Hugo' 'delta.sm' 37 0 3
+2494 'DEV.Hugo' 'delta.sm' 38 0 3
+2495 'DEV.Hugo' 'delta.sm' 39 0 3
+2496 'DEV.Hugo' 'delta.sm' 42 0 3
+2497 'DEV.Hugo' 'delta.sm' 43 0 3
+2498 'DEV.Hugo' 'delta.sm' 44 0 3
+2499 'DEV.Hugo' 'delta.sm' 45 0 3
+2500 'DEV.Hugo' 'delta.sm' 46 0 3
+2501 'DEV.Hugo' 'delta.sm' 49 0 3
+2502 'DEV.Hugo' 'delta.sm' 50 0 3
+2503 'DEV.Hugo' 'delta.sm' 51 0 3
+2504 'DEV.Hugo' 'delta.sm' 52 0 3
+2505 'DEV.Hugo' 'delta.sm' 53 0 3
+2506 'DEV.Hugo' 'delta.sm' 56 0 3
+2507 'DEV.Hugo' 'delta.sm' 57 0 3
+2508 'DEV.Hugo' 'delta.sf' 58 0 3
+2509 'DEV.Hugo' 'delta.sf' 59 0 3
+2510 'DEV.Hugo' 'delta.sf' 60 0 3
+2511 'DEV.Hugo' 'delta.sf' 63 0 3
+2512 'DEV.Hugo' 'delta.sf' 64 0 3
+2513 'DEV.Hugo' 'delta.sf' 65 0 3
+2514 'DEV.Hugo' 'delta.sf' 66 0 3
+2515 'DEV.Hugo' 'delta.sf' 67 0 3
+2516 'DEV.Hugo' 'delta.sf' 70 0 3
+2517 'DEV.Hugo' 'delta.sf' 71 0 3
+2518 'DEV.Hugo' 'delta.sf' 72 0 3
+2519 'DEV.Hugo' 'delta.sf' 73 0 3
+2520 'DEV.Hugo' 'delta.sf' 74 0 3
+2521 'DEV.Hugo' 'delta.sf' 77 0 3
+2522 'DEV.Hugo' 'delta.sf' 78 0 3
+2523 'DEV.Hugo' 'delta.sf' 79 0 3
+2524 'DEV.Hugo' 'delta.sf' 80 0 3
+2525 'DEV.Hugo' 'delta.sf' 81 0 3
+2526 'DEV.Hugo' 'delta.sf' 84 0 3
+2527 'DEV.Hugo' 'delta.sf' 85 0 3
+2528 'DEV.Hugo' 'delta.sf' 86 0 3
+2529 'DEV.Hugo' 'delta.sf' 87 0 3
+2530 'DEV.Hugo' 'delta.sf' 88 0 3
+2531 'DEV.Hugo' 'delta.sf' 91 0 3
+2532 'DEV.Hugo' 'delta.sf' 92 0 3
+2533 'DEV.Hugo' 'delta.sf' 93 0 3
+2534 'DEV.Hugo' 'delta.sf' 94 0 3
+2535 'DEV.Hugo' 'delta.sf' 95 0 3
+2536 'DEV.Hugo' 'delta.sf' 98 0 3
+2537 'DEV.Hugo' 'delta.sf' 99 0 3
+2538 'DEV.Hugo' 'delta.sf' 100 0 3
+2539 'DEV.Hugo' 'delta.sf' 101 0 3
+2540 'DEV.Hugo' 'delta.sf' 102 0 3
+2541 'SA.Adrian' 'echo.sm' 3 0 3
+2542 'SA.Adrian' 'echo.sm' 4 0 3
+2543 'SA.Adrian' 'echo.sm' 7 0 3
+2544 'SA.Adrian' 'echo.sm' 8 0 3
+2545 'SA.Adrian' 'echo.sm' 9 0 3
+2546 'SA.Adrian' 'echo.sm' 10 0 3
+2547 'SA.Adrian' 'echo.sm' 11 0 3
+2548 'SA.Adrian' 'echo.sm' 14 0 3
+2549 'SA.Adrian' 'echo.sm' 15 0 3
+2550 'SA.Adrian' 'echo.sm' 16 0 3
+2551 'SA.Adrian' 'echo.sm' 17 0 3
+2552 'SA.Adrian' 'echo.sm' 18 0 3
+2553 'SA.Adrian' 'echo.sm' 21 0 3
+2554 'SA.Adrian' 'echo.sm' 22 0 3
+2555 'SA.Adrian' 'echo.sm' 23 0 3
+2556 'SA.Adrian' 'echo.sm' 24 0 3
+2557 'SA.Adrian' 'echo.sm' 25 0 3
+2558 'SA.Adrian' 'echo.sm' 28 0 3
+2559 'SA.Adrian' 'echo.sm' 29 0 3
+2560 'SA.Adrian' 'echo.sm' 30 0 3
+2561 'SA.Adrian' 'echo.sm' 31 0 3
+2562 'SA.Adrian' 'echo.sm' 32 0 3
+2563 'SA.Adrian' 'echo.sm' 35 0 3
+2564 'SA.Adrian' 'echo.sm' 36 0 3
+2565 'SA.Adrian' 'echo.sm' 37 0 3
+2566 'SA.Adrian' 'echo.sm' 38 0 3
+2567 'SA.Adrian' 'echo.sm' 39 0 3
+2568 'SA.Adrian' 'echo.sm' 42 0 3
+2569 'SA.Adrian' 'echo.sm' 43 0 3
+2570 'SA.Adrian' 'echo.sm' 44 0 3
+2571 'SA.Adrian' 'echo.sm' 45 0 3
+2572 'SA.Adrian' 'echo.sm' 46 0 3
+2573 'SA.Adrian' 'echo.sm' 49 0 3
+2574 'SA.Adrian' 'echo.sm' 50 0 3
+2575 'SA.Adrian' 'echo.sm' 51 0 3
+2576 'SA.Adrian' 'echo.sm' 52 0 3
+2577 'SA.Adrian' 'echo.sm' 53 0 3
+2578 'SA.Adrian' 'echo.sm' 56 0 3
+2579 'SA.Adrian' 'echo.sm' 57 0 3
+2580 'SA.Adrian' 'echo.sm' 58 0 3
+2581 'SA.Adrian' 'echo.sm' 59 0 3
+2582 'SA.Adrian' 'echo.sm' 60 0 3
+2583 'SA.Adrian' 'echo.sm' 63 0 3
+2584 'SA.Adrian' 'echo.sm' 64 0 3
+2585 'SA.Adrian' 'echo.sm' 65 0 3
+2586 'SA.Adrian' 'echo.sm' 66 0 3
+2587 'SA.Adrian' 'echo.sm' 67 0 3
+2588 'SA.Adrian' 'echo.sm' 70 0 3
+2589 'SA.Adrian' 'echo.sm' 71 0 3
+2590 'SA.Adrian' 'echo.sm' 72 0 3
+2591 'SA.Adrian' 'echo.sm' 73 0 3
+2592 'SA.Adrian' 'echo.sm' 74 0 3
+2593 'SA.Adrian' 'echo.sf' 93 0 3
+2594 'SA.Adrian' 'echo.sf' 94 0 3
+2595 'SA.Adrian' 'echo.sf' 95 0 3
+2596 'SA.Adrian' 'echo.sf' 98 0 3
+2597 'SA.Adrian' 'echo.sf' 99 0 3
+2598 'SA.Adrian' 'echo.sf' 100 0 3
+2599 'SA.Adrian' 'echo.sf' 101 0 3
+2600 'SA.Adrian' 'echo.sf' 102 0 3
+2601 'SA.Adrian' 'echo.sf' 105 0 3
+2602 'SA.Adrian' 'echo.sf' 106 0 3
+2603 'SA.Adrian' 'echo.sf' 107 0 3
+2604 'SA.Adrian' 'echo.sf' 108 0 3
+2605 'SA.Adrian' 'echo.sf' 109 0 3
+2606 'SA.Adrian' 'echo.sf' 112 0 3
+2607 'SA.Adrian' 'echo.sf' 113 0 3
+2608 'SA.Adrian' 'echo.sf' 114 0 3
+2609 'SA.Adrian' 'echo.sf' 115 0 3
+2610 'SA.Adrian' 'echo.sf' 116 0 3
+2611 'SA.Adrian' 'echo.sf' 119 0 3
+2612 'SA.Adrian' 'echo.sf' 120 0 3
+2613 'SA.Adrian' 'echo.sf' 121 0 3
+2614 'SA.Adrian' 'echo.sf' 123 0 3
+2615 'SA.Adrian' 'echo.sf' 126 0 3
+2616 'SA.Adrian' 'echo.sf' 127 0 3
+2617 'SA.Adrian' 'echo.sf' 128 0 3
+2618 'SA.Adrian' 'echo.sf' 129 0 3
+2619 'SA.Adrian' 'echo.sf' 130 0 3
+2620 'SA.Adrian' 'echo.sf' 133 0 3
+2621 'SA.Adrian' 'echo.sf' 134 0 3
+2622 'SA.Adrian' 'echo.sf' 135 0 3
+2623 'SA.Adrian' 'echo.sf' 136 0 3
+2624 'SA.Adrian' 'echo.sf' 137 0 3
+2625 'SA.Robert' 'foxtrot.sm' 3 0 3
+2626 'SA.Robert' 'foxtrot.sm' 4 0 3
+2627 'SA.Robert' 'foxtrot.sm' 7 0 3
+2628 'SA.Robert' 'foxtrot.sm' 8 0 3
+2629 'SA.Robert' 'foxtrot.sm' 9 0 3
+2630 'SA.Robert' 'foxtrot.sm' 10 0 3
+2631 'SA.Robert' 'foxtrot.sm' 11 0 3
+2632 'SA.Robert' 'foxtrot.sm' 14 0 3
+2633 'SA.Robert' 'foxtrot.sm' 15 0 3
+2634 'SA.Robert' 'foxtrot.sm' 16 0 3
+2635 'SA.Robert' 'foxtrot.sm' 17 0 3
+2636 'SA.Robert' 'foxtrot.sm' 18 0 3
+2637 'SA.Robert' 'foxtrot.sm' 21 0 3
+2638 'SA.Robert' 'foxtrot.sm' 22 0 3
+2639 'SA.Robert' 'foxtrot.sm' 23 0 3
+2640 'SA.Robert' 'foxtrot.sm' 24 0 3
+2641 'SA.Robert' 'foxtrot.sm' 25 0 3
+2642 'SA.Robert' 'foxtrot.sm' 28 0 3
+2643 'SA.Robert' 'foxtrot.sm' 29 0 3
+2644 'SA.Robert' 'foxtrot.sm' 30 0 3
+2645 'SA.Robert' 'foxtrot.sm' 31 0 3
+2646 'SA.Robert' 'foxtrot.sm' 32 0 3
+2647 'SA.Robert' 'foxtrot.sm' 35 0 3
+2648 'SA.Robert' 'foxtrot.sm' 36 0 3
+2649 'SA.Robert' 'foxtrot.sm' 37 0 3
+2650 'SA.Robert' 'foxtrot.sm' 38 0 3
+2651 'SA.Robert' 'foxtrot.sm' 39 0 3
+2652 'SA.Robert' 'foxtrot.sm' 42 0 3
+2653 'SA.Robert' 'foxtrot.sm' 43 0 3
+2654 'SA.Robert' 'foxtrot.sm' 44 0 3
+2655 'SA.Robert' 'foxtrot.sm' 45 0 3
+2656 'SA.Robert' 'foxtrot.sm' 46 0 3
+2657 'SA.Robert' 'foxtrot.sm' 49 0 3
+2658 'SA.Robert' 'foxtrot.sm' 50 0 3
+2659 'SA.Robert' 'foxtrot.sm' 51 0 3
+2660 'SA.Robert' 'foxtrot.sm' 52 0 3
+2661 'SA.Robert' 'foxtrot.sm' 53 0 3
+2662 'SA.Robert' 'foxtrot.sm' 56 0 3
+2663 'SA.Robert' 'foxtrot.sm' 57 0 3
+2664 'SA.Robert' 'foxtrot.sm' 58 0 3
+2665 'SA.Robert' 'foxtrot.sm' 59 0 3
+2666 'SA.Robert' 'foxtrot.sm' 60 0 3
+2667 'SA.Robert' 'foxtrot.sm' 63 0 3
+2668 'SA.Robert' 'foxtrot.sm' 64 0 3
+2669 'SA.Robert' 'foxtrot.sm' 65 0 3
+2670 'SA.Robert' 'foxtrot.sm' 66 0 3
+2671 'SA.Robert' 'foxtrot.sm' 67 0 3
+2672 'SA.Robert' 'foxtrot.sm' 70 0 3
+2673 'SA.Robert' 'foxtrot.sm' 71 0 3
+2674 'SA.Robert' 'foxtrot.sm' 72 0 3
+2675 'SA.Robert' 'foxtrot.sm' 73 0 3
+2676 'SA.Robert' 'foxtrot.sm' 74 0 3
+2677 'SA.Robert' 'foxtrot.sm' 77 0 3
+2678 'SA.Robert' 'foxtrot.sm' 78 0 3
+2679 'SA.Robert' 'foxtrot.sm' 79 0 3
+2680 'SA.Robert' 'foxtrot.sm' 80 0 3
+2681 'SA.Robert' 'foxtrot.sm' 81 0 3
+2682 'SA.Robert' 'foxtrot.sm' 84 0 3
+2683 'SA.Robert' 'foxtrot.sm' 85 0 3
+2684 'SA.Robert' 'foxtrot.sm' 86 0 3
+2685 'SA.Robert' 'foxtrot.sm' 87 0 3
+2686 'SA.Robert' 'foxtrot.sm' 88 0 3
+2687 'SA.Robert' 'foxtrot.sm' 91 0 3
+2688 'SA.Robert' 'foxtrot.sm' 92 0 3
+2689 'SA.Robert' 'foxtrot.sf' 93 0 3
+2690 'SA.Robert' 'foxtrot.sf' 94 0 3
+2691 'SA.Robert' 'foxtrot.sf' 95 0 3
+2692 'SA.Robert' 'foxtrot.sf' 98 0 3
+2693 'SA.Robert' 'foxtrot.sf' 99 0 3
+2694 'SA.Robert' 'foxtrot.sf' 100 0 3
+2695 'SA.Robert' 'foxtrot.sf' 101 0 3
+2696 'SA.Robert' 'foxtrot.sf' 102 0 3
+2697 'SA.Robert' 'foxtrot.sf' 105 0 3
+2698 'SA.Robert' 'foxtrot.sf' 106 0 3
+2699 'SA.Robert' 'foxtrot.sf' 107 0 3
+2700 'SA.Robert' 'foxtrot.sf' 108 0 3
+2701 'SA.Robert' 'foxtrot.sf' 109 0 3
+2702 'SA.Robert' 'foxtrot.sf' 112 0 3
+2703 'SA.Robert' 'foxtrot.sf' 113 0 3
+2704 'SA.Robert' 'foxtrot.sf' 114 0 3
+2705 'SA.Robert' 'foxtrot.sf' 115 0 3
+2706 'SA.Robert' 'foxtrot.sf' 116 0 3
+2707 'SA.Robert' 'foxtrot.sf' 119 0 3
+2708 'SA.Robert' 'foxtrot.sf' 120 0 3
+2709 'SA.Robert' 'foxtrot.sf' 121 0 3
+2710 'SA.Robert' 'foxtrot.sf' 123 0 3
+2711 'SA.Robert' 'golf.sm' 3 0 3
+2712 'SA.Robert' 'golf.sm' 4 0 3
+2713 'SA.Robert' 'golf.sm' 7 0 3
+2714 'SA.Robert' 'golf.sm' 8 0 3
+2715 'SA.Robert' 'golf.sm' 9 0 3
+2716 'SA.Robert' 'golf.sm' 10 0 3
+2717 'SA.Robert' 'golf.sm' 11 0 3
+2718 'SA.Robert' 'golf.sm' 14 0 3
+2719 'SA.Robert' 'golf.sm' 15 0 3
+2720 'SA.Robert' 'golf.sm' 16 0 3
+2721 'SA.Robert' 'golf.sm' 17 0 3
+2722 'SA.Robert' 'golf.sm' 18 0 3
+2723 'SA.Robert' 'golf.sm' 21 0 3
+2724 'SA.Robert' 'golf.sm' 22 0 3
+2725 'SA.Robert' 'golf.sm' 23 0 3
+2726 'SA.Robert' 'golf.sm' 24 0 3
+2727 'SA.Robert' 'golf.sm' 25 0 3
+2728 'SA.Robert' 'golf.sm' 28 0 3
+2729 'SA.Robert' 'golf.sm' 29 0 3
+2730 'SA.Robert' 'golf.sm' 30 0 3
+2731 'SA.Robert' 'golf.sm' 31 0 3
+2732 'SA.Robert' 'golf.sm' 32 0 3
+2733 'SA.Robert' 'golf.sm' 35 0 3
+2734 'SA.Robert' 'golf.sm' 36 0 3
+2735 'SA.Robert' 'golf.sm' 37 0 3
+2736 'SA.Robert' 'golf.sm' 38 0 3
+2737 'SA.Robert' 'golf.sm' 39 0 3
+2738 'SA.Robert' 'golf.sm' 42 0 3
+2739 'SA.Robert' 'golf.sm' 43 0 3
+2740 'SA.Robert' 'golf.sm' 44 0 3
+2741 'SA.Robert' 'golf.sm' 45 0 3
+2742 'SA.Robert' 'golf.sm' 46 0 3
+2743 'SA.Robert' 'golf.sm' 49 0 3
+2744 'SA.Robert' 'golf.sm' 50 0 3
+2745 'SA.Robert' 'golf.sm' 51 0 3
+2746 'SA.Robert' 'golf.sm' 52 0 3
+2747 'SA.Robert' 'golf.sm' 53 0 3
+2748 'SA.Robert' 'golf.sm' 56 0 3
+2749 'SA.Robert' 'golf.sm' 57 0 3
+2750 'SA.Robert' 'golf.sm' 58 0 3
+2751 'SA.Robert' 'golf.sm' 59 0 3
+2752 'SA.Robert' 'golf.sm' 60 0 3
+2753 'SA.Robert' 'golf.sm' 63 0 3
+2754 'SA.Robert' 'golf.sm' 64 0 3
+2755 'SA.Robert' 'golf.sm' 65 0 3
+2756 'SA.Robert' 'golf.sm' 66 0 3
+2757 'SA.Robert' 'golf.sm' 67 0 3
+2758 'SA.Robert' 'golf.sm' 70 0 3
+2759 'SA.Robert' 'golf.sm' 71 0 3
+2760 'SA.Robert' 'golf.sm' 72 0 3
+2761 'SA.Robert' 'golf.sm' 73 0 3
+2762 'SA.Robert' 'golf.sm' 74 0 3
+2763 'SA.Robert' 'golf.sm' 77 0 3
+2764 'SA.Robert' 'golf.sm' 78 0 3
+2765 'SA.Robert' 'golf.sm' 79 0 3
+2766 'SA.Robert' 'golf.sm' 80 0 3
+2767 'SA.Robert' 'golf.sm' 81 0 3
+2768 'SA.Robert' 'golf.sm' 84 0 3
+2769 'SA.Robert' 'golf.sm' 85 0 3
+2770 'SA.Robert' 'golf.sm' 86 0 3
+2771 'SA.Robert' 'golf.sm' 87 0 3
+2772 'SA.Robert' 'golf.sm' 88 0 3
+2773 'SA.Robert' 'golf.sm' 91 0 3
+2774 'SA.Robert' 'golf.sm' 92 0 3
+2775 'SA.Robert' 'golf.sm' 93 0 3
+2776 'SA.Robert' 'golf.sm' 94 0 3
+2777 'SA.Robert' 'golf.sm' 95 0 3
+2778 'SA.Robert' 'golf.sm' 98 0 3
+2779 'SA.Robert' 'golf.sm' 99 0 3
+2780 'SA.Robert' 'golf.sm' 100 0 3
+2781 'SA.Robert' 'golf.sm' 101 0 3
+2782 'SA.Robert' 'golf.sm' 102 0 3
+2783 'SA.Robert' 'golf.sm' 105 0 3
+2784 'SA.Robert' 'golf.sm' 106 0 3
+2785 'SA.Robert' 'golf.sm' 107 0 3
+2786 'SA.Robert' 'golf.sm' 108 0 3
+2787 'SA.Robert' 'golf.sm' 109 0 3
+2788 'SA.Robert' 'golf.sm' 112 0 3
+2789 'SA.Robert' 'golf.sm' 113 0 3
+2790 'SA.Robert' 'golf.sm' 114 0 3
+2791 'SA.Robert' 'golf.sm' 115 0 3
+2792 'SA.Robert' 'golf.sm' 116 0 3
+2793 'SA.Robert' 'golf.sm' 119 0 3
+2794 'SA.Robert' 'golf.sm' 120 0 3
+2795 'SA.Robert' 'golf.sm' 121 0 3
+2796 'SA.Robert' 'golf.sm' 123 0 3
+2797 'SA.Robert' 'golf.sm' 126 0 3
+2798 'SA.Robert' 'golf.sm' 127 0 3
+2799 'SA.Robert' 'golf.sm' 128 0 3
+2800 'SA.Robert' 'golf.sm' 129 0 3
+2801 'SA.Robert' 'golf.sm' 130 0 3
+2802 'SA.Robert' 'golf.sm' 133 0 3
+2803 'SA.Robert' 'golf.sf' 134 0 3
+2804 'SA.Robert' 'golf.sf' 135 0 3
+2805 'SA.Robert' 'golf.sf' 136 0 3
+2806 'SA.Robert' 'golf.sf' 137 0 3
+2807 'SA.Robert' 'golf.sf' 140 0 3
+2808 'SA.Robert' 'golf.sf' 141 0 3
+2809 'SA.Robert' 'golf.sf' 142 0 3
+2810 'SA.Robert' 'golf.sf' 143 0 3
+2811 'SA.Robert' 'golf.sf' 144 0 3
+2812 'SA.Robert' 'golf.sf' 147 0 3
+2813 'SA.Robert' 'golf.sf' 148 0 3
+2814 'SA.Robert' 'golf.sf' 149 0 3
+2815 'SA.Robert' 'golf.sf' 150 0 3
+2816 'SA.Robert' 'golf.sf' 151 0 3
+2817 'SA.Robert' 'golf.sf' 154 0 3
+2818 'SA.Robert' 'golf.sf' 155 0 3
+2819 'SA.Robert' 'golf.sf' 156 0 3
+2820 'SA.Robert' 'golf.sf' 157 0 3
+2821 'SA.Robert' 'golf.sf' 158 0 3
+2822 'SA.Robert' 'golf.sf' 161 0 3
+2823 'SA.Robert' 'golf.sf' 162 0 3
+2824 'SA.Robert' 'golf.sf' 163 0 3
+2825 'SA.Robert' 'golf.sf' 164 0 3
+2826 'SA.Robert' 'golf.sf' 165 0 3
+2827 'SA.Robert' 'golf.sf' 168 0 3
+2828 'SA.Robert' 'golf.sf' 169 0 3
+2829 'SA.Robert' 'golf.sf' 170 0 3
+2830 'SA.Robert' 'golf.sf' 171 0 3
+2831 'SA.Robert' 'golf.sf' 172 0 3
+2832 'SA.Robert' 'golf.sf' 175 0 3
+2833 'SA.Robert' 'golf.sf' 176 0 3
+2834 'SA.Robert' 'golf.sf' 177 0 3
+2835 'SA.Robert' 'golf.sf' 178 0 3
+2836 'SA.Robert' 'golf.sf' 179 0 3
+2837 'SA.Robert' 'hotel.sm' 3 0 3
+2838 'SA.Robert' 'hotel.sm' 4 0 3
+2839 'SA.Robert' 'hotel.sm' 7 0 3
+2840 'SA.Robert' 'hotel.sm' 8 0 3
+2841 'SA.Robert' 'hotel.sm' 9 0 3
+2842 'SA.Robert' 'hotel.sm' 10 0 3
+2843 'SA.Robert' 'hotel.sm' 11 0 3
+2844 'SA.Robert' 'hotel.sm' 14 0 3
+2845 'SA.Robert' 'hotel.sm' 15 0 3
+2846 'SA.Robert' 'hotel.sm' 16 0 3
+2847 'SA.Robert' 'hotel.sm' 17 0 3
+2848 'SA.Robert' 'hotel.sm' 18 0 3
+2849 'SA.Robert' 'hotel.sm' 21 0 3
+2850 'SA.Robert' 'hotel.sm' 22 0 3
+2851 'SA.Robert' 'hotel.sm' 23 0 3
+2852 'SA.Robert' 'hotel.sm' 24 0 3
+2853 'SA.Robert' 'hotel.sm' 25 0 3
+2854 'SA.Robert' 'hotel.sm' 28 0 3
+2855 'SA.Robert' 'hotel.sm' 29 0 3
+2856 'SA.Robert' 'hotel.sm' 30 0 3
+2857 'SA.Robert' 'hotel.sm' 31 0 3
+2858 'SA.Robert' 'hotel.sm' 32 0 3
+2859 'SA.Robert' 'hotel.sm' 35 0 3
+2860 'SA.Robert' 'hotel.sm' 36 0 3
+2861 'SA.Robert' 'hotel.sm' 37 0 3
+2862 'SA.Robert' 'hotel.sm' 38 0 3
+2863 'SA.Robert' 'hotel.sm' 39 0 3
+2864 'SA.Robert' 'hotel.sm' 42 0 3
+2865 'SA.Robert' 'hotel.sm' 43 0 3
+2866 'SA.Robert' 'hotel.sm' 44 0 3
+2867 'SA.Robert' 'hotel.sm' 45 0 3
+2868 'SA.Robert' 'hotel.sm' 46 0 3
+2869 'SA.Robert' 'hotel.sm' 49 0 3
+2870 'SA.Robert' 'hotel.sm' 50 0 3
+2871 'SA.Robert' 'hotel.sm' 51 0 3
+2872 'SA.Robert' 'hotel.sm' 52 0 3
+2873 'SA.Robert' 'hotel.sm' 53 0 3
+2874 'SA.Robert' 'hotel.sm' 56 0 3
+2875 'SA.Robert' 'hotel.sm' 57 0 3
+2876 'SA.Robert' 'hotel.sm' 58 0 3
+2877 'SA.Robert' 'hotel.sm' 59 0 3
+2878 'SA.Robert' 'hotel.sm' 60 0 3
+2879 'SA.Robert' 'hotel.sm' 63 0 3
+2880 'SA.Robert' 'hotel.sm' 64 0 3
+2881 'SA.Robert' 'hotel.sm' 65 0 3
+2882 'SA.Robert' 'hotel.sm' 66 0 3
+2883 'SA.Robert' 'hotel.sm' 67 0 3
+2884 'SA.Robert' 'hotel.sm' 70 0 3
+2885 'SA.Robert' 'hotel.sm' 71 0 3
+2886 'SA.Robert' 'hotel.sm' 72 0 3
+2887 'SA.Robert' 'hotel.sm' 73 0 3
+2888 'SA.Robert' 'hotel.sm' 74 0 3
+2889 'SA.Robert' 'hotel.sm' 77 0 3
+2890 'SA.Robert' 'hotel.sm' 78 0 3
+2891 'SA.Robert' 'hotel.sm' 79 0 3
+2892 'SA.Robert' 'hotel.sm' 80 0 3
+2893 'SA.Robert' 'hotel.sm' 81 0 3
+2894 'SA.Robert' 'hotel.sm' 84 0 3
+2895 'SA.Robert' 'hotel.sm' 85 0 3
+2896 'SA.Robert' 'hotel.sm' 86 0 3
+2897 'SA.Robert' 'hotel.sm' 87 0 3
+2898 'SA.Robert' 'hotel.sm' 88 0 3
+2899 'SA.Robert' 'hotel.sm' 91 0 3
+2900 'SA.Robert' 'hotel.sm' 92 0 3
+2901 'SA.Robert' 'hotel.sm' 93 0 3
+2902 'SA.Robert' 'hotel.sm' 94 0 3
+2903 'SA.Robert' 'hotel.sm' 95 0 3
+2904 'SA.Robert' 'hotel.sm' 98 0 3
+2905 'SA.Robert' 'hotel.sm' 99 0 3
+2906 'SA.Robert' 'hotel.sm' 100 0 3
+2907 'SA.Robert' 'hotel.sm' 101 0 3
+2908 'SA.Robert' 'hotel.sm' 102 0 3
+2909 'SA.Robert' 'hotel.sm' 105 0 3
+2910 'SA.Robert' 'hotel.sm' 106 0 3
+2911 'SA.Robert' 'hotel.sm' 107 0 3
+2912 'SA.Robert' 'hotel.sm' 108 0 3
+2913 'SA.Robert' 'hotel.sm' 109 0 3
+2914 'SA.Robert' 'hotel.sm' 112 0 3
+2915 'SA.Robert' 'hotel.sm' 113 0 3
+2916 'SA.Robert' 'hotel.sm' 114 0 3
+2917 'SA.Robert' 'hotel.sm' 115 0 3
+2918 'SA.Robert' 'hotel.sm' 116 0 3
+2919 'SA.Robert' 'hotel.sm' 119 0 3
+2920 'SA.Robert' 'hotel.sm' 120 0 3
+2921 'SA.Robert' 'hotel.sm' 121 0 3
+2922 'SA.Robert' 'hotel.sm' 123 0 3
+2923 'SA.Robert' 'hotel.sm' 126 0 3
+2924 'SA.Robert' 'hotel.sm' 127 0 3
+2925 'SA.Robert' 'hotel.sm' 128 0 3
+2926 'SA.Robert' 'hotel.sm' 129 0 3
+2927 'SA.Robert' 'hotel.sm' 130 0 3
+2928 'SA.Robert' 'hotel.sm' 133 0 3
+2929 'SA.Robert' 'hotel.sm' 134 0 3
+2930 'SA.Robert' 'hotel.sm' 135 0 3
+2931 'SA.Robert' 'hotel.sm' 136 0 3
+2932 'SA.Robert' 'hotel.sm' 137 0 3
+2933 'SA.Robert' 'hotel.sm' 140 0 3
+2934 'SA.Robert' 'hotel.sm' 141 0 3
+2935 'SA.Robert' 'hotel.sm' 142 0 3
+2936 'SA.Robert' 'hotel.sm' 143 0 3
+2937 'SA.Robert' 'hotel.sm' 144 0 3
+2938 'SA.Robert' 'hotel.sm' 147 0 3
+2939 'SA.Robert' 'hotel.sm' 148 0 3
+2940 'SA.Robert' 'hotel.sm' 149 0 3
+2941 'SA.Robert' 'hotel.sm' 150 0 3
+2942 'SA.Robert' 'hotel.sm' 151 0 3
+2943 'SA.Robert' 'hotel.sm' 154 0 3
+2944 'SA.Robert' 'hotel.sm' 155 0 3
+2945 'SA.Robert' 'hotel.sm' 156 0 3
+2946 'SA.Robert' 'hotel.sm' 157 0 3
+2947 'SA.Robert' 'hotel.sm' 158 0 3
+2948 'SA.Robert' 'hotel.sm' 161 0 3
+2949 'SA.Robert' 'hotel.sm' 162 0 3
+2950 'SA.Robert' 'hotel.sm' 163 0 3
+2951 'SA.Robert' 'hotel.sm' 164 0 3
+2952 'SA.Robert' 'hotel.sm' 165 0 3
+2953 'SA.Robert' 'hotel.sm' 168 0 3
+2954 'SA.Robert' 'hotel.sm' 169 0 3
+2955 'SA.Robert' 'hotel.sm' 170 0 3
+2956 'SA.Robert' 'hotel.sm' 171 0 3
+2957 'SA.Robert' 'hotel.sm' 172 0 3
+2958 'SA.Robert' 'hotel.sm' 175 0 3
+2959 'SA.Robert' 'hotel.sm' 176 0 3
+2960 'SA.Robert' 'hotel.sm' 177 0 3
+2961 'SA.Robert' 'hotel.sm' 178 0 3
+2962 'SA.Robert' 'hotel.sm' 179 0 3
+2963 'SA.Robert' 'hotel.sm' 182 0 3
+2964 'SA.Robert' 'hotel.sm' 183 0 3
+2965 'SA.Robert' 'hotel.sm' 184 0 3
+2966 'SA.Robert' 'hotel.sm' 185 0 3
+2967 'SA.Robert' 'hotel.sm' 186 0 3
+2968 'SA.Robert' 'hotel.sm' 189 0 3
+2969 'SA.Robert' 'hotel.sm' 190 0 3
+2970 'SA.Robert' 'hotel.sm' 191 0 3
+2971 'SA.Robert' 'hotel.sm' 192 0 3
+2972 'SA.Robert' 'hotel.sm' 193 0 3
+2973 'SA.Robert' 'hotel.sm' 196 0 3
+2974 'SA.Robert' 'hotel.sm' 197 0 3
+2975 'SA.Robert' 'hotel.sm' 198 0 3
+2976 'SA.Robert' 'hotel.sm' 199 0 3
+2977 'SA.Robert' 'hotel.sm' 200 0 3
+2978 'SA.Robert' 'hotel.sm' 203 0 3
+2979 'SA.Robert' 'hotel.sm' 204 0 3
+2980 'SA.Robert' 'hotel.sm' 205 0 3
+2981 'SA.Robert' 'hotel.sm' 206 0 3
+2982 'SA.Robert' 'hotel.sm' 207 0 3
+2983 'SA.Robert' 'hotel.sm' 210 0 3
+2984 'SA.Robert' 'hotel.sm' 211 0 3
+2985 'SA.Robert' 'hotel.sm' 212 0 3
+2986 'SA.Robert' 'hotel.sm' 213 0 3
+2987 'SA.Robert' 'hotel.sm' 214 0 3
+2988 'SA.Robert' 'hotel.sm' 217 0 3
+2989 'SA.Robert' 'hotel.sm' 218 0 3
+2990 'SA.Robert' 'hotel.sm' 219 0 3
+2991 'SA.Robert' 'hotel.sm' 220 0 3
+2992 'SA.Robert' 'hotel.sm' 221 0 3
+2993 'SA.Robert' 'hotel.sm' 224 0 3
+2994 'SA.Robert' 'hotel.sm' 225 0 3
+2995 'SA.Robert' 'hotel.sm' 226 0 3
+2996 'SA.Robert' 'hotel.sm' 227 0 3
+2997 'SA.Robert' 'hotel.sm' 228 0 3
+2998 'SA.Robert' 'hotel.sm' 231 0 3
+2999 'SA.Robert' 'hotel.sm' 232 0 3
+3000 'SA.Robert' 'hotel.sm' 233 0 3
+3001 'SA.Robert' 'hotel.sm' 234 0 3
+3002 'SA.Robert' 'hotel.sm' 235 0 3
+3003 'SA.Robert' 'hotel.sm' 238 0 3
+3004 'SA.Robert' 'hotel.sm' 239 0 3
+3005 'SA.Robert' 'hotel.sm' 240 0 3
+3006 'SA.Robert' 'hotel.sm' 241 0 3
+3007 'SA.Robert' 'hotel.sm' 242 0 3
+3008 'SA.Robert' 'hotel.sm' 245 0 3
+3009 'SA.Robert' 'hotel.sf' 246 0 3
+3010 'SA.Robert' 'hotel.sf' 247 0 3
+3011 'SA.Robert' 'hotel.sf' 248 0 3
+3012 'SA.Robert' 'hotel.sf' 249 0 3
+3013 'SA.Robert' 'hotel.sf' 252 0 3
+3014 'SA.Robert' 'hotel.sf' 253 0 3
+3015 'SA.Robert' 'hotel.sf' 254 0 3
+3016 'SA.Robert' 'hotel.sf' 255 0 3
+3017 'SA.Robert' 'hotel.sf' 256 0 3
+3018 'SA.Robert' 'hotel.sf' 259 0 3
+3019 'SA.Robert' 'hotel.sf' 260 0 3
+3020 'SA.Robert' 'hotel.sf' 261 0 3
+3021 'SA.Robert' 'hotel.sf' 262 0 3
+3022 'SA.Robert' 'hotel.sf' 263 0 3
+3023 'SA.Robert' 'hotel.sf' 266 0 3
+3024 'SA.Robert' 'hotel.sf' 267 0 3
+3025 'SA.Robert' 'hotel.sf' 268 0 3
+3026 'SA.Robert' 'hotel.sf' 269 0 3
+3027 'SA.Robert' 'hotel.sf' 270 0 3
+3028 'SA.Robert' 'hotel.sf' 273 0 3
+3029 'SA.Robert' 'hotel.sf' 274 0 3
+3030 'SA.Robert' 'hotel.sf' 275 0 3
+3031 'SA.Robert' 'hotel.sf' 276 0 3
+3032 'SA.Robert' 'hotel.sf' 277 0 3
+3033 'SA.Robert' 'hotel.sf' 280 0 3
+3034 'SA.Robert' 'hotel.sf' 281 0 3
+3035 'SA.Robert' 'hotel.sf' 282 0 3
+3036 'SA.Robert' 'hotel.sf' 283 0 3
+3037 'SA.Robert' 'hotel.sf' 284 0 3
+3038 'SA.Robert' 'hotel.sf' 287 0 3
+3039 'SA.Robert' 'hotel.sf' 288 0 3
+3040 'SA.Robert' 'hotel.sf' 289 0 3
+3041 'SA.Robert' 'hotel.sf' 290 0 3
+3042 'SA.Robert' 'hotel.sf' 291 0 3
+3043 'DEV.Charles' 'india.sm' 3 0 3
+3044 'DEV.Charles' 'india.sm' 4 0 3
+3045 'DEV.Charles' 'india.sm' 7 0 3
+3046 'DEV.Charles' 'india.sm' 8 0 3
+3047 'DEV.Charles' 'india.sm' 9 0 3
+3048 'DEV.Charles' 'india.sm' 10 0 3
+3049 'DEV.Charles' 'india.sm' 11 0 3
+3050 'DEV.Charles' 'india.sm' 14 0 3
+3051 'DEV.Charles' 'india.sm' 15 0 3
+3052 'DEV.Charles' 'india.sm' 16 0 3
+3053 'DEV.Charles' 'india.sm' 17 0 3
+3054 'DEV.Charles' 'india.sm' 18 0 3
+3055 'DEV.Charles' 'india.sm' 21 0 3
+3056 'DEV.Charles' 'india.sm' 22 0 3
+3057 'DEV.Charles' 'india.sm' 23 0 3
+3058 'DEV.Charles' 'india.sm' 24 0 3
+3059 'DEV.Charles' 'india.sm' 25 0 3
+3060 'DEV.Charles' 'india.sm' 28 0 3
+3061 'DEV.Charles' 'india.sm' 29 0 3
+3062 'DEV.Charles' 'india.sm' 30 0 3
+3063 'DEV.Charles' 'india.sm' 31 0 3
+3064 'DEV.Charles' 'india.sm' 32 0 3
+3065 'DEV.Charles' 'india.sm' 35 0 3
+3066 'DEV.Charles' 'india.sm' 36 0 3
+3067 'DEV.Charles' 'india.sm' 37 0 3
+3068 'DEV.Charles' 'india.sm' 38 0 3
+3069 'DEV.Charles' 'india.sm' 39 0 3
+3070 'DEV.Charles' 'india.sm' 42 0 3
+3071 'DEV.Charles' 'india.sm' 43 0 3
+3072 'DEV.Charles' 'india.sm' 44 0 3
+3073 'DEV.Charles' 'india.sm' 45 0 3
+3074 'DEV.Charles' 'india.sm' 46 0 3
+3075 'DEV.Charles' 'india.sm' 49 0 3
+3076 'DEV.Charles' 'india.sm' 50 0 3
+3077 'DEV.Charles' 'india.sm' 51 0 3
+3078 'DEV.Charles' 'india.sm' 52 0 3
+3079 'DEV.Charles' 'india.sm' 53 0 3
+3080 'DEV.Charles' 'india.sm' 56 0 3
+3081 'DEV.Charles' 'india.sm' 57 0 3
+3082 'DEV.Charles' 'india.sm' 58 0 3
+3083 'DEV.Charles' 'india.sm' 59 0 3
+3084 'DEV.Charles' 'india.sm' 60 0 3
+3085 'DEV.Charles' 'india.sm' 63 0 3
+3086 'DEV.Charles' 'india.sm' 64 0 3
+3087 'DEV.Charles' 'india.sm' 65 0 3
+3088 'DEV.Charles' 'india.sm' 66 0 3
+3089 'DEV.Charles' 'india.sm' 67 0 3
+3090 'DEV.Charles' 'india.sm' 70 0 3
+3091 'DEV.Charles' 'india.sm' 71 0 3
+3092 'DEV.Charles' 'india.sm' 72 0 3
+3093 'DEV.Charles' 'india.sm' 73 0 3
+3094 'DEV.Charles' 'india.sm' 74 0 3
+3095 'DEV.Charles' 'india.sm' 77 0 3
+3096 'DEV.Charles' 'india.sm' 78 0 3
+3097 'DEV.Charles' 'india.sm' 79 0 3
+3098 'DEV.Charles' 'india.sm' 80 0 3
+3099 'DEV.Charles' 'india.sm' 81 0 3
+3100 'DEV.Charles' 'india.sm' 84 0 3
+3101 'DEV.Charles' 'india.sm' 85 0 3
+3102 'DEV.Charles' 'india.sm' 86 0 3
+3103 'DEV.Charles' 'india.sm' 87 0 3
+3104 'DEV.Charles' 'india.sm' 88 0 3
+3105 'DEV.Charles' 'india.sm' 91 0 3
+3106 'DEV.Charles' 'india.sm' 92 0 3
+3107 'DEV.Charles' 'india.sm' 93 0 3
+3108 'DEV.Charles' 'india.sm' 94 0 3
+3109 'DEV.Charles' 'india.sm' 95 0 3
+3110 'DEV.Charles' 'india.sm' 98 0 3
+3111 'DEV.Charles' 'india.sm' 99 0 3
+3112 'DEV.Charles' 'india.sm' 100 0 3
+3113 'DEV.Charles' 'india.sm' 101 0 3
+3114 'DEV.Charles' 'india.sm' 102 0 3
+3115 'DEV.Charles' 'india.sm' 105 0 3
+3116 'DEV.Charles' 'india.sm' 106 0 3
+3117 'DEV.Charles' 'india.sm' 107 0 3
+3118 'DEV.Charles' 'india.sm' 108 0 3
+3119 'DEV.Charles' 'india.sm' 109 0 3
+3120 'DEV.Charles' 'india.sm' 112 0 3
+3121 'DEV.Charles' 'india.sm' 113 0 3
+3122 'DEV.Charles' 'india.sm' 114 0 3
+3123 'DEV.Charles' 'india.sm' 115 0 3
+3124 'DEV.Charles' 'india.sm' 116 0 3
+3125 'DEV.Charles' 'india.sm' 119 0 3
+3126 'DEV.Charles' 'india.sm' 120 0 3
+3127 'DEV.Charles' 'india.sm' 121 0 3
+3128 'DEV.Charles' 'india.sm' 123 0 3
+3129 'DEV.Charles' 'india.sm' 126 0 3
+3130 'DEV.Charles' 'india.sm' 127 0 3
+3131 'DEV.Charles' 'india.sm' 128 0 3
+3132 'DEV.Charles' 'india.sm' 129 0 3
+3133 'DEV.Charles' 'india.sm' 130 0 3
+3134 'DEV.Charles' 'india.sm' 133 0 3
+3135 'DEV.Charles' 'india.sm' 134 0 3
+3136 'DEV.Charles' 'india.sm' 135 0 3
+3137 'DEV.Charles' 'india.sm' 136 0 3
+3138 'DEV.Charles' 'india.sm' 137 0 3
+3139 'DEV.Charles' 'india.sm' 140 0 3
+3140 'DEV.Charles' 'india.sm' 141 0 3
+3141 'DEV.Charles' 'india.sm' 142 0 3
+3142 'DEV.Charles' 'india.sm' 143 0 3
+3143 'DEV.Charles' 'india.sm' 144 0 3
+3144 'DEV.Charles' 'india.sm' 147 0 3
+3145 'DEV.Charles' 'india.sm' 148 0 3
+3146 'DEV.Charles' 'india.sm' 149 0 3
+3147 'DEV.Charles' 'india.sm' 150 0 3
+3148 'DEV.Charles' 'india.sm' 151 0 3
+3149 'DEV.Charles' 'india.sm' 154 0 3
+3150 'DEV.Charles' 'india.sm' 155 0 3
+3151 'DEV.Charles' 'india.sm' 156 0 3
+3152 'DEV.Charles' 'india.sm' 157 0 3
+3153 'DEV.Charles' 'india.sm' 158 0 3
+3154 'DEV.Charles' 'india.sm' 161 0 3
+3155 'DEV.Charles' 'india.sm' 162 0 3
+3156 'DEV.Charles' 'india.sm' 163 0 3
+3157 'DEV.Charles' 'india.sm' 164 0 3
+3158 'DEV.Charles' 'india.sm' 165 0 3
+3159 'DEV.Charles' 'india.sm' 168 0 3
+3160 'DEV.Charles' 'india.sm' 169 0 3
+3161 'DEV.Charles' 'india.sm' 170 0 3
+3162 'DEV.Charles' 'india.sm' 171 0 3
+3163 'DEV.Charles' 'india.sm' 172 0 3
+3164 'DEV.Charles' 'india.sm' 175 0 3
+3165 'DEV.Charles' 'india.sm' 176 0 3
+3166 'DEV.Charles' 'india.sm' 177 0 3
+3167 'DEV.Charles' 'india.sm' 178 0 3
+3168 'DEV.Charles' 'india.sm' 179 0 3
+3169 'DEV.Charles' 'india.sm' 182 0 3
+3170 'DEV.Charles' 'india.sm' 183 0 3
+3171 'DEV.Charles' 'india.sm' 184 0 3
+3172 'DEV.Charles' 'india.sm' 185 0 3
+3173 'DEV.Charles' 'india.sm' 186 0 3
+3174 'DEV.Charles' 'india.sm' 189 0 3
+3175 'DEV.Charles' 'india.sm' 190 0 3
+3176 'DEV.Charles' 'india.sm' 191 0 3
+3177 'DEV.Charles' 'india.sm' 192 0 3
+3178 'DEV.Charles' 'india.sm' 193 0 3
+3179 'DEV.Charles' 'india.sm' 196 0 3
+3180 'DEV.Charles' 'india.sm' 197 0 3
+3181 'DEV.Charles' 'india.sm' 198 0 3
+3182 'DEV.Charles' 'india.sm' 199 0 3
+3183 'DEV.Charles' 'india.sm' 200 0 3
+3184 'DEV.Charles' 'india.sm' 203 0 3
+3185 'DEV.Charles' 'india.sm' 204 0 3
+3186 'DEV.Charles' 'india.sm' 205 0 3
+3187 'DEV.Charles' 'india.sm' 206 0 3
+3188 'DEV.Charles' 'india.sm' 207 0 3
+3189 'DEV.Charles' 'india.sm' 210 0 3
+3190 'DEV.Charles' 'india.sm' 211 0 3
+3191 'DEV.Charles' 'india.sm' 212 0 3
+3192 'DEV.Charles' 'india.sm' 213 0 3
+3193 'DEV.Charles' 'india.sm' 214 0 3
+3194 'DEV.Charles' 'india.sm' 217 0 3
+3195 'DEV.Charles' 'india.sm' 218 0 3
+3196 'DEV.Charles' 'india.sm' 219 0 3
+3197 'DEV.Charles' 'india.sm' 220 0 3
+3198 'DEV.Charles' 'india.sm' 221 0 3
+3199 'DEV.Charles' 'india.sm' 224 0 3
+3200 'DEV.Charles' 'india.sm' 225 0 3
+3201 'DEV.Charles' 'india.sm' 226 0 3
+3202 'DEV.Charles' 'india.sm' 227 0 3
+3203 'DEV.Charles' 'india.sm' 228 0 3
+3204 'DEV.Charles' 'india.sm' 231 0 3
+3205 'DEV.Charles' 'india.sm' 232 0 3
+3206 'DEV.Charles' 'india.sm' 233 0 3
+3207 'DEV.Charles' 'india.sm' 234 0 3
+3208 'DEV.Charles' 'india.sm' 235 0 3
+3209 'DEV.Charles' 'india.sm' 238 0 3
+3210 'DEV.Charles' 'india.sm' 239 0 3
+3211 'DEV.Charles' 'india.sm' 240 0 3
+3212 'DEV.Charles' 'india.sm' 241 0 3
+3213 'DEV.Charles' 'india.sm' 242 0 3
+3214 'DEV.Charles' 'india.sm' 245 0 3
+3215 'DEV.Charles' 'india.sm' 246 0 3
+3216 'DEV.Charles' 'india.sm' 247 0 3
+3217 'DEV.Charles' 'india.sm' 248 0 3
+3218 'DEV.Charles' 'india.sm' 249 0 3
+3219 'DEV.Charles' 'india.sm' 252 0 3
+3220 'DEV.Charles' 'india.sm' 253 0 3
+3221 'DEV.Charles' 'india.sm' 254 0 3
+3222 'DEV.Charles' 'india.sm' 255 0 3
+3223 'DEV.Charles' 'india.sm' 256 0 3
+3224 'DEV.Charles' 'india.sm' 259 0 3
+3225 'DEV.Charles' 'india.sm' 260 0 3
+3226 'DEV.Charles' 'india.sm' 261 0 3
+3227 'DEV.Charles' 'india.sm' 262 0 3
+3228 'DEV.Charles' 'india.sm' 263 0 3
+3229 'DEV.Charles' 'india.sm' 266 0 3
+3230 'DEV.Charles' 'india.sm' 267 0 3
+3231 'DEV.Charles' 'india.sm' 268 0 3
+3232 'DEV.Charles' 'india.sm' 269 0 3
+3233 'DEV.Charles' 'india.sm' 270 0 3
+3234 'DEV.Charles' 'india.sm' 273 0 3
+3235 'DEV.Charles' 'india.sm' 274 0 3
+3236 'DEV.Charles' 'india.sm' 275 0 3
+3237 'DEV.Charles' 'india.sf' 276 0 3
+3238 'DEV.Charles' 'india.sf' 277 0 3
+3239 'DEV.Charles' 'india.sf' 280 0 3
+3240 'DEV.Charles' 'india.sf' 281 0 3
+3241 'DEV.Charles' 'india.sf' 282 0 3
+3242 'DEV.Charles' 'india.sf' 283 0 3
+3243 'DEV.Charles' 'india.sf' 284 0 3
+3244 'DEV.Charles' 'india.sf' 287 0 3
+3245 'DEV.Charles' 'india.sf' 288 0 3
+3246 'DEV.Charles' 'india.sf' 289 0 3
+3247 'DEV.Charles' 'india.sf' 290 0 3
+3248 'DEV.Charles' 'india.sf' 291 0 3
+3249 'DEV.Charles' 'india.sf' 294 0 3
+3250 'DEV.Charles' 'india.sf' 295 0 3
+3251 'DEV.Charles' 'india.sf' 296 0 3
+3252 'DEV.Charles' 'india.sf' 297 0 3
+3253 'DEV.Charles' 'india.sf' 298 0 3
+3254 'DEV.Charles' 'india.sf' 301 0 3
+3255 'DEV.Charles' 'india.sf' 302 0 3
+3256 'DEV.Charles' 'india.sf' 303 0 3
+3257 'DEV.Charles' 'india.sf' 304 0 3
+3258 'DEV.Charles' 'india.sf' 305 0 3
+3259 'DEV.Charles' 'juliet.se' 42 0 3
+3260 'DEV.Charles' 'juliet.se' 43 0 3
+3261 'DEV.Charles' 'juliet.se' 44 0 3
+3262 'DEV.Charles' 'juliet.se' 45 0 3
+3263 'DEV.Charles' 'juliet.se' 46 0 3
+3264 'DEV.Charles' 'juliet.se' 49 0 3
+3265 'DEV.Charles' 'juliet.se' 50 0 3
+3266 'DEV.Charles' 'juliet.se' 51 0 3
+3267 'DEV.Charles' 'juliet.se' 52 0 3
+3268 'DEV.Charles' 'juliet.se' 53 0 3
+3269 'DEV.Charles' 'juliet.se' 56 0 3
+3270 'DEV.Charles' 'juliet.se' 57 0 3
+3271 'DEV.Charles' 'juliet.se' 58 0 3
+3272 'DEV.Charles' 'juliet.se' 59 0 3
+3273 'DEV.Charles' 'juliet.sm' 60 0 3
+3274 'DEV.Charles' 'juliet.sm' 63 0 3
+3275 'DEV.Charles' 'juliet.sm' 64 0 3
+3276 'DEV.Charles' 'juliet.sm' 65 0 3
+3277 'DEV.Charles' 'juliet.sm' 66 0 3
+3278 'DEV.Charles' 'juliet.sm' 67 0 3
+3279 'DEV.Charles' 'juliet.sm' 70 0 3
+3280 'DEV.Charles' 'juliet.sm' 71 0 3
+3281 'DEV.Charles' 'juliet.sm' 72 0 3
+3282 'DEV.Charles' 'juliet.sm' 73 0 3
+3283 'DEV.Charles' 'juliet.sm' 74 0 3
+3284 'DEV.Charles' 'juliet.sm' 77 0 3
+3285 'DEV.Charles' 'juliet.sm' 78 0 3
+3286 'DEV.Charles' 'juliet.sm' 79 0 3
+3287 'DEV.Charles' 'juliet.sm' 80 0 3
+3288 'DEV.Charles' 'juliet.sm' 81 0 3
+3289 'DEV.Charles' 'juliet.sm' 84 0 3
+3290 'DEV.Charles' 'juliet.sm' 85 0 3
+3291 'DEV.Charles' 'juliet.sm' 86 0 3
+3292 'DEV.Charles' 'juliet.sm' 87 0 3
+3293 'DEV.Charles' 'juliet.sm' 88 0 3
+3294 'DEV.Charles' 'juliet.sm' 91 0 3
+3295 'DEV.Charles' 'juliet.sm' 92 0 3
+3296 'DEV.Charles' 'juliet.sm' 93 0 3
+3297 'DEV.Charles' 'juliet.sm' 94 0 3
+3298 'DEV.Charles' 'juliet.sm' 95 0 3
+3299 'DEV.Charles' 'juliet.sm' 98 0 3
+3300 'DEV.Charles' 'juliet.sm' 99 0 3
+3301 'DEV.Charles' 'juliet.sm' 100 0 3
+3302 'DEV.Charles' 'juliet.sm' 101 0 3
+3303 'DEV.Charles' 'juliet.sm' 102 0 3
+3304 'DEV.Charles' 'juliet.sm' 105 0 3
+3305 'DEV.Charles' 'juliet.sm' 106 0 3
+3306 'DEV.Charles' 'juliet.sm' 107 0 3
+3307 'DEV.Charles' 'juliet.sm' 108 0 3
+3308 'DEV.Charles' 'juliet.sm' 109 0 3
+3309 'DEV.Charles' 'juliet.sm' 112 0 3
+3310 'DEV.Charles' 'juliet.sm' 113 0 3
+3311 'DEV.Charles' 'juliet.sm' 114 0 3
+3312 'DEV.Charles' 'juliet.sm' 115 0 3
+3313 'DEV.Charles' 'juliet.sm' 116 0 3
+3314 'DEV.Charles' 'juliet.sm' 119 0 3
+3315 'DEV.Charles' 'juliet.sm' 120 0 3
+3316 'DEV.Charles' 'juliet.sm' 121 0 3
+3317 'DEV.Charles' 'juliet.sm' 123 0 3
+3318 'DEV.Charles' 'juliet.sm' 126 0 3
+3319 'DEV.Charles' 'juliet.sm' 127 0 3
+3320 'DEV.Charles' 'juliet.sm' 128 0 3
+3321 'DEV.Charles' 'juliet.sm' 129 0 3
+3322 'DEV.Charles' 'juliet.sm' 130 0 3
+3323 'DEV.Charles' 'juliet.sm' 133 0 3
+3324 'DEV.Charles' 'juliet.sm' 134 0 3
+3325 'DEV.Charles' 'juliet.sm' 135 0 3
+3326 'DEV.Charles' 'juliet.sm' 136 0 3
+3327 'DEV.Charles' 'juliet.sm' 137 0 3
+3328 'DEV.Charles' 'juliet.sm' 140 0 3
+3329 'DEV.Charles' 'juliet.sm' 141 0 3
+3330 'DEV.Charles' 'juliet.sm' 142 0 3
+3331 'DEV.Charles' 'juliet.sm' 143 0 3
+3332 'DEV.Charles' 'juliet.sm' 144 0 3
+3333 'DEV.Charles' 'juliet.sm' 147 0 3
+3334 'DEV.Charles' 'juliet.sm' 148 0 3
+3335 'DEV.Charles' 'juliet.sm' 149 0 3
+3336 'DEV.Charles' 'juliet.sm' 150 0 3
+3337 'DEV.Charles' 'juliet.sm' 151 0 3
+3338 'DEV.Charles' 'juliet.sm' 154 0 3
+3339 'DEV.Charles' 'juliet.sm' 155 0 3
+3340 'DEV.Charles' 'juliet.sm' 156 0 3
+3341 'DEV.Charles' 'juliet.sm' 157 0 3
+3342 'DEV.Charles' 'juliet.sm' 158 0 3
+3343 'DEV.Charles' 'juliet.sm' 161 0 3
+3344 'DEV.Charles' 'juliet.sm' 162 0 3
+3345 'DEV.Charles' 'juliet.sm' 163 0 3
+3346 'DEV.Charles' 'juliet.sm' 164 0 3
+3347 'DEV.Charles' 'juliet.sm' 165 0 3
+3348 'DEV.Charles' 'juliet.sm' 168 0 3
+3349 'DEV.Charles' 'juliet.sm' 169 0 3
+3350 'DEV.Charles' 'juliet.sm' 170 0 3
+3351 'DEV.Charles' 'juliet.sm' 171 0 3
+3352 'DEV.Charles' 'juliet.sm' 172 0 3
+3353 'DEV.Charles' 'juliet.sm' 175 0 3
+3354 'DEV.Charles' 'juliet.sm' 176 0 3
+3355 'DEV.Charles' 'juliet.sm' 177 0 3
+3356 'DEV.Charles' 'juliet.sm' 178 0 3
+3357 'DEV.Charles' 'juliet.sm' 179 0 3
+3358 'DEV.Charles' 'juliet.sm' 182 0 3
+3359 'DEV.Charles' 'juliet.sf' 183 0 3
+3360 'DEV.Charles' 'juliet.sf' 184 0 3
+3361 'DEV.Charles' 'juliet.sf' 185 0 3
+3362 'DEV.Charles' 'juliet.sf' 186 0 3
+3363 'DEV.Charles' 'juliet.sf' 189 0 3
+3364 'DEV.Charles' 'juliet.sf' 190 0 3
+3365 'DEV.Charles' 'juliet.sf' 191 0 3
+3366 'DEV.Charles' 'juliet.sf' 192 0 3
+3367 'DEV.Charles' 'juliet.sf' 193 0 3
+3368 'DEV.Charles' 'juliet.sf' 196 0 3
+3369 'DEV.Charles' 'juliet.sf' 197 0 3
+3370 'DEV.Charles' 'juliet.sf' 198 0 3
+3371 'DEV.Charles' 'juliet.sf' 199 0 3
+3372 'DEV.Charles' 'juliet.sf' 200 0 3
+3373 'DEV.Charles' 'juliet.sf' 203 0 3
+3374 'DEV.Charles' 'juliet.sf' 204 0 3
+3375 'DEV.Charles' 'juliet.sf' 205 0 3
+3376 'DEV.Charles' 'juliet.sf' 206 0 3
+3377 'DEV.Charles' 'juliet.sf' 207 0 3
+3378 'DEV.Charles' 'juliet.sf' 210 0 3
+3379 'DEV.Charles' 'juliet.sf' 211 0 3
+3380 'DEV.Charles' 'juliet.sf' 212 0 3
+3381 'DEV.Charles' 'juliet.sf' 213 0 3
+3382 'DEV.Charles' 'juliet.sf' 214 0 3
+3383 'DEV.Charles' 'juliet.sf' 217 0 3
+3384 'DEV.Charles' 'juliet.sf' 218 0 3
+3385 'DEV.Charles' 'juliet.sf' 219 0 3
+3386 'DEV.Charles' 'juliet.sf' 220 0 3
+3387 'DEV.Charles' 'juliet.sf' 221 0 3
+3388 'DEV.Charles' 'juliet.sf' 224 0 3
+3389 'DEV.Charles' 'juliet.sf' 225 0 3
+3390 'DEV.Charles' 'juliet.sf' 226 0 3
+3391 'DEV.Charles' 'juliet.sf' 227 0 3
+3392 'DEV.Charles' 'juliet.sf' 228 0 3
+3393 'DEV.Paul' 'kilo.se' 63 0 3
+3394 'DEV.Paul' 'kilo.se' 64 0 3
+3395 'DEV.Paul' 'kilo.se' 65 0 3
+3396 'DEV.Paul' 'kilo.se' 66 0 3
+3397 'DEV.Paul' 'kilo.se' 67 0 3
+3398 'DEV.Paul' 'kilo.se' 70 0 3
+3399 'DEV.Paul' 'kilo.se' 71 0 3
+3400 'DEV.Paul' 'kilo.se' 72 0 3
+3401 'DEV.Paul' 'kilo.se' 73 0 3
+3402 'DEV.Paul' 'kilo.se' 74 0 3
+3403 'DEV.Paul' 'kilo.se' 77 0 3
+3404 'DEV.Paul' 'kilo.se' 78 0 3
+3405 'DEV.Paul' 'kilo.se' 79 0 3
+3406 'DEV.Paul' 'kilo.se' 80 0 3
+3407 'DEV.Paul' 'kilo.se' 81 0 3
+3408 'DEV.Paul' 'kilo.se' 84 0 3
+3409 'DEV.Paul' 'kilo.sm' 85 0 3
+3410 'DEV.Paul' 'kilo.sm' 86 0 3
+3411 'DEV.Paul' 'kilo.sm' 87 0 3
+3412 'DEV.Paul' 'kilo.sm' 88 0 3
+3413 'DEV.Paul' 'kilo.sm' 91 0 3
+3414 'DEV.Paul' 'kilo.sm' 92 0 3
+3415 'DEV.Paul' 'kilo.sm' 93 0 3
+3416 'DEV.Paul' 'kilo.sm' 94 0 3
+3417 'DEV.Paul' 'kilo.sm' 95 0 3
+3418 'DEV.Paul' 'kilo.sm' 98 0 3
+3419 'DEV.Paul' 'kilo.sm' 99 0 3
+3420 'DEV.Paul' 'kilo.sm' 100 0 3
+3421 'DEV.Paul' 'kilo.sm' 101 0 3
+3422 'DEV.Paul' 'kilo.sm' 102 0 3
+3423 'DEV.Paul' 'kilo.sm' 105 0 3
+3424 'DEV.Paul' 'kilo.sm' 106 0 3
+3425 'DEV.Paul' 'kilo.sm' 107 0 3
+3426 'DEV.Paul' 'kilo.sm' 108 0 3
+3427 'DEV.Paul' 'kilo.sm' 109 0 3
+3428 'DEV.Paul' 'kilo.sm' 112 0 3
+3429 'DEV.Paul' 'kilo.sm' 113 0 3
+3430 'DEV.Paul' 'kilo.sm' 114 0 3
+3431 'DEV.Paul' 'kilo.sm' 115 0 3
+3432 'DEV.Paul' 'kilo.sm' 116 0 3
+3433 'DEV.Paul' 'kilo.sm' 119 0 3
+3434 'DEV.Paul' 'kilo.sm' 120 0 3
+3435 'DEV.Paul' 'kilo.sm' 121 0 3
+3436 'DEV.Paul' 'kilo.sm' 123 0 3
+3437 'DEV.Paul' 'kilo.sm' 126 0 3
+3438 'DEV.Paul' 'kilo.sm' 127 0 3
+3439 'DEV.Paul' 'kilo.sm' 128 0 3
+3440 'DEV.Paul' 'kilo.sm' 129 0 3
+3441 'DEV.Paul' 'kilo.sm' 130 0 3
+3442 'DEV.Paul' 'kilo.sm' 133 0 3
+3443 'DEV.Paul' 'kilo.sm' 134 0 3
+3444 'DEV.Paul' 'kilo.sm' 135 0 3
+3445 'DEV.Paul' 'kilo.sm' 136 0 3
+3446 'DEV.Paul' 'kilo.sm' 137 0 3
+3447 'DEV.Paul' 'kilo.sm' 140 0 3
+3448 'DEV.Paul' 'kilo.sm' 141 0 3
+3449 'DEV.Paul' 'kilo.sm' 142 0 3
+3450 'DEV.Paul' 'kilo.sm' 143 0 3
+3451 'DEV.Paul' 'kilo.sm' 144 0 3
+3452 'DEV.Paul' 'kilo.sm' 147 0 3
+3453 'DEV.Paul' 'kilo.sm' 148 0 3
+3454 'DEV.Paul' 'kilo.sm' 149 0 3
+3455 'DEV.Paul' 'kilo.sm' 150 0 3
+3456 'DEV.Paul' 'kilo.sm' 151 0 3
+3457 'DEV.Paul' 'kilo.sm' 154 0 3
+3458 'DEV.Paul' 'kilo.sm' 155 0 3
+3459 'DEV.Paul' 'kilo.sm' 156 0 3
+3460 'DEV.Paul' 'kilo.sm' 157 0 3
+3461 'DEV.Paul' 'kilo.sm' 158 0 3
+3462 'DEV.Paul' 'kilo.sm' 161 0 3
+3463 'DEV.Paul' 'kilo.sm' 162 0 3
+3464 'DEV.Paul' 'kilo.sm' 163 0 3
+3465 'DEV.Paul' 'kilo.sm' 164 0 3
+3466 'DEV.Paul' 'kilo.sm' 165 0 3
+3467 'DEV.Paul' 'kilo.sm' 168 0 3
+3468 'DEV.Paul' 'kilo.sm' 169 0 3
+3469 'DEV.Paul' 'kilo.sm' 170 0 3
+3470 'DEV.Paul' 'kilo.sm' 171 0 3
+3471 'DEV.Paul' 'kilo.sm' 172 0 3
+3472 'DEV.Paul' 'kilo.sm' 175 0 3
+3473 'DEV.Paul' 'kilo.sm' 176 0 3
+3474 'DEV.Paul' 'kilo.sm' 177 0 3
+3475 'DEV.Paul' 'kilo.sm' 178 0 3
+3476 'DEV.Paul' 'kilo.sm' 179 0 3
+3477 'DEV.Paul' 'kilo.sm' 182 0 3
+3478 'DEV.Paul' 'kilo.sm' 183 0 3
+3479 'DEV.Paul' 'kilo.sm' 184 0 3
+3480 'DEV.Paul' 'kilo.sm' 185 0 3
+3481 'DEV.Paul' 'kilo.sm' 186 0 3
+3482 'DEV.Paul' 'kilo.sm' 189 0 3
+3483 'DEV.Paul' 'kilo.sm' 190 0 3
+3484 'DEV.Paul' 'kilo.sm' 191 0 3
+3485 'DEV.Paul' 'kilo.sm' 192 0 3
+3486 'DEV.Paul' 'kilo.sm' 193 0 3
+3487 'DEV.Paul' 'kilo.sm' 196 0 3
+3488 'DEV.Paul' 'kilo.sm' 197 0 3
+3489 'DEV.Paul' 'kilo.sm' 198 0 3
+3490 'DEV.Paul' 'kilo.sm' 199 0 3
+3491 'DEV.Paul' 'kilo.sm' 200 0 3
+3492 'DEV.Paul' 'kilo.sm' 203 0 3
+3493 'DEV.Paul' 'kilo.sm' 204 0 3
+3494 'DEV.Paul' 'kilo.sm' 205 0 3
+3495 'DEV.Paul' 'kilo.sm' 206 0 3
+3496 'DEV.Paul' 'kilo.sm' 207 0 3
+3497 'DEV.Paul' 'kilo.sm' 210 0 3
+3498 'DEV.Paul' 'kilo.sm' 211 0 3
+3499 'DEV.Paul' 'kilo.sm' 212 0 3
+3500 'DEV.Paul' 'kilo.sm' 213 0 3
+3501 'DEV.Paul' 'kilo.sm' 214 0 3
+3502 'DEV.Paul' 'kilo.sf' 217 0 3
+3503 'DEV.Paul' 'kilo.sf' 218 0 3
+3504 'DEV.Paul' 'kilo.sf' 219 0 3
+3505 'DEV.Paul' 'kilo.sf' 220 0 3
+3506 'DEV.Paul' 'kilo.sf' 221 0 3
+3507 'DEV.Paul' 'kilo.sf' 224 0 3
+3508 'DEV.Paul' 'kilo.sf' 225 0 3
+3509 'DEV.Paul' 'kilo.sf' 226 0 3
+3510 'DEV.Paul' 'kilo.sf' 227 0 3
+3511 'DEV.Paul' 'kilo.sf' 228 0 3
+3512 'DEV.Paul' 'kilo.sf' 231 0 3
+3513 'DEV.Paul' 'kilo.sf' 232 0 3
+3514 'DEV.Paul' 'kilo.sf' 233 0 3
+3515 'DEV.Paul' 'kilo.sf' 234 0 3
+3516 'DEV.Paul' 'kilo.sf' 235 0 3
+3517 'DEV.Paul' 'kilo.sf' 238 0 3
+3518 'DEV.Paul' 'kilo.sf' 239 0 3
+3519 'DEV.Paul' 'kilo.sf' 240 0 3
+3520 'DEV.Paul' 'kilo.sf' 241 0 3
+3521 'DEV.Paul' 'kilo.sf' 242 0 3
+3522 'DEV.Paul' 'kilo.sf' 245 0 3
+3523 'DEV.Paul' 'kilo.sf' 246 0 3
+3524 'DEV.Paul' 'kilo.sf' 247 0 3
+3525 'DEV.Paul' 'kilo.sf' 248 0 3
+3526 'DEV.Paul' 'kilo.sf' 249 0 3
+3527 'DEV.Paul' 'kilo.sf' 252 0 3
+3528 'DEV.Paul' 'kilo.sf' 253 0 3
+3529 'DEV.Paul' 'kilo.sf' 254 0 3
+3530 'DEV.Paul' 'kilo.sf' 255 0 3
+3531 'DEV.Paul' 'kilo.sf' 256 0 3
+3532 'DEV.Paul' 'kilo.sf' 259 0 3
+3533 'DEV.Paul' 'kilo.sf' 260 0 3
+3534 'DEV.Tom' 'lima.se' 81 0 3
+3535 'DEV.Tom' 'lima.se' 84 0 3
+3536 'DEV.Tom' 'lima.se' 85 0 3
+3537 'DEV.Tom' 'lima.se' 86 0 3
+3538 'DEV.Tom' 'lima.se' 87 0 3
+3539 'DEV.Tom' 'lima.se' 88 0 3
+3540 'DEV.Tom' 'lima.se' 91 0 3
+3541 'DEV.Tom' 'lima.se' 92 0 3
+3542 'DEV.Tom' 'lima.se' 93 0 3
+3543 'DEV.Tom' 'lima.se' 94 0 3
+3544 'DEV.Tom' 'lima.se' 95 0 3
+3545 'DEV.Tom' 'lima.se' 98 0 3
+3546 'DEV.Tom' 'lima.se' 99 0 3
+3547 'DEV.Tom' 'lima.se' 100 0 3
+3548 'DEV.Tom' 'lima.se' 101 0 3
+3549 'DEV.Tom' 'lima.se' 102 0 3
+3550 'DEV.Tom' 'lima.se' 105 0 3
+3551 'DEV.Tom' 'lima.se' 106 0 3
+3552 'DEV.Tom' 'lima.se' 107 0 3
+3553 'DEV.Tom' 'lima.se' 108 0 3
+3554 'DEV.Tom' 'lima.se' 109 0 3
+3555 'DEV.Tom' 'lima.sm' 112 0 3
+3556 'DEV.Tom' 'lima.sm' 113 0 3
+3557 'DEV.Tom' 'lima.sm' 114 0 3
+3558 'DEV.Tom' 'lima.sm' 115 0 3
+3559 'DEV.Tom' 'lima.sm' 116 0 3
+3560 'DEV.Tom' 'lima.sm' 119 0 3
+3561 'DEV.Tom' 'lima.sm' 120 0 3
+3562 'DEV.Tom' 'lima.sm' 121 0 3
+3563 'DEV.Tom' 'lima.sm' 123 0 3
+3564 'DEV.Tom' 'lima.sm' 126 0 3
+3565 'DEV.Tom' 'lima.sm' 127 0 3
+3566 'DEV.Tom' 'lima.sm' 128 0 3
+3567 'DEV.Tom' 'lima.sm' 129 0 3
+3568 'DEV.Tom' 'lima.sm' 130 0 3
+3569 'DEV.Tom' 'lima.sm' 133 0 3
+3570 'DEV.Tom' 'lima.sm' 134 0 3
+3571 'DEV.Tom' 'lima.sm' 135 0 3
+3572 'DEV.Tom' 'lima.sm' 136 0 3
+3573 'DEV.Tom' 'lima.sm' 137 0 3
+3574 'DEV.Tom' 'lima.sm' 140 0 3
+3575 'DEV.Tom' 'lima.sm' 141 0 3
+3576 'DEV.Tom' 'lima.sm' 142 0 3
+3577 'DEV.Tom' 'lima.sm' 143 0 3
+3578 'DEV.Tom' 'lima.sm' 144 0 3
+3579 'DEV.Tom' 'lima.sm' 147 0 3
+3580 'DEV.Tom' 'lima.sm' 148 0 3
+3581 'DEV.Tom' 'lima.sm' 149 0 3
+3582 'DEV.Tom' 'lima.sm' 150 0 3
+3583 'DEV.Tom' 'lima.sm' 151 0 3
+3584 'DEV.Tom' 'lima.sm' 154 0 3
+3585 'DEV.Tom' 'lima.sm' 155 0 3
+3586 'DEV.Tom' 'lima.sm' 156 0 3
+3587 'DEV.Tom' 'lima.sm' 157 0 3
+3588 'DEV.Tom' 'lima.sm' 158 0 3
+3589 'DEV.Tom' 'lima.sm' 161 0 3
+3590 'DEV.Tom' 'lima.sm' 162 0 3
+3591 'DEV.Tom' 'lima.sm' 163 0 3
+3592 'DEV.Tom' 'lima.sm' 164 0 3
+3593 'DEV.Tom' 'lima.sm' 165 0 3
+3594 'DEV.Tom' 'lima.sm' 168 0 3
+3595 'DEV.Tom' 'lima.sm' 169 0 3
+3596 'DEV.Tom' 'lima.sm' 170 0 3
+3597 'DEV.Tom' 'lima.sm' 171 0 3
+3598 'DEV.Tom' 'lima.sm' 172 0 3
+3599 'DEV.Tom' 'lima.sm' 175 0 3
+3600 'DEV.Tom' 'lima.sm' 176 0 3
+3601 'DEV.Tom' 'lima.sm' 177 0 3
+3602 'DEV.Tom' 'lima.sm' 178 0 3
+3603 'DEV.Tom' 'lima.sm' 179 0 3
+3604 'DEV.Tom' 'lima.sm' 182 0 3
+3605 'DEV.Tom' 'lima.sm' 183 0 3
+3606 'DEV.Tom' 'lima.sm' 184 0 3
+3607 'DEV.Tom' 'lima.sm' 185 0 3
+3608 'DEV.Tom' 'lima.sm' 186 0 3
+3609 'DEV.Tom' 'lima.sm' 189 0 3
+3610 'DEV.Tom' 'lima.sm' 190 0 3
+3611 'DEV.Tom' 'lima.sm' 191 0 3
+3612 'DEV.Tom' 'lima.sm' 192 0 3
+3613 'DEV.Tom' 'lima.sm' 193 0 3
+3614 'DEV.Tom' 'lima.sm' 196 0 3
+3615 'DEV.Tom' 'lima.sm' 197 0 3
+3616 'DEV.Tom' 'lima.sm' 198 0 3
+3617 'DEV.Tom' 'lima.sm' 199 0 3
+3618 'DEV.Tom' 'lima.sm' 200 0 3
+3619 'DEV.Tom' 'lima.sm' 203 0 3
+3620 'DEV.Tom' 'lima.sm' 204 0 3
+3621 'DEV.Tom' 'lima.sm' 205 0 3
+3622 'DEV.Tom' 'lima.sm' 206 0 3
+3623 'DEV.Tom' 'lima.sm' 207 0 3
+3624 'DEV.Tom' 'lima.sm' 210 0 3
+3625 'DEV.Tom' 'lima.sm' 211 0 3
+3626 'DEV.Tom' 'lima.sm' 212 0 3
+3627 'DEV.Tom' 'lima.sm' 213 0 3
+3628 'DEV.Tom' 'lima.sm' 214 0 3
+3629 'DEV.Tom' 'lima.sm' 217 0 3
+3630 'DEV.Tom' 'lima.sm' 218 0 3
+3631 'DEV.Tom' 'lima.sm' 219 0 3
+3632 'DEV.Tom' 'lima.sm' 220 0 3
+3633 'DEV.Tom' 'lima.sm' 221 0 3
+3634 'DEV.Tom' 'lima.sm' 224 0 3
+3635 'DEV.Tom' 'lima.sm' 225 0 3
+3636 'DEV.Tom' 'lima.sm' 226 0 3
+3637 'DEV.Tom' 'lima.sm' 227 0 3
+3638 'DEV.Tom' 'lima.sm' 228 0 3
+3639 'DEV.Tom' 'lima.sm' 231 0 3
+3640 'DEV.Tom' 'lima.sm' 232 0 3
+3641 'DEV.Tom' 'lima.sm' 233 0 3
+3642 'DEV.Tom' 'lima.sm' 234 0 3
+3643 'DEV.Tom' 'lima.sm' 235 0 3
+3644 'DEV.Tom' 'lima.sm' 238 0 3
+3645 'DEV.Tom' 'lima.sm' 239 0 3
+3646 'DEV.Tom' 'lima.sm' 240 0 3
+3647 'DEV.Tom' 'lima.sm' 241 0 3
+3648 'DEV.Tom' 'lima.sm' 242 0 3
+3649 'DEV.Tom' 'lima.sm' 245 0 3
+3650 'DEV.Tom' 'lima.sm' 246 0 3
+3651 'DEV.Tom' 'lima.sm' 247 0 3
+3652 'DEV.Tom' 'lima.sm' 248 0 3
+3653 'DEV.Tom' 'lima.sm' 249 0 3
+3654 'DEV.Tom' 'lima.sm' 252 0 3
+3655 'DEV.Tom' 'lima.sm' 253 0 3
+3656 'DEV.Tom' 'lima.sm' 254 0 3
+3657 'DEV.Tom' 'lima.sm' 255 0 3
+3658 'DEV.Tom' 'lima.sm' 256 0 3
+3659 'DEV.Tom' 'lima.sm' 259 0 3
+3660 'DEV.Tom' 'lima.sm' 260 0 3
+3661 'DEV.Tom' 'lima.sm' 261 0 3
+3662 'DEV.Tom' 'lima.sm' 262 0 3
+3663 'DEV.Tom' 'lima.sm' 263 0 3
+3664 'DEV.Tom' 'lima.sm' 266 0 3
+3665 'DEV.Tom' 'lima.sm' 267 0 3
+3666 'DEV.Tom' 'lima.sm' 268 0 3
+3667 'DEV.Tom' 'lima.sm' 269 0 3
+3668 'DEV.Tom' 'lima.sm' 270 0 3
+3669 'DEV.Tom' 'lima.sm' 273 0 3
+3670 'DEV.Tom' 'lima.sm' 274 0 3
+3671 'DEV.Tom' 'lima.sm' 275 0 3
+3672 'DEV.Tom' 'lima.sm' 276 0 3
+3673 'DEV.Tom' 'lima.sm' 277 0 3
+3674 'DEV.Tom' 'lima.sm' 280 0 3
+3675 'DEV.Tom' 'lima.sm' 281 0 3
+3676 'DEV.Tom' 'lima.sm' 282 0 3
+3677 'DEV.Tom' 'lima.sm' 283 0 3
+3678 'DEV.Tom' 'lima.sm' 284 0 3
+3679 'DEV.Tom' 'lima.sm' 287 0 3
+3680 'DEV.Tom' 'lima.sm' 288 0 3
+3681 'DEV.Tom' 'lima.sm' 289 0 3
+3682 'DEV.Tom' 'lima.sm' 290 0 3
+3683 'DEV.Tom' 'lima.sm' 291 0 3
+3684 'DEV.Tom' 'lima.sm' 294 0 3
+3685 'DEV.Tom' 'lima.sm' 295 0 3
+3686 'DEV.Tom' 'lima.sm' 296 0 3
+3687 'DEV.Tom' 'lima.sm' 297 0 3
+3688 'DEV.Tom' 'lima.sm' 298 0 3
+3689 'DEV.Tom' 'lima.sm' 301 0 3
+3690 'DEV.Tom' 'lima.sm' 302 0 3
+3691 'DEV.Tom' 'lima.sm' 303 0 3
+3692 'DEV.Tom' 'lima.sm' 304 0 3
+3693 'DEV.Tom' 'lima.sm' 305 0 3
+3694 'DEV.Tom' 'lima.sf' 308 0 3
+3695 'DEV.Tom' 'lima.sf' 309 0 3
+3696 'DEV.Tom' 'lima.sf' 310 0 3
+3697 'DEV.Tom' 'lima.sf' 311 0 3
+3698 'DEV.Tom' 'lima.sf' 312 0 3
+3699 'DEV.Tom' 'lima.sf' 315 0 3
+3700 'DEV.Tom' 'lima.sf' 316 0 3
+3701 'DEV.Tom' 'lima.sf' 317 0 3
+3702 'DEV.Tom' 'lima.sf' 318 0 3
+3703 'DEV.Tom' 'lima.sf' 319 0 3
+3704 'DEV.Tom' 'lima.sf' 322 0 3
+3705 'DEV.Tom' 'lima.sf' 323 0 3
+3706 'DEV.Tom' 'lima.sf' 324 0 3
+3707 'DEV.Tom' 'lima.sf' 325 0 3
+3708 'DEV.Tom' 'lima.sf' 326 0 3
+3709 'DEV.Tom' 'lima.sf' 329 0 3
+3710 'DEV.Tom' 'lima.sf' 330 0 3
+3711 'DEV.Tom' 'lima.sf' 331 0 3
+3712 'DEV.Tom' 'lima.sf' 332 0 3
+3713 'DEV.Tom' 'lima.sf' 333 0 3
+3714 'DEV.Frances' 'mike.se' 101 0 3
+3715 'DEV.Frances' 'mike.se' 102 0 3
+3716 'DEV.Frances' 'mike.se' 105 0 3
+3717 'DEV.Frances' 'mike.se' 106 0 3
+3718 'DEV.Frances' 'mike.se' 107 0 3
+3719 'DEV.Frances' 'mike.se' 108 0 3
+3720 'DEV.Frances' 'mike.se' 109 0 3
+3721 'DEV.Frances' 'mike.sm' 112 0 3
+3722 'DEV.Frances' 'mike.sm' 113 0 3
+3723 'DEV.Frances' 'mike.sm' 114 0 3
+3724 'DEV.Frances' 'mike.sm' 115 0 3
+3725 'DEV.Frances' 'mike.sm' 116 0 3
+3726 'DEV.Frances' 'mike.sm' 119 0 3
+3727 'DEV.Frances' 'mike.sm' 120 0 3
+3728 'DEV.Frances' 'mike.sm' 121 0 3
+3729 'DEV.Frances' 'mike.sm' 123 0 3
+3730 'DEV.Frances' 'mike.sm' 126 0 3
+3731 'DEV.Frances' 'mike.sm' 127 0 3
+3732 'DEV.Frances' 'mike.sm' 128 0 3
+3733 'DEV.Frances' 'mike.sm' 129 0 3
+3734 'DEV.Frances' 'mike.sm' 130 0 3
+3735 'DEV.Frances' 'mike.sm' 133 0 3
+3736 'DEV.Frances' 'mike.sm' 134 0 3
+3737 'DEV.Frances' 'mike.sm' 135 0 3
+3738 'DEV.Frances' 'mike.sm' 136 0 3
+3739 'DEV.Frances' 'mike.sm' 137 0 3
+3740 'DEV.Frances' 'mike.sm' 140 0 3
+3741 'DEV.Frances' 'mike.sm' 141 0 3
+3742 'DEV.Frances' 'mike.sm' 142 0 3
+3743 'DEV.Frances' 'mike.sm' 143 0 3
+3744 'DEV.Frances' 'mike.sm' 144 0 3
+3745 'DEV.Frances' 'mike.sm' 147 0 3
+3746 'DEV.Frances' 'mike.sm' 148 0 3
+3747 'DEV.Frances' 'mike.sm' 149 0 3
+3748 'DEV.Frances' 'mike.sm' 150 0 3
+3749 'DEV.Frances' 'mike.sm' 151 0 3
+3750 'DEV.Frances' 'mike.sm' 154 0 3
+3751 'DEV.Frances' 'mike.sm' 155 0 3
+3752 'DEV.Frances' 'mike.sm' 156 0 3
+3753 'DEV.Frances' 'mike.sm' 157 0 3
+3754 'DEV.Frances' 'mike.sm' 158 0 3
+3755 'DEV.Frances' 'mike.sm' 161 0 3
+3756 'DEV.Frances' 'mike.sm' 162 0 3
+3757 'DEV.Frances' 'mike.sm' 163 0 3
+3758 'DEV.Frances' 'mike.sm' 164 0 3
+3759 'DEV.Frances' 'mike.sm' 165 0 3
+3760 'DEV.Frances' 'mike.sm' 168 0 3
+3761 'DEV.Frances' 'mike.sm' 169 0 3
+3762 'DEV.Frances' 'mike.sm' 170 0 3
+3763 'DEV.Frances' 'mike.sm' 171 0 3
+3764 'DEV.Frances' 'mike.sm' 172 0 3
+3765 'DEV.Frances' 'mike.sm' 175 0 3
+3766 'DEV.Frances' 'mike.sm' 176 0 3
+3767 'DEV.Frances' 'mike.sm' 177 0 3
+3768 'DEV.Frances' 'mike.sm' 178 0 3
+3769 'DEV.Frances' 'mike.sm' 179 0 3
+3770 'DEV.Frances' 'mike.sm' 182 0 3
+3771 'DEV.Frances' 'mike.sm' 183 0 3
+3772 'DEV.Frances' 'mike.sm' 184 0 3
+3773 'DEV.Frances' 'mike.sm' 185 0 3
+3774 'DEV.Frances' 'mike.sm' 186 0 3
+3775 'DEV.Frances' 'mike.sm' 189 0 3
+3776 'DEV.Frances' 'mike.sm' 190 0 3
+3777 'DEV.Frances' 'mike.sm' 191 0 3
+3778 'DEV.Frances' 'mike.sm' 192 0 3
+3779 'DEV.Frances' 'mike.sm' 193 0 3
+3780 'DEV.Frances' 'mike.sm' 196 0 3
+3781 'DEV.Frances' 'mike.sm' 197 0 3
+3782 'DEV.Frances' 'mike.sm' 198 0 3
+3783 'DEV.Frances' 'mike.sm' 199 0 3
+3784 'DEV.Frances' 'mike.sm' 200 0 3
+3785 'DEV.Frances' 'mike.sm' 203 0 3
+3786 'DEV.Frances' 'mike.sm' 204 0 3
+3787 'DEV.Frances' 'mike.sm' 205 0 3
+3788 'DEV.Frances' 'mike.sm' 206 0 3
+3789 'DEV.Frances' 'mike.sm' 207 0 3
+3790 'DEV.Frances' 'mike.sm' 210 0 3
+3791 'DEV.Frances' 'mike.sm' 211 0 3
+3792 'DEV.Frances' 'mike.sm' 212 0 3
+3793 'DEV.Frances' 'mike.sm' 213 0 3
+3794 'DEV.Frances' 'mike.sm' 214 0 3
+3795 'DEV.Frances' 'mike.sm' 217 0 3
+3796 'DEV.Frances' 'mike.sm' 218 0 3
+3797 'DEV.Frances' 'mike.sm' 219 0 3
+3798 'DEV.Frances' 'mike.sm' 220 0 3
+3799 'DEV.Frances' 'mike.sm' 221 0 3
+3800 'DEV.Frances' 'mike.sm' 224 0 3
+3801 'DEV.Frances' 'mike.sm' 225 0 3
+3802 'DEV.Frances' 'mike.sm' 226 0 3
+3803 'DEV.Frances' 'mike.sm' 227 0 3
+3804 'DEV.Frances' 'mike.sm' 228 0 3
+3805 'DEV.Frances' 'mike.sm' 231 0 3
+3806 'DEV.Frances' 'mike.sm' 232 0 3
+3807 'DEV.Frances' 'mike.sm' 233 0 3
+3808 'DEV.Frances' 'mike.sm' 234 0 3
+3809 'DEV.Frances' 'mike.sm' 235 0 3
+3810 'DEV.Frances' 'mike.sm' 238 0 3
+3811 'DEV.Frances' 'mike.sm' 239 0 3
+3812 'DEV.Frances' 'mike.sm' 240 0 3
+3813 'DEV.Frances' 'mike.sm' 241 0 3
+3814 'DEV.Frances' 'mike.sm' 242 0 3
+3815 'DEV.Frances' 'mike.sm' 245 0 3
+3816 'DEV.Frances' 'mike.sm' 246 0 3
+3817 'DEV.Frances' 'mike.sm' 247 0 3
+3818 'DEV.Frances' 'mike.sm' 248 0 3
+3819 'DEV.Frances' 'mike.sm' 249 0 3
+3820 'DEV.Frances' 'mike.sm' 252 0 3
+3821 'DEV.Frances' 'mike.sm' 253 0 3
+3822 'DEV.Frances' 'mike.sm' 254 0 3
+3823 'DEV.Frances' 'mike.sm' 255 0 3
+3824 'DEV.Frances' 'mike.sm' 256 0 3
+3825 'DEV.Frances' 'mike.sm' 259 0 3
+3826 'DEV.Frances' 'mike.sm' 260 0 3
+3827 'DEV.Frances' 'mike.sm' 261 0 3
+3828 'DEV.Frances' 'mike.sm' 262 0 3
+3829 'DEV.Frances' 'mike.sm' 263 0 3
+3830 'DEV.Frances' 'mike.sm' 266 0 3
+3831 'DEV.Frances' 'mike.sm' 267 0 3
+3832 'DEV.Frances' 'mike.sm' 268 0 3
+3833 'DEV.Frances' 'mike.sm' 269 0 3
+3834 'DEV.Frances' 'mike.sf' 270 0 3
+3835 'DEV.Frances' 'mike.sf' 273 0 3
+3836 'DEV.Frances' 'mike.sf' 274 0 3
+3837 'DEV.Frances' 'mike.sf' 275 0 3
+3838 'DEV.Frances' 'mike.sf' 276 0 3
+3839 'DEV.Frances' 'mike.sf' 277 0 3
+3840 'DEV.Frances' 'mike.sf' 280 0 3
+3841 'DEV.Frances' 'mike.sf' 281 0 3
+3842 'DEV.Frances' 'mike.sf' 282 0 3
+3843 'DEV.Frances' 'mike.sf' 283 0 3
+3844 'DEV.Frances' 'mike.sf' 284 0 3
+3845 'DEV.Frances' 'mike.sf' 287 0 3
+3846 'DEV.Frances' 'mike.sf' 288 0 3
+3847 'DEV.Frances' 'mike.sf' 289 0 3
+3848 'DEV.Frances' 'mike.sf' 290 0 3
+3849 'DEV.Frances' 'mike.sf' 291 0 3
+3850 'DEV.Frances' 'mike.sf' 294 0 3
+3851 'DEV.Frances' 'mike.sf' 295 0 3
+3852 'DEV.Frances' 'mike.sf' 296 0 3
+3853 'DEV.Frances' 'mike.sf' 297 0 3
+3854 'DEV.Frances' 'mike.sf' 298 0 3
+3855 'DEV.Frances' 'mike.sf' 301 0 3
+3856 'DEV.Frances' 'mike.sf' 302 0 3
+3857 'DEV.Frances' 'mike.sf' 303 0 3
+3858 'DEV.Frances' 'mike.sf' 304 0 3
+3859 'DEV.Frances' 'november.se' 147 0 3
+3860 'DEV.Frances' 'november.se' 148 0 3
+3861 'DEV.Frances' 'november.se' 149 0 3
+3862 'DEV.Frances' 'november.se' 150 0 3
+3863 'DEV.Frances' 'november.se' 151 0 3
+3864 'DEV.Frances' 'november.se' 154 0 3
+3865 'DEV.Frances' 'november.se' 155 0 3
+3866 'DEV.Frances' 'november.se' 156 0 3
+3867 'DEV.Frances' 'november.se' 157 0 3
+3868 'DEV.Frances' 'november.se' 158 0 3
+3869 'DEV.Frances' 'november.se' 161 0 3
+3870 'DEV.Frances' 'november.se' 162 0 3
+3871 'DEV.Frances' 'november.se' 163 0 3
+3872 'DEV.Frances' 'november.se' 164 0 3
+3873 'DEV.Frances' 'november.se' 165 0 3
+3874 'DEV.Frances' 'november.sm' 168 0 3
+3875 'DEV.Frances' 'november.sm' 169 0 3
+3876 'DEV.Frances' 'november.sm' 170 0 3
+3877 'DEV.Frances' 'november.sm' 171 0 3
+3878 'DEV.Frances' 'november.sm' 172 0 3
+3879 'DEV.Frances' 'november.sm' 175 0 3
+3880 'DEV.Frances' 'november.sm' 176 0 3
+3881 'DEV.Frances' 'november.sm' 177 0 3
+3882 'DEV.Frances' 'november.sm' 178 0 3
+3883 'DEV.Frances' 'november.sm' 179 0 3
+3884 'DEV.Frances' 'november.sm' 182 0 3
+3885 'DEV.Frances' 'november.sm' 183 0 3
+3886 'DEV.Frances' 'november.sm' 184 0 3
+3887 'DEV.Frances' 'november.sm' 185 0 3
+3888 'DEV.Frances' 'november.sm' 186 0 3
+3889 'DEV.Frances' 'november.sm' 189 0 3
+3890 'DEV.Frances' 'november.sm' 190 0 3
+3891 'DEV.Frances' 'november.sm' 191 0 3
+3892 'DEV.Frances' 'november.sm' 192 0 3
+3893 'DEV.Frances' 'november.sm' 193 0 3
+3894 'DEV.Frances' 'november.sm' 196 0 3
+3895 'DEV.Frances' 'november.sm' 197 0 3
+3896 'DEV.Frances' 'november.sm' 198 0 3
+3897 'DEV.Frances' 'november.sm' 199 0 3
+3898 'DEV.Frances' 'november.sm' 200 0 3
+3899 'DEV.Frances' 'november.sm' 203 0 3
+3900 'DEV.Frances' 'november.sm' 204 0 3
+3901 'DEV.Frances' 'november.sm' 205 0 3
+3902 'DEV.Frances' 'november.sm' 206 0 3
+3903 'DEV.Frances' 'november.sm' 207 0 3
+3904 'DEV.Frances' 'november.sm' 210 0 3
+3905 'DEV.Frances' 'november.sm' 211 0 3
+3906 'DEV.Frances' 'november.sm' 212 0 3
+3907 'DEV.Frances' 'november.sm' 213 0 3
+3908 'DEV.Frances' 'november.sm' 214 0 3
+3909 'DEV.Frances' 'november.sm' 217 0 3
+3910 'DEV.Frances' 'november.sm' 218 0 3
+3911 'DEV.Frances' 'november.sm' 219 0 3
+3912 'DEV.Frances' 'november.sm' 220 0 3
+3913 'DEV.Frances' 'november.sm' 221 0 3
+3914 'DEV.Frances' 'november.sm' 224 0 3
+3915 'DEV.Frances' 'november.sm' 225 0 3
+3916 'DEV.Frances' 'november.sm' 226 0 3
+3917 'DEV.Frances' 'november.sm' 227 0 3
+3918 'DEV.Frances' 'november.sm' 228 0 3
+3919 'DEV.Frances' 'november.sm' 231 0 3
+3920 'DEV.Frances' 'november.sm' 232 0 3
+3921 'DEV.Frances' 'november.sm' 233 0 3
+3922 'DEV.Frances' 'november.sm' 234 0 3
+3923 'DEV.Frances' 'november.sm' 235 0 3
+3924 'DEV.Frances' 'november.sm' 238 0 3
+3925 'DEV.Frances' 'november.sm' 239 0 3
+3926 'DEV.Frances' 'november.sm' 240 0 3
+3927 'DEV.Frances' 'november.sm' 241 0 3
+3928 'DEV.Frances' 'november.sm' 242 0 3
+3929 'DEV.Frances' 'november.sm' 245 0 3
+3930 'DEV.Frances' 'november.sm' 246 0 3
+3931 'DEV.Frances' 'november.sm' 247 0 3
+3932 'DEV.Frances' 'november.sm' 248 0 3
+3933 'DEV.Frances' 'november.sm' 249 0 3
+3934 'DEV.Frances' 'november.sm' 252 0 3
+3935 'DEV.Frances' 'november.sm' 253 0 3
+3936 'DEV.Frances' 'november.sm' 254 0 3
+3937 'DEV.Frances' 'november.sm' 255 0 3
+3938 'DEV.Frances' 'november.sm' 256 0 3
+3939 'DEV.Frances' 'november.sm' 259 0 3
+3940 'DEV.Frances' 'november.sm' 260 0 3
+3941 'DEV.Frances' 'november.sm' 261 0 3
+3942 'DEV.Frances' 'november.sm' 262 0 3
+3943 'DEV.Frances' 'november.sm' 263 0 3
+3944 'DEV.Frances' 'november.sm' 266 0 3
+3945 'DEV.Frances' 'november.sm' 267 0 3
+3946 'DEV.Frances' 'november.sm' 268 0 3
+3947 'DEV.Frances' 'november.sm' 269 0 3
+3948 'DEV.Frances' 'november.sm' 270 0 3
+3949 'DEV.Frances' 'november.sm' 273 0 3
+3950 'DEV.Frances' 'november.sm' 274 0 3
+3951 'DEV.Frances' 'november.sm' 275 0 3
+3952 'DEV.Frances' 'november.sm' 276 0 3
+3953 'DEV.Frances' 'november.sm' 277 0 3
+3954 'DEV.Frances' 'november.sm' 280 0 3
+3955 'DEV.Frances' 'november.sm' 281 0 3
+3956 'DEV.Frances' 'november.sm' 282 0 3
+3957 'DEV.Frances' 'november.sm' 283 0 3
+3958 'DEV.Frances' 'november.sm' 284 0 3
+3959 'DEV.Frances' 'november.sm' 287 0 3
+3960 'DEV.Frances' 'november.sm' 288 0 3
+3961 'DEV.Frances' 'november.sm' 289 0 3
+3962 'DEV.Frances' 'november.sm' 290 0 3
+3963 'DEV.Frances' 'november.sm' 291 0 3
+3964 'DEV.Frances' 'november.sm' 294 0 3
+3965 'DEV.Frances' 'november.sm' 295 0 3
+3966 'DEV.Frances' 'november.sm' 296 0 3
+3967 'DEV.Frances' 'november.sm' 297 0 3
+3968 'DEV.Frances' 'november.sm' 298 0 3
+3969 'DEV.Frances' 'november.sm' 301 0 3
+3970 'DEV.Frances' 'november.sm' 302 0 3
+3971 'DEV.Frances' 'november.sm' 303 0 3
+3972 'DEV.Frances' 'november.sm' 304 0 3
+3973 'DEV.Frances' 'november.sm' 305 0 3
+3974 'DEV.Frances' 'november.sm' 308 0 3
+3975 'DEV.Frances' 'november.sm' 309 0 3
+3976 'DEV.Frances' 'november.sm' 310 0 3
+3977 'DEV.Frances' 'november.sm' 311 0 3
+3978 'DEV.Frances' 'november.sm' 312 0 3
+3979 'DEV.Frances' 'november.sm' 315 0 3
+3980 'DEV.Frances' 'november.sm' 316 0 3
+3981 'DEV.Frances' 'november.sm' 317 0 3
+3982 'DEV.Frances' 'november.sm' 318 0 3
+3983 'DEV.Frances' 'november.sm' 319 0 3
+3984 'DEV.Frances' 'november.sm' 322 0 3
+3985 'DEV.Frances' 'november.sm' 323 0 3
+3986 'DEV.Frances' 'november.sm' 324 0 3
+3987 'DEV.Frances' 'november.sm' 325 0 3
+3988 'DEV.Frances' 'november.sm' 326 0 3
+3989 'DEV.Frances' 'november.sm' 329 0 3
+3990 'DEV.Frances' 'november.sm' 330 0 3
+3991 'DEV.Frances' 'november.sm' 331 0 3
+3992 'DEV.Frances' 'november.sm' 332 0 3
+3993 'DEV.Frances' 'november.sm' 333 0 3
+3994 'DEV.Frances' 'november.sm' 336 0 3
+3995 'DEV.Frances' 'november.sm' 337 0 3
+3996 'DEV.Frances' 'november.sm' 338 0 3
+3997 'DEV.Frances' 'november.sm' 339 0 3
+3998 'DEV.Frances' 'november.sm' 340 0 3
+3999 'DEV.Frances' 'november.sm' 343 0 3
+4000 'DEV.Frances' 'november.sm' 344 0 3
+4001 'DEV.Frances' 'november.sm' 345 0 3
+4002 'DEV.Frances' 'november.sm' 346 0 3
+4003 'DEV.Frances' 'november.sm' 347 0 3
+4004 'DEV.Frances' 'november.sm' 350 0 3
+4005 'DEV.Frances' 'november.sm' 351 0 3
+4006 'DEV.Frances' 'november.sm' 352 0 3
+4007 'DEV.Frances' 'november.sm' 353 0 3
+4008 'DEV.Frances' 'november.sm' 354 0 3
+4009 'DEV.Frances' 'november.sm' 357 0 3
+4010 'DEV.Frances' 'november.sm' 358 0 3
+4011 'DEV.Frances' 'november.sm' 359 0 3
+4012 'DEV.Frances' 'november.sm' 360 0 3
+4013 'DEV.Frances' 'november.sm' 361 0 3
+4014 'DEV.Frances' 'november.sm' 364 0 3
+4015 'DEV.Frances' 'november.sm' 365 0 3
+4016 'DEV.Frances' 'november.sf' 366 0 3
+4017 'DEV.Frances' 'november.sf' 367 0 3
+4018 'DEV.Frances' 'november.sf' 368 0 3
+4019 'DEV.Frances' 'november.sf' 371 0 3
+4020 'DEV.Frances' 'november.sf' 372 0 3
+4021 'DEV.Frances' 'november.sf' 373 0 3
+4022 'DEV.Frances' 'november.sf' 374 0 3
+4023 'DEV.Frances' 'november.sf' 375 0 3
+4024 'DEV.Frances' 'november.sf' 378 0 3
+4025 'DEV.Frances' 'november.sf' 379 0 3
+4026 'DEV.Frances' 'november.sf' 380 0 3
+4027 'DEV.Frances' 'november.sf' 381 0 3
+4028 'DEV.Frances' 'november.sf' 382 0 3
+4029 'DEV.Frances' 'november.sf' 385 0 3
+4030 'DEV.Frances' 'november.sf' 386 0 3
+4031 'DEV.Frances' 'november.sf' 387 0 3
+4032 'DEV.Frances' 'november.sf' 388 0 3
+4033 'DEV.Frances' 'november.sf' 389 0 3
+4034 'DEV.Frances' 'november.sf' 392 0 3
+4035 'DEV.Frances' 'november.sf' 393 0 3
+4036 'DEV.Frances' 'november.sf' 394 0 3
+4037 'DEV.Frances' 'november.sf' 395 0 3
+4038 'DEV.Frances' 'november.sf' 396 0 3
+4039 'DEV.Paul' 'oscar.se' 177 0 3
+4040 'DEV.Paul' 'oscar.se' 178 0 3
+4041 'DEV.Paul' 'oscar.se' 179 0 3
+4042 'DEV.Paul' 'oscar.se' 182 0 3
+4043 'DEV.Paul' 'oscar.se' 183 0 3
+4044 'DEV.Paul' 'oscar.se' 184 0 3
+4045 'DEV.Paul' 'oscar.se' 185 0 3
+4046 'DEV.Paul' 'oscar.se' 186 0 3
+4047 'DEV.Paul' 'oscar.se' 189 0 3
+4048 'DEV.Paul' 'oscar.se' 190 0 3
+4049 'DEV.Paul' 'oscar.se' 191 0 3
+4050 'DEV.Paul' 'oscar.sm' 192 0 3
+4051 'DEV.Paul' 'oscar.sm' 193 0 3
+4052 'DEV.Paul' 'oscar.sm' 196 0 3
+4053 'DEV.Paul' 'oscar.sm' 197 0 3
+4054 'DEV.Paul' 'oscar.sm' 198 0 3
+4055 'DEV.Paul' 'oscar.sm' 199 0 3
+4056 'DEV.Paul' 'oscar.sm' 200 0 3
+4057 'DEV.Paul' 'oscar.sm' 203 0 3
+4058 'DEV.Paul' 'oscar.sm' 204 0 3
+4059 'DEV.Paul' 'oscar.sm' 205 0 3
+4060 'DEV.Paul' 'oscar.sm' 206 0 3
+4061 'DEV.Paul' 'oscar.sm' 207 0 3
+4062 'DEV.Paul' 'oscar.sm' 210 0 3
+4063 'DEV.Paul' 'oscar.sm' 211 0 3
+4064 'DEV.Paul' 'oscar.sm' 212 0 3
+4065 'DEV.Paul' 'oscar.sm' 213 0 3
+4066 'DEV.Paul' 'oscar.sm' 214 0 3
+4067 'DEV.Paul' 'oscar.sm' 217 0 3
+4068 'DEV.Paul' 'oscar.sm' 218 0 3
+4069 'DEV.Paul' 'oscar.sm' 219 0 3
+4070 'DEV.Paul' 'oscar.sm' 220 0 3
+4071 'DEV.Paul' 'oscar.sm' 221 0 3
+4072 'DEV.Paul' 'oscar.sm' 224 0 3
+4073 'DEV.Paul' 'oscar.sm' 225 0 3
+4074 'DEV.Paul' 'oscar.sm' 226 0 3
+4075 'DEV.Paul' 'oscar.sm' 227 0 3
+4076 'DEV.Paul' 'oscar.sm' 228 0 3
+4077 'DEV.Paul' 'oscar.sm' 231 0 3
+4078 'DEV.Paul' 'oscar.sm' 232 0 3
+4079 'DEV.Paul' 'oscar.sm' 233 0 3
+4080 'DEV.Paul' 'oscar.sm' 234 0 3
+4081 'DEV.Paul' 'oscar.sm' 235 0 3
+4082 'DEV.Paul' 'oscar.sm' 238 0 3
+4083 'DEV.Paul' 'oscar.sm' 239 0 3
+4084 'DEV.Paul' 'oscar.sm' 240 0 3
+4085 'DEV.Paul' 'oscar.sm' 241 0 3
+4086 'DEV.Paul' 'oscar.sm' 242 0 3
+4087 'DEV.Paul' 'oscar.sm' 245 0 3
+4088 'DEV.Paul' 'oscar.sm' 246 0 3
+4089 'DEV.Paul' 'oscar.sm' 247 0 3
+4090 'DEV.Paul' 'oscar.sm' 248 0 3
+4091 'DEV.Paul' 'oscar.sm' 249 0 3
+4092 'DEV.Paul' 'oscar.sm' 252 0 3
+4093 'DEV.Paul' 'oscar.sm' 253 0 3
+4094 'DEV.Paul' 'oscar.sm' 254 0 3
+4095 'DEV.Paul' 'oscar.sm' 255 0 3
+4096 'DEV.Paul' 'oscar.sm' 256 0 3
+4097 'DEV.Paul' 'oscar.sm' 259 0 3
+4098 'DEV.Paul' 'oscar.sm' 260 0 3
+4099 'DEV.Paul' 'oscar.sm' 261 0 3
+4100 'DEV.Paul' 'oscar.sm' 262 0 3
+4101 'DEV.Paul' 'oscar.sm' 263 0 3
+4102 'DEV.Paul' 'oscar.sm' 266 0 3
+4103 'DEV.Paul' 'oscar.sm' 267 0 3
+4104 'DEV.Paul' 'oscar.sm' 268 0 3
+4105 'DEV.Paul' 'oscar.sm' 269 0 3
+4106 'DEV.Paul' 'oscar.sm' 270 0 3
+4107 'DEV.Paul' 'oscar.sm' 273 0 3
+4108 'DEV.Paul' 'oscar.sm' 274 0 3
+4109 'DEV.Paul' 'oscar.sm' 275 0 3
+4110 'DEV.Paul' 'oscar.sm' 276 0 3
+4111 'DEV.Paul' 'oscar.sm' 277 0 3
+4112 'DEV.Paul' 'oscar.sm' 280 0 3
+4113 'DEV.Paul' 'oscar.sm' 281 0 3
+4114 'DEV.Paul' 'oscar.sm' 282 0 3
+4115 'DEV.Paul' 'oscar.sm' 283 0 3
+4116 'DEV.Paul' 'oscar.sm' 284 0 3
+4117 'DEV.Paul' 'oscar.sm' 287 0 3
+4118 'DEV.Paul' 'oscar.sm' 288 0 3
+4119 'DEV.Paul' 'oscar.sm' 289 0 3
+4120 'DEV.Paul' 'oscar.sm' 290 0 3
+4121 'DEV.Paul' 'oscar.sm' 291 0 3
+4122 'DEV.Paul' 'oscar.sm' 294 0 3
+4123 'DEV.Paul' 'oscar.sm' 295 0 3
+4124 'DEV.Paul' 'oscar.sm' 296 0 3
+4125 'DEV.Paul' 'oscar.sm' 297 0 3
+4126 'DEV.Paul' 'oscar.sm' 298 0 3
+4127 'DEV.Paul' 'oscar.sm' 301 0 3
+4128 'DEV.Paul' 'oscar.sm' 302 0 3
+4129 'DEV.Paul' 'oscar.sm' 303 0 3
+4130 'DEV.Paul' 'oscar.sm' 304 0 3
+4131 'DEV.Paul' 'oscar.sm' 305 0 3
+4132 'DEV.Paul' 'oscar.sm' 308 0 3
+4133 'DEV.Paul' 'oscar.sm' 309 0 3
+4134 'DEV.Paul' 'oscar.sm' 310 0 3
+4135 'DEV.Paul' 'oscar.sm' 311 0 3
+4136 'DEV.Paul' 'oscar.sm' 312 0 3
+4137 'DEV.Paul' 'oscar.sm' 315 0 3
+4138 'DEV.Paul' 'oscar.sm' 316 0 3
+4139 'DEV.Paul' 'oscar.sm' 317 0 3
+4140 'DEV.Paul' 'oscar.sm' 318 0 3
+4141 'DEV.Paul' 'oscar.sm' 319 0 3
+4142 'DEV.Paul' 'oscar.sm' 322 0 3
+4143 'DEV.Paul' 'oscar.sm' 323 0 3
+4144 'DEV.Paul' 'oscar.sm' 324 0 3
+4145 'DEV.Paul' 'oscar.sm' 325 0 3
+4146 'DEV.Paul' 'oscar.sm' 326 0 3
+4147 'DEV.Paul' 'oscar.sm' 329 0 3
+4148 'DEV.Paul' 'oscar.sm' 330 0 3
+4149 'DEV.Paul' 'oscar.sm' 331 0 3
+4150 'DEV.Paul' 'oscar.sm' 332 0 3
+4151 'DEV.Paul' 'oscar.sm' 333 0 3
+4152 'DEV.Paul' 'oscar.sm' 336 0 3
+4153 'DEV.Paul' 'oscar.sm' 337 0 3
+4154 'DEV.Paul' 'oscar.sm' 338 0 3
+4155 'DEV.Paul' 'oscar.sm' 339 0 3
+4156 'DEV.Paul' 'oscar.sm' 340 0 3
+4157 'DEV.Paul' 'oscar.sm' 343 0 3
+4158 'DEV.Paul' 'oscar.sm' 344 0 3
+4159 'DEV.Paul' 'oscar.sm' 345 0 3
+4160 'DEV.Paul' 'oscar.sm' 346 0 3
+4161 'DEV.Paul' 'oscar.sm' 347 0 3
+4162 'DEV.Paul' 'oscar.sm' 350 0 3
+4163 'DEV.Paul' 'oscar.sm' 351 0 3
+4164 'DEV.Paul' 'oscar.sm' 352 0 3
+4165 'DEV.Paul' 'oscar.sm' 353 0 3
+4166 'DEV.Paul' 'oscar.sm' 354 0 3
+4167 'DEV.Paul' 'oscar.sm' 357 0 3
+4168 'DEV.Paul' 'oscar.sm' 358 0 3
+4169 'DEV.Paul' 'oscar.sm' 359 0 3
+4170 'DEV.Paul' 'oscar.sm' 360 0 3
+4171 'DEV.Paul' 'oscar.sm' 361 0 3
+4172 'DEV.Paul' 'oscar.sm' 364 0 3
+4173 'DEV.Paul' 'oscar.sm' 365 0 3
+4174 'DEV.Paul' 'oscar.sf' 366 0 3
+4175 'DEV.Paul' 'oscar.sf' 367 0 3
+4176 'DEV.Paul' 'oscar.sf' 368 0 3
+4177 'DEV.Paul' 'oscar.sf' 371 0 3
+4178 'DEV.Paul' 'oscar.sf' 372 0 3
+4179 'DEV.Paul' 'oscar.sf' 373 0 3
+4180 'DEV.Paul' 'oscar.sf' 374 0 3
+4181 'DEV.Paul' 'oscar.sf' 375 0 3
+4182 'DEV.Paul' 'oscar.sf' 378 0 3
+4183 'DEV.Paul' 'oscar.sf' 379 0 3
+4184 'DEV.Paul' 'oscar.sf' 380 0 3
+4185 'DEV.Paul' 'oscar.sf' 381 0 3
+4186 'DEV.Paul' 'oscar.sf' 382 0 3
+4187 'DEV.Paul' 'oscar.sf' 385 0 3
+4188 'DEV.Paul' 'oscar.sf' 386 0 3
+4189 'DEV.Paul' 'oscar.sf' 387 0 3
+4190 'DEV.Paul' 'oscar.sf' 388 0 3
+4191 'DEV.Paul' 'oscar.sf' 389 0 3
+4192 'DEV.Paul' 'oscar.sf' 392 0 3
+4193 'DEV.Paul' 'oscar.sf' 393 0 3
+4194 'DEV.Paul' 'oscar.sf' 394 0 3
+4195 'DEV.Paul' 'oscar.sf' 395 0 3
+4196 'DEV.Paul' 'oscar.sf' 396 0 3;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 0;
+
+param UBDAY:
+1   2   3   4 :=
+;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'PM.Daniel' 'alpha.pm'
+'PM.Daniel' 'alpha.pf'
+'PM.Daniel' 'beta.pm'
+'PM.Daniel' 'beta.pf'
+'PM.Angel' 'charlie.pm'
+'PM.Angel' 'charlie.pf'
+'PM.Angel' 'delta.pm'
+'PM.Angel' 'delta.pf'
+'PM.Lisa' 'echo.pm'
+'PM.Lisa' 'echo.pf'
+'PM.Lisa' 'foxtrot.pm'
+'PM.Lisa' 'foxtrot.pf'
+'PM.Lisa' 'golf.pm'
+'PM.Lisa' 'golf.pf'
+'PM.Lisa' 'hotel.pm'
+'PM.Lisa' 'hotel.pf'
+'PM.Daniel' 'india.pm'
+'PM.Daniel' 'india.pf'
+'PM.Angel' 'juliet.pe'
+'PM.Angel' 'juliet.pm'
+'PM.Angel' 'juliet.pf'
+'PM.Lisa' 'kilo.pe'
+'PM.Lisa' 'kilo.pm'
+'PM.Lisa' 'kilo.pf'
+'PM.Lisa' 'lima.pe'
+'PM.Lisa' 'lima.pm'
+'PM.Lisa' 'lima.pf'
+'PM.Angel' 'mike.pe'
+'PM.Angel' 'mike.pm'
+'PM.Angel' 'mike.pf'
+'PM.Angel' 'november.pe'
+'PM.Angel' 'november.pm'
+'PM.Angel' 'november.pf'
+'PM.Daniel' 'oscar.pe'
+'PM.Daniel' 'oscar.pm'
+'PM.Daniel' 'oscar.pf'
+'DEV.Paul' 'alpha.m'
+'DEV.Paul' 'alpha.f'
+'SA.Adrian' 'alpha.m'
+'SA.Adrian' 'alpha.f'
+'DEV.Hugo' 'alpha.m'
+'DEV.Hugo' 'alpha.f'
+'SA.Robert' 'beta.m'
+'SA.Robert' 'beta.f'
+'DEV.Frances' 'beta.m'
+'DEV.Frances' 'beta.f'
+'DEV.Tom' 'beta.m'
+'DEV.Tom' 'beta.f'
+'DEV.Charles' 'charlie.m'
+'DEV.Charles' 'charlie.f'
+'DEV.Francis' 'charlie.m'
+'DEV.Francis' 'charlie.f'
+'DEV.Carl' 'charlie.m'
+'DEV.Carl' 'charlie.f'
+'DEV.Paul' 'charlie.m'
+'DEV.Paul' 'charlie.f'
+'DEV.Lars' 'delta.m'
+'DEV.Lars' 'delta.f'
+'DEV.Martin' 'echo.m'
+'DEV.Martin' 'echo.f'
+'DEV.Michael' 'foxtrot.m'
+'DEV.Michael' 'foxtrot.f'
+'SA.Adrian' 'golf.m'
+'SA.Adrian' 'golf.f'
+'DEV.Hugo' 'golf.m'
+'DEV.Hugo' 'golf.f'
+'DEV.Francis' 'hotel.m'
+'DEV.Francis' 'hotel.f'
+'DEV.Martin' 'hotel.m'
+'DEV.Martin' 'hotel.f'
+'DEV.Michael' 'hotel.m'
+'DEV.Michael' 'hotel.f'
+'DEV.Paul' 'india.m'
+'DEV.Paul' 'india.f'
+'SA.Robert' 'india.m'
+'SA.Robert' 'india.f'
+'DEV.Lars' 'india.m'
+'DEV.Lars' 'india.f'
+'DEV.Charles' 'india.m'
+'DEV.Charles' 'india.f'
+'DEV.Tom' 'india.m'
+'DEV.Tom' 'india.f'
+'DEV.Carl' 'juliet.e'
+'DEV.Carl' 'juliet.m'
+'DEV.Carl' 'juliet.f'
+'DEV.Hugo' 'juliet.m'
+'DEV.Hugo' 'juliet.f'
+'DEV.Martin' 'kilo.e'
+'DEV.Martin' 'kilo.m'
+'DEV.Martin' 'kilo.f'
+'DEV.Francis' 'kilo.m'
+'DEV.Francis' 'kilo.f'
+'DEV.Paul' 'lima.e'
+'DEV.Paul' 'lima.m'
+'DEV.Paul' 'lima.f'
+'DEV.Frances' 'lima.m'
+'DEV.Frances' 'lima.f'
+'DEV.Michael' 'lima.m'
+'DEV.Michael' 'lima.f'
+'SA.Adrian' 'lima.m'
+'SA.Adrian' 'lima.f'
+'DEV.Martin' 'mike.e'
+'DEV.Martin' 'mike.m'
+'DEV.Martin' 'mike.f'
+'DEV.Michael' 'mike.m'
+'DEV.Michael' 'mike.f'
+'DEV.Carl' 'november.e'
+'DEV.Carl' 'november.m'
+'DEV.Carl' 'november.f'
+'DEV.Hugo' 'november.m'
+'DEV.Hugo' 'november.f'
+'SA.Robert' 'oscar.e'
+'SA.Robert' 'oscar.m'
+'SA.Robert' 'oscar.f'
+'DEV.Tom' 'oscar.m'
+'DEV.Tom' 'oscar.f'
+'DEV.Michael' 'alpha.sm'
+'DEV.Michael' 'alpha.sf'
+'DEV.Carl' 'beta.sm'
+'DEV.Carl' 'beta.sf'
+'SA.Adrian' 'charlie.sm'
+'SA.Adrian' 'charlie.sf'
+'DEV.Hugo' 'delta.sm'
+'DEV.Hugo' 'delta.sf'
+'SA.Adrian' 'echo.sm'
+'SA.Adrian' 'echo.sf'
+'SA.Robert' 'foxtrot.sm'
+'SA.Robert' 'foxtrot.sf'
+'SA.Robert' 'golf.sm'
+'SA.Robert' 'golf.sf'
+'SA.Robert' 'hotel.sm'
+'SA.Robert' 'hotel.sf'
+'DEV.Charles' 'india.sm'
+'DEV.Charles' 'india.sf'
+'DEV.Charles' 'juliet.se'
+'DEV.Charles' 'juliet.sm'
+'DEV.Charles' 'juliet.sf'
+'DEV.Paul' 'kilo.se'
+'DEV.Paul' 'kilo.sm'
+'DEV.Paul' 'kilo.sf'
+'DEV.Tom' 'lima.se'
+'DEV.Tom' 'lima.sm'
+'DEV.Tom' 'lima.sf'
+'DEV.Frances' 'mike.se'
+'DEV.Frances' 'mike.sm'
+'DEV.Frances' 'mike.sf'
+'DEV.Frances' 'november.se'
+'DEV.Frances' 'november.sm'
+'DEV.Frances' 'november.sf'
+'DEV.Paul' 'oscar.se'
+'DEV.Paul' 'oscar.sm'
+'DEV.Paul' 'oscar.sf';
+
