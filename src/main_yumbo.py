@@ -49,7 +49,7 @@ def get_hend():
 
 def show_tasks():
     st.subheader("Tasks definition", divider="blue")
-    format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}", 'Avg': "{:.2f}"}
+    format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}", 'Avg': "{:.4f}"}
     df = global_data["tasks"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
@@ -199,11 +199,9 @@ def show_schedule_as_table(expert_name):
     df = global_data[f"schedule {expert_name}"].loc[tasks["Name"], start_date:end_date]
 
     # Apply styling to the DataFrame
-    styled_df = df.style.highlight_between(
-        left=0.5, right=None, props='color:white; background-color:purple;'
-    ).highlight_between(
-        left=None, right=0.5, props='color:white; background-color:white;'
-    )
+    styled_df = df.style.format(precision=2) \
+                        .highlight_between(left=0.24, right=None, props='color:white; background-color:purple') \
+                        .highlight_between(left=None, right=0.24, props='color:white; background-color:white;')
 
     st.dataframe(styled_df)
 

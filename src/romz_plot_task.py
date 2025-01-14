@@ -16,7 +16,7 @@ def plot(task, schedule, bounds, dpi):
     ax = fig.subplots()
 
     # Plot task data
-    ax.plot(x_task, y_task, "o", markeredgewidth=1.5, label=f"Task {task['Name']}")
+    ax.plot(x_task, y_task, "o", markeredgewidth=0.5, label=f"Task {task['Name']}")
     ax.step(x_task, y_task, linewidth=0.5, where="mid")
 
     # Configure grid and axis properties
@@ -33,7 +33,7 @@ def plot(task, schedule, bounds, dpi):
     # Add task bounds
     for _, row in bounds.iterrows():
         bound_days = pd.date_range(start=row["Start day"], end=row["End day"], freq="D")
-        lower, upper = int(row["Lower"]), int(row["Upper"])
+        lower, upper = row["Lower"], row["Upper"]
         if lower == upper:
             lower -= 0.5
             upper += 0.5

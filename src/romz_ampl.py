@@ -5,6 +5,8 @@ import romz_datetime
 from amplpy import AMPL, modules
 
 
+quarters_in_hour = 4
+
 def tasks(today, data):
     df = data["tasks"]
 
@@ -14,7 +16,8 @@ def tasks(today, data):
 
     # Use vectorized string formatting for better performance
     formatted_rows = df.apply(
-        lambda row: f"'{row['Name']}' {row['Start Relative']} {row['End Relative']} {row['Work']}\n",
+        lambda row: f"'{row['Name']}' {row['Start Relative']} {row['End Relative']} "
+        f"{row['Work'] * quarters_in_hour}\n",
         axis=1,
     )
 
@@ -56,8 +59,8 @@ def xbday(today, data):
     for row in df.itertuples(index=False):
         task_name = row.Task
         expert_name = row.Expert
-        lower = row.Lower
-        upper = row.Upper
+        lower = row.Lower * quarters_in_hour
+        upper = row.Upper * quarters_in_hour
 
         # Calculate valid date range considering task bounds and xbday range
         task_start, task_end = df_tasks.loc[task_name, ["Start day", "End day"]]
@@ -95,8 +98,8 @@ def xbsum(today, data):
         task = row.Task
         start = (row._2 - today).days # _2 <- Start day
         end = (row._3 - today).days # _3 <- End day
-        lower = row.Lower
-        upper = row.Upper
+        lower = row.Lower * quarters_in_hour
+        upper = row.Upper * quarters_in_hour
 
         # Append formatted string to result list
         result.append(f"{idx} '{expert}' '{task}' {start} {end} {lower} {upper}")
@@ -115,8 +118,8 @@ def ubday(today, data):
 
     for _, row in df.iterrows():
         expert = row["Expert"]
-        lower = row["Lower"]
-        upper = row["Upper"]
+        lower = row["Lower"] * quarters_in_hour
+        upper = row["Upper"] * quarters_in_hour
 
         # Generate business days excluding holidays
         valid_days = pd.bdate_range(start=row["Start day"], end=row["End day"], freq='C', holidays=holidays)
@@ -134,7 +137,9 @@ def ubsum(today, data):
     df = data["ubsum"]
     result = [
         f"{id+1} '{row['Expert']}' '{row['Task']}' {(row['Start day'] - today).days} "
-        f"{(row['End day'] - today).days} {row.Lower} {row.Upper}"
+        f"{(row['End day'] - today).days} "
+        f"{row.Lower * quarters_in_hour} "
+        f"{row.Upper * quarters_in_hour}"
         for id, row in df.iterrows()
     ]
     return len(result), "\n".join(result)
@@ -148,7 +153,9 @@ def expert_bounds(today, data):
     df = data["expert bounds"]
     result = [
         f"{id+1} '{row['Expert']}' {(row['Start day'] - today).days} "
-        f"{(row['End day'] - today).days} {row['Lower']} {row['Upper']}"
+        f"{(row['End day'] - today).days} "
+        f"{row['Lower'] * quarters_in_hour} "
+        f"{row['Upper'] * quarters_in_hour}"
         for id, row in df.iterrows()
     ]
     return len(result), "\n".join(result)
@@ -171,7 +178,9 @@ def invoicing_periods(today, data):
 def invoicing_periods_bounds(today, data):
     df = data["invoicing periods bounds"]
     return "\n".join(
-        f"'{expert}' '{period}' {lower} {upper}"
+        f"'{expert}' '{period}' "
+        f"{lower * quarters_in_hour} "
+        f"{upper * quarters_in_hour}"
         for expert, period, lower, upper in zip(df["Expert"], df["Period"], df["Lower"], df["Upper"])
     )
 
@@ -179,7 +188,7 @@ def invoicing_periods_bounds(today, data):
 def data_file(name, today, data):
     ampl_data_file = "./ampl-translated-from-excel/{}.dat".format(name)
     with open(ampl_data_file, 'w') as f:
-        f.write('param HOURS_PER_DAY := {};\n\n'.format(data["misc"].loc[0, "Hours per day"]))
+        f.write('param HOURS_PER_DAY := {};\n\n'.format(data["misc"].loc[0, "Hours per day"] * quarters_in_hour))
 
         buf = experts(data)
         f.write('set EXPERTN :=\n')
@@ -269,7 +278,7 @@ def save_schedule(ampl, data):
         # Create DataFrame from fetched data
         df = pd.DataFrame(schedule).T
         df.columns = days
-        data[f"schedule {en}"] = df
+        data[f"schedule {en}"] = df / quarters_in_hour
 
 
 def save_day_no(ampl, data):
