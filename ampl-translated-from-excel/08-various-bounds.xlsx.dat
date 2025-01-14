@@ -1,4 +1,4 @@
-param HOURS_PER_DAY := 8;
+param HOURS_PER_DAY := 32;
 
 set EXPERTN :=
 'DEV.Alojzy'
@@ -17,32 +17,32 @@ param EBOUND_NO := 2;
 
 param EBOUND:
 1   2   3   4   5 :=
-1 'DEV.Alojzy' 1 48 0 5
-2 'DEV.Alojzy' 49 76 0 7;
+1 'DEV.Alojzy' 1 48 0 20
+2 'DEV.Alojzy' 49 76 0 28;
 
 param:
 TASKN: TASKS TASKE TASKW :=
-'DEV.p1.m' 1 108 400
-'DEV.p2.m' 1 108 420
-'DEV.p3.m' 1 108 430
-'DEV.p4.m' 1 108 440
-'DEV.p5.m' 1 77 200
-'DEV.p6.m' 1 108 200
-'DEV.p7.m' 1 77 200
-'DEV.p8.m' 1 108 200
-'DEV.p9.m' 1 77 200
-'DEV.p10.m' 1 108 200
-'DEV.p11.m' 1 77 200
-'DEV.p12.m' 1 108 200
-'DEV.p13.m' 1 77 200
-'DEV.p14.m' 1 108 200
-'DEV.p15.m' 1 138 200
-'DEV.p16.m' 1 77 200
-'DEV.p17.m' 1 108 200
-'DEV.p18.m' 1 138 200
-'DEV.p19.m' 1 77 200
-'DEV.p20.m' 1 108 200
-'DEV.p21.m' 1 138 200
+'DEV.p1.m' 1 108 1600
+'DEV.p2.m' 1 108 1680
+'DEV.p3.m' 1 108 1720
+'DEV.p4.m' 1 108 1760
+'DEV.p5.m' 1 77 800
+'DEV.p6.m' 1 108 800
+'DEV.p7.m' 1 77 800
+'DEV.p8.m' 1 108 800
+'DEV.p9.m' 1 77 800
+'DEV.p10.m' 1 108 800
+'DEV.p11.m' 1 77 800
+'DEV.p12.m' 1 108 800
+'DEV.p13.m' 1 77 800
+'DEV.p14.m' 1 108 800
+'DEV.p15.m' 1 138 800
+'DEV.p16.m' 1 77 800
+'DEV.p17.m' 1 108 800
+'DEV.p18.m' 1 138 800
+'DEV.p19.m' 1 77 800
+'DEV.p20.m' 1 108 800
+'DEV.p21.m' 1 138 800
 ;
 
 param:
@@ -57,18 +57,18 @@ PAYROLLN: PAYROLLS PAYROLLE :=
 
 param:
 EXPPAY: PAYROLLBL PAYROLLBU :=
-'DEV.Paweł' '25.Jan' 100 200
-'DEV.Paweł' '25.Feb' 100 200
-'DEV.Paweł' '25.Mar' 100 200
-'DEV.Paweł' '25.Apr' 0 200
-'DEV.Paweł' '25.May' 0 200
-'DEV.Alojzy' '24.Nov' 0 200
-'DEV.Alojzy' '24.Dec' 0 201
-'DEV.Alojzy' '25.Jan' 0 202
-'DEV.Alojzy' '25.Feb' 0 203
-'DEV.Alojzy' '25.Mar' 0 204
-'DEV.Alojzy' '25.Apr' 0 205
-'DEV.Alojzy' '25.May' 0 206;
+'DEV.Paweł' '25.Jan' 400 800
+'DEV.Paweł' '25.Feb' 400 800
+'DEV.Paweł' '25.Mar' 400 800
+'DEV.Paweł' '25.Apr' 0 800
+'DEV.Paweł' '25.May' 0 800
+'DEV.Alojzy' '24.Nov' 0 800
+'DEV.Alojzy' '24.Dec' 0 804
+'DEV.Alojzy' '25.Jan' 0 808
+'DEV.Alojzy' '25.Feb' 0 812
+'DEV.Alojzy' '25.Mar' 0 816
+'DEV.Alojzy' '25.Apr' 0 820
+'DEV.Alojzy' '25.May' 0 824;
 
 param OFFDAY_NO := 39;
 
@@ -117,30 +117,30 @@ param XBDAY_NO := 18;
 
 param XBDAY:
 1   2   3   4   5 :=
-1 'DEV.Barłomiej' 'DEV.p2.m' 1 6 6
-2 'DEV.Barłomiej' 'DEV.p2.m' 2 6 6
-3 'DEV.Barłomiej' 'DEV.p2.m' 3 6 6
-4 'DEV.Barłomiej' 'DEV.p2.m' 4 6 6
-5 'DEV.Barłomiej' 'DEV.p2.m' 5 6 6
-6 'DEV.Barłomiej' 'DEV.p2.m' 8 6 6
-7 'DEV.Barłomiej' 'DEV.p2.m' 9 6 6
-8 'DEV.Barłomiej' 'DEV.p2.m' 11 6 6
-9 'DEV.Barłomiej' 'DEV.p2.m' 12 6 6
-10 'DEV.Cezary' 'DEV.p3.m' 1 5 5
-11 'DEV.Cezary' 'DEV.p3.m' 2 5 5
-12 'DEV.Cezary' 'DEV.p3.m' 3 5 5
-13 'DEV.Cezary' 'DEV.p3.m' 4 5 5
-14 'DEV.Cezary' 'DEV.p3.m' 5 5 5
-15 'DEV.Cezary' 'DEV.p3.m' 8 3 3
-16 'DEV.Cezary' 'DEV.p3.m' 9 3 3
-17 'DEV.Cezary' 'DEV.p3.m' 11 3 3
-18 'DEV.Cezary' 'DEV.p3.m' 12 3 3;
+1 'DEV.Barłomiej' 'DEV.p2.m' 1 24 24
+2 'DEV.Barłomiej' 'DEV.p2.m' 2 24 24
+3 'DEV.Barłomiej' 'DEV.p2.m' 3 24 24
+4 'DEV.Barłomiej' 'DEV.p2.m' 4 24 24
+5 'DEV.Barłomiej' 'DEV.p2.m' 5 24 24
+6 'DEV.Barłomiej' 'DEV.p2.m' 8 24 24
+7 'DEV.Barłomiej' 'DEV.p2.m' 9 24 24
+8 'DEV.Barłomiej' 'DEV.p2.m' 11 24 24
+9 'DEV.Barłomiej' 'DEV.p2.m' 12 24 24
+10 'DEV.Cezary' 'DEV.p3.m' 1 20 20
+11 'DEV.Cezary' 'DEV.p3.m' 2 20 20
+12 'DEV.Cezary' 'DEV.p3.m' 3 20 20
+13 'DEV.Cezary' 'DEV.p3.m' 4 20 20
+14 'DEV.Cezary' 'DEV.p3.m' 5 20 20
+15 'DEV.Cezary' 'DEV.p3.m' 8 12 12
+16 'DEV.Cezary' 'DEV.p3.m' 9 12 12
+17 'DEV.Cezary' 'DEV.p3.m' 11 12 12
+18 'DEV.Cezary' 'DEV.p3.m' 12 12 12;
 
 param XBSUM_NO := 1;
 
 param XBSUM:
 1   2   3   4   5   6 :=
-1 'DEV.Dariusz' 'DEV.p4.m' 1 5 16 16;
+1 'DEV.Dariusz' 'DEV.p4.m' 1 5 64 64;
 
 param UBDAY_NO := 36;
 

@@ -118,8 +118,8 @@ def ubday(today, data):
 
     for _, row in df.iterrows():
         expert = row["Expert"]
-        lower = row["Lower"] * quarters_in_hour
-        upper = row["Upper"] * quarters_in_hour
+        lower = row["Lower"]
+        upper = row["Upper"]
 
         # Generate business days excluding holidays
         valid_days = pd.bdate_range(start=row["Start day"], end=row["End day"], freq='C', holidays=holidays)
@@ -138,8 +138,7 @@ def ubsum(today, data):
     result = [
         f"{id+1} '{row['Expert']}' '{row['Task']}' {(row['Start day'] - today).days} "
         f"{(row['End day'] - today).days} "
-        f"{row.Lower * quarters_in_hour} "
-        f"{row.Upper * quarters_in_hour}"
+        f"{row.Lower} {row.Upper}"
         for id, row in df.iterrows()
     ]
     return len(result), "\n".join(result)
