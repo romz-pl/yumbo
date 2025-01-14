@@ -1,0 +1,1 @@
+Image illustrating the functionality of the AMPL language.
