@@ -1,4 +1,4 @@
-𝗔𝗠𝗣𝗟 𝗵𝗲𝗹𝗽𝘀 𝘁𝗼 𝘀𝗼𝗹𝘃𝗲 𝗮 𝗰𝗼𝗺𝗽𝗹𝗲𝘅 𝗯𝘂𝘀𝗶𝗻𝗲𝘀𝘀 𝗽𝗿𝗼𝗯𝗹𝗲𝗺𝘀
+𝗔𝗠𝗣𝗟 𝗳𝗮𝗰𝗶𝗹𝗶𝘁𝗮𝘁𝗲𝘀 𝘁𝗵𝗲 𝗳𝗼𝗿𝗺𝘂𝗹𝗮𝘁𝗶𝗼𝗻 𝗼𝗳 𝗼𝗽𝘁𝗶𝗺𝗶𝘀𝗮𝘁𝗶𝗼𝗻 𝗽𝗿𝗼𝗯𝗹𝗲𝗺𝘀
 
 In the fast-paced and ever-changing field of optimisation and mathematical programming, clarity and flexibility are paramount to effectively solve complex problems. One tool that has demonstrated consistent excellence in this area is AMPL (A Mathematical Programming Language).
 
