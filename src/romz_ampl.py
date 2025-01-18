@@ -184,7 +184,9 @@ def invoicing_periods_bounds(today, data):
     )
 
 
-def data_file(name, today, data):
+def data_file(name):
+    today = glb.today()
+    data = glb.data
     ampl_data_file = "./ampl-translated-from-excel/{}.dat".format(name)
     with open(ampl_data_file, 'w') as f:
         f.write('param HOURS_PER_DAY := {};\n\n'.format(data["misc"].loc[0, "Hours per day"] * quarters_in_hour))
@@ -297,7 +299,7 @@ def set_ampl_license():
 
 
 def solve(name):
-    file = data_file(name, glb.today(), glb.data)
+    file = data_file(name)
 
     set_ampl_license()
     ampl = AMPL()
