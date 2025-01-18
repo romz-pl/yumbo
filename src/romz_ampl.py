@@ -204,7 +204,7 @@ def data_file(name):
         f.write(';\n\n')
 
         expert_bound_no, buf = expert_bounds()
-        f.write('param EBOUND_NO := {};\n\n'.format(expert_bound_no))
+        f.write(f'param EBOUND_NO := {expert_bound_no};\n\n')
         f.write('param EBOUND:\n')
         f.write('1   2   3   4   5 :=\n')
         f.write(buf)
@@ -229,34 +229,34 @@ def data_file(name):
         f.write(';\n\n')
 
         offday_no, buf = offday()
-        f.write('param OFFDAY_NO := {};\n\n'.format(offday_no))
+        f.write(f'param OFFDAY_NO := {offday_no};\n\n')
         f.write('param OFFDAY :=\n')
         f.write(buf)
         f.write(';\n\n')
 
         xbday_no, buf = xbday()
-        f.write('param XBDAY_NO := {};\n\n'.format(xbday_no))
+        f.write(f'param XBDAY_NO := {xbday_no};\n\n')
         f.write('param XBDAY:\n')
         f.write('1   2   3   4   5 :=\n')
         f.write(buf)
         f.write(';\n\n')
 
         xbsum_no, buf = xbsum()
-        f.write('param XBSUM_NO := {};\n\n'.format(xbsum_no))
+        f.write(f'param XBSUM_NO := {xbsum_no};\n\n')
         f.write('param XBSUM:\n')
         f.write('1   2   3   4   5   6 :=\n')
         f.write(buf)
         f.write(';\n\n')
 
         ubday_no, buf = ubday()
-        f.write('param UBDAY_NO := {};\n\n'.format(ubday_no))
+        f.write(f'param UBDAY_NO := {ubday_no};\n\n')
         f.write('param UBDAY:\n')
         f.write('1   2   3   4 :=\n')
         f.write(buf)
         f.write(';\n\n')
 
         ubsum_no, buf = ubsum()
-        f.write('param UBSUM_NO := {};\n\n'.format(ubsum_no))
+        f.write(f'param UBSUM_NO := {ubsum_no};\n\n')
         f.write('param UBSUM:\n')
         f.write('1   2   3   4   5   6 :=\n')
         f.write(buf)
@@ -270,10 +270,10 @@ def data_file(name):
     return ampl_data_file
 
 
-def save_schedule(ampl, data):
-    today = data["misc"].loc[0, "Today"]
-    tasks_name = data["tasks"]["Name"]
-    experts_name = data["experts"]["Name"]
+def save_schedule(ampl):
+    today = glb.today()
+    tasks_name = glb.data["tasks"]["Name"]
+    experts_name = glb.data["experts"]["Name"]
 
     day_no = int(ampl.get_data("DAY_NO").to_pandas().iloc[0, 0])
     days = pd.date_range(start=today + pd.Timedelta(days=1), periods=day_no, freq='D').astype("str")
@@ -286,16 +286,16 @@ def save_schedule(ampl, data):
         # Create DataFrame from fetched data
         df = pd.DataFrame(schedule).T
         df.columns = days
-        data[f"schedule {en}"] = df / quarters_in_hour
+        glb.data[f"schedule {en}"] = df / quarters_in_hour
 
 
-def save_day_no(ampl, data):
-    data["DAY_NO"] = ampl.get_parameter("DAY_NO").to_pandas().astype(int).iat[0,0]
+def save_day_no(ampl):
+    glb.data["DAY_NO"] = ampl.get_parameter("DAY_NO").to_pandas().astype(int).iat[0,0]
 
 
-def save(ampl, data):
-    save_schedule(ampl, data)
-    save_day_no(ampl, data)
+def save(ampl):
+    save_schedule(ampl)
+    save_day_no(ampl)
 
 
 # activate AMPL license
@@ -337,5 +337,5 @@ def solve(name):
     if ampl.solve_result != "solved":
         raise Exception(f"Failed to solve AMPL problem. AMPL returned flag: {ampl.solve_result}")
 
-    save(ampl, glb.data)
+    save(ampl)
 
