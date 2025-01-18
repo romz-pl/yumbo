@@ -12,9 +12,6 @@ def plot(df):
     start = glb.hstart()
     end = glb.hend()
 
-    # Ensure end is not before start
-    end_day = max(end, start)
-
     # Generate the date range as string
     days = pd.period_range(start=start, end=end, freq="D").astype(str)
 
@@ -22,8 +19,8 @@ def plot(df):
     hours_per_day = df[days].sum()
 
     # Calculate plot limits
-    left = matplotlib.dates.date2num(romz_datetime.from_string(days[0]) - datetime.timedelta(days=1))
-    right = matplotlib.dates.date2num(romz_datetime.from_string(days[-1]) + datetime.timedelta(days=1))
+    left = matplotlib.dates.date2num(start - datetime.timedelta(days=1))
+    right = matplotlib.dates.date2num(end + datetime.timedelta(days=1))
     days = matplotlib.dates.datestr2num(days)
 
     # Determine bar width

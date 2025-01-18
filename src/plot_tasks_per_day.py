@@ -19,8 +19,8 @@ def plot(df):
     tasks_per_day = (df[days] > 0).sum()
 
     # Calculate plot limits
-    left = matplotlib.dates.date2num(romz_datetime.from_string(days[0]) - datetime.timedelta(days=1))
-    right = matplotlib.dates.date2num(romz_datetime.from_string(days[-1]) + datetime.timedelta(days=1))
+    left = matplotlib.dates.date2num(start - datetime.timedelta(days=1))
+    right = matplotlib.dates.date2num(end + datetime.timedelta(days=1))
     days = matplotlib.dates.datestr2num(days)
 
     # Determine bar width
