@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import romz_datetime
 import glb
@@ -9,29 +10,37 @@ def parse_date_columns(df, date_columns):
     return df
 
 # Helper function to calculate Days and Workdays
-def add_days_and_workdays(df, date_columns):
-    df["Days"] = [pd.bdate_range(start=df.loc[j, date_columns[0]],
-                                 end=df.loc[j, date_columns[1]],
-                                 freq='D').size for j in df.index]
+def add_days_and_workdays(df, start, end):
 
+    # Calculate total days (inclusive)
+    df["Days"] = (df[end] - df[start]).dt.days + 1
 
-    df["Workdays"] = [pd.bdate_range(start=df.loc[j, date_columns[0]],
-                                     end=df.loc[j, date_columns[1]],
-                                     freq='C',
-                                     holidays=glb.data["public holidays"]["Date"]).size for j in df.index]
+    # Define dtype for datetime conversion
+    dtype = "datetime64[D]"
+
+    # Convert public holidays to numpy datetime64[D]
+    holidays = glb.data["public holidays"]["Date"].to_numpy(dtype=dtype)
+
+    # Calculate workdays using numpy's busday_count
+    df["Workdays"] = np.busday_count(
+        df[start].to_numpy(dtype=dtype),
+        (df[end] + pd.Timedelta(days=1)).to_numpy(dtype=dtype),
+        holidays=holidays
+    )
+
     return df
 
 def read_tasks(xlsx):
     df = xlsx.parse(sheet_name="tasks", usecols="A:D")
     df = parse_date_columns(df, ["Start day", "End day"])
-    df = add_days_and_workdays(df, ["Start day", "End day"])
+    df = add_days_and_workdays(df, "Start day", "End day")
     df["Avg"] = df["Work"] / df["Workdays"]
     glb.data["tasks"] = df
 
 def read_invoicing_periods(xlsx):
     df = xlsx.parse(sheet_name="invoicing periods", usecols="A:C")
     df = parse_date_columns(df, ["Start day", "End day"])
-    df = add_days_and_workdays(df, ["Start day", "End day"])
+    df = add_days_and_workdays(df, "Start day", "End day")
     glb.data["invoicing periods"] =  df
 
 def read_xbday(xlsx):
