@@ -9,14 +9,17 @@ import romz_datetime
 import datetime
 import glb
 
-def plot(df, width):
+def plot(expert_name):
     start = glb.hstart()
     end = glb.hend()
 
     # Generate day labels and filter dataframe
     days = pd.date_range(start=start, end=end, freq="D")
     day_labels = matplotlib.dates.date2num(days)
-    df = df[days.astype("str")]
+    df = glb.data[f"schedule {expert_name}"][days.astype("str")]
+
+    # Determine bar width
+    width = 0.9 if days.size < 10 else 1.0
 
     # Define x-axis limits
     left = matplotlib.dates.date2num(start - datetime.timedelta(days=1))

@@ -150,13 +150,7 @@ def show_hours_per_day(expert_name):
 
 
 def show_hours_per_day_stacked(expert_name):
-    start = glb.hstart()
-    end = glb.hend()
-    if pd.bdate_range(start=start, end=end, freq='C', holidays = glb.data["public holidays"]["Date"]).size > 10:
-        width = 1
-    else:
-        width = 0.9
-    plot_schedule_stacked_histogram.plot(glb.data[f"schedule {expert_name}"], width)
+    plot_schedule_stacked_histogram.plot(expert_name)
 
 
 def show_schedule_as_table(expert_name):
