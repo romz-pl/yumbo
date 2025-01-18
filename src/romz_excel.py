@@ -3,9 +3,9 @@ import romz_datetime
 import glb
 
 # Helper function to handle the date columns parsing
-def parse_date_columns(df, date_columns, date_format):
+def parse_date_columns(df, date_columns):
     for column in date_columns:
-        df[column] = pd.to_datetime(df[column], format=date_format)
+        df[column] = pd.to_datetime(df[column], format=romz_datetime.format())
     return df
 
 # Helper function to calculate Days and Workdays
@@ -23,35 +23,35 @@ def add_days_and_workdays(df, date_columns):
 
 def read_tasks(xlsx):
     df = xlsx.parse(sheet_name="tasks", usecols="A:D")
-    df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
+    df = parse_date_columns(df, ["Start day", "End day"])
     df = add_days_and_workdays(df, ["Start day", "End day"])
     df["Avg"] = df["Work"] / df["Workdays"]
     glb.data["tasks"] = df
 
 def read_invoicing_periods(xlsx):
     df = xlsx.parse(sheet_name="invoicing periods", usecols="A:C")
-    df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
+    df = parse_date_columns(df, ["Start day", "End day"])
     df = add_days_and_workdays(df, ["Start day", "End day"])
     glb.data["invoicing periods"] =  df
 
 def read_xbday(xlsx):
     df = xlsx.parse(sheet_name="xbday", usecols="A:F")
-    df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
+    df = parse_date_columns(df, ["Start day", "End day"])
     glb.data["xbday"] = df
 
 def read_xbsum(xlsx):
     df = xlsx.parse(sheet_name="xbsum", usecols="A:F")
-    df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
+    df = parse_date_columns(df, ["Start day", "End day"])
     glb.data["xbsum"] = df
 
 def read_ubday(xlsx):
     df = xlsx.parse(sheet_name="ubday", usecols="A:E")
-    df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
+    df = parse_date_columns(df, ["Start day", "End day"])
     glb.data["ubday"] = df
 
 def read_ubsum(xlsx):
     df = xlsx.parse(sheet_name="ubsum", usecols="A:F")
-    df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
+    df = parse_date_columns(df, ["Start day", "End day"])
     glb.data["ubsum"] = df
 
 def read_experts(xlsx):
@@ -59,12 +59,12 @@ def read_experts(xlsx):
 
 def read_expert_bounds(xlsx):
     df = xlsx.parse(sheet_name="expert bounds", usecols="A:E")
-    df = parse_date_columns(df, ["Start day", "End day"], romz_datetime.format())
+    df = parse_date_columns(df, ["Start day", "End day"])
     glb.data["expert bounds"] = df
 
 def read_public_holidays(xlsx):
     df = xlsx.parse(sheet_name="public holidays", usecols="A:A")
-    df = parse_date_columns(df, ["Date"], romz_datetime.format())
+    df = parse_date_columns(df, ["Date"])
     glb.data["public holidays"] = df
 
 
