@@ -7,8 +7,9 @@ import glb
 
 quarters_in_hour = 4
 
-def tasks(today, data):
-    df = data["tasks"]
+def tasks():
+    today = glb.today()
+    df = glb.data["tasks"]
 
     # Calculate start and end days relative to today
     df["Start Relative"] = (df["Start day"] - today).dt.days
@@ -26,14 +27,15 @@ def tasks(today, data):
     return ''.join(formatted_rows)
 
 
-def offday(today, data):
+def offday():
+    today = glb.today()
     # Determine the date range
-    min_date = data["tasks"]["Start day"].min()
-    max_date = data["tasks"]["End day"].max()
+    min_date = glb.data["tasks"]["Start day"].min()
+    max_date = glb.data["tasks"]["End day"].max()
 
     # Generate weekends within the range using a mask for Saturdays and Sundays
     weekends = pd.bdate_range(start=min_date, end=max_date, freq='C', weekmask='Sat Sun')
-    holidays = data["public holidays"]["Date"]
+    holidays = glb.data["public holidays"]["Date"]
 
     # Combine weekends and holidays into a sorted list
     # The set off_days is the union of weekends and holidays.
@@ -46,11 +48,12 @@ def offday(today, data):
     return len(off_days), buf
 
 
-def xbday(today, data):
+def xbday():
+    today = glb.today()
     # Preprocessing for efficient lookups
-    df = data["xbday"]
-    df_tasks = data["tasks"].set_index("Name")  # Set "Name" as index for quick task lookup
-    holidays = set(data["public holidays"]["Date"])  # Convert holidays to a set for faster checks
+    df = glb.data["xbday"]
+    df_tasks = glb.data["tasks"].set_index("Name")  # Set "Name" as index for quick task lookup
+    holidays = set(glb.data["public holidays"]["Date"])  # Convert holidays to a set for faster checks
 
     result = []
     id_counter = 0
@@ -88,8 +91,9 @@ def xbday(today, data):
 
 
 
-def xbsum(today, data):
-    df = data["xbsum"]
+def xbsum():
+    today = glb.today()
+    df = glb.data["xbsum"]
     result = []
 
     # Iterate over rows using itertuples for better performance
@@ -109,9 +113,10 @@ def xbsum(today, data):
 
 
 
-def ubday(today, data):
-    df = data["ubday"]
-    holidays = set(data["public holidays"]["Date"])
+def ubday():
+    today = glb.today()
+    df = glb.data["ubday"]
+    holidays = set(glb.data["public holidays"]["Date"])
 
     result = []
     id = 0
@@ -133,8 +138,9 @@ def ubday(today, data):
     return id, "\n".join(result)
 
 
-def ubsum(today, data):
-    df = data["ubsum"]
+def ubsum():
+    today = glb.today()
+    df = glb.data["ubsum"]
     result = [
         f"{id+1} '{row['Expert']}' '{row['Task']}' {(row['Start day'] - today).days} "
         f"{(row['End day'] - today).days} "
@@ -144,8 +150,8 @@ def ubsum(today, data):
     return len(result), "\n".join(result)
 
 
-def experts(data):
-    return "\n".join(f"'{name}'" for name in data["experts"]["Name"])
+def experts():
+    return "\n".join(f"'{name}'" for name in glb.data["experts"]["Name"])
 
 
 def expert_bounds():
@@ -161,13 +167,14 @@ def expert_bounds():
     return len(result), "\n".join(result)
 
 
-def links(data):
-    df = data["links"]
+def links():
+    df = glb.data["links"]
     return "\n".join(f"'{expert}' '{task}'" for expert, task in zip(df["Expert"], df["Task"]))
 
 
-def invoicing_periods(today, data):
-    df = data["invoicing periods"]
+def invoicing_periods():
+    today = glb.today()
+    df = glb.data["invoicing periods"]
     result = [
         f"'{row['Name']}' {(row['Start day'] - today).days} {(row['End day'] - today).days}"
         for _, row in df.iterrows()
@@ -175,8 +182,9 @@ def invoicing_periods(today, data):
     return "\n".join(result)
 
 
-def invoicing_periods_bounds(today, data):
-    df = data["invoicing periods bounds"]
+def invoicing_periods_bounds():
+    today = glb.today()
+    df = glb.data["invoicing periods bounds"]
     return "\n".join(
         f"'{expert}' '{period}' "
         f"{lower * quarters_in_hour} "
@@ -186,13 +194,11 @@ def invoicing_periods_bounds(today, data):
 
 
 def data_file(name):
-    today = glb.today()
-    data = glb.data
     ampl_data_file = "./ampl-translated-from-excel/{}.dat".format(name)
     with open(ampl_data_file, 'w') as f:
-        f.write('param HOURS_PER_DAY := {};\n\n'.format(data["misc"].loc[0, "Hours per day"] * quarters_in_hour))
+        f.write(f'param HOURS_PER_DAY := {glb.hours_per_day() * quarters_in_hour};\n\n')
 
-        buf = experts(data)
+        buf = experts()
         f.write('set EXPERTN :=\n')
         f.write(buf)
         f.write(';\n\n')
@@ -204,59 +210,59 @@ def data_file(name):
         f.write(buf)
         f.write(';\n\n')
 
-        buf = tasks(today, data)
+        buf = tasks()
         f.write('param:\n')
         f.write('TASKN: TASKS TASKE TASKW :=\n')
         f.write(buf)
         f.write(';\n\n')
 
-        buf = invoicing_periods(today, data)
+        buf = invoicing_periods()
         f.write('param:\n')
         f.write('PAYROLLN: PAYROLLS PAYROLLE :=\n')
         f.write(buf)
         f.write(';\n\n')
 
-        buf = invoicing_periods_bounds(today, data)
+        buf = invoicing_periods_bounds()
         f.write('param:\n')
         f.write('EXPPAY: PAYROLLBL PAYROLLBU :=\n')
         f.write(buf)
         f.write(';\n\n')
 
-        offday_no, buf = offday(today, data)
+        offday_no, buf = offday()
         f.write('param OFFDAY_NO := {};\n\n'.format(offday_no))
         f.write('param OFFDAY :=\n')
         f.write(buf)
         f.write(';\n\n')
 
-        xbday_no, buf = xbday(today, data)
+        xbday_no, buf = xbday()
         f.write('param XBDAY_NO := {};\n\n'.format(xbday_no))
         f.write('param XBDAY:\n')
         f.write('1   2   3   4   5 :=\n')
         f.write(buf)
         f.write(';\n\n')
 
-        xbsum_no, buf = xbsum(today, data)
+        xbsum_no, buf = xbsum()
         f.write('param XBSUM_NO := {};\n\n'.format(xbsum_no))
         f.write('param XBSUM:\n')
         f.write('1   2   3   4   5   6 :=\n')
         f.write(buf)
         f.write(';\n\n')
 
-        ubday_no, buf = ubday(today, data)
+        ubday_no, buf = ubday()
         f.write('param UBDAY_NO := {};\n\n'.format(ubday_no))
         f.write('param UBDAY:\n')
         f.write('1   2   3   4 :=\n')
         f.write(buf)
         f.write(';\n\n')
 
-        ubsum_no, buf = ubsum(today, data)
+        ubsum_no, buf = ubsum()
         f.write('param UBSUM_NO := {};\n\n'.format(ubsum_no))
         f.write('param UBSUM:\n')
         f.write('1   2   3   4   5   6 :=\n')
         f.write(buf)
         f.write(';\n\n')
 
-        buf = links(data)
+        buf = links()
         f.write('set LINKS :=\n')
         f.write(buf)
         f.write(';\n\n')
