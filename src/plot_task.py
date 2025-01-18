@@ -4,9 +4,9 @@ from matplotlib.figure import Figure
 import matplotlib.ticker as tck
 import romz_datetime
 import pandas as pd
+import glb
 
-
-def plot(task, schedule, bounds, dpi):
+def plot(task, schedule, bounds):
     # Generate task-specific data
     x_task = pd.date_range(start=task["Start day"], end=task["End day"], freq="D")
     y_task = schedule.loc[task["Name"], x_task.strftime(romz_datetime.format())]
@@ -45,6 +45,6 @@ def plot(task, schedule, bounds, dpi):
 
     # Save and display the plot
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=dpi, pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.dpi(), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)

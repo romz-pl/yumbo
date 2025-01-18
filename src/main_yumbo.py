@@ -128,12 +128,12 @@ def get_tasks_for_expert(expert_name):
 def show_tasks_gantt_chart(expert_name):
     tasks = get_tasks_for_expert(expert_name)
     work_done = glb.data[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
-    plot_tasks_gantt.plot(tasks, work_done, glb.dpi(), glb.today())
+    plot_tasks_gantt.plot(tasks, work_done, glb.today())
 
 
 def show_tasks_per_day(expert_name):
     schedule = glb.data[f"schedule {expert_name}"]
-    plot_tasks_per_day.plot(schedule, glb.tstart(), glb.tend(), glb.dpi())
+    plot_tasks_per_day.plot(schedule, glb.tstart(), glb.tend())
 
 
 def show_invoice_period_workload(expert_name):
@@ -141,14 +141,14 @@ def show_invoice_period_workload(expert_name):
     schedule = glb.data[f"schedule {expert_name}"]
     invper_bounds = glb.data["invoicing periods bounds"]
     bounds = invper_bounds[ invper_bounds["Expert"] == expert_name ]
-    plot_invoicing_periods_histogram.plot(invper, schedule, bounds, glb.dpi())
+    plot_invoicing_periods_histogram.plot(invper, schedule, bounds)
 
 
 def show_hours_per_day(expert_name):
     start = glb.hstart()
     end = glb.hend()
     data = glb.data[f"schedule {expert_name}"]
-    plot_hours_per_day.plot(data, start, end, glb.dpi())
+    plot_hours_per_day.plot(data, start, end)
 
 
 def show_hours_per_day_stacked(expert_name):
@@ -158,7 +158,7 @@ def show_hours_per_day_stacked(expert_name):
         width = 1
     else:
         width = 0.9
-    plot_shedule_stacked_histogram.plot(glb.data[f"schedule {expert_name}"], start, end, width, glb.dpi())
+    plot_shedule_stacked_histogram.plot(glb.data[f"schedule {expert_name}"], start, end, width)
 
 
 def show_schedule_as_table(expert_name):
@@ -190,15 +190,15 @@ def show_commitment_per_task(expert_name):
         bounds = xbday.loc[ xbday["Task"] == task["Name"]].loc[ xbday["Expert"] == expert_name]
         with col1:
             if(j % 3 == 1):
-                plot_task.plot(task, schedule, bounds, glb.dpi())
+                plot_task.plot(task, schedule, bounds)
 
         with col2:
             if(j % 3 == 2):
-                plot_task.plot(task, schedule, bounds, glb.dpi())
+                plot_task.plot(task, schedule, bounds)
 
         with col3:
             if(j % 3 == 0):
-                plot_task.plot(task, schedule, bounds, glb.dpi())
+                plot_task.plot(task, schedule, bounds)
 
 
 def customise_report():
@@ -264,21 +264,21 @@ def show_sidebar(uploaded_file):
 
 
 def show_tasks_gantt_chart_summary():
-    plot_tasks_gantt.plot_summary(glb.data["tasks"], glb.dpi(), glb.today())
+    plot_tasks_gantt.plot_summary(glb.data["tasks"], glb.today())
 
 
 def show_tasks_per_day_summary():
     dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
     #start = glb.today() + datetime.timedelta(days=1)
     #end = glb.today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
-    plot_tasks_per_day.plot(sum(dfs), glb.tstart(), glb.tend(), glb.dpi())
+    plot_tasks_per_day.plot(sum(dfs), glb.tstart(), glb.tend())
 
 
 def show_hours_per_day_summary():
     dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
     #start = glb.today() + datetime.timedelta(days=1)
     #end = glb.today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
-    plot_hours_per_day.plot(sum(dfs), glb.hstart(), glb.hend(), glb.dpi())
+    plot_hours_per_day.plot(sum(dfs), glb.hstart(), glb.hend())
 
 
 def show_summary():

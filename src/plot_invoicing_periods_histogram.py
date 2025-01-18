@@ -3,9 +3,9 @@ import streamlit as st
 from matplotlib.figure import Figure
 import matplotlib.ticker as tck
 import pandas as pd
+import glb
 
-
-def plot(invper, schedule, bounds, dpi):
+def plot(invper, schedule, bounds):
     if bounds.empty:
         st.write(":green[No limits have been set for the invoicing periods.]")
         return
@@ -43,6 +43,6 @@ def plot(invper, schedule, bounds, dpi):
     # Finalize and display the plot
     fig.tight_layout()
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=dpi, pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.dpi(), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)

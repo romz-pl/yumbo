@@ -6,8 +6,9 @@ from matplotlib.figure import Figure
 import matplotlib.ticker as tck
 import romz_datetime
 import datetime
+import glb
 
-def plot(df, start_day, end_day, dpi):
+def plot(df, start_day, end_day):
     # Ensure end_day is not before start_day
     end_day = max(end_day, start_day)
 
@@ -46,7 +47,7 @@ def plot(df, start_day, end_day, dpi):
     # Finalize and save the plot
     fig.tight_layout()
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=dpi, pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.dpi(), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
 

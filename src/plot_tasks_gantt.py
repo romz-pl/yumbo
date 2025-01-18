@@ -5,9 +5,9 @@ import matplotlib.ticker as tck
 import matplotlib.artist
 import numpy as np
 import streamlit as st
+import glb
 
-
-def plot_summary(df, dpi, today):
+def plot_summary(df, today):
     # Create figure and axis
     fig = Figure(figsize=(8, 4))
     ax = fig.subplots()
@@ -40,12 +40,12 @@ def plot_summary(df, dpi, today):
 
     # Save the figure to a buffer and display
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=dpi, pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.dpi(), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
 
 
-def plot(df, work_done, dpi, today):
+def plot(df, work_done, today):
     # Create figure and axis
     fig = Figure(figsize=(8, 4))
     ax = fig.subplots()
@@ -84,7 +84,7 @@ def plot(df, work_done, dpi, today):
 
     # Save the figure to a buffer and display
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=dpi, pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.dpi(), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
 

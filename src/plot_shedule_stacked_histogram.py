@@ -7,8 +7,9 @@ import pandas as pd
 import numpy as np
 import romz_datetime
 import datetime
+import glb
 
-def plot(df, start_day, end_day, width, dpi):
+def plot(df, start_day, end_day, width):
     if end_day < start_day:
         end_day = start_day
 
@@ -60,7 +61,7 @@ def plot(df, start_day, end_day, width, dpi):
 
     # Save the figure to a buffer
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=dpi, pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.dpi(), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
 
