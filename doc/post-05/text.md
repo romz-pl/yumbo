@@ -21,7 +21,9 @@ See books:
 ```
 #Python
 #DataScience 
-#PythonLibraries 
+#NumPy
+#pandas
+#matplotlib 
 #MachineLearning
 ```
 
