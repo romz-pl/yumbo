@@ -13,8 +13,10 @@ The above problem is solved by a mathematical model based on Mixed Integer Linea
 
 You can find out more about the broad topics of operations research in the book M.W. Carter, C.C. Price, G.R. **Operations Research A Practical Introduction** https://lnkd.in/dh8tvJKh
 
-hashtag#OperationsResearch 
-hashtag#DataScience 
-hashtag#Optimization
-hashtag#MathematicalModelling
+```
+#OperationsResearch 
+#DataScience 
+#Optimization
+#MathematicalModelling
+```
 
