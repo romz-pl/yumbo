@@ -18,20 +18,13 @@ import romz_plot_tasks_per_day
 
 import glb
 
-def get_Hours_per_day():
-    return glb.data["misc"].iloc[0]["Hours per day"]
-
-
-def get_Today():
-    return glb.data["misc"].iloc[0]["Today"]
-
 
 def get_dpi():
     return int(glb.data["misc"].iloc[0]["dpi"])
 
 
 def get_last_date():
-    return (get_Today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))).date()
+    return (glb.today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))).date()
 
 def get_tstart():
     return glb.data["misc"].iloc[0]["T:start"]
@@ -159,7 +152,7 @@ def get_tasks_for_expert(expert_name):
 def show_tasks_gantt_chart(expert_name):
     tasks = get_tasks_for_expert(expert_name)
     work_done = glb.data[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
-    romz_plot_tasks_gantt.plot(tasks, work_done, get_dpi(), get_Today())
+    romz_plot_tasks_gantt.plot(tasks, work_done, get_dpi(), glb.today())
 
 
 def show_tasks_per_day(expert_name):
@@ -278,8 +271,8 @@ def customise_report():
 
 def show_sidebar(uploaded_file):
     new_input = prepare_global_data(uploaded_file)
-    st.subheader("Today: :green[{today}]".format(today=get_Today().date()), divider="blue")
-    st.subheader("Hours per day: :green[{}]".format(get_Hours_per_day()), divider="blue")
+    st.subheader("Today: :green[{today}]".format(today=glb.today().date()), divider="blue")
+    st.subheader("Hours per day: :green[{}]".format(glb.hours_per_day()), divider="blue")
     customise_report()
     show_tasks()
     show_experts()
@@ -295,20 +288,20 @@ def show_sidebar(uploaded_file):
 
 
 def show_tasks_gantt_chart_summary():
-    romz_plot_tasks_gantt.plot_summary(glb.data["tasks"], get_dpi(), get_Today())
+    romz_plot_tasks_gantt.plot_summary(glb.data["tasks"], get_dpi(), glb.today())
 
 
 def show_tasks_per_day_summary():
     dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
-    #start = get_Today() + datetime.timedelta(days=1)
-    #end = get_Today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
+    #start = glb.today() + datetime.timedelta(days=1)
+    #end = glb.today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
     romz_plot_tasks_per_day.plot(sum(dfs), get_tstart(), get_tend(), get_dpi())
 
 
 def show_hours_per_day_summary():
     dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
-    #start = get_Today() + datetime.timedelta(days=1)
-    #end = get_Today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
+    #start = glb.today() + datetime.timedelta(days=1)
+    #end = glb.today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
     romz_plot_hours_per_day.plot(sum(dfs), get_hstart(), get_hend(), get_dpi())
 
 
@@ -416,7 +409,7 @@ def main():
 
     if new_input:
         try:
-            romz_ampl.solve(uploaded_file.name, get_Today(), glb.data)
+            romz_ampl.solve(uploaded_file.name, glb.today(), glb.data)
         except Exception as e:
             st.subheader(f":red[Exception during solving process.] {e}")
             return
