@@ -7,7 +7,7 @@ import numpy as np
 import streamlit as st
 import glb
 
-def plot_summary(df, today):
+def plot_summary(df):
     # Create figure and axis
     fig = Figure(figsize=(8, 4))
     ax = fig.subplots()
@@ -26,7 +26,7 @@ def plot_summary(df, today):
     # Configure x-axis
     ax.xaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
-    ax.set_xlim(left=np.datetime64(today))
+    ax.set_xlim(left=np.datetime64(glb.today()))
 
     # Configure y-axis
     ax.yaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
@@ -45,7 +45,7 @@ def plot_summary(df, today):
         st.image(buf)
 
 
-def plot(df, work_done, today):
+def plot(df, work_done):
     # Create figure and axis
     fig = Figure(figsize=(8, 4))
     ax = fig.subplots()
@@ -70,7 +70,7 @@ def plot(df, work_done, today):
     # Configure x-axis
     ax.xaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
-    ax.set_xlim(left=np.datetime64(today))
+    ax.set_xlim(left=np.datetime64(glb.today()))
 
     # Configure y-axis
     ax.yaxis.set_major_locator(tck.MultipleLocator(1))

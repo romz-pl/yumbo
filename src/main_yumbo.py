@@ -128,7 +128,7 @@ def get_tasks_for_expert(expert_name):
 def show_tasks_gantt_chart(expert_name):
     tasks = get_tasks_for_expert(expert_name)
     work_done = glb.data[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
-    plot_tasks_gantt.plot(tasks, work_done, glb.today())
+    plot_tasks_gantt.plot(tasks, work_done)
 
 
 def show_tasks_per_day(expert_name):
@@ -264,7 +264,7 @@ def show_sidebar(uploaded_file):
 
 
 def show_tasks_gantt_chart_summary():
-    plot_tasks_gantt.plot_summary(glb.data["tasks"], glb.today())
+    plot_tasks_gantt.plot_summary(glb.data["tasks"])
 
 
 def show_tasks_per_day_summary():
