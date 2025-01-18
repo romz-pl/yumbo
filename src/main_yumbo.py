@@ -175,7 +175,6 @@ def show_schedule_as_table(expert_name):
     st.dataframe(styled_df)
 
 
-
 def show_commitment_per_task(expert_name):
     tasks_for_expert = get_tasks_for_expert(expert_name)
     col1, col2, col3 = st.columns(3)
