@@ -16,100 +16,102 @@ import romz_plot_task
 import romz_plot_tasks_gantt
 import romz_plot_tasks_per_day
 
+import glb
+
 def get_Hours_per_day():
-    return global_data["misc"].iloc[0]["Hours per day"]
+    return glb.data["misc"].iloc[0]["Hours per day"]
 
 
 def get_Today():
-    return global_data["misc"].iloc[0]["Today"]
+    return glb.data["misc"].iloc[0]["Today"]
 
 
 def get_dpi():
-    return int(global_data["misc"].iloc[0]["dpi"])
+    return int(glb.data["misc"].iloc[0]["dpi"])
 
 
 def get_last_date():
-    return (get_Today() + datetime.timedelta(days=int(global_data["DAY_NO"]))).date()
+    return (get_Today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))).date()
 
 def get_tstart():
-    return global_data["misc"].iloc[0]["T:start"]
+    return glb.data["misc"].iloc[0]["T:start"]
 
 
 def get_tend():
-    return global_data["misc"].iloc[0]["T:end"]
+    return glb.data["misc"].iloc[0]["T:end"]
 
 
 def get_hstart():
-    return global_data["misc"].iloc[0]["H:start"]
+    return glb.data["misc"].iloc[0]["H:start"]
 
 
 def get_hend():
-    return global_data["misc"].iloc[0]["H:end"]
+    return glb.data["misc"].iloc[0]["H:end"]
 
 
 def show_tasks():
     st.subheader("Tasks definition", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}", 'Avg': "{:.4f}"}
-    df = global_data["tasks"].style.format(format)
+    df = glb.data["tasks"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_links():
     st.subheader("Links", divider="blue")
-    st.dataframe(global_data["links"], hide_index=True, use_container_width=True)
+    st.dataframe(glb.data["links"], hide_index=True, use_container_width=True)
 
 
 def show_xbday():
     st.subheader("Bounds xbday", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    df = global_data["xbday"].style.format(format)
+    df = glb.data["xbday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_xbsum():
     st.subheader("Bounds xbsum", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    df = global_data["xbsum"].style.format(format)
+    df = glb.data["xbsum"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_ubday():
     st.subheader("Bounds ubday", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    df = global_data["ubday"].style.format(format)
+    df = glb.data["ubday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_ubsum():
     st.subheader("Bounds ubsum", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    df = global_data["ubsum"].style.format(format)
+    df = glb.data["ubsum"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_experts():
     st.subheader("Experts names", divider="blue")
-    st.dataframe(global_data["experts"], hide_index=True, use_container_width=True)
+    st.dataframe(glb.data["experts"], hide_index=True, use_container_width=True)
 
 
 def show_expert_bounds():
     st.subheader("Expert bounds and preferences", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    df = global_data["expert bounds"].style.format(format)
+    df = glb.data["expert bounds"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_invoicing_periods():
     st.subheader("Invoicing periods", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
-    df = global_data["invoicing periods"].style.format(format)
+    df = glb.data["invoicing periods"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 
 def show_invoicing_periods_bounds():
     st.subheader("Invoicing periods bounds", divider="blue")
-    st.dataframe(global_data["invoicing periods bounds"], hide_index=True, use_container_width=True)
+    st.dataframe(glb.data["invoicing periods bounds"], hide_index=True, use_container_width=True)
 
 
 def load_excel_file():
@@ -122,7 +124,7 @@ def load_excel_file():
 
 
 def prepare_global_data(uploaded_file):
-    global global_data
+    # global glb.data
 
     if 'key:uploaded_file' in st.session_state:
         new_input = ( st.session_state['key:uploaded_file'] != uploaded_file )
@@ -133,18 +135,18 @@ def prepare_global_data(uploaded_file):
         with tempfile.NamedTemporaryFile(suffix=".xlsx") as f:
             f.write(uploaded_file.getvalue())
             f.flush()
-            global_data = romz_excel.read(f.name)
-        st.session_state['key:global_data'] = global_data
+            glb.data = romz_excel.read(f.name)
+        st.session_state['key:glb.data'] = glb.data
         st.session_state['key:uploaded_file'] = uploaded_file
     else:
-        global_data = st.session_state['key:global_data']
+        glb.data = st.session_state['key:glb.data']
 
     return new_input
 
 
 def get_tasks_for_expert(expert_name):
-    tasks = global_data["tasks"]
-    links = global_data["links"]
+    tasks = glb.data["tasks"]
+    links = glb.data["links"]
 
     # Filter the tasks related to the expert
     tasks_for_expert = links[links["Expert"] == expert_name]["Task"]
@@ -156,19 +158,19 @@ def get_tasks_for_expert(expert_name):
 
 def show_tasks_gantt_chart(expert_name):
     tasks = get_tasks_for_expert(expert_name)
-    work_done = global_data[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
+    work_done = glb.data[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
     romz_plot_tasks_gantt.plot(tasks, work_done, get_dpi(), get_Today())
 
 
 def show_tasks_per_day(expert_name):
-    schedule = global_data[f"schedule {expert_name}"]
+    schedule = glb.data[f"schedule {expert_name}"]
     romz_plot_tasks_per_day.plot(schedule, get_tstart(), get_tend(), get_dpi())
 
 
 def show_invoice_period_workload(expert_name):
-    invper = global_data["invoicing periods"]
-    schedule = global_data[f"schedule {expert_name}"]
-    invper_bounds = global_data["invoicing periods bounds"]
+    invper = glb.data["invoicing periods"]
+    schedule = glb.data[f"schedule {expert_name}"]
+    invper_bounds = glb.data["invoicing periods bounds"]
     bounds = invper_bounds[ invper_bounds["Expert"] == expert_name ]
     romz_plot_invoicing_periods_histogram.plot(invper, schedule, bounds, get_dpi())
 
@@ -176,18 +178,18 @@ def show_invoice_period_workload(expert_name):
 def show_hours_per_day(expert_name):
     start = get_hstart()
     end = get_hend()
-    data = global_data[f"schedule {expert_name}"]
+    data = glb.data[f"schedule {expert_name}"]
     romz_plot_hours_per_day.plot(data, start, end, get_dpi())
 
 
 def show_hours_per_day_stacked(expert_name):
     start = get_hstart()
     end = get_hend()
-    if pd.bdate_range(start=start, end=end, freq='C', holidays = global_data["public holidays"]["Date"]).size > 10:
+    if pd.bdate_range(start=start, end=end, freq='C', holidays = glb.data["public holidays"]["Date"]).size > 10:
         width = 1
     else:
         width = 0.9
-    romz_plot_shedule_stacked_histogram.plot(global_data[f"schedule {expert_name}"], start, end, width, get_dpi())
+    romz_plot_shedule_stacked_histogram.plot(glb.data[f"schedule {expert_name}"], start, end, width, get_dpi())
 
 
 def show_schedule_as_table(expert_name):
@@ -196,7 +198,7 @@ def show_schedule_as_table(expert_name):
     end_date = romz_datetime.to_string(tasks["End day"].max())
 
     # Retrieve the relevant schedule data
-    df = global_data[f"schedule {expert_name}"].loc[tasks["Name"], start_date:end_date]
+    df = glb.data[f"schedule {expert_name}"].loc[tasks["Name"], start_date:end_date]
 
     # Apply styling to the DataFrame
     styled_df = df.style.format(precision=2) \
@@ -214,8 +216,8 @@ def show_commitment_per_task(expert_name):
     for idx in tasks_for_expert.index:
         j += 1
         task = tasks_for_expert.loc[idx]
-        schedule = global_data[f"schedule {expert_name}"]
-        xbday = global_data["xbday"]
+        schedule = glb.data[f"schedule {expert_name}"]
+        xbday = glb.data["xbday"]
         bounds = xbday.loc[ xbday["Task"] == task["Name"]].loc[ xbday["Expert"] == expert_name]
         with col1:
             if(j % 3 == 1):
@@ -232,23 +234,23 @@ def show_commitment_per_task(expert_name):
 
 def customise_report():
     st.subheader("Customise report", divider="blue")
-    global_data["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
+    glb.data["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
 
     max_col_no = 4
     report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=3)
 
     for ii in range(1, max_col_no + 1):
-        global_data[f"report_column_{ii}"] = st.selectbox(
+        glb.data[f"report_column_{ii}"] = st.selectbox(
             f"Col {ii}",
             ("Task's Gantt chart", "Tasks per day", "Hours per day stacked", "Hours per day", "Invoice period workload"),
             disabled = (ii > report_column_no),
             index = (ii - 1)
         )
-    global_data["report_column_no"] = report_column_no
+    glb.data["report_column_no"] = report_column_no
 
     show_all_experts = st.checkbox("Show all experts?")
 
-    expert = global_data["experts"]["Name"].to_numpy()
+    expert = glb.data["experts"]["Name"].to_numpy()
     rowno = len(expert)
     colno = 4
     df = pd.DataFrame(np.zeros(rowno * colno, dtype='bool').reshape((rowno, colno)),
@@ -271,7 +273,7 @@ def customise_report():
         }
     )
 
-    global_data["report"] = edited_df
+    glb.data["report"] = edited_df
 
 
 def show_sidebar(uploaded_file):
@@ -293,25 +295,25 @@ def show_sidebar(uploaded_file):
 
 
 def show_tasks_gantt_chart_summary():
-    romz_plot_tasks_gantt.plot_summary(global_data["tasks"], get_dpi(), get_Today())
+    romz_plot_tasks_gantt.plot_summary(glb.data["tasks"], get_dpi(), get_Today())
 
 
 def show_tasks_per_day_summary():
-    dfs = [ global_data[f"schedule {e}"]  for e in global_data["experts"]["Name"] ]
+    dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
     #start = get_Today() + datetime.timedelta(days=1)
-    #end = get_Today() + datetime.timedelta(days=int(global_data["DAY_NO"]))
+    #end = get_Today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
     romz_plot_tasks_per_day.plot(sum(dfs), get_tstart(), get_tend(), get_dpi())
 
 
 def show_hours_per_day_summary():
-    dfs = [ global_data[f"schedule {e}"]  for e in global_data["experts"]["Name"] ]
+    dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
     #start = get_Today() + datetime.timedelta(days=1)
-    #end = get_Today() + datetime.timedelta(days=int(global_data["DAY_NO"]))
+    #end = get_Today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
     romz_plot_hours_per_day.plot(sum(dfs), get_hstart(), get_hend(), get_dpi())
 
 
 def show_summary():
-    if global_data["show_experts_overview"]:
+    if glb.data["show_experts_overview"]:
         st.subheader(":blue[Experts overview]", divider="blue")
         col1, col2, col3 = st.columns(3)
         with col1:
@@ -322,15 +324,15 @@ def show_summary():
             show_hours_per_day_summary()
 
 def show_solver_output():
-    st.subheader(f":green[Solver output at {global_data['solver timestamp']}]", divider="blue")
-    st.code(global_data["solver output"])
+    st.subheader(f":green[Solver output at {glb.data['solver timestamp']}]", divider="blue")
+    st.code(glb.data["solver output"])
 
 def show_one_row(expert_name):
-    report_column_no = global_data["report_column_no"]
+    report_column_no = glb.data["report_column_no"]
     col_list = st.columns(report_column_no)
     for ii, col in enumerate(col_list):
         with col:
-            chart_name  = global_data[f"report_column_{ii+1}"]
+            chart_name  = glb.data[f"report_column_{ii+1}"]
             if chart_name == "Task's Gantt chart":
                 show_tasks_gantt_chart(expert_name)
             elif chart_name == "Tasks per day":
@@ -349,17 +351,17 @@ def show_one_row(expert_name):
 def show_main_panel():
     show_summary()
 
-    experts = global_data["experts"].sort_values(by='Name')
+    experts = glb.data["experts"].sort_values(by='Name')
     for e in experts.index:
         expert_name = experts.loc[e, "Name"]
         st.subheader(":blue[{name}] {comment}".format(name=expert_name, comment=experts.loc[e, "Comment"]), divider="blue")
-        if global_data["report"].loc[expert_name, "Show?"]:
+        if glb.data["report"].loc[expert_name, "Show?"]:
             show_one_row(expert_name)
 
-            if global_data["report"].loc[expert_name, "Table?"]:
+            if glb.data["report"].loc[expert_name, "Table?"]:
                 show_schedule_as_table(expert_name)
 
-            if global_data["report"].loc[expert_name, "Commitment?"]:
+            if glb.data["report"].loc[expert_name, "Commitment?"]:
                 show_commitment_per_task(expert_name)
     show_solver_output()
 
@@ -402,7 +404,6 @@ def main():
     # plt.style.use('seaborn-v0_8-whitegrid')
     set_page_config()
     show_page_header()
-    global global_data
 
     with st.sidebar:
         uploaded_file = load_excel_file()
@@ -415,7 +416,7 @@ def main():
 
     if new_input:
         try:
-            romz_ampl.solve(uploaded_file.name, get_Today(), global_data)
+            romz_ampl.solve(uploaded_file.name, get_Today(), glb.data)
         except Exception as e:
             st.subheader(f":red[Exception during solving process.] {e}")
             return
