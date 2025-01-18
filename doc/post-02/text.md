@@ -7,8 +7,8 @@ As a **minimisation problem** that favours early task completion, this schedulin
 The solution to the formulated mathematical problem is a three-dimensional matrix, which is indexed by employees, days in the planning horizon and the task under consideration. Consequently, the number of variables in the search is equal to the product of the dimensions of the matrix. In formulating the problem, the business rules, customer requirements and labour law constraints have been expressed as **linear constraints**. It has been observed that the constraints are imposed on a near-daily basis, on every task and on every member of staff for the use cases that have been studied. Consequently, the number of constraints is almost equivalent to the number of variables under investigation. However, due to the distinctive structure of the problem, the number of searched variables and the number of constraints can be considerably reduced, resulting in a notable reduction in solution time.
 
 You can find more about application of linear programming and operations research in the books:
-+ F. Hillier, Gerald Lieberman **Introduction to Operations Research** https://lnkd.in/eUMrUTXG 
-+ R.J. Boucherie, A. Braaksma, H. Tijms **Operations Research Introduction to Models and Methods** https://lnkd.in/dvU7sXmB
++ F. Hillier, Gerald Lieberman [**Introduction to Operations Research**] (https://www.mheducation.com/highered/product/Introduction-to-Operations-Research-Hillier.html)
++ R.J. Boucherie, A. Braaksma, H. Tijms [**Operations Research Introduction to Models and Methods**] ( https://www.utwente.nl/en/eemcs/sor/boucherie/Operations%20Research/ )
 
 
 ```
