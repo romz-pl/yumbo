@@ -270,6 +270,7 @@ def data_file(name):
     return ampl_data_file
 
 
+
 def save_schedule(ampl):
     today = glb.today()
     tasks_name = glb.data["tasks"]["Name"]
