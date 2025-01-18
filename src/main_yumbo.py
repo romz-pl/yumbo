@@ -156,7 +156,7 @@ def show_hours_per_day_stacked(expert_name):
         width = 1
     else:
         width = 0.9
-    plot_shedule_stacked_histogram.plot(glb.data[f"schedule {expert_name}"], start, end, width)
+    plot_shedule_stacked_histogram.plot(glb.data[f"schedule {expert_name}"], width)
 
 
 def show_schedule_as_table(expert_name):

@@ -9,18 +9,18 @@ import romz_datetime
 import datetime
 import glb
 
-def plot(df, start_day, end_day, width):
-    if end_day < start_day:
-        end_day = start_day
+def plot(df, width):
+    start = glb.hstart()
+    end = glb.hend()
 
     # Generate day labels and filter dataframe
-    days = pd.date_range(start=start_day, end=end_day, freq="D")
+    days = pd.date_range(start=start, end=end, freq="D")
     day_labels = matplotlib.dates.date2num(days)
     df = df[days.astype("str")]
 
     # Define x-axis limits
-    left = matplotlib.dates.date2num(start_day - datetime.timedelta(days=1))
-    right = matplotlib.dates.date2num(end_day + datetime.timedelta(days=1))
+    left = matplotlib.dates.date2num(start - datetime.timedelta(days=1))
+    right = matplotlib.dates.date2num(end + datetime.timedelta(days=1))
 
     # Initialize figure and axis
     fig = Figure(figsize=(8, 4))
