@@ -47,8 +47,6 @@ TASKN: TASKS TASKE TASKW :=
 
 param:
 PAYROLLN: PAYROLLS PAYROLLE :=
-'24.Nov' 1 -15
-'24.Dec' 1 -5
 '25.Jan' 1 31
 '25.Feb' 32 60
 '25.Mar' 61 91
@@ -62,8 +60,6 @@ EXPPAY: PAYROLLBL PAYROLLBU :=
 'DEV.Paweł' '25.Mar' 400 800
 'DEV.Paweł' '25.Apr' 0 800
 'DEV.Paweł' '25.May' 0 800
-'DEV.Alojzy' '24.Nov' 0 800
-'DEV.Alojzy' '24.Dec' 0 804
 'DEV.Alojzy' '25.Jan' 0 808
 'DEV.Alojzy' '25.Feb' 0 812
 'DEV.Alojzy' '25.Mar' 0 816
