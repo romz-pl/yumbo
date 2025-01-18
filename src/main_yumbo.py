@@ -140,9 +140,6 @@ def show_hours_per_day(expert_name):
     data = glb.data[f"schedule {expert_name}"]
     plot_hours_per_day.plot(data)
 
-def show_hours_per_day_stacked(expert_name):
-    plot_schedule_stacked_histogram.plot(expert_name)
-
 
 def show_schedule_as_table(expert_name):
     tasks = get_tasks_for_expert(expert_name)
@@ -287,7 +284,7 @@ def show_one_row(expert_name):
             elif chart_name == "Hours per day":
                 show_hours_per_day(expert_name)
             elif chart_name == "Hours per day stacked":
-                show_hours_per_day_stacked(expert_name)
+                plot_schedule_stacked_histogram.plot(expert_name)
             elif chart_name == "Invoice period workload":
                 plot_invoicing_periods_histogram.plot(expert_name)
             else:
