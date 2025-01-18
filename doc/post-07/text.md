@@ -11,9 +11,9 @@ A powerful strategy for tackling integer programs is through **linear programmin
 
 To move from relaxation to solution, two algorithmic principles shine: **branch-and-bound** and **cutting-plane** methods. These form the backbone of modern integer programming software.
 
-+ Branch-and-bound: This approach partitions the problem space by branching on decision variables, creating smaller subproblems. It then uses bounds from LP relaxations to prune suboptimal regions, focusing computational effort where it's needed most.
++ **Branch-and-bound**: This approach partitions the problem space by branching on decision variables, creating smaller subproblems. It then uses bounds from LP relaxations to prune suboptimal regions, focusing computational effort where it's needed most.
 
-+ Cutting-Planes: Additional constraints ("cuts") are iteratively added to the LP relaxation, excluding infeasible regions of the integer program without eliminating potential solutions.
++ **Cutting-Planes**: Additional constraints ("cuts") are iteratively added to the LP relaxation, excluding infeasible regions of the integer program without eliminating potential solutions.
 
 As operations research professionals, we often marvel at how these seemingly simple ideas lead to cutting-edge solutions. The ability to partition problem spaces and exploit tight approximations is a testament to the power of abstraction and algorithm design.
 
