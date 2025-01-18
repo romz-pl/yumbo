@@ -136,14 +136,6 @@ def show_tasks_per_day(expert_name):
     plot_tasks_per_day.plot(schedule)
 
 
-def show_invoice_period_workload(expert_name):
-    invper = glb.data["invoicing periods"]
-    schedule = glb.data[f"schedule {expert_name}"]
-    invper_bounds = glb.data["invoicing periods bounds"]
-    bounds = invper_bounds[ invper_bounds["Expert"] == expert_name ]
-    plot_invoicing_periods_histogram.plot(invper, schedule, bounds)
-
-
 def show_hours_per_day(expert_name):
     data = glb.data[f"schedule {expert_name}"]
     plot_hours_per_day.plot(data)
@@ -298,7 +290,7 @@ def show_one_row(expert_name):
             elif chart_name == "Hours per day stacked":
                 show_hours_per_day_stacked(expert_name)
             elif chart_name == "Invoice period workload":
-                show_invoice_period_workload(expert_name)
+                plot_invoicing_periods_histogram.plot(expert_name)
             else:
                 st.write(chart_name)
 

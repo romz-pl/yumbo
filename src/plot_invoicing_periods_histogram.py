@@ -5,7 +5,13 @@ import matplotlib.ticker as tck
 import pandas as pd
 import glb
 
-def plot(invper, schedule, bounds):
+def plot(expert_name):
+
+    invper = glb.data["invoicing periods"]
+    schedule = glb.data[f"schedule {expert_name}"]
+    invper_bounds = glb.data["invoicing periods bounds"]
+    bounds = invper_bounds[ invper_bounds["Expert"] == expert_name ]
+
     if bounds.empty:
         st.write(":green[No limits have been set for the invoicing periods.]")
         return
