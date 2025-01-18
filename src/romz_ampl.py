@@ -148,8 +148,9 @@ def experts(data):
     return "\n".join(f"'{name}'" for name in data["experts"]["Name"])
 
 
-def expert_bounds(today, data):
-    df = data["expert bounds"]
+def expert_bounds():
+    today = glb.today()
+    df = glb.data["expert bounds"]
     result = [
         f"{id+1} '{row['Expert']}' {(row['Start day'] - today).days} "
         f"{(row['End day'] - today).days} "
@@ -196,7 +197,7 @@ def data_file(name):
         f.write(buf)
         f.write(';\n\n')
 
-        expert_bound_no, buf = expert_bounds(today, data)
+        expert_bound_no, buf = expert_bounds()
         f.write('param EBOUND_NO := {};\n\n'.format(expert_bound_no))
         f.write('param EBOUND:\n')
         f.write('1   2   3   4   5 :=\n')
