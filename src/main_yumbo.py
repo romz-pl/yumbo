@@ -242,10 +242,6 @@ def show_sidebar(uploaded_file):
     return new_input
 
 
-def show_tasks_gantt_chart_summary():
-    plot_tasks_gantt.plot_summary(glb.data["tasks"])
-
-
 def show_tasks_per_day_summary():
     dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
     plot_tasks_per_day.plot(sum(dfs))
@@ -261,7 +257,7 @@ def show_summary():
         st.subheader(":blue[Experts overview]", divider="blue")
         col1, col2, col3 = st.columns(3)
         with col1:
-            show_tasks_gantt_chart_summary()
+            plot_tasks_gantt.plot_summary()
         with col2:
             show_tasks_per_day_summary()
         with col3:

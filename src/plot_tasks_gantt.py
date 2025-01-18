@@ -7,7 +7,9 @@ import numpy as np
 import streamlit as st
 import glb
 
-def plot_summary(df):
+def plot_summary():
+
+    df = glb.data["tasks"]
     # Create figure and axis
     fig = Figure(figsize=(8, 4))
     ax = fig.subplots()
