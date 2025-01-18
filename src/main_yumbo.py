@@ -131,11 +131,6 @@ def show_tasks_gantt_chart(expert_name):
     plot_tasks_gantt.plot(tasks, work_done)
 
 
-def show_tasks_per_day(expert_name):
-    schedule = glb.data[f"schedule {expert_name}"]
-    plot_tasks_per_day.plot(schedule)
-
-
 def show_schedule_as_table(expert_name):
     tasks = get_tasks_for_expert(expert_name)
     start_date = romz_datetime.to_string(tasks["Start day"].min())
@@ -263,7 +258,7 @@ def show_one_row(expert_name):
             if chart_name == "Task's Gantt chart":
                 show_tasks_gantt_chart(expert_name)
             elif chart_name == "Tasks per day":
-                show_tasks_per_day(expert_name)
+                plot_tasks_per_day.plot(glb.data[f"schedule {expert_name}"])
             elif chart_name == "Hours per day":
                 plot_hours_per_day.plot(glb.data[f"schedule {expert_name}"])
             elif chart_name == "Hours per day stacked":
