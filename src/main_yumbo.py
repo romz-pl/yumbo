@@ -145,10 +145,8 @@ def show_invoice_period_workload(expert_name):
 
 
 def show_hours_per_day(expert_name):
-    start = glb.hstart()
-    end = glb.hend()
     data = glb.data[f"schedule {expert_name}"]
-    plot_hours_per_day.plot(data, start, end)
+    plot_hours_per_day.plot(data)
 
 
 def show_hours_per_day_stacked(expert_name):
@@ -276,9 +274,7 @@ def show_tasks_per_day_summary():
 
 def show_hours_per_day_summary():
     dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
-    #start = glb.today() + datetime.timedelta(days=1)
-    #end = glb.today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
-    plot_hours_per_day.plot(sum(dfs), glb.hstart(), glb.hend())
+    plot_hours_per_day.plot(sum(dfs))
 
 
 def show_summary():
