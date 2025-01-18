@@ -8,12 +8,12 @@ import romz_datetime
 import datetime
 import glb
 
-def plot(df, start_day, end_day):
-    # Ensure end_day is not before start_day
-    end_day = max(end_day, start_day)
+def plot(df):
+    start = glb.tstart()
+    end = glb.tend()
 
     # Generate the date range as string
-    days = pd.period_range(start=start_day, end=end_day, freq="D").astype(str)
+    days = pd.period_range(start=start, end=end, freq="D").astype(str)
 
     # Count the number of tasks per day
     tasks_per_day = (df[days] > 0).sum()
