@@ -18,29 +18,6 @@ import romz_plot_tasks_per_day
 
 import glb
 
-
-
-
-
-def get_last_date():
-    return (glb.today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))).date()
-
-def get_tstart():
-    return glb.data["misc"].iloc[0]["T:start"]
-
-
-def get_tend():
-    return glb.data["misc"].iloc[0]["T:end"]
-
-
-def get_hstart():
-    return glb.data["misc"].iloc[0]["H:start"]
-
-
-def get_hend():
-    return glb.data["misc"].iloc[0]["H:end"]
-
-
 def show_tasks():
     st.subheader("Tasks definition", divider="blue")
     format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}", 'Avg': "{:.4f}"}
@@ -156,7 +133,7 @@ def show_tasks_gantt_chart(expert_name):
 
 def show_tasks_per_day(expert_name):
     schedule = glb.data[f"schedule {expert_name}"]
-    romz_plot_tasks_per_day.plot(schedule, get_tstart(), get_tend(), glb.dpi())
+    romz_plot_tasks_per_day.plot(schedule, glb.tstart(), glb.tend(), glb.dpi())
 
 
 def show_invoice_period_workload(expert_name):
@@ -168,15 +145,15 @@ def show_invoice_period_workload(expert_name):
 
 
 def show_hours_per_day(expert_name):
-    start = get_hstart()
-    end = get_hend()
+    start = glb.hstart()
+    end = glb.hend()
     data = glb.data[f"schedule {expert_name}"]
     romz_plot_hours_per_day.plot(data, start, end, glb.dpi())
 
 
 def show_hours_per_day_stacked(expert_name):
-    start = get_hstart()
-    end = get_hend()
+    start = glb.hstart()
+    end = glb.hend()
     if pd.bdate_range(start=start, end=end, freq='C', holidays = glb.data["public holidays"]["Date"]).size > 10:
         width = 1
     else:
@@ -294,14 +271,14 @@ def show_tasks_per_day_summary():
     dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
     #start = glb.today() + datetime.timedelta(days=1)
     #end = glb.today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
-    romz_plot_tasks_per_day.plot(sum(dfs), get_tstart(), get_tend(), glb.dpi())
+    romz_plot_tasks_per_day.plot(sum(dfs), glb.tstart(), glb.tend(), glb.dpi())
 
 
 def show_hours_per_day_summary():
     dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
     #start = glb.today() + datetime.timedelta(days=1)
     #end = glb.today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
-    romz_plot_hours_per_day.plot(sum(dfs), get_hstart(), get_hend(), glb.dpi())
+    romz_plot_hours_per_day.plot(sum(dfs), glb.hstart(), glb.hend(), glb.dpi())
 
 
 def show_summary():
