@@ -136,11 +136,6 @@ def show_tasks_per_day(expert_name):
     plot_tasks_per_day.plot(schedule)
 
 
-def show_hours_per_day(expert_name):
-    data = glb.data[f"schedule {expert_name}"]
-    plot_hours_per_day.plot(data)
-
-
 def show_schedule_as_table(expert_name):
     tasks = get_tasks_for_expert(expert_name)
     start_date = romz_datetime.to_string(tasks["Start day"].min())
@@ -270,7 +265,7 @@ def show_one_row(expert_name):
             elif chart_name == "Tasks per day":
                 show_tasks_per_day(expert_name)
             elif chart_name == "Hours per day":
-                show_hours_per_day(expert_name)
+                plot_hours_per_day.plot(glb.data[f"schedule {expert_name}"])
             elif chart_name == "Hours per day stacked":
                 plot_schedule_stacked_histogram.plot(expert_name)
             elif chart_name == "Invoice period workload":
