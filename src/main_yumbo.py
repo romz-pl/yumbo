@@ -5,11 +5,9 @@ import numpy as np
 import os
 import pandas as pd
 import streamlit as st
-import tempfile
 
 import romz_ampl
 import romz_datetime
-import romz_excel
 import plot_hours_per_day
 import plot_invoicing_periods_histogram
 import plot_schedule_stacked_histogram
@@ -194,7 +192,7 @@ def customise_report():
 
 
 def show_sidebar(uploaded_file):
-    new_input = gbl.prepare(uploaded_file)
+    new_input = glb.prepare(uploaded_file)
     st.subheader("Today: :green[{today}]".format(today=glb.today().date()), divider="blue")
     st.subheader("Hours per day: :green[{}]".format(glb.hours_per_day()), divider="blue")
     customise_report()

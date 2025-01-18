@@ -1,5 +1,7 @@
 import datetime
 import streamlit as st
+import tempfile
+import romz_excel
 
 data = dict()
 
@@ -33,6 +35,8 @@ def hend():
 
 
 def prepare(uploaded_file):
+    global data
+
     if 'key:uploaded_file' in st.session_state:
         new_input = ( st.session_state['key:uploaded_file'] != uploaded_file )
     else:
@@ -46,7 +50,6 @@ def prepare(uploaded_file):
         st.session_state['key:glb.data'] = data
         st.session_state['key:uploaded_file'] = uploaded_file
     else:
-        global data
         data = st.session_state['key:glb.data']
 
     return new_input
