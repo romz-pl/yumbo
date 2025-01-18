@@ -52,3 +52,6 @@ def plot(df):
         st.image(buf)
 
 
+def plot_summary():
+    dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
+    plot(sum(dfs))

@@ -242,11 +242,6 @@ def show_sidebar(uploaded_file):
     return new_input
 
 
-def show_hours_per_day_summary():
-    dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
-    plot_hours_per_day.plot(sum(dfs))
-
-
 def show_summary():
     if glb.data["show_experts_overview"]:
         st.subheader(":blue[Experts overview]", divider="blue")
@@ -256,11 +251,13 @@ def show_summary():
         with col2:
             plot_tasks_per_day.plot_summary()
         with col3:
-            show_hours_per_day_summary()
+            plot_hours_per_day.plot_summary()
+
 
 def show_solver_output():
     st.subheader(f":green[Solver output at {glb.data['solver timestamp']}]", divider="blue")
     st.code(glb.data["solver output"])
+
 
 def show_one_row(expert_name):
     report_column_no = glb.data["report_column_no"]
