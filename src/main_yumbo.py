@@ -12,7 +12,7 @@ import romz_datetime
 import romz_excel
 import plot_hours_per_day
 import plot_invoicing_periods_histogram
-import plot_shedule_stacked_histogram
+import plot_schedule_stacked_histogram
 import plot_task
 import plot_tasks_gantt
 import plot_tasks_per_day
@@ -156,7 +156,7 @@ def show_hours_per_day_stacked(expert_name):
         width = 1
     else:
         width = 0.9
-    plot_shedule_stacked_histogram.plot(glb.data[f"schedule {expert_name}"], width)
+    plot_schedule_stacked_histogram.plot(glb.data[f"schedule {expert_name}"], width)
 
 
 def show_schedule_as_table(expert_name):
