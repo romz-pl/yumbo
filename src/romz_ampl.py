@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import romz_datetime
 from amplpy import AMPL, modules
-
+import glb
 
 quarters_in_hour = 4
 
@@ -296,12 +296,12 @@ def set_ampl_license():
         modules.activate(uuid)
 
 
-def solve(name, today, data):
-    file = data_file(name, today, data)
+def solve(name):
+    file = data_file(name, glb.today(), glb.data)
 
     set_ampl_license()
     ampl = AMPL()
-    solver = data["misc"].iloc[0]["Solver"]
+    solver = glb.data["misc"].iloc[0]["Solver"]
     ampl.set_option("solver", solver)
 
     # Set solver-specific options
@@ -321,12 +321,12 @@ def solve(name, today, data):
     ampl.read_data(file)
 
     # Capture solver output and timestamp
-    data["solver output"] = ampl.get_output("solve;")
-    data["solver timestamp"] = datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")
+    glb.data["solver output"] = ampl.get_output("solve;")
+    glb.data["solver timestamp"] = datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")
 
     # Check if solving was successful
     if ampl.solve_result != "solved":
         raise Exception(f"Failed to solve AMPL problem. AMPL returned flag: {ampl.solve_result}")
 
-    save(ampl, data)
+    save(ampl, glb.data)
 

@@ -385,7 +385,7 @@ def main():
 
     if new_input:
         try:
-            romz_ampl.solve(uploaded_file.name, glb.today(), glb.data)
+            romz_ampl.solve(uploaded_file.name)
         except Exception as e:
             st.subheader(f":red[Exception during solving process.] {e}")
             return
