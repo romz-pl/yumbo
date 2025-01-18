@@ -242,11 +242,6 @@ def show_sidebar(uploaded_file):
     return new_input
 
 
-def show_tasks_per_day_summary():
-    dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
-    plot_tasks_per_day.plot(sum(dfs))
-
-
 def show_hours_per_day_summary():
     dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
     plot_hours_per_day.plot(sum(dfs))
@@ -259,7 +254,7 @@ def show_summary():
         with col1:
             plot_tasks_gantt.plot_summary()
         with col2:
-            show_tasks_per_day_summary()
+            plot_tasks_per_day.plot_summary()
         with col3:
             show_hours_per_day_summary()
 

@@ -50,3 +50,9 @@ def plot(df):
         fig.savefig(buf, format="png", dpi=glb.dpi(), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
+
+
+
+def plot_summary():
+    dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
+    plot(sum(dfs))
