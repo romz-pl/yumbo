@@ -7,11 +7,15 @@ def hours_per_day():
 
 def today():
     return data["misc"].iloc[0]["Today"]
+    # return data["misc"].at[0, "Today"]
+
+def tomorrow():
+    return (today() + datetime.timedelta(days=1)).date()
 
 def dpi():
     return int(data["misc"].iloc[0]["dpi"])
 
-def last_date():
+def last_day():
     return (today() + datetime.timedelta(days=int(data["DAY_NO"]))).date()
 
 def tstart():

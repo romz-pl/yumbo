@@ -2,6 +2,7 @@ import datetime
 import matplotlib.pyplot as plt
 import matplotlib.ticker as tck
 import numpy as np
+import os
 import pandas as pd
 import streamlit as st
 import tempfile
@@ -104,7 +105,7 @@ def prepare_global_data(uploaded_file):
         with tempfile.NamedTemporaryFile(suffix=".xlsx") as f:
             f.write(uploaded_file.getvalue())
             f.flush()
-            glb.data = romz_excel.read(f.name)
+            romz_excel.read(f.name)
         st.session_state['key:glb.data'] = glb.data
         st.session_state['key:uploaded_file'] = uploaded_file
     else:
@@ -354,7 +355,6 @@ def show_page_header():
     st.caption("Source code, documentation and sample Excel input files can be found on [Yumbo's](https://github.com/romz-pl/yambo) GitHub repository.")
     st.caption("_{d}_".format(d=datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")))
 
-import os
 
 def shwo_yumbo_description():
     st.divider()
