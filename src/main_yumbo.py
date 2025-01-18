@@ -92,27 +92,6 @@ def load_excel_file():
     return uploaded_file
 
 
-def prepare_global_data(uploaded_file):
-    # global glb.data
-
-    if 'key:uploaded_file' in st.session_state:
-        new_input = ( st.session_state['key:uploaded_file'] != uploaded_file )
-    else:
-        new_input = True
-
-    if new_input:
-        with tempfile.NamedTemporaryFile(suffix=".xlsx") as f:
-            f.write(uploaded_file.getvalue())
-            f.flush()
-            romz_excel.read(f.name)
-        st.session_state['key:glb.data'] = glb.data
-        st.session_state['key:uploaded_file'] = uploaded_file
-    else:
-        glb.data = st.session_state['key:glb.data']
-
-    return new_input
-
-
 def get_tasks_for_expert(expert_name):
     tasks = glb.data["tasks"]
     links = glb.data["links"]
@@ -215,7 +194,7 @@ def customise_report():
 
 
 def show_sidebar(uploaded_file):
-    new_input = prepare_global_data(uploaded_file)
+    new_input = gbl.prepare(uploaded_file)
     st.subheader("Today: :green[{today}]".format(today=glb.today().date()), divider="blue")
     st.subheader("Hours per day: :green[{}]".format(glb.hours_per_day()), divider="blue")
     customise_report()

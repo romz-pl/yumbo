@@ -1,4 +1,5 @@
 import datetime
+import streamlit as st
 
 data = dict()
 
@@ -29,3 +30,23 @@ def hstart():
 
 def hend():
     return data["misc"].iloc[0]["H:end"]
+
+
+def prepare(uploaded_file):
+    if 'key:uploaded_file' in st.session_state:
+        new_input = ( st.session_state['key:uploaded_file'] != uploaded_file )
+    else:
+        new_input = True
+
+    if new_input:
+        with tempfile.NamedTemporaryFile(suffix=".xlsx") as f:
+            f.write(uploaded_file.getvalue())
+            f.flush()
+            romz_excel.read(f.name)
+        st.session_state['key:glb.data'] = data
+        st.session_state['key:uploaded_file'] = uploaded_file
+    else:
+        global data
+        data = st.session_state['key:glb.data']
+
+    return new_input
