@@ -19,8 +19,7 @@ import romz_plot_tasks_per_day
 import glb
 
 
-def get_dpi():
-    return int(glb.data["misc"].iloc[0]["dpi"])
+
 
 
 def get_last_date():
@@ -152,12 +151,12 @@ def get_tasks_for_expert(expert_name):
 def show_tasks_gantt_chart(expert_name):
     tasks = get_tasks_for_expert(expert_name)
     work_done = glb.data[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
-    romz_plot_tasks_gantt.plot(tasks, work_done, get_dpi(), glb.today())
+    romz_plot_tasks_gantt.plot(tasks, work_done, glb.dpi(), glb.today())
 
 
 def show_tasks_per_day(expert_name):
     schedule = glb.data[f"schedule {expert_name}"]
-    romz_plot_tasks_per_day.plot(schedule, get_tstart(), get_tend(), get_dpi())
+    romz_plot_tasks_per_day.plot(schedule, get_tstart(), get_tend(), glb.dpi())
 
 
 def show_invoice_period_workload(expert_name):
@@ -165,14 +164,14 @@ def show_invoice_period_workload(expert_name):
     schedule = glb.data[f"schedule {expert_name}"]
     invper_bounds = glb.data["invoicing periods bounds"]
     bounds = invper_bounds[ invper_bounds["Expert"] == expert_name ]
-    romz_plot_invoicing_periods_histogram.plot(invper, schedule, bounds, get_dpi())
+    romz_plot_invoicing_periods_histogram.plot(invper, schedule, bounds, glb.dpi())
 
 
 def show_hours_per_day(expert_name):
     start = get_hstart()
     end = get_hend()
     data = glb.data[f"schedule {expert_name}"]
-    romz_plot_hours_per_day.plot(data, start, end, get_dpi())
+    romz_plot_hours_per_day.plot(data, start, end, glb.dpi())
 
 
 def show_hours_per_day_stacked(expert_name):
@@ -182,7 +181,7 @@ def show_hours_per_day_stacked(expert_name):
         width = 1
     else:
         width = 0.9
-    romz_plot_shedule_stacked_histogram.plot(glb.data[f"schedule {expert_name}"], start, end, width, get_dpi())
+    romz_plot_shedule_stacked_histogram.plot(glb.data[f"schedule {expert_name}"], start, end, width, glb.dpi())
 
 
 def show_schedule_as_table(expert_name):
@@ -214,15 +213,15 @@ def show_commitment_per_task(expert_name):
         bounds = xbday.loc[ xbday["Task"] == task["Name"]].loc[ xbday["Expert"] == expert_name]
         with col1:
             if(j % 3 == 1):
-                romz_plot_task.plot(task, schedule, bounds, get_dpi())
+                romz_plot_task.plot(task, schedule, bounds, glb.dpi())
 
         with col2:
             if(j % 3 == 2):
-                romz_plot_task.plot(task, schedule, bounds, get_dpi())
+                romz_plot_task.plot(task, schedule, bounds, glb.dpi())
 
         with col3:
             if(j % 3 == 0):
-                romz_plot_task.plot(task, schedule, bounds, get_dpi())
+                romz_plot_task.plot(task, schedule, bounds, glb.dpi())
 
 
 def customise_report():
@@ -288,21 +287,21 @@ def show_sidebar(uploaded_file):
 
 
 def show_tasks_gantt_chart_summary():
-    romz_plot_tasks_gantt.plot_summary(glb.data["tasks"], get_dpi(), glb.today())
+    romz_plot_tasks_gantt.plot_summary(glb.data["tasks"], glb.dpi(), glb.today())
 
 
 def show_tasks_per_day_summary():
     dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
     #start = glb.today() + datetime.timedelta(days=1)
     #end = glb.today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
-    romz_plot_tasks_per_day.plot(sum(dfs), get_tstart(), get_tend(), get_dpi())
+    romz_plot_tasks_per_day.plot(sum(dfs), get_tstart(), get_tend(), glb.dpi())
 
 
 def show_hours_per_day_summary():
     dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
     #start = glb.today() + datetime.timedelta(days=1)
     #end = glb.today() + datetime.timedelta(days=int(glb.data["DAY_NO"]))
-    romz_plot_hours_per_day.plot(sum(dfs), get_hstart(), get_hend(), get_dpi())
+    romz_plot_hours_per_day.plot(sum(dfs), get_hstart(), get_hend(), glb.dpi())
 
 
 def show_summary():
