@@ -140,7 +140,6 @@ def show_hours_per_day(expert_name):
     data = glb.data[f"schedule {expert_name}"]
     plot_hours_per_day.plot(data)
 
-
 def show_hours_per_day_stacked(expert_name):
     plot_schedule_stacked_histogram.plot(expert_name)
 
