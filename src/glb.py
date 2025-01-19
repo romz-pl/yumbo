@@ -54,3 +54,13 @@ def prepare(uploaded_file):
 
     return new_input
 
+
+def tasks_for_expert(expert_name):
+    tasks = data["tasks"]
+    links = data["links"]
+
+    # Filter the tasks related to the expert
+    tasks_for_expert = links[links["Expert"] == expert_name]["Task"]
+
+    # Use .isin() to filter tasks directly
+    return tasks[tasks["Name"].isin(tasks_for_expert)]

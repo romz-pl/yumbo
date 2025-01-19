@@ -13,25 +13,14 @@ import glb
 import sbar
 
 
-def get_tasks_for_expert(expert_name):
-    tasks = glb.data["tasks"]
-    links = glb.data["links"]
-
-    # Filter the tasks related to the expert
-    tasks_for_expert = links[links["Expert"] == expert_name]["Task"]
-
-    # Use .isin() to filter tasks directly
-    return tasks[tasks["Name"].isin(tasks_for_expert)]
-
-
 def show_tasks_gantt_chart(expert_name):
-    tasks = get_tasks_for_expert(expert_name)
+    tasks = glb.tasks_for_expert(expert_name)
     work_done = glb.data[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
     plot_tasks_gantt.plot(tasks, work_done)
 
 
 def show_schedule_as_table(expert_name):
-    tasks = get_tasks_for_expert(expert_name)
+    tasks = glb.tasks_for_expert(expert_name)
     start_date = romz_datetime.to_string(tasks["Start day"].min())
     end_date = romz_datetime.to_string(tasks["End day"].max())
 
@@ -47,7 +36,7 @@ def show_schedule_as_table(expert_name):
 
 
 def show_commitment_per_task(expert_name):
-    tasks_for_expert = get_tasks_for_expert(expert_name)
+    tasks_for_expert = glb.tasks_for_expert(expert_name)
     col1, col2, col3 = st.columns(3)
     j = 0
     for idx in tasks_for_expert.index:
