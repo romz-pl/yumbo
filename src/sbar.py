@@ -38,6 +38,8 @@ def customise_report():
         columns = ["Expert", "Show?", "Table?", "Commitment?"])
     df["Expert"] = expert
 
+    df.sort_values(by="Expert", inplace=True)
+
     if show_all_experts:
         df["Show?"] = np.ones(rowno, dtype='bool')
 
