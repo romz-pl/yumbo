@@ -89,22 +89,27 @@ def show_one_row(expert_name):
             chart_functions.get(chart_name)(expert_name)
 
 
+def show_all_rows():
+    experts = glb.data["experts"].sort_values(by="Name")
+    report = glb.data["report"]
+
+    for row in experts.itertuples(index=False):
+        expert_name = row.Name
+        st.subheader(f":blue[{expert_name}] {row.Comment}", divider="blue")
+
+        if not report.at[expert_name, "Show?"]:
+            continue
+
+        show_one_row(expert_name)
+        if report.at[expert_name, "Table?"]:
+            show_schedule_as_table(expert_name)
+        if report.at[expert_name, "Commitment?"]:
+            show_commitment_per_task(expert_name)
+
 
 def show_main_panel():
     show_summary()
-
-    experts = glb.data["experts"].sort_values(by='Name')
-    for e in experts.index:
-        expert_name = experts.loc[e, "Name"]
-        st.subheader(":blue[{name}] {comment}".format(name=expert_name, comment=experts.loc[e, "Comment"]), divider="blue")
-        if glb.data["report"].loc[expert_name, "Show?"]:
-            show_one_row(expert_name)
-
-            if glb.data["report"].loc[expert_name, "Table?"]:
-                show_schedule_as_table(expert_name)
-
-            if glb.data["report"].loc[expert_name, "Commitment?"]:
-                show_commitment_per_task(expert_name)
+    show_all_rows()
     show_solver_output()
 
 
