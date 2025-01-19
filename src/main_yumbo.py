@@ -1,5 +1,6 @@
 import datetime
 import os
+import pandas as pd
 import streamlit as st
 import romz_ampl
 import romz_datetime
@@ -43,7 +44,10 @@ def show_commitment_per_task(expert_name):
     cols = st.columns(3)
 
     for jj, task in enumerate(tasks_for_expert.itertuples(index=False)):
-        bounds = xbday_grouped.get_group(task.Name)
+        if task.Name in xbday_grouped.groups:
+            bounds = xbday_grouped.get_group(task.Name)
+        else:
+            bounds = pd.DataFrame()
         with cols[jj % 3]:
             plot_task.plot(task, schedule, bounds)
 
