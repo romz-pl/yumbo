@@ -47,19 +47,22 @@ def plot(expert_name):
     ax.tick_params(axis="x", labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
 
+    # Filter out zero-sum tasks efficiently
+    mask = df.sum(axis=1) > 0
+    filtered_df = df[mask]
+
     # Plot stacked bar chart
     bottom = np.zeros(len(days))
-    for idx, task in df.iterrows():
-        if task.sum() > 0:
-            ax.bar(
-                day_labels,
-                task,
-                width,
-                label=task.name,
-                bottom=bottom,
-                alpha=simg("Bar:alpha"),
-            )
-            bottom += task
+    for task_name, task_data in filtered_df.iterrows():
+        ax.bar(
+            day_labels,
+            task_data,
+            width,
+            label=task_name,
+            bottom=bottom,
+            alpha=simg("Bar:alpha"),
+        )
+        bottom = bottom + task_data
 
     # Add legend and adjust layout
     ax.legend(loc="upper right", fontsize="6")
