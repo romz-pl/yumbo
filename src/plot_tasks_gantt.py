@@ -19,7 +19,7 @@ def plot_summary():
     ax.barh(
         y=df["Name"],
         width=df["Days"] - 1,
-        left=df["Start day"],
+        left=df["Start"],
         color="tab:orange",
         height=0.9,
         alpha=0.6,
@@ -57,7 +57,7 @@ def plot(df, work_done):
     rects = ax.barh(
         y=df["Name"],
         width=df["Days"] - 1,
-        left=df["Start day"],
+        left=df["Start"],
         color="tab:orange",
         height=0.9,
         alpha=0.6,

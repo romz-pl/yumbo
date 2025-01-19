@@ -8,7 +8,7 @@ import glb
 
 def plot(task, schedule, bounds):
     # Generate task-specific data
-    x_task = pd.date_range(start=task["Start day"], end=task["End day"], freq="D")
+    x_task = pd.date_range(start=task["Start"], end=task["End"], freq="D")
     y_task = schedule.loc[task["Name"], x_task.strftime(romz_datetime.format())]
 
     # Create figure and axis
@@ -31,7 +31,7 @@ def plot(task, schedule, bounds):
 
     # Add task bounds
     for _, row in bounds.iterrows():
-        bound_days = pd.date_range(start=row["Start day"], end=row["End day"], freq="D")
+        bound_days = pd.date_range(start=row["Start"], end=row["End"], freq="D")
         lower, upper = row["Lower"], row["Upper"]
         if lower == upper:
             lower -= 0.5

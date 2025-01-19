@@ -21,7 +21,7 @@ def plot(expert_name):
     for k in bounds.index:
         period_name = bounds.at[k, "Period"]
         period_data = invper[invper["Name"] == period_name]
-        start, end = period_data["Start day"].iat[0], period_data["End day"].iat[0]
+        start, end = period_data["Start"].iat[0], period_data["End"].iat[0]
         x_task = pd.date_range(start=start, end=end, freq="D").astype("str").intersection(schedule.columns)
         y.append(schedule.loc[:, x_task].sum().sum())
 

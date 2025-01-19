@@ -12,8 +12,8 @@ def tasks():
     df = glb.data["tasks"]
 
     # Calculate start and end days relative to today
-    df["Start Relative"] = (df["Start day"] - today).dt.days
-    df["End Relative"] = (df["End day"] - today).dt.days
+    df["Start Relative"] = (df["Start"] - today).dt.days
+    df["End Relative"] = (df["End"] - today).dt.days
 
     # Use vectorized string formatting for better performance
     formatted_rows = df.apply(
@@ -30,8 +30,8 @@ def tasks():
 def offday():
     today = glb.today()
     # Determine the date range
-    min_date = glb.data["tasks"]["Start day"].min()
-    max_date = glb.data["tasks"]["End day"].max()
+    min_date = glb.data["tasks"]["Start"].min()
+    max_date = glb.data["tasks"]["End"].max()
 
     # Generate weekends within the range using a mask for Saturdays and Sundays
     weekends = pd.bdate_range(start=min_date, end=max_date, freq='C', weekmask='Sat Sun')
@@ -66,10 +66,9 @@ def xbday():
         upper = row.Upper * quarters_in_hour
 
         # Calculate valid date range considering task bounds and xbday range
-        task_start, task_end = df_tasks.loc[task_name, ["Start day", "End day"]]
-        range_start = max(row._2, task_start)  # _2 corresponds to "Start day" in xbday
-        range_end = min(row._3, task_end)      # _3 corresponds to "End day" in xbday
-
+        task_start, task_end = df_tasks.loc[task_name, ["Start", "End"]]
+        range_start = max(row.Start, task_start)
+        range_end = min(row.End, task_end)
         # Generate business days using pandas
         valid_days = pd.bdate_range(
             start=range_start,
@@ -100,8 +99,8 @@ def xbsum():
     for idx, row in enumerate(df.itertuples(index=False), start=1):
         expert = row.Expert
         task = row.Task
-        start = (row._2 - today).days # _2 <- Start day
-        end = (row._3 - today).days # _3 <- End day
+        start = (row.Start - today).days
+        end = (row.End - today).days
         lower = row.Lower * quarters_in_hour
         upper = row.Upper * quarters_in_hour
 
@@ -127,7 +126,7 @@ def ubday():
         upper = row["Upper"]
 
         # Generate business days excluding holidays
-        valid_days = pd.bdate_range(start=row["Start day"], end=row["End day"], freq='C', holidays=holidays)
+        valid_days = pd.bdate_range(start=row["Start"], end=row["End"], freq='C', holidays=holidays)
 
         # Format the output
         for day in valid_days:
@@ -142,8 +141,8 @@ def ubsum():
     today = glb.today()
     df = glb.data["ubsum"]
     result = [
-        f"{id+1} '{row['Expert']}' '{row['Task']}' {(row['Start day'] - today).days} "
-        f"{(row['End day'] - today).days} "
+        f"{id+1} '{row['Expert']}' '{row['Task']}' {(row['Start'] - today).days} "
+        f"{(row['End'] - today).days} "
         f"{row.Lower} {row.Upper}"
         for id, row in df.iterrows()
     ]
@@ -158,8 +157,8 @@ def expert_bounds():
     today = glb.today()
     df = glb.data["expert bounds"]
     result = [
-        f"{id+1} '{row['Expert']}' {(row['Start day'] - today).days} "
-        f"{(row['End day'] - today).days} "
+        f"{id+1} '{row['Expert']}' {(row['Start'] - today).days} "
+        f"{(row['End'] - today).days} "
         f"{row['Lower'] * quarters_in_hour} "
         f"{row['Upper'] * quarters_in_hour}"
         for id, row in df.iterrows()
@@ -176,7 +175,7 @@ def invoicing_periods():
     today = glb.today()
     df = glb.data["invoicing periods"]
     result = [
-        f"'{row['Name']}' {(row['Start day'] - today).days} {(row['End day'] - today).days}"
+        f"'{row['Name']}' {(row['Start'] - today).days} {(row['End'] - today).days}"
         for _, row in df.iterrows()
     ]
     return "\n".join(result)

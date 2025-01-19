@@ -16,7 +16,7 @@ def plot(data):
     rects = ax.barh(
         y=df["Name"],
         width=df["Days"],
-        left=df["Start day"],
+        left=df["Start"],
         height=1.0,
         color="tab:green",
         alpha=0.5,
@@ -27,7 +27,7 @@ def plot(data):
 
     # Add vertical lines for end days
     ax.vlines(
-        df["End day"],
+        df["End"],
         ymin=-0.5,
         ymax=len(df["Name"]) - 0.5,
         linestyles="dashed",
@@ -37,7 +37,7 @@ def plot(data):
     # Format the x-axis
     ax.xaxis_date()
     ax.set_title("Invoicing Periods Gantt Chart")
-    ax.set_xticks(df["End day"])
+    ax.set_xticks(df["End"])
     ax.xaxis.set_minor_locator(tck.MultipleLocator(5))
     ax.tick_params(axis="x", rotation=90, labelsize="small")
 

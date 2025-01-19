@@ -32,35 +32,35 @@ def add_days_and_workdays(df, start, end):
 
 def read_tasks(xlsx):
     df = xlsx.parse(sheet_name="tasks", usecols="A:D")
-    df = parse_date_columns(df, ["Start day", "End day"])
-    df = add_days_and_workdays(df, "Start day", "End day")
+    df = parse_date_columns(df, ["Start", "End"])
+    df = add_days_and_workdays(df, "Start", "End")
     df["Avg"] = df["Work"] / df["Workdays"]
     glb.data["tasks"] = df
 
 def read_invoicing_periods(xlsx):
     df = xlsx.parse(sheet_name="invoicing periods", usecols="A:C")
-    df = parse_date_columns(df, ["Start day", "End day"])
-    df = add_days_and_workdays(df, "Start day", "End day")
+    df = parse_date_columns(df, ["Start", "End"])
+    df = add_days_and_workdays(df, "Start", "End")
     glb.data["invoicing periods"] =  df
 
 def read_xbday(xlsx):
     df = xlsx.parse(sheet_name="xbday", usecols="A:F")
-    df = parse_date_columns(df, ["Start day", "End day"])
+    df = parse_date_columns(df, ["Start", "End"])
     glb.data["xbday"] = df
 
 def read_xbsum(xlsx):
     df = xlsx.parse(sheet_name="xbsum", usecols="A:F")
-    df = parse_date_columns(df, ["Start day", "End day"])
+    df = parse_date_columns(df, ["Start", "End"])
     glb.data["xbsum"] = df
 
 def read_ubday(xlsx):
     df = xlsx.parse(sheet_name="ubday", usecols="A:E")
-    df = parse_date_columns(df, ["Start day", "End day"])
+    df = parse_date_columns(df, ["Start", "End"])
     glb.data["ubday"] = df
 
 def read_ubsum(xlsx):
     df = xlsx.parse(sheet_name="ubsum", usecols="A:F")
-    df = parse_date_columns(df, ["Start day", "End day"])
+    df = parse_date_columns(df, ["Start", "End"])
     glb.data["ubsum"] = df
 
 def read_experts(xlsx):
@@ -68,7 +68,7 @@ def read_experts(xlsx):
 
 def read_expert_bounds(xlsx):
     df = xlsx.parse(sheet_name="expert bounds", usecols="A:E")
-    df = parse_date_columns(df, ["Start day", "End day"])
+    df = parse_date_columns(df, ["Start", "End"])
     glb.data["expert bounds"] = df
 
 def read_public_holidays(xlsx):
@@ -108,7 +108,7 @@ def adjust_start_days():
 
     # Apply the adjustment to each target DataFrame
     for key in targets:
-        col = "Start day"
+        col = "Start"
         assert(col in glb.data[key].columns)
         glb.data[key].loc[glb.data[key][col] < tomorrow, col] = tomorrow
 

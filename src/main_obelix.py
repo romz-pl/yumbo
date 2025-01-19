@@ -87,7 +87,7 @@ def shoe_tasks_definition(use_gant):
         romz_plot_tasks_gantt.plot(global_data)
     else:
         st.subheader("Tasks definition", divider=True)
-        format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}", 'Avg': "{:.2f}"}
+        format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Avg': "{:.2f}"}
         st.dataframe(global_data["tasks"].style.format(format), hide_index=True, use_container_width=True)
 
 

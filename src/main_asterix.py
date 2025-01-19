@@ -54,25 +54,25 @@ def show_commitment_per_task():
 
 def show_invoicing_periods():
     st.subheader("Invoicing periods", divider=True)
-    format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
+    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
     st.dataframe(global_data["invoicing periods"].style.format(format), hide_index=True, use_container_width=True)
 
 
 def show_tasks():
     st.subheader("Tasks definition", divider=True)
-    format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}", 'Avg': "{:.2f}"}
+    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Avg': "{:.2f}"}
     st.dataframe(global_data["tasks"].style.format(format), hide_index=True, use_container_width=True)
 
 
 def show_task_bounds():
     st.subheader("Task bounds", divider=True)
-    format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
+    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
     st.dataframe(global_data["task bounds"].style.format(format), hide_index=True, use_container_width=True)
 
 
 def show_expert_bounds():
     st.subheader("Expert bounds and preferences", divider=True)
-    format = {'Start day': "{:%Y-%m-%d}", 'End day': "{:%Y-%m-%d}"}
+    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
     st.dataframe(global_data["expert bounds"].style.format(format), hide_index=True, use_container_width=True)
 
 

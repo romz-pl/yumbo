@@ -21,8 +21,8 @@ def show_tasks_gantt_chart(expert_name):
 
 def show_schedule_as_table(expert_name):
     tasks = glb.tasks_for_expert(expert_name)
-    start_date = romz_datetime.to_string(tasks["Start day"].min())
-    end_date = romz_datetime.to_string(tasks["End day"].max())
+    start_date = romz_datetime.to_string(tasks["Start"].min())
+    end_date = romz_datetime.to_string(tasks["End"].max())
 
     # Retrieve the relevant schedule data
     df = glb.data[f"schedule {expert_name}"].loc[tasks["Name"], start_date:end_date]
