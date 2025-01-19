@@ -72,21 +72,19 @@ def show_solver_output():
 def show_one_row(expert_name):
     report_column_no = glb.data["report_column_no"]
     col_list = st.columns(report_column_no)
-    for ii, col in enumerate(col_list):
+    for ii, col in enumerate(col_list, start=1):
         with col:
-            chart_name  = glb.data[f"report_column_{ii+1}"]
+            chart_name  = glb.data[f"report_column_{ii}"]
             if chart_name == "Task's Gantt chart":
                 show_tasks_gantt_chart(expert_name)
             elif chart_name == "Tasks per day":
-                plot_tasks_per_day.plot(glb.data[f"schedule {expert_name}"])
+                plot_tasks_per_day.plot(expert_name)
             elif chart_name == "Hours per day":
-                plot_hours_per_day.plot(glb.data[f"schedule {expert_name}"])
+                plot_hours_per_day.plot(expert_name)
             elif chart_name == "Hours per day stacked":
                 plot_schedule_stacked_histogram.plot(expert_name)
             elif chart_name == "Invoice period workload":
                 plot_invoicing_periods_histogram.plot(expert_name)
-            else:
-                st.write(chart_name)
 
 
 def show_main_panel():

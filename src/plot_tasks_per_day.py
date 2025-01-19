@@ -8,7 +8,7 @@ import romz_datetime
 import datetime
 import glb
 
-def plot(df):
+def plot_df(df):
     start = glb.tstart()
     end = glb.tend()
 
@@ -52,7 +52,19 @@ def plot(df):
         st.image(buf)
 
 
+def plot(expert_name):
+    plot_df(glb.data[f"schedule {expert_name}"])
+
 
 def plot_summary():
-    dfs = [ glb.data[f"schedule {e}"]  for e in glb.data["experts"]["Name"] ]
-    plot(sum(dfs))
+    dfs = (glb.data[f"schedule {e}"] for e in glb.data["experts"]["Name"])
+    plot_df(sum(dfs))
+
+#
+# Is this better, faster??
+#
+# def plot_summary():
+#     # Combine all schedules into a single DataFrame using pd.concat
+#     dfs = (glb.data[f"schedule {e}"] for e in glb.data["experts"]["Name"])
+#     combined_df = pd.concat(dfs, ignore_index=True)
+#     plot_df(combined_df)
