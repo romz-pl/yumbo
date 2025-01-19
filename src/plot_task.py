@@ -22,11 +22,10 @@ def plot(task, schedule, bounds):
     # Configure grid and axis properties
     ax.xaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
     ax.xaxis.set_minor_locator(tck.AutoMinorLocator())
-    ax.yaxis.set_major_locator(tck.MultipleLocator(1))
+    ax.yaxis.set_major_locator(tck.MaxNLocator(5))
     ax.yaxis.grid(alpha=0.5)
     ax.set_axisbelow(True)
     ax.set_xlim([x_task[0], x_task[-1]])
-    ax.set_ylim([-0.2, 8])
     ax.tick_params(axis="x", labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
 
