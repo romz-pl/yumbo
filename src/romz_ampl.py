@@ -111,7 +111,6 @@ def xbsum():
     return len(result), "\n".join(result)
 
 
-
 def ubday():
     today = glb.today()
     df = glb.data["ubday"]
