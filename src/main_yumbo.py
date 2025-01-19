@@ -130,9 +130,10 @@ def show_page_header():
 
 def shwo_yumbo_description():
     st.divider()
-    col1, col2, col3 = st.columns(3)
+    cols = st.columns(3)
 
-    with col1:
+    # The cols[1] and cols[2] are not used!
+    with cols[0]:
         dd = os.path.dirname(__file__)
         with open(f"{dd}/../doc/yumbo.md", "r") as f:
             st.markdown(f'''{f.read()}''')
