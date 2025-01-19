@@ -8,15 +8,15 @@ import glb
 
 def plot(task, schedule, bounds):
     # Generate task-specific data
-    x_task = pd.date_range(start=task["Start"], end=task["End"], freq="D")
-    y_task = schedule.loc[task["Name"], x_task.strftime(romz_datetime.format())]
+    x_task = pd.date_range(start=task.Start, end=task.End, freq="D")
+    y_task = schedule.loc[task.Name, x_task.strftime(romz_datetime.format())]
 
     # Create figure and axis
     fig = Figure(figsize=(8, 4))
     ax = fig.subplots()
 
     # Plot task data
-    ax.plot(x_task, y_task, "o", markeredgewidth=0.5, label=f"Task {task['Name']}")
+    ax.plot(x_task, y_task, "o", markeredgewidth=0.5, label=f"Task {task.Name}")
     ax.step(x_task, y_task, linewidth=0.5, where="mid")
 
     # Configure grid and axis properties

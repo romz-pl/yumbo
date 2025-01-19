@@ -38,17 +38,13 @@ def show_schedule_as_table(expert_name):
 def show_commitment_per_task(expert_name):
     tasks_for_expert = glb.tasks_for_expert(expert_name)
     schedule = glb.data[f"schedule {expert_name}"]
-
-    # Filter relevant xbday for the expert
-    xbday_all = glb.data["xbday"]
-    xbday = xbday_all[xbday_all["Expert"] == expert_name]
-
+    xbday = glb.data["xbday"][glb.data["xbday"]["Expert"] == expert_name]
+    xbday_grouped = xbday.groupby('Task')
     cols = st.columns(3)
-    for j, idx in enumerate(tasks_for_expert.index):
-        task = tasks_for_expert.loc[idx]
 
-        bounds = xbday.loc[xbday["Task"] == task["Name"]]
-        with cols[j % 3]:
+    for jj, task in enumerate(tasks_for_expert.itertuples(index=False)):
+        bounds = xbday_grouped.get_group(task.Name)
+        with cols[jj % 3]:
             plot_task.plot(task, schedule, bounds)
 
 
