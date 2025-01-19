@@ -5,6 +5,9 @@ import matplotlib.ticker as tck
 import pandas as pd
 import glb
 
+def wimg(col):
+    return glb.data["wimg"].iloc[0][col]
+
 def plot(expert_name):
 
     invper = glb.data["invoicing periods"]
@@ -31,7 +34,7 @@ def plot(expert_name):
     yerr = [y - ylower, yupper - y]
 
     # Create the plot
-    fig = Figure(figsize=(8, 4))
+    fig = Figure(figsize=(wimg("Width"), wimg("Height")))
     ax = fig.subplots()
     ax.set_ylabel("Hours")
     ax.set_title("Invoicing Periods Workload")
@@ -39,9 +42,9 @@ def plot(expert_name):
         bounds["Period"],
         y,
         yerr=yerr,
-        color="#7BC8F6",
-        ecolor="tab:red",
-        capsize=4,
+        color=wimg("Bar:color"),
+        ecolor=wimg("Bar:ecolor"),
+        capsize=wimg("Bar:capsize"),
     )
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
@@ -49,6 +52,6 @@ def plot(expert_name):
     # Finalize and display the plot
     fig.tight_layout()
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.dpi(), pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=wimg("Dpi"), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)

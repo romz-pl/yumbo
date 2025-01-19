@@ -8,9 +8,12 @@ import romz_datetime
 import datetime
 import glb
 
+def timg(col):
+    return glb.data["timg"].iloc[0][col]
+
 def plot_df(df):
-    start = glb.tstart()
-    end = glb.tend()
+    start = timg("Start")
+    end = timg("End")
 
     # Generate the date range as string
     days = pd.period_range(start=start, end=end, freq="D").astype(str)
@@ -27,7 +30,7 @@ def plot_df(df):
     width = 0.9 if days.size < 10 else 1.0
 
     # Create figure and axis
-    fig = Figure(figsize=(8, 4))
+    fig = Figure(figsize=(timg("Width"), timg("Height")))
     ax = fig.subplots()
 
     # Configure plot properties
@@ -42,12 +45,12 @@ def plot_df(df):
     ax.tick_params(axis="y", labelsize="x-small")
 
     # Add bars to the plot
-    ax.bar(days, tasks_per_day, width, color="C3", hatch="\\", alpha=0.3)
+    ax.bar(days, tasks_per_day, width, color=timg("Bar:color"), hatch=timg("Bar:hatch"), alpha=timg("Bar:alpha"))
 
     # Finalize and save the plot
     fig.tight_layout()
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.dpi(), pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=timg("Dpi"), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
 
