@@ -129,7 +129,6 @@ def show(uploaded_file):
     st.caption(f"Tomorrow: :green[{glb.tomorrow().date()}]")
     st.caption(f"Last day: :green[{glb.last_day().date()}]")
 
-
     customise_report()
     show_tasks()
     show_experts()
