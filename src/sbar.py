@@ -61,8 +61,6 @@ def customise_show_experts():
 
 
 def customise_report():
-
-
     customise_report_layout()
     customise_show_experts()
 
