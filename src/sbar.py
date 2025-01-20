@@ -12,7 +12,9 @@ def load_excel_file():
     return uploaded_file
 
 
-def customise_charts_no():
+def customise_report_layout():
+    st.subheader("Customise report layout", divider="blue")
+    glb.data["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
     max_col_no = 4
     report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=4)
 
@@ -21,12 +23,15 @@ def customise_charts_no():
             f"Col {ii}",
             ("Task's Gantt chart", "Tasks per day", "Hours per day stacked", "Hours per day", "Invoice period workload"),
             disabled = (ii > report_column_no),
-            index = (ii - 1)
+            index = (ii - 1),
+            label_visibility = "collapsed",
         )
     glb.data["report_column_no"] = report_column_no
 
 
 def customise_show_experts():
+    st.subheader("Customise expert look and feel", divider="blue")
+
     show_all_experts = st.checkbox("Show all experts?")
 
     expert = glb.data["experts"]["Name"].to_numpy()
@@ -56,9 +61,9 @@ def customise_show_experts():
 
 
 def customise_report():
-    st.subheader("Customise report", divider="blue")
-    glb.data["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
-    customise_charts_no()
+
+
+    customise_report_layout()
     customise_show_experts()
 
 
