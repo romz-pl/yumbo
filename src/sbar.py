@@ -30,7 +30,7 @@ def customise_report_layout():
 
 
 def customise_show_experts():
-    st.subheader("Customise expert look and feel", divider="blue")
+    st.subheader("Customise look and feel", divider="blue")
 
     show_all_experts = st.checkbox("Show all experts?")
 
