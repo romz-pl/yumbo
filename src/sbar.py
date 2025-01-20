@@ -70,6 +70,7 @@ def timg(col):
 def simg(col):
     return glb.data["simg"].iloc[0][col]
 
+
 def customise_date_range():
     st.subheader("Customise date ranges", divider="blue")
 
