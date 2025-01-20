@@ -124,8 +124,10 @@ def show_invoicing_periods_bounds():
 
 def show(uploaded_file):
     new_input = glb.prepare(uploaded_file)
-    st.subheader("Today: :green[{today}]".format(today=glb.today().date()), divider="blue")
-    st.subheader("Hours per day: :green[{}]".format(glb.hours_per_day()), divider="blue")
+    st.subheader(f"Planing horizon", divider="blue")
+    st.caption(f"Today: :green[{glb.today()}]")
+    st.caption(f"Tomorrow: :green[{glb.tomorrow()}]")
+    st.caption(f"Last day: :green[{glb.last_day()}]")
     customise_report()
     show_tasks()
     show_experts()
