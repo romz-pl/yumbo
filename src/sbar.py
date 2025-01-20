@@ -1,6 +1,7 @@
 import glb
 import numpy as np
 import pandas as pd
+import romz_datetime
 import streamlit as st
 
 def load_excel_file():
@@ -60,9 +61,39 @@ def customise_show_experts():
     )
 
 
+def himg(col):
+    return glb.data["himg"].iloc[0][col]
+
+def timg(col):
+    return glb.data["timg"].iloc[0][col]
+
+def simg(col):
+    return glb.data["simg"].iloc[0][col]
+
+def customise_date_range():
+    st.subheader("Customise date ranges", divider="blue")
+
+    rowa = st.columns(3)
+    rowa[0].write("Tasks per day")
+    glb.data["timg"]["Start"] = rowa[1].date_input("timg:Start", format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=timg("Start"))
+    glb.data["timg"]["End"]   = rowa[2].date_input("timg:End"  , format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=timg("End"))
+
+
+    rowb = st.columns(3)
+    rowb[0].write("Tasks per day stacked")
+    glb.data["simg"]["Start"] = rowb[1].date_input("simg:Start", format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=simg("Start"))
+    glb.data["simg"]["End"]   = rowb[2].date_input("simg:End"  , format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=simg("End"))
+
+
+    rowc = st.columns(3)
+    rowc[0].write("Hours per day")
+    glb.data["himg"]["Start"] = rowc[1].date_input("himg:Start", format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=himg("Start"))
+    glb.data["himg"]["End"]   = rowc[2].date_input("himg:End"  , format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=himg("End"))
+
 def customise_report():
     customise_report_layout()
     customise_show_experts()
+    customise_date_range()
 
 
 def show_tasks():
