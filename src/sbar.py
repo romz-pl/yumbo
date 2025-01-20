@@ -17,7 +17,7 @@ def customise_report():
     glb.data["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
 
     max_col_no = 4
-    report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=3)
+    report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=4)
 
     for ii in range(1, max_col_no + 1):
         glb.data[f"report_column_{ii}"] = st.selectbox(
