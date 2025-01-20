@@ -14,7 +14,7 @@ def load_excel_file():
 
 
 def customise_report_layout():
-    st.subheader("Customise report layout", divider="blue")
+    st.subheader("Report layout", divider="blue")
     glb.data["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
     max_col_no = 4
     report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=4)
@@ -31,7 +31,7 @@ def customise_report_layout():
 
 
 def customise_show_experts():
-    st.subheader("Customise look and feel", divider="blue")
+    st.subheader("Look and feel", divider="blue")
 
     show_all_experts = st.checkbox("Show all experts?")
 
@@ -72,7 +72,7 @@ def simg(col):
 
 
 def customise_date_range():
-    st.subheader("Customise date ranges", divider="blue")
+    st.subheader("Date ranges", divider="blue")
 
     rowa = st.columns(3)
     rowa[0].write("Tasks per day")
