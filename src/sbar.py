@@ -12,10 +12,7 @@ def load_excel_file():
     return uploaded_file
 
 
-def customise_report():
-    st.subheader("Customise report", divider="blue")
-    glb.data["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
-
+def customise_charts_no():
     max_col_no = 4
     report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=4)
 
@@ -28,6 +25,8 @@ def customise_report():
         )
     glb.data["report_column_no"] = report_column_no
 
+
+def customise_show_experts():
     show_all_experts = st.checkbox("Show all experts?")
 
     expert = glb.data["experts"]["Name"].to_numpy()
@@ -43,7 +42,7 @@ def customise_report():
     if show_all_experts:
         df["Show?"] = np.ones(rowno, dtype='bool')
 
-    edited_df = st.data_editor(
+    glb.data["report"] = st.data_editor(
         df,
         hide_index=True,
         use_container_width=True,
@@ -55,7 +54,12 @@ def customise_report():
         }
     )
 
-    glb.data["report"] = edited_df
+
+def customise_report():
+    st.subheader("Customise report", divider="blue")
+    glb.data["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
+    customise_charts_no()
+    customise_show_experts()
 
 
 def show_tasks():
