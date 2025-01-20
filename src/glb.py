@@ -9,14 +9,14 @@ def hours_per_day():
     return data["misc"].iloc[0]["Hours per day"]
 
 def today():
-    return (data["misc"].iloc[0]["Today"]).date()
+    return (data["misc"].iloc[0]["Today"])
     # return data["misc"].at[0, "Today"]
 
 def tomorrow():
     return (today() + datetime.timedelta(days=1))
 
 def last_day():
-    return (today() + datetime.timedelta(days=int(data["DAY_NO"])))
+    return max(data["tasks"]["End"].max(), data["invoicing periods"]["End"].max())
 
 def prepare(uploaded_file):
     global data

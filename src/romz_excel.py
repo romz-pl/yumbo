@@ -146,7 +146,7 @@ def adjust_start_days():
         "invoicing periods",
     ]
 
-    tomorrow = glb.today() + pd.Timedelta(days=1)
+    tomorrow = pd.to_datetime(glb.tomorrow(), format=romz_datetime.format())
 
     # Apply the adjustment to each target DataFrame
     for key in targets:
