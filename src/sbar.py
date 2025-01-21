@@ -16,8 +16,8 @@ def load_excel_file():
 def customise_report_layout():
     st.subheader("Report layout", divider="blue")
     glb.data["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
-    max_col_no = 4
-    report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=4)
+    max_col_no = 5
+    report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=max_col_no)
 
     for ii in range(1, max_col_no + 1):
         glb.data[f"report_column_{ii}"] = st.selectbox(
@@ -33,31 +33,32 @@ def customise_report_layout():
 def customise_show_experts():
     st.subheader("Look and feel", divider="blue")
 
-    show_all_experts = st.checkbox("Show all experts?")
+    # Extract expert names and define row/column counts
+    experts = glb.data["experts"]["Name"].to_numpy()
+    row_count = len(experts)
 
-    expert = glb.data["experts"]["Name"].to_numpy()
-    rowno = len(expert)
-    colno = 4
-    df = pd.DataFrame(np.zeros(rowno * colno, dtype='bool').reshape((rowno, colno)),
-        index = expert,
-        columns = ["Expert", "Show?", "Table?", "Commitment?"])
-    df["Expert"] = expert
+    # Create a DataFrame with predefined columns and default boolean values
+    names = ["Charts", "Table", "Commitment"]
+    df = pd.DataFrame(False, index=experts, columns=names)
+    df.index.name = "Expert"
 
-    df.sort_values(by="Expert", inplace=True)
+    # Sort the DataFrame by index (expert names)
+    df.sort_index(inplace=True)
 
-    if show_all_experts:
-        df["Show?"] = np.ones(rowno, dtype='bool')
+    # Update column values based on user input from Streamlit checkboxes
+    df[names[0]] = st.checkbox(f"Show {names[0]}", value=True)
+    df[names[1]] = st.checkbox(f"Show {names[1]}", value=False)
+    df[names[2]] = st.checkbox(f"Show {names[2]}", value=False)
 
+    # Use Streamlit data editor with configuration for interaction
     glb.data["report"] = st.data_editor(
         df,
         hide_index=True,
         use_container_width=True,
-        column_config = {
+        column_config={
             "Expert": st.column_config.TextColumn(disabled=True, pinned=True),
-            "Show?": st.column_config.CheckboxColumn(),
-            "Table?": st.column_config.CheckboxColumn(),
-            "Commitment?": st.column_config.CheckboxColumn(),
-        }
+            **{col: st.column_config.CheckboxColumn() for col in names},
+        },
     )
 
 

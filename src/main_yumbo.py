@@ -97,13 +97,11 @@ def show_all_rows():
         expert_name = row.Name
         st.subheader(f":blue[{expert_name}] {row.Comment}", divider="blue")
 
-        if not report.at[expert_name, "Show?"]:
-            continue
-
-        show_one_row(expert_name)
-        if report.at[expert_name, "Table?"]:
+        if report.at[expert_name, "Charts"]:
+            show_one_row(expert_name)
+        if report.at[expert_name, "Table"]:
             show_schedule_as_table(expert_name)
-        if report.at[expert_name, "Commitment?"]:
+        if report.at[expert_name, "Commitment"]:
             show_commitment_per_task(expert_name)
 
 
