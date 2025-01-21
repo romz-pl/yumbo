@@ -9,12 +9,9 @@ import romz_datetime
 import datetime
 import glb
 
-def simg(col):
-    return glb.data["simg"].iloc[0][col]
-
 def plot(expert_name):
-    start = simg("Start")
-    end = simg("End")
+    start = glb.simg("Start")
+    end = glb.simg("End")
 
     # Generate day labels and filter dataframe
     days = pd.date_range(start=start, end=end, freq="D")
@@ -29,7 +26,7 @@ def plot(expert_name):
     right = matplotlib.dates.date2num(end + datetime.timedelta(days=1))
 
     # Initialize figure and axis
-    fig = Figure(figsize=(simg("Width"), simg("Height")))
+    fig = Figure(figsize=(glb.simg("Width"), glb.simg("Height")))
     ax = fig.subplots()
     ax.set_title("Hours per day stacked")
     ax.set_xlim([left, right])
@@ -60,7 +57,7 @@ def plot(expert_name):
             width,
             label=task_name,
             bottom=bottom,
-            alpha=simg("Bar:alpha"),
+            alpha=glb.simg("Bar:alpha"),
         )
         bottom = bottom + task_data
 
@@ -70,7 +67,7 @@ def plot(expert_name):
 
     # Save the figure to a buffer
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=simg("Dpi"), pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.simg("Dpi"), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
 

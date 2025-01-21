@@ -5,6 +5,15 @@ import romz_excel
 
 data = dict()
 
+def himg(col):
+    return data["himg"].iloc[0][col]
+
+def timg(col):
+    return data["timg"].iloc[0][col]
+
+def simg(col):
+    return data["simg"].iloc[0][col]
+
 def hours_per_day():
     return data["misc"].iloc[0]["Hours per day"]
 
