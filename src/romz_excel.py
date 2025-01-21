@@ -111,8 +111,7 @@ def read_simg(xlsx):
 
 
 def read_gimg(xlsx):
-    df = xlsx.parse(sheet_name="gimg", usecols="B:I")
-    df = parse_date_columns(df, ["Start", "End"])
+    df = xlsx.parse(sheet_name="gimg", usecols="B:G")
     glb.data["gimg"] = df
 
 
