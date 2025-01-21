@@ -182,4 +182,3 @@ def show(uploaded_file):
     show_invoicing_periods()
     show_invoicing_periods_bounds()
     return new_input
-
