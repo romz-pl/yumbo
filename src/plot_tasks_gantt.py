@@ -7,14 +7,13 @@ import numpy as np
 import streamlit as st
 import glb
 
-def gimg(col):
-    return glb.data["gimg"].iloc[0][col]
+
 
 def plot_summary():
 
     df = glb.data["tasks"]
     # Create figure and axis
-    fig = Figure(figsize=(gimg("Width"), gimg("Height")))
+    fig = Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")))
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
 
@@ -23,9 +22,9 @@ def plot_summary():
         y=df["Name"],
         width=df["Days"] - 1,
         left=df["Start"],
-        color=gimg("Barh:color"),
-        height=gimg("Barh:height"),
-        alpha=gimg("Barh:alpha"),
+        color=glb.gimg("Barh:color"),
+        height=glb.gimg("Barh:height"),
+        alpha=glb.gimg("Barh:alpha"),
     )
 
     # Configure x-axis
@@ -45,14 +44,14 @@ def plot_summary():
 
     # Save the figure to a buffer and display
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=gimg("Dpi"), pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.gimg("Dpi"), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
 
 
 def plot(df, work_done):
     # Create figure and axis
-    fig = Figure(figsize=(gimg("Width"), gimg("Height")))
+    fig = Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")))
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
 
@@ -61,9 +60,9 @@ def plot(df, work_done):
         y=df["Name"],
         width=df["Days"] - 1,
         left=df["Start"],
-        color=gimg("Barh:color"),
-        height=gimg("Barh:height"),
-        alpha=gimg("Barh:alpha"),
+        color=glb.gimg("Barh:color"),
+        height=glb.gimg("Barh:height"),
+        alpha=glb.gimg("Barh:alpha"),
     )
 
     # Add labels to the bars
@@ -89,7 +88,7 @@ def plot(df, work_done):
 
     # Save the figure to a buffer and display
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=gimg("Dpi"), pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.gimg("Dpi"), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
 

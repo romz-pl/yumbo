@@ -14,6 +14,15 @@ def timg(col):
 def simg(col):
     return data["simg"].iloc[0][col]
 
+def wimg(col):
+    return data["wimg"].iloc[0][col]
+
+def bimg(col):
+    return data["bimg"].iloc[0][col]
+
+def gimg(col):
+    return data["gimg"].iloc[0][col]
+
 def hours_per_day():
     return data["misc"].iloc[0]["Hours per day"]
 

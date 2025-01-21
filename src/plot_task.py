@@ -6,8 +6,7 @@ import romz_datetime
 import pandas as pd
 import glb
 
-def bimg(col):
-    return glb.data["bimg"].iloc[0][col]
+
 
 def plot(task, schedule, bounds):
     # Generate task-specific data
@@ -15,12 +14,12 @@ def plot(task, schedule, bounds):
     y_task = schedule.loc[task.Name, x_task.strftime(romz_datetime.format())]
 
     # Create figure and axis
-    fig = Figure(figsize=(bimg("Width"), bimg("Height")))
+    fig = Figure(figsize=(glb.bimg("Width"), glb.bimg("Height")))
     ax = fig.subplots()
 
     # Plot task data
-    ax.plot(x_task, y_task, bimg("Plot:format"), markeredgewidth=bimg("Plot:markeredgewidth"), label=f"Task {task.Name}")
-    ax.step(x_task, y_task, linewidth=bimg("Step:linewidth"), where="mid")
+    ax.plot(x_task, y_task, glb.bimg("Plot:format"), markeredgewidth=glb.bimg("Plot:markeredgewidth"), label=f"Task {task.Name}")
+    ax.step(x_task, y_task, linewidth=glb.bimg("Step:linewidth"), where="mid")
 
     # Configure grid and axis properties
     ax.xaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
@@ -39,7 +38,7 @@ def plot(task, schedule, bounds):
         if lower == upper:
             lower -= 0.5
             upper += 0.5
-        ax.fill_between(bound_days, lower, upper, color=bimg("Fill:color"), hatch=bimg("Fill:hatch"), alpha=bimg("Fill:alpha"))
+        ax.fill_between(bound_days, lower, upper, color=glb.bimg("Fill:color"), hatch=glb.bimg("Fill:hatch"), alpha=glb.bimg("Fill:alpha"))
 
     # Add legend and finalize layout
     ax.legend(loc="upper right")
@@ -47,6 +46,6 @@ def plot(task, schedule, bounds):
 
     # Save and display the plot
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=bimg("Dpi"), pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.bimg("Dpi"), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
