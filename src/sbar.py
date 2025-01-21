@@ -61,28 +61,36 @@ def customise_show_experts():
     )
 
 
-
-
-
 def customise_date_range():
     st.subheader("Date ranges", divider="blue")
 
-    rowa = st.columns(3)
-    rowa[0].write("Tasks per day")
-    glb.data["timg"]["Start"] = rowa[1].date_input("timg:Start", format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=glb.timg("Start"))
-    glb.data["timg"]["End"]   = rowa[2].date_input("timg:End"  , format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=glb.timg("End"))
+    # Mapping data keys to labels
+    sections = {
+        "timg": "Tasks per day",
+        "simg": "Tasks per day stacked",
+        "himg": "Hours per day",
+    }
 
+    for key, label in sections.items():
+        row = st.columns(3)
+        row[0].write(label)
+        glb.data[key]["Start"] = row[1].date_input(
+            f"{key}:Start",
+            format="YYYY-MM-DD",
+            min_value=glb.tomorrow(),
+            max_value=glb.last_day(),
+            label_visibility="collapsed",
+            value=getattr(glb, key)("Start"),
+        )
+        glb.data[key]["End"] = row[2].date_input(
+            f"{key}:End",
+            format="YYYY-MM-DD",
+            min_value=glb.tomorrow(),
+            max_value=glb.last_day(),
+            label_visibility="collapsed",
+            value=getattr(glb, key)("End"),
+        )
 
-    rowb = st.columns(3)
-    rowb[0].write("Tasks per day stacked")
-    glb.data["simg"]["Start"] = rowb[1].date_input("simg:Start", format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=glb.simg("Start"))
-    glb.data["simg"]["End"]   = rowb[2].date_input("simg:End"  , format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=glb.simg("End"))
-
-
-    rowc = st.columns(3)
-    rowc[0].write("Hours per day")
-    glb.data["himg"]["Start"] = rowc[1].date_input("himg:Start", format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=glb.himg("Start"))
-    glb.data["himg"]["End"]   = rowc[2].date_input("himg:End"  , format="YYYY-MM-DD", min_value=glb.tomorrow(), max_value=glb.last_day(), label_visibility="collapsed", value=glb.himg("End"))
 
 def customise_report():
     customise_report_layout()
