@@ -5,9 +5,9 @@ In the domain of applied operations research, access to sophisticated **computat
 The NEOS Server (Network-Enabled Optimization System) is a robust online platform that provides access to state-of-the-art **optimization solvers**. Regardless of whether the user is confronted with complex linear programming, nonlinear optimization, or stochastic challenges, NEOS is equipped with a solver to address these issues. The platform has been designed to support a diverse range of needs across industries, including but not limited to supply chain optimisation, financial modelling, and scheduling.
 
 The NEOS Server is worthy to notate since it provides the following comprehensive solver suite:
-• **Linear and Mixed-Integer Programming**: Solvers such as CPLEX, Gurobi, HiGHS and SCIP are capable of handling large-scale optimization problems with a high degree of precision.
-• **Nonlinear Programming**: Utilising tools such as CONOPT and Knitro facilitates the resolution of both smooth and non-smooth nonlinear problems.
-• **Global Optimization**: In problems requiring global solutions, the solvers LINDOGlobal and BARON are ideal.
++ **Linear and Mixed-Integer Programming**: Solvers such as CPLEX, Gurobi, HiGHS and SCIP are capable of handling large-scale optimization problems with a high degree of precision.
++ **Nonlinear Programming**: Utilising tools such as CONOPT and Knitro facilitates the resolution of both smooth and non-smooth nonlinear problems.
++ **Global Optimization**: In problems requiring global solutions, the solvers LINDOGlobal and BARON are ideal.
 
 The **accessibility and affordability** of these software tools is a significant advantage, making them a viable option for a wide range of users. A particularly salient feature of NEOS is its zero-cost access. This feature ensures that students, educators, and professionals from all backgrounds have unimpeded access to cutting-edge optimization tools, eliminating financial constraints.
 
