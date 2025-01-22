@@ -4,7 +4,7 @@ import pandas as pd
 import streamlit as st
 import romz_ampl
 import romz_datetime
-import plot_hours_per_day
+import himg
 import plot_invoicing_periods_histogram
 import plot_schedule_stacked_histogram
 import plot_task
@@ -61,7 +61,7 @@ def show_summary():
         with col2:
             plot_tasks_per_day.plot_summary()
         with col3:
-            plot_hours_per_day.plot_summary()
+            himg.plot_summary()
 
 
 def show_solver_output():
@@ -77,7 +77,7 @@ def show_one_row(expert_name):
     chart_functions = {
         "Task's Gantt chart": show_tasks_gantt_chart,
         "Tasks per day": plot_tasks_per_day.plot,
-        "Hours per day": plot_hours_per_day.plot,
+        "Hours per day": himg.plot,
         "Hours per day stacked": plot_schedule_stacked_histogram.plot,
         "Invoice period workload": plot_invoicing_periods_histogram.plot
     }

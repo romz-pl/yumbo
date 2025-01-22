@@ -8,6 +8,10 @@ import romz_datetime
 import datetime
 import glb
 
+#
+# Hours per day
+#
+
 def plot_df(df):
     start = glb.himg("Start")
     end = glb.himg("End")
