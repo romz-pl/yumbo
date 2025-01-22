@@ -5,8 +5,8 @@ import streamlit as st
 import romz_ampl
 import romz_datetime
 import himg
-import plot_invoicing_periods_histogram
-import plot_schedule_stacked_histogram
+import wimg
+import simg
 import plot_task
 import plot_tasks_gantt
 import plot_tasks_per_day
@@ -78,8 +78,8 @@ def show_one_row(expert_name):
         "Task's Gantt chart": show_tasks_gantt_chart,
         "Tasks per day": plot_tasks_per_day.plot,
         "Hours per day": himg.plot,
-        "Hours per day stacked": plot_schedule_stacked_histogram.plot,
-        "Invoice period workload": plot_invoicing_periods_histogram.plot
+        "Hours per day stacked": simg.plot,
+        "Invoice period workload": wimg.plot
     }
 
     for ii, col in enumerate(col_list, start=1):

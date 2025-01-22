@@ -9,6 +9,10 @@ import romz_datetime
 import datetime
 import glb
 
+#
+# Hours per day stacked
+#
+
 def plot(expert_name):
     start = glb.simg("Start")
     end = glb.simg("End")

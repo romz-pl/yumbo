@@ -5,6 +5,9 @@ import matplotlib.ticker as tck
 import pandas as pd
 import glb
 
+#
+# Invoicing Periods Workload
+#
 
 
 def plot(expert_name):
