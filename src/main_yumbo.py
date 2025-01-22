@@ -131,7 +131,7 @@ def show_page_header():
     st.caption("_{d}_".format(d=datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")))
 
 
-def shwo_yumbo_description():
+def show_yumbo_description():
     st.divider()
     cols = st.columns(3)
 
@@ -157,7 +157,7 @@ def main():
             new_input = sbar.show(uploaded_file)
 
     if uploaded_file == None:
-        shwo_yumbo_description()
+        show_yumbo_description()
         return
 
     if new_input:
