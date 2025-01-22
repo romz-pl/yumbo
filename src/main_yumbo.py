@@ -169,7 +169,6 @@ def main():
 
     show_main_panel()
 
-
 ######################## CALL MAIN FUNCTION ##################
 
 if __name__ == "__main__":
