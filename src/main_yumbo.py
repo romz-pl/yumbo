@@ -133,7 +133,7 @@ def show_page_header():
 
 def show_yumbo_description():
     st.divider()
-    cols = st.columns(3)
+    cols = st.columns(2)
 
     # The cols[1] and cols[2] are not used!
     with cols[0]:
