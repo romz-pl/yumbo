@@ -7,9 +7,9 @@ import romz_datetime
 import himg
 import wimg
 import simg
-import plot_task
-import plot_tasks_gantt
-import plot_tasks_per_day
+import bimg
+import gimg
+import timg
 import glb
 import sbar
 
@@ -17,7 +17,7 @@ import sbar
 def show_tasks_gantt_chart(expert_name):
     tasks = glb.tasks_for_expert(expert_name)
     work_done = glb.data[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
-    plot_tasks_gantt.plot(tasks, work_done)
+    gimg.plot(tasks, work_done)
 
 
 def show_schedule_as_table(expert_name):
@@ -49,7 +49,7 @@ def show_commitment_per_task(expert_name):
         else:
             bounds = pd.DataFrame()
         with cols[jj % 3]:
-            plot_task.plot(task, schedule, bounds)
+            bimg.plot(task, schedule, bounds)
 
 
 def show_summary():
@@ -57,9 +57,9 @@ def show_summary():
         st.subheader(":blue[Experts overview]", divider="blue")
         col1, col2, col3 = st.columns(3)
         with col1:
-            plot_tasks_gantt.plot_summary()
+            gimg.plot_summary()
         with col2:
-            plot_tasks_per_day.plot_summary()
+            timg.plot_summary()
         with col3:
             himg.plot_summary()
 
@@ -76,7 +76,7 @@ def show_one_row(expert_name):
     # Define the mapping of chart names to functions
     chart_functions = {
         "Task's Gantt chart": show_tasks_gantt_chart,
-        "Tasks per day": plot_tasks_per_day.plot,
+        "Tasks per day": timg.plot,
         "Hours per day": himg.plot,
         "Hours per day stacked": simg.plot,
         "Invoice period workload": wimg.plot

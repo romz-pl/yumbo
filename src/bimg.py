@@ -6,7 +6,9 @@ import romz_datetime
 import pandas as pd
 import glb
 
-
+#
+# Plot task with its constrains
+#
 
 def plot(task, schedule, bounds):
     # Generate task-specific data
