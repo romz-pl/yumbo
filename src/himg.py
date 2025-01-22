@@ -72,3 +72,4 @@ def plot(expert_name):
 def plot_summary():
     dfs = (glb.data[f"schedule {e}"] for e in glb.data["experts"]["Name"])
     plot_df(sum(dfs))
+
