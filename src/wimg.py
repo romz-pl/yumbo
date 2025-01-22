@@ -4,6 +4,7 @@ from matplotlib.figure import Figure
 import matplotlib.ticker as tck
 import pandas as pd
 import glb
+import time
 
 #
 # Invoicing Periods Workload
@@ -11,6 +12,7 @@ import glb
 
 
 def plot(expert_name):
+    time_start = time.perf_counter()
 
     invper = glb.data["invoicing periods"]
     schedule = glb.data[f"schedule {expert_name}"]
@@ -57,3 +59,7 @@ def plot(expert_name):
         fig.savefig(buf, format="png", dpi=glb.wimg("Dpi"), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
+
+    time_end = time.perf_counter()
+    glb.data["time:wimg:cnt"] += 1
+    glb.data["time:wimg:val"] += time_end - time_start

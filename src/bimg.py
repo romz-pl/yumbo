@@ -5,12 +5,15 @@ import matplotlib.ticker as tck
 import romz_datetime
 import pandas as pd
 import glb
+import time
 
 #
 # Plot task with its constrains
 #
 
 def plot(task, schedule, bounds):
+    time_start = time.perf_counter()
+
     # Generate task-specific data
     x_task = pd.date_range(start=task.Start, end=task.End, freq="D")
     y_task = schedule.loc[task.Name, x_task.strftime(romz_datetime.format())]
@@ -51,3 +54,7 @@ def plot(task, schedule, bounds):
         fig.savefig(buf, format="png", dpi=glb.bimg("Dpi"), pil_kwargs={"compress_level": 1})
         buf.seek(0)
         st.image(buf)
+
+    time_end = time.perf_counter()
+    glb.data["time:bimg:cnt"] += 1
+    glb.data["time:bimg:val"] += time_end - time_start

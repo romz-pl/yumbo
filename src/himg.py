@@ -7,12 +7,15 @@ import matplotlib.ticker as tck
 import romz_datetime
 import datetime
 import glb
+import time
 
 #
 # Hours per day
 #
 
 def plot_df(df):
+
+
     start = glb.himg("Start")
     end = glb.himg("End")
 
@@ -57,7 +60,13 @@ def plot_df(df):
 
 
 def plot(expert_name):
+    time_start = time.perf_counter()
+
     plot_df(glb.data[f"schedule {expert_name}"])
+
+    time_end = time.perf_counter()
+    glb.data["time:himg:cnt"] += 1
+    glb.data["time:himg:val"] += time_end - time_start
 
 
 def plot_summary():

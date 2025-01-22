@@ -6,13 +6,13 @@ import matplotlib.artist
 import numpy as np
 import streamlit as st
 import glb
+import time
 
 #
 # Task's Gantt Chart
 #
 
 def plot_summary():
-
     df = glb.data["tasks"]
     # Create figure and axis
     fig = Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")))
@@ -52,6 +52,8 @@ def plot_summary():
 
 
 def plot(df, work_done):
+    time_start = time.perf_counter()
+
     # Create figure and axis
     fig = Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")))
     ax = fig.subplots()
@@ -94,3 +96,6 @@ def plot(df, work_done):
         buf.seek(0)
         st.image(buf)
 
+    time_end = time.perf_counter()
+    glb.data["time:gimg:cnt"] += 1
+    glb.data["time:gimg:val"] += time_end - time_start

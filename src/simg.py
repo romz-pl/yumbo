@@ -8,12 +8,16 @@ import numpy as np
 import romz_datetime
 import datetime
 import glb
+import time
 
 #
 # Hours per day stacked
 #
 
+
 def plot(expert_name):
+    time_start = time.perf_counter()
+
     start = glb.simg("Start")
     end = glb.simg("End")
 
@@ -75,4 +79,7 @@ def plot(expert_name):
         buf.seek(0)
         st.image(buf)
 
+    time_end = time.perf_counter()
+    glb.data["time:simg:cnt"] += 1
+    glb.data["time:simg:val"] += time_end - time_start
 
