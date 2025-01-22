@@ -106,36 +106,36 @@ def show_all_rows():
 
 
 def show_time_counters():
-    st.subheader(f":green[Elapsed time for chart creation]", divider="blue")
+    st.subheader(":green[Elapsed time for chart creation]", divider="blue")
 
-    chart_short_name = ["bimg", "gimg", "himg", "simg", "timg", "wimg"]
+    chart_data = [
+        ("Plot task with its constrains", "bimg"),
+        ("Task's Gantt Chart", "gimg"),
+        ("Hours per day", "himg"),
+        ("Hours per day stacked", "simg"),
+        ("Tasks per day", "timg"),
+        ("Invoicing Periods Workload", "wimg"),
+    ]
 
-    chart_title = [
-        "Plot task with its constrains",
-        "Task's Gantt Chart",
-        "Hours per day",
-        "Hours per day stacked",
-        "Tasks per day",
-        "Invoicing Periods Workload",
-        ]
+    elapsed_time_col = "Elapsed time [s]"
 
-    cnt = list()
-    val = list()
-    for ch in chart_short_name:
-        cnt.append(glb.data[f"time:{ch}:cnt"])
-        val.append(glb.data[f"time:{ch}:val"])
-
-    elapsed_time_col = 'Elapsed time [s]'
+    # Using list comprehensions for efficiency and clarity
     data = {
-        'Chart title': chart_title,
-        'Chart short name': chart_short_name,
-        'Number of calls': cnt,
-        elapsed_time_col: val,
+        "Chart title": [title for title, _ in chart_data],
+        "Chart short name": [short_name for _, short_name in chart_data],
+        "Number of calls": [glb.data[f"time:{short_name}:cnt"] for _, short_name in chart_data],
+        elapsed_time_col: [glb.data[f"time:{short_name}:val"] for _, short_name in chart_data],
     }
 
-    format = {f'{elapsed_time_col}': "{:.3f}"}
-    df = pd.DataFrame(data).sort_values(by=f"{elapsed_time_col}", ascending=False).style.format(format)
+    # Create DataFrame and format it
+    format_spec = {elapsed_time_col: "{:.3f}"}
+    df = (
+        pd.DataFrame(data)
+        .sort_values(by=elapsed_time_col, ascending=False)
+        .style.format(format_spec)
+    )
 
+    # Display DataFrame
     st.dataframe(df, hide_index=True, use_container_width=False)
 
 
