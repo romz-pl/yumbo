@@ -1,4 +1,5 @@
 import datetime
+import numpy as np
 import pandas as pd
 import os
 import romz_datetime
@@ -283,7 +284,7 @@ def save_schedule(ampl):
             for tn in tasks_name
         }
         # Create DataFrame from fetched data
-        df = pd.DataFrame(schedule).T
+        df = pd.DataFrame(schedule, dtype=np.float16).T
         df.columns = days
         glb.data[f"schedule {en}"] = df / quarters_in_hour
 
