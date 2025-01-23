@@ -1,0 +1,1703 @@
+param HOURS_PER_DAY := 32;
+
+set EXPERTN :=
+'PM.Angel';
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'charlie.pm' 2 157 320
+'charlie.pf' 158 188 40
+'delta.pm' 2 57 100
+'delta.pf' 58 103 20
+'juliet.pe' 158 188 40
+'juliet.pm' 42 59 200
+'juliet.pf' 60 182 20
+'mike.pe' 183 228 40
+'mike.pm' 112 269 200
+'mike.pf' 270 304 20
+'november.pe' 147 166 40
+'november.pm' 167 365 220
+'november.pf' 366 397 20
+'oscar2.pm' 2 172 240
+'oscar2.pf' 173 182 80
+'papa2.pm' 2 172 400
+'papa2.pf' 173 182 80
+'quebec2.pe' 153 178 100
+'quebec2.pm' 179 679 480
+'quebec2.pf' 680 735 80
+'sierra2.pm' 2 62 160
+'sierra2.pf' 63 70 40
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'Jan.25' 1 16
+'Feb.25' 17 45
+'Mar.25' 46 76
+'Apr.25' 77 105
+'May.25' 106 139
+'Jun.25' 140 170
+'Jul.25' 171 199
+'Aug.25' 200 230
+'Sep.25' 231 259
+'Oct.25' 260 289
+'Nov.25' 290 317
+'Dec.25' 318 346;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+'PM.Angel' 'Jan.25' 0 720
+'PM.Angel' 'Feb.25' 0 720
+'PM.Angel' 'Mar.25' 0 720
+'PM.Angel' 'Apr.25' 0 720
+'PM.Angel' 'May.25' 0 720
+'PM.Angel' 'Jun.25' 0 720
+'PM.Angel' 'Jul.25' 0 720
+'PM.Angel' 'Aug.25' 0 720
+'PM.Angel' 'Sep.25' 0 720
+'PM.Angel' 'Oct.25' 0 720
+'PM.Angel' 'Nov.25' 0 720
+'PM.Angel' 'Dec.25' 0 720;
+
+param OFFDAY_NO := 212;
+
+param OFFDAY :=
+1 2
+2 5
+3 6
+4 12
+5 13
+6 19
+7 20
+8 26
+9 27
+10 33
+11 34
+12 40
+13 41
+14 47
+15 48
+16 54
+17 55
+18 61
+19 62
+20 68
+21 69
+22 75
+23 76
+24 82
+25 83
+26 89
+27 90
+28 96
+29 97
+30 103
+31 104
+32 110
+33 111
+34 117
+35 118
+36 122
+37 124
+38 125
+39 131
+40 132
+41 138
+42 139
+43 145
+44 146
+45 152
+46 153
+47 159
+48 160
+49 166
+50 167
+51 173
+52 174
+53 180
+54 181
+55 187
+56 188
+57 194
+58 195
+59 201
+60 202
+61 208
+62 209
+63 215
+64 216
+65 222
+66 223
+67 229
+68 230
+69 236
+70 237
+71 243
+72 244
+73 250
+74 251
+75 257
+76 258
+77 264
+78 265
+79 271
+80 272
+81 278
+82 279
+83 285
+84 286
+85 292
+86 293
+87 299
+88 300
+89 306
+90 307
+91 313
+92 314
+93 320
+94 321
+95 327
+96 328
+97 334
+98 335
+99 341
+100 342
+101 348
+102 349
+103 355
+104 356
+105 362
+106 363
+107 369
+108 370
+109 376
+110 377
+111 383
+112 384
+113 390
+114 391
+115 397
+116 398
+117 404
+118 405
+119 411
+120 412
+121 418
+122 419
+123 425
+124 426
+125 432
+126 433
+127 439
+128 440
+129 446
+130 447
+131 453
+132 454
+133 460
+134 461
+135 467
+136 468
+137 474
+138 475
+139 481
+140 482
+141 488
+142 489
+143 495
+144 496
+145 502
+146 503
+147 509
+148 510
+149 516
+150 517
+151 523
+152 524
+153 530
+154 531
+155 537
+156 538
+157 544
+158 545
+159 551
+160 552
+161 558
+162 559
+163 565
+164 566
+165 572
+166 573
+167 579
+168 580
+169 586
+170 587
+171 593
+172 594
+173 600
+174 601
+175 607
+176 608
+177 614
+178 615
+179 621
+180 622
+181 628
+182 629
+183 635
+184 636
+185 642
+186 643
+187 649
+188 650
+189 656
+190 657
+191 663
+192 664
+193 670
+194 671
+195 677
+196 678
+197 684
+198 685
+199 691
+200 692
+201 698
+202 699
+203 705
+204 706
+205 712
+206 713
+207 719
+208 720
+209 726
+210 727
+211 733
+212 734;
+
+param XBDAY_NO := 1373;
+
+param XBDAY:
+1   2   3   4   5 :=
+1 'PM.Angel' 'charlie.pf' 158 1.0 2.0
+2 'PM.Angel' 'charlie.pf' 161 1.0 2.0
+3 'PM.Angel' 'charlie.pf' 162 1.0 2.0
+4 'PM.Angel' 'charlie.pf' 163 1.0 2.0
+5 'PM.Angel' 'charlie.pf' 164 1.0 2.0
+6 'PM.Angel' 'charlie.pf' 165 1.0 2.0
+7 'PM.Angel' 'charlie.pf' 168 1.0 2.0
+8 'PM.Angel' 'charlie.pf' 169 1.0 2.0
+9 'PM.Angel' 'charlie.pf' 170 1.0 2.0
+10 'PM.Angel' 'charlie.pf' 171 1.0 2.0
+11 'PM.Angel' 'charlie.pf' 172 1.0 2.0
+12 'PM.Angel' 'charlie.pf' 175 1.0 2.0
+13 'PM.Angel' 'charlie.pf' 176 1.0 2.0
+14 'PM.Angel' 'charlie.pf' 177 1.0 2.0
+15 'PM.Angel' 'charlie.pf' 178 1.0 2.0
+16 'PM.Angel' 'charlie.pf' 179 1.0 2.0
+17 'PM.Angel' 'charlie.pf' 182 1.0 2.0
+18 'PM.Angel' 'charlie.pf' 183 1.0 2.0
+19 'PM.Angel' 'charlie.pf' 184 1.0 2.0
+20 'PM.Angel' 'charlie.pf' 185 1.0 2.0
+21 'PM.Angel' 'charlie.pf' 186 1.0 2.0
+22 'PM.Angel' 'charlie.pm' 3 2.0 3.0
+23 'PM.Angel' 'charlie.pm' 4 2.0 3.0
+24 'PM.Angel' 'charlie.pm' 7 2.0 3.0
+25 'PM.Angel' 'charlie.pm' 8 2.0 3.0
+26 'PM.Angel' 'charlie.pm' 9 2.0 3.0
+27 'PM.Angel' 'charlie.pm' 10 2.0 3.0
+28 'PM.Angel' 'charlie.pm' 11 2.0 3.0
+29 'PM.Angel' 'charlie.pm' 14 2.0 3.0
+30 'PM.Angel' 'charlie.pm' 15 2.0 3.0
+31 'PM.Angel' 'charlie.pm' 16 2.0 3.0
+32 'PM.Angel' 'charlie.pm' 17 2.0 3.0
+33 'PM.Angel' 'charlie.pm' 18 2.0 3.0
+34 'PM.Angel' 'charlie.pm' 21 2.0 3.0
+35 'PM.Angel' 'charlie.pm' 22 2.0 3.0
+36 'PM.Angel' 'charlie.pm' 23 2.0 3.0
+37 'PM.Angel' 'charlie.pm' 24 2.0 3.0
+38 'PM.Angel' 'charlie.pm' 25 2.0 3.0
+39 'PM.Angel' 'charlie.pm' 28 2.0 3.0
+40 'PM.Angel' 'charlie.pm' 29 2.0 3.0
+41 'PM.Angel' 'charlie.pm' 30 2.0 3.0
+42 'PM.Angel' 'charlie.pm' 31 2.0 3.0
+43 'PM.Angel' 'charlie.pm' 32 2.0 3.0
+44 'PM.Angel' 'charlie.pm' 35 2.0 3.0
+45 'PM.Angel' 'charlie.pm' 36 2.0 3.0
+46 'PM.Angel' 'charlie.pm' 37 2.0 3.0
+47 'PM.Angel' 'charlie.pm' 38 2.0 3.0
+48 'PM.Angel' 'charlie.pm' 39 2.0 3.0
+49 'PM.Angel' 'charlie.pm' 42 2.0 3.0
+50 'PM.Angel' 'charlie.pm' 43 2.0 3.0
+51 'PM.Angel' 'charlie.pm' 44 2.0 3.0
+52 'PM.Angel' 'charlie.pm' 45 2.0 3.0
+53 'PM.Angel' 'charlie.pm' 46 2.0 3.0
+54 'PM.Angel' 'charlie.pm' 49 2.0 3.0
+55 'PM.Angel' 'charlie.pm' 50 2.0 3.0
+56 'PM.Angel' 'charlie.pm' 51 2.0 3.0
+57 'PM.Angel' 'charlie.pm' 52 2.0 3.0
+58 'PM.Angel' 'charlie.pm' 53 2.0 3.0
+59 'PM.Angel' 'charlie.pm' 56 2.0 3.0
+60 'PM.Angel' 'charlie.pm' 57 2.0 3.0
+61 'PM.Angel' 'charlie.pm' 58 2.0 3.0
+62 'PM.Angel' 'charlie.pm' 59 2.0 3.0
+63 'PM.Angel' 'charlie.pm' 60 2.0 3.0
+64 'PM.Angel' 'charlie.pm' 63 2.0 3.0
+65 'PM.Angel' 'charlie.pm' 64 2.0 3.0
+66 'PM.Angel' 'charlie.pm' 65 2.0 3.0
+67 'PM.Angel' 'charlie.pm' 66 2.0 3.0
+68 'PM.Angel' 'charlie.pm' 67 2.0 3.0
+69 'PM.Angel' 'charlie.pm' 70 2.0 3.0
+70 'PM.Angel' 'charlie.pm' 71 2.0 3.0
+71 'PM.Angel' 'charlie.pm' 72 2.0 3.0
+72 'PM.Angel' 'charlie.pm' 73 2.0 3.0
+73 'PM.Angel' 'charlie.pm' 74 2.0 3.0
+74 'PM.Angel' 'charlie.pm' 77 2.0 3.0
+75 'PM.Angel' 'charlie.pm' 78 2.0 3.0
+76 'PM.Angel' 'charlie.pm' 79 2.0 3.0
+77 'PM.Angel' 'charlie.pm' 80 2.0 3.0
+78 'PM.Angel' 'charlie.pm' 81 2.0 3.0
+79 'PM.Angel' 'charlie.pm' 84 2.0 3.0
+80 'PM.Angel' 'charlie.pm' 85 2.0 3.0
+81 'PM.Angel' 'charlie.pm' 86 2.0 3.0
+82 'PM.Angel' 'charlie.pm' 87 2.0 3.0
+83 'PM.Angel' 'charlie.pm' 88 2.0 3.0
+84 'PM.Angel' 'charlie.pm' 91 2.0 3.0
+85 'PM.Angel' 'charlie.pm' 92 2.0 3.0
+86 'PM.Angel' 'charlie.pm' 93 2.0 3.0
+87 'PM.Angel' 'charlie.pm' 94 2.0 3.0
+88 'PM.Angel' 'charlie.pm' 95 2.0 3.0
+89 'PM.Angel' 'charlie.pm' 98 2.0 3.0
+90 'PM.Angel' 'charlie.pm' 99 2.0 3.0
+91 'PM.Angel' 'charlie.pm' 100 2.0 3.0
+92 'PM.Angel' 'charlie.pm' 101 2.0 3.0
+93 'PM.Angel' 'charlie.pm' 102 2.0 3.0
+94 'PM.Angel' 'charlie.pm' 105 2.0 3.0
+95 'PM.Angel' 'charlie.pm' 106 2.0 3.0
+96 'PM.Angel' 'charlie.pm' 107 2.0 3.0
+97 'PM.Angel' 'charlie.pm' 108 2.0 3.0
+98 'PM.Angel' 'charlie.pm' 109 2.0 3.0
+99 'PM.Angel' 'charlie.pm' 112 2.0 3.0
+100 'PM.Angel' 'charlie.pm' 113 2.0 3.0
+101 'PM.Angel' 'charlie.pm' 114 2.0 3.0
+102 'PM.Angel' 'charlie.pm' 115 2.0 3.0
+103 'PM.Angel' 'charlie.pm' 116 2.0 3.0
+104 'PM.Angel' 'charlie.pm' 119 2.0 3.0
+105 'PM.Angel' 'charlie.pm' 120 2.0 3.0
+106 'PM.Angel' 'charlie.pm' 121 2.0 3.0
+107 'PM.Angel' 'charlie.pm' 123 2.0 3.0
+108 'PM.Angel' 'charlie.pm' 126 2.0 3.0
+109 'PM.Angel' 'charlie.pm' 127 2.0 3.0
+110 'PM.Angel' 'charlie.pm' 128 2.0 3.0
+111 'PM.Angel' 'charlie.pm' 129 2.0 3.0
+112 'PM.Angel' 'charlie.pm' 130 2.0 3.0
+113 'PM.Angel' 'charlie.pm' 133 2.0 3.0
+114 'PM.Angel' 'charlie.pm' 134 2.0 3.0
+115 'PM.Angel' 'charlie.pm' 135 2.0 3.0
+116 'PM.Angel' 'charlie.pm' 136 2.0 3.0
+117 'PM.Angel' 'charlie.pm' 137 2.0 3.0
+118 'PM.Angel' 'charlie.pm' 140 2.0 3.0
+119 'PM.Angel' 'charlie.pm' 141 2.0 3.0
+120 'PM.Angel' 'charlie.pm' 142 2.0 3.0
+121 'PM.Angel' 'charlie.pm' 143 2.0 3.0
+122 'PM.Angel' 'charlie.pm' 144 2.0 3.0
+123 'PM.Angel' 'charlie.pm' 147 2.0 3.0
+124 'PM.Angel' 'charlie.pm' 148 2.0 3.0
+125 'PM.Angel' 'charlie.pm' 149 2.0 3.0
+126 'PM.Angel' 'charlie.pm' 150 2.0 3.0
+127 'PM.Angel' 'charlie.pm' 151 2.0 3.0
+128 'PM.Angel' 'charlie.pm' 154 2.0 3.0
+129 'PM.Angel' 'charlie.pm' 155 2.0 3.0
+130 'PM.Angel' 'charlie.pm' 156 2.0 3.0
+131 'PM.Angel' 'charlie.pm' 157 2.0 3.0
+132 'PM.Angel' 'delta.pf' 58 0.0 1.0
+133 'PM.Angel' 'delta.pf' 59 0.0 1.0
+134 'PM.Angel' 'delta.pf' 60 0.0 1.0
+135 'PM.Angel' 'delta.pf' 63 0.0 1.0
+136 'PM.Angel' 'delta.pf' 64 0.0 1.0
+137 'PM.Angel' 'delta.pf' 65 0.0 1.0
+138 'PM.Angel' 'delta.pf' 66 0.0 1.0
+139 'PM.Angel' 'delta.pf' 67 0.0 1.0
+140 'PM.Angel' 'delta.pf' 70 0.0 1.0
+141 'PM.Angel' 'delta.pf' 71 0.0 1.0
+142 'PM.Angel' 'delta.pf' 72 0.0 1.0
+143 'PM.Angel' 'delta.pf' 73 0.0 1.0
+144 'PM.Angel' 'delta.pf' 74 0.0 1.0
+145 'PM.Angel' 'delta.pf' 77 0.0 1.0
+146 'PM.Angel' 'delta.pf' 78 0.0 1.0
+147 'PM.Angel' 'delta.pf' 79 0.0 1.0
+148 'PM.Angel' 'delta.pf' 80 0.0 1.0
+149 'PM.Angel' 'delta.pf' 81 0.0 1.0
+150 'PM.Angel' 'delta.pf' 84 0.0 1.0
+151 'PM.Angel' 'delta.pf' 85 0.0 1.0
+152 'PM.Angel' 'delta.pf' 86 0.0 1.0
+153 'PM.Angel' 'delta.pf' 87 0.0 1.0
+154 'PM.Angel' 'delta.pf' 88 0.0 1.0
+155 'PM.Angel' 'delta.pf' 91 0.0 1.0
+156 'PM.Angel' 'delta.pf' 92 0.0 1.0
+157 'PM.Angel' 'delta.pf' 93 0.0 1.0
+158 'PM.Angel' 'delta.pf' 94 0.0 1.0
+159 'PM.Angel' 'delta.pf' 95 0.0 1.0
+160 'PM.Angel' 'delta.pf' 98 0.0 1.0
+161 'PM.Angel' 'delta.pf' 99 0.0 1.0
+162 'PM.Angel' 'delta.pf' 100 0.0 1.0
+163 'PM.Angel' 'delta.pf' 101 0.0 1.0
+164 'PM.Angel' 'delta.pf' 102 0.0 1.0
+165 'PM.Angel' 'delta.pm' 3 2.0 3.0
+166 'PM.Angel' 'delta.pm' 4 2.0 3.0
+167 'PM.Angel' 'delta.pm' 7 2.0 3.0
+168 'PM.Angel' 'delta.pm' 8 2.0 3.0
+169 'PM.Angel' 'delta.pm' 9 2.0 3.0
+170 'PM.Angel' 'delta.pm' 10 2.0 3.0
+171 'PM.Angel' 'delta.pm' 11 2.0 3.0
+172 'PM.Angel' 'delta.pm' 14 2.0 3.0
+173 'PM.Angel' 'delta.pm' 15 2.0 3.0
+174 'PM.Angel' 'delta.pm' 16 2.0 3.0
+175 'PM.Angel' 'delta.pm' 17 2.0 3.0
+176 'PM.Angel' 'delta.pm' 18 2.0 3.0
+177 'PM.Angel' 'delta.pm' 21 2.0 3.0
+178 'PM.Angel' 'delta.pm' 22 2.0 3.0
+179 'PM.Angel' 'delta.pm' 23 2.0 3.0
+180 'PM.Angel' 'delta.pm' 24 2.0 3.0
+181 'PM.Angel' 'delta.pm' 25 2.0 3.0
+182 'PM.Angel' 'delta.pm' 28 2.0 3.0
+183 'PM.Angel' 'delta.pm' 29 2.0 3.0
+184 'PM.Angel' 'delta.pm' 30 2.0 3.0
+185 'PM.Angel' 'delta.pm' 31 2.0 3.0
+186 'PM.Angel' 'delta.pm' 32 2.0 3.0
+187 'PM.Angel' 'delta.pm' 35 2.0 3.0
+188 'PM.Angel' 'delta.pm' 36 2.0 3.0
+189 'PM.Angel' 'delta.pm' 37 2.0 3.0
+190 'PM.Angel' 'delta.pm' 38 2.0 3.0
+191 'PM.Angel' 'delta.pm' 39 2.0 3.0
+192 'PM.Angel' 'delta.pm' 42 2.0 3.0
+193 'PM.Angel' 'delta.pm' 43 2.0 3.0
+194 'PM.Angel' 'delta.pm' 44 2.0 3.0
+195 'PM.Angel' 'delta.pm' 45 2.0 3.0
+196 'PM.Angel' 'delta.pm' 46 2.0 3.0
+197 'PM.Angel' 'delta.pm' 49 2.0 3.0
+198 'PM.Angel' 'delta.pm' 50 2.0 3.0
+199 'PM.Angel' 'delta.pm' 51 2.0 3.0
+200 'PM.Angel' 'delta.pm' 52 2.0 3.0
+201 'PM.Angel' 'delta.pm' 53 2.0 3.0
+202 'PM.Angel' 'delta.pm' 56 2.0 3.0
+203 'PM.Angel' 'delta.pm' 57 2.0 3.0
+204 'PM.Angel' 'juliet.pf' 60 0.0 1.0
+205 'PM.Angel' 'juliet.pf' 63 0.0 1.0
+206 'PM.Angel' 'juliet.pf' 64 0.0 1.0
+207 'PM.Angel' 'juliet.pf' 65 0.0 1.0
+208 'PM.Angel' 'juliet.pf' 66 0.0 1.0
+209 'PM.Angel' 'juliet.pf' 67 0.0 1.0
+210 'PM.Angel' 'juliet.pf' 70 0.0 1.0
+211 'PM.Angel' 'juliet.pf' 71 0.0 1.0
+212 'PM.Angel' 'juliet.pf' 72 0.0 1.0
+213 'PM.Angel' 'juliet.pf' 73 0.0 1.0
+214 'PM.Angel' 'juliet.pf' 74 0.0 1.0
+215 'PM.Angel' 'juliet.pf' 77 0.0 1.0
+216 'PM.Angel' 'juliet.pf' 78 0.0 1.0
+217 'PM.Angel' 'juliet.pf' 79 0.0 1.0
+218 'PM.Angel' 'juliet.pf' 80 0.0 1.0
+219 'PM.Angel' 'juliet.pf' 81 0.0 1.0
+220 'PM.Angel' 'juliet.pf' 84 0.0 1.0
+221 'PM.Angel' 'juliet.pf' 85 0.0 1.0
+222 'PM.Angel' 'juliet.pf' 86 0.0 1.0
+223 'PM.Angel' 'juliet.pf' 87 0.0 1.0
+224 'PM.Angel' 'juliet.pf' 88 0.0 1.0
+225 'PM.Angel' 'juliet.pf' 91 0.0 1.0
+226 'PM.Angel' 'juliet.pf' 92 0.0 1.0
+227 'PM.Angel' 'juliet.pf' 93 0.0 1.0
+228 'PM.Angel' 'juliet.pf' 94 0.0 1.0
+229 'PM.Angel' 'juliet.pf' 95 0.0 1.0
+230 'PM.Angel' 'juliet.pf' 98 0.0 1.0
+231 'PM.Angel' 'juliet.pf' 99 0.0 1.0
+232 'PM.Angel' 'juliet.pf' 100 0.0 1.0
+233 'PM.Angel' 'juliet.pf' 101 0.0 1.0
+234 'PM.Angel' 'juliet.pf' 102 0.0 1.0
+235 'PM.Angel' 'juliet.pf' 105 0.0 1.0
+236 'PM.Angel' 'juliet.pf' 106 0.0 1.0
+237 'PM.Angel' 'juliet.pf' 107 0.0 1.0
+238 'PM.Angel' 'juliet.pf' 108 0.0 1.0
+239 'PM.Angel' 'juliet.pf' 109 0.0 1.0
+240 'PM.Angel' 'juliet.pf' 112 0.0 1.0
+241 'PM.Angel' 'juliet.pf' 113 0.0 1.0
+242 'PM.Angel' 'juliet.pf' 114 0.0 1.0
+243 'PM.Angel' 'juliet.pf' 115 0.0 1.0
+244 'PM.Angel' 'juliet.pf' 116 0.0 1.0
+245 'PM.Angel' 'juliet.pf' 119 0.0 1.0
+246 'PM.Angel' 'juliet.pf' 120 0.0 1.0
+247 'PM.Angel' 'juliet.pf' 121 0.0 1.0
+248 'PM.Angel' 'juliet.pf' 123 0.0 1.0
+249 'PM.Angel' 'juliet.pf' 126 0.0 1.0
+250 'PM.Angel' 'juliet.pf' 127 0.0 1.0
+251 'PM.Angel' 'juliet.pf' 128 0.0 1.0
+252 'PM.Angel' 'juliet.pf' 129 0.0 1.0
+253 'PM.Angel' 'juliet.pf' 130 0.0 1.0
+254 'PM.Angel' 'juliet.pf' 133 0.0 1.0
+255 'PM.Angel' 'juliet.pf' 134 0.0 1.0
+256 'PM.Angel' 'juliet.pf' 135 0.0 1.0
+257 'PM.Angel' 'juliet.pf' 136 0.0 1.0
+258 'PM.Angel' 'juliet.pf' 137 0.0 1.0
+259 'PM.Angel' 'juliet.pf' 140 0.0 1.0
+260 'PM.Angel' 'juliet.pf' 141 0.0 1.0
+261 'PM.Angel' 'juliet.pf' 142 0.0 1.0
+262 'PM.Angel' 'juliet.pf' 143 0.0 1.0
+263 'PM.Angel' 'juliet.pf' 144 0.0 1.0
+264 'PM.Angel' 'juliet.pf' 147 0.0 1.0
+265 'PM.Angel' 'juliet.pf' 148 0.0 1.0
+266 'PM.Angel' 'juliet.pf' 149 0.0 1.0
+267 'PM.Angel' 'juliet.pf' 150 0.0 1.0
+268 'PM.Angel' 'juliet.pf' 151 0.0 1.0
+269 'PM.Angel' 'juliet.pf' 154 0.0 1.0
+270 'PM.Angel' 'juliet.pf' 155 0.0 1.0
+271 'PM.Angel' 'juliet.pf' 156 0.0 1.0
+272 'PM.Angel' 'juliet.pf' 157 0.0 1.0
+273 'PM.Angel' 'juliet.pf' 158 0.0 1.0
+274 'PM.Angel' 'juliet.pf' 161 0.0 1.0
+275 'PM.Angel' 'juliet.pf' 162 0.0 1.0
+276 'PM.Angel' 'juliet.pf' 163 0.0 1.0
+277 'PM.Angel' 'juliet.pf' 164 0.0 1.0
+278 'PM.Angel' 'juliet.pf' 165 0.0 1.0
+279 'PM.Angel' 'juliet.pf' 168 0.0 1.0
+280 'PM.Angel' 'juliet.pf' 169 0.0 1.0
+281 'PM.Angel' 'juliet.pf' 170 0.0 1.0
+282 'PM.Angel' 'juliet.pf' 171 0.0 1.0
+283 'PM.Angel' 'juliet.pf' 172 0.0 1.0
+284 'PM.Angel' 'juliet.pf' 175 0.0 1.0
+285 'PM.Angel' 'juliet.pf' 176 0.0 1.0
+286 'PM.Angel' 'juliet.pf' 177 0.0 1.0
+287 'PM.Angel' 'juliet.pf' 178 0.0 1.0
+288 'PM.Angel' 'juliet.pf' 179 0.0 1.0
+289 'PM.Angel' 'juliet.pf' 182 0.0 1.0
+290 'PM.Angel' 'juliet.pm' 42 14.0 15.0
+291 'PM.Angel' 'juliet.pm' 43 14.0 15.0
+292 'PM.Angel' 'juliet.pm' 44 14.0 15.0
+293 'PM.Angel' 'juliet.pm' 45 14.0 15.0
+294 'PM.Angel' 'juliet.pm' 46 14.0 15.0
+295 'PM.Angel' 'juliet.pm' 49 14.0 15.0
+296 'PM.Angel' 'juliet.pm' 50 14.0 15.0
+297 'PM.Angel' 'juliet.pm' 51 14.0 15.0
+298 'PM.Angel' 'juliet.pm' 52 14.0 15.0
+299 'PM.Angel' 'juliet.pm' 53 14.0 15.0
+300 'PM.Angel' 'juliet.pm' 56 14.0 15.0
+301 'PM.Angel' 'juliet.pm' 57 14.0 15.0
+302 'PM.Angel' 'juliet.pm' 58 14.0 15.0
+303 'PM.Angel' 'juliet.pm' 59 14.0 15.0
+304 'PM.Angel' 'mike.pe' 183 1.0 2.0
+305 'PM.Angel' 'mike.pe' 184 1.0 2.0
+306 'PM.Angel' 'mike.pe' 185 1.0 2.0
+307 'PM.Angel' 'mike.pe' 186 1.0 2.0
+308 'PM.Angel' 'mike.pe' 189 1.0 2.0
+309 'PM.Angel' 'mike.pe' 190 1.0 2.0
+310 'PM.Angel' 'mike.pe' 191 1.0 2.0
+311 'PM.Angel' 'mike.pe' 192 1.0 2.0
+312 'PM.Angel' 'mike.pe' 193 1.0 2.0
+313 'PM.Angel' 'mike.pe' 196 1.0 2.0
+314 'PM.Angel' 'mike.pe' 197 1.0 2.0
+315 'PM.Angel' 'mike.pe' 198 1.0 2.0
+316 'PM.Angel' 'mike.pe' 199 1.0 2.0
+317 'PM.Angel' 'mike.pe' 200 1.0 2.0
+318 'PM.Angel' 'mike.pe' 203 1.0 2.0
+319 'PM.Angel' 'mike.pe' 204 1.0 2.0
+320 'PM.Angel' 'mike.pe' 205 1.0 2.0
+321 'PM.Angel' 'mike.pe' 206 1.0 2.0
+322 'PM.Angel' 'mike.pe' 207 1.0 2.0
+323 'PM.Angel' 'mike.pe' 210 1.0 2.0
+324 'PM.Angel' 'mike.pe' 211 1.0 2.0
+325 'PM.Angel' 'mike.pe' 212 1.0 2.0
+326 'PM.Angel' 'mike.pe' 213 1.0 2.0
+327 'PM.Angel' 'mike.pe' 214 1.0 2.0
+328 'PM.Angel' 'mike.pe' 217 1.0 2.0
+329 'PM.Angel' 'mike.pe' 218 1.0 2.0
+330 'PM.Angel' 'mike.pe' 219 1.0 2.0
+331 'PM.Angel' 'mike.pe' 220 1.0 2.0
+332 'PM.Angel' 'mike.pe' 221 1.0 2.0
+333 'PM.Angel' 'mike.pe' 224 1.0 2.0
+334 'PM.Angel' 'mike.pe' 225 1.0 2.0
+335 'PM.Angel' 'mike.pe' 226 1.0 2.0
+336 'PM.Angel' 'mike.pe' 227 1.0 2.0
+337 'PM.Angel' 'mike.pe' 228 1.0 2.0
+338 'PM.Angel' 'mike.pf' 270 0.0 1.0
+339 'PM.Angel' 'mike.pf' 273 0.0 1.0
+340 'PM.Angel' 'mike.pf' 274 0.0 1.0
+341 'PM.Angel' 'mike.pf' 275 0.0 1.0
+342 'PM.Angel' 'mike.pf' 276 0.0 1.0
+343 'PM.Angel' 'mike.pf' 277 0.0 1.0
+344 'PM.Angel' 'mike.pf' 280 0.0 1.0
+345 'PM.Angel' 'mike.pf' 281 0.0 1.0
+346 'PM.Angel' 'mike.pf' 282 0.0 1.0
+347 'PM.Angel' 'mike.pf' 283 0.0 1.0
+348 'PM.Angel' 'mike.pf' 284 0.0 1.0
+349 'PM.Angel' 'mike.pf' 287 0.0 1.0
+350 'PM.Angel' 'mike.pf' 288 0.0 1.0
+351 'PM.Angel' 'mike.pf' 289 0.0 1.0
+352 'PM.Angel' 'mike.pf' 290 0.0 1.0
+353 'PM.Angel' 'mike.pf' 291 0.0 1.0
+354 'PM.Angel' 'mike.pf' 294 0.0 1.0
+355 'PM.Angel' 'mike.pf' 295 0.0 1.0
+356 'PM.Angel' 'mike.pf' 296 0.0 1.0
+357 'PM.Angel' 'mike.pf' 297 0.0 1.0
+358 'PM.Angel' 'mike.pf' 298 0.0 1.0
+359 'PM.Angel' 'mike.pf' 301 0.0 1.0
+360 'PM.Angel' 'mike.pf' 302 0.0 1.0
+361 'PM.Angel' 'mike.pf' 303 0.0 1.0
+362 'PM.Angel' 'mike.pf' 304 0.0 1.0
+363 'PM.Angel' 'mike.pm' 112 1.0 2.0
+364 'PM.Angel' 'mike.pm' 113 1.0 2.0
+365 'PM.Angel' 'mike.pm' 114 1.0 2.0
+366 'PM.Angel' 'mike.pm' 115 1.0 2.0
+367 'PM.Angel' 'mike.pm' 116 1.0 2.0
+368 'PM.Angel' 'mike.pm' 119 1.0 2.0
+369 'PM.Angel' 'mike.pm' 120 1.0 2.0
+370 'PM.Angel' 'mike.pm' 121 1.0 2.0
+371 'PM.Angel' 'mike.pm' 123 1.0 2.0
+372 'PM.Angel' 'mike.pm' 126 1.0 2.0
+373 'PM.Angel' 'mike.pm' 127 1.0 2.0
+374 'PM.Angel' 'mike.pm' 128 1.0 2.0
+375 'PM.Angel' 'mike.pm' 129 1.0 2.0
+376 'PM.Angel' 'mike.pm' 130 1.0 2.0
+377 'PM.Angel' 'mike.pm' 133 1.0 2.0
+378 'PM.Angel' 'mike.pm' 134 1.0 2.0
+379 'PM.Angel' 'mike.pm' 135 1.0 2.0
+380 'PM.Angel' 'mike.pm' 136 1.0 2.0
+381 'PM.Angel' 'mike.pm' 137 1.0 2.0
+382 'PM.Angel' 'mike.pm' 140 1.0 2.0
+383 'PM.Angel' 'mike.pm' 141 1.0 2.0
+384 'PM.Angel' 'mike.pm' 142 1.0 2.0
+385 'PM.Angel' 'mike.pm' 143 1.0 2.0
+386 'PM.Angel' 'mike.pm' 144 1.0 2.0
+387 'PM.Angel' 'mike.pm' 147 1.0 2.0
+388 'PM.Angel' 'mike.pm' 148 1.0 2.0
+389 'PM.Angel' 'mike.pm' 149 1.0 2.0
+390 'PM.Angel' 'mike.pm' 150 1.0 2.0
+391 'PM.Angel' 'mike.pm' 151 1.0 2.0
+392 'PM.Angel' 'mike.pm' 154 1.0 2.0
+393 'PM.Angel' 'mike.pm' 155 1.0 2.0
+394 'PM.Angel' 'mike.pm' 156 1.0 2.0
+395 'PM.Angel' 'mike.pm' 157 1.0 2.0
+396 'PM.Angel' 'mike.pm' 158 1.0 2.0
+397 'PM.Angel' 'mike.pm' 161 1.0 2.0
+398 'PM.Angel' 'mike.pm' 162 1.0 2.0
+399 'PM.Angel' 'mike.pm' 163 1.0 2.0
+400 'PM.Angel' 'mike.pm' 164 1.0 2.0
+401 'PM.Angel' 'mike.pm' 165 1.0 2.0
+402 'PM.Angel' 'mike.pm' 168 1.0 2.0
+403 'PM.Angel' 'mike.pm' 169 1.0 2.0
+404 'PM.Angel' 'mike.pm' 170 1.0 2.0
+405 'PM.Angel' 'mike.pm' 171 1.0 2.0
+406 'PM.Angel' 'mike.pm' 172 1.0 2.0
+407 'PM.Angel' 'mike.pm' 175 1.0 2.0
+408 'PM.Angel' 'mike.pm' 176 1.0 2.0
+409 'PM.Angel' 'mike.pm' 177 1.0 2.0
+410 'PM.Angel' 'mike.pm' 178 1.0 2.0
+411 'PM.Angel' 'mike.pm' 179 1.0 2.0
+412 'PM.Angel' 'mike.pm' 182 1.0 2.0
+413 'PM.Angel' 'mike.pm' 183 1.0 2.0
+414 'PM.Angel' 'mike.pm' 184 1.0 2.0
+415 'PM.Angel' 'mike.pm' 185 1.0 2.0
+416 'PM.Angel' 'mike.pm' 186 1.0 2.0
+417 'PM.Angel' 'mike.pm' 189 1.0 2.0
+418 'PM.Angel' 'mike.pm' 190 1.0 2.0
+419 'PM.Angel' 'mike.pm' 191 1.0 2.0
+420 'PM.Angel' 'mike.pm' 192 1.0 2.0
+421 'PM.Angel' 'mike.pm' 193 1.0 2.0
+422 'PM.Angel' 'mike.pm' 196 1.0 2.0
+423 'PM.Angel' 'mike.pm' 197 1.0 2.0
+424 'PM.Angel' 'mike.pm' 198 1.0 2.0
+425 'PM.Angel' 'mike.pm' 199 1.0 2.0
+426 'PM.Angel' 'mike.pm' 200 1.0 2.0
+427 'PM.Angel' 'mike.pm' 203 1.0 2.0
+428 'PM.Angel' 'mike.pm' 204 1.0 2.0
+429 'PM.Angel' 'mike.pm' 205 1.0 2.0
+430 'PM.Angel' 'mike.pm' 206 1.0 2.0
+431 'PM.Angel' 'mike.pm' 207 1.0 2.0
+432 'PM.Angel' 'mike.pm' 210 1.0 2.0
+433 'PM.Angel' 'mike.pm' 211 1.0 2.0
+434 'PM.Angel' 'mike.pm' 212 1.0 2.0
+435 'PM.Angel' 'mike.pm' 213 1.0 2.0
+436 'PM.Angel' 'mike.pm' 214 1.0 2.0
+437 'PM.Angel' 'mike.pm' 217 1.0 2.0
+438 'PM.Angel' 'mike.pm' 218 1.0 2.0
+439 'PM.Angel' 'mike.pm' 219 1.0 2.0
+440 'PM.Angel' 'mike.pm' 220 1.0 2.0
+441 'PM.Angel' 'mike.pm' 221 1.0 2.0
+442 'PM.Angel' 'mike.pm' 224 1.0 2.0
+443 'PM.Angel' 'mike.pm' 225 1.0 2.0
+444 'PM.Angel' 'mike.pm' 226 1.0 2.0
+445 'PM.Angel' 'mike.pm' 227 1.0 2.0
+446 'PM.Angel' 'mike.pm' 228 1.0 2.0
+447 'PM.Angel' 'mike.pm' 231 1.0 2.0
+448 'PM.Angel' 'mike.pm' 232 1.0 2.0
+449 'PM.Angel' 'mike.pm' 233 1.0 2.0
+450 'PM.Angel' 'mike.pm' 234 1.0 2.0
+451 'PM.Angel' 'mike.pm' 235 1.0 2.0
+452 'PM.Angel' 'mike.pm' 238 1.0 2.0
+453 'PM.Angel' 'mike.pm' 239 1.0 2.0
+454 'PM.Angel' 'mike.pm' 240 1.0 2.0
+455 'PM.Angel' 'mike.pm' 241 1.0 2.0
+456 'PM.Angel' 'mike.pm' 242 1.0 2.0
+457 'PM.Angel' 'mike.pm' 245 1.0 2.0
+458 'PM.Angel' 'mike.pm' 246 1.0 2.0
+459 'PM.Angel' 'mike.pm' 247 1.0 2.0
+460 'PM.Angel' 'mike.pm' 248 1.0 2.0
+461 'PM.Angel' 'mike.pm' 249 1.0 2.0
+462 'PM.Angel' 'mike.pm' 252 1.0 2.0
+463 'PM.Angel' 'mike.pm' 253 1.0 2.0
+464 'PM.Angel' 'mike.pm' 254 1.0 2.0
+465 'PM.Angel' 'mike.pm' 255 1.0 2.0
+466 'PM.Angel' 'mike.pm' 256 1.0 2.0
+467 'PM.Angel' 'mike.pm' 259 1.0 2.0
+468 'PM.Angel' 'mike.pm' 260 1.0 2.0
+469 'PM.Angel' 'mike.pm' 261 1.0 2.0
+470 'PM.Angel' 'mike.pm' 262 1.0 2.0
+471 'PM.Angel' 'mike.pm' 263 1.0 2.0
+472 'PM.Angel' 'mike.pm' 266 1.0 2.0
+473 'PM.Angel' 'mike.pm' 267 1.0 2.0
+474 'PM.Angel' 'mike.pm' 268 1.0 2.0
+475 'PM.Angel' 'mike.pm' 269 1.0 2.0
+476 'PM.Angel' 'november.pe' 147 2.0 3.0
+477 'PM.Angel' 'november.pe' 148 2.0 3.0
+478 'PM.Angel' 'november.pe' 149 2.0 3.0
+479 'PM.Angel' 'november.pe' 150 2.0 3.0
+480 'PM.Angel' 'november.pe' 151 2.0 3.0
+481 'PM.Angel' 'november.pe' 154 2.0 3.0
+482 'PM.Angel' 'november.pe' 155 2.0 3.0
+483 'PM.Angel' 'november.pe' 156 2.0 3.0
+484 'PM.Angel' 'november.pe' 157 2.0 3.0
+485 'PM.Angel' 'november.pe' 158 2.0 3.0
+486 'PM.Angel' 'november.pe' 161 2.0 3.0
+487 'PM.Angel' 'november.pe' 162 2.0 3.0
+488 'PM.Angel' 'november.pe' 163 2.0 3.0
+489 'PM.Angel' 'november.pe' 164 2.0 3.0
+490 'PM.Angel' 'november.pe' 165 2.0 3.0
+491 'PM.Angel' 'november.pf' 366 0.0 1.0
+492 'PM.Angel' 'november.pf' 367 0.0 1.0
+493 'PM.Angel' 'november.pf' 368 0.0 1.0
+494 'PM.Angel' 'november.pf' 371 0.0 1.0
+495 'PM.Angel' 'november.pf' 372 0.0 1.0
+496 'PM.Angel' 'november.pf' 373 0.0 1.0
+497 'PM.Angel' 'november.pf' 374 0.0 1.0
+498 'PM.Angel' 'november.pf' 375 0.0 1.0
+499 'PM.Angel' 'november.pf' 378 0.0 1.0
+500 'PM.Angel' 'november.pf' 379 0.0 1.0
+501 'PM.Angel' 'november.pf' 380 0.0 1.0
+502 'PM.Angel' 'november.pf' 381 0.0 1.0
+503 'PM.Angel' 'november.pf' 382 0.0 1.0
+504 'PM.Angel' 'november.pf' 385 0.0 1.0
+505 'PM.Angel' 'november.pf' 386 0.0 1.0
+506 'PM.Angel' 'november.pf' 387 0.0 1.0
+507 'PM.Angel' 'november.pf' 388 0.0 1.0
+508 'PM.Angel' 'november.pf' 389 0.0 1.0
+509 'PM.Angel' 'november.pf' 392 0.0 1.0
+510 'PM.Angel' 'november.pf' 393 0.0 1.0
+511 'PM.Angel' 'november.pf' 394 0.0 1.0
+512 'PM.Angel' 'november.pf' 395 0.0 1.0
+513 'PM.Angel' 'november.pf' 396 0.0 1.0
+514 'PM.Angel' 'november.pm' 168 1.0 2.0
+515 'PM.Angel' 'november.pm' 169 1.0 2.0
+516 'PM.Angel' 'november.pm' 170 1.0 2.0
+517 'PM.Angel' 'november.pm' 171 1.0 2.0
+518 'PM.Angel' 'november.pm' 172 1.0 2.0
+519 'PM.Angel' 'november.pm' 175 1.0 2.0
+520 'PM.Angel' 'november.pm' 176 1.0 2.0
+521 'PM.Angel' 'november.pm' 177 1.0 2.0
+522 'PM.Angel' 'november.pm' 178 1.0 2.0
+523 'PM.Angel' 'november.pm' 179 1.0 2.0
+524 'PM.Angel' 'november.pm' 182 1.0 2.0
+525 'PM.Angel' 'november.pm' 183 1.0 2.0
+526 'PM.Angel' 'november.pm' 184 1.0 2.0
+527 'PM.Angel' 'november.pm' 185 1.0 2.0
+528 'PM.Angel' 'november.pm' 186 1.0 2.0
+529 'PM.Angel' 'november.pm' 189 1.0 2.0
+530 'PM.Angel' 'november.pm' 190 1.0 2.0
+531 'PM.Angel' 'november.pm' 191 1.0 2.0
+532 'PM.Angel' 'november.pm' 192 1.0 2.0
+533 'PM.Angel' 'november.pm' 193 1.0 2.0
+534 'PM.Angel' 'november.pm' 196 1.0 2.0
+535 'PM.Angel' 'november.pm' 197 1.0 2.0
+536 'PM.Angel' 'november.pm' 198 1.0 2.0
+537 'PM.Angel' 'november.pm' 199 1.0 2.0
+538 'PM.Angel' 'november.pm' 200 1.0 2.0
+539 'PM.Angel' 'november.pm' 203 1.0 2.0
+540 'PM.Angel' 'november.pm' 204 1.0 2.0
+541 'PM.Angel' 'november.pm' 205 1.0 2.0
+542 'PM.Angel' 'november.pm' 206 1.0 2.0
+543 'PM.Angel' 'november.pm' 207 1.0 2.0
+544 'PM.Angel' 'november.pm' 210 1.0 2.0
+545 'PM.Angel' 'november.pm' 211 1.0 2.0
+546 'PM.Angel' 'november.pm' 212 1.0 2.0
+547 'PM.Angel' 'november.pm' 213 1.0 2.0
+548 'PM.Angel' 'november.pm' 214 1.0 2.0
+549 'PM.Angel' 'november.pm' 217 1.0 2.0
+550 'PM.Angel' 'november.pm' 218 1.0 2.0
+551 'PM.Angel' 'november.pm' 219 1.0 2.0
+552 'PM.Angel' 'november.pm' 220 1.0 2.0
+553 'PM.Angel' 'november.pm' 221 1.0 2.0
+554 'PM.Angel' 'november.pm' 224 1.0 2.0
+555 'PM.Angel' 'november.pm' 225 1.0 2.0
+556 'PM.Angel' 'november.pm' 226 1.0 2.0
+557 'PM.Angel' 'november.pm' 227 1.0 2.0
+558 'PM.Angel' 'november.pm' 228 1.0 2.0
+559 'PM.Angel' 'november.pm' 231 1.0 2.0
+560 'PM.Angel' 'november.pm' 232 1.0 2.0
+561 'PM.Angel' 'november.pm' 233 1.0 2.0
+562 'PM.Angel' 'november.pm' 234 1.0 2.0
+563 'PM.Angel' 'november.pm' 235 1.0 2.0
+564 'PM.Angel' 'november.pm' 238 1.0 2.0
+565 'PM.Angel' 'november.pm' 239 1.0 2.0
+566 'PM.Angel' 'november.pm' 240 1.0 2.0
+567 'PM.Angel' 'november.pm' 241 1.0 2.0
+568 'PM.Angel' 'november.pm' 242 1.0 2.0
+569 'PM.Angel' 'november.pm' 245 1.0 2.0
+570 'PM.Angel' 'november.pm' 246 1.0 2.0
+571 'PM.Angel' 'november.pm' 247 1.0 2.0
+572 'PM.Angel' 'november.pm' 248 1.0 2.0
+573 'PM.Angel' 'november.pm' 249 1.0 2.0
+574 'PM.Angel' 'november.pm' 252 1.0 2.0
+575 'PM.Angel' 'november.pm' 253 1.0 2.0
+576 'PM.Angel' 'november.pm' 254 1.0 2.0
+577 'PM.Angel' 'november.pm' 255 1.0 2.0
+578 'PM.Angel' 'november.pm' 256 1.0 2.0
+579 'PM.Angel' 'november.pm' 259 1.0 2.0
+580 'PM.Angel' 'november.pm' 260 1.0 2.0
+581 'PM.Angel' 'november.pm' 261 1.0 2.0
+582 'PM.Angel' 'november.pm' 262 1.0 2.0
+583 'PM.Angel' 'november.pm' 263 1.0 2.0
+584 'PM.Angel' 'november.pm' 266 1.0 2.0
+585 'PM.Angel' 'november.pm' 267 1.0 2.0
+586 'PM.Angel' 'november.pm' 268 1.0 2.0
+587 'PM.Angel' 'november.pm' 269 1.0 2.0
+588 'PM.Angel' 'november.pm' 270 1.0 2.0
+589 'PM.Angel' 'november.pm' 273 1.0 2.0
+590 'PM.Angel' 'november.pm' 274 1.0 2.0
+591 'PM.Angel' 'november.pm' 275 1.0 2.0
+592 'PM.Angel' 'november.pm' 276 1.0 2.0
+593 'PM.Angel' 'november.pm' 277 1.0 2.0
+594 'PM.Angel' 'november.pm' 280 1.0 2.0
+595 'PM.Angel' 'november.pm' 281 1.0 2.0
+596 'PM.Angel' 'november.pm' 282 1.0 2.0
+597 'PM.Angel' 'november.pm' 283 1.0 2.0
+598 'PM.Angel' 'november.pm' 284 1.0 2.0
+599 'PM.Angel' 'november.pm' 287 1.0 2.0
+600 'PM.Angel' 'november.pm' 288 1.0 2.0
+601 'PM.Angel' 'november.pm' 289 1.0 2.0
+602 'PM.Angel' 'november.pm' 290 1.0 2.0
+603 'PM.Angel' 'november.pm' 291 1.0 2.0
+604 'PM.Angel' 'november.pm' 294 1.0 2.0
+605 'PM.Angel' 'november.pm' 295 1.0 2.0
+606 'PM.Angel' 'november.pm' 296 1.0 2.0
+607 'PM.Angel' 'november.pm' 297 1.0 2.0
+608 'PM.Angel' 'november.pm' 298 1.0 2.0
+609 'PM.Angel' 'november.pm' 301 1.0 2.0
+610 'PM.Angel' 'november.pm' 302 1.0 2.0
+611 'PM.Angel' 'november.pm' 303 1.0 2.0
+612 'PM.Angel' 'november.pm' 304 1.0 2.0
+613 'PM.Angel' 'november.pm' 305 1.0 2.0
+614 'PM.Angel' 'november.pm' 308 1.0 2.0
+615 'PM.Angel' 'november.pm' 309 1.0 2.0
+616 'PM.Angel' 'november.pm' 310 1.0 2.0
+617 'PM.Angel' 'november.pm' 311 1.0 2.0
+618 'PM.Angel' 'november.pm' 312 1.0 2.0
+619 'PM.Angel' 'november.pm' 315 1.0 2.0
+620 'PM.Angel' 'november.pm' 316 1.0 2.0
+621 'PM.Angel' 'november.pm' 317 1.0 2.0
+622 'PM.Angel' 'november.pm' 318 1.0 2.0
+623 'PM.Angel' 'november.pm' 319 1.0 2.0
+624 'PM.Angel' 'november.pm' 322 1.0 2.0
+625 'PM.Angel' 'november.pm' 323 1.0 2.0
+626 'PM.Angel' 'november.pm' 324 1.0 2.0
+627 'PM.Angel' 'november.pm' 325 1.0 2.0
+628 'PM.Angel' 'november.pm' 326 1.0 2.0
+629 'PM.Angel' 'november.pm' 329 1.0 2.0
+630 'PM.Angel' 'november.pm' 330 1.0 2.0
+631 'PM.Angel' 'november.pm' 331 1.0 2.0
+632 'PM.Angel' 'november.pm' 332 1.0 2.0
+633 'PM.Angel' 'november.pm' 333 1.0 2.0
+634 'PM.Angel' 'november.pm' 336 1.0 2.0
+635 'PM.Angel' 'november.pm' 337 1.0 2.0
+636 'PM.Angel' 'november.pm' 338 1.0 2.0
+637 'PM.Angel' 'november.pm' 339 1.0 2.0
+638 'PM.Angel' 'november.pm' 340 1.0 2.0
+639 'PM.Angel' 'november.pm' 343 1.0 2.0
+640 'PM.Angel' 'november.pm' 344 1.0 2.0
+641 'PM.Angel' 'november.pm' 345 1.0 2.0
+642 'PM.Angel' 'november.pm' 346 1.0 2.0
+643 'PM.Angel' 'november.pm' 347 1.0 2.0
+644 'PM.Angel' 'november.pm' 350 1.0 2.0
+645 'PM.Angel' 'november.pm' 351 1.0 2.0
+646 'PM.Angel' 'november.pm' 352 1.0 2.0
+647 'PM.Angel' 'november.pm' 353 1.0 2.0
+648 'PM.Angel' 'november.pm' 354 1.0 2.0
+649 'PM.Angel' 'november.pm' 357 1.0 2.0
+650 'PM.Angel' 'november.pm' 358 1.0 2.0
+651 'PM.Angel' 'november.pm' 359 1.0 2.0
+652 'PM.Angel' 'november.pm' 360 1.0 2.0
+653 'PM.Angel' 'november.pm' 361 1.0 2.0
+654 'PM.Angel' 'november.pm' 364 1.0 2.0
+655 'PM.Angel' 'november.pm' 365 1.0 2.0
+656 'PM.Angel' 'oscar2.pf' 175 13.0 14.0
+657 'PM.Angel' 'oscar2.pf' 176 13.0 14.0
+658 'PM.Angel' 'oscar2.pf' 177 13.0 14.0
+659 'PM.Angel' 'oscar2.pf' 178 13.0 14.0
+660 'PM.Angel' 'oscar2.pf' 179 13.0 14.0
+661 'PM.Angel' 'oscar2.pf' 182 13.0 14.0
+662 'PM.Angel' 'oscar2.pm' 3 1.0 2.0
+663 'PM.Angel' 'oscar2.pm' 4 1.0 2.0
+664 'PM.Angel' 'oscar2.pm' 7 1.0 2.0
+665 'PM.Angel' 'oscar2.pm' 8 1.0 2.0
+666 'PM.Angel' 'oscar2.pm' 9 1.0 2.0
+667 'PM.Angel' 'oscar2.pm' 10 1.0 2.0
+668 'PM.Angel' 'oscar2.pm' 11 1.0 2.0
+669 'PM.Angel' 'oscar2.pm' 14 1.0 2.0
+670 'PM.Angel' 'oscar2.pm' 15 1.0 2.0
+671 'PM.Angel' 'oscar2.pm' 16 1.0 2.0
+672 'PM.Angel' 'oscar2.pm' 17 1.0 2.0
+673 'PM.Angel' 'oscar2.pm' 18 1.0 2.0
+674 'PM.Angel' 'oscar2.pm' 21 1.0 2.0
+675 'PM.Angel' 'oscar2.pm' 22 1.0 2.0
+676 'PM.Angel' 'oscar2.pm' 23 1.0 2.0
+677 'PM.Angel' 'oscar2.pm' 24 1.0 2.0
+678 'PM.Angel' 'oscar2.pm' 25 1.0 2.0
+679 'PM.Angel' 'oscar2.pm' 28 1.0 2.0
+680 'PM.Angel' 'oscar2.pm' 29 1.0 2.0
+681 'PM.Angel' 'oscar2.pm' 30 1.0 2.0
+682 'PM.Angel' 'oscar2.pm' 31 1.0 2.0
+683 'PM.Angel' 'oscar2.pm' 32 1.0 2.0
+684 'PM.Angel' 'oscar2.pm' 35 1.0 2.0
+685 'PM.Angel' 'oscar2.pm' 36 1.0 2.0
+686 'PM.Angel' 'oscar2.pm' 37 1.0 2.0
+687 'PM.Angel' 'oscar2.pm' 38 1.0 2.0
+688 'PM.Angel' 'oscar2.pm' 39 1.0 2.0
+689 'PM.Angel' 'oscar2.pm' 42 1.0 2.0
+690 'PM.Angel' 'oscar2.pm' 43 1.0 2.0
+691 'PM.Angel' 'oscar2.pm' 44 1.0 2.0
+692 'PM.Angel' 'oscar2.pm' 45 1.0 2.0
+693 'PM.Angel' 'oscar2.pm' 46 1.0 2.0
+694 'PM.Angel' 'oscar2.pm' 49 1.0 2.0
+695 'PM.Angel' 'oscar2.pm' 50 1.0 2.0
+696 'PM.Angel' 'oscar2.pm' 51 1.0 2.0
+697 'PM.Angel' 'oscar2.pm' 52 1.0 2.0
+698 'PM.Angel' 'oscar2.pm' 53 1.0 2.0
+699 'PM.Angel' 'oscar2.pm' 56 1.0 2.0
+700 'PM.Angel' 'oscar2.pm' 57 1.0 2.0
+701 'PM.Angel' 'oscar2.pm' 58 1.0 2.0
+702 'PM.Angel' 'oscar2.pm' 59 1.0 2.0
+703 'PM.Angel' 'oscar2.pm' 60 1.0 2.0
+704 'PM.Angel' 'oscar2.pm' 63 1.0 2.0
+705 'PM.Angel' 'oscar2.pm' 64 1.0 2.0
+706 'PM.Angel' 'oscar2.pm' 65 1.0 2.0
+707 'PM.Angel' 'oscar2.pm' 66 1.0 2.0
+708 'PM.Angel' 'oscar2.pm' 67 1.0 2.0
+709 'PM.Angel' 'oscar2.pm' 70 1.0 2.0
+710 'PM.Angel' 'oscar2.pm' 71 1.0 2.0
+711 'PM.Angel' 'oscar2.pm' 72 1.0 2.0
+712 'PM.Angel' 'oscar2.pm' 73 1.0 2.0
+713 'PM.Angel' 'oscar2.pm' 74 1.0 2.0
+714 'PM.Angel' 'oscar2.pm' 77 1.0 2.0
+715 'PM.Angel' 'oscar2.pm' 78 1.0 2.0
+716 'PM.Angel' 'oscar2.pm' 79 1.0 2.0
+717 'PM.Angel' 'oscar2.pm' 80 1.0 2.0
+718 'PM.Angel' 'oscar2.pm' 81 1.0 2.0
+719 'PM.Angel' 'oscar2.pm' 84 1.0 2.0
+720 'PM.Angel' 'oscar2.pm' 85 1.0 2.0
+721 'PM.Angel' 'oscar2.pm' 86 1.0 2.0
+722 'PM.Angel' 'oscar2.pm' 87 1.0 2.0
+723 'PM.Angel' 'oscar2.pm' 88 1.0 2.0
+724 'PM.Angel' 'oscar2.pm' 91 1.0 2.0
+725 'PM.Angel' 'oscar2.pm' 92 1.0 2.0
+726 'PM.Angel' 'oscar2.pm' 93 1.0 2.0
+727 'PM.Angel' 'oscar2.pm' 94 1.0 2.0
+728 'PM.Angel' 'oscar2.pm' 95 1.0 2.0
+729 'PM.Angel' 'oscar2.pm' 98 1.0 2.0
+730 'PM.Angel' 'oscar2.pm' 99 1.0 2.0
+731 'PM.Angel' 'oscar2.pm' 100 1.0 2.0
+732 'PM.Angel' 'oscar2.pm' 101 1.0 2.0
+733 'PM.Angel' 'oscar2.pm' 102 1.0 2.0
+734 'PM.Angel' 'oscar2.pm' 105 1.0 2.0
+735 'PM.Angel' 'oscar2.pm' 106 1.0 2.0
+736 'PM.Angel' 'oscar2.pm' 107 1.0 2.0
+737 'PM.Angel' 'oscar2.pm' 108 1.0 2.0
+738 'PM.Angel' 'oscar2.pm' 109 1.0 2.0
+739 'PM.Angel' 'oscar2.pm' 112 1.0 2.0
+740 'PM.Angel' 'oscar2.pm' 113 1.0 2.0
+741 'PM.Angel' 'oscar2.pm' 114 1.0 2.0
+742 'PM.Angel' 'oscar2.pm' 115 1.0 2.0
+743 'PM.Angel' 'oscar2.pm' 116 1.0 2.0
+744 'PM.Angel' 'oscar2.pm' 119 1.0 2.0
+745 'PM.Angel' 'oscar2.pm' 120 1.0 2.0
+746 'PM.Angel' 'oscar2.pm' 121 1.0 2.0
+747 'PM.Angel' 'oscar2.pm' 123 1.0 2.0
+748 'PM.Angel' 'oscar2.pm' 126 1.0 2.0
+749 'PM.Angel' 'oscar2.pm' 127 1.0 2.0
+750 'PM.Angel' 'oscar2.pm' 128 1.0 2.0
+751 'PM.Angel' 'oscar2.pm' 129 1.0 2.0
+752 'PM.Angel' 'oscar2.pm' 130 1.0 2.0
+753 'PM.Angel' 'oscar2.pm' 133 1.0 2.0
+754 'PM.Angel' 'oscar2.pm' 134 1.0 2.0
+755 'PM.Angel' 'oscar2.pm' 135 1.0 2.0
+756 'PM.Angel' 'oscar2.pm' 136 1.0 2.0
+757 'PM.Angel' 'oscar2.pm' 137 1.0 2.0
+758 'PM.Angel' 'oscar2.pm' 140 1.0 2.0
+759 'PM.Angel' 'oscar2.pm' 141 1.0 2.0
+760 'PM.Angel' 'oscar2.pm' 142 1.0 2.0
+761 'PM.Angel' 'oscar2.pm' 143 1.0 2.0
+762 'PM.Angel' 'oscar2.pm' 144 1.0 2.0
+763 'PM.Angel' 'oscar2.pm' 147 1.0 2.0
+764 'PM.Angel' 'oscar2.pm' 148 1.0 2.0
+765 'PM.Angel' 'oscar2.pm' 149 1.0 2.0
+766 'PM.Angel' 'oscar2.pm' 150 1.0 2.0
+767 'PM.Angel' 'oscar2.pm' 151 1.0 2.0
+768 'PM.Angel' 'oscar2.pm' 154 1.0 2.0
+769 'PM.Angel' 'oscar2.pm' 155 1.0 2.0
+770 'PM.Angel' 'oscar2.pm' 156 1.0 2.0
+771 'PM.Angel' 'oscar2.pm' 157 1.0 2.0
+772 'PM.Angel' 'oscar2.pm' 158 1.0 2.0
+773 'PM.Angel' 'oscar2.pm' 161 1.0 2.0
+774 'PM.Angel' 'oscar2.pm' 162 1.0 2.0
+775 'PM.Angel' 'oscar2.pm' 163 1.0 2.0
+776 'PM.Angel' 'oscar2.pm' 164 1.0 2.0
+777 'PM.Angel' 'oscar2.pm' 165 1.0 2.0
+778 'PM.Angel' 'oscar2.pm' 168 1.0 2.0
+779 'PM.Angel' 'oscar2.pm' 169 1.0 2.0
+780 'PM.Angel' 'oscar2.pm' 170 1.0 2.0
+781 'PM.Angel' 'oscar2.pm' 171 1.0 2.0
+782 'PM.Angel' 'oscar2.pm' 172 1.0 2.0
+783 'PM.Angel' 'papa2.pf' 175 13.0 14.0
+784 'PM.Angel' 'papa2.pf' 176 13.0 14.0
+785 'PM.Angel' 'papa2.pf' 177 13.0 14.0
+786 'PM.Angel' 'papa2.pf' 178 13.0 14.0
+787 'PM.Angel' 'papa2.pf' 179 13.0 14.0
+788 'PM.Angel' 'papa2.pf' 182 13.0 14.0
+789 'PM.Angel' 'papa2.pm' 3 3.0 4.0
+790 'PM.Angel' 'papa2.pm' 4 3.0 4.0
+791 'PM.Angel' 'papa2.pm' 7 3.0 4.0
+792 'PM.Angel' 'papa2.pm' 8 3.0 4.0
+793 'PM.Angel' 'papa2.pm' 9 3.0 4.0
+794 'PM.Angel' 'papa2.pm' 10 3.0 4.0
+795 'PM.Angel' 'papa2.pm' 11 3.0 4.0
+796 'PM.Angel' 'papa2.pm' 14 3.0 4.0
+797 'PM.Angel' 'papa2.pm' 15 3.0 4.0
+798 'PM.Angel' 'papa2.pm' 16 3.0 4.0
+799 'PM.Angel' 'papa2.pm' 17 3.0 4.0
+800 'PM.Angel' 'papa2.pm' 18 3.0 4.0
+801 'PM.Angel' 'papa2.pm' 21 3.0 4.0
+802 'PM.Angel' 'papa2.pm' 22 3.0 4.0
+803 'PM.Angel' 'papa2.pm' 23 3.0 4.0
+804 'PM.Angel' 'papa2.pm' 24 3.0 4.0
+805 'PM.Angel' 'papa2.pm' 25 3.0 4.0
+806 'PM.Angel' 'papa2.pm' 28 3.0 4.0
+807 'PM.Angel' 'papa2.pm' 29 3.0 4.0
+808 'PM.Angel' 'papa2.pm' 30 3.0 4.0
+809 'PM.Angel' 'papa2.pm' 31 3.0 4.0
+810 'PM.Angel' 'papa2.pm' 32 3.0 4.0
+811 'PM.Angel' 'papa2.pm' 35 3.0 4.0
+812 'PM.Angel' 'papa2.pm' 36 3.0 4.0
+813 'PM.Angel' 'papa2.pm' 37 3.0 4.0
+814 'PM.Angel' 'papa2.pm' 38 3.0 4.0
+815 'PM.Angel' 'papa2.pm' 39 3.0 4.0
+816 'PM.Angel' 'papa2.pm' 42 3.0 4.0
+817 'PM.Angel' 'papa2.pm' 43 3.0 4.0
+818 'PM.Angel' 'papa2.pm' 44 3.0 4.0
+819 'PM.Angel' 'papa2.pm' 45 3.0 4.0
+820 'PM.Angel' 'papa2.pm' 46 3.0 4.0
+821 'PM.Angel' 'papa2.pm' 49 3.0 4.0
+822 'PM.Angel' 'papa2.pm' 50 3.0 4.0
+823 'PM.Angel' 'papa2.pm' 51 3.0 4.0
+824 'PM.Angel' 'papa2.pm' 52 3.0 4.0
+825 'PM.Angel' 'papa2.pm' 53 3.0 4.0
+826 'PM.Angel' 'papa2.pm' 56 3.0 4.0
+827 'PM.Angel' 'papa2.pm' 57 3.0 4.0
+828 'PM.Angel' 'papa2.pm' 58 3.0 4.0
+829 'PM.Angel' 'papa2.pm' 59 3.0 4.0
+830 'PM.Angel' 'papa2.pm' 60 3.0 4.0
+831 'PM.Angel' 'papa2.pm' 63 3.0 4.0
+832 'PM.Angel' 'papa2.pm' 64 3.0 4.0
+833 'PM.Angel' 'papa2.pm' 65 3.0 4.0
+834 'PM.Angel' 'papa2.pm' 66 3.0 4.0
+835 'PM.Angel' 'papa2.pm' 67 3.0 4.0
+836 'PM.Angel' 'papa2.pm' 70 3.0 4.0
+837 'PM.Angel' 'papa2.pm' 71 3.0 4.0
+838 'PM.Angel' 'papa2.pm' 72 3.0 4.0
+839 'PM.Angel' 'papa2.pm' 73 3.0 4.0
+840 'PM.Angel' 'papa2.pm' 74 3.0 4.0
+841 'PM.Angel' 'papa2.pm' 77 3.0 4.0
+842 'PM.Angel' 'papa2.pm' 78 3.0 4.0
+843 'PM.Angel' 'papa2.pm' 79 3.0 4.0
+844 'PM.Angel' 'papa2.pm' 80 3.0 4.0
+845 'PM.Angel' 'papa2.pm' 81 3.0 4.0
+846 'PM.Angel' 'papa2.pm' 84 3.0 4.0
+847 'PM.Angel' 'papa2.pm' 85 3.0 4.0
+848 'PM.Angel' 'papa2.pm' 86 3.0 4.0
+849 'PM.Angel' 'papa2.pm' 87 3.0 4.0
+850 'PM.Angel' 'papa2.pm' 88 3.0 4.0
+851 'PM.Angel' 'papa2.pm' 91 3.0 4.0
+852 'PM.Angel' 'papa2.pm' 92 3.0 4.0
+853 'PM.Angel' 'papa2.pm' 93 3.0 4.0
+854 'PM.Angel' 'papa2.pm' 94 3.0 4.0
+855 'PM.Angel' 'papa2.pm' 95 3.0 4.0
+856 'PM.Angel' 'papa2.pm' 98 3.0 4.0
+857 'PM.Angel' 'papa2.pm' 99 3.0 4.0
+858 'PM.Angel' 'papa2.pm' 100 3.0 4.0
+859 'PM.Angel' 'papa2.pm' 101 3.0 4.0
+860 'PM.Angel' 'papa2.pm' 102 3.0 4.0
+861 'PM.Angel' 'papa2.pm' 105 3.0 4.0
+862 'PM.Angel' 'papa2.pm' 106 3.0 4.0
+863 'PM.Angel' 'papa2.pm' 107 3.0 4.0
+864 'PM.Angel' 'papa2.pm' 108 3.0 4.0
+865 'PM.Angel' 'papa2.pm' 109 3.0 4.0
+866 'PM.Angel' 'papa2.pm' 112 3.0 4.0
+867 'PM.Angel' 'papa2.pm' 113 3.0 4.0
+868 'PM.Angel' 'papa2.pm' 114 3.0 4.0
+869 'PM.Angel' 'papa2.pm' 115 3.0 4.0
+870 'PM.Angel' 'papa2.pm' 116 3.0 4.0
+871 'PM.Angel' 'papa2.pm' 119 3.0 4.0
+872 'PM.Angel' 'papa2.pm' 120 3.0 4.0
+873 'PM.Angel' 'papa2.pm' 121 3.0 4.0
+874 'PM.Angel' 'papa2.pm' 123 3.0 4.0
+875 'PM.Angel' 'papa2.pm' 126 3.0 4.0
+876 'PM.Angel' 'papa2.pm' 127 3.0 4.0
+877 'PM.Angel' 'papa2.pm' 128 3.0 4.0
+878 'PM.Angel' 'papa2.pm' 129 3.0 4.0
+879 'PM.Angel' 'papa2.pm' 130 3.0 4.0
+880 'PM.Angel' 'papa2.pm' 133 3.0 4.0
+881 'PM.Angel' 'papa2.pm' 134 3.0 4.0
+882 'PM.Angel' 'papa2.pm' 135 3.0 4.0
+883 'PM.Angel' 'papa2.pm' 136 3.0 4.0
+884 'PM.Angel' 'papa2.pm' 137 3.0 4.0
+885 'PM.Angel' 'papa2.pm' 140 3.0 4.0
+886 'PM.Angel' 'papa2.pm' 141 3.0 4.0
+887 'PM.Angel' 'papa2.pm' 142 3.0 4.0
+888 'PM.Angel' 'papa2.pm' 143 3.0 4.0
+889 'PM.Angel' 'papa2.pm' 144 3.0 4.0
+890 'PM.Angel' 'papa2.pm' 147 3.0 4.0
+891 'PM.Angel' 'papa2.pm' 148 3.0 4.0
+892 'PM.Angel' 'papa2.pm' 149 3.0 4.0
+893 'PM.Angel' 'papa2.pm' 150 3.0 4.0
+894 'PM.Angel' 'papa2.pm' 151 3.0 4.0
+895 'PM.Angel' 'papa2.pm' 154 3.0 4.0
+896 'PM.Angel' 'papa2.pm' 155 3.0 4.0
+897 'PM.Angel' 'papa2.pm' 156 3.0 4.0
+898 'PM.Angel' 'papa2.pm' 157 3.0 4.0
+899 'PM.Angel' 'papa2.pm' 158 3.0 4.0
+900 'PM.Angel' 'papa2.pm' 161 3.0 4.0
+901 'PM.Angel' 'papa2.pm' 162 3.0 4.0
+902 'PM.Angel' 'papa2.pm' 163 3.0 4.0
+903 'PM.Angel' 'papa2.pm' 164 3.0 4.0
+904 'PM.Angel' 'papa2.pm' 165 3.0 4.0
+905 'PM.Angel' 'papa2.pm' 168 3.0 4.0
+906 'PM.Angel' 'papa2.pm' 169 3.0 4.0
+907 'PM.Angel' 'papa2.pm' 170 3.0 4.0
+908 'PM.Angel' 'papa2.pm' 171 3.0 4.0
+909 'PM.Angel' 'papa2.pm' 172 3.0 4.0
+910 'PM.Angel' 'quebec2.pe' 154 2.0 6.0
+911 'PM.Angel' 'quebec2.pe' 155 2.0 6.0
+912 'PM.Angel' 'quebec2.pe' 156 2.0 6.0
+913 'PM.Angel' 'quebec2.pe' 157 2.0 6.0
+914 'PM.Angel' 'quebec2.pe' 158 2.0 6.0
+915 'PM.Angel' 'quebec2.pe' 161 2.0 6.0
+916 'PM.Angel' 'quebec2.pe' 162 2.0 6.0
+917 'PM.Angel' 'quebec2.pe' 163 2.0 6.0
+918 'PM.Angel' 'quebec2.pe' 164 2.0 6.0
+919 'PM.Angel' 'quebec2.pe' 165 2.0 6.0
+920 'PM.Angel' 'quebec2.pe' 168 2.0 6.0
+921 'PM.Angel' 'quebec2.pe' 169 2.0 6.0
+922 'PM.Angel' 'quebec2.pe' 170 2.0 6.0
+923 'PM.Angel' 'quebec2.pe' 171 2.0 6.0
+924 'PM.Angel' 'quebec2.pe' 172 2.0 6.0
+925 'PM.Angel' 'quebec2.pe' 175 2.0 6.0
+926 'PM.Angel' 'quebec2.pe' 176 2.0 6.0
+927 'PM.Angel' 'quebec2.pe' 177 2.0 6.0
+928 'PM.Angel' 'quebec2.pe' 178 2.0 6.0
+929 'PM.Angel' 'quebec2.pf' 680 2.0 3.0
+930 'PM.Angel' 'quebec2.pf' 681 2.0 3.0
+931 'PM.Angel' 'quebec2.pf' 682 2.0 3.0
+932 'PM.Angel' 'quebec2.pf' 683 2.0 3.0
+933 'PM.Angel' 'quebec2.pf' 686 2.0 3.0
+934 'PM.Angel' 'quebec2.pf' 687 2.0 3.0
+935 'PM.Angel' 'quebec2.pf' 688 2.0 3.0
+936 'PM.Angel' 'quebec2.pf' 689 2.0 3.0
+937 'PM.Angel' 'quebec2.pf' 690 2.0 3.0
+938 'PM.Angel' 'quebec2.pf' 693 2.0 3.0
+939 'PM.Angel' 'quebec2.pf' 694 2.0 3.0
+940 'PM.Angel' 'quebec2.pf' 695 2.0 3.0
+941 'PM.Angel' 'quebec2.pf' 696 2.0 3.0
+942 'PM.Angel' 'quebec2.pf' 697 2.0 3.0
+943 'PM.Angel' 'quebec2.pf' 700 2.0 3.0
+944 'PM.Angel' 'quebec2.pf' 701 2.0 3.0
+945 'PM.Angel' 'quebec2.pf' 702 2.0 3.0
+946 'PM.Angel' 'quebec2.pf' 703 2.0 3.0
+947 'PM.Angel' 'quebec2.pf' 704 2.0 3.0
+948 'PM.Angel' 'quebec2.pf' 707 2.0 3.0
+949 'PM.Angel' 'quebec2.pf' 708 2.0 3.0
+950 'PM.Angel' 'quebec2.pf' 709 2.0 3.0
+951 'PM.Angel' 'quebec2.pf' 710 2.0 3.0
+952 'PM.Angel' 'quebec2.pf' 711 2.0 3.0
+953 'PM.Angel' 'quebec2.pf' 714 2.0 3.0
+954 'PM.Angel' 'quebec2.pf' 715 2.0 3.0
+955 'PM.Angel' 'quebec2.pf' 716 2.0 3.0
+956 'PM.Angel' 'quebec2.pf' 717 2.0 3.0
+957 'PM.Angel' 'quebec2.pf' 718 2.0 3.0
+958 'PM.Angel' 'quebec2.pf' 721 2.0 3.0
+959 'PM.Angel' 'quebec2.pf' 722 2.0 3.0
+960 'PM.Angel' 'quebec2.pf' 723 2.0 3.0
+961 'PM.Angel' 'quebec2.pf' 724 2.0 3.0
+962 'PM.Angel' 'quebec2.pf' 725 2.0 3.0
+963 'PM.Angel' 'quebec2.pf' 728 2.0 3.0
+964 'PM.Angel' 'quebec2.pf' 729 2.0 3.0
+965 'PM.Angel' 'quebec2.pf' 730 2.0 3.0
+966 'PM.Angel' 'quebec2.pf' 731 2.0 3.0
+967 'PM.Angel' 'quebec2.pf' 732 2.0 3.0
+968 'PM.Angel' 'quebec2.pf' 735 2.0 3.0
+969 'PM.Angel' 'quebec2.pm' 179 0.0 2.0
+970 'PM.Angel' 'quebec2.pm' 182 0.0 2.0
+971 'PM.Angel' 'quebec2.pm' 183 0.0 2.0
+972 'PM.Angel' 'quebec2.pm' 184 0.0 2.0
+973 'PM.Angel' 'quebec2.pm' 185 0.0 2.0
+974 'PM.Angel' 'quebec2.pm' 186 0.0 2.0
+975 'PM.Angel' 'quebec2.pm' 189 0.0 2.0
+976 'PM.Angel' 'quebec2.pm' 190 0.0 2.0
+977 'PM.Angel' 'quebec2.pm' 191 0.0 2.0
+978 'PM.Angel' 'quebec2.pm' 192 0.0 2.0
+979 'PM.Angel' 'quebec2.pm' 193 0.0 2.0
+980 'PM.Angel' 'quebec2.pm' 196 0.0 2.0
+981 'PM.Angel' 'quebec2.pm' 197 0.0 2.0
+982 'PM.Angel' 'quebec2.pm' 198 0.0 2.0
+983 'PM.Angel' 'quebec2.pm' 199 0.0 2.0
+984 'PM.Angel' 'quebec2.pm' 200 0.0 2.0
+985 'PM.Angel' 'quebec2.pm' 203 0.0 2.0
+986 'PM.Angel' 'quebec2.pm' 204 0.0 2.0
+987 'PM.Angel' 'quebec2.pm' 205 0.0 2.0
+988 'PM.Angel' 'quebec2.pm' 206 0.0 2.0
+989 'PM.Angel' 'quebec2.pm' 207 0.0 2.0
+990 'PM.Angel' 'quebec2.pm' 210 0.0 2.0
+991 'PM.Angel' 'quebec2.pm' 211 0.0 2.0
+992 'PM.Angel' 'quebec2.pm' 212 0.0 2.0
+993 'PM.Angel' 'quebec2.pm' 213 0.0 2.0
+994 'PM.Angel' 'quebec2.pm' 214 0.0 2.0
+995 'PM.Angel' 'quebec2.pm' 217 0.0 2.0
+996 'PM.Angel' 'quebec2.pm' 218 0.0 2.0
+997 'PM.Angel' 'quebec2.pm' 219 0.0 2.0
+998 'PM.Angel' 'quebec2.pm' 220 0.0 2.0
+999 'PM.Angel' 'quebec2.pm' 221 0.0 2.0
+1000 'PM.Angel' 'quebec2.pm' 224 0.0 2.0
+1001 'PM.Angel' 'quebec2.pm' 225 0.0 2.0
+1002 'PM.Angel' 'quebec2.pm' 226 0.0 2.0
+1003 'PM.Angel' 'quebec2.pm' 227 0.0 2.0
+1004 'PM.Angel' 'quebec2.pm' 228 0.0 2.0
+1005 'PM.Angel' 'quebec2.pm' 231 0.0 2.0
+1006 'PM.Angel' 'quebec2.pm' 232 0.0 2.0
+1007 'PM.Angel' 'quebec2.pm' 233 0.0 2.0
+1008 'PM.Angel' 'quebec2.pm' 234 0.0 2.0
+1009 'PM.Angel' 'quebec2.pm' 235 0.0 2.0
+1010 'PM.Angel' 'quebec2.pm' 238 0.0 2.0
+1011 'PM.Angel' 'quebec2.pm' 239 0.0 2.0
+1012 'PM.Angel' 'quebec2.pm' 240 0.0 2.0
+1013 'PM.Angel' 'quebec2.pm' 241 0.0 2.0
+1014 'PM.Angel' 'quebec2.pm' 242 0.0 2.0
+1015 'PM.Angel' 'quebec2.pm' 245 0.0 2.0
+1016 'PM.Angel' 'quebec2.pm' 246 0.0 2.0
+1017 'PM.Angel' 'quebec2.pm' 247 0.0 2.0
+1018 'PM.Angel' 'quebec2.pm' 248 0.0 2.0
+1019 'PM.Angel' 'quebec2.pm' 249 0.0 2.0
+1020 'PM.Angel' 'quebec2.pm' 252 0.0 2.0
+1021 'PM.Angel' 'quebec2.pm' 253 0.0 2.0
+1022 'PM.Angel' 'quebec2.pm' 254 0.0 2.0
+1023 'PM.Angel' 'quebec2.pm' 255 0.0 2.0
+1024 'PM.Angel' 'quebec2.pm' 256 0.0 2.0
+1025 'PM.Angel' 'quebec2.pm' 259 0.0 2.0
+1026 'PM.Angel' 'quebec2.pm' 260 0.0 2.0
+1027 'PM.Angel' 'quebec2.pm' 261 0.0 2.0
+1028 'PM.Angel' 'quebec2.pm' 262 0.0 2.0
+1029 'PM.Angel' 'quebec2.pm' 263 0.0 2.0
+1030 'PM.Angel' 'quebec2.pm' 266 0.0 2.0
+1031 'PM.Angel' 'quebec2.pm' 267 0.0 2.0
+1032 'PM.Angel' 'quebec2.pm' 268 0.0 2.0
+1033 'PM.Angel' 'quebec2.pm' 269 0.0 2.0
+1034 'PM.Angel' 'quebec2.pm' 270 0.0 2.0
+1035 'PM.Angel' 'quebec2.pm' 273 0.0 2.0
+1036 'PM.Angel' 'quebec2.pm' 274 0.0 2.0
+1037 'PM.Angel' 'quebec2.pm' 275 0.0 2.0
+1038 'PM.Angel' 'quebec2.pm' 276 0.0 2.0
+1039 'PM.Angel' 'quebec2.pm' 277 0.0 2.0
+1040 'PM.Angel' 'quebec2.pm' 280 0.0 2.0
+1041 'PM.Angel' 'quebec2.pm' 281 0.0 2.0
+1042 'PM.Angel' 'quebec2.pm' 282 0.0 2.0
+1043 'PM.Angel' 'quebec2.pm' 283 0.0 2.0
+1044 'PM.Angel' 'quebec2.pm' 284 0.0 2.0
+1045 'PM.Angel' 'quebec2.pm' 287 0.0 2.0
+1046 'PM.Angel' 'quebec2.pm' 288 0.0 2.0
+1047 'PM.Angel' 'quebec2.pm' 289 0.0 2.0
+1048 'PM.Angel' 'quebec2.pm' 290 0.0 2.0
+1049 'PM.Angel' 'quebec2.pm' 291 0.0 2.0
+1050 'PM.Angel' 'quebec2.pm' 294 0.0 2.0
+1051 'PM.Angel' 'quebec2.pm' 295 0.0 2.0
+1052 'PM.Angel' 'quebec2.pm' 296 0.0 2.0
+1053 'PM.Angel' 'quebec2.pm' 297 0.0 2.0
+1054 'PM.Angel' 'quebec2.pm' 298 0.0 2.0
+1055 'PM.Angel' 'quebec2.pm' 301 0.0 2.0
+1056 'PM.Angel' 'quebec2.pm' 302 0.0 2.0
+1057 'PM.Angel' 'quebec2.pm' 303 0.0 2.0
+1058 'PM.Angel' 'quebec2.pm' 304 0.0 2.0
+1059 'PM.Angel' 'quebec2.pm' 305 0.0 2.0
+1060 'PM.Angel' 'quebec2.pm' 308 0.0 2.0
+1061 'PM.Angel' 'quebec2.pm' 309 0.0 2.0
+1062 'PM.Angel' 'quebec2.pm' 310 0.0 2.0
+1063 'PM.Angel' 'quebec2.pm' 311 0.0 2.0
+1064 'PM.Angel' 'quebec2.pm' 312 0.0 2.0
+1065 'PM.Angel' 'quebec2.pm' 315 0.0 2.0
+1066 'PM.Angel' 'quebec2.pm' 316 0.0 2.0
+1067 'PM.Angel' 'quebec2.pm' 317 0.0 2.0
+1068 'PM.Angel' 'quebec2.pm' 318 0.0 2.0
+1069 'PM.Angel' 'quebec2.pm' 319 0.0 2.0
+1070 'PM.Angel' 'quebec2.pm' 322 0.0 2.0
+1071 'PM.Angel' 'quebec2.pm' 323 0.0 2.0
+1072 'PM.Angel' 'quebec2.pm' 324 0.0 2.0
+1073 'PM.Angel' 'quebec2.pm' 325 0.0 2.0
+1074 'PM.Angel' 'quebec2.pm' 326 0.0 2.0
+1075 'PM.Angel' 'quebec2.pm' 329 0.0 2.0
+1076 'PM.Angel' 'quebec2.pm' 330 0.0 2.0
+1077 'PM.Angel' 'quebec2.pm' 331 0.0 2.0
+1078 'PM.Angel' 'quebec2.pm' 332 0.0 2.0
+1079 'PM.Angel' 'quebec2.pm' 333 0.0 2.0
+1080 'PM.Angel' 'quebec2.pm' 336 0.0 2.0
+1081 'PM.Angel' 'quebec2.pm' 337 0.0 2.0
+1082 'PM.Angel' 'quebec2.pm' 338 0.0 2.0
+1083 'PM.Angel' 'quebec2.pm' 339 0.0 2.0
+1084 'PM.Angel' 'quebec2.pm' 340 0.0 2.0
+1085 'PM.Angel' 'quebec2.pm' 343 0.0 2.0
+1086 'PM.Angel' 'quebec2.pm' 344 0.0 2.0
+1087 'PM.Angel' 'quebec2.pm' 345 0.0 2.0
+1088 'PM.Angel' 'quebec2.pm' 346 0.0 2.0
+1089 'PM.Angel' 'quebec2.pm' 347 0.0 2.0
+1090 'PM.Angel' 'quebec2.pm' 350 0.0 2.0
+1091 'PM.Angel' 'quebec2.pm' 351 0.0 2.0
+1092 'PM.Angel' 'quebec2.pm' 352 0.0 2.0
+1093 'PM.Angel' 'quebec2.pm' 353 0.0 2.0
+1094 'PM.Angel' 'quebec2.pm' 354 0.0 2.0
+1095 'PM.Angel' 'quebec2.pm' 357 0.0 2.0
+1096 'PM.Angel' 'quebec2.pm' 358 0.0 2.0
+1097 'PM.Angel' 'quebec2.pm' 359 0.0 2.0
+1098 'PM.Angel' 'quebec2.pm' 360 0.0 2.0
+1099 'PM.Angel' 'quebec2.pm' 361 0.0 2.0
+1100 'PM.Angel' 'quebec2.pm' 364 0.0 2.0
+1101 'PM.Angel' 'quebec2.pm' 365 0.0 2.0
+1102 'PM.Angel' 'quebec2.pm' 366 0.0 2.0
+1103 'PM.Angel' 'quebec2.pm' 367 0.0 2.0
+1104 'PM.Angel' 'quebec2.pm' 368 0.0 2.0
+1105 'PM.Angel' 'quebec2.pm' 371 0.0 2.0
+1106 'PM.Angel' 'quebec2.pm' 372 0.0 2.0
+1107 'PM.Angel' 'quebec2.pm' 373 0.0 2.0
+1108 'PM.Angel' 'quebec2.pm' 374 0.0 2.0
+1109 'PM.Angel' 'quebec2.pm' 375 0.0 2.0
+1110 'PM.Angel' 'quebec2.pm' 378 0.0 2.0
+1111 'PM.Angel' 'quebec2.pm' 379 0.0 2.0
+1112 'PM.Angel' 'quebec2.pm' 380 0.0 2.0
+1113 'PM.Angel' 'quebec2.pm' 381 0.0 2.0
+1114 'PM.Angel' 'quebec2.pm' 382 0.0 2.0
+1115 'PM.Angel' 'quebec2.pm' 385 0.0 2.0
+1116 'PM.Angel' 'quebec2.pm' 386 0.0 2.0
+1117 'PM.Angel' 'quebec2.pm' 387 0.0 2.0
+1118 'PM.Angel' 'quebec2.pm' 388 0.0 2.0
+1119 'PM.Angel' 'quebec2.pm' 389 0.0 2.0
+1120 'PM.Angel' 'quebec2.pm' 392 0.0 2.0
+1121 'PM.Angel' 'quebec2.pm' 393 0.0 2.0
+1122 'PM.Angel' 'quebec2.pm' 394 0.0 2.0
+1123 'PM.Angel' 'quebec2.pm' 395 0.0 2.0
+1124 'PM.Angel' 'quebec2.pm' 396 0.0 2.0
+1125 'PM.Angel' 'quebec2.pm' 399 0.0 2.0
+1126 'PM.Angel' 'quebec2.pm' 400 0.0 2.0
+1127 'PM.Angel' 'quebec2.pm' 401 0.0 2.0
+1128 'PM.Angel' 'quebec2.pm' 402 0.0 2.0
+1129 'PM.Angel' 'quebec2.pm' 403 0.0 2.0
+1130 'PM.Angel' 'quebec2.pm' 406 0.0 2.0
+1131 'PM.Angel' 'quebec2.pm' 407 0.0 2.0
+1132 'PM.Angel' 'quebec2.pm' 408 0.0 2.0
+1133 'PM.Angel' 'quebec2.pm' 409 0.0 2.0
+1134 'PM.Angel' 'quebec2.pm' 410 0.0 2.0
+1135 'PM.Angel' 'quebec2.pm' 413 0.0 2.0
+1136 'PM.Angel' 'quebec2.pm' 414 0.0 2.0
+1137 'PM.Angel' 'quebec2.pm' 415 0.0 2.0
+1138 'PM.Angel' 'quebec2.pm' 416 0.0 2.0
+1139 'PM.Angel' 'quebec2.pm' 417 0.0 2.0
+1140 'PM.Angel' 'quebec2.pm' 420 0.0 2.0
+1141 'PM.Angel' 'quebec2.pm' 421 0.0 2.0
+1142 'PM.Angel' 'quebec2.pm' 422 0.0 2.0
+1143 'PM.Angel' 'quebec2.pm' 423 0.0 2.0
+1144 'PM.Angel' 'quebec2.pm' 424 0.0 2.0
+1145 'PM.Angel' 'quebec2.pm' 427 0.0 2.0
+1146 'PM.Angel' 'quebec2.pm' 428 0.0 2.0
+1147 'PM.Angel' 'quebec2.pm' 429 0.0 2.0
+1148 'PM.Angel' 'quebec2.pm' 430 0.0 2.0
+1149 'PM.Angel' 'quebec2.pm' 431 0.0 2.0
+1150 'PM.Angel' 'quebec2.pm' 434 0.0 2.0
+1151 'PM.Angel' 'quebec2.pm' 435 0.0 2.0
+1152 'PM.Angel' 'quebec2.pm' 436 0.0 2.0
+1153 'PM.Angel' 'quebec2.pm' 437 0.0 2.0
+1154 'PM.Angel' 'quebec2.pm' 438 0.0 2.0
+1155 'PM.Angel' 'quebec2.pm' 441 0.0 2.0
+1156 'PM.Angel' 'quebec2.pm' 442 0.0 2.0
+1157 'PM.Angel' 'quebec2.pm' 443 0.0 2.0
+1158 'PM.Angel' 'quebec2.pm' 444 0.0 2.0
+1159 'PM.Angel' 'quebec2.pm' 445 0.0 2.0
+1160 'PM.Angel' 'quebec2.pm' 448 0.0 2.0
+1161 'PM.Angel' 'quebec2.pm' 449 0.0 2.0
+1162 'PM.Angel' 'quebec2.pm' 450 0.0 2.0
+1163 'PM.Angel' 'quebec2.pm' 451 0.0 2.0
+1164 'PM.Angel' 'quebec2.pm' 452 0.0 2.0
+1165 'PM.Angel' 'quebec2.pm' 455 0.0 2.0
+1166 'PM.Angel' 'quebec2.pm' 456 0.0 2.0
+1167 'PM.Angel' 'quebec2.pm' 457 0.0 2.0
+1168 'PM.Angel' 'quebec2.pm' 458 0.0 2.0
+1169 'PM.Angel' 'quebec2.pm' 459 0.0 2.0
+1170 'PM.Angel' 'quebec2.pm' 462 0.0 2.0
+1171 'PM.Angel' 'quebec2.pm' 463 0.0 2.0
+1172 'PM.Angel' 'quebec2.pm' 464 0.0 2.0
+1173 'PM.Angel' 'quebec2.pm' 465 0.0 2.0
+1174 'PM.Angel' 'quebec2.pm' 466 0.0 2.0
+1175 'PM.Angel' 'quebec2.pm' 469 0.0 2.0
+1176 'PM.Angel' 'quebec2.pm' 470 0.0 2.0
+1177 'PM.Angel' 'quebec2.pm' 471 0.0 2.0
+1178 'PM.Angel' 'quebec2.pm' 472 0.0 2.0
+1179 'PM.Angel' 'quebec2.pm' 473 0.0 2.0
+1180 'PM.Angel' 'quebec2.pm' 476 0.0 2.0
+1181 'PM.Angel' 'quebec2.pm' 477 0.0 2.0
+1182 'PM.Angel' 'quebec2.pm' 478 0.0 2.0
+1183 'PM.Angel' 'quebec2.pm' 479 0.0 2.0
+1184 'PM.Angel' 'quebec2.pm' 480 0.0 2.0
+1185 'PM.Angel' 'quebec2.pm' 483 0.0 2.0
+1186 'PM.Angel' 'quebec2.pm' 484 0.0 2.0
+1187 'PM.Angel' 'quebec2.pm' 485 0.0 2.0
+1188 'PM.Angel' 'quebec2.pm' 486 0.0 2.0
+1189 'PM.Angel' 'quebec2.pm' 487 0.0 2.0
+1190 'PM.Angel' 'quebec2.pm' 490 0.0 2.0
+1191 'PM.Angel' 'quebec2.pm' 491 0.0 2.0
+1192 'PM.Angel' 'quebec2.pm' 492 0.0 2.0
+1193 'PM.Angel' 'quebec2.pm' 493 0.0 2.0
+1194 'PM.Angel' 'quebec2.pm' 494 0.0 2.0
+1195 'PM.Angel' 'quebec2.pm' 497 0.0 2.0
+1196 'PM.Angel' 'quebec2.pm' 498 0.0 2.0
+1197 'PM.Angel' 'quebec2.pm' 499 0.0 2.0
+1198 'PM.Angel' 'quebec2.pm' 500 0.0 2.0
+1199 'PM.Angel' 'quebec2.pm' 501 0.0 2.0
+1200 'PM.Angel' 'quebec2.pm' 504 0.0 2.0
+1201 'PM.Angel' 'quebec2.pm' 505 0.0 2.0
+1202 'PM.Angel' 'quebec2.pm' 506 0.0 2.0
+1203 'PM.Angel' 'quebec2.pm' 507 0.0 2.0
+1204 'PM.Angel' 'quebec2.pm' 508 0.0 2.0
+1205 'PM.Angel' 'quebec2.pm' 511 0.0 2.0
+1206 'PM.Angel' 'quebec2.pm' 512 0.0 2.0
+1207 'PM.Angel' 'quebec2.pm' 513 0.0 2.0
+1208 'PM.Angel' 'quebec2.pm' 514 0.0 2.0
+1209 'PM.Angel' 'quebec2.pm' 515 0.0 2.0
+1210 'PM.Angel' 'quebec2.pm' 518 0.0 2.0
+1211 'PM.Angel' 'quebec2.pm' 519 0.0 2.0
+1212 'PM.Angel' 'quebec2.pm' 520 0.0 2.0
+1213 'PM.Angel' 'quebec2.pm' 521 0.0 2.0
+1214 'PM.Angel' 'quebec2.pm' 522 0.0 2.0
+1215 'PM.Angel' 'quebec2.pm' 525 0.0 2.0
+1216 'PM.Angel' 'quebec2.pm' 526 0.0 2.0
+1217 'PM.Angel' 'quebec2.pm' 527 0.0 2.0
+1218 'PM.Angel' 'quebec2.pm' 528 0.0 2.0
+1219 'PM.Angel' 'quebec2.pm' 529 0.0 2.0
+1220 'PM.Angel' 'quebec2.pm' 532 0.0 2.0
+1221 'PM.Angel' 'quebec2.pm' 533 0.0 2.0
+1222 'PM.Angel' 'quebec2.pm' 534 0.0 2.0
+1223 'PM.Angel' 'quebec2.pm' 535 0.0 2.0
+1224 'PM.Angel' 'quebec2.pm' 536 0.0 2.0
+1225 'PM.Angel' 'quebec2.pm' 539 0.0 2.0
+1226 'PM.Angel' 'quebec2.pm' 540 0.0 2.0
+1227 'PM.Angel' 'quebec2.pm' 541 0.0 2.0
+1228 'PM.Angel' 'quebec2.pm' 542 0.0 2.0
+1229 'PM.Angel' 'quebec2.pm' 543 0.0 2.0
+1230 'PM.Angel' 'quebec2.pm' 546 0.0 2.0
+1231 'PM.Angel' 'quebec2.pm' 547 0.0 2.0
+1232 'PM.Angel' 'quebec2.pm' 548 0.0 2.0
+1233 'PM.Angel' 'quebec2.pm' 549 0.0 2.0
+1234 'PM.Angel' 'quebec2.pm' 550 0.0 2.0
+1235 'PM.Angel' 'quebec2.pm' 553 0.0 2.0
+1236 'PM.Angel' 'quebec2.pm' 554 0.0 2.0
+1237 'PM.Angel' 'quebec2.pm' 555 0.0 2.0
+1238 'PM.Angel' 'quebec2.pm' 556 0.0 2.0
+1239 'PM.Angel' 'quebec2.pm' 557 0.0 2.0
+1240 'PM.Angel' 'quebec2.pm' 560 0.0 2.0
+1241 'PM.Angel' 'quebec2.pm' 561 0.0 2.0
+1242 'PM.Angel' 'quebec2.pm' 562 0.0 2.0
+1243 'PM.Angel' 'quebec2.pm' 563 0.0 2.0
+1244 'PM.Angel' 'quebec2.pm' 564 0.0 2.0
+1245 'PM.Angel' 'quebec2.pm' 567 0.0 2.0
+1246 'PM.Angel' 'quebec2.pm' 568 0.0 2.0
+1247 'PM.Angel' 'quebec2.pm' 569 0.0 2.0
+1248 'PM.Angel' 'quebec2.pm' 570 0.0 2.0
+1249 'PM.Angel' 'quebec2.pm' 571 0.0 2.0
+1250 'PM.Angel' 'quebec2.pm' 574 0.0 2.0
+1251 'PM.Angel' 'quebec2.pm' 575 0.0 2.0
+1252 'PM.Angel' 'quebec2.pm' 576 0.0 2.0
+1253 'PM.Angel' 'quebec2.pm' 577 0.0 2.0
+1254 'PM.Angel' 'quebec2.pm' 578 0.0 2.0
+1255 'PM.Angel' 'quebec2.pm' 581 0.0 2.0
+1256 'PM.Angel' 'quebec2.pm' 582 0.0 2.0
+1257 'PM.Angel' 'quebec2.pm' 583 0.0 2.0
+1258 'PM.Angel' 'quebec2.pm' 584 0.0 2.0
+1259 'PM.Angel' 'quebec2.pm' 585 0.0 2.0
+1260 'PM.Angel' 'quebec2.pm' 588 0.0 2.0
+1261 'PM.Angel' 'quebec2.pm' 589 0.0 2.0
+1262 'PM.Angel' 'quebec2.pm' 590 0.0 2.0
+1263 'PM.Angel' 'quebec2.pm' 591 0.0 2.0
+1264 'PM.Angel' 'quebec2.pm' 592 0.0 2.0
+1265 'PM.Angel' 'quebec2.pm' 595 0.0 2.0
+1266 'PM.Angel' 'quebec2.pm' 596 0.0 2.0
+1267 'PM.Angel' 'quebec2.pm' 597 0.0 2.0
+1268 'PM.Angel' 'quebec2.pm' 598 0.0 2.0
+1269 'PM.Angel' 'quebec2.pm' 599 0.0 2.0
+1270 'PM.Angel' 'quebec2.pm' 602 0.0 2.0
+1271 'PM.Angel' 'quebec2.pm' 603 0.0 2.0
+1272 'PM.Angel' 'quebec2.pm' 604 0.0 2.0
+1273 'PM.Angel' 'quebec2.pm' 605 0.0 2.0
+1274 'PM.Angel' 'quebec2.pm' 606 0.0 2.0
+1275 'PM.Angel' 'quebec2.pm' 609 0.0 2.0
+1276 'PM.Angel' 'quebec2.pm' 610 0.0 2.0
+1277 'PM.Angel' 'quebec2.pm' 611 0.0 2.0
+1278 'PM.Angel' 'quebec2.pm' 612 0.0 2.0
+1279 'PM.Angel' 'quebec2.pm' 613 0.0 2.0
+1280 'PM.Angel' 'quebec2.pm' 616 0.0 2.0
+1281 'PM.Angel' 'quebec2.pm' 617 0.0 2.0
+1282 'PM.Angel' 'quebec2.pm' 618 0.0 2.0
+1283 'PM.Angel' 'quebec2.pm' 619 0.0 2.0
+1284 'PM.Angel' 'quebec2.pm' 620 0.0 2.0
+1285 'PM.Angel' 'quebec2.pm' 623 0.0 2.0
+1286 'PM.Angel' 'quebec2.pm' 624 0.0 2.0
+1287 'PM.Angel' 'quebec2.pm' 625 0.0 2.0
+1288 'PM.Angel' 'quebec2.pm' 626 0.0 2.0
+1289 'PM.Angel' 'quebec2.pm' 627 0.0 2.0
+1290 'PM.Angel' 'quebec2.pm' 630 0.0 2.0
+1291 'PM.Angel' 'quebec2.pm' 631 0.0 2.0
+1292 'PM.Angel' 'quebec2.pm' 632 0.0 2.0
+1293 'PM.Angel' 'quebec2.pm' 633 0.0 2.0
+1294 'PM.Angel' 'quebec2.pm' 634 0.0 2.0
+1295 'PM.Angel' 'quebec2.pm' 637 0.0 2.0
+1296 'PM.Angel' 'quebec2.pm' 638 0.0 2.0
+1297 'PM.Angel' 'quebec2.pm' 639 0.0 2.0
+1298 'PM.Angel' 'quebec2.pm' 640 0.0 2.0
+1299 'PM.Angel' 'quebec2.pm' 641 0.0 2.0
+1300 'PM.Angel' 'quebec2.pm' 644 0.0 2.0
+1301 'PM.Angel' 'quebec2.pm' 645 0.0 2.0
+1302 'PM.Angel' 'quebec2.pm' 646 0.0 2.0
+1303 'PM.Angel' 'quebec2.pm' 647 0.0 2.0
+1304 'PM.Angel' 'quebec2.pm' 648 0.0 2.0
+1305 'PM.Angel' 'quebec2.pm' 651 0.0 2.0
+1306 'PM.Angel' 'quebec2.pm' 652 0.0 2.0
+1307 'PM.Angel' 'quebec2.pm' 653 0.0 2.0
+1308 'PM.Angel' 'quebec2.pm' 654 0.0 2.0
+1309 'PM.Angel' 'quebec2.pm' 655 0.0 2.0
+1310 'PM.Angel' 'quebec2.pm' 658 0.0 2.0
+1311 'PM.Angel' 'quebec2.pm' 659 0.0 2.0
+1312 'PM.Angel' 'quebec2.pm' 660 0.0 2.0
+1313 'PM.Angel' 'quebec2.pm' 661 0.0 2.0
+1314 'PM.Angel' 'quebec2.pm' 662 0.0 2.0
+1315 'PM.Angel' 'quebec2.pm' 665 0.0 2.0
+1316 'PM.Angel' 'quebec2.pm' 666 0.0 2.0
+1317 'PM.Angel' 'quebec2.pm' 667 0.0 2.0
+1318 'PM.Angel' 'quebec2.pm' 668 0.0 2.0
+1319 'PM.Angel' 'quebec2.pm' 669 0.0 2.0
+1320 'PM.Angel' 'quebec2.pm' 672 0.0 2.0
+1321 'PM.Angel' 'quebec2.pm' 673 0.0 2.0
+1322 'PM.Angel' 'quebec2.pm' 674 0.0 2.0
+1323 'PM.Angel' 'quebec2.pm' 675 0.0 2.0
+1324 'PM.Angel' 'quebec2.pm' 676 0.0 2.0
+1325 'PM.Angel' 'quebec2.pm' 679 0.0 2.0
+1326 'PM.Angel' 'sierra2.pf' 63 6.0 7.0
+1327 'PM.Angel' 'sierra2.pf' 64 6.0 7.0
+1328 'PM.Angel' 'sierra2.pf' 65 6.0 7.0
+1329 'PM.Angel' 'sierra2.pf' 66 6.0 7.0
+1330 'PM.Angel' 'sierra2.pf' 67 6.0 7.0
+1331 'PM.Angel' 'sierra2.pf' 70 6.0 7.0
+1332 'PM.Angel' 'sierra2.pm' 3 3.0 4.0
+1333 'PM.Angel' 'sierra2.pm' 4 3.0 4.0
+1334 'PM.Angel' 'sierra2.pm' 7 3.0 4.0
+1335 'PM.Angel' 'sierra2.pm' 8 3.0 4.0
+1336 'PM.Angel' 'sierra2.pm' 9 3.0 4.0
+1337 'PM.Angel' 'sierra2.pm' 10 3.0 4.0
+1338 'PM.Angel' 'sierra2.pm' 11 3.0 4.0
+1339 'PM.Angel' 'sierra2.pm' 14 3.0 4.0
+1340 'PM.Angel' 'sierra2.pm' 15 3.0 4.0
+1341 'PM.Angel' 'sierra2.pm' 16 3.0 4.0
+1342 'PM.Angel' 'sierra2.pm' 17 3.0 4.0
+1343 'PM.Angel' 'sierra2.pm' 18 3.0 4.0
+1344 'PM.Angel' 'sierra2.pm' 21 3.0 4.0
+1345 'PM.Angel' 'sierra2.pm' 22 3.0 4.0
+1346 'PM.Angel' 'sierra2.pm' 23 3.0 4.0
+1347 'PM.Angel' 'sierra2.pm' 24 3.0 4.0
+1348 'PM.Angel' 'sierra2.pm' 25 3.0 4.0
+1349 'PM.Angel' 'sierra2.pm' 28 3.0 4.0
+1350 'PM.Angel' 'sierra2.pm' 29 3.0 4.0
+1351 'PM.Angel' 'sierra2.pm' 30 3.0 4.0
+1352 'PM.Angel' 'sierra2.pm' 31 3.0 4.0
+1353 'PM.Angel' 'sierra2.pm' 32 3.0 4.0
+1354 'PM.Angel' 'sierra2.pm' 35 3.0 4.0
+1355 'PM.Angel' 'sierra2.pm' 36 3.0 4.0
+1356 'PM.Angel' 'sierra2.pm' 37 3.0 4.0
+1357 'PM.Angel' 'sierra2.pm' 38 3.0 4.0
+1358 'PM.Angel' 'sierra2.pm' 39 3.0 4.0
+1359 'PM.Angel' 'sierra2.pm' 42 3.0 4.0
+1360 'PM.Angel' 'sierra2.pm' 43 3.0 4.0
+1361 'PM.Angel' 'sierra2.pm' 44 3.0 4.0
+1362 'PM.Angel' 'sierra2.pm' 45 3.0 4.0
+1363 'PM.Angel' 'sierra2.pm' 46 3.0 4.0
+1364 'PM.Angel' 'sierra2.pm' 49 3.0 4.0
+1365 'PM.Angel' 'sierra2.pm' 50 3.0 4.0
+1366 'PM.Angel' 'sierra2.pm' 51 3.0 4.0
+1367 'PM.Angel' 'sierra2.pm' 52 3.0 4.0
+1368 'PM.Angel' 'sierra2.pm' 53 3.0 4.0
+1369 'PM.Angel' 'sierra2.pm' 56 3.0 4.0
+1370 'PM.Angel' 'sierra2.pm' 57 3.0 4.0
+1371 'PM.Angel' 'sierra2.pm' 58 3.0 4.0
+1372 'PM.Angel' 'sierra2.pm' 59 3.0 4.0
+1373 'PM.Angel' 'sierra2.pm' 60 3.0 4.0;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 0;
+
+param UBDAY:
+1   2   3   4 :=
+;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'PM.Angel' 'charlie.pf'
+'PM.Angel' 'charlie.pm'
+'PM.Angel' 'delta.pf'
+'PM.Angel' 'delta.pm'
+'PM.Angel' 'juliet.pe'
+'PM.Angel' 'juliet.pf'
+'PM.Angel' 'juliet.pm'
+'PM.Angel' 'mike.pe'
+'PM.Angel' 'mike.pf'
+'PM.Angel' 'mike.pm'
+'PM.Angel' 'november.pe'
+'PM.Angel' 'november.pf'
+'PM.Angel' 'november.pm'
+'PM.Angel' 'oscar2.pf'
+'PM.Angel' 'oscar2.pm'
+'PM.Angel' 'papa2.pf'
+'PM.Angel' 'papa2.pm'
+'PM.Angel' 'quebec2.pe'
+'PM.Angel' 'quebec2.pf'
+'PM.Angel' 'quebec2.pm'
+'PM.Angel' 'sierra2.pf'
+'PM.Angel' 'sierra2.pm';
+
