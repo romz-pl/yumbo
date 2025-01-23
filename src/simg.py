@@ -40,7 +40,7 @@ def plot(expert_name):
     ax.set_xlim([left, right])
 
     # Configure axis formatting and grid
-    ax.yaxis.set_major_locator(tck.MultipleLocator(1))
+    ax.yaxis.set_major_locator(tck.MaxNLocator(nbins=6, min_n_ticks=1))
     ax.xaxis.set_major_locator(
         matplotlib.dates.AutoDateLocator(
             tz=None, minticks=3, maxticks=6, interval_multiples=True

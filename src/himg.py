@@ -40,7 +40,7 @@ def plot_df(df):
     # Configure plot properties
     ax.set_title("Hours per day")
     ax.set_xlim([left, right])
-    ax.yaxis.set_major_locator(tck.MaxNLocator(nbins=6, min_n_ticks=1, integer=True))
+    ax.yaxis.set_major_locator(tck.MaxNLocator(nbins=6, min_n_ticks=1))
     ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6, interval_multiples=True))
     ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(romz_datetime.format()))
     ax.yaxis.grid(alpha=0.4)
