@@ -1,0 +1,973 @@
+param HOURS_PER_DAY := 32;
+
+set EXPERTN :=
+'PM.Daniel';
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'alpha.pm' 2 92 180
+'alpha.pf' 93 123 20
+'beta.pm' 2 172 260
+'beta.pf' 173 218 20
+'india.pm' 2 275 520
+'india.pf' 276 306 100
+'oscar.pe' 177 191 60
+'oscar.pm' 192 365 280
+'oscar.pf' 366 397 40
+'lima2.pm' 2 57 100
+'lima2.pf' 58 63 60
+'mike2.pe' 11 16 80
+'mike2.pm' 17 137 320
+'mike2.pf' 138 153 80
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'Jan.25' 1 16
+'Feb.25' 17 45
+'Mar.25' 46 76
+'Apr.25' 77 105
+'May.25' 106 139
+'Jun.25' 140 170
+'Jul.25' 171 199
+'Aug.25' 200 230
+'Sep.25' 231 259
+'Oct.25' 260 289
+'Nov.25' 290 317
+'Dec.25' 318 346;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+'PM.Daniel' 'Jan.25' 0 720
+'PM.Daniel' 'Feb.25' 0 720
+'PM.Daniel' 'Mar.25' 0 720
+'PM.Daniel' 'Apr.25' 0 720
+'PM.Daniel' 'May.25' 0 720
+'PM.Daniel' 'Jun.25' 0 720
+'PM.Daniel' 'Jul.25' 0 720
+'PM.Daniel' 'Aug.25' 0 720
+'PM.Daniel' 'Sep.25' 0 720
+'PM.Daniel' 'Oct.25' 0 720
+'PM.Daniel' 'Nov.25' 0 720
+'PM.Daniel' 'Dec.25' 0 720;
+
+param OFFDAY_NO := 115;
+
+param OFFDAY :=
+1 2
+2 5
+3 6
+4 12
+5 13
+6 19
+7 20
+8 26
+9 27
+10 33
+11 34
+12 40
+13 41
+14 47
+15 48
+16 54
+17 55
+18 61
+19 62
+20 68
+21 69
+22 75
+23 76
+24 82
+25 83
+26 89
+27 90
+28 96
+29 97
+30 103
+31 104
+32 110
+33 111
+34 117
+35 118
+36 122
+37 124
+38 125
+39 131
+40 132
+41 138
+42 139
+43 145
+44 146
+45 152
+46 153
+47 159
+48 160
+49 166
+50 167
+51 173
+52 174
+53 180
+54 181
+55 187
+56 188
+57 194
+58 195
+59 201
+60 202
+61 208
+62 209
+63 215
+64 216
+65 222
+66 223
+67 229
+68 230
+69 236
+70 237
+71 243
+72 244
+73 250
+74 251
+75 257
+76 258
+77 264
+78 265
+79 271
+80 272
+81 278
+82 279
+83 285
+84 286
+85 292
+86 293
+87 299
+88 300
+89 306
+90 307
+91 313
+92 314
+93 320
+94 321
+95 327
+96 328
+97 334
+98 335
+99 341
+100 342
+101 348
+102 349
+103 355
+104 356
+105 362
+106 363
+107 369
+108 370
+109 376
+110 377
+111 383
+112 384
+113 390
+114 391
+115 397;
+
+param XBDAY_NO := 756;
+
+param XBDAY:
+1   2   3   4   5 :=
+1 'PM.Daniel' 'alpha.pm' 3 2.0 3.0
+2 'PM.Daniel' 'alpha.pm' 4 2.0 3.0
+3 'PM.Daniel' 'alpha.pm' 7 2.0 3.0
+4 'PM.Daniel' 'alpha.pm' 8 2.0 3.0
+5 'PM.Daniel' 'alpha.pm' 9 2.0 3.0
+6 'PM.Daniel' 'alpha.pm' 10 2.0 3.0
+7 'PM.Daniel' 'alpha.pm' 11 2.0 3.0
+8 'PM.Daniel' 'alpha.pm' 14 2.0 3.0
+9 'PM.Daniel' 'alpha.pm' 15 2.0 3.0
+10 'PM.Daniel' 'alpha.pm' 16 2.0 3.0
+11 'PM.Daniel' 'alpha.pm' 17 2.0 3.0
+12 'PM.Daniel' 'alpha.pm' 18 2.0 3.0
+13 'PM.Daniel' 'alpha.pm' 21 2.0 3.0
+14 'PM.Daniel' 'alpha.pm' 22 2.0 3.0
+15 'PM.Daniel' 'alpha.pm' 23 2.0 3.0
+16 'PM.Daniel' 'alpha.pm' 24 2.0 3.0
+17 'PM.Daniel' 'alpha.pm' 25 2.0 3.0
+18 'PM.Daniel' 'alpha.pm' 28 2.0 3.0
+19 'PM.Daniel' 'alpha.pm' 29 2.0 3.0
+20 'PM.Daniel' 'alpha.pm' 30 2.0 3.0
+21 'PM.Daniel' 'alpha.pm' 31 2.0 3.0
+22 'PM.Daniel' 'alpha.pm' 32 2.0 3.0
+23 'PM.Daniel' 'alpha.pm' 35 2.0 3.0
+24 'PM.Daniel' 'alpha.pm' 36 2.0 3.0
+25 'PM.Daniel' 'alpha.pm' 37 2.0 3.0
+26 'PM.Daniel' 'alpha.pm' 38 2.0 3.0
+27 'PM.Daniel' 'alpha.pm' 39 2.0 3.0
+28 'PM.Daniel' 'alpha.pm' 42 2.0 3.0
+29 'PM.Daniel' 'alpha.pm' 43 2.0 3.0
+30 'PM.Daniel' 'alpha.pm' 44 2.0 3.0
+31 'PM.Daniel' 'alpha.pm' 45 2.0 3.0
+32 'PM.Daniel' 'alpha.pm' 46 2.0 3.0
+33 'PM.Daniel' 'alpha.pm' 49 2.0 3.0
+34 'PM.Daniel' 'alpha.pm' 50 2.0 3.0
+35 'PM.Daniel' 'alpha.pm' 51 2.0 3.0
+36 'PM.Daniel' 'alpha.pm' 52 2.0 3.0
+37 'PM.Daniel' 'alpha.pm' 53 2.0 3.0
+38 'PM.Daniel' 'alpha.pm' 56 2.0 3.0
+39 'PM.Daniel' 'alpha.pm' 57 2.0 3.0
+40 'PM.Daniel' 'alpha.pm' 58 2.0 3.0
+41 'PM.Daniel' 'alpha.pm' 59 2.0 3.0
+42 'PM.Daniel' 'alpha.pm' 60 2.0 3.0
+43 'PM.Daniel' 'alpha.pm' 63 2.0 3.0
+44 'PM.Daniel' 'alpha.pm' 64 2.0 3.0
+45 'PM.Daniel' 'alpha.pm' 65 2.0 3.0
+46 'PM.Daniel' 'alpha.pm' 66 2.0 3.0
+47 'PM.Daniel' 'alpha.pm' 67 2.0 3.0
+48 'PM.Daniel' 'alpha.pm' 70 2.0 3.0
+49 'PM.Daniel' 'alpha.pm' 71 2.0 3.0
+50 'PM.Daniel' 'alpha.pm' 72 2.0 3.0
+51 'PM.Daniel' 'alpha.pm' 73 2.0 3.0
+52 'PM.Daniel' 'alpha.pm' 74 2.0 3.0
+53 'PM.Daniel' 'alpha.pm' 77 2.0 3.0
+54 'PM.Daniel' 'alpha.pm' 78 2.0 3.0
+55 'PM.Daniel' 'alpha.pm' 79 2.0 3.0
+56 'PM.Daniel' 'alpha.pm' 80 2.0 3.0
+57 'PM.Daniel' 'alpha.pm' 81 2.0 3.0
+58 'PM.Daniel' 'alpha.pm' 84 2.0 3.0
+59 'PM.Daniel' 'alpha.pm' 85 2.0 3.0
+60 'PM.Daniel' 'alpha.pm' 86 2.0 3.0
+61 'PM.Daniel' 'alpha.pm' 87 2.0 3.0
+62 'PM.Daniel' 'alpha.pm' 88 2.0 3.0
+63 'PM.Daniel' 'alpha.pm' 91 2.0 3.0
+64 'PM.Daniel' 'alpha.pm' 92 2.0 3.0
+65 'PM.Daniel' 'alpha.pf' 93 0.0 1.0
+66 'PM.Daniel' 'alpha.pf' 94 0.0 1.0
+67 'PM.Daniel' 'alpha.pf' 95 0.0 1.0
+68 'PM.Daniel' 'alpha.pf' 98 0.0 1.0
+69 'PM.Daniel' 'alpha.pf' 99 0.0 1.0
+70 'PM.Daniel' 'alpha.pf' 100 0.0 1.0
+71 'PM.Daniel' 'alpha.pf' 101 0.0 1.0
+72 'PM.Daniel' 'alpha.pf' 102 0.0 1.0
+73 'PM.Daniel' 'alpha.pf' 105 0.0 1.0
+74 'PM.Daniel' 'alpha.pf' 106 0.0 1.0
+75 'PM.Daniel' 'alpha.pf' 107 0.0 1.0
+76 'PM.Daniel' 'alpha.pf' 108 0.0 1.0
+77 'PM.Daniel' 'alpha.pf' 109 0.0 1.0
+78 'PM.Daniel' 'alpha.pf' 112 0.0 1.0
+79 'PM.Daniel' 'alpha.pf' 113 0.0 1.0
+80 'PM.Daniel' 'alpha.pf' 114 0.0 1.0
+81 'PM.Daniel' 'alpha.pf' 115 0.0 1.0
+82 'PM.Daniel' 'alpha.pf' 116 0.0 1.0
+83 'PM.Daniel' 'alpha.pf' 119 0.0 1.0
+84 'PM.Daniel' 'alpha.pf' 120 0.0 1.0
+85 'PM.Daniel' 'alpha.pf' 121 0.0 1.0
+86 'PM.Daniel' 'alpha.pf' 123 0.0 1.0
+87 'PM.Daniel' 'beta.pm' 3 2.0 3.0
+88 'PM.Daniel' 'beta.pm' 4 2.0 3.0
+89 'PM.Daniel' 'beta.pm' 7 2.0 3.0
+90 'PM.Daniel' 'beta.pm' 8 2.0 3.0
+91 'PM.Daniel' 'beta.pm' 9 2.0 3.0
+92 'PM.Daniel' 'beta.pm' 10 2.0 3.0
+93 'PM.Daniel' 'beta.pm' 11 2.0 3.0
+94 'PM.Daniel' 'beta.pm' 14 2.0 3.0
+95 'PM.Daniel' 'beta.pm' 15 2.0 3.0
+96 'PM.Daniel' 'beta.pm' 16 2.0 3.0
+97 'PM.Daniel' 'beta.pm' 17 2.0 3.0
+98 'PM.Daniel' 'beta.pm' 18 2.0 3.0
+99 'PM.Daniel' 'beta.pm' 21 2.0 3.0
+100 'PM.Daniel' 'beta.pm' 22 2.0 3.0
+101 'PM.Daniel' 'beta.pm' 23 2.0 3.0
+102 'PM.Daniel' 'beta.pm' 24 2.0 3.0
+103 'PM.Daniel' 'beta.pm' 25 2.0 3.0
+104 'PM.Daniel' 'beta.pm' 28 2.0 3.0
+105 'PM.Daniel' 'beta.pm' 29 2.0 3.0
+106 'PM.Daniel' 'beta.pm' 30 2.0 3.0
+107 'PM.Daniel' 'beta.pm' 31 2.0 3.0
+108 'PM.Daniel' 'beta.pm' 32 2.0 3.0
+109 'PM.Daniel' 'beta.pm' 35 2.0 3.0
+110 'PM.Daniel' 'beta.pm' 36 2.0 3.0
+111 'PM.Daniel' 'beta.pm' 37 2.0 3.0
+112 'PM.Daniel' 'beta.pm' 38 2.0 3.0
+113 'PM.Daniel' 'beta.pm' 39 2.0 3.0
+114 'PM.Daniel' 'beta.pm' 42 2.0 3.0
+115 'PM.Daniel' 'beta.pm' 43 2.0 3.0
+116 'PM.Daniel' 'beta.pm' 44 2.0 3.0
+117 'PM.Daniel' 'beta.pm' 45 2.0 3.0
+118 'PM.Daniel' 'beta.pm' 46 2.0 3.0
+119 'PM.Daniel' 'beta.pm' 49 2.0 3.0
+120 'PM.Daniel' 'beta.pm' 50 2.0 3.0
+121 'PM.Daniel' 'beta.pm' 51 2.0 3.0
+122 'PM.Daniel' 'beta.pm' 52 2.0 3.0
+123 'PM.Daniel' 'beta.pm' 53 2.0 3.0
+124 'PM.Daniel' 'beta.pm' 56 2.0 3.0
+125 'PM.Daniel' 'beta.pm' 57 2.0 3.0
+126 'PM.Daniel' 'beta.pm' 58 2.0 3.0
+127 'PM.Daniel' 'beta.pm' 59 2.0 3.0
+128 'PM.Daniel' 'beta.pm' 60 2.0 3.0
+129 'PM.Daniel' 'beta.pm' 63 2.0 3.0
+130 'PM.Daniel' 'beta.pm' 64 2.0 3.0
+131 'PM.Daniel' 'beta.pm' 65 2.0 3.0
+132 'PM.Daniel' 'beta.pm' 66 2.0 3.0
+133 'PM.Daniel' 'beta.pm' 67 2.0 3.0
+134 'PM.Daniel' 'beta.pm' 70 2.0 3.0
+135 'PM.Daniel' 'beta.pm' 71 2.0 3.0
+136 'PM.Daniel' 'beta.pm' 72 2.0 3.0
+137 'PM.Daniel' 'beta.pm' 73 2.0 3.0
+138 'PM.Daniel' 'beta.pm' 74 2.0 3.0
+139 'PM.Daniel' 'beta.pm' 77 2.0 3.0
+140 'PM.Daniel' 'beta.pm' 78 2.0 3.0
+141 'PM.Daniel' 'beta.pm' 79 2.0 3.0
+142 'PM.Daniel' 'beta.pm' 80 2.0 3.0
+143 'PM.Daniel' 'beta.pm' 81 2.0 3.0
+144 'PM.Daniel' 'beta.pm' 84 2.0 3.0
+145 'PM.Daniel' 'beta.pm' 85 2.0 3.0
+146 'PM.Daniel' 'beta.pm' 86 2.0 3.0
+147 'PM.Daniel' 'beta.pm' 87 2.0 3.0
+148 'PM.Daniel' 'beta.pm' 88 2.0 3.0
+149 'PM.Daniel' 'beta.pm' 91 2.0 3.0
+150 'PM.Daniel' 'beta.pm' 92 2.0 3.0
+151 'PM.Daniel' 'beta.pm' 93 2.0 3.0
+152 'PM.Daniel' 'beta.pm' 94 2.0 3.0
+153 'PM.Daniel' 'beta.pm' 95 2.0 3.0
+154 'PM.Daniel' 'beta.pm' 98 2.0 3.0
+155 'PM.Daniel' 'beta.pm' 99 2.0 3.0
+156 'PM.Daniel' 'beta.pm' 100 2.0 3.0
+157 'PM.Daniel' 'beta.pm' 101 2.0 3.0
+158 'PM.Daniel' 'beta.pm' 102 2.0 3.0
+159 'PM.Daniel' 'beta.pm' 105 2.0 3.0
+160 'PM.Daniel' 'beta.pm' 106 2.0 3.0
+161 'PM.Daniel' 'beta.pm' 107 2.0 3.0
+162 'PM.Daniel' 'beta.pm' 108 2.0 3.0
+163 'PM.Daniel' 'beta.pm' 109 2.0 3.0
+164 'PM.Daniel' 'beta.pm' 112 2.0 3.0
+165 'PM.Daniel' 'beta.pm' 113 2.0 3.0
+166 'PM.Daniel' 'beta.pm' 114 2.0 3.0
+167 'PM.Daniel' 'beta.pm' 115 2.0 3.0
+168 'PM.Daniel' 'beta.pm' 116 2.0 3.0
+169 'PM.Daniel' 'beta.pm' 119 2.0 3.0
+170 'PM.Daniel' 'beta.pm' 120 2.0 3.0
+171 'PM.Daniel' 'beta.pm' 121 2.0 3.0
+172 'PM.Daniel' 'beta.pm' 123 2.0 3.0
+173 'PM.Daniel' 'beta.pm' 126 2.0 3.0
+174 'PM.Daniel' 'beta.pm' 127 2.0 3.0
+175 'PM.Daniel' 'beta.pm' 128 2.0 3.0
+176 'PM.Daniel' 'beta.pm' 129 2.0 3.0
+177 'PM.Daniel' 'beta.pm' 130 2.0 3.0
+178 'PM.Daniel' 'beta.pm' 133 2.0 3.0
+179 'PM.Daniel' 'beta.pm' 134 2.0 3.0
+180 'PM.Daniel' 'beta.pm' 135 2.0 3.0
+181 'PM.Daniel' 'beta.pm' 136 2.0 3.0
+182 'PM.Daniel' 'beta.pm' 137 2.0 3.0
+183 'PM.Daniel' 'beta.pm' 140 2.0 3.0
+184 'PM.Daniel' 'beta.pm' 141 2.0 3.0
+185 'PM.Daniel' 'beta.pm' 142 2.0 3.0
+186 'PM.Daniel' 'beta.pm' 143 2.0 3.0
+187 'PM.Daniel' 'beta.pm' 144 2.0 3.0
+188 'PM.Daniel' 'beta.pm' 147 2.0 3.0
+189 'PM.Daniel' 'beta.pm' 148 2.0 3.0
+190 'PM.Daniel' 'beta.pm' 149 2.0 3.0
+191 'PM.Daniel' 'beta.pm' 150 2.0 3.0
+192 'PM.Daniel' 'beta.pm' 151 2.0 3.0
+193 'PM.Daniel' 'beta.pm' 154 2.0 3.0
+194 'PM.Daniel' 'beta.pm' 155 2.0 3.0
+195 'PM.Daniel' 'beta.pm' 156 2.0 3.0
+196 'PM.Daniel' 'beta.pm' 157 2.0 3.0
+197 'PM.Daniel' 'beta.pm' 158 2.0 3.0
+198 'PM.Daniel' 'beta.pm' 161 2.0 3.0
+199 'PM.Daniel' 'beta.pm' 162 2.0 3.0
+200 'PM.Daniel' 'beta.pm' 163 2.0 3.0
+201 'PM.Daniel' 'beta.pm' 164 2.0 3.0
+202 'PM.Daniel' 'beta.pm' 165 2.0 3.0
+203 'PM.Daniel' 'beta.pm' 168 2.0 3.0
+204 'PM.Daniel' 'beta.pm' 169 2.0 3.0
+205 'PM.Daniel' 'beta.pm' 170 2.0 3.0
+206 'PM.Daniel' 'beta.pm' 171 2.0 3.0
+207 'PM.Daniel' 'beta.pm' 172 2.0 3.0
+208 'PM.Daniel' 'beta.pf' 175 0.0 1.0
+209 'PM.Daniel' 'beta.pf' 176 0.0 1.0
+210 'PM.Daniel' 'beta.pf' 177 0.0 1.0
+211 'PM.Daniel' 'beta.pf' 178 0.0 1.0
+212 'PM.Daniel' 'beta.pf' 179 0.0 1.0
+213 'PM.Daniel' 'beta.pf' 182 0.0 1.0
+214 'PM.Daniel' 'beta.pf' 183 0.0 1.0
+215 'PM.Daniel' 'beta.pf' 184 0.0 1.0
+216 'PM.Daniel' 'beta.pf' 185 0.0 1.0
+217 'PM.Daniel' 'beta.pf' 186 0.0 1.0
+218 'PM.Daniel' 'beta.pf' 189 0.0 1.0
+219 'PM.Daniel' 'beta.pf' 190 0.0 1.0
+220 'PM.Daniel' 'beta.pf' 191 0.0 1.0
+221 'PM.Daniel' 'beta.pf' 192 0.0 1.0
+222 'PM.Daniel' 'beta.pf' 193 0.0 1.0
+223 'PM.Daniel' 'beta.pf' 196 0.0 1.0
+224 'PM.Daniel' 'beta.pf' 197 0.0 1.0
+225 'PM.Daniel' 'beta.pf' 198 0.0 1.0
+226 'PM.Daniel' 'beta.pf' 199 0.0 1.0
+227 'PM.Daniel' 'beta.pf' 200 0.0 1.0
+228 'PM.Daniel' 'beta.pf' 203 0.0 1.0
+229 'PM.Daniel' 'beta.pf' 204 0.0 1.0
+230 'PM.Daniel' 'beta.pf' 205 0.0 1.0
+231 'PM.Daniel' 'beta.pf' 206 0.0 1.0
+232 'PM.Daniel' 'beta.pf' 207 0.0 1.0
+233 'PM.Daniel' 'beta.pf' 210 0.0 1.0
+234 'PM.Daniel' 'beta.pf' 211 0.0 1.0
+235 'PM.Daniel' 'beta.pf' 212 0.0 1.0
+236 'PM.Daniel' 'beta.pf' 213 0.0 1.0
+237 'PM.Daniel' 'beta.pf' 214 0.0 1.0
+238 'PM.Daniel' 'beta.pf' 217 0.0 1.0
+239 'PM.Daniel' 'beta.pf' 218 0.0 1.0
+240 'PM.Daniel' 'india.pm' 3 0.0 32.0
+241 'PM.Daniel' 'india.pm' 4 0.0 32.0
+242 'PM.Daniel' 'india.pm' 7 0.0 32.0
+243 'PM.Daniel' 'india.pm' 8 0.0 32.0
+244 'PM.Daniel' 'india.pm' 9 0.0 32.0
+245 'PM.Daniel' 'india.pm' 10 0.0 32.0
+246 'PM.Daniel' 'india.pm' 11 0.0 32.0
+247 'PM.Daniel' 'india.pm' 14 0.0 32.0
+248 'PM.Daniel' 'india.pm' 15 0.0 32.0
+249 'PM.Daniel' 'india.pm' 16 0.0 32.0
+250 'PM.Daniel' 'india.pm' 17 0.0 32.0
+251 'PM.Daniel' 'india.pm' 18 0.0 32.0
+252 'PM.Daniel' 'india.pm' 21 0.0 32.0
+253 'PM.Daniel' 'india.pm' 22 0.0 32.0
+254 'PM.Daniel' 'india.pm' 23 0.0 32.0
+255 'PM.Daniel' 'india.pm' 24 0.0 32.0
+256 'PM.Daniel' 'india.pm' 25 0.0 32.0
+257 'PM.Daniel' 'india.pm' 28 0.0 32.0
+258 'PM.Daniel' 'india.pm' 29 0.0 32.0
+259 'PM.Daniel' 'india.pm' 30 0.0 32.0
+260 'PM.Daniel' 'india.pm' 31 0.0 32.0
+261 'PM.Daniel' 'india.pm' 32 0.0 32.0
+262 'PM.Daniel' 'india.pm' 35 0.0 32.0
+263 'PM.Daniel' 'india.pm' 36 0.0 32.0
+264 'PM.Daniel' 'india.pm' 37 0.0 32.0
+265 'PM.Daniel' 'india.pm' 38 0.0 32.0
+266 'PM.Daniel' 'india.pm' 39 0.0 32.0
+267 'PM.Daniel' 'india.pm' 42 0.0 32.0
+268 'PM.Daniel' 'india.pm' 43 0.0 32.0
+269 'PM.Daniel' 'india.pm' 44 0.0 32.0
+270 'PM.Daniel' 'india.pm' 45 0.0 32.0
+271 'PM.Daniel' 'india.pm' 46 0.0 32.0
+272 'PM.Daniel' 'india.pm' 49 0.0 32.0
+273 'PM.Daniel' 'india.pm' 50 0.0 32.0
+274 'PM.Daniel' 'india.pm' 51 0.0 32.0
+275 'PM.Daniel' 'india.pm' 52 0.0 32.0
+276 'PM.Daniel' 'india.pm' 53 0.0 32.0
+277 'PM.Daniel' 'india.pm' 56 0.0 32.0
+278 'PM.Daniel' 'india.pm' 57 0.0 32.0
+279 'PM.Daniel' 'india.pm' 58 0.0 32.0
+280 'PM.Daniel' 'india.pm' 59 0.0 32.0
+281 'PM.Daniel' 'india.pm' 60 0.0 32.0
+282 'PM.Daniel' 'india.pm' 63 0.0 32.0
+283 'PM.Daniel' 'india.pm' 64 0.0 32.0
+284 'PM.Daniel' 'india.pm' 65 0.0 32.0
+285 'PM.Daniel' 'india.pm' 66 0.0 32.0
+286 'PM.Daniel' 'india.pm' 67 0.0 32.0
+287 'PM.Daniel' 'india.pm' 70 0.0 32.0
+288 'PM.Daniel' 'india.pm' 71 0.0 32.0
+289 'PM.Daniel' 'india.pm' 72 0.0 32.0
+290 'PM.Daniel' 'india.pm' 73 0.0 32.0
+291 'PM.Daniel' 'india.pm' 74 0.0 32.0
+292 'PM.Daniel' 'india.pm' 77 0.0 32.0
+293 'PM.Daniel' 'india.pm' 78 0.0 32.0
+294 'PM.Daniel' 'india.pm' 79 0.0 32.0
+295 'PM.Daniel' 'india.pm' 80 0.0 32.0
+296 'PM.Daniel' 'india.pm' 81 0.0 32.0
+297 'PM.Daniel' 'india.pm' 84 0.0 32.0
+298 'PM.Daniel' 'india.pm' 85 0.0 32.0
+299 'PM.Daniel' 'india.pm' 86 0.0 32.0
+300 'PM.Daniel' 'india.pm' 87 0.0 32.0
+301 'PM.Daniel' 'india.pm' 88 0.0 32.0
+302 'PM.Daniel' 'india.pm' 91 0.0 32.0
+303 'PM.Daniel' 'india.pm' 92 0.0 32.0
+304 'PM.Daniel' 'india.pm' 93 0.0 32.0
+305 'PM.Daniel' 'india.pm' 94 0.0 32.0
+306 'PM.Daniel' 'india.pm' 95 0.0 32.0
+307 'PM.Daniel' 'india.pm' 98 0.0 32.0
+308 'PM.Daniel' 'india.pm' 99 0.0 32.0
+309 'PM.Daniel' 'india.pm' 100 0.0 32.0
+310 'PM.Daniel' 'india.pm' 101 0.0 32.0
+311 'PM.Daniel' 'india.pm' 102 0.0 32.0
+312 'PM.Daniel' 'india.pm' 105 0.0 32.0
+313 'PM.Daniel' 'india.pm' 106 0.0 32.0
+314 'PM.Daniel' 'india.pm' 107 0.0 32.0
+315 'PM.Daniel' 'india.pm' 108 0.0 32.0
+316 'PM.Daniel' 'india.pm' 109 0.0 32.0
+317 'PM.Daniel' 'india.pm' 112 0.0 32.0
+318 'PM.Daniel' 'india.pm' 113 0.0 32.0
+319 'PM.Daniel' 'india.pm' 114 0.0 32.0
+320 'PM.Daniel' 'india.pm' 115 0.0 32.0
+321 'PM.Daniel' 'india.pm' 116 0.0 32.0
+322 'PM.Daniel' 'india.pm' 119 0.0 32.0
+323 'PM.Daniel' 'india.pm' 120 0.0 32.0
+324 'PM.Daniel' 'india.pm' 121 0.0 32.0
+325 'PM.Daniel' 'india.pm' 123 0.0 32.0
+326 'PM.Daniel' 'india.pm' 126 0.0 32.0
+327 'PM.Daniel' 'india.pm' 127 0.0 32.0
+328 'PM.Daniel' 'india.pm' 128 0.0 32.0
+329 'PM.Daniel' 'india.pm' 129 0.0 32.0
+330 'PM.Daniel' 'india.pm' 130 0.0 32.0
+331 'PM.Daniel' 'india.pm' 133 0.0 32.0
+332 'PM.Daniel' 'india.pm' 134 0.0 32.0
+333 'PM.Daniel' 'india.pm' 135 0.0 32.0
+334 'PM.Daniel' 'india.pm' 136 0.0 32.0
+335 'PM.Daniel' 'india.pm' 137 0.0 32.0
+336 'PM.Daniel' 'india.pm' 140 0.0 32.0
+337 'PM.Daniel' 'india.pm' 141 0.0 32.0
+338 'PM.Daniel' 'india.pm' 142 0.0 32.0
+339 'PM.Daniel' 'india.pm' 143 0.0 32.0
+340 'PM.Daniel' 'india.pm' 144 0.0 32.0
+341 'PM.Daniel' 'india.pm' 147 0.0 32.0
+342 'PM.Daniel' 'india.pm' 148 0.0 32.0
+343 'PM.Daniel' 'india.pm' 149 0.0 32.0
+344 'PM.Daniel' 'india.pm' 150 0.0 32.0
+345 'PM.Daniel' 'india.pm' 151 0.0 32.0
+346 'PM.Daniel' 'india.pm' 154 0.0 32.0
+347 'PM.Daniel' 'india.pm' 155 0.0 32.0
+348 'PM.Daniel' 'india.pm' 156 0.0 32.0
+349 'PM.Daniel' 'india.pm' 157 0.0 32.0
+350 'PM.Daniel' 'india.pm' 158 0.0 32.0
+351 'PM.Daniel' 'india.pm' 161 0.0 32.0
+352 'PM.Daniel' 'india.pm' 162 0.0 32.0
+353 'PM.Daniel' 'india.pm' 163 0.0 32.0
+354 'PM.Daniel' 'india.pm' 164 0.0 32.0
+355 'PM.Daniel' 'india.pm' 165 0.0 32.0
+356 'PM.Daniel' 'india.pm' 168 0.0 32.0
+357 'PM.Daniel' 'india.pm' 169 0.0 32.0
+358 'PM.Daniel' 'india.pm' 170 0.0 32.0
+359 'PM.Daniel' 'india.pm' 171 0.0 32.0
+360 'PM.Daniel' 'india.pm' 172 0.0 32.0
+361 'PM.Daniel' 'india.pm' 175 0.0 32.0
+362 'PM.Daniel' 'india.pm' 176 0.0 32.0
+363 'PM.Daniel' 'india.pm' 177 0.0 32.0
+364 'PM.Daniel' 'india.pm' 178 0.0 32.0
+365 'PM.Daniel' 'india.pm' 179 0.0 32.0
+366 'PM.Daniel' 'india.pm' 182 0.0 32.0
+367 'PM.Daniel' 'india.pm' 183 0.0 32.0
+368 'PM.Daniel' 'india.pm' 184 0.0 32.0
+369 'PM.Daniel' 'india.pm' 185 0.0 32.0
+370 'PM.Daniel' 'india.pm' 186 0.0 32.0
+371 'PM.Daniel' 'india.pm' 189 0.0 32.0
+372 'PM.Daniel' 'india.pm' 190 0.0 32.0
+373 'PM.Daniel' 'india.pm' 191 0.0 32.0
+374 'PM.Daniel' 'india.pm' 192 0.0 32.0
+375 'PM.Daniel' 'india.pm' 193 0.0 32.0
+376 'PM.Daniel' 'india.pm' 196 0.0 32.0
+377 'PM.Daniel' 'india.pm' 197 0.0 32.0
+378 'PM.Daniel' 'india.pm' 198 0.0 32.0
+379 'PM.Daniel' 'india.pm' 199 0.0 32.0
+380 'PM.Daniel' 'india.pm' 200 0.0 32.0
+381 'PM.Daniel' 'india.pm' 203 0.0 32.0
+382 'PM.Daniel' 'india.pm' 204 0.0 32.0
+383 'PM.Daniel' 'india.pm' 205 0.0 32.0
+384 'PM.Daniel' 'india.pm' 206 0.0 32.0
+385 'PM.Daniel' 'india.pm' 207 0.0 32.0
+386 'PM.Daniel' 'india.pm' 210 0.0 32.0
+387 'PM.Daniel' 'india.pm' 211 0.0 32.0
+388 'PM.Daniel' 'india.pm' 212 0.0 32.0
+389 'PM.Daniel' 'india.pm' 213 0.0 32.0
+390 'PM.Daniel' 'india.pm' 214 0.0 32.0
+391 'PM.Daniel' 'india.pm' 217 0.0 32.0
+392 'PM.Daniel' 'india.pm' 218 0.0 32.0
+393 'PM.Daniel' 'india.pm' 219 0.0 32.0
+394 'PM.Daniel' 'india.pm' 220 0.0 32.0
+395 'PM.Daniel' 'india.pm' 221 0.0 32.0
+396 'PM.Daniel' 'india.pm' 224 0.0 32.0
+397 'PM.Daniel' 'india.pm' 225 0.0 32.0
+398 'PM.Daniel' 'india.pm' 226 0.0 32.0
+399 'PM.Daniel' 'india.pm' 227 0.0 32.0
+400 'PM.Daniel' 'india.pm' 228 0.0 32.0
+401 'PM.Daniel' 'india.pm' 231 0.0 32.0
+402 'PM.Daniel' 'india.pm' 232 0.0 32.0
+403 'PM.Daniel' 'india.pm' 233 0.0 32.0
+404 'PM.Daniel' 'india.pm' 234 0.0 32.0
+405 'PM.Daniel' 'india.pm' 235 0.0 32.0
+406 'PM.Daniel' 'india.pm' 238 0.0 32.0
+407 'PM.Daniel' 'india.pm' 239 0.0 32.0
+408 'PM.Daniel' 'india.pm' 240 0.0 32.0
+409 'PM.Daniel' 'india.pm' 241 0.0 32.0
+410 'PM.Daniel' 'india.pm' 242 0.0 32.0
+411 'PM.Daniel' 'india.pm' 245 0.0 32.0
+412 'PM.Daniel' 'india.pm' 246 0.0 32.0
+413 'PM.Daniel' 'india.pm' 247 0.0 32.0
+414 'PM.Daniel' 'india.pm' 248 0.0 32.0
+415 'PM.Daniel' 'india.pm' 249 0.0 32.0
+416 'PM.Daniel' 'india.pm' 252 0.0 32.0
+417 'PM.Daniel' 'india.pm' 253 0.0 32.0
+418 'PM.Daniel' 'india.pm' 254 0.0 32.0
+419 'PM.Daniel' 'india.pm' 255 0.0 32.0
+420 'PM.Daniel' 'india.pm' 256 0.0 32.0
+421 'PM.Daniel' 'india.pm' 259 0.0 32.0
+422 'PM.Daniel' 'india.pm' 260 0.0 32.0
+423 'PM.Daniel' 'india.pm' 261 0.0 32.0
+424 'PM.Daniel' 'india.pm' 262 0.0 32.0
+425 'PM.Daniel' 'india.pm' 263 0.0 32.0
+426 'PM.Daniel' 'india.pm' 266 0.0 32.0
+427 'PM.Daniel' 'india.pm' 267 0.0 32.0
+428 'PM.Daniel' 'india.pm' 268 0.0 32.0
+429 'PM.Daniel' 'india.pm' 269 0.0 32.0
+430 'PM.Daniel' 'india.pm' 270 0.0 32.0
+431 'PM.Daniel' 'india.pm' 273 0.0 32.0
+432 'PM.Daniel' 'india.pm' 274 0.0 32.0
+433 'PM.Daniel' 'india.pm' 275 0.0 32.0
+434 'PM.Daniel' 'india.pf' 276 0.0 32.0
+435 'PM.Daniel' 'india.pf' 277 0.0 32.0
+436 'PM.Daniel' 'india.pf' 280 0.0 32.0
+437 'PM.Daniel' 'india.pf' 281 0.0 32.0
+438 'PM.Daniel' 'india.pf' 282 0.0 32.0
+439 'PM.Daniel' 'india.pf' 283 0.0 32.0
+440 'PM.Daniel' 'india.pf' 284 0.0 32.0
+441 'PM.Daniel' 'india.pf' 287 0.0 32.0
+442 'PM.Daniel' 'india.pf' 288 0.0 32.0
+443 'PM.Daniel' 'india.pf' 289 0.0 32.0
+444 'PM.Daniel' 'india.pf' 290 0.0 32.0
+445 'PM.Daniel' 'india.pf' 291 0.0 32.0
+446 'PM.Daniel' 'india.pf' 294 0.0 32.0
+447 'PM.Daniel' 'india.pf' 295 0.0 32.0
+448 'PM.Daniel' 'india.pf' 296 0.0 32.0
+449 'PM.Daniel' 'india.pf' 297 0.0 32.0
+450 'PM.Daniel' 'india.pf' 298 0.0 32.0
+451 'PM.Daniel' 'india.pf' 301 0.0 32.0
+452 'PM.Daniel' 'india.pf' 302 0.0 32.0
+453 'PM.Daniel' 'india.pf' 303 0.0 32.0
+454 'PM.Daniel' 'india.pf' 304 0.0 32.0
+455 'PM.Daniel' 'india.pf' 305 0.0 32.0
+456 'PM.Daniel' 'oscar.pe' 177 0.0 32.0
+457 'PM.Daniel' 'oscar.pe' 178 0.0 32.0
+458 'PM.Daniel' 'oscar.pe' 179 0.0 32.0
+459 'PM.Daniel' 'oscar.pe' 182 0.0 32.0
+460 'PM.Daniel' 'oscar.pe' 183 0.0 32.0
+461 'PM.Daniel' 'oscar.pe' 184 0.0 32.0
+462 'PM.Daniel' 'oscar.pe' 185 0.0 32.0
+463 'PM.Daniel' 'oscar.pe' 186 0.0 32.0
+464 'PM.Daniel' 'oscar.pe' 189 0.0 32.0
+465 'PM.Daniel' 'oscar.pe' 190 0.0 32.0
+466 'PM.Daniel' 'oscar.pe' 191 0.0 32.0
+467 'PM.Daniel' 'oscar.pm' 192 0.0 32.0
+468 'PM.Daniel' 'oscar.pm' 193 0.0 32.0
+469 'PM.Daniel' 'oscar.pm' 196 0.0 32.0
+470 'PM.Daniel' 'oscar.pm' 197 0.0 32.0
+471 'PM.Daniel' 'oscar.pm' 198 0.0 32.0
+472 'PM.Daniel' 'oscar.pm' 199 0.0 32.0
+473 'PM.Daniel' 'oscar.pm' 200 0.0 32.0
+474 'PM.Daniel' 'oscar.pm' 203 0.0 32.0
+475 'PM.Daniel' 'oscar.pm' 204 0.0 32.0
+476 'PM.Daniel' 'oscar.pm' 205 0.0 32.0
+477 'PM.Daniel' 'oscar.pm' 206 0.0 32.0
+478 'PM.Daniel' 'oscar.pm' 207 0.0 32.0
+479 'PM.Daniel' 'oscar.pm' 210 0.0 32.0
+480 'PM.Daniel' 'oscar.pm' 211 0.0 32.0
+481 'PM.Daniel' 'oscar.pm' 212 0.0 32.0
+482 'PM.Daniel' 'oscar.pm' 213 0.0 32.0
+483 'PM.Daniel' 'oscar.pm' 214 0.0 32.0
+484 'PM.Daniel' 'oscar.pm' 217 0.0 32.0
+485 'PM.Daniel' 'oscar.pm' 218 0.0 32.0
+486 'PM.Daniel' 'oscar.pm' 219 0.0 32.0
+487 'PM.Daniel' 'oscar.pm' 220 0.0 32.0
+488 'PM.Daniel' 'oscar.pm' 221 0.0 32.0
+489 'PM.Daniel' 'oscar.pm' 224 0.0 32.0
+490 'PM.Daniel' 'oscar.pm' 225 0.0 32.0
+491 'PM.Daniel' 'oscar.pm' 226 0.0 32.0
+492 'PM.Daniel' 'oscar.pm' 227 0.0 32.0
+493 'PM.Daniel' 'oscar.pm' 228 0.0 32.0
+494 'PM.Daniel' 'oscar.pm' 231 0.0 32.0
+495 'PM.Daniel' 'oscar.pm' 232 0.0 32.0
+496 'PM.Daniel' 'oscar.pm' 233 0.0 32.0
+497 'PM.Daniel' 'oscar.pm' 234 0.0 32.0
+498 'PM.Daniel' 'oscar.pm' 235 0.0 32.0
+499 'PM.Daniel' 'oscar.pm' 238 0.0 32.0
+500 'PM.Daniel' 'oscar.pm' 239 0.0 32.0
+501 'PM.Daniel' 'oscar.pm' 240 0.0 32.0
+502 'PM.Daniel' 'oscar.pm' 241 0.0 32.0
+503 'PM.Daniel' 'oscar.pm' 242 0.0 32.0
+504 'PM.Daniel' 'oscar.pm' 245 0.0 32.0
+505 'PM.Daniel' 'oscar.pm' 246 0.0 32.0
+506 'PM.Daniel' 'oscar.pm' 247 0.0 32.0
+507 'PM.Daniel' 'oscar.pm' 248 0.0 32.0
+508 'PM.Daniel' 'oscar.pm' 249 0.0 32.0
+509 'PM.Daniel' 'oscar.pm' 252 0.0 32.0
+510 'PM.Daniel' 'oscar.pm' 253 0.0 32.0
+511 'PM.Daniel' 'oscar.pm' 254 0.0 32.0
+512 'PM.Daniel' 'oscar.pm' 255 0.0 32.0
+513 'PM.Daniel' 'oscar.pm' 256 0.0 32.0
+514 'PM.Daniel' 'oscar.pm' 259 0.0 32.0
+515 'PM.Daniel' 'oscar.pm' 260 0.0 32.0
+516 'PM.Daniel' 'oscar.pm' 261 0.0 32.0
+517 'PM.Daniel' 'oscar.pm' 262 0.0 32.0
+518 'PM.Daniel' 'oscar.pm' 263 0.0 32.0
+519 'PM.Daniel' 'oscar.pm' 266 0.0 32.0
+520 'PM.Daniel' 'oscar.pm' 267 0.0 32.0
+521 'PM.Daniel' 'oscar.pm' 268 0.0 32.0
+522 'PM.Daniel' 'oscar.pm' 269 0.0 32.0
+523 'PM.Daniel' 'oscar.pm' 270 0.0 32.0
+524 'PM.Daniel' 'oscar.pm' 273 0.0 32.0
+525 'PM.Daniel' 'oscar.pm' 274 0.0 32.0
+526 'PM.Daniel' 'oscar.pm' 275 0.0 32.0
+527 'PM.Daniel' 'oscar.pm' 276 0.0 32.0
+528 'PM.Daniel' 'oscar.pm' 277 0.0 32.0
+529 'PM.Daniel' 'oscar.pm' 280 0.0 32.0
+530 'PM.Daniel' 'oscar.pm' 281 0.0 32.0
+531 'PM.Daniel' 'oscar.pm' 282 0.0 32.0
+532 'PM.Daniel' 'oscar.pm' 283 0.0 32.0
+533 'PM.Daniel' 'oscar.pm' 284 0.0 32.0
+534 'PM.Daniel' 'oscar.pm' 287 0.0 32.0
+535 'PM.Daniel' 'oscar.pm' 288 0.0 32.0
+536 'PM.Daniel' 'oscar.pm' 289 0.0 32.0
+537 'PM.Daniel' 'oscar.pm' 290 0.0 32.0
+538 'PM.Daniel' 'oscar.pm' 291 0.0 32.0
+539 'PM.Daniel' 'oscar.pm' 294 0.0 32.0
+540 'PM.Daniel' 'oscar.pm' 295 0.0 32.0
+541 'PM.Daniel' 'oscar.pm' 296 0.0 32.0
+542 'PM.Daniel' 'oscar.pm' 297 0.0 32.0
+543 'PM.Daniel' 'oscar.pm' 298 0.0 32.0
+544 'PM.Daniel' 'oscar.pm' 301 0.0 32.0
+545 'PM.Daniel' 'oscar.pm' 302 0.0 32.0
+546 'PM.Daniel' 'oscar.pm' 303 0.0 32.0
+547 'PM.Daniel' 'oscar.pm' 304 0.0 32.0
+548 'PM.Daniel' 'oscar.pm' 305 0.0 32.0
+549 'PM.Daniel' 'oscar.pm' 308 0.0 32.0
+550 'PM.Daniel' 'oscar.pm' 309 0.0 32.0
+551 'PM.Daniel' 'oscar.pm' 310 0.0 32.0
+552 'PM.Daniel' 'oscar.pm' 311 0.0 32.0
+553 'PM.Daniel' 'oscar.pm' 312 0.0 32.0
+554 'PM.Daniel' 'oscar.pm' 315 0.0 32.0
+555 'PM.Daniel' 'oscar.pm' 316 0.0 32.0
+556 'PM.Daniel' 'oscar.pm' 317 0.0 32.0
+557 'PM.Daniel' 'oscar.pm' 318 0.0 32.0
+558 'PM.Daniel' 'oscar.pm' 319 0.0 32.0
+559 'PM.Daniel' 'oscar.pm' 322 0.0 32.0
+560 'PM.Daniel' 'oscar.pm' 323 0.0 32.0
+561 'PM.Daniel' 'oscar.pm' 324 0.0 32.0
+562 'PM.Daniel' 'oscar.pm' 325 0.0 32.0
+563 'PM.Daniel' 'oscar.pm' 326 0.0 32.0
+564 'PM.Daniel' 'oscar.pm' 329 0.0 32.0
+565 'PM.Daniel' 'oscar.pm' 330 0.0 32.0
+566 'PM.Daniel' 'oscar.pm' 331 0.0 32.0
+567 'PM.Daniel' 'oscar.pm' 332 0.0 32.0
+568 'PM.Daniel' 'oscar.pm' 333 0.0 32.0
+569 'PM.Daniel' 'oscar.pm' 336 0.0 32.0
+570 'PM.Daniel' 'oscar.pm' 337 0.0 32.0
+571 'PM.Daniel' 'oscar.pm' 338 0.0 32.0
+572 'PM.Daniel' 'oscar.pm' 339 0.0 32.0
+573 'PM.Daniel' 'oscar.pm' 340 0.0 32.0
+574 'PM.Daniel' 'oscar.pm' 343 0.0 32.0
+575 'PM.Daniel' 'oscar.pm' 344 0.0 32.0
+576 'PM.Daniel' 'oscar.pm' 345 0.0 32.0
+577 'PM.Daniel' 'oscar.pm' 346 0.0 32.0
+578 'PM.Daniel' 'oscar.pm' 347 0.0 32.0
+579 'PM.Daniel' 'oscar.pm' 350 0.0 32.0
+580 'PM.Daniel' 'oscar.pm' 351 0.0 32.0
+581 'PM.Daniel' 'oscar.pm' 352 0.0 32.0
+582 'PM.Daniel' 'oscar.pm' 353 0.0 32.0
+583 'PM.Daniel' 'oscar.pm' 354 0.0 32.0
+584 'PM.Daniel' 'oscar.pm' 357 0.0 32.0
+585 'PM.Daniel' 'oscar.pm' 358 0.0 32.0
+586 'PM.Daniel' 'oscar.pm' 359 0.0 32.0
+587 'PM.Daniel' 'oscar.pm' 360 0.0 32.0
+588 'PM.Daniel' 'oscar.pm' 361 0.0 32.0
+589 'PM.Daniel' 'oscar.pm' 364 0.0 32.0
+590 'PM.Daniel' 'oscar.pm' 365 0.0 32.0
+591 'PM.Daniel' 'oscar.pf' 366 0.0 32.0
+592 'PM.Daniel' 'oscar.pf' 367 0.0 32.0
+593 'PM.Daniel' 'oscar.pf' 368 0.0 32.0
+594 'PM.Daniel' 'oscar.pf' 371 0.0 32.0
+595 'PM.Daniel' 'oscar.pf' 372 0.0 32.0
+596 'PM.Daniel' 'oscar.pf' 373 0.0 32.0
+597 'PM.Daniel' 'oscar.pf' 374 0.0 32.0
+598 'PM.Daniel' 'oscar.pf' 375 0.0 32.0
+599 'PM.Daniel' 'oscar.pf' 378 0.0 32.0
+600 'PM.Daniel' 'oscar.pf' 379 0.0 32.0
+601 'PM.Daniel' 'oscar.pf' 380 0.0 32.0
+602 'PM.Daniel' 'oscar.pf' 381 0.0 32.0
+603 'PM.Daniel' 'oscar.pf' 382 0.0 32.0
+604 'PM.Daniel' 'oscar.pf' 385 0.0 32.0
+605 'PM.Daniel' 'oscar.pf' 386 0.0 32.0
+606 'PM.Daniel' 'oscar.pf' 387 0.0 32.0
+607 'PM.Daniel' 'oscar.pf' 388 0.0 32.0
+608 'PM.Daniel' 'oscar.pf' 389 0.0 32.0
+609 'PM.Daniel' 'oscar.pf' 392 0.0 32.0
+610 'PM.Daniel' 'oscar.pf' 393 0.0 32.0
+611 'PM.Daniel' 'oscar.pf' 394 0.0 32.0
+612 'PM.Daniel' 'oscar.pf' 395 0.0 32.0
+613 'PM.Daniel' 'oscar.pf' 396 0.0 32.0
+614 'PM.Daniel' 'lima2.pm' 3 0.0 32.0
+615 'PM.Daniel' 'lima2.pm' 4 0.0 32.0
+616 'PM.Daniel' 'lima2.pm' 7 0.0 32.0
+617 'PM.Daniel' 'lima2.pm' 8 0.0 32.0
+618 'PM.Daniel' 'lima2.pm' 9 0.0 32.0
+619 'PM.Daniel' 'lima2.pm' 10 0.0 32.0
+620 'PM.Daniel' 'lima2.pm' 11 0.0 32.0
+621 'PM.Daniel' 'lima2.pm' 14 0.0 32.0
+622 'PM.Daniel' 'lima2.pm' 15 0.0 32.0
+623 'PM.Daniel' 'lima2.pm' 16 0.0 32.0
+624 'PM.Daniel' 'lima2.pm' 17 0.0 32.0
+625 'PM.Daniel' 'lima2.pm' 18 0.0 32.0
+626 'PM.Daniel' 'lima2.pm' 21 0.0 32.0
+627 'PM.Daniel' 'lima2.pm' 22 0.0 32.0
+628 'PM.Daniel' 'lima2.pm' 23 0.0 32.0
+629 'PM.Daniel' 'lima2.pm' 24 0.0 32.0
+630 'PM.Daniel' 'lima2.pm' 25 0.0 32.0
+631 'PM.Daniel' 'lima2.pm' 28 0.0 32.0
+632 'PM.Daniel' 'lima2.pm' 29 0.0 32.0
+633 'PM.Daniel' 'lima2.pm' 30 0.0 32.0
+634 'PM.Daniel' 'lima2.pm' 31 0.0 32.0
+635 'PM.Daniel' 'lima2.pm' 32 0.0 32.0
+636 'PM.Daniel' 'lima2.pm' 35 0.0 32.0
+637 'PM.Daniel' 'lima2.pm' 36 0.0 32.0
+638 'PM.Daniel' 'lima2.pm' 37 0.0 32.0
+639 'PM.Daniel' 'lima2.pm' 38 0.0 32.0
+640 'PM.Daniel' 'lima2.pm' 39 0.0 32.0
+641 'PM.Daniel' 'lima2.pm' 42 0.0 32.0
+642 'PM.Daniel' 'lima2.pm' 43 0.0 32.0
+643 'PM.Daniel' 'lima2.pm' 44 0.0 32.0
+644 'PM.Daniel' 'lima2.pm' 45 0.0 32.0
+645 'PM.Daniel' 'lima2.pm' 46 0.0 32.0
+646 'PM.Daniel' 'lima2.pm' 49 0.0 32.0
+647 'PM.Daniel' 'lima2.pm' 50 0.0 32.0
+648 'PM.Daniel' 'lima2.pm' 51 0.0 32.0
+649 'PM.Daniel' 'lima2.pm' 52 0.0 32.0
+650 'PM.Daniel' 'lima2.pm' 53 0.0 32.0
+651 'PM.Daniel' 'lima2.pm' 56 0.0 32.0
+652 'PM.Daniel' 'lima2.pm' 57 0.0 32.0
+653 'PM.Daniel' 'lima2.pf' 58 0.0 32.0
+654 'PM.Daniel' 'lima2.pf' 59 0.0 32.0
+655 'PM.Daniel' 'lima2.pf' 60 0.0 32.0
+656 'PM.Daniel' 'lima2.pf' 63 0.0 32.0
+657 'PM.Daniel' 'mike2.pe' 11 0.0 32.0
+658 'PM.Daniel' 'mike2.pe' 14 0.0 32.0
+659 'PM.Daniel' 'mike2.pe' 15 0.0 32.0
+660 'PM.Daniel' 'mike2.pe' 16 0.0 32.0
+661 'PM.Daniel' 'mike2.pm' 17 0.0 32.0
+662 'PM.Daniel' 'mike2.pm' 18 0.0 32.0
+663 'PM.Daniel' 'mike2.pm' 21 0.0 32.0
+664 'PM.Daniel' 'mike2.pm' 22 0.0 32.0
+665 'PM.Daniel' 'mike2.pm' 23 0.0 32.0
+666 'PM.Daniel' 'mike2.pm' 24 0.0 32.0
+667 'PM.Daniel' 'mike2.pm' 25 0.0 32.0
+668 'PM.Daniel' 'mike2.pm' 28 0.0 32.0
+669 'PM.Daniel' 'mike2.pm' 29 0.0 32.0
+670 'PM.Daniel' 'mike2.pm' 30 0.0 32.0
+671 'PM.Daniel' 'mike2.pm' 31 0.0 32.0
+672 'PM.Daniel' 'mike2.pm' 32 0.0 32.0
+673 'PM.Daniel' 'mike2.pm' 35 0.0 32.0
+674 'PM.Daniel' 'mike2.pm' 36 0.0 32.0
+675 'PM.Daniel' 'mike2.pm' 37 0.0 32.0
+676 'PM.Daniel' 'mike2.pm' 38 0.0 32.0
+677 'PM.Daniel' 'mike2.pm' 39 0.0 32.0
+678 'PM.Daniel' 'mike2.pm' 42 0.0 32.0
+679 'PM.Daniel' 'mike2.pm' 43 0.0 32.0
+680 'PM.Daniel' 'mike2.pm' 44 0.0 32.0
+681 'PM.Daniel' 'mike2.pm' 45 0.0 32.0
+682 'PM.Daniel' 'mike2.pm' 46 0.0 32.0
+683 'PM.Daniel' 'mike2.pm' 49 0.0 32.0
+684 'PM.Daniel' 'mike2.pm' 50 0.0 32.0
+685 'PM.Daniel' 'mike2.pm' 51 0.0 32.0
+686 'PM.Daniel' 'mike2.pm' 52 0.0 32.0
+687 'PM.Daniel' 'mike2.pm' 53 0.0 32.0
+688 'PM.Daniel' 'mike2.pm' 56 0.0 32.0
+689 'PM.Daniel' 'mike2.pm' 57 0.0 32.0
+690 'PM.Daniel' 'mike2.pm' 58 0.0 32.0
+691 'PM.Daniel' 'mike2.pm' 59 0.0 32.0
+692 'PM.Daniel' 'mike2.pm' 60 0.0 32.0
+693 'PM.Daniel' 'mike2.pm' 63 0.0 32.0
+694 'PM.Daniel' 'mike2.pm' 64 0.0 32.0
+695 'PM.Daniel' 'mike2.pm' 65 0.0 32.0
+696 'PM.Daniel' 'mike2.pm' 66 0.0 32.0
+697 'PM.Daniel' 'mike2.pm' 67 0.0 32.0
+698 'PM.Daniel' 'mike2.pm' 70 0.0 32.0
+699 'PM.Daniel' 'mike2.pm' 71 0.0 32.0
+700 'PM.Daniel' 'mike2.pm' 72 0.0 32.0
+701 'PM.Daniel' 'mike2.pm' 73 0.0 32.0
+702 'PM.Daniel' 'mike2.pm' 74 0.0 32.0
+703 'PM.Daniel' 'mike2.pm' 77 0.0 32.0
+704 'PM.Daniel' 'mike2.pm' 78 0.0 32.0
+705 'PM.Daniel' 'mike2.pm' 79 0.0 32.0
+706 'PM.Daniel' 'mike2.pm' 80 0.0 32.0
+707 'PM.Daniel' 'mike2.pm' 81 0.0 32.0
+708 'PM.Daniel' 'mike2.pm' 84 0.0 32.0
+709 'PM.Daniel' 'mike2.pm' 85 0.0 32.0
+710 'PM.Daniel' 'mike2.pm' 86 0.0 32.0
+711 'PM.Daniel' 'mike2.pm' 87 0.0 32.0
+712 'PM.Daniel' 'mike2.pm' 88 0.0 32.0
+713 'PM.Daniel' 'mike2.pm' 91 0.0 32.0
+714 'PM.Daniel' 'mike2.pm' 92 0.0 32.0
+715 'PM.Daniel' 'mike2.pm' 93 0.0 32.0
+716 'PM.Daniel' 'mike2.pm' 94 0.0 32.0
+717 'PM.Daniel' 'mike2.pm' 95 0.0 32.0
+718 'PM.Daniel' 'mike2.pm' 98 0.0 32.0
+719 'PM.Daniel' 'mike2.pm' 99 0.0 32.0
+720 'PM.Daniel' 'mike2.pm' 100 0.0 32.0
+721 'PM.Daniel' 'mike2.pm' 101 0.0 32.0
+722 'PM.Daniel' 'mike2.pm' 102 0.0 32.0
+723 'PM.Daniel' 'mike2.pm' 105 0.0 32.0
+724 'PM.Daniel' 'mike2.pm' 106 0.0 32.0
+725 'PM.Daniel' 'mike2.pm' 107 0.0 32.0
+726 'PM.Daniel' 'mike2.pm' 108 0.0 32.0
+727 'PM.Daniel' 'mike2.pm' 109 0.0 32.0
+728 'PM.Daniel' 'mike2.pm' 112 0.0 32.0
+729 'PM.Daniel' 'mike2.pm' 113 0.0 32.0
+730 'PM.Daniel' 'mike2.pm' 114 0.0 32.0
+731 'PM.Daniel' 'mike2.pm' 115 0.0 32.0
+732 'PM.Daniel' 'mike2.pm' 116 0.0 32.0
+733 'PM.Daniel' 'mike2.pm' 119 0.0 32.0
+734 'PM.Daniel' 'mike2.pm' 120 0.0 32.0
+735 'PM.Daniel' 'mike2.pm' 121 0.0 32.0
+736 'PM.Daniel' 'mike2.pm' 123 0.0 32.0
+737 'PM.Daniel' 'mike2.pm' 126 0.0 32.0
+738 'PM.Daniel' 'mike2.pm' 127 0.0 32.0
+739 'PM.Daniel' 'mike2.pm' 128 0.0 32.0
+740 'PM.Daniel' 'mike2.pm' 129 0.0 32.0
+741 'PM.Daniel' 'mike2.pm' 130 0.0 32.0
+742 'PM.Daniel' 'mike2.pm' 133 0.0 32.0
+743 'PM.Daniel' 'mike2.pm' 134 0.0 32.0
+744 'PM.Daniel' 'mike2.pm' 135 0.0 32.0
+745 'PM.Daniel' 'mike2.pm' 136 0.0 32.0
+746 'PM.Daniel' 'mike2.pm' 137 0.0 32.0
+747 'PM.Daniel' 'mike2.pf' 140 0.0 32.0
+748 'PM.Daniel' 'mike2.pf' 141 0.0 32.0
+749 'PM.Daniel' 'mike2.pf' 142 0.0 32.0
+750 'PM.Daniel' 'mike2.pf' 143 0.0 32.0
+751 'PM.Daniel' 'mike2.pf' 144 0.0 32.0
+752 'PM.Daniel' 'mike2.pf' 147 0.0 32.0
+753 'PM.Daniel' 'mike2.pf' 148 0.0 32.0
+754 'PM.Daniel' 'mike2.pf' 149 0.0 32.0
+755 'PM.Daniel' 'mike2.pf' 150 0.0 32.0
+756 'PM.Daniel' 'mike2.pf' 151 0.0 32.0;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 0;
+
+param UBDAY:
+1   2   3   4 :=
+;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'PM.Daniel' 'alpha.pf'
+'PM.Daniel' 'alpha.pm'
+'PM.Daniel' 'beta.pf'
+'PM.Daniel' 'beta.pm'
+'PM.Daniel' 'india.pf'
+'PM.Daniel' 'india.pm'
+'PM.Daniel' 'lima2.pf'
+'PM.Daniel' 'lima2.pm'
+'PM.Daniel' 'mike2.pe'
+'PM.Daniel' 'mike2.pf'
+'PM.Daniel' 'mike2.pm'
+'PM.Daniel' 'oscar.pe'
+'PM.Daniel' 'oscar.pf'
+'PM.Daniel' 'oscar.pm';
+
