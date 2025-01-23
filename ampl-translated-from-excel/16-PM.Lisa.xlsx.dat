@@ -11,29 +11,29 @@ param EBOUND:
 
 param:
 TASKN: TASKS TASKE TASKW :=
-'echo.pf' 93 138 20
 'echo.pm' 2 75 80
-'foxtrot.pf' 93 123 20
+'echo.pf' 93 138 20
 'foxtrot.pm' 2 92 80
-'golf.pf' 134 179 40
+'foxtrot.pf' 93 123 20
 'golf.pm' 2 133 160
-'hotel.pf' 246 291 40
+'golf.pf' 134 179 40
 'hotel.pm' 2 245 320
+'hotel.pf' 246 291 40
 'kilo.pe' 61 84 40
-'kilo.pf' 215 260 20
 'kilo.pm' 85 214 200
+'kilo.pf' 215 260 20
 'lima.pe' 81 110 100
-'lima.pf' 307 335 80
 'lima.pm' 111 306 400
+'lima.pf' 307 335 80
 'whisky2.pe' 47 62 0
-'whisky2.pf' 234 245 0
 'whisky2.pm' 63 233 0
+'whisky2.pf' 234 245 0
 'xray2.pe' 47 62 0
-'xray2.pf' 234 245 0
 'xray2.pm' 63 233 0
+'xray2.pf' 234 245 0
 'zulu2.pe' 47 62 0
-'zulu2.pf' 234 245 0
 'zulu2.pm' 63 233 0
+'zulu2.pf' 234 245 0
 ;
 
 param:
