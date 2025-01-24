@@ -6,7 +6,6 @@ import matplotlib.ticker as tck
 import pandas as pd
 import numpy as np
 import romz_datetime
-import datetime
 import glb
 import time
 
@@ -23,15 +22,14 @@ def plot(expert_name):
 
     # Generate day labels and filter dataframe
     days = pd.date_range(start=start, end=end, freq="D")
-    day_labels = matplotlib.dates.date2num(days)
-    df = glb.data[f"schedule {expert_name}"][days.astype("str")]
+    df = glb.data[f"schedule {expert_name}"][days]
 
     # Determine bar width
     width = 0.9 if days.size < 10 else 1.0
 
     # Define x-axis limits
-    left = matplotlib.dates.date2num(start - datetime.timedelta(days=1))
-    right = matplotlib.dates.date2num(end + datetime.timedelta(days=1))
+    left = pd.Timestamp(start) - pd.Timedelta(days=1)
+    right = pd.Timestamp(end) + pd.Timedelta(days=1)
 
     # Initialize figure and axis
     fig = Figure(figsize=(glb.simg("Width"), glb.simg("Height")))
@@ -60,7 +58,7 @@ def plot(expert_name):
     bottom = np.zeros(len(days))
     for task_name, task_data in filtered_df.iterrows():
         ax.bar(
-            day_labels,
+            days,
             task_data,
             width,
             label=task_name,
