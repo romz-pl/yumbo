@@ -120,19 +120,15 @@ def ubday():
     result = []
     id = 0
 
-    for _, row in df.iterrows():
-        expert = row["Expert"]
-        lower = row["Lower"]
-        upper = row["Upper"]
-
+    for row in df.itertuples(index=False):
         # Generate business days excluding holidays
-        valid_days = pd.bdate_range(start=row["Start"], end=row["End"], freq='C', holidays=holidays)
+        valid_days = pd.bdate_range(start=row.Start, end=row.End, freq='C', holidays=holidays)
 
         # Format the output
         for day in valid_days:
             id += 1
             relative_day = (day - today).days
-            result.append(f"{id} '{expert}' {relative_day} {lower} {upper}")
+            result.append(f"{id} '{row.Expert}' {relative_day} {row.Lower} {row.Upper}")
 
     return id, "\n".join(result)
 
@@ -141,10 +137,10 @@ def ubsum():
     today = glb.today()
     df = glb.data["ubsum"]
     result = [
-        f"{id+1} '{row['Expert']}' '{row['Task']}' {(row['Start'] - today).days} "
-        f"{(row['End'] - today).days} "
+        f"{id+1} '{row.Expert}' '{row.Task}' {(row.Start - today).days} "
+        f"{(row.End - today).days} "
         f"{row.Lower} {row.Upper}"
-        for id, row in df.iterrows()
+        for id, row in enumerate(df.itertuples(index=False))
     ]
     return len(result), "\n".join(result)
 
@@ -157,11 +153,11 @@ def expert_bounds():
     today = glb.today()
     df = glb.data["expert bounds"]
     result = [
-        f"{id+1} '{row['Expert']}' {(row['Start'] - today).days} "
-        f"{(row['End'] - today).days} "
-        f"{row['Lower'] * quarters_in_hour} "
-        f"{row['Upper'] * quarters_in_hour}"
-        for id, row in df.iterrows()
+        f"{id+1} '{row.Expert}' {(row.Start - today).days} "
+        f"{(row.End - today).days} "
+        f"{row.Lower * quarters_in_hour} "
+        f"{row.Upper * quarters_in_hour}"
+        for id, row in enumerate(df.itertuples(index=False))
     ]
     return len(result), "\n".join(result)
 
@@ -175,8 +171,8 @@ def invoicing_periods():
     today = glb.today()
     df = glb.data["invoicing periods"]
     result = [
-        f"'{row['Name']}' {(row['Start'] - today).days} {(row['End'] - today).days}"
-        for _, row in df.iterrows()
+        f"'{row.Name}' {(row.Start - today).days} {(row.End - today).days}"
+        for row in df.itertuples(index=False)
     ]
     return "\n".join(result)
 
