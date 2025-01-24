@@ -5,7 +5,6 @@ import matplotlib
 from matplotlib.figure import Figure
 import matplotlib.ticker as tck
 import romz_datetime
-import datetime
 import glb
 import time
 
@@ -14,21 +13,18 @@ import time
 #
 
 def plot_df(df):
-
-
     start = glb.himg("Start")
     end = glb.himg("End")
 
     # Generate the date range as string
-    days = pd.period_range(start=start, end=end, freq="D").astype(str)
+    days = pd.date_range(start=start, end=end, freq="D")
 
     # Sum the hours for each day
     hours_per_day = df[days].sum()
 
     # Calculate plot limits
-    left = matplotlib.dates.date2num(start - datetime.timedelta(days=1))
-    right = matplotlib.dates.date2num(end + datetime.timedelta(days=1))
-    days = matplotlib.dates.datestr2num(days)
+    left = pd.Timestamp(start) - pd.Timedelta(days=1)
+    right = pd.Timestamp(end) + pd.Timedelta(days=1)
 
     # Determine bar width
     width = 0.9 if days.size < 10 else 1.0
@@ -49,7 +45,14 @@ def plot_df(df):
     ax.tick_params(axis="y", labelsize="x-small")
 
     # Add bars to the plot
-    ax.bar(days, hours_per_day, width, color=glb.himg("Bar:color"), hatch=glb.himg("Bar:hatch"), alpha=glb.himg("Bar:alpha"))
+    ax.bar(
+        days,
+        hours_per_day,
+        width,
+        color=glb.himg("Bar:color"),
+        hatch=glb.himg("Bar:hatch"),
+        alpha=glb.himg("Bar:alpha")
+    )
 
     # Finalize and save the plot
     fig.tight_layout()
