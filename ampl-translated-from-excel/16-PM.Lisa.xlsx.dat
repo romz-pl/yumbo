@@ -53,18 +53,18 @@ PAYROLLN: PAYROLLS PAYROLLE :=
 
 param:
 EXPPAY: PAYROLLBL PAYROLLBU :=
-'PM.Lisa' 'Jan.25' 0 720
-'PM.Lisa' 'Feb.25' 0 720
-'PM.Lisa' 'Mar.25' 0 720
-'PM.Lisa' 'Apr.25' 0 720
-'PM.Lisa' 'May.25' 0 720
-'PM.Lisa' 'Jun.25' 0 720
-'PM.Lisa' 'Jul.25' 0 720
-'PM.Lisa' 'Aug.25' 0 720
-'PM.Lisa' 'Sep.25' 0 720
-'PM.Lisa' 'Oct.25' 0 720
-'PM.Lisa' 'Nov.25' 0 720
-'PM.Lisa' 'Dec.25' 0 720;
+'PM.Lisa' 'Jan.25' 0.0 720.0
+'PM.Lisa' 'Feb.25' 0.0 720.0
+'PM.Lisa' 'Mar.25' 0.0 720.0
+'PM.Lisa' 'Apr.25' 0.0 720.0
+'PM.Lisa' 'May.25' 0.0 720.0
+'PM.Lisa' 'Jun.25' 0.0 720.0
+'PM.Lisa' 'Jul.25' 0.0 720.0
+'PM.Lisa' 'Aug.25' 0.0 720.0
+'PM.Lisa' 'Sep.25' 0.0 720.0
+'PM.Lisa' 'Oct.25' 0.0 720.0
+'PM.Lisa' 'Nov.25' 0.0 720.0
+'PM.Lisa' 'Dec.25' 0.0 720.0;
 
 param OFFDAY_NO := 98;
 
