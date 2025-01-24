@@ -44,7 +44,6 @@ def plot(expert_name):
     yupper = bounds["Upper"].to_numpy(dtype=dtype)
     yerr = np.array([y - ylower, yupper - y], dtype=dtype)
 
-
     # Create the plot
     fig = Figure(figsize=(glb.wimg("Width"), glb.wimg("Height")))
     ax = fig.subplots()
