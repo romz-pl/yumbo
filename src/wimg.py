@@ -1,16 +1,14 @@
+import glb
 import io
-import streamlit as st
-from matplotlib.figure import Figure
-import matplotlib.ticker as tck
+import matplotlib
 import numpy as np
 import pandas as pd
-import glb
+import streamlit as st
 import time
 
 #
 # Invoicing Periods Workload
 #
-
 def plot(expert_name):
     time_start = time.perf_counter()
 
@@ -45,7 +43,7 @@ def plot(expert_name):
     yerr = np.array([y - ylower, yupper - y], dtype=dtype)
 
     # Create the plot
-    fig = Figure(figsize=(glb.wimg("Width"), glb.wimg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.wimg("Width"), glb.wimg("Height")))
     ax = fig.subplots()
     ax.set_ylabel("Hours")
     ax.set_title("Invoicing Periods Workload")
