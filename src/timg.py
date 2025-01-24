@@ -2,10 +2,7 @@ import pandas as pd
 import io
 import streamlit as st
 import matplotlib
-from matplotlib.figure import Figure
-import matplotlib.ticker as tck
 import romz_datetime
-import datetime
 import glb
 import time
 
@@ -14,33 +11,30 @@ import time
 #
 
 def plot_df(df):
-
-
     start = glb.timg("Start")
     end = glb.timg("End")
 
     # Generate the date range as string
-    days = pd.period_range(start=start, end=end, freq="D").astype(str)
+    days = pd.date_range(start=start, end=end, freq="D")
 
     # Count the number of tasks per day
     tasks_per_day = (df[days] > 0).sum()
 
     # Calculate plot limits
-    left = matplotlib.dates.date2num(start - datetime.timedelta(days=1))
-    right = matplotlib.dates.date2num(end + datetime.timedelta(days=1))
-    days = matplotlib.dates.datestr2num(days)
+    left = pd.Timestamp(start) - pd.Timedelta(days=1)
+    right = pd.Timestamp(end) + pd.Timedelta(days=1)
 
     # Determine bar width
     width = 0.9 if days.size < 10 else 1.0
 
     # Create figure and axis
-    fig = Figure(figsize=(glb.timg("Width"), glb.timg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.timg("Width"), glb.timg("Height")))
     ax = fig.subplots()
 
     # Configure plot properties
     ax.set_title("Tasks per day")
     ax.set_xlim([left, right])
-    ax.yaxis.set_major_locator(tck.MaxNLocator(nbins=6, min_n_ticks=1, integer=True))
+    ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=6, min_n_ticks=1, integer=True))
     ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6, interval_multiples=True))
     ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(romz_datetime.format()))
     ax.yaxis.grid(alpha=0.4)
@@ -49,7 +43,14 @@ def plot_df(df):
     ax.tick_params(axis="y", labelsize="x-small")
 
     # Add bars to the plot
-    ax.bar(days, tasks_per_day, width, color=glb.timg("Bar:color"), hatch=glb.timg("Bar:hatch"), alpha=glb.timg("Bar:alpha"))
+    ax.bar(
+        days,
+        tasks_per_day,
+        width,
+        color=glb.timg("Bar:color"),
+        hatch=glb.timg("Bar:hatch"),
+        alpha=glb.timg("Bar:alpha")
+    )
 
     # Finalize and save the plot
     fig.tight_layout()
