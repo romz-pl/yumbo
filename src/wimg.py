@@ -29,7 +29,7 @@ def plot(expert_name):
         period_data = invper[invper["Name"] == row.Period]
         start = period_data["Start"].iat[0]
         end = period_data["End"].iat[0]
-        x_task = pd.date_range(start=start, end=end, freq="D").astype("str").intersection(schedule.columns)
+        x_task = pd.date_range(start=start, end=end, freq="D").intersection(schedule.columns)
         y.append(schedule.loc[:, x_task].sum().sum())
 
     y = pd.Series(y)
