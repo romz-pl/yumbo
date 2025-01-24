@@ -1,19 +1,15 @@
-import io
-import streamlit as st
-import matplotlib
-from matplotlib.figure import Figure
-import matplotlib.ticker as tck
-import pandas as pd
-import numpy as np
-import romz_datetime
 import glb
+import io
+import matplotlib
+import numpy as np
+import pandas as pd
+import romz_datetime
+import streamlit as st
 import time
 
 #
 # Hours per day stacked
 #
-
-
 def plot(expert_name):
     time_start = time.perf_counter()
 
@@ -32,13 +28,13 @@ def plot(expert_name):
     right = pd.Timestamp(end) + pd.Timedelta(days=1)
 
     # Initialize figure and axis
-    fig = Figure(figsize=(glb.simg("Width"), glb.simg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.simg("Width"), glb.simg("Height")))
     ax = fig.subplots()
     ax.set_title("Hours per day stacked")
     ax.set_xlim([left, right])
 
     # Configure axis formatting and grid
-    ax.yaxis.set_major_locator(tck.MaxNLocator(nbins=6, min_n_ticks=1))
+    ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=6, min_n_ticks=1))
     ax.xaxis.set_major_locator(
         matplotlib.dates.AutoDateLocator(
             tz=None, minticks=3, maxticks=6, interval_multiples=True
