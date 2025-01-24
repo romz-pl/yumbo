@@ -55,7 +55,7 @@ def plot(expert_name):
     filtered_df = df[mask]
 
     # Plot stacked bar chart
-    bottom = np.zeros(len(days))
+    bottom = np.zeros(days.shape[0])
     for task_name, task_data in filtered_df.iterrows():
         ax.bar(
             days,
