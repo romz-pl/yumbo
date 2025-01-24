@@ -16,7 +16,7 @@ def plot(task, schedule, bounds):
 
     # Generate task-specific data
     x_task = pd.date_range(start=task.Start, end=task.End, freq="D")
-    y_task = schedule.loc[task.Name, x_task.strftime(romz_datetime.format())]
+    y_task = schedule.loc[task.Name, x_task]
 
     # Create figure and axis
     fig = Figure(figsize=(glb.bimg("Width"), glb.bimg("Height")))
@@ -37,13 +37,15 @@ def plot(task, schedule, bounds):
     ax.tick_params(axis="y", labelsize="x-small")
 
     # Add task bounds
-    for _, row in bounds.iterrows():
-        bound_days = pd.date_range(start=row["Start"], end=row["End"], freq="D")
-        lower, upper = row["Lower"], row["Upper"]
-        if lower == upper:
-            lower -= 0.5
-            upper += 0.5
-        ax.fill_between(bound_days, lower, upper, color=glb.bimg("Fill:color"), hatch=glb.bimg("Fill:hatch"), alpha=glb.bimg("Fill:alpha"))
+    for row in bounds.itertuples(index=False):
+        bound_days = pd.date_range(start=row.Start, end=row.End, freq="D")
+        ax.fill_between(bound_days,
+                        row.Lower,
+                        row.Upper,
+                        color=glb.bimg("Fill:color"),
+                        hatch=glb.bimg("Fill:hatch"),
+                        alpha=glb.bimg("Fill:alpha")
+                        )
 
     # Add legend and finalize layout
     ax.legend(loc="upper right")
