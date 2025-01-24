@@ -2,6 +2,7 @@ import io
 import streamlit as st
 from matplotlib.figure import Figure
 import matplotlib.ticker as tck
+import numpy as np
 import pandas as pd
 import glb
 import time
@@ -10,32 +11,39 @@ import time
 # Invoicing Periods Workload
 #
 
-
 def plot(expert_name):
     time_start = time.perf_counter()
 
     invper = glb.data["invoicing periods"]
     schedule = glb.data[f"schedule {expert_name}"]
     invper_bounds = glb.data["invoicing periods bounds"]
+
+    # Filter the bounds for the given expert
     bounds = invper_bounds[ invper_bounds["Expert"] == expert_name ]
+    assert bounds["Lower"].dtype == bounds["Upper"].dtype
+    dtype = bounds["Lower"].dtype
+
 
     if bounds.empty:
         st.write(":green[No limits have been set for the invoicing periods.]")
         return
 
-    # Calculate workload for each period
-    y = []
-    for row in bounds.itertuples(index=False):
-        period_data = invper[invper["Name"] == row.Period]
-        start = period_data["Start"].iat[0]
-        end = period_data["End"].iat[0]
-        x_task = pd.date_range(start=start, end=end, freq="D").intersection(schedule.columns)
-        y.append(schedule.loc[:, x_task].sum().sum())
+    # Precompute invoicing period start and end as a dictionary for quick lookup
+    invper_dict = invper.set_index("Name")[["Start", "End"]].to_dict("index")
 
-    y = pd.Series(y)
-    ylower = bounds["Lower"].to_numpy()
-    yupper = bounds["Upper"].to_numpy()
-    yerr = [y - ylower, yupper - y]
+    # Calculate workload for each period
+    y = np.empty(bounds.shape[0], dtype=dtype)
+    for idx, period in enumerate(bounds["Period"]):
+        period_data = invper_dict[period]
+        start = pd.Timestamp(period_data["Start"])
+        end = pd.Timestamp(period_data["End"])
+        x_task = pd.date_range(start=start, end=end, freq="D").intersection(schedule.columns)
+        y[idx] = schedule.loc[:, x_task].sum().sum()
+
+    ylower = bounds["Lower"].to_numpy(dtype=dtype)
+    yupper = bounds["Upper"].to_numpy(dtype=dtype)
+    yerr = np.array([y - ylower, yupper - y], dtype=dtype)
+
 
     # Create the plot
     fig = Figure(figsize=(glb.wimg("Width"), glb.wimg("Height")))

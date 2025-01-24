@@ -130,7 +130,9 @@ def read_links(xlsx):
 
 
 def read_invoicing_periods_bounds(xlsx):
-    glb.data["invoicing periods bounds"] = xlsx.parse(sheet_name="invoicing periods bounds", usecols="A:D")
+    glb.data["invoicing periods bounds"] = xlsx.parse(sheet_name="invoicing periods bounds",
+                                                      usecols="A:D",
+                                                      dtype={"Lower": np.float16, "Upper": np.float16})
 
 
 def adjust_start_days():
