@@ -2,8 +2,6 @@ import pandas as pd
 import io
 import streamlit as st
 import matplotlib
-from matplotlib.figure import Figure
-import matplotlib.ticker as tck
 import romz_datetime
 import glb
 import time
@@ -30,13 +28,13 @@ def plot_df(df):
     width = 0.9 if days.size < 10 else 1.0
 
     # Create figure and axis
-    fig = Figure(figsize=(glb.himg("Width"), glb.himg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.himg("Width"), glb.himg("Height")))
     ax = fig.subplots()
 
     # Configure plot properties
     ax.set_title("Hours per day")
     ax.set_xlim([left, right])
-    ax.yaxis.set_major_locator(tck.MaxNLocator(nbins=6, min_n_ticks=1))
+    ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=6, min_n_ticks=1))
     ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6, interval_multiples=True))
     ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(romz_datetime.format()))
     ax.yaxis.grid(alpha=0.4)
