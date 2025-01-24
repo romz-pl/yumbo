@@ -1,10 +1,6 @@
 import io
 import streamlit as st
-from matplotlib.figure import Figure
-import matplotlib.ticker as tck
-import matplotlib.artist
-import numpy as np
-import streamlit as st
+import matplotlib
 import glb
 import time
 
@@ -15,7 +11,7 @@ import time
 def plot_summary():
     df = glb.data["tasks"]
     # Create figure and axis
-    fig = Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")))
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
 
@@ -30,12 +26,12 @@ def plot_summary():
     )
 
     # Configure x-axis
-    ax.xaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
+    ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5, integer=True))
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
-    ax.set_xlim(left=np.datetime64(glb.today()))
+    ax.set_xlim(left=glb.today())
 
     # Configure y-axis
-    ax.yaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
+    ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5, integer=True))
     ax.tick_params(axis="y", rotation=0, labelsize="x-small")
     ax.yaxis.grid(alpha=0.5)
     ax.set_axisbelow(True)
@@ -55,7 +51,7 @@ def plot(df, work_done):
     time_start = time.perf_counter()
 
     # Create figure and axis
-    fig = Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")))
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
 
@@ -76,12 +72,12 @@ def plot(df, work_done):
     ax.bar_label(rects, labels=labels, size=6, label_type="center")
 
     # Configure x-axis
-    ax.xaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
+    ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5, integer=True))
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
-    ax.set_xlim(left=np.datetime64(glb.today()))
+    ax.set_xlim(left=glb.today())
 
     # Configure y-axis
-    ax.yaxis.set_major_locator(tck.MultipleLocator(1))
+    ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(1))
     ax.tick_params(axis="y", rotation=0, labelsize="x-small")
     ax.yaxis.grid(alpha=0.5)
     ax.set_axisbelow(True)

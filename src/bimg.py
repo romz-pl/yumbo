@@ -1,7 +1,6 @@
 import io
 import streamlit as st
-from matplotlib.figure import Figure
-import matplotlib.ticker as tck
+import matplotlib
 import romz_datetime
 import pandas as pd
 import glb
@@ -19,7 +18,7 @@ def plot(task, schedule, bounds):
     y_task = schedule.loc[task.Name, x_task]
 
     # Create figure and axis
-    fig = Figure(figsize=(glb.bimg("Width"), glb.bimg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.bimg("Width"), glb.bimg("Height")))
     ax = fig.subplots()
 
     # Plot task data
@@ -27,9 +26,9 @@ def plot(task, schedule, bounds):
     ax.step(x_task, y_task, linewidth=glb.bimg("Step:linewidth"), where="mid")
 
     # Configure grid and axis properties
-    ax.xaxis.set_major_locator(tck.MaxNLocator(5, integer=True))
-    ax.xaxis.set_minor_locator(tck.AutoMinorLocator())
-    ax.yaxis.set_major_locator(tck.MaxNLocator(5))
+    ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5, integer=True))
+    ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator())
+    ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5))
     ax.yaxis.grid(alpha=0.5)
     ax.set_axisbelow(True)
     ax.set_xlim([x_task[0], x_task[-1]])
