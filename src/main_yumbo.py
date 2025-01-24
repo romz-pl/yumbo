@@ -118,17 +118,41 @@ def show_time_counters():
     ]
 
     elapsed_time_col = "Elapsed time [s]"
+    avg_time_col = "Average time per chart [s]"
 
-    # Using list comprehensions for efficiency and clarity
-    data = {
-        "Chart title": [title for title, _ in chart_data],
-        "Chart short name": [short_name for _, short_name in chart_data],
-        "Number of calls": [glb.data[f"time:{short_name}:cnt"] for _, short_name in chart_data],
-        elapsed_time_col: [glb.data[f"time:{short_name}:val"] for _, short_name in chart_data],
-    }
+    # Extract relevant data in a single pass
+    chart_titles = []
+    short_names = []
+    num_calls = []
+    elapsed_times = []
+    avg_times = []
+
+    for title, short_name in chart_data:
+        chart_titles.append(title)
+        short_names.append(short_name)
+
+        cnt = glb.data[f"time:{short_name}:cnt"]
+        val = glb.data[f"time:{short_name}:val"]
+
+        num_calls.append(cnt)
+        elapsed_times.append(val)
+        avg_times.append(val / cnt if cnt != 0 else 0)
+
+    # Create a DataFrame to organize the data
+    data = pd.DataFrame({
+        "Chart title": chart_titles,
+        "Chart short name": short_names,
+        "Number of calls": num_calls,
+        elapsed_time_col: elapsed_times,
+        avg_time_col: avg_times,
+    })
 
     # Create DataFrame and format it
-    format_spec = {elapsed_time_col: "{:.3f}"}
+    format_spec = {
+        elapsed_time_col: "{:.3f}",
+        avg_time_col: "{:.3f}",
+    }
+
     df = (
         pd.DataFrame(data)
         .sort_values(by=elapsed_time_col, ascending=False)
