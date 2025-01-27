@@ -1,11 +1,12 @@
 import glb
-import io
 import matplotlib
 import numpy as np
 import pandas as pd
 import romz_datetime
+import stext
 import streamlit as st
 import time
+
 
 #
 # Hours per day stacked
@@ -28,7 +29,7 @@ def plot(expert_name):
     right = pd.Timestamp(end) + pd.Timedelta(days=1)
 
     # Initialize figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.simg("Width"), glb.simg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.simg("Width"), glb.simg("Height")), dpi=glb.simg("Dpi"))
     ax = fig.subplots()
     ax.set_title("Hours per day stacked")
     ax.set_xlim([left, right])
@@ -65,13 +66,8 @@ def plot(expert_name):
 
     # Add legend and adjust layout
     ax.legend(loc="upper right", fontsize="6")
-    fig.tight_layout()
 
-    # Save the figure to a buffer
-    with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.simg("Dpi"), pil_kwargs={"compress_level": 9})
-        buf.seek(0)
-        st.image(buf)
+    stext.show_fig(fig)
 
     time_end = time.perf_counter()
     glb.data["time:simg:cnt"] += 1

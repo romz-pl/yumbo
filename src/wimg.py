@@ -1,8 +1,8 @@
 import glb
-import io
 import matplotlib
 import numpy as np
 import pandas as pd
+import stext
 import streamlit as st
 import time
 
@@ -43,7 +43,7 @@ def plot(expert_name):
     yerr = np.array([y - ylower, yupper - y], dtype=dtype)
 
     # Create the plot
-    fig = matplotlib.figure.Figure(figsize=(glb.wimg("Width"), glb.wimg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.wimg("Width"), glb.wimg("Height")), dpi=glb.wimg("Dpi"))
     ax = fig.subplots()
     ax.set_ylabel("Hours")
     ax.set_title("Invoicing Periods Workload")
@@ -58,12 +58,7 @@ def plot(expert_name):
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
 
-    # Finalize and display the plot
-    fig.tight_layout()
-    with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.wimg("Dpi"), pil_kwargs={"compress_level": 9})
-        buf.seek(0)
-        st.image(buf)
+    stext.show_fig(fig)
 
     time_end = time.perf_counter()
     glb.data["time:wimg:cnt"] += 1

@@ -1,17 +1,17 @@
-import io
-import streamlit as st
-import matplotlib
 import glb
+import matplotlib
+import stext
+import streamlit as st
 import time
+
 
 #
 # Task's Gantt Chart
 #
-
 def plot_summary():
     df = glb.data["tasks"]
     # Create figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")), dpi=glb.gimg("Dpi"))
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
 
@@ -38,20 +38,15 @@ def plot_summary():
 
     # Configure layout
     ax.set_ylim(bottom=-0.6)
-    fig.tight_layout()
 
-    # Save the figure to a buffer and display
-    with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.gimg("Dpi"), pil_kwargs={"compress_level": 9})
-        buf.seek(0)
-        st.image(buf)
+    stext.show_fig(fig)
 
 
 def plot(df, work_done):
     time_start = time.perf_counter()
 
     # Create figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")), dpi=glb.gimg("Dpi"))
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
 
@@ -84,13 +79,8 @@ def plot(df, work_done):
 
     # Configure layout
     ax.set_ylim(bottom=-0.6)
-    fig.tight_layout()
 
-    # Save the figure to a buffer and display
-    with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.gimg("Dpi"), pil_kwargs={"compress_level": 9})
-        buf.seek(0)
-        st.image(buf)
+    stext.show_fig(fig)
 
     time_end = time.perf_counter()
     glb.data["time:gimg:cnt"] += 1

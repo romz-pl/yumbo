@@ -1,15 +1,15 @@
-import io
-import streamlit as st
-import matplotlib
-import romz_datetime
-import pandas as pd
 import glb
+import matplotlib
+import pandas as pd
+import romz_datetime
+import stext
+import streamlit as st
 import time
+
 
 #
 # Plot task with its constrains
 #
-
 def plot(task, schedule, bounds):
     time_start = time.perf_counter()
 
@@ -18,7 +18,7 @@ def plot(task, schedule, bounds):
     y_task = schedule.loc[task.Name, x_task]
 
     # Create figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.bimg("Width"), glb.bimg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.bimg("Width"), glb.bimg("Height")), dpi=glb.bimg("Dpi"))
     ax = fig.subplots()
 
     # Plot task data
@@ -48,13 +48,8 @@ def plot(task, schedule, bounds):
 
     # Add legend and finalize layout
     ax.legend(loc="upper right")
-    fig.tight_layout()
 
-    # Save and display the plot
-    with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.bimg("Dpi"), pil_kwargs={"compress_level": 9})
-        buf.seek(0)
-        st.image(buf)
+    stext.show_fig(fig)
 
     time_end = time.perf_counter()
     glb.data["time:bimg:cnt"] += 1

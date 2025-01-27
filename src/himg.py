@@ -1,15 +1,15 @@
-import pandas as pd
-import io
-import streamlit as st
-import matplotlib
-import romz_datetime
 import glb
+import matplotlib
+import pandas as pd
+import romz_datetime
+import stext
+import streamlit as st
 import time
+
 
 #
 # Hours per day
 #
-
 def plot_df(df):
     start = glb.himg("Start")
     end = glb.himg("End")
@@ -28,7 +28,7 @@ def plot_df(df):
     width = 0.9 if days.size < 10 else 1.0
 
     # Create figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.himg("Width"), glb.himg("Height")))
+    fig = matplotlib.figure.Figure(figsize=(glb.himg("Width"), glb.himg("Height")), dpi=glb.himg("Dpi"))
     ax = fig.subplots()
 
     # Configure plot properties
@@ -52,12 +52,7 @@ def plot_df(df):
         alpha=glb.himg("Bar:alpha")
     )
 
-    # Finalize and save the plot
-    fig.tight_layout()
-    with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.himg("Dpi"), pil_kwargs={"compress_level": 9})
-        buf.seek(0)
-        st.image(buf)
+    stext.show_fig(fig)
 
 
 def plot(expert_name):
