@@ -52,7 +52,7 @@ def plot(task, schedule, bounds):
 
     # Save and display the plot
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.bimg("Dpi"), pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.bimg("Dpi"), pil_kwargs={"compress_level": 9})
         buf.seek(0)
         st.image(buf)
 

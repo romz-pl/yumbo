@@ -42,7 +42,7 @@ def plot_summary():
 
     # Save the figure to a buffer and display
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.gimg("Dpi"), pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.gimg("Dpi"), pil_kwargs={"compress_level": 9})
         buf.seek(0)
         st.image(buf)
 
@@ -88,7 +88,7 @@ def plot(df, work_done):
 
     # Save the figure to a buffer and display
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.gimg("Dpi"), pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.gimg("Dpi"), pil_kwargs={"compress_level": 9})
         buf.seek(0)
         st.image(buf)
 

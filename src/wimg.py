@@ -61,7 +61,7 @@ def plot(expert_name):
     # Finalize and display the plot
     fig.tight_layout()
     with io.BytesIO() as buf:
-        fig.savefig(buf, format="png", dpi=glb.wimg("Dpi"), pil_kwargs={"compress_level": 1})
+        fig.savefig(buf, format="png", dpi=glb.wimg("Dpi"), pil_kwargs={"compress_level": 9})
         buf.seek(0)
         st.image(buf)
 
