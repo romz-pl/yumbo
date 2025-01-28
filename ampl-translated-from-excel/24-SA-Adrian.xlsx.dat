@@ -1,0 +1,1367 @@
+param HOURS_PER_DAY := 32;
+
+set EXPERTN :=
+'SA.Adrian';
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'alpha.sm' 2 92 40
+'alpha.sf' 93 123 20
+'beta.sm' 2 172 40
+'beta.sf' 173 218 20
+'charlie.sm' 2 157 60
+'charlie.sf' 158 188 20
+'delta.sm' 2 57 20
+'delta.sf' 58 103 20
+'echo.sm' 2 75 20
+'echo.sf' 93 138 32
+'golf.sm' 2 133 40
+'golf.sf' 134 179 32
+'kilo.se' 61 84 60
+'kilo.sm' 85 214 40
+'kilo.sf' 215 260 20
+'lima.se' 81 110 144
+'lima.sm' 111 306 40
+'lima.sf' 307 335 20
+'mike.se' 81 110 60
+'mike.sm' 111 306 40
+'mike.sf' 307 335 20
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'Jan.25' 1 16
+'Feb.25' 17 45
+'Mar.25' 46 76
+'Apr.25' 77 105
+'May.25' 106 139
+'Jun.25' 140 170
+'Jul.25' 171 199
+'Aug.25' 200 230
+'Sep.25' 231 259
+'Oct.25' 260 289
+'Nov.25' 290 317
+'Dec.25' 318 346;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+'SA.Adrian' 'Jan.25' 0.0 720.0
+'SA.Adrian' 'Feb.25' 0.0 720.0
+'SA.Adrian' 'Mar.25' 0.0 720.0
+'SA.Adrian' 'Apr.25' 0.0 720.0
+'SA.Adrian' 'May.25' 0.0 720.0
+'SA.Adrian' 'Jun.25' 0.0 720.0
+'SA.Adrian' 'Jul.25' 0.0 720.0
+'SA.Adrian' 'Aug.25' 0.0 720.0
+'SA.Adrian' 'Sep.25' 0.0 720.0
+'SA.Adrian' 'Oct.25' 0.0 720.0
+'SA.Adrian' 'Nov.25' 0.0 720.0
+'SA.Adrian' 'Dec.25' 0.0 720.0;
+
+param OFFDAY_NO := 98;
+
+param OFFDAY :=
+1 2
+2 5
+3 6
+4 12
+5 13
+6 19
+7 20
+8 26
+9 27
+10 33
+11 34
+12 40
+13 41
+14 47
+15 48
+16 54
+17 55
+18 61
+19 62
+20 68
+21 69
+22 75
+23 76
+24 82
+25 83
+26 89
+27 90
+28 96
+29 97
+30 103
+31 104
+32 110
+33 111
+34 117
+35 118
+36 122
+37 124
+38 125
+39 131
+40 132
+41 138
+42 139
+43 145
+44 146
+45 152
+46 153
+47 159
+48 160
+49 166
+50 167
+51 173
+52 174
+53 180
+54 181
+55 187
+56 188
+57 194
+58 195
+59 201
+60 202
+61 208
+62 209
+63 215
+64 216
+65 222
+66 223
+67 229
+68 230
+69 236
+70 237
+71 243
+72 244
+73 250
+74 251
+75 257
+76 258
+77 264
+78 265
+79 271
+80 272
+81 278
+82 279
+83 285
+84 286
+85 292
+86 293
+87 299
+88 300
+89 306
+90 307
+91 313
+92 314
+93 320
+94 321
+95 327
+96 328
+97 334
+98 335;
+
+param XBDAY_NO := 1153;
+
+param XBDAY:
+1   2   3   4   5 :=
+1 'SA.Adrian' 'alpha.sm' 3 0.0 1.0
+2 'SA.Adrian' 'alpha.sm' 4 0.0 1.0
+3 'SA.Adrian' 'alpha.sm' 7 0.0 1.0
+4 'SA.Adrian' 'alpha.sm' 8 0.0 1.0
+5 'SA.Adrian' 'alpha.sm' 9 0.0 1.0
+6 'SA.Adrian' 'alpha.sm' 10 0.0 1.0
+7 'SA.Adrian' 'alpha.sm' 11 0.0 1.0
+8 'SA.Adrian' 'alpha.sm' 14 0.0 1.0
+9 'SA.Adrian' 'alpha.sm' 15 0.0 1.0
+10 'SA.Adrian' 'alpha.sm' 16 0.0 1.0
+11 'SA.Adrian' 'alpha.sm' 17 0.0 1.0
+12 'SA.Adrian' 'alpha.sm' 18 0.0 1.0
+13 'SA.Adrian' 'alpha.sm' 21 0.0 1.0
+14 'SA.Adrian' 'alpha.sm' 22 0.0 1.0
+15 'SA.Adrian' 'alpha.sm' 23 0.0 1.0
+16 'SA.Adrian' 'alpha.sm' 24 0.0 1.0
+17 'SA.Adrian' 'alpha.sm' 25 0.0 1.0
+18 'SA.Adrian' 'alpha.sm' 28 0.0 1.0
+19 'SA.Adrian' 'alpha.sm' 29 0.0 1.0
+20 'SA.Adrian' 'alpha.sm' 30 0.0 1.0
+21 'SA.Adrian' 'alpha.sm' 31 0.0 1.0
+22 'SA.Adrian' 'alpha.sm' 32 0.0 1.0
+23 'SA.Adrian' 'alpha.sm' 35 0.0 1.0
+24 'SA.Adrian' 'alpha.sm' 36 0.0 1.0
+25 'SA.Adrian' 'alpha.sm' 37 0.0 1.0
+26 'SA.Adrian' 'alpha.sm' 38 0.0 1.0
+27 'SA.Adrian' 'alpha.sm' 39 0.0 1.0
+28 'SA.Adrian' 'alpha.sm' 42 0.0 1.0
+29 'SA.Adrian' 'alpha.sm' 43 0.0 1.0
+30 'SA.Adrian' 'alpha.sm' 44 0.0 1.0
+31 'SA.Adrian' 'alpha.sm' 45 0.0 1.0
+32 'SA.Adrian' 'alpha.sm' 46 0.0 1.0
+33 'SA.Adrian' 'alpha.sm' 49 0.0 1.0
+34 'SA.Adrian' 'alpha.sm' 50 0.0 1.0
+35 'SA.Adrian' 'alpha.sm' 51 0.0 1.0
+36 'SA.Adrian' 'alpha.sm' 52 0.0 1.0
+37 'SA.Adrian' 'alpha.sm' 53 0.0 1.0
+38 'SA.Adrian' 'alpha.sm' 56 0.0 1.0
+39 'SA.Adrian' 'alpha.sm' 57 0.0 1.0
+40 'SA.Adrian' 'alpha.sm' 58 0.0 1.0
+41 'SA.Adrian' 'alpha.sm' 59 0.0 1.0
+42 'SA.Adrian' 'alpha.sm' 60 0.0 1.0
+43 'SA.Adrian' 'alpha.sm' 63 0.0 1.0
+44 'SA.Adrian' 'alpha.sm' 64 0.0 1.0
+45 'SA.Adrian' 'alpha.sm' 65 0.0 1.0
+46 'SA.Adrian' 'alpha.sm' 66 0.0 1.0
+47 'SA.Adrian' 'alpha.sm' 67 0.0 1.0
+48 'SA.Adrian' 'alpha.sm' 70 0.0 1.0
+49 'SA.Adrian' 'alpha.sm' 71 0.0 1.0
+50 'SA.Adrian' 'alpha.sm' 72 0.0 1.0
+51 'SA.Adrian' 'alpha.sm' 73 0.0 1.0
+52 'SA.Adrian' 'alpha.sm' 74 0.0 1.0
+53 'SA.Adrian' 'alpha.sm' 77 0.0 1.0
+54 'SA.Adrian' 'alpha.sm' 78 0.0 1.0
+55 'SA.Adrian' 'alpha.sm' 79 0.0 1.0
+56 'SA.Adrian' 'alpha.sm' 80 0.0 1.0
+57 'SA.Adrian' 'alpha.sm' 81 0.0 1.0
+58 'SA.Adrian' 'alpha.sm' 84 0.0 1.0
+59 'SA.Adrian' 'alpha.sm' 85 0.0 1.0
+60 'SA.Adrian' 'alpha.sm' 86 0.0 1.0
+61 'SA.Adrian' 'alpha.sm' 87 0.0 1.0
+62 'SA.Adrian' 'alpha.sm' 88 0.0 1.0
+63 'SA.Adrian' 'alpha.sm' 91 0.0 1.0
+64 'SA.Adrian' 'alpha.sm' 92 0.0 1.0
+65 'SA.Adrian' 'alpha.sf' 93 0.0 1.0
+66 'SA.Adrian' 'alpha.sf' 94 0.0 1.0
+67 'SA.Adrian' 'alpha.sf' 95 0.0 1.0
+68 'SA.Adrian' 'alpha.sf' 98 0.0 1.0
+69 'SA.Adrian' 'alpha.sf' 99 0.0 1.0
+70 'SA.Adrian' 'alpha.sf' 100 0.0 1.0
+71 'SA.Adrian' 'alpha.sf' 101 0.0 1.0
+72 'SA.Adrian' 'alpha.sf' 102 0.0 1.0
+73 'SA.Adrian' 'alpha.sf' 105 0.0 1.0
+74 'SA.Adrian' 'alpha.sf' 106 0.0 1.0
+75 'SA.Adrian' 'alpha.sf' 107 0.0 1.0
+76 'SA.Adrian' 'alpha.sf' 108 0.0 1.0
+77 'SA.Adrian' 'alpha.sf' 109 0.0 1.0
+78 'SA.Adrian' 'alpha.sf' 112 0.0 1.0
+79 'SA.Adrian' 'alpha.sf' 113 0.0 1.0
+80 'SA.Adrian' 'alpha.sf' 114 0.0 1.0
+81 'SA.Adrian' 'alpha.sf' 115 0.0 1.0
+82 'SA.Adrian' 'alpha.sf' 116 0.0 1.0
+83 'SA.Adrian' 'alpha.sf' 119 0.0 1.0
+84 'SA.Adrian' 'alpha.sf' 120 0.0 1.0
+85 'SA.Adrian' 'alpha.sf' 121 0.0 1.0
+86 'SA.Adrian' 'alpha.sf' 123 0.0 1.0
+87 'SA.Adrian' 'beta.sm' 3 0.0 1.0
+88 'SA.Adrian' 'beta.sm' 4 0.0 1.0
+89 'SA.Adrian' 'beta.sm' 7 0.0 1.0
+90 'SA.Adrian' 'beta.sm' 8 0.0 1.0
+91 'SA.Adrian' 'beta.sm' 9 0.0 1.0
+92 'SA.Adrian' 'beta.sm' 10 0.0 1.0
+93 'SA.Adrian' 'beta.sm' 11 0.0 1.0
+94 'SA.Adrian' 'beta.sm' 14 0.0 1.0
+95 'SA.Adrian' 'beta.sm' 15 0.0 1.0
+96 'SA.Adrian' 'beta.sm' 16 0.0 1.0
+97 'SA.Adrian' 'beta.sm' 17 0.0 1.0
+98 'SA.Adrian' 'beta.sm' 18 0.0 1.0
+99 'SA.Adrian' 'beta.sm' 21 0.0 1.0
+100 'SA.Adrian' 'beta.sm' 22 0.0 1.0
+101 'SA.Adrian' 'beta.sm' 23 0.0 1.0
+102 'SA.Adrian' 'beta.sm' 24 0.0 1.0
+103 'SA.Adrian' 'beta.sm' 25 0.0 1.0
+104 'SA.Adrian' 'beta.sm' 28 0.0 1.0
+105 'SA.Adrian' 'beta.sm' 29 0.0 1.0
+106 'SA.Adrian' 'beta.sm' 30 0.0 1.0
+107 'SA.Adrian' 'beta.sm' 31 0.0 1.0
+108 'SA.Adrian' 'beta.sm' 32 0.0 1.0
+109 'SA.Adrian' 'beta.sm' 35 0.0 1.0
+110 'SA.Adrian' 'beta.sm' 36 0.0 1.0
+111 'SA.Adrian' 'beta.sm' 37 0.0 1.0
+112 'SA.Adrian' 'beta.sm' 38 0.0 1.0
+113 'SA.Adrian' 'beta.sm' 39 0.0 1.0
+114 'SA.Adrian' 'beta.sm' 42 0.0 1.0
+115 'SA.Adrian' 'beta.sm' 43 0.0 1.0
+116 'SA.Adrian' 'beta.sm' 44 0.0 1.0
+117 'SA.Adrian' 'beta.sm' 45 0.0 1.0
+118 'SA.Adrian' 'beta.sm' 46 0.0 1.0
+119 'SA.Adrian' 'beta.sm' 49 0.0 1.0
+120 'SA.Adrian' 'beta.sm' 50 0.0 1.0
+121 'SA.Adrian' 'beta.sm' 51 0.0 1.0
+122 'SA.Adrian' 'beta.sm' 52 0.0 1.0
+123 'SA.Adrian' 'beta.sm' 53 0.0 1.0
+124 'SA.Adrian' 'beta.sm' 56 0.0 1.0
+125 'SA.Adrian' 'beta.sm' 57 0.0 1.0
+126 'SA.Adrian' 'beta.sm' 58 0.0 1.0
+127 'SA.Adrian' 'beta.sm' 59 0.0 1.0
+128 'SA.Adrian' 'beta.sm' 60 0.0 1.0
+129 'SA.Adrian' 'beta.sm' 63 0.0 1.0
+130 'SA.Adrian' 'beta.sm' 64 0.0 1.0
+131 'SA.Adrian' 'beta.sm' 65 0.0 1.0
+132 'SA.Adrian' 'beta.sm' 66 0.0 1.0
+133 'SA.Adrian' 'beta.sm' 67 0.0 1.0
+134 'SA.Adrian' 'beta.sm' 70 0.0 1.0
+135 'SA.Adrian' 'beta.sm' 71 0.0 1.0
+136 'SA.Adrian' 'beta.sm' 72 0.0 1.0
+137 'SA.Adrian' 'beta.sm' 73 0.0 1.0
+138 'SA.Adrian' 'beta.sm' 74 0.0 1.0
+139 'SA.Adrian' 'beta.sm' 77 0.0 1.0
+140 'SA.Adrian' 'beta.sm' 78 0.0 1.0
+141 'SA.Adrian' 'beta.sm' 79 0.0 1.0
+142 'SA.Adrian' 'beta.sm' 80 0.0 1.0
+143 'SA.Adrian' 'beta.sm' 81 0.0 1.0
+144 'SA.Adrian' 'beta.sm' 84 0.0 1.0
+145 'SA.Adrian' 'beta.sm' 85 0.0 1.0
+146 'SA.Adrian' 'beta.sm' 86 0.0 1.0
+147 'SA.Adrian' 'beta.sm' 87 0.0 1.0
+148 'SA.Adrian' 'beta.sm' 88 0.0 1.0
+149 'SA.Adrian' 'beta.sm' 91 0.0 1.0
+150 'SA.Adrian' 'beta.sm' 92 0.0 1.0
+151 'SA.Adrian' 'beta.sm' 93 0.0 1.0
+152 'SA.Adrian' 'beta.sm' 94 0.0 1.0
+153 'SA.Adrian' 'beta.sm' 95 0.0 1.0
+154 'SA.Adrian' 'beta.sm' 98 0.0 1.0
+155 'SA.Adrian' 'beta.sm' 99 0.0 1.0
+156 'SA.Adrian' 'beta.sm' 100 0.0 1.0
+157 'SA.Adrian' 'beta.sm' 101 0.0 1.0
+158 'SA.Adrian' 'beta.sm' 102 0.0 1.0
+159 'SA.Adrian' 'beta.sm' 105 0.0 1.0
+160 'SA.Adrian' 'beta.sm' 106 0.0 1.0
+161 'SA.Adrian' 'beta.sm' 107 0.0 1.0
+162 'SA.Adrian' 'beta.sm' 108 0.0 1.0
+163 'SA.Adrian' 'beta.sm' 109 0.0 1.0
+164 'SA.Adrian' 'beta.sm' 112 0.0 1.0
+165 'SA.Adrian' 'beta.sm' 113 0.0 1.0
+166 'SA.Adrian' 'beta.sm' 114 0.0 1.0
+167 'SA.Adrian' 'beta.sm' 115 0.0 1.0
+168 'SA.Adrian' 'beta.sm' 116 0.0 1.0
+169 'SA.Adrian' 'beta.sm' 119 0.0 1.0
+170 'SA.Adrian' 'beta.sm' 120 0.0 1.0
+171 'SA.Adrian' 'beta.sm' 121 0.0 1.0
+172 'SA.Adrian' 'beta.sm' 123 0.0 1.0
+173 'SA.Adrian' 'beta.sm' 126 0.0 1.0
+174 'SA.Adrian' 'beta.sm' 127 0.0 1.0
+175 'SA.Adrian' 'beta.sm' 128 0.0 1.0
+176 'SA.Adrian' 'beta.sm' 129 0.0 1.0
+177 'SA.Adrian' 'beta.sm' 130 0.0 1.0
+178 'SA.Adrian' 'beta.sm' 133 0.0 1.0
+179 'SA.Adrian' 'beta.sm' 134 0.0 1.0
+180 'SA.Adrian' 'beta.sm' 135 0.0 1.0
+181 'SA.Adrian' 'beta.sm' 136 0.0 1.0
+182 'SA.Adrian' 'beta.sm' 137 0.0 1.0
+183 'SA.Adrian' 'beta.sm' 140 0.0 1.0
+184 'SA.Adrian' 'beta.sm' 141 0.0 1.0
+185 'SA.Adrian' 'beta.sm' 142 0.0 1.0
+186 'SA.Adrian' 'beta.sm' 143 0.0 1.0
+187 'SA.Adrian' 'beta.sm' 144 0.0 1.0
+188 'SA.Adrian' 'beta.sm' 147 0.0 1.0
+189 'SA.Adrian' 'beta.sm' 148 0.0 1.0
+190 'SA.Adrian' 'beta.sm' 149 0.0 1.0
+191 'SA.Adrian' 'beta.sm' 150 0.0 1.0
+192 'SA.Adrian' 'beta.sm' 151 0.0 1.0
+193 'SA.Adrian' 'beta.sm' 154 0.0 1.0
+194 'SA.Adrian' 'beta.sm' 155 0.0 1.0
+195 'SA.Adrian' 'beta.sm' 156 0.0 1.0
+196 'SA.Adrian' 'beta.sm' 157 0.0 1.0
+197 'SA.Adrian' 'beta.sm' 158 0.0 1.0
+198 'SA.Adrian' 'beta.sm' 161 0.0 1.0
+199 'SA.Adrian' 'beta.sm' 162 0.0 1.0
+200 'SA.Adrian' 'beta.sm' 163 0.0 1.0
+201 'SA.Adrian' 'beta.sm' 164 0.0 1.0
+202 'SA.Adrian' 'beta.sm' 165 0.0 1.0
+203 'SA.Adrian' 'beta.sm' 168 0.0 1.0
+204 'SA.Adrian' 'beta.sm' 169 0.0 1.0
+205 'SA.Adrian' 'beta.sm' 170 0.0 1.0
+206 'SA.Adrian' 'beta.sm' 171 0.0 1.0
+207 'SA.Adrian' 'beta.sm' 172 0.0 1.0
+208 'SA.Adrian' 'beta.sf' 175 0.0 1.0
+209 'SA.Adrian' 'beta.sf' 176 0.0 1.0
+210 'SA.Adrian' 'beta.sf' 177 0.0 1.0
+211 'SA.Adrian' 'beta.sf' 178 0.0 1.0
+212 'SA.Adrian' 'beta.sf' 179 0.0 1.0
+213 'SA.Adrian' 'beta.sf' 182 0.0 1.0
+214 'SA.Adrian' 'beta.sf' 183 0.0 1.0
+215 'SA.Adrian' 'beta.sf' 184 0.0 1.0
+216 'SA.Adrian' 'beta.sf' 185 0.0 1.0
+217 'SA.Adrian' 'beta.sf' 186 0.0 1.0
+218 'SA.Adrian' 'beta.sf' 189 0.0 1.0
+219 'SA.Adrian' 'beta.sf' 190 0.0 1.0
+220 'SA.Adrian' 'beta.sf' 191 0.0 1.0
+221 'SA.Adrian' 'beta.sf' 192 0.0 1.0
+222 'SA.Adrian' 'beta.sf' 193 0.0 1.0
+223 'SA.Adrian' 'beta.sf' 196 0.0 1.0
+224 'SA.Adrian' 'beta.sf' 197 0.0 1.0
+225 'SA.Adrian' 'beta.sf' 198 0.0 1.0
+226 'SA.Adrian' 'beta.sf' 199 0.0 1.0
+227 'SA.Adrian' 'beta.sf' 200 0.0 1.0
+228 'SA.Adrian' 'beta.sf' 203 0.0 1.0
+229 'SA.Adrian' 'beta.sf' 204 0.0 1.0
+230 'SA.Adrian' 'beta.sf' 205 0.0 1.0
+231 'SA.Adrian' 'beta.sf' 206 0.0 1.0
+232 'SA.Adrian' 'beta.sf' 207 0.0 1.0
+233 'SA.Adrian' 'beta.sf' 210 0.0 1.0
+234 'SA.Adrian' 'beta.sf' 211 0.0 1.0
+235 'SA.Adrian' 'beta.sf' 212 0.0 1.0
+236 'SA.Adrian' 'beta.sf' 213 0.0 1.0
+237 'SA.Adrian' 'beta.sf' 214 0.0 1.0
+238 'SA.Adrian' 'beta.sf' 217 0.0 1.0
+239 'SA.Adrian' 'beta.sf' 218 0.0 1.0
+240 'SA.Adrian' 'charlie.sm' 3 0.0 1.0
+241 'SA.Adrian' 'charlie.sm' 4 0.0 1.0
+242 'SA.Adrian' 'charlie.sm' 7 0.0 1.0
+243 'SA.Adrian' 'charlie.sm' 8 0.0 1.0
+244 'SA.Adrian' 'charlie.sm' 9 0.0 1.0
+245 'SA.Adrian' 'charlie.sm' 10 0.0 1.0
+246 'SA.Adrian' 'charlie.sm' 11 0.0 1.0
+247 'SA.Adrian' 'charlie.sm' 14 0.0 1.0
+248 'SA.Adrian' 'charlie.sm' 15 0.0 1.0
+249 'SA.Adrian' 'charlie.sm' 16 0.0 1.0
+250 'SA.Adrian' 'charlie.sm' 17 0.0 1.0
+251 'SA.Adrian' 'charlie.sm' 18 0.0 1.0
+252 'SA.Adrian' 'charlie.sm' 21 0.0 1.0
+253 'SA.Adrian' 'charlie.sm' 22 0.0 1.0
+254 'SA.Adrian' 'charlie.sm' 23 0.0 1.0
+255 'SA.Adrian' 'charlie.sm' 24 0.0 1.0
+256 'SA.Adrian' 'charlie.sm' 25 0.0 1.0
+257 'SA.Adrian' 'charlie.sm' 28 0.0 1.0
+258 'SA.Adrian' 'charlie.sm' 29 0.0 1.0
+259 'SA.Adrian' 'charlie.sm' 30 0.0 1.0
+260 'SA.Adrian' 'charlie.sm' 31 0.0 1.0
+261 'SA.Adrian' 'charlie.sm' 32 0.0 1.0
+262 'SA.Adrian' 'charlie.sm' 35 0.0 1.0
+263 'SA.Adrian' 'charlie.sm' 36 0.0 1.0
+264 'SA.Adrian' 'charlie.sm' 37 0.0 1.0
+265 'SA.Adrian' 'charlie.sm' 38 0.0 1.0
+266 'SA.Adrian' 'charlie.sm' 39 0.0 1.0
+267 'SA.Adrian' 'charlie.sm' 42 0.0 1.0
+268 'SA.Adrian' 'charlie.sm' 43 0.0 1.0
+269 'SA.Adrian' 'charlie.sm' 44 0.0 1.0
+270 'SA.Adrian' 'charlie.sm' 45 0.0 1.0
+271 'SA.Adrian' 'charlie.sm' 46 0.0 1.0
+272 'SA.Adrian' 'charlie.sm' 49 0.0 1.0
+273 'SA.Adrian' 'charlie.sm' 50 0.0 1.0
+274 'SA.Adrian' 'charlie.sm' 51 0.0 1.0
+275 'SA.Adrian' 'charlie.sm' 52 0.0 1.0
+276 'SA.Adrian' 'charlie.sm' 53 0.0 1.0
+277 'SA.Adrian' 'charlie.sm' 56 0.0 1.0
+278 'SA.Adrian' 'charlie.sm' 57 0.0 1.0
+279 'SA.Adrian' 'charlie.sm' 58 0.0 1.0
+280 'SA.Adrian' 'charlie.sm' 59 0.0 1.0
+281 'SA.Adrian' 'charlie.sm' 60 0.0 1.0
+282 'SA.Adrian' 'charlie.sm' 63 0.0 1.0
+283 'SA.Adrian' 'charlie.sm' 64 0.0 1.0
+284 'SA.Adrian' 'charlie.sm' 65 0.0 1.0
+285 'SA.Adrian' 'charlie.sm' 66 0.0 1.0
+286 'SA.Adrian' 'charlie.sm' 67 0.0 1.0
+287 'SA.Adrian' 'charlie.sm' 70 0.0 1.0
+288 'SA.Adrian' 'charlie.sm' 71 0.0 1.0
+289 'SA.Adrian' 'charlie.sm' 72 0.0 1.0
+290 'SA.Adrian' 'charlie.sm' 73 0.0 1.0
+291 'SA.Adrian' 'charlie.sm' 74 0.0 1.0
+292 'SA.Adrian' 'charlie.sm' 77 0.0 1.0
+293 'SA.Adrian' 'charlie.sm' 78 0.0 1.0
+294 'SA.Adrian' 'charlie.sm' 79 0.0 1.0
+295 'SA.Adrian' 'charlie.sm' 80 0.0 1.0
+296 'SA.Adrian' 'charlie.sm' 81 0.0 1.0
+297 'SA.Adrian' 'charlie.sm' 84 0.0 1.0
+298 'SA.Adrian' 'charlie.sm' 85 0.0 1.0
+299 'SA.Adrian' 'charlie.sm' 86 0.0 1.0
+300 'SA.Adrian' 'charlie.sm' 87 0.0 1.0
+301 'SA.Adrian' 'charlie.sm' 88 0.0 1.0
+302 'SA.Adrian' 'charlie.sm' 91 0.0 1.0
+303 'SA.Adrian' 'charlie.sm' 92 0.0 1.0
+304 'SA.Adrian' 'charlie.sm' 93 0.0 1.0
+305 'SA.Adrian' 'charlie.sm' 94 0.0 1.0
+306 'SA.Adrian' 'charlie.sm' 95 0.0 1.0
+307 'SA.Adrian' 'charlie.sm' 98 0.0 1.0
+308 'SA.Adrian' 'charlie.sm' 99 0.0 1.0
+309 'SA.Adrian' 'charlie.sm' 100 0.0 1.0
+310 'SA.Adrian' 'charlie.sm' 101 0.0 1.0
+311 'SA.Adrian' 'charlie.sm' 102 0.0 1.0
+312 'SA.Adrian' 'charlie.sm' 105 0.0 1.0
+313 'SA.Adrian' 'charlie.sm' 106 0.0 1.0
+314 'SA.Adrian' 'charlie.sm' 107 0.0 1.0
+315 'SA.Adrian' 'charlie.sm' 108 0.0 1.0
+316 'SA.Adrian' 'charlie.sm' 109 0.0 1.0
+317 'SA.Adrian' 'charlie.sm' 112 0.0 1.0
+318 'SA.Adrian' 'charlie.sm' 113 0.0 1.0
+319 'SA.Adrian' 'charlie.sm' 114 0.0 1.0
+320 'SA.Adrian' 'charlie.sm' 115 0.0 1.0
+321 'SA.Adrian' 'charlie.sm' 116 0.0 1.0
+322 'SA.Adrian' 'charlie.sm' 119 0.0 1.0
+323 'SA.Adrian' 'charlie.sm' 120 0.0 1.0
+324 'SA.Adrian' 'charlie.sm' 121 0.0 1.0
+325 'SA.Adrian' 'charlie.sm' 123 0.0 1.0
+326 'SA.Adrian' 'charlie.sm' 126 0.0 1.0
+327 'SA.Adrian' 'charlie.sm' 127 0.0 1.0
+328 'SA.Adrian' 'charlie.sm' 128 0.0 1.0
+329 'SA.Adrian' 'charlie.sm' 129 0.0 1.0
+330 'SA.Adrian' 'charlie.sm' 130 0.0 1.0
+331 'SA.Adrian' 'charlie.sm' 133 0.0 1.0
+332 'SA.Adrian' 'charlie.sm' 134 0.0 1.0
+333 'SA.Adrian' 'charlie.sm' 135 0.0 1.0
+334 'SA.Adrian' 'charlie.sm' 136 0.0 1.0
+335 'SA.Adrian' 'charlie.sm' 137 0.0 1.0
+336 'SA.Adrian' 'charlie.sm' 140 0.0 1.0
+337 'SA.Adrian' 'charlie.sm' 141 0.0 1.0
+338 'SA.Adrian' 'charlie.sm' 142 0.0 1.0
+339 'SA.Adrian' 'charlie.sm' 143 0.0 1.0
+340 'SA.Adrian' 'charlie.sm' 144 0.0 1.0
+341 'SA.Adrian' 'charlie.sm' 147 0.0 1.0
+342 'SA.Adrian' 'charlie.sm' 148 0.0 1.0
+343 'SA.Adrian' 'charlie.sm' 149 0.0 1.0
+344 'SA.Adrian' 'charlie.sm' 150 0.0 1.0
+345 'SA.Adrian' 'charlie.sm' 151 0.0 1.0
+346 'SA.Adrian' 'charlie.sm' 154 0.0 1.0
+347 'SA.Adrian' 'charlie.sm' 155 0.0 1.0
+348 'SA.Adrian' 'charlie.sm' 156 0.0 1.0
+349 'SA.Adrian' 'charlie.sm' 157 0.0 1.0
+350 'SA.Adrian' 'charlie.sf' 158 0.0 1.0
+351 'SA.Adrian' 'charlie.sf' 161 0.0 1.0
+352 'SA.Adrian' 'charlie.sf' 162 0.0 1.0
+353 'SA.Adrian' 'charlie.sf' 163 0.0 1.0
+354 'SA.Adrian' 'charlie.sf' 164 0.0 1.0
+355 'SA.Adrian' 'charlie.sf' 165 0.0 1.0
+356 'SA.Adrian' 'charlie.sf' 168 0.0 1.0
+357 'SA.Adrian' 'charlie.sf' 169 0.0 1.0
+358 'SA.Adrian' 'charlie.sf' 170 0.0 1.0
+359 'SA.Adrian' 'charlie.sf' 171 0.0 1.0
+360 'SA.Adrian' 'charlie.sf' 172 0.0 1.0
+361 'SA.Adrian' 'charlie.sf' 175 0.0 1.0
+362 'SA.Adrian' 'charlie.sf' 176 0.0 1.0
+363 'SA.Adrian' 'charlie.sf' 177 0.0 1.0
+364 'SA.Adrian' 'charlie.sf' 178 0.0 1.0
+365 'SA.Adrian' 'charlie.sf' 179 0.0 1.0
+366 'SA.Adrian' 'charlie.sf' 182 0.0 1.0
+367 'SA.Adrian' 'charlie.sf' 183 0.0 1.0
+368 'SA.Adrian' 'charlie.sf' 184 0.0 1.0
+369 'SA.Adrian' 'charlie.sf' 185 0.0 1.0
+370 'SA.Adrian' 'charlie.sf' 186 0.0 1.0
+371 'SA.Adrian' 'delta.sm' 3 0.0 1.0
+372 'SA.Adrian' 'delta.sm' 4 0.0 1.0
+373 'SA.Adrian' 'delta.sm' 7 0.0 1.0
+374 'SA.Adrian' 'delta.sm' 8 0.0 1.0
+375 'SA.Adrian' 'delta.sm' 9 0.0 1.0
+376 'SA.Adrian' 'delta.sm' 10 0.0 1.0
+377 'SA.Adrian' 'delta.sm' 11 0.0 1.0
+378 'SA.Adrian' 'delta.sm' 14 0.0 1.0
+379 'SA.Adrian' 'delta.sm' 15 0.0 1.0
+380 'SA.Adrian' 'delta.sm' 16 0.0 1.0
+381 'SA.Adrian' 'delta.sm' 17 0.0 1.0
+382 'SA.Adrian' 'delta.sm' 18 0.0 1.0
+383 'SA.Adrian' 'delta.sm' 21 0.0 1.0
+384 'SA.Adrian' 'delta.sm' 22 0.0 1.0
+385 'SA.Adrian' 'delta.sm' 23 0.0 1.0
+386 'SA.Adrian' 'delta.sm' 24 0.0 1.0
+387 'SA.Adrian' 'delta.sm' 25 0.0 1.0
+388 'SA.Adrian' 'delta.sm' 28 0.0 1.0
+389 'SA.Adrian' 'delta.sm' 29 0.0 1.0
+390 'SA.Adrian' 'delta.sm' 30 0.0 1.0
+391 'SA.Adrian' 'delta.sm' 31 0.0 1.0
+392 'SA.Adrian' 'delta.sm' 32 0.0 1.0
+393 'SA.Adrian' 'delta.sm' 35 0.0 1.0
+394 'SA.Adrian' 'delta.sm' 36 0.0 1.0
+395 'SA.Adrian' 'delta.sm' 37 0.0 1.0
+396 'SA.Adrian' 'delta.sm' 38 0.0 1.0
+397 'SA.Adrian' 'delta.sm' 39 0.0 1.0
+398 'SA.Adrian' 'delta.sm' 42 0.0 1.0
+399 'SA.Adrian' 'delta.sm' 43 0.0 1.0
+400 'SA.Adrian' 'delta.sm' 44 0.0 1.0
+401 'SA.Adrian' 'delta.sm' 45 0.0 1.0
+402 'SA.Adrian' 'delta.sm' 46 0.0 1.0
+403 'SA.Adrian' 'delta.sm' 49 0.0 1.0
+404 'SA.Adrian' 'delta.sm' 50 0.0 1.0
+405 'SA.Adrian' 'delta.sm' 51 0.0 1.0
+406 'SA.Adrian' 'delta.sm' 52 0.0 1.0
+407 'SA.Adrian' 'delta.sm' 53 0.0 1.0
+408 'SA.Adrian' 'delta.sm' 56 0.0 1.0
+409 'SA.Adrian' 'delta.sm' 57 0.0 1.0
+410 'SA.Adrian' 'delta.sf' 58 0.0 1.0
+411 'SA.Adrian' 'delta.sf' 59 0.0 1.0
+412 'SA.Adrian' 'delta.sf' 60 0.0 1.0
+413 'SA.Adrian' 'delta.sf' 63 0.0 1.0
+414 'SA.Adrian' 'delta.sf' 64 0.0 1.0
+415 'SA.Adrian' 'delta.sf' 65 0.0 1.0
+416 'SA.Adrian' 'delta.sf' 66 0.0 1.0
+417 'SA.Adrian' 'delta.sf' 67 0.0 1.0
+418 'SA.Adrian' 'delta.sf' 70 0.0 1.0
+419 'SA.Adrian' 'delta.sf' 71 0.0 1.0
+420 'SA.Adrian' 'delta.sf' 72 0.0 1.0
+421 'SA.Adrian' 'delta.sf' 73 0.0 1.0
+422 'SA.Adrian' 'delta.sf' 74 0.0 1.0
+423 'SA.Adrian' 'delta.sf' 77 0.0 1.0
+424 'SA.Adrian' 'delta.sf' 78 0.0 1.0
+425 'SA.Adrian' 'delta.sf' 79 0.0 1.0
+426 'SA.Adrian' 'delta.sf' 80 0.0 1.0
+427 'SA.Adrian' 'delta.sf' 81 0.0 1.0
+428 'SA.Adrian' 'delta.sf' 84 0.0 1.0
+429 'SA.Adrian' 'delta.sf' 85 0.0 1.0
+430 'SA.Adrian' 'delta.sf' 86 0.0 1.0
+431 'SA.Adrian' 'delta.sf' 87 0.0 1.0
+432 'SA.Adrian' 'delta.sf' 88 0.0 1.0
+433 'SA.Adrian' 'delta.sf' 91 0.0 1.0
+434 'SA.Adrian' 'delta.sf' 92 0.0 1.0
+435 'SA.Adrian' 'delta.sf' 93 0.0 1.0
+436 'SA.Adrian' 'delta.sf' 94 0.0 1.0
+437 'SA.Adrian' 'delta.sf' 95 0.0 1.0
+438 'SA.Adrian' 'delta.sf' 98 0.0 1.0
+439 'SA.Adrian' 'delta.sf' 99 0.0 1.0
+440 'SA.Adrian' 'delta.sf' 100 0.0 1.0
+441 'SA.Adrian' 'delta.sf' 101 0.0 1.0
+442 'SA.Adrian' 'delta.sf' 102 0.0 1.0
+443 'SA.Adrian' 'echo.sm' 3 0.0 1.0
+444 'SA.Adrian' 'echo.sm' 4 0.0 1.0
+445 'SA.Adrian' 'echo.sm' 7 0.0 1.0
+446 'SA.Adrian' 'echo.sm' 8 0.0 1.0
+447 'SA.Adrian' 'echo.sm' 9 0.0 1.0
+448 'SA.Adrian' 'echo.sm' 10 0.0 1.0
+449 'SA.Adrian' 'echo.sm' 11 0.0 1.0
+450 'SA.Adrian' 'echo.sm' 14 0.0 1.0
+451 'SA.Adrian' 'echo.sm' 15 0.0 1.0
+452 'SA.Adrian' 'echo.sm' 16 0.0 1.0
+453 'SA.Adrian' 'echo.sm' 17 0.0 1.0
+454 'SA.Adrian' 'echo.sm' 18 0.0 1.0
+455 'SA.Adrian' 'echo.sm' 21 0.0 1.0
+456 'SA.Adrian' 'echo.sm' 22 0.0 1.0
+457 'SA.Adrian' 'echo.sm' 23 0.0 1.0
+458 'SA.Adrian' 'echo.sm' 24 0.0 1.0
+459 'SA.Adrian' 'echo.sm' 25 0.0 1.0
+460 'SA.Adrian' 'echo.sm' 28 0.0 1.0
+461 'SA.Adrian' 'echo.sm' 29 0.0 1.0
+462 'SA.Adrian' 'echo.sm' 30 0.0 1.0
+463 'SA.Adrian' 'echo.sm' 31 0.0 1.0
+464 'SA.Adrian' 'echo.sm' 32 0.0 1.0
+465 'SA.Adrian' 'echo.sm' 35 0.0 1.0
+466 'SA.Adrian' 'echo.sm' 36 0.0 1.0
+467 'SA.Adrian' 'echo.sm' 37 0.0 1.0
+468 'SA.Adrian' 'echo.sm' 38 0.0 1.0
+469 'SA.Adrian' 'echo.sm' 39 0.0 1.0
+470 'SA.Adrian' 'echo.sm' 42 0.0 1.0
+471 'SA.Adrian' 'echo.sm' 43 0.0 1.0
+472 'SA.Adrian' 'echo.sm' 44 0.0 1.0
+473 'SA.Adrian' 'echo.sm' 45 0.0 1.0
+474 'SA.Adrian' 'echo.sm' 46 0.0 1.0
+475 'SA.Adrian' 'echo.sm' 49 0.0 1.0
+476 'SA.Adrian' 'echo.sm' 50 0.0 1.0
+477 'SA.Adrian' 'echo.sm' 51 0.0 1.0
+478 'SA.Adrian' 'echo.sm' 52 0.0 1.0
+479 'SA.Adrian' 'echo.sm' 53 0.0 1.0
+480 'SA.Adrian' 'echo.sm' 56 0.0 1.0
+481 'SA.Adrian' 'echo.sm' 57 0.0 1.0
+482 'SA.Adrian' 'echo.sm' 58 0.0 1.0
+483 'SA.Adrian' 'echo.sm' 59 0.0 1.0
+484 'SA.Adrian' 'echo.sm' 60 0.0 1.0
+485 'SA.Adrian' 'echo.sm' 63 0.0 1.0
+486 'SA.Adrian' 'echo.sm' 64 0.0 1.0
+487 'SA.Adrian' 'echo.sm' 65 0.0 1.0
+488 'SA.Adrian' 'echo.sm' 66 0.0 1.0
+489 'SA.Adrian' 'echo.sm' 67 0.0 1.0
+490 'SA.Adrian' 'echo.sm' 70 0.0 1.0
+491 'SA.Adrian' 'echo.sm' 71 0.0 1.0
+492 'SA.Adrian' 'echo.sm' 72 0.0 1.0
+493 'SA.Adrian' 'echo.sm' 73 0.0 1.0
+494 'SA.Adrian' 'echo.sm' 74 0.0 1.0
+495 'SA.Adrian' 'echo.sf' 93 1.0 2.0
+496 'SA.Adrian' 'echo.sf' 94 1.0 2.0
+497 'SA.Adrian' 'echo.sf' 95 1.0 2.0
+498 'SA.Adrian' 'echo.sf' 98 1.0 2.0
+499 'SA.Adrian' 'echo.sf' 99 1.0 2.0
+500 'SA.Adrian' 'echo.sf' 100 1.0 2.0
+501 'SA.Adrian' 'echo.sf' 101 1.0 2.0
+502 'SA.Adrian' 'echo.sf' 102 1.0 2.0
+503 'SA.Adrian' 'echo.sf' 105 1.0 2.0
+504 'SA.Adrian' 'echo.sf' 106 1.0 2.0
+505 'SA.Adrian' 'echo.sf' 107 1.0 2.0
+506 'SA.Adrian' 'echo.sf' 108 1.0 2.0
+507 'SA.Adrian' 'echo.sf' 109 1.0 2.0
+508 'SA.Adrian' 'echo.sf' 112 1.0 2.0
+509 'SA.Adrian' 'echo.sf' 113 1.0 2.0
+510 'SA.Adrian' 'echo.sf' 114 1.0 2.0
+511 'SA.Adrian' 'echo.sf' 115 1.0 2.0
+512 'SA.Adrian' 'echo.sf' 116 1.0 2.0
+513 'SA.Adrian' 'echo.sf' 119 1.0 2.0
+514 'SA.Adrian' 'echo.sf' 120 1.0 2.0
+515 'SA.Adrian' 'echo.sf' 121 1.0 2.0
+516 'SA.Adrian' 'echo.sf' 123 1.0 2.0
+517 'SA.Adrian' 'echo.sf' 126 1.0 2.0
+518 'SA.Adrian' 'echo.sf' 127 1.0 2.0
+519 'SA.Adrian' 'echo.sf' 128 1.0 2.0
+520 'SA.Adrian' 'echo.sf' 129 1.0 2.0
+521 'SA.Adrian' 'echo.sf' 130 1.0 2.0
+522 'SA.Adrian' 'echo.sf' 133 1.0 2.0
+523 'SA.Adrian' 'echo.sf' 134 1.0 2.0
+524 'SA.Adrian' 'echo.sf' 135 1.0 2.0
+525 'SA.Adrian' 'echo.sf' 136 1.0 2.0
+526 'SA.Adrian' 'echo.sf' 137 1.0 2.0
+527 'SA.Adrian' 'golf.sm' 3 0.0 1.0
+528 'SA.Adrian' 'golf.sm' 4 0.0 1.0
+529 'SA.Adrian' 'golf.sm' 7 0.0 1.0
+530 'SA.Adrian' 'golf.sm' 8 0.0 1.0
+531 'SA.Adrian' 'golf.sm' 9 0.0 1.0
+532 'SA.Adrian' 'golf.sm' 10 0.0 1.0
+533 'SA.Adrian' 'golf.sm' 11 0.0 1.0
+534 'SA.Adrian' 'golf.sm' 14 0.0 1.0
+535 'SA.Adrian' 'golf.sm' 15 0.0 1.0
+536 'SA.Adrian' 'golf.sm' 16 0.0 1.0
+537 'SA.Adrian' 'golf.sm' 17 0.0 1.0
+538 'SA.Adrian' 'golf.sm' 18 0.0 1.0
+539 'SA.Adrian' 'golf.sm' 21 0.0 1.0
+540 'SA.Adrian' 'golf.sm' 22 0.0 1.0
+541 'SA.Adrian' 'golf.sm' 23 0.0 1.0
+542 'SA.Adrian' 'golf.sm' 24 0.0 1.0
+543 'SA.Adrian' 'golf.sm' 25 0.0 1.0
+544 'SA.Adrian' 'golf.sm' 28 0.0 1.0
+545 'SA.Adrian' 'golf.sm' 29 0.0 1.0
+546 'SA.Adrian' 'golf.sm' 30 0.0 1.0
+547 'SA.Adrian' 'golf.sm' 31 0.0 1.0
+548 'SA.Adrian' 'golf.sm' 32 0.0 1.0
+549 'SA.Adrian' 'golf.sm' 35 0.0 1.0
+550 'SA.Adrian' 'golf.sm' 36 0.0 1.0
+551 'SA.Adrian' 'golf.sm' 37 0.0 1.0
+552 'SA.Adrian' 'golf.sm' 38 0.0 1.0
+553 'SA.Adrian' 'golf.sm' 39 0.0 1.0
+554 'SA.Adrian' 'golf.sm' 42 0.0 1.0
+555 'SA.Adrian' 'golf.sm' 43 0.0 1.0
+556 'SA.Adrian' 'golf.sm' 44 0.0 1.0
+557 'SA.Adrian' 'golf.sm' 45 0.0 1.0
+558 'SA.Adrian' 'golf.sm' 46 0.0 1.0
+559 'SA.Adrian' 'golf.sm' 49 0.0 1.0
+560 'SA.Adrian' 'golf.sm' 50 0.0 1.0
+561 'SA.Adrian' 'golf.sm' 51 0.0 1.0
+562 'SA.Adrian' 'golf.sm' 52 0.0 1.0
+563 'SA.Adrian' 'golf.sm' 53 0.0 1.0
+564 'SA.Adrian' 'golf.sm' 56 0.0 1.0
+565 'SA.Adrian' 'golf.sm' 57 0.0 1.0
+566 'SA.Adrian' 'golf.sm' 58 0.0 1.0
+567 'SA.Adrian' 'golf.sm' 59 0.0 1.0
+568 'SA.Adrian' 'golf.sm' 60 0.0 1.0
+569 'SA.Adrian' 'golf.sm' 63 0.0 1.0
+570 'SA.Adrian' 'golf.sm' 64 0.0 1.0
+571 'SA.Adrian' 'golf.sm' 65 0.0 1.0
+572 'SA.Adrian' 'golf.sm' 66 0.0 1.0
+573 'SA.Adrian' 'golf.sm' 67 0.0 1.0
+574 'SA.Adrian' 'golf.sm' 70 0.0 1.0
+575 'SA.Adrian' 'golf.sm' 71 0.0 1.0
+576 'SA.Adrian' 'golf.sm' 72 0.0 1.0
+577 'SA.Adrian' 'golf.sm' 73 0.0 1.0
+578 'SA.Adrian' 'golf.sm' 74 0.0 1.0
+579 'SA.Adrian' 'golf.sm' 77 0.0 1.0
+580 'SA.Adrian' 'golf.sm' 78 0.0 1.0
+581 'SA.Adrian' 'golf.sm' 79 0.0 1.0
+582 'SA.Adrian' 'golf.sm' 80 0.0 1.0
+583 'SA.Adrian' 'golf.sm' 81 0.0 1.0
+584 'SA.Adrian' 'golf.sm' 84 0.0 1.0
+585 'SA.Adrian' 'golf.sm' 85 0.0 1.0
+586 'SA.Adrian' 'golf.sm' 86 0.0 1.0
+587 'SA.Adrian' 'golf.sm' 87 0.0 1.0
+588 'SA.Adrian' 'golf.sm' 88 0.0 1.0
+589 'SA.Adrian' 'golf.sm' 91 0.0 1.0
+590 'SA.Adrian' 'golf.sm' 92 0.0 1.0
+591 'SA.Adrian' 'golf.sm' 93 0.0 1.0
+592 'SA.Adrian' 'golf.sm' 94 0.0 1.0
+593 'SA.Adrian' 'golf.sm' 95 0.0 1.0
+594 'SA.Adrian' 'golf.sm' 98 0.0 1.0
+595 'SA.Adrian' 'golf.sm' 99 0.0 1.0
+596 'SA.Adrian' 'golf.sm' 100 0.0 1.0
+597 'SA.Adrian' 'golf.sm' 101 0.0 1.0
+598 'SA.Adrian' 'golf.sm' 102 0.0 1.0
+599 'SA.Adrian' 'golf.sm' 105 0.0 1.0
+600 'SA.Adrian' 'golf.sm' 106 0.0 1.0
+601 'SA.Adrian' 'golf.sm' 107 0.0 1.0
+602 'SA.Adrian' 'golf.sm' 108 0.0 1.0
+603 'SA.Adrian' 'golf.sm' 109 0.0 1.0
+604 'SA.Adrian' 'golf.sm' 112 0.0 1.0
+605 'SA.Adrian' 'golf.sm' 113 0.0 1.0
+606 'SA.Adrian' 'golf.sm' 114 0.0 1.0
+607 'SA.Adrian' 'golf.sm' 115 0.0 1.0
+608 'SA.Adrian' 'golf.sm' 116 0.0 1.0
+609 'SA.Adrian' 'golf.sm' 119 0.0 1.0
+610 'SA.Adrian' 'golf.sm' 120 0.0 1.0
+611 'SA.Adrian' 'golf.sm' 121 0.0 1.0
+612 'SA.Adrian' 'golf.sm' 123 0.0 1.0
+613 'SA.Adrian' 'golf.sm' 126 0.0 1.0
+614 'SA.Adrian' 'golf.sm' 127 0.0 1.0
+615 'SA.Adrian' 'golf.sm' 128 0.0 1.0
+616 'SA.Adrian' 'golf.sm' 129 0.0 1.0
+617 'SA.Adrian' 'golf.sm' 130 0.0 1.0
+618 'SA.Adrian' 'golf.sm' 133 0.0 1.0
+619 'SA.Adrian' 'golf.sf' 134 0.0 1.0
+620 'SA.Adrian' 'golf.sf' 135 0.0 1.0
+621 'SA.Adrian' 'golf.sf' 136 0.0 1.0
+622 'SA.Adrian' 'golf.sf' 137 0.0 1.0
+623 'SA.Adrian' 'golf.sf' 140 0.0 1.0
+624 'SA.Adrian' 'golf.sf' 141 0.0 1.0
+625 'SA.Adrian' 'golf.sf' 142 0.0 1.0
+626 'SA.Adrian' 'golf.sf' 143 0.0 1.0
+627 'SA.Adrian' 'golf.sf' 144 0.0 1.0
+628 'SA.Adrian' 'golf.sf' 147 0.0 1.0
+629 'SA.Adrian' 'golf.sf' 148 0.0 1.0
+630 'SA.Adrian' 'golf.sf' 149 0.0 1.0
+631 'SA.Adrian' 'golf.sf' 150 0.0 1.0
+632 'SA.Adrian' 'golf.sf' 151 0.0 1.0
+633 'SA.Adrian' 'golf.sf' 154 0.0 1.0
+634 'SA.Adrian' 'golf.sf' 155 0.0 1.0
+635 'SA.Adrian' 'golf.sf' 156 0.0 1.0
+636 'SA.Adrian' 'golf.sf' 157 0.0 1.0
+637 'SA.Adrian' 'golf.sf' 158 0.0 1.0
+638 'SA.Adrian' 'golf.sf' 161 0.0 1.0
+639 'SA.Adrian' 'golf.sf' 162 0.0 1.0
+640 'SA.Adrian' 'golf.sf' 163 0.0 1.0
+641 'SA.Adrian' 'golf.sf' 164 0.0 1.0
+642 'SA.Adrian' 'golf.sf' 165 0.0 1.0
+643 'SA.Adrian' 'golf.sf' 168 0.0 1.0
+644 'SA.Adrian' 'golf.sf' 169 0.0 1.0
+645 'SA.Adrian' 'golf.sf' 170 0.0 1.0
+646 'SA.Adrian' 'golf.sf' 171 0.0 1.0
+647 'SA.Adrian' 'golf.sf' 172 0.0 1.0
+648 'SA.Adrian' 'golf.sf' 175 0.0 1.0
+649 'SA.Adrian' 'golf.sf' 176 0.0 1.0
+650 'SA.Adrian' 'golf.sf' 177 0.0 1.0
+651 'SA.Adrian' 'golf.sf' 178 0.0 1.0
+652 'SA.Adrian' 'golf.sf' 179 0.0 1.0
+653 'SA.Adrian' 'kilo.se' 63 3.0 4.0
+654 'SA.Adrian' 'kilo.se' 64 3.0 4.0
+655 'SA.Adrian' 'kilo.se' 65 3.0 4.0
+656 'SA.Adrian' 'kilo.se' 66 3.0 4.0
+657 'SA.Adrian' 'kilo.se' 67 3.0 4.0
+658 'SA.Adrian' 'kilo.se' 70 3.0 4.0
+659 'SA.Adrian' 'kilo.se' 71 3.0 4.0
+660 'SA.Adrian' 'kilo.se' 72 3.0 4.0
+661 'SA.Adrian' 'kilo.se' 73 3.0 4.0
+662 'SA.Adrian' 'kilo.se' 74 3.0 4.0
+663 'SA.Adrian' 'kilo.se' 77 3.0 4.0
+664 'SA.Adrian' 'kilo.se' 78 3.0 4.0
+665 'SA.Adrian' 'kilo.se' 79 3.0 4.0
+666 'SA.Adrian' 'kilo.se' 80 3.0 4.0
+667 'SA.Adrian' 'kilo.se' 81 3.0 4.0
+668 'SA.Adrian' 'kilo.se' 84 3.0 4.0
+669 'SA.Adrian' 'kilo.sm' 85 0.0 1.0
+670 'SA.Adrian' 'kilo.sm' 86 0.0 1.0
+671 'SA.Adrian' 'kilo.sm' 87 0.0 1.0
+672 'SA.Adrian' 'kilo.sm' 88 0.0 1.0
+673 'SA.Adrian' 'kilo.sm' 91 0.0 1.0
+674 'SA.Adrian' 'kilo.sm' 92 0.0 1.0
+675 'SA.Adrian' 'kilo.sm' 93 0.0 1.0
+676 'SA.Adrian' 'kilo.sm' 94 0.0 1.0
+677 'SA.Adrian' 'kilo.sm' 95 0.0 1.0
+678 'SA.Adrian' 'kilo.sm' 98 0.0 1.0
+679 'SA.Adrian' 'kilo.sm' 99 0.0 1.0
+680 'SA.Adrian' 'kilo.sm' 100 0.0 1.0
+681 'SA.Adrian' 'kilo.sm' 101 0.0 1.0
+682 'SA.Adrian' 'kilo.sm' 102 0.0 1.0
+683 'SA.Adrian' 'kilo.sm' 105 0.0 1.0
+684 'SA.Adrian' 'kilo.sm' 106 0.0 1.0
+685 'SA.Adrian' 'kilo.sm' 107 0.0 1.0
+686 'SA.Adrian' 'kilo.sm' 108 0.0 1.0
+687 'SA.Adrian' 'kilo.sm' 109 0.0 1.0
+688 'SA.Adrian' 'kilo.sm' 112 0.0 1.0
+689 'SA.Adrian' 'kilo.sm' 113 0.0 1.0
+690 'SA.Adrian' 'kilo.sm' 114 0.0 1.0
+691 'SA.Adrian' 'kilo.sm' 115 0.0 1.0
+692 'SA.Adrian' 'kilo.sm' 116 0.0 1.0
+693 'SA.Adrian' 'kilo.sm' 119 0.0 1.0
+694 'SA.Adrian' 'kilo.sm' 120 0.0 1.0
+695 'SA.Adrian' 'kilo.sm' 121 0.0 1.0
+696 'SA.Adrian' 'kilo.sm' 123 0.0 1.0
+697 'SA.Adrian' 'kilo.sm' 126 0.0 1.0
+698 'SA.Adrian' 'kilo.sm' 127 0.0 1.0
+699 'SA.Adrian' 'kilo.sm' 128 0.0 1.0
+700 'SA.Adrian' 'kilo.sm' 129 0.0 1.0
+701 'SA.Adrian' 'kilo.sm' 130 0.0 1.0
+702 'SA.Adrian' 'kilo.sm' 133 0.0 1.0
+703 'SA.Adrian' 'kilo.sm' 134 0.0 1.0
+704 'SA.Adrian' 'kilo.sm' 135 0.0 1.0
+705 'SA.Adrian' 'kilo.sm' 136 0.0 1.0
+706 'SA.Adrian' 'kilo.sm' 137 0.0 1.0
+707 'SA.Adrian' 'kilo.sm' 140 0.0 1.0
+708 'SA.Adrian' 'kilo.sm' 141 0.0 1.0
+709 'SA.Adrian' 'kilo.sm' 142 0.0 1.0
+710 'SA.Adrian' 'kilo.sm' 143 0.0 1.0
+711 'SA.Adrian' 'kilo.sm' 144 0.0 1.0
+712 'SA.Adrian' 'kilo.sm' 147 0.0 1.0
+713 'SA.Adrian' 'kilo.sm' 148 0.0 1.0
+714 'SA.Adrian' 'kilo.sm' 149 0.0 1.0
+715 'SA.Adrian' 'kilo.sm' 150 0.0 1.0
+716 'SA.Adrian' 'kilo.sm' 151 0.0 1.0
+717 'SA.Adrian' 'kilo.sm' 154 0.0 1.0
+718 'SA.Adrian' 'kilo.sm' 155 0.0 1.0
+719 'SA.Adrian' 'kilo.sm' 156 0.0 1.0
+720 'SA.Adrian' 'kilo.sm' 157 0.0 1.0
+721 'SA.Adrian' 'kilo.sm' 158 0.0 1.0
+722 'SA.Adrian' 'kilo.sm' 161 0.0 1.0
+723 'SA.Adrian' 'kilo.sm' 162 0.0 1.0
+724 'SA.Adrian' 'kilo.sm' 163 0.0 1.0
+725 'SA.Adrian' 'kilo.sm' 164 0.0 1.0
+726 'SA.Adrian' 'kilo.sm' 165 0.0 1.0
+727 'SA.Adrian' 'kilo.sm' 168 0.0 1.0
+728 'SA.Adrian' 'kilo.sm' 169 0.0 1.0
+729 'SA.Adrian' 'kilo.sm' 170 0.0 1.0
+730 'SA.Adrian' 'kilo.sm' 171 0.0 1.0
+731 'SA.Adrian' 'kilo.sm' 172 0.0 1.0
+732 'SA.Adrian' 'kilo.sm' 175 0.0 1.0
+733 'SA.Adrian' 'kilo.sm' 176 0.0 1.0
+734 'SA.Adrian' 'kilo.sm' 177 0.0 1.0
+735 'SA.Adrian' 'kilo.sm' 178 0.0 1.0
+736 'SA.Adrian' 'kilo.sm' 179 0.0 1.0
+737 'SA.Adrian' 'kilo.sm' 182 0.0 1.0
+738 'SA.Adrian' 'kilo.sm' 183 0.0 1.0
+739 'SA.Adrian' 'kilo.sm' 184 0.0 1.0
+740 'SA.Adrian' 'kilo.sm' 185 0.0 1.0
+741 'SA.Adrian' 'kilo.sm' 186 0.0 1.0
+742 'SA.Adrian' 'kilo.sm' 189 0.0 1.0
+743 'SA.Adrian' 'kilo.sm' 190 0.0 1.0
+744 'SA.Adrian' 'kilo.sm' 191 0.0 1.0
+745 'SA.Adrian' 'kilo.sm' 192 0.0 1.0
+746 'SA.Adrian' 'kilo.sm' 193 0.0 1.0
+747 'SA.Adrian' 'kilo.sm' 196 0.0 1.0
+748 'SA.Adrian' 'kilo.sm' 197 0.0 1.0
+749 'SA.Adrian' 'kilo.sm' 198 0.0 1.0
+750 'SA.Adrian' 'kilo.sm' 199 0.0 1.0
+751 'SA.Adrian' 'kilo.sm' 200 0.0 1.0
+752 'SA.Adrian' 'kilo.sm' 203 0.0 1.0
+753 'SA.Adrian' 'kilo.sm' 204 0.0 1.0
+754 'SA.Adrian' 'kilo.sm' 205 0.0 1.0
+755 'SA.Adrian' 'kilo.sm' 206 0.0 1.0
+756 'SA.Adrian' 'kilo.sm' 207 0.0 1.0
+757 'SA.Adrian' 'kilo.sm' 210 0.0 1.0
+758 'SA.Adrian' 'kilo.sm' 211 0.0 1.0
+759 'SA.Adrian' 'kilo.sm' 212 0.0 1.0
+760 'SA.Adrian' 'kilo.sm' 213 0.0 1.0
+761 'SA.Adrian' 'kilo.sm' 214 0.0 1.0
+762 'SA.Adrian' 'kilo.sf' 217 0.0 1.0
+763 'SA.Adrian' 'kilo.sf' 218 0.0 1.0
+764 'SA.Adrian' 'kilo.sf' 219 0.0 1.0
+765 'SA.Adrian' 'kilo.sf' 220 0.0 1.0
+766 'SA.Adrian' 'kilo.sf' 221 0.0 1.0
+767 'SA.Adrian' 'kilo.sf' 224 0.0 1.0
+768 'SA.Adrian' 'kilo.sf' 225 0.0 1.0
+769 'SA.Adrian' 'kilo.sf' 226 0.0 1.0
+770 'SA.Adrian' 'kilo.sf' 227 0.0 1.0
+771 'SA.Adrian' 'kilo.sf' 228 0.0 1.0
+772 'SA.Adrian' 'kilo.sf' 231 0.0 1.0
+773 'SA.Adrian' 'kilo.sf' 232 0.0 1.0
+774 'SA.Adrian' 'kilo.sf' 233 0.0 1.0
+775 'SA.Adrian' 'kilo.sf' 234 0.0 1.0
+776 'SA.Adrian' 'kilo.sf' 235 0.0 1.0
+777 'SA.Adrian' 'kilo.sf' 238 0.0 1.0
+778 'SA.Adrian' 'kilo.sf' 239 0.0 1.0
+779 'SA.Adrian' 'kilo.sf' 240 0.0 1.0
+780 'SA.Adrian' 'kilo.sf' 241 0.0 1.0
+781 'SA.Adrian' 'kilo.sf' 242 0.0 1.0
+782 'SA.Adrian' 'kilo.sf' 245 0.0 1.0
+783 'SA.Adrian' 'kilo.sf' 246 0.0 1.0
+784 'SA.Adrian' 'kilo.sf' 247 0.0 1.0
+785 'SA.Adrian' 'kilo.sf' 248 0.0 1.0
+786 'SA.Adrian' 'kilo.sf' 249 0.0 1.0
+787 'SA.Adrian' 'kilo.sf' 252 0.0 1.0
+788 'SA.Adrian' 'kilo.sf' 253 0.0 1.0
+789 'SA.Adrian' 'kilo.sf' 254 0.0 1.0
+790 'SA.Adrian' 'kilo.sf' 255 0.0 1.0
+791 'SA.Adrian' 'kilo.sf' 256 0.0 1.0
+792 'SA.Adrian' 'kilo.sf' 259 0.0 1.0
+793 'SA.Adrian' 'kilo.sf' 260 0.0 1.0
+794 'SA.Adrian' 'lima.se' 81 6.0 7.0
+795 'SA.Adrian' 'lima.se' 84 6.0 7.0
+796 'SA.Adrian' 'lima.se' 85 6.0 7.0
+797 'SA.Adrian' 'lima.se' 86 6.0 7.0
+798 'SA.Adrian' 'lima.se' 87 6.0 7.0
+799 'SA.Adrian' 'lima.se' 88 6.0 7.0
+800 'SA.Adrian' 'lima.se' 91 6.0 7.0
+801 'SA.Adrian' 'lima.se' 92 6.0 7.0
+802 'SA.Adrian' 'lima.se' 93 6.0 7.0
+803 'SA.Adrian' 'lima.se' 94 6.0 7.0
+804 'SA.Adrian' 'lima.se' 95 6.0 7.0
+805 'SA.Adrian' 'lima.se' 98 6.0 7.0
+806 'SA.Adrian' 'lima.se' 99 6.0 7.0
+807 'SA.Adrian' 'lima.se' 100 6.0 7.0
+808 'SA.Adrian' 'lima.se' 101 6.0 7.0
+809 'SA.Adrian' 'lima.se' 102 6.0 7.0
+810 'SA.Adrian' 'lima.se' 105 6.0 7.0
+811 'SA.Adrian' 'lima.se' 106 6.0 7.0
+812 'SA.Adrian' 'lima.se' 107 6.0 7.0
+813 'SA.Adrian' 'lima.se' 108 6.0 7.0
+814 'SA.Adrian' 'lima.se' 109 6.0 7.0
+815 'SA.Adrian' 'lima.sm' 112 0.0 1.0
+816 'SA.Adrian' 'lima.sm' 113 0.0 1.0
+817 'SA.Adrian' 'lima.sm' 114 0.0 1.0
+818 'SA.Adrian' 'lima.sm' 115 0.0 1.0
+819 'SA.Adrian' 'lima.sm' 116 0.0 1.0
+820 'SA.Adrian' 'lima.sm' 119 0.0 1.0
+821 'SA.Adrian' 'lima.sm' 120 0.0 1.0
+822 'SA.Adrian' 'lima.sm' 121 0.0 1.0
+823 'SA.Adrian' 'lima.sm' 123 0.0 1.0
+824 'SA.Adrian' 'lima.sm' 126 0.0 1.0
+825 'SA.Adrian' 'lima.sm' 127 0.0 1.0
+826 'SA.Adrian' 'lima.sm' 128 0.0 1.0
+827 'SA.Adrian' 'lima.sm' 129 0.0 1.0
+828 'SA.Adrian' 'lima.sm' 130 0.0 1.0
+829 'SA.Adrian' 'lima.sm' 133 0.0 1.0
+830 'SA.Adrian' 'lima.sm' 134 0.0 1.0
+831 'SA.Adrian' 'lima.sm' 135 0.0 1.0
+832 'SA.Adrian' 'lima.sm' 136 0.0 1.0
+833 'SA.Adrian' 'lima.sm' 137 0.0 1.0
+834 'SA.Adrian' 'lima.sm' 140 0.0 1.0
+835 'SA.Adrian' 'lima.sm' 141 0.0 1.0
+836 'SA.Adrian' 'lima.sm' 142 0.0 1.0
+837 'SA.Adrian' 'lima.sm' 143 0.0 1.0
+838 'SA.Adrian' 'lima.sm' 144 0.0 1.0
+839 'SA.Adrian' 'lima.sm' 147 0.0 1.0
+840 'SA.Adrian' 'lima.sm' 148 0.0 1.0
+841 'SA.Adrian' 'lima.sm' 149 0.0 1.0
+842 'SA.Adrian' 'lima.sm' 150 0.0 1.0
+843 'SA.Adrian' 'lima.sm' 151 0.0 1.0
+844 'SA.Adrian' 'lima.sm' 154 0.0 1.0
+845 'SA.Adrian' 'lima.sm' 155 0.0 1.0
+846 'SA.Adrian' 'lima.sm' 156 0.0 1.0
+847 'SA.Adrian' 'lima.sm' 157 0.0 1.0
+848 'SA.Adrian' 'lima.sm' 158 0.0 1.0
+849 'SA.Adrian' 'lima.sm' 161 0.0 1.0
+850 'SA.Adrian' 'lima.sm' 162 0.0 1.0
+851 'SA.Adrian' 'lima.sm' 163 0.0 1.0
+852 'SA.Adrian' 'lima.sm' 164 0.0 1.0
+853 'SA.Adrian' 'lima.sm' 165 0.0 1.0
+854 'SA.Adrian' 'lima.sm' 168 0.0 1.0
+855 'SA.Adrian' 'lima.sm' 169 0.0 1.0
+856 'SA.Adrian' 'lima.sm' 170 0.0 1.0
+857 'SA.Adrian' 'lima.sm' 171 0.0 1.0
+858 'SA.Adrian' 'lima.sm' 172 0.0 1.0
+859 'SA.Adrian' 'lima.sm' 175 0.0 1.0
+860 'SA.Adrian' 'lima.sm' 176 0.0 1.0
+861 'SA.Adrian' 'lima.sm' 177 0.0 1.0
+862 'SA.Adrian' 'lima.sm' 178 0.0 1.0
+863 'SA.Adrian' 'lima.sm' 179 0.0 1.0
+864 'SA.Adrian' 'lima.sm' 182 0.0 1.0
+865 'SA.Adrian' 'lima.sm' 183 0.0 1.0
+866 'SA.Adrian' 'lima.sm' 184 0.0 1.0
+867 'SA.Adrian' 'lima.sm' 185 0.0 1.0
+868 'SA.Adrian' 'lima.sm' 186 0.0 1.0
+869 'SA.Adrian' 'lima.sm' 189 0.0 1.0
+870 'SA.Adrian' 'lima.sm' 190 0.0 1.0
+871 'SA.Adrian' 'lima.sm' 191 0.0 1.0
+872 'SA.Adrian' 'lima.sm' 192 0.0 1.0
+873 'SA.Adrian' 'lima.sm' 193 0.0 1.0
+874 'SA.Adrian' 'lima.sm' 196 0.0 1.0
+875 'SA.Adrian' 'lima.sm' 197 0.0 1.0
+876 'SA.Adrian' 'lima.sm' 198 0.0 1.0
+877 'SA.Adrian' 'lima.sm' 199 0.0 1.0
+878 'SA.Adrian' 'lima.sm' 200 0.0 1.0
+879 'SA.Adrian' 'lima.sm' 203 0.0 1.0
+880 'SA.Adrian' 'lima.sm' 204 0.0 1.0
+881 'SA.Adrian' 'lima.sm' 205 0.0 1.0
+882 'SA.Adrian' 'lima.sm' 206 0.0 1.0
+883 'SA.Adrian' 'lima.sm' 207 0.0 1.0
+884 'SA.Adrian' 'lima.sm' 210 0.0 1.0
+885 'SA.Adrian' 'lima.sm' 211 0.0 1.0
+886 'SA.Adrian' 'lima.sm' 212 0.0 1.0
+887 'SA.Adrian' 'lima.sm' 213 0.0 1.0
+888 'SA.Adrian' 'lima.sm' 214 0.0 1.0
+889 'SA.Adrian' 'lima.sm' 217 0.0 1.0
+890 'SA.Adrian' 'lima.sm' 218 0.0 1.0
+891 'SA.Adrian' 'lima.sm' 219 0.0 1.0
+892 'SA.Adrian' 'lima.sm' 220 0.0 1.0
+893 'SA.Adrian' 'lima.sm' 221 0.0 1.0
+894 'SA.Adrian' 'lima.sm' 224 0.0 1.0
+895 'SA.Adrian' 'lima.sm' 225 0.0 1.0
+896 'SA.Adrian' 'lima.sm' 226 0.0 1.0
+897 'SA.Adrian' 'lima.sm' 227 0.0 1.0
+898 'SA.Adrian' 'lima.sm' 228 0.0 1.0
+899 'SA.Adrian' 'lima.sm' 231 0.0 1.0
+900 'SA.Adrian' 'lima.sm' 232 0.0 1.0
+901 'SA.Adrian' 'lima.sm' 233 0.0 1.0
+902 'SA.Adrian' 'lima.sm' 234 0.0 1.0
+903 'SA.Adrian' 'lima.sm' 235 0.0 1.0
+904 'SA.Adrian' 'lima.sm' 238 0.0 1.0
+905 'SA.Adrian' 'lima.sm' 239 0.0 1.0
+906 'SA.Adrian' 'lima.sm' 240 0.0 1.0
+907 'SA.Adrian' 'lima.sm' 241 0.0 1.0
+908 'SA.Adrian' 'lima.sm' 242 0.0 1.0
+909 'SA.Adrian' 'lima.sm' 245 0.0 1.0
+910 'SA.Adrian' 'lima.sm' 246 0.0 1.0
+911 'SA.Adrian' 'lima.sm' 247 0.0 1.0
+912 'SA.Adrian' 'lima.sm' 248 0.0 1.0
+913 'SA.Adrian' 'lima.sm' 249 0.0 1.0
+914 'SA.Adrian' 'lima.sm' 252 0.0 1.0
+915 'SA.Adrian' 'lima.sm' 253 0.0 1.0
+916 'SA.Adrian' 'lima.sm' 254 0.0 1.0
+917 'SA.Adrian' 'lima.sm' 255 0.0 1.0
+918 'SA.Adrian' 'lima.sm' 256 0.0 1.0
+919 'SA.Adrian' 'lima.sm' 259 0.0 1.0
+920 'SA.Adrian' 'lima.sm' 260 0.0 1.0
+921 'SA.Adrian' 'lima.sm' 261 0.0 1.0
+922 'SA.Adrian' 'lima.sm' 262 0.0 1.0
+923 'SA.Adrian' 'lima.sm' 263 0.0 1.0
+924 'SA.Adrian' 'lima.sm' 266 0.0 1.0
+925 'SA.Adrian' 'lima.sm' 267 0.0 1.0
+926 'SA.Adrian' 'lima.sm' 268 0.0 1.0
+927 'SA.Adrian' 'lima.sm' 269 0.0 1.0
+928 'SA.Adrian' 'lima.sm' 270 0.0 1.0
+929 'SA.Adrian' 'lima.sm' 273 0.0 1.0
+930 'SA.Adrian' 'lima.sm' 274 0.0 1.0
+931 'SA.Adrian' 'lima.sm' 275 0.0 1.0
+932 'SA.Adrian' 'lima.sm' 276 0.0 1.0
+933 'SA.Adrian' 'lima.sm' 277 0.0 1.0
+934 'SA.Adrian' 'lima.sm' 280 0.0 1.0
+935 'SA.Adrian' 'lima.sm' 281 0.0 1.0
+936 'SA.Adrian' 'lima.sm' 282 0.0 1.0
+937 'SA.Adrian' 'lima.sm' 283 0.0 1.0
+938 'SA.Adrian' 'lima.sm' 284 0.0 1.0
+939 'SA.Adrian' 'lima.sm' 287 0.0 1.0
+940 'SA.Adrian' 'lima.sm' 288 0.0 1.0
+941 'SA.Adrian' 'lima.sm' 289 0.0 1.0
+942 'SA.Adrian' 'lima.sm' 290 0.0 1.0
+943 'SA.Adrian' 'lima.sm' 291 0.0 1.0
+944 'SA.Adrian' 'lima.sm' 294 0.0 1.0
+945 'SA.Adrian' 'lima.sm' 295 0.0 1.0
+946 'SA.Adrian' 'lima.sm' 296 0.0 1.0
+947 'SA.Adrian' 'lima.sm' 297 0.0 1.0
+948 'SA.Adrian' 'lima.sm' 298 0.0 1.0
+949 'SA.Adrian' 'lima.sm' 301 0.0 1.0
+950 'SA.Adrian' 'lima.sm' 302 0.0 1.0
+951 'SA.Adrian' 'lima.sm' 303 0.0 1.0
+952 'SA.Adrian' 'lima.sm' 304 0.0 1.0
+953 'SA.Adrian' 'lima.sm' 305 0.0 1.0
+954 'SA.Adrian' 'lima.sf' 308 1.0 2.0
+955 'SA.Adrian' 'lima.sf' 309 1.0 2.0
+956 'SA.Adrian' 'lima.sf' 310 1.0 2.0
+957 'SA.Adrian' 'lima.sf' 311 1.0 2.0
+958 'SA.Adrian' 'lima.sf' 312 1.0 2.0
+959 'SA.Adrian' 'lima.sf' 315 1.0 2.0
+960 'SA.Adrian' 'lima.sf' 316 1.0 2.0
+961 'SA.Adrian' 'lima.sf' 317 1.0 2.0
+962 'SA.Adrian' 'lima.sf' 318 1.0 2.0
+963 'SA.Adrian' 'lima.sf' 319 1.0 2.0
+964 'SA.Adrian' 'lima.sf' 322 1.0 2.0
+965 'SA.Adrian' 'lima.sf' 323 1.0 2.0
+966 'SA.Adrian' 'lima.sf' 324 1.0 2.0
+967 'SA.Adrian' 'lima.sf' 325 1.0 2.0
+968 'SA.Adrian' 'lima.sf' 326 1.0 2.0
+969 'SA.Adrian' 'lima.sf' 329 1.0 2.0
+970 'SA.Adrian' 'lima.sf' 330 1.0 2.0
+971 'SA.Adrian' 'lima.sf' 331 1.0 2.0
+972 'SA.Adrian' 'lima.sf' 332 1.0 2.0
+973 'SA.Adrian' 'lima.sf' 333 1.0 2.0
+974 'SA.Adrian' 'mike.se' 81 2.0 3.0
+975 'SA.Adrian' 'mike.se' 84 2.0 3.0
+976 'SA.Adrian' 'mike.se' 85 2.0 3.0
+977 'SA.Adrian' 'mike.se' 86 2.0 3.0
+978 'SA.Adrian' 'mike.se' 87 2.0 3.0
+979 'SA.Adrian' 'mike.se' 88 2.0 3.0
+980 'SA.Adrian' 'mike.se' 91 2.0 3.0
+981 'SA.Adrian' 'mike.se' 92 2.0 3.0
+982 'SA.Adrian' 'mike.se' 93 2.0 3.0
+983 'SA.Adrian' 'mike.se' 94 2.0 3.0
+984 'SA.Adrian' 'mike.se' 95 2.0 3.0
+985 'SA.Adrian' 'mike.se' 98 2.0 3.0
+986 'SA.Adrian' 'mike.se' 99 2.0 3.0
+987 'SA.Adrian' 'mike.se' 100 2.0 3.0
+988 'SA.Adrian' 'mike.se' 101 2.0 3.0
+989 'SA.Adrian' 'mike.se' 102 2.0 3.0
+990 'SA.Adrian' 'mike.se' 105 2.0 3.0
+991 'SA.Adrian' 'mike.se' 106 2.0 3.0
+992 'SA.Adrian' 'mike.se' 107 2.0 3.0
+993 'SA.Adrian' 'mike.se' 108 2.0 3.0
+994 'SA.Adrian' 'mike.se' 109 2.0 3.0
+995 'SA.Adrian' 'mike.sm' 112 0.0 1.0
+996 'SA.Adrian' 'mike.sm' 113 0.0 1.0
+997 'SA.Adrian' 'mike.sm' 114 0.0 1.0
+998 'SA.Adrian' 'mike.sm' 115 0.0 1.0
+999 'SA.Adrian' 'mike.sm' 116 0.0 1.0
+1000 'SA.Adrian' 'mike.sm' 119 0.0 1.0
+1001 'SA.Adrian' 'mike.sm' 120 0.0 1.0
+1002 'SA.Adrian' 'mike.sm' 121 0.0 1.0
+1003 'SA.Adrian' 'mike.sm' 123 0.0 1.0
+1004 'SA.Adrian' 'mike.sm' 126 0.0 1.0
+1005 'SA.Adrian' 'mike.sm' 127 0.0 1.0
+1006 'SA.Adrian' 'mike.sm' 128 0.0 1.0
+1007 'SA.Adrian' 'mike.sm' 129 0.0 1.0
+1008 'SA.Adrian' 'mike.sm' 130 0.0 1.0
+1009 'SA.Adrian' 'mike.sm' 133 0.0 1.0
+1010 'SA.Adrian' 'mike.sm' 134 0.0 1.0
+1011 'SA.Adrian' 'mike.sm' 135 0.0 1.0
+1012 'SA.Adrian' 'mike.sm' 136 0.0 1.0
+1013 'SA.Adrian' 'mike.sm' 137 0.0 1.0
+1014 'SA.Adrian' 'mike.sm' 140 0.0 1.0
+1015 'SA.Adrian' 'mike.sm' 141 0.0 1.0
+1016 'SA.Adrian' 'mike.sm' 142 0.0 1.0
+1017 'SA.Adrian' 'mike.sm' 143 0.0 1.0
+1018 'SA.Adrian' 'mike.sm' 144 0.0 1.0
+1019 'SA.Adrian' 'mike.sm' 147 0.0 1.0
+1020 'SA.Adrian' 'mike.sm' 148 0.0 1.0
+1021 'SA.Adrian' 'mike.sm' 149 0.0 1.0
+1022 'SA.Adrian' 'mike.sm' 150 0.0 1.0
+1023 'SA.Adrian' 'mike.sm' 151 0.0 1.0
+1024 'SA.Adrian' 'mike.sm' 154 0.0 1.0
+1025 'SA.Adrian' 'mike.sm' 155 0.0 1.0
+1026 'SA.Adrian' 'mike.sm' 156 0.0 1.0
+1027 'SA.Adrian' 'mike.sm' 157 0.0 1.0
+1028 'SA.Adrian' 'mike.sm' 158 0.0 1.0
+1029 'SA.Adrian' 'mike.sm' 161 0.0 1.0
+1030 'SA.Adrian' 'mike.sm' 162 0.0 1.0
+1031 'SA.Adrian' 'mike.sm' 163 0.0 1.0
+1032 'SA.Adrian' 'mike.sm' 164 0.0 1.0
+1033 'SA.Adrian' 'mike.sm' 165 0.0 1.0
+1034 'SA.Adrian' 'mike.sm' 168 0.0 1.0
+1035 'SA.Adrian' 'mike.sm' 169 0.0 1.0
+1036 'SA.Adrian' 'mike.sm' 170 0.0 1.0
+1037 'SA.Adrian' 'mike.sm' 171 0.0 1.0
+1038 'SA.Adrian' 'mike.sm' 172 0.0 1.0
+1039 'SA.Adrian' 'mike.sm' 175 0.0 1.0
+1040 'SA.Adrian' 'mike.sm' 176 0.0 1.0
+1041 'SA.Adrian' 'mike.sm' 177 0.0 1.0
+1042 'SA.Adrian' 'mike.sm' 178 0.0 1.0
+1043 'SA.Adrian' 'mike.sm' 179 0.0 1.0
+1044 'SA.Adrian' 'mike.sm' 182 0.0 1.0
+1045 'SA.Adrian' 'mike.sm' 183 0.0 1.0
+1046 'SA.Adrian' 'mike.sm' 184 0.0 1.0
+1047 'SA.Adrian' 'mike.sm' 185 0.0 1.0
+1048 'SA.Adrian' 'mike.sm' 186 0.0 1.0
+1049 'SA.Adrian' 'mike.sm' 189 0.0 1.0
+1050 'SA.Adrian' 'mike.sm' 190 0.0 1.0
+1051 'SA.Adrian' 'mike.sm' 191 0.0 1.0
+1052 'SA.Adrian' 'mike.sm' 192 0.0 1.0
+1053 'SA.Adrian' 'mike.sm' 193 0.0 1.0
+1054 'SA.Adrian' 'mike.sm' 196 0.0 1.0
+1055 'SA.Adrian' 'mike.sm' 197 0.0 1.0
+1056 'SA.Adrian' 'mike.sm' 198 0.0 1.0
+1057 'SA.Adrian' 'mike.sm' 199 0.0 1.0
+1058 'SA.Adrian' 'mike.sm' 200 0.0 1.0
+1059 'SA.Adrian' 'mike.sm' 203 0.0 1.0
+1060 'SA.Adrian' 'mike.sm' 204 0.0 1.0
+1061 'SA.Adrian' 'mike.sm' 205 0.0 1.0
+1062 'SA.Adrian' 'mike.sm' 206 0.0 1.0
+1063 'SA.Adrian' 'mike.sm' 207 0.0 1.0
+1064 'SA.Adrian' 'mike.sm' 210 0.0 1.0
+1065 'SA.Adrian' 'mike.sm' 211 0.0 1.0
+1066 'SA.Adrian' 'mike.sm' 212 0.0 1.0
+1067 'SA.Adrian' 'mike.sm' 213 0.0 1.0
+1068 'SA.Adrian' 'mike.sm' 214 0.0 1.0
+1069 'SA.Adrian' 'mike.sm' 217 0.0 1.0
+1070 'SA.Adrian' 'mike.sm' 218 0.0 1.0
+1071 'SA.Adrian' 'mike.sm' 219 0.0 1.0
+1072 'SA.Adrian' 'mike.sm' 220 0.0 1.0
+1073 'SA.Adrian' 'mike.sm' 221 0.0 1.0
+1074 'SA.Adrian' 'mike.sm' 224 0.0 1.0
+1075 'SA.Adrian' 'mike.sm' 225 0.0 1.0
+1076 'SA.Adrian' 'mike.sm' 226 0.0 1.0
+1077 'SA.Adrian' 'mike.sm' 227 0.0 1.0
+1078 'SA.Adrian' 'mike.sm' 228 0.0 1.0
+1079 'SA.Adrian' 'mike.sm' 231 0.0 1.0
+1080 'SA.Adrian' 'mike.sm' 232 0.0 1.0
+1081 'SA.Adrian' 'mike.sm' 233 0.0 1.0
+1082 'SA.Adrian' 'mike.sm' 234 0.0 1.0
+1083 'SA.Adrian' 'mike.sm' 235 0.0 1.0
+1084 'SA.Adrian' 'mike.sm' 238 0.0 1.0
+1085 'SA.Adrian' 'mike.sm' 239 0.0 1.0
+1086 'SA.Adrian' 'mike.sm' 240 0.0 1.0
+1087 'SA.Adrian' 'mike.sm' 241 0.0 1.0
+1088 'SA.Adrian' 'mike.sm' 242 0.0 1.0
+1089 'SA.Adrian' 'mike.sm' 245 0.0 1.0
+1090 'SA.Adrian' 'mike.sm' 246 0.0 1.0
+1091 'SA.Adrian' 'mike.sm' 247 0.0 1.0
+1092 'SA.Adrian' 'mike.sm' 248 0.0 1.0
+1093 'SA.Adrian' 'mike.sm' 249 0.0 1.0
+1094 'SA.Adrian' 'mike.sm' 252 0.0 1.0
+1095 'SA.Adrian' 'mike.sm' 253 0.0 1.0
+1096 'SA.Adrian' 'mike.sm' 254 0.0 1.0
+1097 'SA.Adrian' 'mike.sm' 255 0.0 1.0
+1098 'SA.Adrian' 'mike.sm' 256 0.0 1.0
+1099 'SA.Adrian' 'mike.sm' 259 0.0 1.0
+1100 'SA.Adrian' 'mike.sm' 260 0.0 1.0
+1101 'SA.Adrian' 'mike.sm' 261 0.0 1.0
+1102 'SA.Adrian' 'mike.sm' 262 0.0 1.0
+1103 'SA.Adrian' 'mike.sm' 263 0.0 1.0
+1104 'SA.Adrian' 'mike.sm' 266 0.0 1.0
+1105 'SA.Adrian' 'mike.sm' 267 0.0 1.0
+1106 'SA.Adrian' 'mike.sm' 268 0.0 1.0
+1107 'SA.Adrian' 'mike.sm' 269 0.0 1.0
+1108 'SA.Adrian' 'mike.sm' 270 0.0 1.0
+1109 'SA.Adrian' 'mike.sm' 273 0.0 1.0
+1110 'SA.Adrian' 'mike.sm' 274 0.0 1.0
+1111 'SA.Adrian' 'mike.sm' 275 0.0 1.0
+1112 'SA.Adrian' 'mike.sm' 276 0.0 1.0
+1113 'SA.Adrian' 'mike.sm' 277 0.0 1.0
+1114 'SA.Adrian' 'mike.sm' 280 0.0 1.0
+1115 'SA.Adrian' 'mike.sm' 281 0.0 1.0
+1116 'SA.Adrian' 'mike.sm' 282 0.0 1.0
+1117 'SA.Adrian' 'mike.sm' 283 0.0 1.0
+1118 'SA.Adrian' 'mike.sm' 284 0.0 1.0
+1119 'SA.Adrian' 'mike.sm' 287 0.0 1.0
+1120 'SA.Adrian' 'mike.sm' 288 0.0 1.0
+1121 'SA.Adrian' 'mike.sm' 289 0.0 1.0
+1122 'SA.Adrian' 'mike.sm' 290 0.0 1.0
+1123 'SA.Adrian' 'mike.sm' 291 0.0 1.0
+1124 'SA.Adrian' 'mike.sm' 294 0.0 1.0
+1125 'SA.Adrian' 'mike.sm' 295 0.0 1.0
+1126 'SA.Adrian' 'mike.sm' 296 0.0 1.0
+1127 'SA.Adrian' 'mike.sm' 297 0.0 1.0
+1128 'SA.Adrian' 'mike.sm' 298 0.0 1.0
+1129 'SA.Adrian' 'mike.sm' 301 0.0 1.0
+1130 'SA.Adrian' 'mike.sm' 302 0.0 1.0
+1131 'SA.Adrian' 'mike.sm' 303 0.0 1.0
+1132 'SA.Adrian' 'mike.sm' 304 0.0 1.0
+1133 'SA.Adrian' 'mike.sm' 305 0.0 1.0
+1134 'SA.Adrian' 'mike.sf' 308 1.0 2.0
+1135 'SA.Adrian' 'mike.sf' 309 1.0 2.0
+1136 'SA.Adrian' 'mike.sf' 310 1.0 2.0
+1137 'SA.Adrian' 'mike.sf' 311 1.0 2.0
+1138 'SA.Adrian' 'mike.sf' 312 1.0 2.0
+1139 'SA.Adrian' 'mike.sf' 315 1.0 2.0
+1140 'SA.Adrian' 'mike.sf' 316 1.0 2.0
+1141 'SA.Adrian' 'mike.sf' 317 1.0 2.0
+1142 'SA.Adrian' 'mike.sf' 318 1.0 2.0
+1143 'SA.Adrian' 'mike.sf' 319 1.0 2.0
+1144 'SA.Adrian' 'mike.sf' 322 1.0 2.0
+1145 'SA.Adrian' 'mike.sf' 323 1.0 2.0
+1146 'SA.Adrian' 'mike.sf' 324 1.0 2.0
+1147 'SA.Adrian' 'mike.sf' 325 1.0 2.0
+1148 'SA.Adrian' 'mike.sf' 326 1.0 2.0
+1149 'SA.Adrian' 'mike.sf' 329 1.0 2.0
+1150 'SA.Adrian' 'mike.sf' 330 1.0 2.0
+1151 'SA.Adrian' 'mike.sf' 331 1.0 2.0
+1152 'SA.Adrian' 'mike.sf' 332 1.0 2.0
+1153 'SA.Adrian' 'mike.sf' 333 1.0 2.0;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 0;
+
+param UBDAY:
+1   2   3   4 :=
+;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'SA.Adrian' 'alpha.sf'
+'SA.Adrian' 'alpha.sm'
+'SA.Adrian' 'beta.sf'
+'SA.Adrian' 'beta.sm'
+'SA.Adrian' 'charlie.sf'
+'SA.Adrian' 'charlie.sm'
+'SA.Adrian' 'delta.sf'
+'SA.Adrian' 'delta.sm'
+'SA.Adrian' 'echo.sf'
+'SA.Adrian' 'echo.sm'
+'SA.Adrian' 'golf.sf'
+'SA.Adrian' 'golf.sm'
+'SA.Adrian' 'kilo.se'
+'SA.Adrian' 'kilo.sf'
+'SA.Adrian' 'kilo.sm'
+'SA.Adrian' 'lima.se'
+'SA.Adrian' 'lima.sf'
+'SA.Adrian' 'lima.sm'
+'SA.Adrian' 'mike.se'
+'SA.Adrian' 'mike.sf'
+'SA.Adrian' 'mike.sm';
+
