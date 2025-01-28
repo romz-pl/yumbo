@@ -305,6 +305,12 @@ def solve(name):
 
     set_ampl_license()
     ampl = AMPL()
+
+    # Customise AMPL run
+    ampl.set_option('presolve', 10)
+    ampl.set_option('show_stats', 4);
+    # ampl.set_option('times', 1);
+
     solver = glb.data["misc"].iloc[0]["Solver"]
     ampl.set_option("solver", solver)
 
