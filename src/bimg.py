@@ -51,5 +51,5 @@ def plot(task, schedule, bounds):
     stext.show_fig(fig)
 
     time_end = time.perf_counter()
-    glb.data["time:bimg:cnt"] += 1
-    glb.data["time:bimg:val"] += time_end - time_start
+    st.session_state.glb["time:bimg:cnt"] += 1
+    st.session_state.glb["time:bimg:val"] += time_end - time_start

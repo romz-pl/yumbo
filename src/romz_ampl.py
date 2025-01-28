@@ -1,15 +1,16 @@
-import datetime
-import numpy as np
-import pandas as pd
-import os
 from amplpy import AMPL, modules
+import datetime
 import glb
+import numpy as np
+import os
+import pandas as pd
+import streamlit as st
 
 quarters_in_hour = 4
 
 def tasks():
     today = glb.today()
-    df = glb.data["tasks"]
+    df = st.session_state.glb["tasks"]
 
     # Calculate start and end days relative to today
     df["Start Relative"] = (df["Start"] - today).dt.days
@@ -30,12 +31,12 @@ def tasks():
 def offday():
     today = glb.today()
     # Determine the date range
-    min_date = glb.data["tasks"]["Start"].min()
-    max_date = glb.data["tasks"]["End"].max()
+    min_date = st.session_state.glb["tasks"]["Start"].min()
+    max_date = st.session_state.glb["tasks"]["End"].max()
 
     # Generate weekends within the range using a mask for Saturdays and Sundays
     weekends = pd.bdate_range(start=min_date, end=max_date, freq='C', weekmask='Sat Sun')
-    holidays = glb.data["public holidays"]["Date"]
+    holidays = st.session_state.glb["public holidays"]["Date"]
 
     # Combine weekends and holidays into a sorted list
     # The set off_days is the union of weekends and holidays.
@@ -51,9 +52,9 @@ def offday():
 def xbday():
     today = glb.today()
     # Preprocessing for efficient lookups
-    df = glb.data["xbday"]
-    df_tasks = glb.data["tasks"].set_index("Name")  # Set "Name" as index for quick task lookup
-    holidays = set(glb.data["public holidays"]["Date"])  # Convert holidays to a set for faster checks
+    df = st.session_state.glb["xbday"]
+    df_tasks = st.session_state.glb["tasks"].set_index("Name")  # Set "Name" as index for quick task lookup
+    holidays = set(st.session_state.glb["public holidays"]["Date"])  # Convert holidays to a set for faster checks
 
     result = []
     id_counter = 0
@@ -92,7 +93,7 @@ def xbday():
 
 def xbsum():
     today = glb.today()
-    df = glb.data["xbsum"]
+    df = st.session_state.glb["xbsum"]
     result = []
 
     # Iterate over rows using itertuples for better performance
@@ -113,8 +114,8 @@ def xbsum():
 
 def ubday():
     today = glb.today()
-    df = glb.data["ubday"]
-    holidays = set(glb.data["public holidays"]["Date"])
+    df = st.session_state.glb["ubday"]
+    holidays = set(st.session_state.glb["public holidays"]["Date"])
 
     result = []
     id = 0
@@ -134,7 +135,7 @@ def ubday():
 
 def ubsum():
     today = glb.today()
-    df = glb.data["ubsum"]
+    df = st.session_state.glb["ubsum"]
     result = [
         f"{id+1} '{row.Expert}' '{row.Task}' {(row.Start - today).days} "
         f"{(row.End - today).days} "
@@ -145,12 +146,12 @@ def ubsum():
 
 
 def experts():
-    return "\n".join(f"'{name}'" for name in glb.data["experts"]["Name"])
+    return "\n".join(f"'{name}'" for name in st.session_state.glb["experts"]["Name"])
 
 
 def expert_bounds():
     today = glb.today()
-    df = glb.data["expert bounds"]
+    df = st.session_state.glb["expert bounds"]
     result = [
         f"{id+1} '{row.Expert}' {(row.Start - today).days} "
         f"{(row.End - today).days} "
@@ -162,13 +163,13 @@ def expert_bounds():
 
 
 def links():
-    df = glb.data["links"]
+    df = st.session_state.glb["links"]
     return "\n".join(f"'{expert}' '{task}'" for expert, task in zip(df["Expert"], df["Task"]))
 
 
 def invoicing_periods():
     today = glb.today()
-    df = glb.data["invoicing periods"]
+    df = st.session_state.glb["invoicing periods"]
     result = [
         f"'{row.Name}' {(row.Start - today).days} {(row.End - today).days}"
         for row in df.itertuples(index=False)
@@ -178,7 +179,7 @@ def invoicing_periods():
 
 def invoicing_periods_bounds():
     today = glb.today()
-    df = glb.data["invoicing periods bounds"]
+    df = st.session_state.glb["invoicing periods bounds"]
     return "\n".join(
         f"'{expert}' '{period}' "
         f"{lower * quarters_in_hour} "
@@ -267,8 +268,8 @@ def data_file(name):
 
 def save_schedule(ampl):
     today = glb.today()
-    tasks_name = glb.data["tasks"]["Name"]
-    experts_name = glb.data["experts"]["Name"]
+    tasks_name = st.session_state.glb["tasks"]["Name"]
+    experts_name = st.session_state.glb["experts"]["Name"]
 
     day_no = int(ampl.get_data("DAY_NO").to_pandas().iloc[0, 0])
     days = pd.date_range(start=today + pd.Timedelta(days=1), periods=day_no, freq='D')
@@ -281,11 +282,11 @@ def save_schedule(ampl):
         # Create DataFrame from fetched data
         df = pd.DataFrame(schedule, dtype=np.float16).T
         df.columns = days
-        glb.data[f"schedule {en}"] = df / quarters_in_hour
+        st.session_state.glb[f"schedule {en}"] = df / quarters_in_hour
 
 
 def save_day_no(ampl):
-    glb.data["DAY_NO"] = ampl.get_parameter("DAY_NO").to_pandas().astype(int).iat[0,0]
+    st.session_state.glb["DAY_NO"] = ampl.get_parameter("DAY_NO").to_pandas().astype(int).iat[0,0]
 
 
 def save(ampl):
@@ -311,7 +312,7 @@ def solve(name):
     ampl.set_option('show_stats', 4);
     # ampl.set_option('times', 1);
 
-    solver = glb.data["misc"].iloc[0]["Solver"]
+    solver = st.session_state.glb["misc"].iloc[0]["Solver"]
     ampl.set_option("solver", solver)
 
     # Set solver-specific options
@@ -331,8 +332,8 @@ def solve(name):
     ampl.read_data(file)
 
     # Capture solver output and timestamp
-    glb.data["solver output"] = ampl.get_output("solve;")
-    glb.data["solver timestamp"] = datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")
+    st.session_state.glb["solver output"] = ampl.get_output("solve;")
+    st.session_state.glb["solver timestamp"] = datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")
 
     # Check if solving was successful
     if ampl.solve_result != "solved":

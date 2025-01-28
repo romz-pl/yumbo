@@ -1,6 +1,7 @@
+import glb
 import numpy as np
 import pandas as pd
-import glb
+import streamlit as st
 
 # Helper function to handle the date columns parsing
 def parse_date_columns(df, date_columns):
@@ -19,7 +20,7 @@ def add_days_and_workdays(df, start, end):
     dtype = "datetime64[D]"
 
     # Convert public holidays to numpy datetime64[D]
-    holidays = glb.data["public holidays"]["Date"].to_numpy(dtype=dtype)
+    holidays = st.session_state.glb["public holidays"]["Date"].to_numpy(dtype=dtype)
 
     # Calculate workdays using numpy's busday_count
     df["Workdays"] = np.busday_count(
@@ -36,100 +37,100 @@ def read_tasks(xlsx):
     df = parse_date_columns(df, ["Start", "End"])
     df = add_days_and_workdays(df, "Start", "End")
     df["Avg"] = df["Work"] / df["Workdays"]
-    glb.data["tasks"] = df
+    st.session_state.glb["tasks"] = df
 
 
 def read_invoicing_periods(xlsx):
     df = xlsx.parse(sheet_name="invoicing periods", usecols="A:C")
     df = parse_date_columns(df, ["Start", "End"])
     df = add_days_and_workdays(df, "Start", "End")
-    glb.data["invoicing periods"] =  df
+    st.session_state.glb["invoicing periods"] =  df
 
 
 def read_xbday(xlsx):
     df = xlsx.parse(sheet_name="xbday", usecols="A:F")
     df = parse_date_columns(df, ["Start", "End"])
-    glb.data["xbday"] = df
+    st.session_state.glb["xbday"] = df
 
 
 def read_xbsum(xlsx):
     df = xlsx.parse(sheet_name="xbsum", usecols="A:F")
     df = parse_date_columns(df, ["Start", "End"])
-    glb.data["xbsum"] = df
+    st.session_state.glb["xbsum"] = df
 
 
 def read_ubday(xlsx):
     df = xlsx.parse(sheet_name="ubday", usecols="A:E")
     df = parse_date_columns(df, ["Start", "End"])
-    glb.data["ubday"] = df
+    st.session_state.glb["ubday"] = df
 
 
 def read_ubsum(xlsx):
     df = xlsx.parse(sheet_name="ubsum", usecols="A:F")
     df = parse_date_columns(df, ["Start", "End"])
-    glb.data["ubsum"] = df
+    st.session_state.glb["ubsum"] = df
 
 
 def read_experts(xlsx):
-    glb.data["experts"] = xlsx.parse(sheet_name="experts", usecols="A:B")
+    st.session_state.glb["experts"] = xlsx.parse(sheet_name="experts", usecols="A:B")
 
 
 def read_expert_bounds(xlsx):
     df = xlsx.parse(sheet_name="expert bounds", usecols="A:E")
     df = parse_date_columns(df, ["Start", "End"])
-    glb.data["expert bounds"] = df
+    st.session_state.glb["expert bounds"] = df
 
 
 def read_public_holidays(xlsx):
     df = xlsx.parse(sheet_name="public holidays", usecols="A:A")
     df = parse_date_columns(df, ["Date"])
-    glb.data["public holidays"] = df
+    st.session_state.glb["public holidays"] = df
 
 
 def read_misc(xlsx):
     df = xlsx.parse(sheet_name="misc", usecols="A:C")
-    glb.data["misc"] = df
+    st.session_state.glb["misc"] = df
 
 
 def read_himg(xlsx):
     df = xlsx.parse(sheet_name="himg", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
-    glb.data["himg"] = df
+    st.session_state.glb["himg"] = df
 
 
 def read_timg(xlsx):
     df = xlsx.parse(sheet_name="timg", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
-    glb.data["timg"] = df
+    st.session_state.glb["timg"] = df
 
 
 def read_simg(xlsx):
     df = xlsx.parse(sheet_name="simg", usecols="B:G")
     df = parse_date_columns(df, ["Start", "End"])
-    glb.data["simg"] = df
+    st.session_state.glb["simg"] = df
 
 
 def read_gimg(xlsx):
     df = xlsx.parse(sheet_name="gimg", usecols="B:G")
-    glb.data["gimg"] = df
+    st.session_state.glb["gimg"] = df
 
 
 def read_wimg(xlsx):
     df = xlsx.parse(sheet_name="wimg", usecols="B:G")
-    glb.data["wimg"] = df
+    st.session_state.glb["wimg"] = df
 
 
 def read_bimg(xlsx):
     df = xlsx.parse(sheet_name="bimg", usecols="B:J")
-    glb.data["bimg"] = df
+    st.session_state.glb["bimg"] = df
 
 
 def read_links(xlsx):
-    glb.data["links"] = xlsx.parse(sheet_name="links", usecols="A:B")
+    st.session_state.glb["links"] = xlsx.parse(sheet_name="links", usecols="A:B")
 
 
 def read_invoicing_periods_bounds(xlsx):
-    glb.data["invoicing periods bounds"] = xlsx.parse(sheet_name="invoicing periods bounds",
+    st.session_state.glb["invoicing periods bounds"] = xlsx.parse(sheet_name="invoicing periods bounds",
                                                       usecols="A:D",
                                                       dtype={"Lower": np.float16, "Upper": np.float16})
 
@@ -151,8 +152,8 @@ def adjust_start_days():
     # Apply the adjustment to each target DataFrame
     for key in targets:
         col = "Start"
-        assert(col in glb.data[key].columns)
-        glb.data[key].loc[glb.data[key][col] < tomorrow, col] = tomorrow
+        assert(col in st.session_state.glb[key].columns)
+        st.session_state.glb[key].loc[st.session_state.glb[key][col] < tomorrow, col] = tomorrow
 
 
 def read(file_path):

@@ -12,9 +12,9 @@ import time
 def plot(expert_name):
     time_start = time.perf_counter()
 
-    invper = glb.data["invoicing periods"]
-    schedule = glb.data[f"schedule {expert_name}"]
-    invper_bounds = glb.data["invoicing periods bounds"]
+    invper = st.session_state.glb["invoicing periods"]
+    schedule = st.session_state.glb[f"schedule {expert_name}"]
+    invper_bounds = st.session_state.glb["invoicing periods bounds"]
 
     # Filter the bounds for the given expert
     bounds = invper_bounds[ invper_bounds["Expert"] == expert_name ]
@@ -61,5 +61,5 @@ def plot(expert_name):
     stext.show_fig(fig)
 
     time_end = time.perf_counter()
-    glb.data["time:wimg:cnt"] += 1
-    glb.data["time:wimg:val"] += time_end - time_start
+    st.session_state.glb["time:wimg:cnt"] += 1
+    st.session_state.glb["time:wimg:val"] += time_end - time_start

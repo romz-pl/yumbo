@@ -57,14 +57,14 @@ def plot_df(df):
 def plot(expert_name):
     time_start = time.perf_counter()
 
-    plot_df(glb.data[f"schedule {expert_name}"])
+    plot_df(st.session_state.glb[f"schedule {expert_name}"])
 
     time_end = time.perf_counter()
-    glb.data["time:himg:cnt"] += 1
-    glb.data["time:himg:val"] += time_end - time_start
+    st.session_state.glb["time:himg:cnt"] += 1
+    st.session_state.glb["time:himg:val"] += time_end - time_start
 
 
 def plot_summary():
-    dfs = (glb.data[f"schedule {e}"] for e in glb.data["experts"]["Name"])
+    dfs = (st.session_state.glb[f"schedule {e}"] for e in st.session_state.glb["experts"]["Name"])
     plot_df(sum(dfs))
 

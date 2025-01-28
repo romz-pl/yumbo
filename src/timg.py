@@ -56,15 +56,15 @@ def plot_df(df):
 def plot(expert_name):
     time_start = time.perf_counter()
 
-    plot_df(glb.data[f"schedule {expert_name}"])
+    plot_df(st.session_state.glb[f"schedule {expert_name}"])
 
     time_end = time.perf_counter()
-    glb.data["time:timg:cnt"] += 1
-    glb.data["time:timg:val"] += time_end - time_start
+    st.session_state.glb["time:timg:cnt"] += 1
+    st.session_state.glb["time:timg:val"] += time_end - time_start
 
 
 def plot_summary():
-    dfs = (glb.data[f"schedule {e}"] for e in glb.data["experts"]["Name"])
+    dfs = (st.session_state.glb[f"schedule {e}"] for e in st.session_state.glb["experts"]["Name"])
     plot_df(sum(dfs))
 
 #
@@ -72,6 +72,6 @@ def plot_summary():
 #
 # def plot_summary():
 #     # Combine all schedules into a single DataFrame using pd.concat
-#     dfs = (glb.data[f"schedule {e}"] for e in glb.data["experts"]["Name"])
+#     dfs = (st.session_state.glb[f"schedule {e}"] for e in st.session_state.glb["experts"]["Name"])
 #     combined_df = pd.concat(dfs, ignore_index=True)
 #     plot_df(combined_df)

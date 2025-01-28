@@ -9,7 +9,7 @@ import time
 # Task's Gantt Chart
 #
 def plot_summary():
-    df = glb.data["tasks"]
+    df = st.session_state.glb["tasks"]
     # Create figure and axis
     fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")), dpi=glb.gimg("Dpi"))
     ax = fig.subplots()
@@ -83,5 +83,5 @@ def plot(df, work_done):
     stext.show_fig(fig)
 
     time_end = time.perf_counter()
-    glb.data["time:gimg:cnt"] += 1
-    glb.data["time:gimg:val"] += time_end - time_start
+    st.session_state.glb["time:gimg:cnt"] += 1
+    st.session_state.glb["time:gimg:val"] += time_end - time_start

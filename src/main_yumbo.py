@@ -16,7 +16,7 @@ import wimg
 
 def show_tasks_gantt_chart(expert_name):
     tasks = glb.tasks_for_expert(expert_name)
-    work_done = glb.data[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
+    work_done = st.session_state.glb[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
     gimg.plot(tasks, work_done)
 
 
@@ -34,7 +34,7 @@ def show_schedule_as_table(expert_name):
 
     # Retrieve the relevant schedule data
     days = pd.date_range(start=start_date, end=end_date, freq='D')
-    df = glb.data[f"schedule {expert_name}"].loc[tasks["Name"], start_date:end_date]
+    df = st.session_state.glb[f"schedule {expert_name}"].loc[tasks["Name"], start_date:end_date]
     df = df.replace(0, '')
     df = df.transpose()
     df.index = days.astype("str")
@@ -61,8 +61,8 @@ def show_schedule_as_table(expert_name):
 
 def show_commitment_per_task(expert_name):
     tasks_for_expert = glb.tasks_for_expert(expert_name)
-    schedule = glb.data[f"schedule {expert_name}"]
-    xbday = glb.data["xbday"][glb.data["xbday"]["Expert"] == expert_name]
+    schedule = st.session_state.glb[f"schedule {expert_name}"]
+    xbday = st.session_state.glb["xbday"][st.session_state.glb["xbday"]["Expert"] == expert_name]
     xbday_grouped = xbday.groupby('Task')
     cols = st.columns(3)
 
@@ -76,7 +76,7 @@ def show_commitment_per_task(expert_name):
 
 
 def show_summary():
-    if glb.data["show_experts_overview"]:
+    if st.session_state.glb["show_experts_overview"]:
         st.subheader(":blue[Experts overview]", divider="blue")
         col1, col2, col3 = st.columns(3)
         with col1:
@@ -88,12 +88,12 @@ def show_summary():
 
 
 def show_solver_output():
-    st.subheader(f":green[Solver output at {glb.data['solver timestamp']}]", divider="blue")
-    st.code(glb.data["solver output"])
+    st.subheader(f":green[Solver output at {st.session_state.glb['solver timestamp']}]", divider="blue")
+    st.code(st.session_state.glb["solver output"])
 
 
 def show_one_row(expert_name):
-    report_column_no = glb.data["report_column_no"]
+    report_column_no = st.session_state.glb["report_column_no"]
     col_list = st.columns(report_column_no)
 
     # Define the mapping of chart names to functions
@@ -107,14 +107,14 @@ def show_one_row(expert_name):
 
     for ii, col in enumerate(col_list, start=1):
         with col:
-            chart_name = glb.data[f"report_column_{ii}"]
+            chart_name = st.session_state.glb[f"report_column_{ii}"]
             # Call the corresponding function
             chart_functions.get(chart_name)(expert_name)
 
 
 def show_all_rows():
-    experts = glb.data["experts"].sort_values(by="Name")
-    report = glb.data["report"]
+    experts = st.session_state.glb["experts"].sort_values(by="Name")
+    report = st.session_state.glb["report"]
 
     for row in experts.itertuples(index=False):
         expert_name = row.Name
@@ -156,8 +156,8 @@ def show_time_counters():
         chart_titles.append(title)
         short_names.append(short_name)
 
-        cnt = glb.data[f"time:{short_name}:cnt"]
-        val = glb.data[f"time:{short_name}:val"]
+        cnt = st.session_state.glb[f"time:{short_name}:cnt"]
+        val = st.session_state.glb[f"time:{short_name}:val"]
 
         num_calls.append(cnt)
         elapsed_times.append(val)
@@ -233,11 +233,15 @@ def show_yumbo_description():
 def zero_time_counters():
     charts = ["bimg", "gimg", "himg", "simg", "timg", "wimg"]
     for v in charts:
-        glb.data[f"time:{v}:cnt"] = 0
-        glb.data[f"time:{v}:val"] = 0
+        st.session_state.glb[f"time:{v}:cnt"] = 0
+        st.session_state.glb[f"time:{v}:val"] = 0
 
 
 def main():
+
+    if 'glb' not in st.session_state:
+        st.session_state.glb = dict()
+
     # plt.style.use('seaborn-v0_8-whitegrid')
     set_page_config()
     show_page_header()
@@ -260,6 +264,8 @@ def main():
             return
 
     show_main_panel()
+
+    st.write(st.session_state.glb)
 
 
 ######################## CALL MAIN FUNCTION ##################

@@ -18,7 +18,7 @@ def plot(expert_name):
 
     # Generate day labels and filter dataframe
     days = pd.date_range(start=start, end=end, freq="D")
-    df = glb.data[f"schedule {expert_name}"][days]
+    df = st.session_state.glb[f"schedule {expert_name}"][days]
 
     # Determine bar width
     width = 0.9 if days.size < 10 else 1.0
@@ -69,6 +69,6 @@ def plot(expert_name):
     stext.show_fig(fig)
 
     time_end = time.perf_counter()
-    glb.data["time:simg:cnt"] += 1
-    glb.data["time:simg:val"] += time_end - time_start
+    st.session_state.glb["time:simg:cnt"] += 1
+    st.session_state.glb["time:simg:val"] += time_end - time_start
 
