@@ -1,0 +1,5071 @@
+param HOURS_PER_DAY := 32;
+
+set EXPERTN :=
+'SA.Peter'
+'SA.Adrian'
+'SA.Robert'
+'SA.Kevin'
+'SA.Justin'
+'SA.Martha'
+'SA.Melanie';
+
+param EBOUND_NO := 0;
+
+param EBOUND:
+1   2   3   4   5 :=
+;
+
+param:
+TASKN: TASKS TASKE TASKW :=
+'golf2.sm' 2 82 80
+'golf2.sf' 83 91 40
+'tango2.se' 33 48 240
+'tango2.sm' 49 259 240
+'tango2.sf' 260 275 80
+'victor2.se' 47 62 80
+'victor2.sm' 63 233 80
+'victor2.sf' 234 245 40
+'alpha.sm' 2 92 40
+'alpha.sf' 93 123 20
+'beta.sm' 2 172 40
+'beta.sf' 173 218 20
+'charlie.sm' 2 157 60
+'charlie.sf' 158 188 20
+'delta.sm' 2 57 20
+'delta.sf' 58 103 20
+'echo.sm' 2 75 20
+'echo.sf' 93 138 32
+'golf.sm' 2 133 40
+'golf.sf' 134 179 32
+'kilo.se' 61 84 60
+'kilo.sm' 85 214 40
+'kilo.sf' 215 260 20
+'lima.se' 81 110 144
+'lima.sm' 111 306 40
+'lima.sf' 307 335 20
+'mike.se' 81 110 60
+'mike.sm' 111 306 40
+'mike.sf' 307 335 20
+'foxtrot.sm' 2 92 32
+'foxtrot.sf' 93 123 32
+'hotel.sm' 2 245 60
+'hotel.sf' 246 291 20
+'india.sm' 2 275 120
+'india.sf' 276 306 48
+'juliet.se' 42 59 40
+'juliet.sm' 60 182 40
+'juliet.sf' 183 228 20
+'november.se' 147 166 40
+'november.sm' 167 365 40
+'november.sf' 366 397 20
+'oscar.se' 177 191 40
+'oscar.sm' 192 365 40
+'oscar.sf' 366 397 32
+'alpha2.se' 28 33 48
+'alpha2.sm' 34 79 96
+'alpha2.sf' 80 92 32
+'beta2.se' 6 16 120
+'beta2.sm' 17 197 240
+'beta2.sf' 198 217 160
+'gamma2.sm' 2 22 60
+'gamma2.sf' 23 35 20
+'quebec2.se' 153 178 160
+'quebec2.sm' 179 679 80
+'quebec2.sf' 680 735 80
+'uniform2.se' 122 137 240
+'uniform2.sm' 138 408 200
+'uniform2.sf' 409 427 80
+'xray2.se' 197 222 80
+'xray2.sm' 223 373 120
+'xray2.sf' 374 398 80
+'india2.sm' 2 77 40
+'india2.sf' 78 85 40
+'juliet2.sm' 2 82 80
+'juliet2.sf' 83 92 60
+'lima2.sm' 2 57 40
+'lima2.sf' 58 63 40
+'kilo2.sm' 2 57 60
+'kilo2.sf' 58 63 40
+'november2.sm' 2 87 120
+'november2.sf' 88 98 60
+'oscar2.sm' 2 172 120
+'oscar2.sf' 173 182 40
+'papa2.sm' 2 172 160
+'papa2.sf' 173 182 60
+'zulu2.se' 167 197 200
+'zulu2.sm' 198 328 80
+'zulu2.sf' 329 336 40
+'delta2.sm' 2 172 80
+'delta2.sf' 173 183 40
+'echo2.sm' 2 22 40
+'echo2.sf' 23 70 20
+'foxtrot2.sm' 2 82 200
+'foxtrot2.sf' 83 92 120
+'hotel2.sm' 2 47 40
+'hotel2.sf' 48 57 20
+'mike2.se' 11 26 160
+'mike2.sm' 27 137 80
+'mike2.sf' 138 153 40
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'Jan.25' 1 16
+'Feb.25' 17 45
+'Mar.25' 46 76
+'Apr.25' 77 105
+'May.25' 106 139
+'Jun.25' 140 170
+'Jul.25' 171 199
+'Aug.25' 200 230
+'Sep.25' 231 259
+'Oct.25' 260 289
+'Nov.25' 290 317
+'Dec.25' 318 346;
+
+param:
+EXPPAY: PAYROLLBL PAYROLLBU :=
+'SA.Peter' 'Jan.25' 0.0 720.0
+'SA.Peter' 'Feb.25' 0.0 720.0
+'SA.Peter' 'Mar.25' 0.0 720.0
+'SA.Peter' 'Apr.25' 0.0 720.0
+'SA.Peter' 'May.25' 0.0 720.0
+'SA.Peter' 'Jun.25' 0.0 720.0
+'SA.Peter' 'Jul.25' 0.0 720.0
+'SA.Peter' 'Aug.25' 0.0 720.0
+'SA.Peter' 'Sep.25' 0.0 720.0
+'SA.Peter' 'Oct.25' 0.0 720.0
+'SA.Peter' 'Nov.25' 0.0 720.0
+'SA.Peter' 'Dec.25' 0.0 720.0
+'SA.Adrian' 'Jan.25' 0.0 720.0
+'SA.Adrian' 'Feb.25' 0.0 720.0
+'SA.Adrian' 'Mar.25' 0.0 720.0
+'SA.Adrian' 'Apr.25' 0.0 720.0
+'SA.Adrian' 'May.25' 0.0 720.0
+'SA.Adrian' 'Jun.25' 0.0 720.0
+'SA.Adrian' 'Jul.25' 0.0 720.0
+'SA.Adrian' 'Aug.25' 0.0 720.0
+'SA.Adrian' 'Sep.25' 0.0 720.0
+'SA.Adrian' 'Oct.25' 0.0 720.0
+'SA.Adrian' 'Nov.25' 0.0 720.0
+'SA.Adrian' 'Dec.25' 0.0 720.0
+'SA.Robert' 'Jan.25' 0.0 720.0
+'SA.Robert' 'Feb.25' 0.0 720.0
+'SA.Robert' 'Mar.25' 0.0 720.0
+'SA.Robert' 'Apr.25' 0.0 720.0
+'SA.Robert' 'May.25' 0.0 720.0
+'SA.Robert' 'Jun.25' 0.0 720.0
+'SA.Robert' 'Jul.25' 0.0 720.0
+'SA.Robert' 'Aug.25' 0.0 720.0
+'SA.Robert' 'Sep.25' 0.0 720.0
+'SA.Robert' 'Oct.25' 0.0 720.0
+'SA.Robert' 'Nov.25' 0.0 720.0
+'SA.Robert' 'Dec.25' 0.0 720.0
+'SA.Kevin' 'Jan.25' 0.0 720.0
+'SA.Kevin' 'Feb.25' 0.0 720.0
+'SA.Kevin' 'Mar.25' 0.0 720.0
+'SA.Kevin' 'Apr.25' 0.0 720.0
+'SA.Kevin' 'May.25' 0.0 720.0
+'SA.Kevin' 'Jun.25' 0.0 720.0
+'SA.Kevin' 'Jul.25' 0.0 720.0
+'SA.Kevin' 'Aug.25' 0.0 720.0
+'SA.Kevin' 'Sep.25' 0.0 720.0
+'SA.Kevin' 'Oct.25' 0.0 720.0
+'SA.Kevin' 'Nov.25' 0.0 720.0
+'SA.Kevin' 'Dec.25' 0.0 720.0
+'SA.Justin' 'Jan.25' 0.0 720.0
+'SA.Justin' 'Feb.25' 0.0 720.0
+'SA.Justin' 'Mar.25' 0.0 720.0
+'SA.Justin' 'Apr.25' 0.0 720.0
+'SA.Justin' 'May.25' 0.0 720.0
+'SA.Justin' 'Jun.25' 0.0 720.0
+'SA.Justin' 'Jul.25' 0.0 720.0
+'SA.Justin' 'Aug.25' 0.0 720.0
+'SA.Justin' 'Sep.25' 0.0 720.0
+'SA.Justin' 'Oct.25' 0.0 720.0
+'SA.Justin' 'Nov.25' 0.0 720.0
+'SA.Justin' 'Dec.25' 0.0 720.0
+'SA.Martha' 'Jan.25' 0.0 720.0
+'SA.Martha' 'Feb.25' 0.0 720.0
+'SA.Martha' 'Mar.25' 0.0 720.0
+'SA.Martha' 'Apr.25' 0.0 720.0
+'SA.Martha' 'May.25' 0.0 720.0
+'SA.Martha' 'Jun.25' 0.0 720.0
+'SA.Martha' 'Jul.25' 0.0 720.0
+'SA.Martha' 'Aug.25' 0.0 720.0
+'SA.Martha' 'Sep.25' 0.0 720.0
+'SA.Martha' 'Oct.25' 0.0 720.0
+'SA.Martha' 'Nov.25' 0.0 720.0
+'SA.Martha' 'Dec.25' 0.0 720.0
+'SA.Melanie' 'Jan.25' 0.0 720.0
+'SA.Melanie' 'Feb.25' 0.0 720.0
+'SA.Melanie' 'Mar.25' 0.0 720.0
+'SA.Melanie' 'Apr.25' 0.0 720.0
+'SA.Melanie' 'May.25' 0.0 720.0
+'SA.Melanie' 'Jun.25' 0.0 720.0
+'SA.Melanie' 'Jul.25' 0.0 720.0
+'SA.Melanie' 'Aug.25' 0.0 720.0
+'SA.Melanie' 'Sep.25' 0.0 720.0
+'SA.Melanie' 'Oct.25' 0.0 720.0
+'SA.Melanie' 'Nov.25' 0.0 720.0
+'SA.Melanie' 'Dec.25' 0.0 720.0;
+
+param OFFDAY_NO := 212;
+
+param OFFDAY :=
+1 2
+2 5
+3 6
+4 12
+5 13
+6 19
+7 20
+8 26
+9 27
+10 33
+11 34
+12 40
+13 41
+14 47
+15 48
+16 54
+17 55
+18 61
+19 62
+20 68
+21 69
+22 75
+23 76
+24 82
+25 83
+26 89
+27 90
+28 96
+29 97
+30 103
+31 104
+32 110
+33 111
+34 117
+35 118
+36 122
+37 124
+38 125
+39 131
+40 132
+41 138
+42 139
+43 145
+44 146
+45 152
+46 153
+47 159
+48 160
+49 166
+50 167
+51 173
+52 174
+53 180
+54 181
+55 187
+56 188
+57 194
+58 195
+59 201
+60 202
+61 208
+62 209
+63 215
+64 216
+65 222
+66 223
+67 229
+68 230
+69 236
+70 237
+71 243
+72 244
+73 250
+74 251
+75 257
+76 258
+77 264
+78 265
+79 271
+80 272
+81 278
+82 279
+83 285
+84 286
+85 292
+86 293
+87 299
+88 300
+89 306
+90 307
+91 313
+92 314
+93 320
+94 321
+95 327
+96 328
+97 334
+98 335
+99 341
+100 342
+101 348
+102 349
+103 355
+104 356
+105 362
+106 363
+107 369
+108 370
+109 376
+110 377
+111 383
+112 384
+113 390
+114 391
+115 397
+116 398
+117 404
+118 405
+119 411
+120 412
+121 418
+122 419
+123 425
+124 426
+125 432
+126 433
+127 439
+128 440
+129 446
+130 447
+131 453
+132 454
+133 460
+134 461
+135 467
+136 468
+137 474
+138 475
+139 481
+140 482
+141 488
+142 489
+143 495
+144 496
+145 502
+146 503
+147 509
+148 510
+149 516
+150 517
+151 523
+152 524
+153 530
+154 531
+155 537
+156 538
+157 544
+158 545
+159 551
+160 552
+161 558
+162 559
+163 565
+164 566
+165 572
+166 573
+167 579
+168 580
+169 586
+170 587
+171 593
+172 594
+173 600
+174 601
+175 607
+176 608
+177 614
+178 615
+179 621
+180 622
+181 628
+182 629
+183 635
+184 636
+185 642
+186 643
+187 649
+188 650
+189 656
+190 657
+191 663
+192 664
+193 670
+194 671
+195 677
+196 678
+197 684
+198 685
+199 691
+200 692
+201 698
+202 699
+203 705
+204 706
+205 712
+206 713
+207 719
+208 720
+209 726
+210 727
+211 733
+212 734;
+
+param XBDAY_NO := 4529;
+
+param XBDAY:
+1   2   3   4   5 :=
+1 'SA.Peter' 'golf2.sm' 3 1.0 2.0
+2 'SA.Peter' 'golf2.sm' 4 1.0 2.0
+3 'SA.Peter' 'golf2.sm' 7 1.0 2.0
+4 'SA.Peter' 'golf2.sm' 8 1.0 2.0
+5 'SA.Peter' 'golf2.sm' 9 1.0 2.0
+6 'SA.Peter' 'golf2.sm' 10 1.0 2.0
+7 'SA.Peter' 'golf2.sm' 11 1.0 2.0
+8 'SA.Peter' 'golf2.sm' 14 1.0 2.0
+9 'SA.Peter' 'golf2.sm' 15 1.0 2.0
+10 'SA.Peter' 'golf2.sm' 16 1.0 2.0
+11 'SA.Peter' 'golf2.sm' 17 1.0 2.0
+12 'SA.Peter' 'golf2.sm' 18 1.0 2.0
+13 'SA.Peter' 'golf2.sm' 21 1.0 2.0
+14 'SA.Peter' 'golf2.sm' 22 1.0 2.0
+15 'SA.Peter' 'golf2.sm' 23 1.0 2.0
+16 'SA.Peter' 'golf2.sm' 24 1.0 2.0
+17 'SA.Peter' 'golf2.sm' 25 1.0 2.0
+18 'SA.Peter' 'golf2.sm' 28 1.0 2.0
+19 'SA.Peter' 'golf2.sm' 29 1.0 2.0
+20 'SA.Peter' 'golf2.sm' 30 1.0 2.0
+21 'SA.Peter' 'golf2.sm' 31 1.0 2.0
+22 'SA.Peter' 'golf2.sm' 32 1.0 2.0
+23 'SA.Peter' 'golf2.sm' 35 1.0 2.0
+24 'SA.Peter' 'golf2.sm' 36 1.0 2.0
+25 'SA.Peter' 'golf2.sm' 37 1.0 2.0
+26 'SA.Peter' 'golf2.sm' 38 1.0 2.0
+27 'SA.Peter' 'golf2.sm' 39 1.0 2.0
+28 'SA.Peter' 'golf2.sm' 42 1.0 2.0
+29 'SA.Peter' 'golf2.sm' 43 1.0 2.0
+30 'SA.Peter' 'golf2.sm' 44 1.0 2.0
+31 'SA.Peter' 'golf2.sm' 45 1.0 2.0
+32 'SA.Peter' 'golf2.sm' 46 1.0 2.0
+33 'SA.Peter' 'golf2.sm' 49 1.0 2.0
+34 'SA.Peter' 'golf2.sm' 50 1.0 2.0
+35 'SA.Peter' 'golf2.sm' 51 1.0 2.0
+36 'SA.Peter' 'golf2.sm' 52 1.0 2.0
+37 'SA.Peter' 'golf2.sm' 53 1.0 2.0
+38 'SA.Peter' 'golf2.sm' 56 1.0 2.0
+39 'SA.Peter' 'golf2.sm' 57 1.0 2.0
+40 'SA.Peter' 'golf2.sm' 58 1.0 2.0
+41 'SA.Peter' 'golf2.sm' 59 1.0 2.0
+42 'SA.Peter' 'golf2.sm' 60 1.0 2.0
+43 'SA.Peter' 'golf2.sm' 63 1.0 2.0
+44 'SA.Peter' 'golf2.sm' 64 1.0 2.0
+45 'SA.Peter' 'golf2.sm' 65 1.0 2.0
+46 'SA.Peter' 'golf2.sm' 66 1.0 2.0
+47 'SA.Peter' 'golf2.sm' 67 1.0 2.0
+48 'SA.Peter' 'golf2.sm' 70 1.0 2.0
+49 'SA.Peter' 'golf2.sm' 71 1.0 2.0
+50 'SA.Peter' 'golf2.sm' 72 1.0 2.0
+51 'SA.Peter' 'golf2.sm' 73 1.0 2.0
+52 'SA.Peter' 'golf2.sm' 74 1.0 2.0
+53 'SA.Peter' 'golf2.sm' 77 1.0 2.0
+54 'SA.Peter' 'golf2.sm' 78 1.0 2.0
+55 'SA.Peter' 'golf2.sm' 79 1.0 2.0
+56 'SA.Peter' 'golf2.sm' 80 1.0 2.0
+57 'SA.Peter' 'golf2.sm' 81 1.0 2.0
+58 'SA.Peter' 'golf2.sf' 84 6.0 7.0
+59 'SA.Peter' 'golf2.sf' 85 6.0 7.0
+60 'SA.Peter' 'golf2.sf' 86 6.0 7.0
+61 'SA.Peter' 'golf2.sf' 87 6.0 7.0
+62 'SA.Peter' 'golf2.sf' 88 6.0 7.0
+63 'SA.Peter' 'golf2.sf' 91 6.0 7.0
+64 'SA.Peter' 'tango2.se' 35 24.0 25.0
+65 'SA.Peter' 'tango2.se' 36 24.0 25.0
+66 'SA.Peter' 'tango2.se' 37 24.0 25.0
+67 'SA.Peter' 'tango2.se' 38 24.0 25.0
+68 'SA.Peter' 'tango2.se' 39 24.0 25.0
+69 'SA.Peter' 'tango2.se' 42 24.0 25.0
+70 'SA.Peter' 'tango2.se' 43 24.0 25.0
+71 'SA.Peter' 'tango2.se' 44 24.0 25.0
+72 'SA.Peter' 'tango2.se' 45 24.0 25.0
+73 'SA.Peter' 'tango2.se' 46 24.0 25.0
+74 'SA.Peter' 'tango2.sm' 49 1.0 2.0
+75 'SA.Peter' 'tango2.sm' 50 1.0 2.0
+76 'SA.Peter' 'tango2.sm' 51 1.0 2.0
+77 'SA.Peter' 'tango2.sm' 52 1.0 2.0
+78 'SA.Peter' 'tango2.sm' 53 1.0 2.0
+79 'SA.Peter' 'tango2.sm' 56 1.0 2.0
+80 'SA.Peter' 'tango2.sm' 57 1.0 2.0
+81 'SA.Peter' 'tango2.sm' 58 1.0 2.0
+82 'SA.Peter' 'tango2.sm' 59 1.0 2.0
+83 'SA.Peter' 'tango2.sm' 60 1.0 2.0
+84 'SA.Peter' 'tango2.sm' 63 1.0 2.0
+85 'SA.Peter' 'tango2.sm' 64 1.0 2.0
+86 'SA.Peter' 'tango2.sm' 65 1.0 2.0
+87 'SA.Peter' 'tango2.sm' 66 1.0 2.0
+88 'SA.Peter' 'tango2.sm' 67 1.0 2.0
+89 'SA.Peter' 'tango2.sm' 70 1.0 2.0
+90 'SA.Peter' 'tango2.sm' 71 1.0 2.0
+91 'SA.Peter' 'tango2.sm' 72 1.0 2.0
+92 'SA.Peter' 'tango2.sm' 73 1.0 2.0
+93 'SA.Peter' 'tango2.sm' 74 1.0 2.0
+94 'SA.Peter' 'tango2.sm' 77 1.0 2.0
+95 'SA.Peter' 'tango2.sm' 78 1.0 2.0
+96 'SA.Peter' 'tango2.sm' 79 1.0 2.0
+97 'SA.Peter' 'tango2.sm' 80 1.0 2.0
+98 'SA.Peter' 'tango2.sm' 81 1.0 2.0
+99 'SA.Peter' 'tango2.sm' 84 1.0 2.0
+100 'SA.Peter' 'tango2.sm' 85 1.0 2.0
+101 'SA.Peter' 'tango2.sm' 86 1.0 2.0
+102 'SA.Peter' 'tango2.sm' 87 1.0 2.0
+103 'SA.Peter' 'tango2.sm' 88 1.0 2.0
+104 'SA.Peter' 'tango2.sm' 91 1.0 2.0
+105 'SA.Peter' 'tango2.sm' 92 1.0 2.0
+106 'SA.Peter' 'tango2.sm' 93 1.0 2.0
+107 'SA.Peter' 'tango2.sm' 94 1.0 2.0
+108 'SA.Peter' 'tango2.sm' 95 1.0 2.0
+109 'SA.Peter' 'tango2.sm' 98 1.0 2.0
+110 'SA.Peter' 'tango2.sm' 99 1.0 2.0
+111 'SA.Peter' 'tango2.sm' 100 1.0 2.0
+112 'SA.Peter' 'tango2.sm' 101 1.0 2.0
+113 'SA.Peter' 'tango2.sm' 102 1.0 2.0
+114 'SA.Peter' 'tango2.sm' 105 1.0 2.0
+115 'SA.Peter' 'tango2.sm' 106 1.0 2.0
+116 'SA.Peter' 'tango2.sm' 107 1.0 2.0
+117 'SA.Peter' 'tango2.sm' 108 1.0 2.0
+118 'SA.Peter' 'tango2.sm' 109 1.0 2.0
+119 'SA.Peter' 'tango2.sm' 112 1.0 2.0
+120 'SA.Peter' 'tango2.sm' 113 1.0 2.0
+121 'SA.Peter' 'tango2.sm' 114 1.0 2.0
+122 'SA.Peter' 'tango2.sm' 115 1.0 2.0
+123 'SA.Peter' 'tango2.sm' 116 1.0 2.0
+124 'SA.Peter' 'tango2.sm' 119 1.0 2.0
+125 'SA.Peter' 'tango2.sm' 120 1.0 2.0
+126 'SA.Peter' 'tango2.sm' 121 1.0 2.0
+127 'SA.Peter' 'tango2.sm' 123 1.0 2.0
+128 'SA.Peter' 'tango2.sm' 126 1.0 2.0
+129 'SA.Peter' 'tango2.sm' 127 1.0 2.0
+130 'SA.Peter' 'tango2.sm' 128 1.0 2.0
+131 'SA.Peter' 'tango2.sm' 129 1.0 2.0
+132 'SA.Peter' 'tango2.sm' 130 1.0 2.0
+133 'SA.Peter' 'tango2.sm' 133 1.0 2.0
+134 'SA.Peter' 'tango2.sm' 134 1.0 2.0
+135 'SA.Peter' 'tango2.sm' 135 1.0 2.0
+136 'SA.Peter' 'tango2.sm' 136 1.0 2.0
+137 'SA.Peter' 'tango2.sm' 137 1.0 2.0
+138 'SA.Peter' 'tango2.sm' 140 1.0 2.0
+139 'SA.Peter' 'tango2.sm' 141 1.0 2.0
+140 'SA.Peter' 'tango2.sm' 142 1.0 2.0
+141 'SA.Peter' 'tango2.sm' 143 1.0 2.0
+142 'SA.Peter' 'tango2.sm' 144 1.0 2.0
+143 'SA.Peter' 'tango2.sm' 147 1.0 2.0
+144 'SA.Peter' 'tango2.sm' 148 1.0 2.0
+145 'SA.Peter' 'tango2.sm' 149 1.0 2.0
+146 'SA.Peter' 'tango2.sm' 150 1.0 2.0
+147 'SA.Peter' 'tango2.sm' 151 1.0 2.0
+148 'SA.Peter' 'tango2.sm' 154 1.0 2.0
+149 'SA.Peter' 'tango2.sm' 155 1.0 2.0
+150 'SA.Peter' 'tango2.sm' 156 1.0 2.0
+151 'SA.Peter' 'tango2.sm' 157 1.0 2.0
+152 'SA.Peter' 'tango2.sm' 158 1.0 2.0
+153 'SA.Peter' 'tango2.sm' 161 1.0 2.0
+154 'SA.Peter' 'tango2.sm' 162 1.0 2.0
+155 'SA.Peter' 'tango2.sm' 163 1.0 2.0
+156 'SA.Peter' 'tango2.sm' 164 1.0 2.0
+157 'SA.Peter' 'tango2.sm' 165 1.0 2.0
+158 'SA.Peter' 'tango2.sm' 168 1.0 2.0
+159 'SA.Peter' 'tango2.sm' 169 1.0 2.0
+160 'SA.Peter' 'tango2.sm' 170 1.0 2.0
+161 'SA.Peter' 'tango2.sm' 171 1.0 2.0
+162 'SA.Peter' 'tango2.sm' 172 1.0 2.0
+163 'SA.Peter' 'tango2.sm' 175 1.0 2.0
+164 'SA.Peter' 'tango2.sm' 176 1.0 2.0
+165 'SA.Peter' 'tango2.sm' 177 1.0 2.0
+166 'SA.Peter' 'tango2.sm' 178 1.0 2.0
+167 'SA.Peter' 'tango2.sm' 179 1.0 2.0
+168 'SA.Peter' 'tango2.sm' 182 1.0 2.0
+169 'SA.Peter' 'tango2.sm' 183 1.0 2.0
+170 'SA.Peter' 'tango2.sm' 184 1.0 2.0
+171 'SA.Peter' 'tango2.sm' 185 1.0 2.0
+172 'SA.Peter' 'tango2.sm' 186 1.0 2.0
+173 'SA.Peter' 'tango2.sm' 189 1.0 2.0
+174 'SA.Peter' 'tango2.sm' 190 1.0 2.0
+175 'SA.Peter' 'tango2.sm' 191 1.0 2.0
+176 'SA.Peter' 'tango2.sm' 192 1.0 2.0
+177 'SA.Peter' 'tango2.sm' 193 1.0 2.0
+178 'SA.Peter' 'tango2.sm' 196 1.0 2.0
+179 'SA.Peter' 'tango2.sm' 197 1.0 2.0
+180 'SA.Peter' 'tango2.sm' 198 1.0 2.0
+181 'SA.Peter' 'tango2.sm' 199 1.0 2.0
+182 'SA.Peter' 'tango2.sm' 200 1.0 2.0
+183 'SA.Peter' 'tango2.sm' 203 1.0 2.0
+184 'SA.Peter' 'tango2.sm' 204 1.0 2.0
+185 'SA.Peter' 'tango2.sm' 205 1.0 2.0
+186 'SA.Peter' 'tango2.sm' 206 1.0 2.0
+187 'SA.Peter' 'tango2.sm' 207 1.0 2.0
+188 'SA.Peter' 'tango2.sm' 210 1.0 2.0
+189 'SA.Peter' 'tango2.sm' 211 1.0 2.0
+190 'SA.Peter' 'tango2.sm' 212 1.0 2.0
+191 'SA.Peter' 'tango2.sm' 213 1.0 2.0
+192 'SA.Peter' 'tango2.sm' 214 1.0 2.0
+193 'SA.Peter' 'tango2.sm' 217 1.0 2.0
+194 'SA.Peter' 'tango2.sm' 218 1.0 2.0
+195 'SA.Peter' 'tango2.sm' 219 1.0 2.0
+196 'SA.Peter' 'tango2.sm' 220 1.0 2.0
+197 'SA.Peter' 'tango2.sm' 221 1.0 2.0
+198 'SA.Peter' 'tango2.sm' 224 1.0 2.0
+199 'SA.Peter' 'tango2.sm' 225 1.0 2.0
+200 'SA.Peter' 'tango2.sm' 226 1.0 2.0
+201 'SA.Peter' 'tango2.sm' 227 1.0 2.0
+202 'SA.Peter' 'tango2.sm' 228 1.0 2.0
+203 'SA.Peter' 'tango2.sm' 231 1.0 2.0
+204 'SA.Peter' 'tango2.sm' 232 1.0 2.0
+205 'SA.Peter' 'tango2.sm' 233 1.0 2.0
+206 'SA.Peter' 'tango2.sm' 234 1.0 2.0
+207 'SA.Peter' 'tango2.sm' 235 1.0 2.0
+208 'SA.Peter' 'tango2.sm' 238 1.0 2.0
+209 'SA.Peter' 'tango2.sm' 239 1.0 2.0
+210 'SA.Peter' 'tango2.sm' 240 1.0 2.0
+211 'SA.Peter' 'tango2.sm' 241 1.0 2.0
+212 'SA.Peter' 'tango2.sm' 242 1.0 2.0
+213 'SA.Peter' 'tango2.sm' 245 1.0 2.0
+214 'SA.Peter' 'tango2.sm' 246 1.0 2.0
+215 'SA.Peter' 'tango2.sm' 247 1.0 2.0
+216 'SA.Peter' 'tango2.sm' 248 1.0 2.0
+217 'SA.Peter' 'tango2.sm' 249 1.0 2.0
+218 'SA.Peter' 'tango2.sm' 252 1.0 2.0
+219 'SA.Peter' 'tango2.sm' 253 1.0 2.0
+220 'SA.Peter' 'tango2.sm' 254 1.0 2.0
+221 'SA.Peter' 'tango2.sm' 255 1.0 2.0
+222 'SA.Peter' 'tango2.sm' 256 1.0 2.0
+223 'SA.Peter' 'tango2.sm' 259 1.0 2.0
+224 'SA.Peter' 'tango2.sf' 260 6.0 7.0
+225 'SA.Peter' 'tango2.sf' 261 6.0 7.0
+226 'SA.Peter' 'tango2.sf' 262 6.0 7.0
+227 'SA.Peter' 'tango2.sf' 263 6.0 7.0
+228 'SA.Peter' 'tango2.sf' 266 6.0 7.0
+229 'SA.Peter' 'tango2.sf' 267 6.0 7.0
+230 'SA.Peter' 'tango2.sf' 268 6.0 7.0
+231 'SA.Peter' 'tango2.sf' 269 6.0 7.0
+232 'SA.Peter' 'tango2.sf' 270 6.0 7.0
+233 'SA.Peter' 'tango2.sf' 273 6.0 7.0
+234 'SA.Peter' 'tango2.sf' 274 6.0 7.0
+235 'SA.Peter' 'tango2.sf' 275 6.0 7.0
+236 'SA.Peter' 'victor2.se' 49 8.0 9.0
+237 'SA.Peter' 'victor2.se' 50 8.0 9.0
+238 'SA.Peter' 'victor2.se' 51 8.0 9.0
+239 'SA.Peter' 'victor2.se' 52 8.0 9.0
+240 'SA.Peter' 'victor2.se' 53 8.0 9.0
+241 'SA.Peter' 'victor2.se' 56 8.0 9.0
+242 'SA.Peter' 'victor2.se' 57 8.0 9.0
+243 'SA.Peter' 'victor2.se' 58 8.0 9.0
+244 'SA.Peter' 'victor2.se' 59 8.0 9.0
+245 'SA.Peter' 'victor2.se' 60 8.0 9.0
+246 'SA.Peter' 'victor2.sm' 63 0.0 1.0
+247 'SA.Peter' 'victor2.sm' 64 0.0 1.0
+248 'SA.Peter' 'victor2.sm' 65 0.0 1.0
+249 'SA.Peter' 'victor2.sm' 66 0.0 1.0
+250 'SA.Peter' 'victor2.sm' 67 0.0 1.0
+251 'SA.Peter' 'victor2.sm' 70 0.0 1.0
+252 'SA.Peter' 'victor2.sm' 71 0.0 1.0
+253 'SA.Peter' 'victor2.sm' 72 0.0 1.0
+254 'SA.Peter' 'victor2.sm' 73 0.0 1.0
+255 'SA.Peter' 'victor2.sm' 74 0.0 1.0
+256 'SA.Peter' 'victor2.sm' 77 0.0 1.0
+257 'SA.Peter' 'victor2.sm' 78 0.0 1.0
+258 'SA.Peter' 'victor2.sm' 79 0.0 1.0
+259 'SA.Peter' 'victor2.sm' 80 0.0 1.0
+260 'SA.Peter' 'victor2.sm' 81 0.0 1.0
+261 'SA.Peter' 'victor2.sm' 84 0.0 1.0
+262 'SA.Peter' 'victor2.sm' 85 0.0 1.0
+263 'SA.Peter' 'victor2.sm' 86 0.0 1.0
+264 'SA.Peter' 'victor2.sm' 87 0.0 1.0
+265 'SA.Peter' 'victor2.sm' 88 0.0 1.0
+266 'SA.Peter' 'victor2.sm' 91 0.0 1.0
+267 'SA.Peter' 'victor2.sm' 92 0.0 1.0
+268 'SA.Peter' 'victor2.sm' 93 0.0 1.0
+269 'SA.Peter' 'victor2.sm' 94 0.0 1.0
+270 'SA.Peter' 'victor2.sm' 95 0.0 1.0
+271 'SA.Peter' 'victor2.sm' 98 0.0 1.0
+272 'SA.Peter' 'victor2.sm' 99 0.0 1.0
+273 'SA.Peter' 'victor2.sm' 100 0.0 1.0
+274 'SA.Peter' 'victor2.sm' 101 0.0 1.0
+275 'SA.Peter' 'victor2.sm' 102 0.0 1.0
+276 'SA.Peter' 'victor2.sm' 105 0.0 1.0
+277 'SA.Peter' 'victor2.sm' 106 0.0 1.0
+278 'SA.Peter' 'victor2.sm' 107 0.0 1.0
+279 'SA.Peter' 'victor2.sm' 108 0.0 1.0
+280 'SA.Peter' 'victor2.sm' 109 0.0 1.0
+281 'SA.Peter' 'victor2.sm' 112 0.0 1.0
+282 'SA.Peter' 'victor2.sm' 113 0.0 1.0
+283 'SA.Peter' 'victor2.sm' 114 0.0 1.0
+284 'SA.Peter' 'victor2.sm' 115 0.0 1.0
+285 'SA.Peter' 'victor2.sm' 116 0.0 1.0
+286 'SA.Peter' 'victor2.sm' 119 0.0 1.0
+287 'SA.Peter' 'victor2.sm' 120 0.0 1.0
+288 'SA.Peter' 'victor2.sm' 121 0.0 1.0
+289 'SA.Peter' 'victor2.sm' 123 0.0 1.0
+290 'SA.Peter' 'victor2.sm' 126 0.0 1.0
+291 'SA.Peter' 'victor2.sm' 127 0.0 1.0
+292 'SA.Peter' 'victor2.sm' 128 0.0 1.0
+293 'SA.Peter' 'victor2.sm' 129 0.0 1.0
+294 'SA.Peter' 'victor2.sm' 130 0.0 1.0
+295 'SA.Peter' 'victor2.sm' 133 0.0 1.0
+296 'SA.Peter' 'victor2.sm' 134 0.0 1.0
+297 'SA.Peter' 'victor2.sm' 135 0.0 1.0
+298 'SA.Peter' 'victor2.sm' 136 0.0 1.0
+299 'SA.Peter' 'victor2.sm' 137 0.0 1.0
+300 'SA.Peter' 'victor2.sm' 140 0.0 1.0
+301 'SA.Peter' 'victor2.sm' 141 0.0 1.0
+302 'SA.Peter' 'victor2.sm' 142 0.0 1.0
+303 'SA.Peter' 'victor2.sm' 143 0.0 1.0
+304 'SA.Peter' 'victor2.sm' 144 0.0 1.0
+305 'SA.Peter' 'victor2.sm' 147 0.0 1.0
+306 'SA.Peter' 'victor2.sm' 148 0.0 1.0
+307 'SA.Peter' 'victor2.sm' 149 0.0 1.0
+308 'SA.Peter' 'victor2.sm' 150 0.0 1.0
+309 'SA.Peter' 'victor2.sm' 151 0.0 1.0
+310 'SA.Peter' 'victor2.sm' 154 0.0 1.0
+311 'SA.Peter' 'victor2.sm' 155 0.0 1.0
+312 'SA.Peter' 'victor2.sm' 156 0.0 1.0
+313 'SA.Peter' 'victor2.sm' 157 0.0 1.0
+314 'SA.Peter' 'victor2.sm' 158 0.0 1.0
+315 'SA.Peter' 'victor2.sm' 161 0.0 1.0
+316 'SA.Peter' 'victor2.sm' 162 0.0 1.0
+317 'SA.Peter' 'victor2.sm' 163 0.0 1.0
+318 'SA.Peter' 'victor2.sm' 164 0.0 1.0
+319 'SA.Peter' 'victor2.sm' 165 0.0 1.0
+320 'SA.Peter' 'victor2.sm' 168 0.0 1.0
+321 'SA.Peter' 'victor2.sm' 169 0.0 1.0
+322 'SA.Peter' 'victor2.sm' 170 0.0 1.0
+323 'SA.Peter' 'victor2.sm' 171 0.0 1.0
+324 'SA.Peter' 'victor2.sm' 172 0.0 1.0
+325 'SA.Peter' 'victor2.sm' 175 0.0 1.0
+326 'SA.Peter' 'victor2.sm' 176 0.0 1.0
+327 'SA.Peter' 'victor2.sm' 177 0.0 1.0
+328 'SA.Peter' 'victor2.sm' 178 0.0 1.0
+329 'SA.Peter' 'victor2.sm' 179 0.0 1.0
+330 'SA.Peter' 'victor2.sm' 182 0.0 1.0
+331 'SA.Peter' 'victor2.sm' 183 0.0 1.0
+332 'SA.Peter' 'victor2.sm' 184 0.0 1.0
+333 'SA.Peter' 'victor2.sm' 185 0.0 1.0
+334 'SA.Peter' 'victor2.sm' 186 0.0 1.0
+335 'SA.Peter' 'victor2.sm' 189 0.0 1.0
+336 'SA.Peter' 'victor2.sm' 190 0.0 1.0
+337 'SA.Peter' 'victor2.sm' 191 0.0 1.0
+338 'SA.Peter' 'victor2.sm' 192 0.0 1.0
+339 'SA.Peter' 'victor2.sm' 193 0.0 1.0
+340 'SA.Peter' 'victor2.sm' 196 0.0 1.0
+341 'SA.Peter' 'victor2.sm' 197 0.0 1.0
+342 'SA.Peter' 'victor2.sm' 198 0.0 1.0
+343 'SA.Peter' 'victor2.sm' 199 0.0 1.0
+344 'SA.Peter' 'victor2.sm' 200 0.0 1.0
+345 'SA.Peter' 'victor2.sm' 203 0.0 1.0
+346 'SA.Peter' 'victor2.sm' 204 0.0 1.0
+347 'SA.Peter' 'victor2.sm' 205 0.0 1.0
+348 'SA.Peter' 'victor2.sm' 206 0.0 1.0
+349 'SA.Peter' 'victor2.sm' 207 0.0 1.0
+350 'SA.Peter' 'victor2.sm' 210 0.0 1.0
+351 'SA.Peter' 'victor2.sm' 211 0.0 1.0
+352 'SA.Peter' 'victor2.sm' 212 0.0 1.0
+353 'SA.Peter' 'victor2.sm' 213 0.0 1.0
+354 'SA.Peter' 'victor2.sm' 214 0.0 1.0
+355 'SA.Peter' 'victor2.sm' 217 0.0 1.0
+356 'SA.Peter' 'victor2.sm' 218 0.0 1.0
+357 'SA.Peter' 'victor2.sm' 219 0.0 1.0
+358 'SA.Peter' 'victor2.sm' 220 0.0 1.0
+359 'SA.Peter' 'victor2.sm' 221 0.0 1.0
+360 'SA.Peter' 'victor2.sm' 224 0.0 1.0
+361 'SA.Peter' 'victor2.sm' 225 0.0 1.0
+362 'SA.Peter' 'victor2.sm' 226 0.0 1.0
+363 'SA.Peter' 'victor2.sm' 227 0.0 1.0
+364 'SA.Peter' 'victor2.sm' 228 0.0 1.0
+365 'SA.Peter' 'victor2.sm' 231 0.0 1.0
+366 'SA.Peter' 'victor2.sm' 232 0.0 1.0
+367 'SA.Peter' 'victor2.sm' 233 0.0 1.0
+368 'SA.Peter' 'victor2.sf' 234 5.0 6.0
+369 'SA.Peter' 'victor2.sf' 235 5.0 6.0
+370 'SA.Peter' 'victor2.sf' 238 5.0 6.0
+371 'SA.Peter' 'victor2.sf' 239 5.0 6.0
+372 'SA.Peter' 'victor2.sf' 240 5.0 6.0
+373 'SA.Peter' 'victor2.sf' 241 5.0 6.0
+374 'SA.Peter' 'victor2.sf' 242 5.0 6.0
+375 'SA.Peter' 'victor2.sf' 245 5.0 6.0
+376 'SA.Adrian' 'alpha.sm' 3 0.0 1.0
+377 'SA.Adrian' 'alpha.sm' 4 0.0 1.0
+378 'SA.Adrian' 'alpha.sm' 7 0.0 1.0
+379 'SA.Adrian' 'alpha.sm' 8 0.0 1.0
+380 'SA.Adrian' 'alpha.sm' 9 0.0 1.0
+381 'SA.Adrian' 'alpha.sm' 10 0.0 1.0
+382 'SA.Adrian' 'alpha.sm' 11 0.0 1.0
+383 'SA.Adrian' 'alpha.sm' 14 0.0 1.0
+384 'SA.Adrian' 'alpha.sm' 15 0.0 1.0
+385 'SA.Adrian' 'alpha.sm' 16 0.0 1.0
+386 'SA.Adrian' 'alpha.sm' 17 0.0 1.0
+387 'SA.Adrian' 'alpha.sm' 18 0.0 1.0
+388 'SA.Adrian' 'alpha.sm' 21 0.0 1.0
+389 'SA.Adrian' 'alpha.sm' 22 0.0 1.0
+390 'SA.Adrian' 'alpha.sm' 23 0.0 1.0
+391 'SA.Adrian' 'alpha.sm' 24 0.0 1.0
+392 'SA.Adrian' 'alpha.sm' 25 0.0 1.0
+393 'SA.Adrian' 'alpha.sm' 28 0.0 1.0
+394 'SA.Adrian' 'alpha.sm' 29 0.0 1.0
+395 'SA.Adrian' 'alpha.sm' 30 0.0 1.0
+396 'SA.Adrian' 'alpha.sm' 31 0.0 1.0
+397 'SA.Adrian' 'alpha.sm' 32 0.0 1.0
+398 'SA.Adrian' 'alpha.sm' 35 0.0 1.0
+399 'SA.Adrian' 'alpha.sm' 36 0.0 1.0
+400 'SA.Adrian' 'alpha.sm' 37 0.0 1.0
+401 'SA.Adrian' 'alpha.sm' 38 0.0 1.0
+402 'SA.Adrian' 'alpha.sm' 39 0.0 1.0
+403 'SA.Adrian' 'alpha.sm' 42 0.0 1.0
+404 'SA.Adrian' 'alpha.sm' 43 0.0 1.0
+405 'SA.Adrian' 'alpha.sm' 44 0.0 1.0
+406 'SA.Adrian' 'alpha.sm' 45 0.0 1.0
+407 'SA.Adrian' 'alpha.sm' 46 0.0 1.0
+408 'SA.Adrian' 'alpha.sm' 49 0.0 1.0
+409 'SA.Adrian' 'alpha.sm' 50 0.0 1.0
+410 'SA.Adrian' 'alpha.sm' 51 0.0 1.0
+411 'SA.Adrian' 'alpha.sm' 52 0.0 1.0
+412 'SA.Adrian' 'alpha.sm' 53 0.0 1.0
+413 'SA.Adrian' 'alpha.sm' 56 0.0 1.0
+414 'SA.Adrian' 'alpha.sm' 57 0.0 1.0
+415 'SA.Adrian' 'alpha.sm' 58 0.0 1.0
+416 'SA.Adrian' 'alpha.sm' 59 0.0 1.0
+417 'SA.Adrian' 'alpha.sm' 60 0.0 1.0
+418 'SA.Adrian' 'alpha.sm' 63 0.0 1.0
+419 'SA.Adrian' 'alpha.sm' 64 0.0 1.0
+420 'SA.Adrian' 'alpha.sm' 65 0.0 1.0
+421 'SA.Adrian' 'alpha.sm' 66 0.0 1.0
+422 'SA.Adrian' 'alpha.sm' 67 0.0 1.0
+423 'SA.Adrian' 'alpha.sm' 70 0.0 1.0
+424 'SA.Adrian' 'alpha.sm' 71 0.0 1.0
+425 'SA.Adrian' 'alpha.sm' 72 0.0 1.0
+426 'SA.Adrian' 'alpha.sm' 73 0.0 1.0
+427 'SA.Adrian' 'alpha.sm' 74 0.0 1.0
+428 'SA.Adrian' 'alpha.sm' 77 0.0 1.0
+429 'SA.Adrian' 'alpha.sm' 78 0.0 1.0
+430 'SA.Adrian' 'alpha.sm' 79 0.0 1.0
+431 'SA.Adrian' 'alpha.sm' 80 0.0 1.0
+432 'SA.Adrian' 'alpha.sm' 81 0.0 1.0
+433 'SA.Adrian' 'alpha.sm' 84 0.0 1.0
+434 'SA.Adrian' 'alpha.sm' 85 0.0 1.0
+435 'SA.Adrian' 'alpha.sm' 86 0.0 1.0
+436 'SA.Adrian' 'alpha.sm' 87 0.0 1.0
+437 'SA.Adrian' 'alpha.sm' 88 0.0 1.0
+438 'SA.Adrian' 'alpha.sm' 91 0.0 1.0
+439 'SA.Adrian' 'alpha.sm' 92 0.0 1.0
+440 'SA.Adrian' 'alpha.sf' 93 0.0 1.0
+441 'SA.Adrian' 'alpha.sf' 94 0.0 1.0
+442 'SA.Adrian' 'alpha.sf' 95 0.0 1.0
+443 'SA.Adrian' 'alpha.sf' 98 0.0 1.0
+444 'SA.Adrian' 'alpha.sf' 99 0.0 1.0
+445 'SA.Adrian' 'alpha.sf' 100 0.0 1.0
+446 'SA.Adrian' 'alpha.sf' 101 0.0 1.0
+447 'SA.Adrian' 'alpha.sf' 102 0.0 1.0
+448 'SA.Adrian' 'alpha.sf' 105 0.0 1.0
+449 'SA.Adrian' 'alpha.sf' 106 0.0 1.0
+450 'SA.Adrian' 'alpha.sf' 107 0.0 1.0
+451 'SA.Adrian' 'alpha.sf' 108 0.0 1.0
+452 'SA.Adrian' 'alpha.sf' 109 0.0 1.0
+453 'SA.Adrian' 'alpha.sf' 112 0.0 1.0
+454 'SA.Adrian' 'alpha.sf' 113 0.0 1.0
+455 'SA.Adrian' 'alpha.sf' 114 0.0 1.0
+456 'SA.Adrian' 'alpha.sf' 115 0.0 1.0
+457 'SA.Adrian' 'alpha.sf' 116 0.0 1.0
+458 'SA.Adrian' 'alpha.sf' 119 0.0 1.0
+459 'SA.Adrian' 'alpha.sf' 120 0.0 1.0
+460 'SA.Adrian' 'alpha.sf' 121 0.0 1.0
+461 'SA.Adrian' 'alpha.sf' 123 0.0 1.0
+462 'SA.Adrian' 'beta.sm' 3 0.0 1.0
+463 'SA.Adrian' 'beta.sm' 4 0.0 1.0
+464 'SA.Adrian' 'beta.sm' 7 0.0 1.0
+465 'SA.Adrian' 'beta.sm' 8 0.0 1.0
+466 'SA.Adrian' 'beta.sm' 9 0.0 1.0
+467 'SA.Adrian' 'beta.sm' 10 0.0 1.0
+468 'SA.Adrian' 'beta.sm' 11 0.0 1.0
+469 'SA.Adrian' 'beta.sm' 14 0.0 1.0
+470 'SA.Adrian' 'beta.sm' 15 0.0 1.0
+471 'SA.Adrian' 'beta.sm' 16 0.0 1.0
+472 'SA.Adrian' 'beta.sm' 17 0.0 1.0
+473 'SA.Adrian' 'beta.sm' 18 0.0 1.0
+474 'SA.Adrian' 'beta.sm' 21 0.0 1.0
+475 'SA.Adrian' 'beta.sm' 22 0.0 1.0
+476 'SA.Adrian' 'beta.sm' 23 0.0 1.0
+477 'SA.Adrian' 'beta.sm' 24 0.0 1.0
+478 'SA.Adrian' 'beta.sm' 25 0.0 1.0
+479 'SA.Adrian' 'beta.sm' 28 0.0 1.0
+480 'SA.Adrian' 'beta.sm' 29 0.0 1.0
+481 'SA.Adrian' 'beta.sm' 30 0.0 1.0
+482 'SA.Adrian' 'beta.sm' 31 0.0 1.0
+483 'SA.Adrian' 'beta.sm' 32 0.0 1.0
+484 'SA.Adrian' 'beta.sm' 35 0.0 1.0
+485 'SA.Adrian' 'beta.sm' 36 0.0 1.0
+486 'SA.Adrian' 'beta.sm' 37 0.0 1.0
+487 'SA.Adrian' 'beta.sm' 38 0.0 1.0
+488 'SA.Adrian' 'beta.sm' 39 0.0 1.0
+489 'SA.Adrian' 'beta.sm' 42 0.0 1.0
+490 'SA.Adrian' 'beta.sm' 43 0.0 1.0
+491 'SA.Adrian' 'beta.sm' 44 0.0 1.0
+492 'SA.Adrian' 'beta.sm' 45 0.0 1.0
+493 'SA.Adrian' 'beta.sm' 46 0.0 1.0
+494 'SA.Adrian' 'beta.sm' 49 0.0 1.0
+495 'SA.Adrian' 'beta.sm' 50 0.0 1.0
+496 'SA.Adrian' 'beta.sm' 51 0.0 1.0
+497 'SA.Adrian' 'beta.sm' 52 0.0 1.0
+498 'SA.Adrian' 'beta.sm' 53 0.0 1.0
+499 'SA.Adrian' 'beta.sm' 56 0.0 1.0
+500 'SA.Adrian' 'beta.sm' 57 0.0 1.0
+501 'SA.Adrian' 'beta.sm' 58 0.0 1.0
+502 'SA.Adrian' 'beta.sm' 59 0.0 1.0
+503 'SA.Adrian' 'beta.sm' 60 0.0 1.0
+504 'SA.Adrian' 'beta.sm' 63 0.0 1.0
+505 'SA.Adrian' 'beta.sm' 64 0.0 1.0
+506 'SA.Adrian' 'beta.sm' 65 0.0 1.0
+507 'SA.Adrian' 'beta.sm' 66 0.0 1.0
+508 'SA.Adrian' 'beta.sm' 67 0.0 1.0
+509 'SA.Adrian' 'beta.sm' 70 0.0 1.0
+510 'SA.Adrian' 'beta.sm' 71 0.0 1.0
+511 'SA.Adrian' 'beta.sm' 72 0.0 1.0
+512 'SA.Adrian' 'beta.sm' 73 0.0 1.0
+513 'SA.Adrian' 'beta.sm' 74 0.0 1.0
+514 'SA.Adrian' 'beta.sm' 77 0.0 1.0
+515 'SA.Adrian' 'beta.sm' 78 0.0 1.0
+516 'SA.Adrian' 'beta.sm' 79 0.0 1.0
+517 'SA.Adrian' 'beta.sm' 80 0.0 1.0
+518 'SA.Adrian' 'beta.sm' 81 0.0 1.0
+519 'SA.Adrian' 'beta.sm' 84 0.0 1.0
+520 'SA.Adrian' 'beta.sm' 85 0.0 1.0
+521 'SA.Adrian' 'beta.sm' 86 0.0 1.0
+522 'SA.Adrian' 'beta.sm' 87 0.0 1.0
+523 'SA.Adrian' 'beta.sm' 88 0.0 1.0
+524 'SA.Adrian' 'beta.sm' 91 0.0 1.0
+525 'SA.Adrian' 'beta.sm' 92 0.0 1.0
+526 'SA.Adrian' 'beta.sm' 93 0.0 1.0
+527 'SA.Adrian' 'beta.sm' 94 0.0 1.0
+528 'SA.Adrian' 'beta.sm' 95 0.0 1.0
+529 'SA.Adrian' 'beta.sm' 98 0.0 1.0
+530 'SA.Adrian' 'beta.sm' 99 0.0 1.0
+531 'SA.Adrian' 'beta.sm' 100 0.0 1.0
+532 'SA.Adrian' 'beta.sm' 101 0.0 1.0
+533 'SA.Adrian' 'beta.sm' 102 0.0 1.0
+534 'SA.Adrian' 'beta.sm' 105 0.0 1.0
+535 'SA.Adrian' 'beta.sm' 106 0.0 1.0
+536 'SA.Adrian' 'beta.sm' 107 0.0 1.0
+537 'SA.Adrian' 'beta.sm' 108 0.0 1.0
+538 'SA.Adrian' 'beta.sm' 109 0.0 1.0
+539 'SA.Adrian' 'beta.sm' 112 0.0 1.0
+540 'SA.Adrian' 'beta.sm' 113 0.0 1.0
+541 'SA.Adrian' 'beta.sm' 114 0.0 1.0
+542 'SA.Adrian' 'beta.sm' 115 0.0 1.0
+543 'SA.Adrian' 'beta.sm' 116 0.0 1.0
+544 'SA.Adrian' 'beta.sm' 119 0.0 1.0
+545 'SA.Adrian' 'beta.sm' 120 0.0 1.0
+546 'SA.Adrian' 'beta.sm' 121 0.0 1.0
+547 'SA.Adrian' 'beta.sm' 123 0.0 1.0
+548 'SA.Adrian' 'beta.sm' 126 0.0 1.0
+549 'SA.Adrian' 'beta.sm' 127 0.0 1.0
+550 'SA.Adrian' 'beta.sm' 128 0.0 1.0
+551 'SA.Adrian' 'beta.sm' 129 0.0 1.0
+552 'SA.Adrian' 'beta.sm' 130 0.0 1.0
+553 'SA.Adrian' 'beta.sm' 133 0.0 1.0
+554 'SA.Adrian' 'beta.sm' 134 0.0 1.0
+555 'SA.Adrian' 'beta.sm' 135 0.0 1.0
+556 'SA.Adrian' 'beta.sm' 136 0.0 1.0
+557 'SA.Adrian' 'beta.sm' 137 0.0 1.0
+558 'SA.Adrian' 'beta.sm' 140 0.0 1.0
+559 'SA.Adrian' 'beta.sm' 141 0.0 1.0
+560 'SA.Adrian' 'beta.sm' 142 0.0 1.0
+561 'SA.Adrian' 'beta.sm' 143 0.0 1.0
+562 'SA.Adrian' 'beta.sm' 144 0.0 1.0
+563 'SA.Adrian' 'beta.sm' 147 0.0 1.0
+564 'SA.Adrian' 'beta.sm' 148 0.0 1.0
+565 'SA.Adrian' 'beta.sm' 149 0.0 1.0
+566 'SA.Adrian' 'beta.sm' 150 0.0 1.0
+567 'SA.Adrian' 'beta.sm' 151 0.0 1.0
+568 'SA.Adrian' 'beta.sm' 154 0.0 1.0
+569 'SA.Adrian' 'beta.sm' 155 0.0 1.0
+570 'SA.Adrian' 'beta.sm' 156 0.0 1.0
+571 'SA.Adrian' 'beta.sm' 157 0.0 1.0
+572 'SA.Adrian' 'beta.sm' 158 0.0 1.0
+573 'SA.Adrian' 'beta.sm' 161 0.0 1.0
+574 'SA.Adrian' 'beta.sm' 162 0.0 1.0
+575 'SA.Adrian' 'beta.sm' 163 0.0 1.0
+576 'SA.Adrian' 'beta.sm' 164 0.0 1.0
+577 'SA.Adrian' 'beta.sm' 165 0.0 1.0
+578 'SA.Adrian' 'beta.sm' 168 0.0 1.0
+579 'SA.Adrian' 'beta.sm' 169 0.0 1.0
+580 'SA.Adrian' 'beta.sm' 170 0.0 1.0
+581 'SA.Adrian' 'beta.sm' 171 0.0 1.0
+582 'SA.Adrian' 'beta.sm' 172 0.0 1.0
+583 'SA.Adrian' 'beta.sf' 175 0.0 1.0
+584 'SA.Adrian' 'beta.sf' 176 0.0 1.0
+585 'SA.Adrian' 'beta.sf' 177 0.0 1.0
+586 'SA.Adrian' 'beta.sf' 178 0.0 1.0
+587 'SA.Adrian' 'beta.sf' 179 0.0 1.0
+588 'SA.Adrian' 'beta.sf' 182 0.0 1.0
+589 'SA.Adrian' 'beta.sf' 183 0.0 1.0
+590 'SA.Adrian' 'beta.sf' 184 0.0 1.0
+591 'SA.Adrian' 'beta.sf' 185 0.0 1.0
+592 'SA.Adrian' 'beta.sf' 186 0.0 1.0
+593 'SA.Adrian' 'beta.sf' 189 0.0 1.0
+594 'SA.Adrian' 'beta.sf' 190 0.0 1.0
+595 'SA.Adrian' 'beta.sf' 191 0.0 1.0
+596 'SA.Adrian' 'beta.sf' 192 0.0 1.0
+597 'SA.Adrian' 'beta.sf' 193 0.0 1.0
+598 'SA.Adrian' 'beta.sf' 196 0.0 1.0
+599 'SA.Adrian' 'beta.sf' 197 0.0 1.0
+600 'SA.Adrian' 'beta.sf' 198 0.0 1.0
+601 'SA.Adrian' 'beta.sf' 199 0.0 1.0
+602 'SA.Adrian' 'beta.sf' 200 0.0 1.0
+603 'SA.Adrian' 'beta.sf' 203 0.0 1.0
+604 'SA.Adrian' 'beta.sf' 204 0.0 1.0
+605 'SA.Adrian' 'beta.sf' 205 0.0 1.0
+606 'SA.Adrian' 'beta.sf' 206 0.0 1.0
+607 'SA.Adrian' 'beta.sf' 207 0.0 1.0
+608 'SA.Adrian' 'beta.sf' 210 0.0 1.0
+609 'SA.Adrian' 'beta.sf' 211 0.0 1.0
+610 'SA.Adrian' 'beta.sf' 212 0.0 1.0
+611 'SA.Adrian' 'beta.sf' 213 0.0 1.0
+612 'SA.Adrian' 'beta.sf' 214 0.0 1.0
+613 'SA.Adrian' 'beta.sf' 217 0.0 1.0
+614 'SA.Adrian' 'beta.sf' 218 0.0 1.0
+615 'SA.Adrian' 'charlie.sm' 3 0.0 1.0
+616 'SA.Adrian' 'charlie.sm' 4 0.0 1.0
+617 'SA.Adrian' 'charlie.sm' 7 0.0 1.0
+618 'SA.Adrian' 'charlie.sm' 8 0.0 1.0
+619 'SA.Adrian' 'charlie.sm' 9 0.0 1.0
+620 'SA.Adrian' 'charlie.sm' 10 0.0 1.0
+621 'SA.Adrian' 'charlie.sm' 11 0.0 1.0
+622 'SA.Adrian' 'charlie.sm' 14 0.0 1.0
+623 'SA.Adrian' 'charlie.sm' 15 0.0 1.0
+624 'SA.Adrian' 'charlie.sm' 16 0.0 1.0
+625 'SA.Adrian' 'charlie.sm' 17 0.0 1.0
+626 'SA.Adrian' 'charlie.sm' 18 0.0 1.0
+627 'SA.Adrian' 'charlie.sm' 21 0.0 1.0
+628 'SA.Adrian' 'charlie.sm' 22 0.0 1.0
+629 'SA.Adrian' 'charlie.sm' 23 0.0 1.0
+630 'SA.Adrian' 'charlie.sm' 24 0.0 1.0
+631 'SA.Adrian' 'charlie.sm' 25 0.0 1.0
+632 'SA.Adrian' 'charlie.sm' 28 0.0 1.0
+633 'SA.Adrian' 'charlie.sm' 29 0.0 1.0
+634 'SA.Adrian' 'charlie.sm' 30 0.0 1.0
+635 'SA.Adrian' 'charlie.sm' 31 0.0 1.0
+636 'SA.Adrian' 'charlie.sm' 32 0.0 1.0
+637 'SA.Adrian' 'charlie.sm' 35 0.0 1.0
+638 'SA.Adrian' 'charlie.sm' 36 0.0 1.0
+639 'SA.Adrian' 'charlie.sm' 37 0.0 1.0
+640 'SA.Adrian' 'charlie.sm' 38 0.0 1.0
+641 'SA.Adrian' 'charlie.sm' 39 0.0 1.0
+642 'SA.Adrian' 'charlie.sm' 42 0.0 1.0
+643 'SA.Adrian' 'charlie.sm' 43 0.0 1.0
+644 'SA.Adrian' 'charlie.sm' 44 0.0 1.0
+645 'SA.Adrian' 'charlie.sm' 45 0.0 1.0
+646 'SA.Adrian' 'charlie.sm' 46 0.0 1.0
+647 'SA.Adrian' 'charlie.sm' 49 0.0 1.0
+648 'SA.Adrian' 'charlie.sm' 50 0.0 1.0
+649 'SA.Adrian' 'charlie.sm' 51 0.0 1.0
+650 'SA.Adrian' 'charlie.sm' 52 0.0 1.0
+651 'SA.Adrian' 'charlie.sm' 53 0.0 1.0
+652 'SA.Adrian' 'charlie.sm' 56 0.0 1.0
+653 'SA.Adrian' 'charlie.sm' 57 0.0 1.0
+654 'SA.Adrian' 'charlie.sm' 58 0.0 1.0
+655 'SA.Adrian' 'charlie.sm' 59 0.0 1.0
+656 'SA.Adrian' 'charlie.sm' 60 0.0 1.0
+657 'SA.Adrian' 'charlie.sm' 63 0.0 1.0
+658 'SA.Adrian' 'charlie.sm' 64 0.0 1.0
+659 'SA.Adrian' 'charlie.sm' 65 0.0 1.0
+660 'SA.Adrian' 'charlie.sm' 66 0.0 1.0
+661 'SA.Adrian' 'charlie.sm' 67 0.0 1.0
+662 'SA.Adrian' 'charlie.sm' 70 0.0 1.0
+663 'SA.Adrian' 'charlie.sm' 71 0.0 1.0
+664 'SA.Adrian' 'charlie.sm' 72 0.0 1.0
+665 'SA.Adrian' 'charlie.sm' 73 0.0 1.0
+666 'SA.Adrian' 'charlie.sm' 74 0.0 1.0
+667 'SA.Adrian' 'charlie.sm' 77 0.0 1.0
+668 'SA.Adrian' 'charlie.sm' 78 0.0 1.0
+669 'SA.Adrian' 'charlie.sm' 79 0.0 1.0
+670 'SA.Adrian' 'charlie.sm' 80 0.0 1.0
+671 'SA.Adrian' 'charlie.sm' 81 0.0 1.0
+672 'SA.Adrian' 'charlie.sm' 84 0.0 1.0
+673 'SA.Adrian' 'charlie.sm' 85 0.0 1.0
+674 'SA.Adrian' 'charlie.sm' 86 0.0 1.0
+675 'SA.Adrian' 'charlie.sm' 87 0.0 1.0
+676 'SA.Adrian' 'charlie.sm' 88 0.0 1.0
+677 'SA.Adrian' 'charlie.sm' 91 0.0 1.0
+678 'SA.Adrian' 'charlie.sm' 92 0.0 1.0
+679 'SA.Adrian' 'charlie.sm' 93 0.0 1.0
+680 'SA.Adrian' 'charlie.sm' 94 0.0 1.0
+681 'SA.Adrian' 'charlie.sm' 95 0.0 1.0
+682 'SA.Adrian' 'charlie.sm' 98 0.0 1.0
+683 'SA.Adrian' 'charlie.sm' 99 0.0 1.0
+684 'SA.Adrian' 'charlie.sm' 100 0.0 1.0
+685 'SA.Adrian' 'charlie.sm' 101 0.0 1.0
+686 'SA.Adrian' 'charlie.sm' 102 0.0 1.0
+687 'SA.Adrian' 'charlie.sm' 105 0.0 1.0
+688 'SA.Adrian' 'charlie.sm' 106 0.0 1.0
+689 'SA.Adrian' 'charlie.sm' 107 0.0 1.0
+690 'SA.Adrian' 'charlie.sm' 108 0.0 1.0
+691 'SA.Adrian' 'charlie.sm' 109 0.0 1.0
+692 'SA.Adrian' 'charlie.sm' 112 0.0 1.0
+693 'SA.Adrian' 'charlie.sm' 113 0.0 1.0
+694 'SA.Adrian' 'charlie.sm' 114 0.0 1.0
+695 'SA.Adrian' 'charlie.sm' 115 0.0 1.0
+696 'SA.Adrian' 'charlie.sm' 116 0.0 1.0
+697 'SA.Adrian' 'charlie.sm' 119 0.0 1.0
+698 'SA.Adrian' 'charlie.sm' 120 0.0 1.0
+699 'SA.Adrian' 'charlie.sm' 121 0.0 1.0
+700 'SA.Adrian' 'charlie.sm' 123 0.0 1.0
+701 'SA.Adrian' 'charlie.sm' 126 0.0 1.0
+702 'SA.Adrian' 'charlie.sm' 127 0.0 1.0
+703 'SA.Adrian' 'charlie.sm' 128 0.0 1.0
+704 'SA.Adrian' 'charlie.sm' 129 0.0 1.0
+705 'SA.Adrian' 'charlie.sm' 130 0.0 1.0
+706 'SA.Adrian' 'charlie.sm' 133 0.0 1.0
+707 'SA.Adrian' 'charlie.sm' 134 0.0 1.0
+708 'SA.Adrian' 'charlie.sm' 135 0.0 1.0
+709 'SA.Adrian' 'charlie.sm' 136 0.0 1.0
+710 'SA.Adrian' 'charlie.sm' 137 0.0 1.0
+711 'SA.Adrian' 'charlie.sm' 140 0.0 1.0
+712 'SA.Adrian' 'charlie.sm' 141 0.0 1.0
+713 'SA.Adrian' 'charlie.sm' 142 0.0 1.0
+714 'SA.Adrian' 'charlie.sm' 143 0.0 1.0
+715 'SA.Adrian' 'charlie.sm' 144 0.0 1.0
+716 'SA.Adrian' 'charlie.sm' 147 0.0 1.0
+717 'SA.Adrian' 'charlie.sm' 148 0.0 1.0
+718 'SA.Adrian' 'charlie.sm' 149 0.0 1.0
+719 'SA.Adrian' 'charlie.sm' 150 0.0 1.0
+720 'SA.Adrian' 'charlie.sm' 151 0.0 1.0
+721 'SA.Adrian' 'charlie.sm' 154 0.0 1.0
+722 'SA.Adrian' 'charlie.sm' 155 0.0 1.0
+723 'SA.Adrian' 'charlie.sm' 156 0.0 1.0
+724 'SA.Adrian' 'charlie.sm' 157 0.0 1.0
+725 'SA.Adrian' 'charlie.sf' 158 0.0 1.0
+726 'SA.Adrian' 'charlie.sf' 161 0.0 1.0
+727 'SA.Adrian' 'charlie.sf' 162 0.0 1.0
+728 'SA.Adrian' 'charlie.sf' 163 0.0 1.0
+729 'SA.Adrian' 'charlie.sf' 164 0.0 1.0
+730 'SA.Adrian' 'charlie.sf' 165 0.0 1.0
+731 'SA.Adrian' 'charlie.sf' 168 0.0 1.0
+732 'SA.Adrian' 'charlie.sf' 169 0.0 1.0
+733 'SA.Adrian' 'charlie.sf' 170 0.0 1.0
+734 'SA.Adrian' 'charlie.sf' 171 0.0 1.0
+735 'SA.Adrian' 'charlie.sf' 172 0.0 1.0
+736 'SA.Adrian' 'charlie.sf' 175 0.0 1.0
+737 'SA.Adrian' 'charlie.sf' 176 0.0 1.0
+738 'SA.Adrian' 'charlie.sf' 177 0.0 1.0
+739 'SA.Adrian' 'charlie.sf' 178 0.0 1.0
+740 'SA.Adrian' 'charlie.sf' 179 0.0 1.0
+741 'SA.Adrian' 'charlie.sf' 182 0.0 1.0
+742 'SA.Adrian' 'charlie.sf' 183 0.0 1.0
+743 'SA.Adrian' 'charlie.sf' 184 0.0 1.0
+744 'SA.Adrian' 'charlie.sf' 185 0.0 1.0
+745 'SA.Adrian' 'charlie.sf' 186 0.0 1.0
+746 'SA.Adrian' 'delta.sm' 3 0.0 1.0
+747 'SA.Adrian' 'delta.sm' 4 0.0 1.0
+748 'SA.Adrian' 'delta.sm' 7 0.0 1.0
+749 'SA.Adrian' 'delta.sm' 8 0.0 1.0
+750 'SA.Adrian' 'delta.sm' 9 0.0 1.0
+751 'SA.Adrian' 'delta.sm' 10 0.0 1.0
+752 'SA.Adrian' 'delta.sm' 11 0.0 1.0
+753 'SA.Adrian' 'delta.sm' 14 0.0 1.0
+754 'SA.Adrian' 'delta.sm' 15 0.0 1.0
+755 'SA.Adrian' 'delta.sm' 16 0.0 1.0
+756 'SA.Adrian' 'delta.sm' 17 0.0 1.0
+757 'SA.Adrian' 'delta.sm' 18 0.0 1.0
+758 'SA.Adrian' 'delta.sm' 21 0.0 1.0
+759 'SA.Adrian' 'delta.sm' 22 0.0 1.0
+760 'SA.Adrian' 'delta.sm' 23 0.0 1.0
+761 'SA.Adrian' 'delta.sm' 24 0.0 1.0
+762 'SA.Adrian' 'delta.sm' 25 0.0 1.0
+763 'SA.Adrian' 'delta.sm' 28 0.0 1.0
+764 'SA.Adrian' 'delta.sm' 29 0.0 1.0
+765 'SA.Adrian' 'delta.sm' 30 0.0 1.0
+766 'SA.Adrian' 'delta.sm' 31 0.0 1.0
+767 'SA.Adrian' 'delta.sm' 32 0.0 1.0
+768 'SA.Adrian' 'delta.sm' 35 0.0 1.0
+769 'SA.Adrian' 'delta.sm' 36 0.0 1.0
+770 'SA.Adrian' 'delta.sm' 37 0.0 1.0
+771 'SA.Adrian' 'delta.sm' 38 0.0 1.0
+772 'SA.Adrian' 'delta.sm' 39 0.0 1.0
+773 'SA.Adrian' 'delta.sm' 42 0.0 1.0
+774 'SA.Adrian' 'delta.sm' 43 0.0 1.0
+775 'SA.Adrian' 'delta.sm' 44 0.0 1.0
+776 'SA.Adrian' 'delta.sm' 45 0.0 1.0
+777 'SA.Adrian' 'delta.sm' 46 0.0 1.0
+778 'SA.Adrian' 'delta.sm' 49 0.0 1.0
+779 'SA.Adrian' 'delta.sm' 50 0.0 1.0
+780 'SA.Adrian' 'delta.sm' 51 0.0 1.0
+781 'SA.Adrian' 'delta.sm' 52 0.0 1.0
+782 'SA.Adrian' 'delta.sm' 53 0.0 1.0
+783 'SA.Adrian' 'delta.sm' 56 0.0 1.0
+784 'SA.Adrian' 'delta.sm' 57 0.0 1.0
+785 'SA.Adrian' 'delta.sf' 58 0.0 1.0
+786 'SA.Adrian' 'delta.sf' 59 0.0 1.0
+787 'SA.Adrian' 'delta.sf' 60 0.0 1.0
+788 'SA.Adrian' 'delta.sf' 63 0.0 1.0
+789 'SA.Adrian' 'delta.sf' 64 0.0 1.0
+790 'SA.Adrian' 'delta.sf' 65 0.0 1.0
+791 'SA.Adrian' 'delta.sf' 66 0.0 1.0
+792 'SA.Adrian' 'delta.sf' 67 0.0 1.0
+793 'SA.Adrian' 'delta.sf' 70 0.0 1.0
+794 'SA.Adrian' 'delta.sf' 71 0.0 1.0
+795 'SA.Adrian' 'delta.sf' 72 0.0 1.0
+796 'SA.Adrian' 'delta.sf' 73 0.0 1.0
+797 'SA.Adrian' 'delta.sf' 74 0.0 1.0
+798 'SA.Adrian' 'delta.sf' 77 0.0 1.0
+799 'SA.Adrian' 'delta.sf' 78 0.0 1.0
+800 'SA.Adrian' 'delta.sf' 79 0.0 1.0
+801 'SA.Adrian' 'delta.sf' 80 0.0 1.0
+802 'SA.Adrian' 'delta.sf' 81 0.0 1.0
+803 'SA.Adrian' 'delta.sf' 84 0.0 1.0
+804 'SA.Adrian' 'delta.sf' 85 0.0 1.0
+805 'SA.Adrian' 'delta.sf' 86 0.0 1.0
+806 'SA.Adrian' 'delta.sf' 87 0.0 1.0
+807 'SA.Adrian' 'delta.sf' 88 0.0 1.0
+808 'SA.Adrian' 'delta.sf' 91 0.0 1.0
+809 'SA.Adrian' 'delta.sf' 92 0.0 1.0
+810 'SA.Adrian' 'delta.sf' 93 0.0 1.0
+811 'SA.Adrian' 'delta.sf' 94 0.0 1.0
+812 'SA.Adrian' 'delta.sf' 95 0.0 1.0
+813 'SA.Adrian' 'delta.sf' 98 0.0 1.0
+814 'SA.Adrian' 'delta.sf' 99 0.0 1.0
+815 'SA.Adrian' 'delta.sf' 100 0.0 1.0
+816 'SA.Adrian' 'delta.sf' 101 0.0 1.0
+817 'SA.Adrian' 'delta.sf' 102 0.0 1.0
+818 'SA.Adrian' 'echo.sm' 3 0.0 1.0
+819 'SA.Adrian' 'echo.sm' 4 0.0 1.0
+820 'SA.Adrian' 'echo.sm' 7 0.0 1.0
+821 'SA.Adrian' 'echo.sm' 8 0.0 1.0
+822 'SA.Adrian' 'echo.sm' 9 0.0 1.0
+823 'SA.Adrian' 'echo.sm' 10 0.0 1.0
+824 'SA.Adrian' 'echo.sm' 11 0.0 1.0
+825 'SA.Adrian' 'echo.sm' 14 0.0 1.0
+826 'SA.Adrian' 'echo.sm' 15 0.0 1.0
+827 'SA.Adrian' 'echo.sm' 16 0.0 1.0
+828 'SA.Adrian' 'echo.sm' 17 0.0 1.0
+829 'SA.Adrian' 'echo.sm' 18 0.0 1.0
+830 'SA.Adrian' 'echo.sm' 21 0.0 1.0
+831 'SA.Adrian' 'echo.sm' 22 0.0 1.0
+832 'SA.Adrian' 'echo.sm' 23 0.0 1.0
+833 'SA.Adrian' 'echo.sm' 24 0.0 1.0
+834 'SA.Adrian' 'echo.sm' 25 0.0 1.0
+835 'SA.Adrian' 'echo.sm' 28 0.0 1.0
+836 'SA.Adrian' 'echo.sm' 29 0.0 1.0
+837 'SA.Adrian' 'echo.sm' 30 0.0 1.0
+838 'SA.Adrian' 'echo.sm' 31 0.0 1.0
+839 'SA.Adrian' 'echo.sm' 32 0.0 1.0
+840 'SA.Adrian' 'echo.sm' 35 0.0 1.0
+841 'SA.Adrian' 'echo.sm' 36 0.0 1.0
+842 'SA.Adrian' 'echo.sm' 37 0.0 1.0
+843 'SA.Adrian' 'echo.sm' 38 0.0 1.0
+844 'SA.Adrian' 'echo.sm' 39 0.0 1.0
+845 'SA.Adrian' 'echo.sm' 42 0.0 1.0
+846 'SA.Adrian' 'echo.sm' 43 0.0 1.0
+847 'SA.Adrian' 'echo.sm' 44 0.0 1.0
+848 'SA.Adrian' 'echo.sm' 45 0.0 1.0
+849 'SA.Adrian' 'echo.sm' 46 0.0 1.0
+850 'SA.Adrian' 'echo.sm' 49 0.0 1.0
+851 'SA.Adrian' 'echo.sm' 50 0.0 1.0
+852 'SA.Adrian' 'echo.sm' 51 0.0 1.0
+853 'SA.Adrian' 'echo.sm' 52 0.0 1.0
+854 'SA.Adrian' 'echo.sm' 53 0.0 1.0
+855 'SA.Adrian' 'echo.sm' 56 0.0 1.0
+856 'SA.Adrian' 'echo.sm' 57 0.0 1.0
+857 'SA.Adrian' 'echo.sm' 58 0.0 1.0
+858 'SA.Adrian' 'echo.sm' 59 0.0 1.0
+859 'SA.Adrian' 'echo.sm' 60 0.0 1.0
+860 'SA.Adrian' 'echo.sm' 63 0.0 1.0
+861 'SA.Adrian' 'echo.sm' 64 0.0 1.0
+862 'SA.Adrian' 'echo.sm' 65 0.0 1.0
+863 'SA.Adrian' 'echo.sm' 66 0.0 1.0
+864 'SA.Adrian' 'echo.sm' 67 0.0 1.0
+865 'SA.Adrian' 'echo.sm' 70 0.0 1.0
+866 'SA.Adrian' 'echo.sm' 71 0.0 1.0
+867 'SA.Adrian' 'echo.sm' 72 0.0 1.0
+868 'SA.Adrian' 'echo.sm' 73 0.0 1.0
+869 'SA.Adrian' 'echo.sm' 74 0.0 1.0
+870 'SA.Adrian' 'echo.sf' 93 1.0 2.0
+871 'SA.Adrian' 'echo.sf' 94 1.0 2.0
+872 'SA.Adrian' 'echo.sf' 95 1.0 2.0
+873 'SA.Adrian' 'echo.sf' 98 1.0 2.0
+874 'SA.Adrian' 'echo.sf' 99 1.0 2.0
+875 'SA.Adrian' 'echo.sf' 100 1.0 2.0
+876 'SA.Adrian' 'echo.sf' 101 1.0 2.0
+877 'SA.Adrian' 'echo.sf' 102 1.0 2.0
+878 'SA.Adrian' 'echo.sf' 105 1.0 2.0
+879 'SA.Adrian' 'echo.sf' 106 1.0 2.0
+880 'SA.Adrian' 'echo.sf' 107 1.0 2.0
+881 'SA.Adrian' 'echo.sf' 108 1.0 2.0
+882 'SA.Adrian' 'echo.sf' 109 1.0 2.0
+883 'SA.Adrian' 'echo.sf' 112 1.0 2.0
+884 'SA.Adrian' 'echo.sf' 113 1.0 2.0
+885 'SA.Adrian' 'echo.sf' 114 1.0 2.0
+886 'SA.Adrian' 'echo.sf' 115 1.0 2.0
+887 'SA.Adrian' 'echo.sf' 116 1.0 2.0
+888 'SA.Adrian' 'echo.sf' 119 1.0 2.0
+889 'SA.Adrian' 'echo.sf' 120 1.0 2.0
+890 'SA.Adrian' 'echo.sf' 121 1.0 2.0
+891 'SA.Adrian' 'echo.sf' 123 1.0 2.0
+892 'SA.Adrian' 'echo.sf' 126 1.0 2.0
+893 'SA.Adrian' 'echo.sf' 127 1.0 2.0
+894 'SA.Adrian' 'echo.sf' 128 1.0 2.0
+895 'SA.Adrian' 'echo.sf' 129 1.0 2.0
+896 'SA.Adrian' 'echo.sf' 130 1.0 2.0
+897 'SA.Adrian' 'echo.sf' 133 1.0 2.0
+898 'SA.Adrian' 'echo.sf' 134 1.0 2.0
+899 'SA.Adrian' 'echo.sf' 135 1.0 2.0
+900 'SA.Adrian' 'echo.sf' 136 1.0 2.0
+901 'SA.Adrian' 'echo.sf' 137 1.0 2.0
+902 'SA.Adrian' 'golf.sm' 3 0.0 1.0
+903 'SA.Adrian' 'golf.sm' 4 0.0 1.0
+904 'SA.Adrian' 'golf.sm' 7 0.0 1.0
+905 'SA.Adrian' 'golf.sm' 8 0.0 1.0
+906 'SA.Adrian' 'golf.sm' 9 0.0 1.0
+907 'SA.Adrian' 'golf.sm' 10 0.0 1.0
+908 'SA.Adrian' 'golf.sm' 11 0.0 1.0
+909 'SA.Adrian' 'golf.sm' 14 0.0 1.0
+910 'SA.Adrian' 'golf.sm' 15 0.0 1.0
+911 'SA.Adrian' 'golf.sm' 16 0.0 1.0
+912 'SA.Adrian' 'golf.sm' 17 0.0 1.0
+913 'SA.Adrian' 'golf.sm' 18 0.0 1.0
+914 'SA.Adrian' 'golf.sm' 21 0.0 1.0
+915 'SA.Adrian' 'golf.sm' 22 0.0 1.0
+916 'SA.Adrian' 'golf.sm' 23 0.0 1.0
+917 'SA.Adrian' 'golf.sm' 24 0.0 1.0
+918 'SA.Adrian' 'golf.sm' 25 0.0 1.0
+919 'SA.Adrian' 'golf.sm' 28 0.0 1.0
+920 'SA.Adrian' 'golf.sm' 29 0.0 1.0
+921 'SA.Adrian' 'golf.sm' 30 0.0 1.0
+922 'SA.Adrian' 'golf.sm' 31 0.0 1.0
+923 'SA.Adrian' 'golf.sm' 32 0.0 1.0
+924 'SA.Adrian' 'golf.sm' 35 0.0 1.0
+925 'SA.Adrian' 'golf.sm' 36 0.0 1.0
+926 'SA.Adrian' 'golf.sm' 37 0.0 1.0
+927 'SA.Adrian' 'golf.sm' 38 0.0 1.0
+928 'SA.Adrian' 'golf.sm' 39 0.0 1.0
+929 'SA.Adrian' 'golf.sm' 42 0.0 1.0
+930 'SA.Adrian' 'golf.sm' 43 0.0 1.0
+931 'SA.Adrian' 'golf.sm' 44 0.0 1.0
+932 'SA.Adrian' 'golf.sm' 45 0.0 1.0
+933 'SA.Adrian' 'golf.sm' 46 0.0 1.0
+934 'SA.Adrian' 'golf.sm' 49 0.0 1.0
+935 'SA.Adrian' 'golf.sm' 50 0.0 1.0
+936 'SA.Adrian' 'golf.sm' 51 0.0 1.0
+937 'SA.Adrian' 'golf.sm' 52 0.0 1.0
+938 'SA.Adrian' 'golf.sm' 53 0.0 1.0
+939 'SA.Adrian' 'golf.sm' 56 0.0 1.0
+940 'SA.Adrian' 'golf.sm' 57 0.0 1.0
+941 'SA.Adrian' 'golf.sm' 58 0.0 1.0
+942 'SA.Adrian' 'golf.sm' 59 0.0 1.0
+943 'SA.Adrian' 'golf.sm' 60 0.0 1.0
+944 'SA.Adrian' 'golf.sm' 63 0.0 1.0
+945 'SA.Adrian' 'golf.sm' 64 0.0 1.0
+946 'SA.Adrian' 'golf.sm' 65 0.0 1.0
+947 'SA.Adrian' 'golf.sm' 66 0.0 1.0
+948 'SA.Adrian' 'golf.sm' 67 0.0 1.0
+949 'SA.Adrian' 'golf.sm' 70 0.0 1.0
+950 'SA.Adrian' 'golf.sm' 71 0.0 1.0
+951 'SA.Adrian' 'golf.sm' 72 0.0 1.0
+952 'SA.Adrian' 'golf.sm' 73 0.0 1.0
+953 'SA.Adrian' 'golf.sm' 74 0.0 1.0
+954 'SA.Adrian' 'golf.sm' 77 0.0 1.0
+955 'SA.Adrian' 'golf.sm' 78 0.0 1.0
+956 'SA.Adrian' 'golf.sm' 79 0.0 1.0
+957 'SA.Adrian' 'golf.sm' 80 0.0 1.0
+958 'SA.Adrian' 'golf.sm' 81 0.0 1.0
+959 'SA.Adrian' 'golf.sm' 84 0.0 1.0
+960 'SA.Adrian' 'golf.sm' 85 0.0 1.0
+961 'SA.Adrian' 'golf.sm' 86 0.0 1.0
+962 'SA.Adrian' 'golf.sm' 87 0.0 1.0
+963 'SA.Adrian' 'golf.sm' 88 0.0 1.0
+964 'SA.Adrian' 'golf.sm' 91 0.0 1.0
+965 'SA.Adrian' 'golf.sm' 92 0.0 1.0
+966 'SA.Adrian' 'golf.sm' 93 0.0 1.0
+967 'SA.Adrian' 'golf.sm' 94 0.0 1.0
+968 'SA.Adrian' 'golf.sm' 95 0.0 1.0
+969 'SA.Adrian' 'golf.sm' 98 0.0 1.0
+970 'SA.Adrian' 'golf.sm' 99 0.0 1.0
+971 'SA.Adrian' 'golf.sm' 100 0.0 1.0
+972 'SA.Adrian' 'golf.sm' 101 0.0 1.0
+973 'SA.Adrian' 'golf.sm' 102 0.0 1.0
+974 'SA.Adrian' 'golf.sm' 105 0.0 1.0
+975 'SA.Adrian' 'golf.sm' 106 0.0 1.0
+976 'SA.Adrian' 'golf.sm' 107 0.0 1.0
+977 'SA.Adrian' 'golf.sm' 108 0.0 1.0
+978 'SA.Adrian' 'golf.sm' 109 0.0 1.0
+979 'SA.Adrian' 'golf.sm' 112 0.0 1.0
+980 'SA.Adrian' 'golf.sm' 113 0.0 1.0
+981 'SA.Adrian' 'golf.sm' 114 0.0 1.0
+982 'SA.Adrian' 'golf.sm' 115 0.0 1.0
+983 'SA.Adrian' 'golf.sm' 116 0.0 1.0
+984 'SA.Adrian' 'golf.sm' 119 0.0 1.0
+985 'SA.Adrian' 'golf.sm' 120 0.0 1.0
+986 'SA.Adrian' 'golf.sm' 121 0.0 1.0
+987 'SA.Adrian' 'golf.sm' 123 0.0 1.0
+988 'SA.Adrian' 'golf.sm' 126 0.0 1.0
+989 'SA.Adrian' 'golf.sm' 127 0.0 1.0
+990 'SA.Adrian' 'golf.sm' 128 0.0 1.0
+991 'SA.Adrian' 'golf.sm' 129 0.0 1.0
+992 'SA.Adrian' 'golf.sm' 130 0.0 1.0
+993 'SA.Adrian' 'golf.sm' 133 0.0 1.0
+994 'SA.Adrian' 'golf.sf' 134 0.0 1.0
+995 'SA.Adrian' 'golf.sf' 135 0.0 1.0
+996 'SA.Adrian' 'golf.sf' 136 0.0 1.0
+997 'SA.Adrian' 'golf.sf' 137 0.0 1.0
+998 'SA.Adrian' 'golf.sf' 140 0.0 1.0
+999 'SA.Adrian' 'golf.sf' 141 0.0 1.0
+1000 'SA.Adrian' 'golf.sf' 142 0.0 1.0
+1001 'SA.Adrian' 'golf.sf' 143 0.0 1.0
+1002 'SA.Adrian' 'golf.sf' 144 0.0 1.0
+1003 'SA.Adrian' 'golf.sf' 147 0.0 1.0
+1004 'SA.Adrian' 'golf.sf' 148 0.0 1.0
+1005 'SA.Adrian' 'golf.sf' 149 0.0 1.0
+1006 'SA.Adrian' 'golf.sf' 150 0.0 1.0
+1007 'SA.Adrian' 'golf.sf' 151 0.0 1.0
+1008 'SA.Adrian' 'golf.sf' 154 0.0 1.0
+1009 'SA.Adrian' 'golf.sf' 155 0.0 1.0
+1010 'SA.Adrian' 'golf.sf' 156 0.0 1.0
+1011 'SA.Adrian' 'golf.sf' 157 0.0 1.0
+1012 'SA.Adrian' 'golf.sf' 158 0.0 1.0
+1013 'SA.Adrian' 'golf.sf' 161 0.0 1.0
+1014 'SA.Adrian' 'golf.sf' 162 0.0 1.0
+1015 'SA.Adrian' 'golf.sf' 163 0.0 1.0
+1016 'SA.Adrian' 'golf.sf' 164 0.0 1.0
+1017 'SA.Adrian' 'golf.sf' 165 0.0 1.0
+1018 'SA.Adrian' 'golf.sf' 168 0.0 1.0
+1019 'SA.Adrian' 'golf.sf' 169 0.0 1.0
+1020 'SA.Adrian' 'golf.sf' 170 0.0 1.0
+1021 'SA.Adrian' 'golf.sf' 171 0.0 1.0
+1022 'SA.Adrian' 'golf.sf' 172 0.0 1.0
+1023 'SA.Adrian' 'golf.sf' 175 0.0 1.0
+1024 'SA.Adrian' 'golf.sf' 176 0.0 1.0
+1025 'SA.Adrian' 'golf.sf' 177 0.0 1.0
+1026 'SA.Adrian' 'golf.sf' 178 0.0 1.0
+1027 'SA.Adrian' 'golf.sf' 179 0.0 1.0
+1028 'SA.Adrian' 'kilo.se' 63 3.0 4.0
+1029 'SA.Adrian' 'kilo.se' 64 3.0 4.0
+1030 'SA.Adrian' 'kilo.se' 65 3.0 4.0
+1031 'SA.Adrian' 'kilo.se' 66 3.0 4.0
+1032 'SA.Adrian' 'kilo.se' 67 3.0 4.0
+1033 'SA.Adrian' 'kilo.se' 70 3.0 4.0
+1034 'SA.Adrian' 'kilo.se' 71 3.0 4.0
+1035 'SA.Adrian' 'kilo.se' 72 3.0 4.0
+1036 'SA.Adrian' 'kilo.se' 73 3.0 4.0
+1037 'SA.Adrian' 'kilo.se' 74 3.0 4.0
+1038 'SA.Adrian' 'kilo.se' 77 3.0 4.0
+1039 'SA.Adrian' 'kilo.se' 78 3.0 4.0
+1040 'SA.Adrian' 'kilo.se' 79 3.0 4.0
+1041 'SA.Adrian' 'kilo.se' 80 3.0 4.0
+1042 'SA.Adrian' 'kilo.se' 81 3.0 4.0
+1043 'SA.Adrian' 'kilo.se' 84 3.0 4.0
+1044 'SA.Adrian' 'kilo.sm' 85 0.0 1.0
+1045 'SA.Adrian' 'kilo.sm' 86 0.0 1.0
+1046 'SA.Adrian' 'kilo.sm' 87 0.0 1.0
+1047 'SA.Adrian' 'kilo.sm' 88 0.0 1.0
+1048 'SA.Adrian' 'kilo.sm' 91 0.0 1.0
+1049 'SA.Adrian' 'kilo.sm' 92 0.0 1.0
+1050 'SA.Adrian' 'kilo.sm' 93 0.0 1.0
+1051 'SA.Adrian' 'kilo.sm' 94 0.0 1.0
+1052 'SA.Adrian' 'kilo.sm' 95 0.0 1.0
+1053 'SA.Adrian' 'kilo.sm' 98 0.0 1.0
+1054 'SA.Adrian' 'kilo.sm' 99 0.0 1.0
+1055 'SA.Adrian' 'kilo.sm' 100 0.0 1.0
+1056 'SA.Adrian' 'kilo.sm' 101 0.0 1.0
+1057 'SA.Adrian' 'kilo.sm' 102 0.0 1.0
+1058 'SA.Adrian' 'kilo.sm' 105 0.0 1.0
+1059 'SA.Adrian' 'kilo.sm' 106 0.0 1.0
+1060 'SA.Adrian' 'kilo.sm' 107 0.0 1.0
+1061 'SA.Adrian' 'kilo.sm' 108 0.0 1.0
+1062 'SA.Adrian' 'kilo.sm' 109 0.0 1.0
+1063 'SA.Adrian' 'kilo.sm' 112 0.0 1.0
+1064 'SA.Adrian' 'kilo.sm' 113 0.0 1.0
+1065 'SA.Adrian' 'kilo.sm' 114 0.0 1.0
+1066 'SA.Adrian' 'kilo.sm' 115 0.0 1.0
+1067 'SA.Adrian' 'kilo.sm' 116 0.0 1.0
+1068 'SA.Adrian' 'kilo.sm' 119 0.0 1.0
+1069 'SA.Adrian' 'kilo.sm' 120 0.0 1.0
+1070 'SA.Adrian' 'kilo.sm' 121 0.0 1.0
+1071 'SA.Adrian' 'kilo.sm' 123 0.0 1.0
+1072 'SA.Adrian' 'kilo.sm' 126 0.0 1.0
+1073 'SA.Adrian' 'kilo.sm' 127 0.0 1.0
+1074 'SA.Adrian' 'kilo.sm' 128 0.0 1.0
+1075 'SA.Adrian' 'kilo.sm' 129 0.0 1.0
+1076 'SA.Adrian' 'kilo.sm' 130 0.0 1.0
+1077 'SA.Adrian' 'kilo.sm' 133 0.0 1.0
+1078 'SA.Adrian' 'kilo.sm' 134 0.0 1.0
+1079 'SA.Adrian' 'kilo.sm' 135 0.0 1.0
+1080 'SA.Adrian' 'kilo.sm' 136 0.0 1.0
+1081 'SA.Adrian' 'kilo.sm' 137 0.0 1.0
+1082 'SA.Adrian' 'kilo.sm' 140 0.0 1.0
+1083 'SA.Adrian' 'kilo.sm' 141 0.0 1.0
+1084 'SA.Adrian' 'kilo.sm' 142 0.0 1.0
+1085 'SA.Adrian' 'kilo.sm' 143 0.0 1.0
+1086 'SA.Adrian' 'kilo.sm' 144 0.0 1.0
+1087 'SA.Adrian' 'kilo.sm' 147 0.0 1.0
+1088 'SA.Adrian' 'kilo.sm' 148 0.0 1.0
+1089 'SA.Adrian' 'kilo.sm' 149 0.0 1.0
+1090 'SA.Adrian' 'kilo.sm' 150 0.0 1.0
+1091 'SA.Adrian' 'kilo.sm' 151 0.0 1.0
+1092 'SA.Adrian' 'kilo.sm' 154 0.0 1.0
+1093 'SA.Adrian' 'kilo.sm' 155 0.0 1.0
+1094 'SA.Adrian' 'kilo.sm' 156 0.0 1.0
+1095 'SA.Adrian' 'kilo.sm' 157 0.0 1.0
+1096 'SA.Adrian' 'kilo.sm' 158 0.0 1.0
+1097 'SA.Adrian' 'kilo.sm' 161 0.0 1.0
+1098 'SA.Adrian' 'kilo.sm' 162 0.0 1.0
+1099 'SA.Adrian' 'kilo.sm' 163 0.0 1.0
+1100 'SA.Adrian' 'kilo.sm' 164 0.0 1.0
+1101 'SA.Adrian' 'kilo.sm' 165 0.0 1.0
+1102 'SA.Adrian' 'kilo.sm' 168 0.0 1.0
+1103 'SA.Adrian' 'kilo.sm' 169 0.0 1.0
+1104 'SA.Adrian' 'kilo.sm' 170 0.0 1.0
+1105 'SA.Adrian' 'kilo.sm' 171 0.0 1.0
+1106 'SA.Adrian' 'kilo.sm' 172 0.0 1.0
+1107 'SA.Adrian' 'kilo.sm' 175 0.0 1.0
+1108 'SA.Adrian' 'kilo.sm' 176 0.0 1.0
+1109 'SA.Adrian' 'kilo.sm' 177 0.0 1.0
+1110 'SA.Adrian' 'kilo.sm' 178 0.0 1.0
+1111 'SA.Adrian' 'kilo.sm' 179 0.0 1.0
+1112 'SA.Adrian' 'kilo.sm' 182 0.0 1.0
+1113 'SA.Adrian' 'kilo.sm' 183 0.0 1.0
+1114 'SA.Adrian' 'kilo.sm' 184 0.0 1.0
+1115 'SA.Adrian' 'kilo.sm' 185 0.0 1.0
+1116 'SA.Adrian' 'kilo.sm' 186 0.0 1.0
+1117 'SA.Adrian' 'kilo.sm' 189 0.0 1.0
+1118 'SA.Adrian' 'kilo.sm' 190 0.0 1.0
+1119 'SA.Adrian' 'kilo.sm' 191 0.0 1.0
+1120 'SA.Adrian' 'kilo.sm' 192 0.0 1.0
+1121 'SA.Adrian' 'kilo.sm' 193 0.0 1.0
+1122 'SA.Adrian' 'kilo.sm' 196 0.0 1.0
+1123 'SA.Adrian' 'kilo.sm' 197 0.0 1.0
+1124 'SA.Adrian' 'kilo.sm' 198 0.0 1.0
+1125 'SA.Adrian' 'kilo.sm' 199 0.0 1.0
+1126 'SA.Adrian' 'kilo.sm' 200 0.0 1.0
+1127 'SA.Adrian' 'kilo.sm' 203 0.0 1.0
+1128 'SA.Adrian' 'kilo.sm' 204 0.0 1.0
+1129 'SA.Adrian' 'kilo.sm' 205 0.0 1.0
+1130 'SA.Adrian' 'kilo.sm' 206 0.0 1.0
+1131 'SA.Adrian' 'kilo.sm' 207 0.0 1.0
+1132 'SA.Adrian' 'kilo.sm' 210 0.0 1.0
+1133 'SA.Adrian' 'kilo.sm' 211 0.0 1.0
+1134 'SA.Adrian' 'kilo.sm' 212 0.0 1.0
+1135 'SA.Adrian' 'kilo.sm' 213 0.0 1.0
+1136 'SA.Adrian' 'kilo.sm' 214 0.0 1.0
+1137 'SA.Adrian' 'kilo.sf' 217 0.0 1.0
+1138 'SA.Adrian' 'kilo.sf' 218 0.0 1.0
+1139 'SA.Adrian' 'kilo.sf' 219 0.0 1.0
+1140 'SA.Adrian' 'kilo.sf' 220 0.0 1.0
+1141 'SA.Adrian' 'kilo.sf' 221 0.0 1.0
+1142 'SA.Adrian' 'kilo.sf' 224 0.0 1.0
+1143 'SA.Adrian' 'kilo.sf' 225 0.0 1.0
+1144 'SA.Adrian' 'kilo.sf' 226 0.0 1.0
+1145 'SA.Adrian' 'kilo.sf' 227 0.0 1.0
+1146 'SA.Adrian' 'kilo.sf' 228 0.0 1.0
+1147 'SA.Adrian' 'kilo.sf' 231 0.0 1.0
+1148 'SA.Adrian' 'kilo.sf' 232 0.0 1.0
+1149 'SA.Adrian' 'kilo.sf' 233 0.0 1.0
+1150 'SA.Adrian' 'kilo.sf' 234 0.0 1.0
+1151 'SA.Adrian' 'kilo.sf' 235 0.0 1.0
+1152 'SA.Adrian' 'kilo.sf' 238 0.0 1.0
+1153 'SA.Adrian' 'kilo.sf' 239 0.0 1.0
+1154 'SA.Adrian' 'kilo.sf' 240 0.0 1.0
+1155 'SA.Adrian' 'kilo.sf' 241 0.0 1.0
+1156 'SA.Adrian' 'kilo.sf' 242 0.0 1.0
+1157 'SA.Adrian' 'kilo.sf' 245 0.0 1.0
+1158 'SA.Adrian' 'kilo.sf' 246 0.0 1.0
+1159 'SA.Adrian' 'kilo.sf' 247 0.0 1.0
+1160 'SA.Adrian' 'kilo.sf' 248 0.0 1.0
+1161 'SA.Adrian' 'kilo.sf' 249 0.0 1.0
+1162 'SA.Adrian' 'kilo.sf' 252 0.0 1.0
+1163 'SA.Adrian' 'kilo.sf' 253 0.0 1.0
+1164 'SA.Adrian' 'kilo.sf' 254 0.0 1.0
+1165 'SA.Adrian' 'kilo.sf' 255 0.0 1.0
+1166 'SA.Adrian' 'kilo.sf' 256 0.0 1.0
+1167 'SA.Adrian' 'kilo.sf' 259 0.0 1.0
+1168 'SA.Adrian' 'kilo.sf' 260 0.0 1.0
+1169 'SA.Adrian' 'lima.se' 81 6.0 7.0
+1170 'SA.Adrian' 'lima.se' 84 6.0 7.0
+1171 'SA.Adrian' 'lima.se' 85 6.0 7.0
+1172 'SA.Adrian' 'lima.se' 86 6.0 7.0
+1173 'SA.Adrian' 'lima.se' 87 6.0 7.0
+1174 'SA.Adrian' 'lima.se' 88 6.0 7.0
+1175 'SA.Adrian' 'lima.se' 91 6.0 7.0
+1176 'SA.Adrian' 'lima.se' 92 6.0 7.0
+1177 'SA.Adrian' 'lima.se' 93 6.0 7.0
+1178 'SA.Adrian' 'lima.se' 94 6.0 7.0
+1179 'SA.Adrian' 'lima.se' 95 6.0 7.0
+1180 'SA.Adrian' 'lima.se' 98 6.0 7.0
+1181 'SA.Adrian' 'lima.se' 99 6.0 7.0
+1182 'SA.Adrian' 'lima.se' 100 6.0 7.0
+1183 'SA.Adrian' 'lima.se' 101 6.0 7.0
+1184 'SA.Adrian' 'lima.se' 102 6.0 7.0
+1185 'SA.Adrian' 'lima.se' 105 6.0 7.0
+1186 'SA.Adrian' 'lima.se' 106 6.0 7.0
+1187 'SA.Adrian' 'lima.se' 107 6.0 7.0
+1188 'SA.Adrian' 'lima.se' 108 6.0 7.0
+1189 'SA.Adrian' 'lima.se' 109 6.0 7.0
+1190 'SA.Adrian' 'lima.sm' 112 0.0 1.0
+1191 'SA.Adrian' 'lima.sm' 113 0.0 1.0
+1192 'SA.Adrian' 'lima.sm' 114 0.0 1.0
+1193 'SA.Adrian' 'lima.sm' 115 0.0 1.0
+1194 'SA.Adrian' 'lima.sm' 116 0.0 1.0
+1195 'SA.Adrian' 'lima.sm' 119 0.0 1.0
+1196 'SA.Adrian' 'lima.sm' 120 0.0 1.0
+1197 'SA.Adrian' 'lima.sm' 121 0.0 1.0
+1198 'SA.Adrian' 'lima.sm' 123 0.0 1.0
+1199 'SA.Adrian' 'lima.sm' 126 0.0 1.0
+1200 'SA.Adrian' 'lima.sm' 127 0.0 1.0
+1201 'SA.Adrian' 'lima.sm' 128 0.0 1.0
+1202 'SA.Adrian' 'lima.sm' 129 0.0 1.0
+1203 'SA.Adrian' 'lima.sm' 130 0.0 1.0
+1204 'SA.Adrian' 'lima.sm' 133 0.0 1.0
+1205 'SA.Adrian' 'lima.sm' 134 0.0 1.0
+1206 'SA.Adrian' 'lima.sm' 135 0.0 1.0
+1207 'SA.Adrian' 'lima.sm' 136 0.0 1.0
+1208 'SA.Adrian' 'lima.sm' 137 0.0 1.0
+1209 'SA.Adrian' 'lima.sm' 140 0.0 1.0
+1210 'SA.Adrian' 'lima.sm' 141 0.0 1.0
+1211 'SA.Adrian' 'lima.sm' 142 0.0 1.0
+1212 'SA.Adrian' 'lima.sm' 143 0.0 1.0
+1213 'SA.Adrian' 'lima.sm' 144 0.0 1.0
+1214 'SA.Adrian' 'lima.sm' 147 0.0 1.0
+1215 'SA.Adrian' 'lima.sm' 148 0.0 1.0
+1216 'SA.Adrian' 'lima.sm' 149 0.0 1.0
+1217 'SA.Adrian' 'lima.sm' 150 0.0 1.0
+1218 'SA.Adrian' 'lima.sm' 151 0.0 1.0
+1219 'SA.Adrian' 'lima.sm' 154 0.0 1.0
+1220 'SA.Adrian' 'lima.sm' 155 0.0 1.0
+1221 'SA.Adrian' 'lima.sm' 156 0.0 1.0
+1222 'SA.Adrian' 'lima.sm' 157 0.0 1.0
+1223 'SA.Adrian' 'lima.sm' 158 0.0 1.0
+1224 'SA.Adrian' 'lima.sm' 161 0.0 1.0
+1225 'SA.Adrian' 'lima.sm' 162 0.0 1.0
+1226 'SA.Adrian' 'lima.sm' 163 0.0 1.0
+1227 'SA.Adrian' 'lima.sm' 164 0.0 1.0
+1228 'SA.Adrian' 'lima.sm' 165 0.0 1.0
+1229 'SA.Adrian' 'lima.sm' 168 0.0 1.0
+1230 'SA.Adrian' 'lima.sm' 169 0.0 1.0
+1231 'SA.Adrian' 'lima.sm' 170 0.0 1.0
+1232 'SA.Adrian' 'lima.sm' 171 0.0 1.0
+1233 'SA.Adrian' 'lima.sm' 172 0.0 1.0
+1234 'SA.Adrian' 'lima.sm' 175 0.0 1.0
+1235 'SA.Adrian' 'lima.sm' 176 0.0 1.0
+1236 'SA.Adrian' 'lima.sm' 177 0.0 1.0
+1237 'SA.Adrian' 'lima.sm' 178 0.0 1.0
+1238 'SA.Adrian' 'lima.sm' 179 0.0 1.0
+1239 'SA.Adrian' 'lima.sm' 182 0.0 1.0
+1240 'SA.Adrian' 'lima.sm' 183 0.0 1.0
+1241 'SA.Adrian' 'lima.sm' 184 0.0 1.0
+1242 'SA.Adrian' 'lima.sm' 185 0.0 1.0
+1243 'SA.Adrian' 'lima.sm' 186 0.0 1.0
+1244 'SA.Adrian' 'lima.sm' 189 0.0 1.0
+1245 'SA.Adrian' 'lima.sm' 190 0.0 1.0
+1246 'SA.Adrian' 'lima.sm' 191 0.0 1.0
+1247 'SA.Adrian' 'lima.sm' 192 0.0 1.0
+1248 'SA.Adrian' 'lima.sm' 193 0.0 1.0
+1249 'SA.Adrian' 'lima.sm' 196 0.0 1.0
+1250 'SA.Adrian' 'lima.sm' 197 0.0 1.0
+1251 'SA.Adrian' 'lima.sm' 198 0.0 1.0
+1252 'SA.Adrian' 'lima.sm' 199 0.0 1.0
+1253 'SA.Adrian' 'lima.sm' 200 0.0 1.0
+1254 'SA.Adrian' 'lima.sm' 203 0.0 1.0
+1255 'SA.Adrian' 'lima.sm' 204 0.0 1.0
+1256 'SA.Adrian' 'lima.sm' 205 0.0 1.0
+1257 'SA.Adrian' 'lima.sm' 206 0.0 1.0
+1258 'SA.Adrian' 'lima.sm' 207 0.0 1.0
+1259 'SA.Adrian' 'lima.sm' 210 0.0 1.0
+1260 'SA.Adrian' 'lima.sm' 211 0.0 1.0
+1261 'SA.Adrian' 'lima.sm' 212 0.0 1.0
+1262 'SA.Adrian' 'lima.sm' 213 0.0 1.0
+1263 'SA.Adrian' 'lima.sm' 214 0.0 1.0
+1264 'SA.Adrian' 'lima.sm' 217 0.0 1.0
+1265 'SA.Adrian' 'lima.sm' 218 0.0 1.0
+1266 'SA.Adrian' 'lima.sm' 219 0.0 1.0
+1267 'SA.Adrian' 'lima.sm' 220 0.0 1.0
+1268 'SA.Adrian' 'lima.sm' 221 0.0 1.0
+1269 'SA.Adrian' 'lima.sm' 224 0.0 1.0
+1270 'SA.Adrian' 'lima.sm' 225 0.0 1.0
+1271 'SA.Adrian' 'lima.sm' 226 0.0 1.0
+1272 'SA.Adrian' 'lima.sm' 227 0.0 1.0
+1273 'SA.Adrian' 'lima.sm' 228 0.0 1.0
+1274 'SA.Adrian' 'lima.sm' 231 0.0 1.0
+1275 'SA.Adrian' 'lima.sm' 232 0.0 1.0
+1276 'SA.Adrian' 'lima.sm' 233 0.0 1.0
+1277 'SA.Adrian' 'lima.sm' 234 0.0 1.0
+1278 'SA.Adrian' 'lima.sm' 235 0.0 1.0
+1279 'SA.Adrian' 'lima.sm' 238 0.0 1.0
+1280 'SA.Adrian' 'lima.sm' 239 0.0 1.0
+1281 'SA.Adrian' 'lima.sm' 240 0.0 1.0
+1282 'SA.Adrian' 'lima.sm' 241 0.0 1.0
+1283 'SA.Adrian' 'lima.sm' 242 0.0 1.0
+1284 'SA.Adrian' 'lima.sm' 245 0.0 1.0
+1285 'SA.Adrian' 'lima.sm' 246 0.0 1.0
+1286 'SA.Adrian' 'lima.sm' 247 0.0 1.0
+1287 'SA.Adrian' 'lima.sm' 248 0.0 1.0
+1288 'SA.Adrian' 'lima.sm' 249 0.0 1.0
+1289 'SA.Adrian' 'lima.sm' 252 0.0 1.0
+1290 'SA.Adrian' 'lima.sm' 253 0.0 1.0
+1291 'SA.Adrian' 'lima.sm' 254 0.0 1.0
+1292 'SA.Adrian' 'lima.sm' 255 0.0 1.0
+1293 'SA.Adrian' 'lima.sm' 256 0.0 1.0
+1294 'SA.Adrian' 'lima.sm' 259 0.0 1.0
+1295 'SA.Adrian' 'lima.sm' 260 0.0 1.0
+1296 'SA.Adrian' 'lima.sm' 261 0.0 1.0
+1297 'SA.Adrian' 'lima.sm' 262 0.0 1.0
+1298 'SA.Adrian' 'lima.sm' 263 0.0 1.0
+1299 'SA.Adrian' 'lima.sm' 266 0.0 1.0
+1300 'SA.Adrian' 'lima.sm' 267 0.0 1.0
+1301 'SA.Adrian' 'lima.sm' 268 0.0 1.0
+1302 'SA.Adrian' 'lima.sm' 269 0.0 1.0
+1303 'SA.Adrian' 'lima.sm' 270 0.0 1.0
+1304 'SA.Adrian' 'lima.sm' 273 0.0 1.0
+1305 'SA.Adrian' 'lima.sm' 274 0.0 1.0
+1306 'SA.Adrian' 'lima.sm' 275 0.0 1.0
+1307 'SA.Adrian' 'lima.sm' 276 0.0 1.0
+1308 'SA.Adrian' 'lima.sm' 277 0.0 1.0
+1309 'SA.Adrian' 'lima.sm' 280 0.0 1.0
+1310 'SA.Adrian' 'lima.sm' 281 0.0 1.0
+1311 'SA.Adrian' 'lima.sm' 282 0.0 1.0
+1312 'SA.Adrian' 'lima.sm' 283 0.0 1.0
+1313 'SA.Adrian' 'lima.sm' 284 0.0 1.0
+1314 'SA.Adrian' 'lima.sm' 287 0.0 1.0
+1315 'SA.Adrian' 'lima.sm' 288 0.0 1.0
+1316 'SA.Adrian' 'lima.sm' 289 0.0 1.0
+1317 'SA.Adrian' 'lima.sm' 290 0.0 1.0
+1318 'SA.Adrian' 'lima.sm' 291 0.0 1.0
+1319 'SA.Adrian' 'lima.sm' 294 0.0 1.0
+1320 'SA.Adrian' 'lima.sm' 295 0.0 1.0
+1321 'SA.Adrian' 'lima.sm' 296 0.0 1.0
+1322 'SA.Adrian' 'lima.sm' 297 0.0 1.0
+1323 'SA.Adrian' 'lima.sm' 298 0.0 1.0
+1324 'SA.Adrian' 'lima.sm' 301 0.0 1.0
+1325 'SA.Adrian' 'lima.sm' 302 0.0 1.0
+1326 'SA.Adrian' 'lima.sm' 303 0.0 1.0
+1327 'SA.Adrian' 'lima.sm' 304 0.0 1.0
+1328 'SA.Adrian' 'lima.sm' 305 0.0 1.0
+1329 'SA.Adrian' 'lima.sf' 308 1.0 2.0
+1330 'SA.Adrian' 'lima.sf' 309 1.0 2.0
+1331 'SA.Adrian' 'lima.sf' 310 1.0 2.0
+1332 'SA.Adrian' 'lima.sf' 311 1.0 2.0
+1333 'SA.Adrian' 'lima.sf' 312 1.0 2.0
+1334 'SA.Adrian' 'lima.sf' 315 1.0 2.0
+1335 'SA.Adrian' 'lima.sf' 316 1.0 2.0
+1336 'SA.Adrian' 'lima.sf' 317 1.0 2.0
+1337 'SA.Adrian' 'lima.sf' 318 1.0 2.0
+1338 'SA.Adrian' 'lima.sf' 319 1.0 2.0
+1339 'SA.Adrian' 'lima.sf' 322 1.0 2.0
+1340 'SA.Adrian' 'lima.sf' 323 1.0 2.0
+1341 'SA.Adrian' 'lima.sf' 324 1.0 2.0
+1342 'SA.Adrian' 'lima.sf' 325 1.0 2.0
+1343 'SA.Adrian' 'lima.sf' 326 1.0 2.0
+1344 'SA.Adrian' 'lima.sf' 329 1.0 2.0
+1345 'SA.Adrian' 'lima.sf' 330 1.0 2.0
+1346 'SA.Adrian' 'lima.sf' 331 1.0 2.0
+1347 'SA.Adrian' 'lima.sf' 332 1.0 2.0
+1348 'SA.Adrian' 'lima.sf' 333 1.0 2.0
+1349 'SA.Adrian' 'mike.se' 81 2.0 3.0
+1350 'SA.Adrian' 'mike.se' 84 2.0 3.0
+1351 'SA.Adrian' 'mike.se' 85 2.0 3.0
+1352 'SA.Adrian' 'mike.se' 86 2.0 3.0
+1353 'SA.Adrian' 'mike.se' 87 2.0 3.0
+1354 'SA.Adrian' 'mike.se' 88 2.0 3.0
+1355 'SA.Adrian' 'mike.se' 91 2.0 3.0
+1356 'SA.Adrian' 'mike.se' 92 2.0 3.0
+1357 'SA.Adrian' 'mike.se' 93 2.0 3.0
+1358 'SA.Adrian' 'mike.se' 94 2.0 3.0
+1359 'SA.Adrian' 'mike.se' 95 2.0 3.0
+1360 'SA.Adrian' 'mike.se' 98 2.0 3.0
+1361 'SA.Adrian' 'mike.se' 99 2.0 3.0
+1362 'SA.Adrian' 'mike.se' 100 2.0 3.0
+1363 'SA.Adrian' 'mike.se' 101 2.0 3.0
+1364 'SA.Adrian' 'mike.se' 102 2.0 3.0
+1365 'SA.Adrian' 'mike.se' 105 2.0 3.0
+1366 'SA.Adrian' 'mike.se' 106 2.0 3.0
+1367 'SA.Adrian' 'mike.se' 107 2.0 3.0
+1368 'SA.Adrian' 'mike.se' 108 2.0 3.0
+1369 'SA.Adrian' 'mike.se' 109 2.0 3.0
+1370 'SA.Adrian' 'mike.sm' 112 0.0 1.0
+1371 'SA.Adrian' 'mike.sm' 113 0.0 1.0
+1372 'SA.Adrian' 'mike.sm' 114 0.0 1.0
+1373 'SA.Adrian' 'mike.sm' 115 0.0 1.0
+1374 'SA.Adrian' 'mike.sm' 116 0.0 1.0
+1375 'SA.Adrian' 'mike.sm' 119 0.0 1.0
+1376 'SA.Adrian' 'mike.sm' 120 0.0 1.0
+1377 'SA.Adrian' 'mike.sm' 121 0.0 1.0
+1378 'SA.Adrian' 'mike.sm' 123 0.0 1.0
+1379 'SA.Adrian' 'mike.sm' 126 0.0 1.0
+1380 'SA.Adrian' 'mike.sm' 127 0.0 1.0
+1381 'SA.Adrian' 'mike.sm' 128 0.0 1.0
+1382 'SA.Adrian' 'mike.sm' 129 0.0 1.0
+1383 'SA.Adrian' 'mike.sm' 130 0.0 1.0
+1384 'SA.Adrian' 'mike.sm' 133 0.0 1.0
+1385 'SA.Adrian' 'mike.sm' 134 0.0 1.0
+1386 'SA.Adrian' 'mike.sm' 135 0.0 1.0
+1387 'SA.Adrian' 'mike.sm' 136 0.0 1.0
+1388 'SA.Adrian' 'mike.sm' 137 0.0 1.0
+1389 'SA.Adrian' 'mike.sm' 140 0.0 1.0
+1390 'SA.Adrian' 'mike.sm' 141 0.0 1.0
+1391 'SA.Adrian' 'mike.sm' 142 0.0 1.0
+1392 'SA.Adrian' 'mike.sm' 143 0.0 1.0
+1393 'SA.Adrian' 'mike.sm' 144 0.0 1.0
+1394 'SA.Adrian' 'mike.sm' 147 0.0 1.0
+1395 'SA.Adrian' 'mike.sm' 148 0.0 1.0
+1396 'SA.Adrian' 'mike.sm' 149 0.0 1.0
+1397 'SA.Adrian' 'mike.sm' 150 0.0 1.0
+1398 'SA.Adrian' 'mike.sm' 151 0.0 1.0
+1399 'SA.Adrian' 'mike.sm' 154 0.0 1.0
+1400 'SA.Adrian' 'mike.sm' 155 0.0 1.0
+1401 'SA.Adrian' 'mike.sm' 156 0.0 1.0
+1402 'SA.Adrian' 'mike.sm' 157 0.0 1.0
+1403 'SA.Adrian' 'mike.sm' 158 0.0 1.0
+1404 'SA.Adrian' 'mike.sm' 161 0.0 1.0
+1405 'SA.Adrian' 'mike.sm' 162 0.0 1.0
+1406 'SA.Adrian' 'mike.sm' 163 0.0 1.0
+1407 'SA.Adrian' 'mike.sm' 164 0.0 1.0
+1408 'SA.Adrian' 'mike.sm' 165 0.0 1.0
+1409 'SA.Adrian' 'mike.sm' 168 0.0 1.0
+1410 'SA.Adrian' 'mike.sm' 169 0.0 1.0
+1411 'SA.Adrian' 'mike.sm' 170 0.0 1.0
+1412 'SA.Adrian' 'mike.sm' 171 0.0 1.0
+1413 'SA.Adrian' 'mike.sm' 172 0.0 1.0
+1414 'SA.Adrian' 'mike.sm' 175 0.0 1.0
+1415 'SA.Adrian' 'mike.sm' 176 0.0 1.0
+1416 'SA.Adrian' 'mike.sm' 177 0.0 1.0
+1417 'SA.Adrian' 'mike.sm' 178 0.0 1.0
+1418 'SA.Adrian' 'mike.sm' 179 0.0 1.0
+1419 'SA.Adrian' 'mike.sm' 182 0.0 1.0
+1420 'SA.Adrian' 'mike.sm' 183 0.0 1.0
+1421 'SA.Adrian' 'mike.sm' 184 0.0 1.0
+1422 'SA.Adrian' 'mike.sm' 185 0.0 1.0
+1423 'SA.Adrian' 'mike.sm' 186 0.0 1.0
+1424 'SA.Adrian' 'mike.sm' 189 0.0 1.0
+1425 'SA.Adrian' 'mike.sm' 190 0.0 1.0
+1426 'SA.Adrian' 'mike.sm' 191 0.0 1.0
+1427 'SA.Adrian' 'mike.sm' 192 0.0 1.0
+1428 'SA.Adrian' 'mike.sm' 193 0.0 1.0
+1429 'SA.Adrian' 'mike.sm' 196 0.0 1.0
+1430 'SA.Adrian' 'mike.sm' 197 0.0 1.0
+1431 'SA.Adrian' 'mike.sm' 198 0.0 1.0
+1432 'SA.Adrian' 'mike.sm' 199 0.0 1.0
+1433 'SA.Adrian' 'mike.sm' 200 0.0 1.0
+1434 'SA.Adrian' 'mike.sm' 203 0.0 1.0
+1435 'SA.Adrian' 'mike.sm' 204 0.0 1.0
+1436 'SA.Adrian' 'mike.sm' 205 0.0 1.0
+1437 'SA.Adrian' 'mike.sm' 206 0.0 1.0
+1438 'SA.Adrian' 'mike.sm' 207 0.0 1.0
+1439 'SA.Adrian' 'mike.sm' 210 0.0 1.0
+1440 'SA.Adrian' 'mike.sm' 211 0.0 1.0
+1441 'SA.Adrian' 'mike.sm' 212 0.0 1.0
+1442 'SA.Adrian' 'mike.sm' 213 0.0 1.0
+1443 'SA.Adrian' 'mike.sm' 214 0.0 1.0
+1444 'SA.Adrian' 'mike.sm' 217 0.0 1.0
+1445 'SA.Adrian' 'mike.sm' 218 0.0 1.0
+1446 'SA.Adrian' 'mike.sm' 219 0.0 1.0
+1447 'SA.Adrian' 'mike.sm' 220 0.0 1.0
+1448 'SA.Adrian' 'mike.sm' 221 0.0 1.0
+1449 'SA.Adrian' 'mike.sm' 224 0.0 1.0
+1450 'SA.Adrian' 'mike.sm' 225 0.0 1.0
+1451 'SA.Adrian' 'mike.sm' 226 0.0 1.0
+1452 'SA.Adrian' 'mike.sm' 227 0.0 1.0
+1453 'SA.Adrian' 'mike.sm' 228 0.0 1.0
+1454 'SA.Adrian' 'mike.sm' 231 0.0 1.0
+1455 'SA.Adrian' 'mike.sm' 232 0.0 1.0
+1456 'SA.Adrian' 'mike.sm' 233 0.0 1.0
+1457 'SA.Adrian' 'mike.sm' 234 0.0 1.0
+1458 'SA.Adrian' 'mike.sm' 235 0.0 1.0
+1459 'SA.Adrian' 'mike.sm' 238 0.0 1.0
+1460 'SA.Adrian' 'mike.sm' 239 0.0 1.0
+1461 'SA.Adrian' 'mike.sm' 240 0.0 1.0
+1462 'SA.Adrian' 'mike.sm' 241 0.0 1.0
+1463 'SA.Adrian' 'mike.sm' 242 0.0 1.0
+1464 'SA.Adrian' 'mike.sm' 245 0.0 1.0
+1465 'SA.Adrian' 'mike.sm' 246 0.0 1.0
+1466 'SA.Adrian' 'mike.sm' 247 0.0 1.0
+1467 'SA.Adrian' 'mike.sm' 248 0.0 1.0
+1468 'SA.Adrian' 'mike.sm' 249 0.0 1.0
+1469 'SA.Adrian' 'mike.sm' 252 0.0 1.0
+1470 'SA.Adrian' 'mike.sm' 253 0.0 1.0
+1471 'SA.Adrian' 'mike.sm' 254 0.0 1.0
+1472 'SA.Adrian' 'mike.sm' 255 0.0 1.0
+1473 'SA.Adrian' 'mike.sm' 256 0.0 1.0
+1474 'SA.Adrian' 'mike.sm' 259 0.0 1.0
+1475 'SA.Adrian' 'mike.sm' 260 0.0 1.0
+1476 'SA.Adrian' 'mike.sm' 261 0.0 1.0
+1477 'SA.Adrian' 'mike.sm' 262 0.0 1.0
+1478 'SA.Adrian' 'mike.sm' 263 0.0 1.0
+1479 'SA.Adrian' 'mike.sm' 266 0.0 1.0
+1480 'SA.Adrian' 'mike.sm' 267 0.0 1.0
+1481 'SA.Adrian' 'mike.sm' 268 0.0 1.0
+1482 'SA.Adrian' 'mike.sm' 269 0.0 1.0
+1483 'SA.Adrian' 'mike.sm' 270 0.0 1.0
+1484 'SA.Adrian' 'mike.sm' 273 0.0 1.0
+1485 'SA.Adrian' 'mike.sm' 274 0.0 1.0
+1486 'SA.Adrian' 'mike.sm' 275 0.0 1.0
+1487 'SA.Adrian' 'mike.sm' 276 0.0 1.0
+1488 'SA.Adrian' 'mike.sm' 277 0.0 1.0
+1489 'SA.Adrian' 'mike.sm' 280 0.0 1.0
+1490 'SA.Adrian' 'mike.sm' 281 0.0 1.0
+1491 'SA.Adrian' 'mike.sm' 282 0.0 1.0
+1492 'SA.Adrian' 'mike.sm' 283 0.0 1.0
+1493 'SA.Adrian' 'mike.sm' 284 0.0 1.0
+1494 'SA.Adrian' 'mike.sm' 287 0.0 1.0
+1495 'SA.Adrian' 'mike.sm' 288 0.0 1.0
+1496 'SA.Adrian' 'mike.sm' 289 0.0 1.0
+1497 'SA.Adrian' 'mike.sm' 290 0.0 1.0
+1498 'SA.Adrian' 'mike.sm' 291 0.0 1.0
+1499 'SA.Adrian' 'mike.sm' 294 0.0 1.0
+1500 'SA.Adrian' 'mike.sm' 295 0.0 1.0
+1501 'SA.Adrian' 'mike.sm' 296 0.0 1.0
+1502 'SA.Adrian' 'mike.sm' 297 0.0 1.0
+1503 'SA.Adrian' 'mike.sm' 298 0.0 1.0
+1504 'SA.Adrian' 'mike.sm' 301 0.0 1.0
+1505 'SA.Adrian' 'mike.sm' 302 0.0 1.0
+1506 'SA.Adrian' 'mike.sm' 303 0.0 1.0
+1507 'SA.Adrian' 'mike.sm' 304 0.0 1.0
+1508 'SA.Adrian' 'mike.sm' 305 0.0 1.0
+1509 'SA.Adrian' 'mike.sf' 308 1.0 2.0
+1510 'SA.Adrian' 'mike.sf' 309 1.0 2.0
+1511 'SA.Adrian' 'mike.sf' 310 1.0 2.0
+1512 'SA.Adrian' 'mike.sf' 311 1.0 2.0
+1513 'SA.Adrian' 'mike.sf' 312 1.0 2.0
+1514 'SA.Adrian' 'mike.sf' 315 1.0 2.0
+1515 'SA.Adrian' 'mike.sf' 316 1.0 2.0
+1516 'SA.Adrian' 'mike.sf' 317 1.0 2.0
+1517 'SA.Adrian' 'mike.sf' 318 1.0 2.0
+1518 'SA.Adrian' 'mike.sf' 319 1.0 2.0
+1519 'SA.Adrian' 'mike.sf' 322 1.0 2.0
+1520 'SA.Adrian' 'mike.sf' 323 1.0 2.0
+1521 'SA.Adrian' 'mike.sf' 324 1.0 2.0
+1522 'SA.Adrian' 'mike.sf' 325 1.0 2.0
+1523 'SA.Adrian' 'mike.sf' 326 1.0 2.0
+1524 'SA.Adrian' 'mike.sf' 329 1.0 2.0
+1525 'SA.Adrian' 'mike.sf' 330 1.0 2.0
+1526 'SA.Adrian' 'mike.sf' 331 1.0 2.0
+1527 'SA.Adrian' 'mike.sf' 332 1.0 2.0
+1528 'SA.Adrian' 'mike.sf' 333 1.0 2.0
+1529 'SA.Robert' 'foxtrot.sm' 3 0.0 1.0
+1530 'SA.Robert' 'foxtrot.sm' 4 0.0 1.0
+1531 'SA.Robert' 'foxtrot.sm' 7 0.0 1.0
+1532 'SA.Robert' 'foxtrot.sm' 8 0.0 1.0
+1533 'SA.Robert' 'foxtrot.sm' 9 0.0 1.0
+1534 'SA.Robert' 'foxtrot.sm' 10 0.0 1.0
+1535 'SA.Robert' 'foxtrot.sm' 11 0.0 1.0
+1536 'SA.Robert' 'foxtrot.sm' 14 0.0 1.0
+1537 'SA.Robert' 'foxtrot.sm' 15 0.0 1.0
+1538 'SA.Robert' 'foxtrot.sm' 16 0.0 1.0
+1539 'SA.Robert' 'foxtrot.sm' 17 0.0 1.0
+1540 'SA.Robert' 'foxtrot.sm' 18 0.0 1.0
+1541 'SA.Robert' 'foxtrot.sm' 21 0.0 1.0
+1542 'SA.Robert' 'foxtrot.sm' 22 0.0 1.0
+1543 'SA.Robert' 'foxtrot.sm' 23 0.0 1.0
+1544 'SA.Robert' 'foxtrot.sm' 24 0.0 1.0
+1545 'SA.Robert' 'foxtrot.sm' 25 0.0 1.0
+1546 'SA.Robert' 'foxtrot.sm' 28 0.0 1.0
+1547 'SA.Robert' 'foxtrot.sm' 29 0.0 1.0
+1548 'SA.Robert' 'foxtrot.sm' 30 0.0 1.0
+1549 'SA.Robert' 'foxtrot.sm' 31 0.0 1.0
+1550 'SA.Robert' 'foxtrot.sm' 32 0.0 1.0
+1551 'SA.Robert' 'foxtrot.sm' 35 0.0 1.0
+1552 'SA.Robert' 'foxtrot.sm' 36 0.0 1.0
+1553 'SA.Robert' 'foxtrot.sm' 37 0.0 1.0
+1554 'SA.Robert' 'foxtrot.sm' 38 0.0 1.0
+1555 'SA.Robert' 'foxtrot.sm' 39 0.0 1.0
+1556 'SA.Robert' 'foxtrot.sm' 42 0.0 1.0
+1557 'SA.Robert' 'foxtrot.sm' 43 0.0 1.0
+1558 'SA.Robert' 'foxtrot.sm' 44 0.0 1.0
+1559 'SA.Robert' 'foxtrot.sm' 45 0.0 1.0
+1560 'SA.Robert' 'foxtrot.sm' 46 0.0 1.0
+1561 'SA.Robert' 'foxtrot.sm' 49 0.0 1.0
+1562 'SA.Robert' 'foxtrot.sm' 50 0.0 1.0
+1563 'SA.Robert' 'foxtrot.sm' 51 0.0 1.0
+1564 'SA.Robert' 'foxtrot.sm' 52 0.0 1.0
+1565 'SA.Robert' 'foxtrot.sm' 53 0.0 1.0
+1566 'SA.Robert' 'foxtrot.sm' 56 0.0 1.0
+1567 'SA.Robert' 'foxtrot.sm' 57 0.0 1.0
+1568 'SA.Robert' 'foxtrot.sm' 58 0.0 1.0
+1569 'SA.Robert' 'foxtrot.sm' 59 0.0 1.0
+1570 'SA.Robert' 'foxtrot.sm' 60 0.0 1.0
+1571 'SA.Robert' 'foxtrot.sm' 63 0.0 1.0
+1572 'SA.Robert' 'foxtrot.sm' 64 0.0 1.0
+1573 'SA.Robert' 'foxtrot.sm' 65 0.0 1.0
+1574 'SA.Robert' 'foxtrot.sm' 66 0.0 1.0
+1575 'SA.Robert' 'foxtrot.sm' 67 0.0 1.0
+1576 'SA.Robert' 'foxtrot.sm' 70 0.0 1.0
+1577 'SA.Robert' 'foxtrot.sm' 71 0.0 1.0
+1578 'SA.Robert' 'foxtrot.sm' 72 0.0 1.0
+1579 'SA.Robert' 'foxtrot.sm' 73 0.0 1.0
+1580 'SA.Robert' 'foxtrot.sm' 74 0.0 1.0
+1581 'SA.Robert' 'foxtrot.sm' 77 0.0 1.0
+1582 'SA.Robert' 'foxtrot.sm' 78 0.0 1.0
+1583 'SA.Robert' 'foxtrot.sm' 79 0.0 1.0
+1584 'SA.Robert' 'foxtrot.sm' 80 0.0 1.0
+1585 'SA.Robert' 'foxtrot.sm' 81 0.0 1.0
+1586 'SA.Robert' 'foxtrot.sm' 84 0.0 1.0
+1587 'SA.Robert' 'foxtrot.sm' 85 0.0 1.0
+1588 'SA.Robert' 'foxtrot.sm' 86 0.0 1.0
+1589 'SA.Robert' 'foxtrot.sm' 87 0.0 1.0
+1590 'SA.Robert' 'foxtrot.sm' 88 0.0 1.0
+1591 'SA.Robert' 'foxtrot.sm' 91 0.0 1.0
+1592 'SA.Robert' 'foxtrot.sm' 92 0.0 1.0
+1593 'SA.Robert' 'foxtrot.sf' 93 1.0 2.0
+1594 'SA.Robert' 'foxtrot.sf' 94 1.0 2.0
+1595 'SA.Robert' 'foxtrot.sf' 95 1.0 2.0
+1596 'SA.Robert' 'foxtrot.sf' 98 1.0 2.0
+1597 'SA.Robert' 'foxtrot.sf' 99 1.0 2.0
+1598 'SA.Robert' 'foxtrot.sf' 100 1.0 2.0
+1599 'SA.Robert' 'foxtrot.sf' 101 1.0 2.0
+1600 'SA.Robert' 'foxtrot.sf' 102 1.0 2.0
+1601 'SA.Robert' 'foxtrot.sf' 105 1.0 2.0
+1602 'SA.Robert' 'foxtrot.sf' 106 1.0 2.0
+1603 'SA.Robert' 'foxtrot.sf' 107 1.0 2.0
+1604 'SA.Robert' 'foxtrot.sf' 108 1.0 2.0
+1605 'SA.Robert' 'foxtrot.sf' 109 1.0 2.0
+1606 'SA.Robert' 'foxtrot.sf' 112 1.0 2.0
+1607 'SA.Robert' 'foxtrot.sf' 113 1.0 2.0
+1608 'SA.Robert' 'foxtrot.sf' 114 1.0 2.0
+1609 'SA.Robert' 'foxtrot.sf' 115 1.0 2.0
+1610 'SA.Robert' 'foxtrot.sf' 116 1.0 2.0
+1611 'SA.Robert' 'foxtrot.sf' 119 1.0 2.0
+1612 'SA.Robert' 'foxtrot.sf' 120 1.0 2.0
+1613 'SA.Robert' 'foxtrot.sf' 121 1.0 2.0
+1614 'SA.Robert' 'foxtrot.sf' 123 1.0 2.0
+1615 'SA.Robert' 'hotel.sm' 3 0.0 1.0
+1616 'SA.Robert' 'hotel.sm' 4 0.0 1.0
+1617 'SA.Robert' 'hotel.sm' 7 0.0 1.0
+1618 'SA.Robert' 'hotel.sm' 8 0.0 1.0
+1619 'SA.Robert' 'hotel.sm' 9 0.0 1.0
+1620 'SA.Robert' 'hotel.sm' 10 0.0 1.0
+1621 'SA.Robert' 'hotel.sm' 11 0.0 1.0
+1622 'SA.Robert' 'hotel.sm' 14 0.0 1.0
+1623 'SA.Robert' 'hotel.sm' 15 0.0 1.0
+1624 'SA.Robert' 'hotel.sm' 16 0.0 1.0
+1625 'SA.Robert' 'hotel.sm' 17 0.0 1.0
+1626 'SA.Robert' 'hotel.sm' 18 0.0 1.0
+1627 'SA.Robert' 'hotel.sm' 21 0.0 1.0
+1628 'SA.Robert' 'hotel.sm' 22 0.0 1.0
+1629 'SA.Robert' 'hotel.sm' 23 0.0 1.0
+1630 'SA.Robert' 'hotel.sm' 24 0.0 1.0
+1631 'SA.Robert' 'hotel.sm' 25 0.0 1.0
+1632 'SA.Robert' 'hotel.sm' 28 0.0 1.0
+1633 'SA.Robert' 'hotel.sm' 29 0.0 1.0
+1634 'SA.Robert' 'hotel.sm' 30 0.0 1.0
+1635 'SA.Robert' 'hotel.sm' 31 0.0 1.0
+1636 'SA.Robert' 'hotel.sm' 32 0.0 1.0
+1637 'SA.Robert' 'hotel.sm' 35 0.0 1.0
+1638 'SA.Robert' 'hotel.sm' 36 0.0 1.0
+1639 'SA.Robert' 'hotel.sm' 37 0.0 1.0
+1640 'SA.Robert' 'hotel.sm' 38 0.0 1.0
+1641 'SA.Robert' 'hotel.sm' 39 0.0 1.0
+1642 'SA.Robert' 'hotel.sm' 42 0.0 1.0
+1643 'SA.Robert' 'hotel.sm' 43 0.0 1.0
+1644 'SA.Robert' 'hotel.sm' 44 0.0 1.0
+1645 'SA.Robert' 'hotel.sm' 45 0.0 1.0
+1646 'SA.Robert' 'hotel.sm' 46 0.0 1.0
+1647 'SA.Robert' 'hotel.sm' 49 0.0 1.0
+1648 'SA.Robert' 'hotel.sm' 50 0.0 1.0
+1649 'SA.Robert' 'hotel.sm' 51 0.0 1.0
+1650 'SA.Robert' 'hotel.sm' 52 0.0 1.0
+1651 'SA.Robert' 'hotel.sm' 53 0.0 1.0
+1652 'SA.Robert' 'hotel.sm' 56 0.0 1.0
+1653 'SA.Robert' 'hotel.sm' 57 0.0 1.0
+1654 'SA.Robert' 'hotel.sm' 58 0.0 1.0
+1655 'SA.Robert' 'hotel.sm' 59 0.0 1.0
+1656 'SA.Robert' 'hotel.sm' 60 0.0 1.0
+1657 'SA.Robert' 'hotel.sm' 63 0.0 1.0
+1658 'SA.Robert' 'hotel.sm' 64 0.0 1.0
+1659 'SA.Robert' 'hotel.sm' 65 0.0 1.0
+1660 'SA.Robert' 'hotel.sm' 66 0.0 1.0
+1661 'SA.Robert' 'hotel.sm' 67 0.0 1.0
+1662 'SA.Robert' 'hotel.sm' 70 0.0 1.0
+1663 'SA.Robert' 'hotel.sm' 71 0.0 1.0
+1664 'SA.Robert' 'hotel.sm' 72 0.0 1.0
+1665 'SA.Robert' 'hotel.sm' 73 0.0 1.0
+1666 'SA.Robert' 'hotel.sm' 74 0.0 1.0
+1667 'SA.Robert' 'hotel.sm' 77 0.0 1.0
+1668 'SA.Robert' 'hotel.sm' 78 0.0 1.0
+1669 'SA.Robert' 'hotel.sm' 79 0.0 1.0
+1670 'SA.Robert' 'hotel.sm' 80 0.0 1.0
+1671 'SA.Robert' 'hotel.sm' 81 0.0 1.0
+1672 'SA.Robert' 'hotel.sm' 84 0.0 1.0
+1673 'SA.Robert' 'hotel.sm' 85 0.0 1.0
+1674 'SA.Robert' 'hotel.sm' 86 0.0 1.0
+1675 'SA.Robert' 'hotel.sm' 87 0.0 1.0
+1676 'SA.Robert' 'hotel.sm' 88 0.0 1.0
+1677 'SA.Robert' 'hotel.sm' 91 0.0 1.0
+1678 'SA.Robert' 'hotel.sm' 92 0.0 1.0
+1679 'SA.Robert' 'hotel.sm' 93 0.0 1.0
+1680 'SA.Robert' 'hotel.sm' 94 0.0 1.0
+1681 'SA.Robert' 'hotel.sm' 95 0.0 1.0
+1682 'SA.Robert' 'hotel.sm' 98 0.0 1.0
+1683 'SA.Robert' 'hotel.sm' 99 0.0 1.0
+1684 'SA.Robert' 'hotel.sm' 100 0.0 1.0
+1685 'SA.Robert' 'hotel.sm' 101 0.0 1.0
+1686 'SA.Robert' 'hotel.sm' 102 0.0 1.0
+1687 'SA.Robert' 'hotel.sm' 105 0.0 1.0
+1688 'SA.Robert' 'hotel.sm' 106 0.0 1.0
+1689 'SA.Robert' 'hotel.sm' 107 0.0 1.0
+1690 'SA.Robert' 'hotel.sm' 108 0.0 1.0
+1691 'SA.Robert' 'hotel.sm' 109 0.0 1.0
+1692 'SA.Robert' 'hotel.sm' 112 0.0 1.0
+1693 'SA.Robert' 'hotel.sm' 113 0.0 1.0
+1694 'SA.Robert' 'hotel.sm' 114 0.0 1.0
+1695 'SA.Robert' 'hotel.sm' 115 0.0 1.0
+1696 'SA.Robert' 'hotel.sm' 116 0.0 1.0
+1697 'SA.Robert' 'hotel.sm' 119 0.0 1.0
+1698 'SA.Robert' 'hotel.sm' 120 0.0 1.0
+1699 'SA.Robert' 'hotel.sm' 121 0.0 1.0
+1700 'SA.Robert' 'hotel.sm' 123 0.0 1.0
+1701 'SA.Robert' 'hotel.sm' 126 0.0 1.0
+1702 'SA.Robert' 'hotel.sm' 127 0.0 1.0
+1703 'SA.Robert' 'hotel.sm' 128 0.0 1.0
+1704 'SA.Robert' 'hotel.sm' 129 0.0 1.0
+1705 'SA.Robert' 'hotel.sm' 130 0.0 1.0
+1706 'SA.Robert' 'hotel.sm' 133 0.0 1.0
+1707 'SA.Robert' 'hotel.sm' 134 0.0 1.0
+1708 'SA.Robert' 'hotel.sm' 135 0.0 1.0
+1709 'SA.Robert' 'hotel.sm' 136 0.0 1.0
+1710 'SA.Robert' 'hotel.sm' 137 0.0 1.0
+1711 'SA.Robert' 'hotel.sm' 140 0.0 1.0
+1712 'SA.Robert' 'hotel.sm' 141 0.0 1.0
+1713 'SA.Robert' 'hotel.sm' 142 0.0 1.0
+1714 'SA.Robert' 'hotel.sm' 143 0.0 1.0
+1715 'SA.Robert' 'hotel.sm' 144 0.0 1.0
+1716 'SA.Robert' 'hotel.sm' 147 0.0 1.0
+1717 'SA.Robert' 'hotel.sm' 148 0.0 1.0
+1718 'SA.Robert' 'hotel.sm' 149 0.0 1.0
+1719 'SA.Robert' 'hotel.sm' 150 0.0 1.0
+1720 'SA.Robert' 'hotel.sm' 151 0.0 1.0
+1721 'SA.Robert' 'hotel.sm' 154 0.0 1.0
+1722 'SA.Robert' 'hotel.sm' 155 0.0 1.0
+1723 'SA.Robert' 'hotel.sm' 156 0.0 1.0
+1724 'SA.Robert' 'hotel.sm' 157 0.0 1.0
+1725 'SA.Robert' 'hotel.sm' 158 0.0 1.0
+1726 'SA.Robert' 'hotel.sm' 161 0.0 1.0
+1727 'SA.Robert' 'hotel.sm' 162 0.0 1.0
+1728 'SA.Robert' 'hotel.sm' 163 0.0 1.0
+1729 'SA.Robert' 'hotel.sm' 164 0.0 1.0
+1730 'SA.Robert' 'hotel.sm' 165 0.0 1.0
+1731 'SA.Robert' 'hotel.sm' 168 0.0 1.0
+1732 'SA.Robert' 'hotel.sm' 169 0.0 1.0
+1733 'SA.Robert' 'hotel.sm' 170 0.0 1.0
+1734 'SA.Robert' 'hotel.sm' 171 0.0 1.0
+1735 'SA.Robert' 'hotel.sm' 172 0.0 1.0
+1736 'SA.Robert' 'hotel.sm' 175 0.0 1.0
+1737 'SA.Robert' 'hotel.sm' 176 0.0 1.0
+1738 'SA.Robert' 'hotel.sm' 177 0.0 1.0
+1739 'SA.Robert' 'hotel.sm' 178 0.0 1.0
+1740 'SA.Robert' 'hotel.sm' 179 0.0 1.0
+1741 'SA.Robert' 'hotel.sm' 182 0.0 1.0
+1742 'SA.Robert' 'hotel.sm' 183 0.0 1.0
+1743 'SA.Robert' 'hotel.sm' 184 0.0 1.0
+1744 'SA.Robert' 'hotel.sm' 185 0.0 1.0
+1745 'SA.Robert' 'hotel.sm' 186 0.0 1.0
+1746 'SA.Robert' 'hotel.sm' 189 0.0 1.0
+1747 'SA.Robert' 'hotel.sm' 190 0.0 1.0
+1748 'SA.Robert' 'hotel.sm' 191 0.0 1.0
+1749 'SA.Robert' 'hotel.sm' 192 0.0 1.0
+1750 'SA.Robert' 'hotel.sm' 193 0.0 1.0
+1751 'SA.Robert' 'hotel.sm' 196 0.0 1.0
+1752 'SA.Robert' 'hotel.sm' 197 0.0 1.0
+1753 'SA.Robert' 'hotel.sm' 198 0.0 1.0
+1754 'SA.Robert' 'hotel.sm' 199 0.0 1.0
+1755 'SA.Robert' 'hotel.sm' 200 0.0 1.0
+1756 'SA.Robert' 'hotel.sm' 203 0.0 1.0
+1757 'SA.Robert' 'hotel.sm' 204 0.0 1.0
+1758 'SA.Robert' 'hotel.sm' 205 0.0 1.0
+1759 'SA.Robert' 'hotel.sm' 206 0.0 1.0
+1760 'SA.Robert' 'hotel.sm' 207 0.0 1.0
+1761 'SA.Robert' 'hotel.sm' 210 0.0 1.0
+1762 'SA.Robert' 'hotel.sm' 211 0.0 1.0
+1763 'SA.Robert' 'hotel.sm' 212 0.0 1.0
+1764 'SA.Robert' 'hotel.sm' 213 0.0 1.0
+1765 'SA.Robert' 'hotel.sm' 214 0.0 1.0
+1766 'SA.Robert' 'hotel.sm' 217 0.0 1.0
+1767 'SA.Robert' 'hotel.sm' 218 0.0 1.0
+1768 'SA.Robert' 'hotel.sm' 219 0.0 1.0
+1769 'SA.Robert' 'hotel.sm' 220 0.0 1.0
+1770 'SA.Robert' 'hotel.sm' 221 0.0 1.0
+1771 'SA.Robert' 'hotel.sm' 224 0.0 1.0
+1772 'SA.Robert' 'hotel.sm' 225 0.0 1.0
+1773 'SA.Robert' 'hotel.sm' 226 0.0 1.0
+1774 'SA.Robert' 'hotel.sm' 227 0.0 1.0
+1775 'SA.Robert' 'hotel.sm' 228 0.0 1.0
+1776 'SA.Robert' 'hotel.sm' 231 0.0 1.0
+1777 'SA.Robert' 'hotel.sm' 232 0.0 1.0
+1778 'SA.Robert' 'hotel.sm' 233 0.0 1.0
+1779 'SA.Robert' 'hotel.sm' 234 0.0 1.0
+1780 'SA.Robert' 'hotel.sm' 235 0.0 1.0
+1781 'SA.Robert' 'hotel.sm' 238 0.0 1.0
+1782 'SA.Robert' 'hotel.sm' 239 0.0 1.0
+1783 'SA.Robert' 'hotel.sm' 240 0.0 1.0
+1784 'SA.Robert' 'hotel.sm' 241 0.0 1.0
+1785 'SA.Robert' 'hotel.sm' 242 0.0 1.0
+1786 'SA.Robert' 'hotel.sm' 245 0.0 1.0
+1787 'SA.Robert' 'hotel.sf' 246 0.0 1.0
+1788 'SA.Robert' 'hotel.sf' 247 0.0 1.0
+1789 'SA.Robert' 'hotel.sf' 248 0.0 1.0
+1790 'SA.Robert' 'hotel.sf' 249 0.0 1.0
+1791 'SA.Robert' 'hotel.sf' 252 0.0 1.0
+1792 'SA.Robert' 'hotel.sf' 253 0.0 1.0
+1793 'SA.Robert' 'hotel.sf' 254 0.0 1.0
+1794 'SA.Robert' 'hotel.sf' 255 0.0 1.0
+1795 'SA.Robert' 'hotel.sf' 256 0.0 1.0
+1796 'SA.Robert' 'hotel.sf' 259 0.0 1.0
+1797 'SA.Robert' 'hotel.sf' 260 0.0 1.0
+1798 'SA.Robert' 'hotel.sf' 261 0.0 1.0
+1799 'SA.Robert' 'hotel.sf' 262 0.0 1.0
+1800 'SA.Robert' 'hotel.sf' 263 0.0 1.0
+1801 'SA.Robert' 'hotel.sf' 266 0.0 1.0
+1802 'SA.Robert' 'hotel.sf' 267 0.0 1.0
+1803 'SA.Robert' 'hotel.sf' 268 0.0 1.0
+1804 'SA.Robert' 'hotel.sf' 269 0.0 1.0
+1805 'SA.Robert' 'hotel.sf' 270 0.0 1.0
+1806 'SA.Robert' 'hotel.sf' 273 0.0 1.0
+1807 'SA.Robert' 'hotel.sf' 274 0.0 1.0
+1808 'SA.Robert' 'hotel.sf' 275 0.0 1.0
+1809 'SA.Robert' 'hotel.sf' 276 0.0 1.0
+1810 'SA.Robert' 'hotel.sf' 277 0.0 1.0
+1811 'SA.Robert' 'hotel.sf' 280 0.0 1.0
+1812 'SA.Robert' 'hotel.sf' 281 0.0 1.0
+1813 'SA.Robert' 'hotel.sf' 282 0.0 1.0
+1814 'SA.Robert' 'hotel.sf' 283 0.0 1.0
+1815 'SA.Robert' 'hotel.sf' 284 0.0 1.0
+1816 'SA.Robert' 'hotel.sf' 287 0.0 1.0
+1817 'SA.Robert' 'hotel.sf' 288 0.0 1.0
+1818 'SA.Robert' 'hotel.sf' 289 0.0 1.0
+1819 'SA.Robert' 'hotel.sf' 290 0.0 1.0
+1820 'SA.Robert' 'hotel.sf' 291 0.0 1.0
+1821 'SA.Robert' 'india.sm' 3 0.0 1.0
+1822 'SA.Robert' 'india.sm' 4 0.0 1.0
+1823 'SA.Robert' 'india.sm' 7 0.0 1.0
+1824 'SA.Robert' 'india.sm' 8 0.0 1.0
+1825 'SA.Robert' 'india.sm' 9 0.0 1.0
+1826 'SA.Robert' 'india.sm' 10 0.0 1.0
+1827 'SA.Robert' 'india.sm' 11 0.0 1.0
+1828 'SA.Robert' 'india.sm' 14 0.0 1.0
+1829 'SA.Robert' 'india.sm' 15 0.0 1.0
+1830 'SA.Robert' 'india.sm' 16 0.0 1.0
+1831 'SA.Robert' 'india.sm' 17 0.0 1.0
+1832 'SA.Robert' 'india.sm' 18 0.0 1.0
+1833 'SA.Robert' 'india.sm' 21 0.0 1.0
+1834 'SA.Robert' 'india.sm' 22 0.0 1.0
+1835 'SA.Robert' 'india.sm' 23 0.0 1.0
+1836 'SA.Robert' 'india.sm' 24 0.0 1.0
+1837 'SA.Robert' 'india.sm' 25 0.0 1.0
+1838 'SA.Robert' 'india.sm' 28 0.0 1.0
+1839 'SA.Robert' 'india.sm' 29 0.0 1.0
+1840 'SA.Robert' 'india.sm' 30 0.0 1.0
+1841 'SA.Robert' 'india.sm' 31 0.0 1.0
+1842 'SA.Robert' 'india.sm' 32 0.0 1.0
+1843 'SA.Robert' 'india.sm' 35 0.0 1.0
+1844 'SA.Robert' 'india.sm' 36 0.0 1.0
+1845 'SA.Robert' 'india.sm' 37 0.0 1.0
+1846 'SA.Robert' 'india.sm' 38 0.0 1.0
+1847 'SA.Robert' 'india.sm' 39 0.0 1.0
+1848 'SA.Robert' 'india.sm' 42 0.0 1.0
+1849 'SA.Robert' 'india.sm' 43 0.0 1.0
+1850 'SA.Robert' 'india.sm' 44 0.0 1.0
+1851 'SA.Robert' 'india.sm' 45 0.0 1.0
+1852 'SA.Robert' 'india.sm' 46 0.0 1.0
+1853 'SA.Robert' 'india.sm' 49 0.0 1.0
+1854 'SA.Robert' 'india.sm' 50 0.0 1.0
+1855 'SA.Robert' 'india.sm' 51 0.0 1.0
+1856 'SA.Robert' 'india.sm' 52 0.0 1.0
+1857 'SA.Robert' 'india.sm' 53 0.0 1.0
+1858 'SA.Robert' 'india.sm' 56 0.0 1.0
+1859 'SA.Robert' 'india.sm' 57 0.0 1.0
+1860 'SA.Robert' 'india.sm' 58 0.0 1.0
+1861 'SA.Robert' 'india.sm' 59 0.0 1.0
+1862 'SA.Robert' 'india.sm' 60 0.0 1.0
+1863 'SA.Robert' 'india.sm' 63 0.0 1.0
+1864 'SA.Robert' 'india.sm' 64 0.0 1.0
+1865 'SA.Robert' 'india.sm' 65 0.0 1.0
+1866 'SA.Robert' 'india.sm' 66 0.0 1.0
+1867 'SA.Robert' 'india.sm' 67 0.0 1.0
+1868 'SA.Robert' 'india.sm' 70 0.0 1.0
+1869 'SA.Robert' 'india.sm' 71 0.0 1.0
+1870 'SA.Robert' 'india.sm' 72 0.0 1.0
+1871 'SA.Robert' 'india.sm' 73 0.0 1.0
+1872 'SA.Robert' 'india.sm' 74 0.0 1.0
+1873 'SA.Robert' 'india.sm' 77 0.0 1.0
+1874 'SA.Robert' 'india.sm' 78 0.0 1.0
+1875 'SA.Robert' 'india.sm' 79 0.0 1.0
+1876 'SA.Robert' 'india.sm' 80 0.0 1.0
+1877 'SA.Robert' 'india.sm' 81 0.0 1.0
+1878 'SA.Robert' 'india.sm' 84 0.0 1.0
+1879 'SA.Robert' 'india.sm' 85 0.0 1.0
+1880 'SA.Robert' 'india.sm' 86 0.0 1.0
+1881 'SA.Robert' 'india.sm' 87 0.0 1.0
+1882 'SA.Robert' 'india.sm' 88 0.0 1.0
+1883 'SA.Robert' 'india.sm' 91 0.0 1.0
+1884 'SA.Robert' 'india.sm' 92 0.0 1.0
+1885 'SA.Robert' 'india.sm' 93 0.0 1.0
+1886 'SA.Robert' 'india.sm' 94 0.0 1.0
+1887 'SA.Robert' 'india.sm' 95 0.0 1.0
+1888 'SA.Robert' 'india.sm' 98 0.0 1.0
+1889 'SA.Robert' 'india.sm' 99 0.0 1.0
+1890 'SA.Robert' 'india.sm' 100 0.0 1.0
+1891 'SA.Robert' 'india.sm' 101 0.0 1.0
+1892 'SA.Robert' 'india.sm' 102 0.0 1.0
+1893 'SA.Robert' 'india.sm' 105 0.0 1.0
+1894 'SA.Robert' 'india.sm' 106 0.0 1.0
+1895 'SA.Robert' 'india.sm' 107 0.0 1.0
+1896 'SA.Robert' 'india.sm' 108 0.0 1.0
+1897 'SA.Robert' 'india.sm' 109 0.0 1.0
+1898 'SA.Robert' 'india.sm' 112 0.0 1.0
+1899 'SA.Robert' 'india.sm' 113 0.0 1.0
+1900 'SA.Robert' 'india.sm' 114 0.0 1.0
+1901 'SA.Robert' 'india.sm' 115 0.0 1.0
+1902 'SA.Robert' 'india.sm' 116 0.0 1.0
+1903 'SA.Robert' 'india.sm' 119 0.0 1.0
+1904 'SA.Robert' 'india.sm' 120 0.0 1.0
+1905 'SA.Robert' 'india.sm' 121 0.0 1.0
+1906 'SA.Robert' 'india.sm' 123 0.0 1.0
+1907 'SA.Robert' 'india.sm' 126 0.0 1.0
+1908 'SA.Robert' 'india.sm' 127 0.0 1.0
+1909 'SA.Robert' 'india.sm' 128 0.0 1.0
+1910 'SA.Robert' 'india.sm' 129 0.0 1.0
+1911 'SA.Robert' 'india.sm' 130 0.0 1.0
+1912 'SA.Robert' 'india.sm' 133 0.0 1.0
+1913 'SA.Robert' 'india.sm' 134 0.0 1.0
+1914 'SA.Robert' 'india.sm' 135 0.0 1.0
+1915 'SA.Robert' 'india.sm' 136 0.0 1.0
+1916 'SA.Robert' 'india.sm' 137 0.0 1.0
+1917 'SA.Robert' 'india.sm' 140 0.0 1.0
+1918 'SA.Robert' 'india.sm' 141 0.0 1.0
+1919 'SA.Robert' 'india.sm' 142 0.0 1.0
+1920 'SA.Robert' 'india.sm' 143 0.0 1.0
+1921 'SA.Robert' 'india.sm' 144 0.0 1.0
+1922 'SA.Robert' 'india.sm' 147 0.0 1.0
+1923 'SA.Robert' 'india.sm' 148 0.0 1.0
+1924 'SA.Robert' 'india.sm' 149 0.0 1.0
+1925 'SA.Robert' 'india.sm' 150 0.0 1.0
+1926 'SA.Robert' 'india.sm' 151 0.0 1.0
+1927 'SA.Robert' 'india.sm' 154 0.0 1.0
+1928 'SA.Robert' 'india.sm' 155 0.0 1.0
+1929 'SA.Robert' 'india.sm' 156 0.0 1.0
+1930 'SA.Robert' 'india.sm' 157 0.0 1.0
+1931 'SA.Robert' 'india.sm' 158 0.0 1.0
+1932 'SA.Robert' 'india.sm' 161 0.0 1.0
+1933 'SA.Robert' 'india.sm' 162 0.0 1.0
+1934 'SA.Robert' 'india.sm' 163 0.0 1.0
+1935 'SA.Robert' 'india.sm' 164 0.0 1.0
+1936 'SA.Robert' 'india.sm' 165 0.0 1.0
+1937 'SA.Robert' 'india.sm' 168 0.0 1.0
+1938 'SA.Robert' 'india.sm' 169 0.0 1.0
+1939 'SA.Robert' 'india.sm' 170 0.0 1.0
+1940 'SA.Robert' 'india.sm' 171 0.0 1.0
+1941 'SA.Robert' 'india.sm' 172 0.0 1.0
+1942 'SA.Robert' 'india.sm' 175 0.0 1.0
+1943 'SA.Robert' 'india.sm' 176 0.0 1.0
+1944 'SA.Robert' 'india.sm' 177 0.0 1.0
+1945 'SA.Robert' 'india.sm' 178 0.0 1.0
+1946 'SA.Robert' 'india.sm' 179 0.0 1.0
+1947 'SA.Robert' 'india.sm' 182 0.0 1.0
+1948 'SA.Robert' 'india.sm' 183 0.0 1.0
+1949 'SA.Robert' 'india.sm' 184 0.0 1.0
+1950 'SA.Robert' 'india.sm' 185 0.0 1.0
+1951 'SA.Robert' 'india.sm' 186 0.0 1.0
+1952 'SA.Robert' 'india.sm' 189 0.0 1.0
+1953 'SA.Robert' 'india.sm' 190 0.0 1.0
+1954 'SA.Robert' 'india.sm' 191 0.0 1.0
+1955 'SA.Robert' 'india.sm' 192 0.0 1.0
+1956 'SA.Robert' 'india.sm' 193 0.0 1.0
+1957 'SA.Robert' 'india.sm' 196 0.0 1.0
+1958 'SA.Robert' 'india.sm' 197 0.0 1.0
+1959 'SA.Robert' 'india.sm' 198 0.0 1.0
+1960 'SA.Robert' 'india.sm' 199 0.0 1.0
+1961 'SA.Robert' 'india.sm' 200 0.0 1.0
+1962 'SA.Robert' 'india.sm' 203 0.0 1.0
+1963 'SA.Robert' 'india.sm' 204 0.0 1.0
+1964 'SA.Robert' 'india.sm' 205 0.0 1.0
+1965 'SA.Robert' 'india.sm' 206 0.0 1.0
+1966 'SA.Robert' 'india.sm' 207 0.0 1.0
+1967 'SA.Robert' 'india.sm' 210 0.0 1.0
+1968 'SA.Robert' 'india.sm' 211 0.0 1.0
+1969 'SA.Robert' 'india.sm' 212 0.0 1.0
+1970 'SA.Robert' 'india.sm' 213 0.0 1.0
+1971 'SA.Robert' 'india.sm' 214 0.0 1.0
+1972 'SA.Robert' 'india.sm' 217 0.0 1.0
+1973 'SA.Robert' 'india.sm' 218 0.0 1.0
+1974 'SA.Robert' 'india.sm' 219 0.0 1.0
+1975 'SA.Robert' 'india.sm' 220 0.0 1.0
+1976 'SA.Robert' 'india.sm' 221 0.0 1.0
+1977 'SA.Robert' 'india.sm' 224 0.0 1.0
+1978 'SA.Robert' 'india.sm' 225 0.0 1.0
+1979 'SA.Robert' 'india.sm' 226 0.0 1.0
+1980 'SA.Robert' 'india.sm' 227 0.0 1.0
+1981 'SA.Robert' 'india.sm' 228 0.0 1.0
+1982 'SA.Robert' 'india.sm' 231 0.0 1.0
+1983 'SA.Robert' 'india.sm' 232 0.0 1.0
+1984 'SA.Robert' 'india.sm' 233 0.0 1.0
+1985 'SA.Robert' 'india.sm' 234 0.0 1.0
+1986 'SA.Robert' 'india.sm' 235 0.0 1.0
+1987 'SA.Robert' 'india.sm' 238 0.0 1.0
+1988 'SA.Robert' 'india.sm' 239 0.0 1.0
+1989 'SA.Robert' 'india.sm' 240 0.0 1.0
+1990 'SA.Robert' 'india.sm' 241 0.0 1.0
+1991 'SA.Robert' 'india.sm' 242 0.0 1.0
+1992 'SA.Robert' 'india.sm' 245 0.0 1.0
+1993 'SA.Robert' 'india.sm' 246 0.0 1.0
+1994 'SA.Robert' 'india.sm' 247 0.0 1.0
+1995 'SA.Robert' 'india.sm' 248 0.0 1.0
+1996 'SA.Robert' 'india.sm' 249 0.0 1.0
+1997 'SA.Robert' 'india.sm' 252 0.0 1.0
+1998 'SA.Robert' 'india.sm' 253 0.0 1.0
+1999 'SA.Robert' 'india.sm' 254 0.0 1.0
+2000 'SA.Robert' 'india.sm' 255 0.0 1.0
+2001 'SA.Robert' 'india.sm' 256 0.0 1.0
+2002 'SA.Robert' 'india.sm' 259 0.0 1.0
+2003 'SA.Robert' 'india.sm' 260 0.0 1.0
+2004 'SA.Robert' 'india.sm' 261 0.0 1.0
+2005 'SA.Robert' 'india.sm' 262 0.0 1.0
+2006 'SA.Robert' 'india.sm' 263 0.0 1.0
+2007 'SA.Robert' 'india.sm' 266 0.0 1.0
+2008 'SA.Robert' 'india.sm' 267 0.0 1.0
+2009 'SA.Robert' 'india.sm' 268 0.0 1.0
+2010 'SA.Robert' 'india.sm' 269 0.0 1.0
+2011 'SA.Robert' 'india.sm' 270 0.0 1.0
+2012 'SA.Robert' 'india.sm' 273 0.0 1.0
+2013 'SA.Robert' 'india.sm' 274 0.0 1.0
+2014 'SA.Robert' 'india.sm' 275 0.0 1.0
+2015 'SA.Robert' 'india.sf' 276 2.0 3.0
+2016 'SA.Robert' 'india.sf' 277 2.0 3.0
+2017 'SA.Robert' 'india.sf' 280 2.0 3.0
+2018 'SA.Robert' 'india.sf' 281 2.0 3.0
+2019 'SA.Robert' 'india.sf' 282 2.0 3.0
+2020 'SA.Robert' 'india.sf' 283 2.0 3.0
+2021 'SA.Robert' 'india.sf' 284 2.0 3.0
+2022 'SA.Robert' 'india.sf' 287 2.0 3.0
+2023 'SA.Robert' 'india.sf' 288 2.0 3.0
+2024 'SA.Robert' 'india.sf' 289 2.0 3.0
+2025 'SA.Robert' 'india.sf' 290 2.0 3.0
+2026 'SA.Robert' 'india.sf' 291 2.0 3.0
+2027 'SA.Robert' 'india.sf' 294 2.0 3.0
+2028 'SA.Robert' 'india.sf' 295 2.0 3.0
+2029 'SA.Robert' 'india.sf' 296 2.0 3.0
+2030 'SA.Robert' 'india.sf' 297 2.0 3.0
+2031 'SA.Robert' 'india.sf' 298 2.0 3.0
+2032 'SA.Robert' 'india.sf' 301 2.0 3.0
+2033 'SA.Robert' 'india.sf' 302 2.0 3.0
+2034 'SA.Robert' 'india.sf' 303 2.0 3.0
+2035 'SA.Robert' 'india.sf' 304 2.0 3.0
+2036 'SA.Robert' 'india.sf' 305 2.0 3.0
+2037 'SA.Robert' 'juliet.se' 42 2.0 3.0
+2038 'SA.Robert' 'juliet.se' 43 2.0 3.0
+2039 'SA.Robert' 'juliet.se' 44 2.0 3.0
+2040 'SA.Robert' 'juliet.se' 45 2.0 3.0
+2041 'SA.Robert' 'juliet.se' 46 2.0 3.0
+2042 'SA.Robert' 'juliet.se' 49 2.0 3.0
+2043 'SA.Robert' 'juliet.se' 50 2.0 3.0
+2044 'SA.Robert' 'juliet.se' 51 2.0 3.0
+2045 'SA.Robert' 'juliet.se' 52 2.0 3.0
+2046 'SA.Robert' 'juliet.se' 53 2.0 3.0
+2047 'SA.Robert' 'juliet.se' 56 2.0 3.0
+2048 'SA.Robert' 'juliet.se' 57 2.0 3.0
+2049 'SA.Robert' 'juliet.se' 58 2.0 3.0
+2050 'SA.Robert' 'juliet.se' 59 2.0 3.0
+2051 'SA.Robert' 'juliet.sm' 60 0.0 1.0
+2052 'SA.Robert' 'juliet.sm' 63 0.0 1.0
+2053 'SA.Robert' 'juliet.sm' 64 0.0 1.0
+2054 'SA.Robert' 'juliet.sm' 65 0.0 1.0
+2055 'SA.Robert' 'juliet.sm' 66 0.0 1.0
+2056 'SA.Robert' 'juliet.sm' 67 0.0 1.0
+2057 'SA.Robert' 'juliet.sm' 70 0.0 1.0
+2058 'SA.Robert' 'juliet.sm' 71 0.0 1.0
+2059 'SA.Robert' 'juliet.sm' 72 0.0 1.0
+2060 'SA.Robert' 'juliet.sm' 73 0.0 1.0
+2061 'SA.Robert' 'juliet.sm' 74 0.0 1.0
+2062 'SA.Robert' 'juliet.sm' 77 0.0 1.0
+2063 'SA.Robert' 'juliet.sm' 78 0.0 1.0
+2064 'SA.Robert' 'juliet.sm' 79 0.0 1.0
+2065 'SA.Robert' 'juliet.sm' 80 0.0 1.0
+2066 'SA.Robert' 'juliet.sm' 81 0.0 1.0
+2067 'SA.Robert' 'juliet.sm' 84 0.0 1.0
+2068 'SA.Robert' 'juliet.sm' 85 0.0 1.0
+2069 'SA.Robert' 'juliet.sm' 86 0.0 1.0
+2070 'SA.Robert' 'juliet.sm' 87 0.0 1.0
+2071 'SA.Robert' 'juliet.sm' 88 0.0 1.0
+2072 'SA.Robert' 'juliet.sm' 91 0.0 1.0
+2073 'SA.Robert' 'juliet.sm' 92 0.0 1.0
+2074 'SA.Robert' 'juliet.sm' 93 0.0 1.0
+2075 'SA.Robert' 'juliet.sm' 94 0.0 1.0
+2076 'SA.Robert' 'juliet.sm' 95 0.0 1.0
+2077 'SA.Robert' 'juliet.sm' 98 0.0 1.0
+2078 'SA.Robert' 'juliet.sm' 99 0.0 1.0
+2079 'SA.Robert' 'juliet.sm' 100 0.0 1.0
+2080 'SA.Robert' 'juliet.sm' 101 0.0 1.0
+2081 'SA.Robert' 'juliet.sm' 102 0.0 1.0
+2082 'SA.Robert' 'juliet.sm' 105 0.0 1.0
+2083 'SA.Robert' 'juliet.sm' 106 0.0 1.0
+2084 'SA.Robert' 'juliet.sm' 107 0.0 1.0
+2085 'SA.Robert' 'juliet.sm' 108 0.0 1.0
+2086 'SA.Robert' 'juliet.sm' 109 0.0 1.0
+2087 'SA.Robert' 'juliet.sm' 112 0.0 1.0
+2088 'SA.Robert' 'juliet.sm' 113 0.0 1.0
+2089 'SA.Robert' 'juliet.sm' 114 0.0 1.0
+2090 'SA.Robert' 'juliet.sm' 115 0.0 1.0
+2091 'SA.Robert' 'juliet.sm' 116 0.0 1.0
+2092 'SA.Robert' 'juliet.sm' 119 0.0 1.0
+2093 'SA.Robert' 'juliet.sm' 120 0.0 1.0
+2094 'SA.Robert' 'juliet.sm' 121 0.0 1.0
+2095 'SA.Robert' 'juliet.sm' 123 0.0 1.0
+2096 'SA.Robert' 'juliet.sm' 126 0.0 1.0
+2097 'SA.Robert' 'juliet.sm' 127 0.0 1.0
+2098 'SA.Robert' 'juliet.sm' 128 0.0 1.0
+2099 'SA.Robert' 'juliet.sm' 129 0.0 1.0
+2100 'SA.Robert' 'juliet.sm' 130 0.0 1.0
+2101 'SA.Robert' 'juliet.sm' 133 0.0 1.0
+2102 'SA.Robert' 'juliet.sm' 134 0.0 1.0
+2103 'SA.Robert' 'juliet.sm' 135 0.0 1.0
+2104 'SA.Robert' 'juliet.sm' 136 0.0 1.0
+2105 'SA.Robert' 'juliet.sm' 137 0.0 1.0
+2106 'SA.Robert' 'juliet.sm' 140 0.0 1.0
+2107 'SA.Robert' 'juliet.sm' 141 0.0 1.0
+2108 'SA.Robert' 'juliet.sm' 142 0.0 1.0
+2109 'SA.Robert' 'juliet.sm' 143 0.0 1.0
+2110 'SA.Robert' 'juliet.sm' 144 0.0 1.0
+2111 'SA.Robert' 'juliet.sm' 147 0.0 1.0
+2112 'SA.Robert' 'juliet.sm' 148 0.0 1.0
+2113 'SA.Robert' 'juliet.sm' 149 0.0 1.0
+2114 'SA.Robert' 'juliet.sm' 150 0.0 1.0
+2115 'SA.Robert' 'juliet.sm' 151 0.0 1.0
+2116 'SA.Robert' 'juliet.sm' 154 0.0 1.0
+2117 'SA.Robert' 'juliet.sm' 155 0.0 1.0
+2118 'SA.Robert' 'juliet.sm' 156 0.0 1.0
+2119 'SA.Robert' 'juliet.sm' 157 0.0 1.0
+2120 'SA.Robert' 'juliet.sm' 158 0.0 1.0
+2121 'SA.Robert' 'juliet.sm' 161 0.0 1.0
+2122 'SA.Robert' 'juliet.sm' 162 0.0 1.0
+2123 'SA.Robert' 'juliet.sm' 163 0.0 1.0
+2124 'SA.Robert' 'juliet.sm' 164 0.0 1.0
+2125 'SA.Robert' 'juliet.sm' 165 0.0 1.0
+2126 'SA.Robert' 'juliet.sm' 168 0.0 1.0
+2127 'SA.Robert' 'juliet.sm' 169 0.0 1.0
+2128 'SA.Robert' 'juliet.sm' 170 0.0 1.0
+2129 'SA.Robert' 'juliet.sm' 171 0.0 1.0
+2130 'SA.Robert' 'juliet.sm' 172 0.0 1.0
+2131 'SA.Robert' 'juliet.sm' 175 0.0 1.0
+2132 'SA.Robert' 'juliet.sm' 176 0.0 1.0
+2133 'SA.Robert' 'juliet.sm' 177 0.0 1.0
+2134 'SA.Robert' 'juliet.sm' 178 0.0 1.0
+2135 'SA.Robert' 'juliet.sm' 179 0.0 1.0
+2136 'SA.Robert' 'juliet.sm' 182 0.0 1.0
+2137 'SA.Robert' 'juliet.sf' 183 0.0 1.0
+2138 'SA.Robert' 'juliet.sf' 184 0.0 1.0
+2139 'SA.Robert' 'juliet.sf' 185 0.0 1.0
+2140 'SA.Robert' 'juliet.sf' 186 0.0 1.0
+2141 'SA.Robert' 'juliet.sf' 189 0.0 1.0
+2142 'SA.Robert' 'juliet.sf' 190 0.0 1.0
+2143 'SA.Robert' 'juliet.sf' 191 0.0 1.0
+2144 'SA.Robert' 'juliet.sf' 192 0.0 1.0
+2145 'SA.Robert' 'juliet.sf' 193 0.0 1.0
+2146 'SA.Robert' 'juliet.sf' 196 0.0 1.0
+2147 'SA.Robert' 'juliet.sf' 197 0.0 1.0
+2148 'SA.Robert' 'juliet.sf' 198 0.0 1.0
+2149 'SA.Robert' 'juliet.sf' 199 0.0 1.0
+2150 'SA.Robert' 'juliet.sf' 200 0.0 1.0
+2151 'SA.Robert' 'juliet.sf' 203 0.0 1.0
+2152 'SA.Robert' 'juliet.sf' 204 0.0 1.0
+2153 'SA.Robert' 'juliet.sf' 205 0.0 1.0
+2154 'SA.Robert' 'juliet.sf' 206 0.0 1.0
+2155 'SA.Robert' 'juliet.sf' 207 0.0 1.0
+2156 'SA.Robert' 'juliet.sf' 210 0.0 1.0
+2157 'SA.Robert' 'juliet.sf' 211 0.0 1.0
+2158 'SA.Robert' 'juliet.sf' 212 0.0 1.0
+2159 'SA.Robert' 'juliet.sf' 213 0.0 1.0
+2160 'SA.Robert' 'juliet.sf' 214 0.0 1.0
+2161 'SA.Robert' 'juliet.sf' 217 0.0 1.0
+2162 'SA.Robert' 'juliet.sf' 218 0.0 1.0
+2163 'SA.Robert' 'juliet.sf' 219 0.0 1.0
+2164 'SA.Robert' 'juliet.sf' 220 0.0 1.0
+2165 'SA.Robert' 'juliet.sf' 221 0.0 1.0
+2166 'SA.Robert' 'juliet.sf' 224 0.0 1.0
+2167 'SA.Robert' 'juliet.sf' 225 0.0 1.0
+2168 'SA.Robert' 'juliet.sf' 226 0.0 1.0
+2169 'SA.Robert' 'juliet.sf' 227 0.0 1.0
+2170 'SA.Robert' 'juliet.sf' 228 0.0 1.0
+2171 'SA.Robert' 'november.se' 147 2.0 3.0
+2172 'SA.Robert' 'november.se' 148 2.0 3.0
+2173 'SA.Robert' 'november.se' 149 2.0 3.0
+2174 'SA.Robert' 'november.se' 150 2.0 3.0
+2175 'SA.Robert' 'november.se' 151 2.0 3.0
+2176 'SA.Robert' 'november.se' 154 2.0 3.0
+2177 'SA.Robert' 'november.se' 155 2.0 3.0
+2178 'SA.Robert' 'november.se' 156 2.0 3.0
+2179 'SA.Robert' 'november.se' 157 2.0 3.0
+2180 'SA.Robert' 'november.se' 158 2.0 3.0
+2181 'SA.Robert' 'november.se' 161 2.0 3.0
+2182 'SA.Robert' 'november.se' 162 2.0 3.0
+2183 'SA.Robert' 'november.se' 163 2.0 3.0
+2184 'SA.Robert' 'november.se' 164 2.0 3.0
+2185 'SA.Robert' 'november.se' 165 2.0 3.0
+2186 'SA.Robert' 'november.sm' 168 0.0 1.0
+2187 'SA.Robert' 'november.sm' 169 0.0 1.0
+2188 'SA.Robert' 'november.sm' 170 0.0 1.0
+2189 'SA.Robert' 'november.sm' 171 0.0 1.0
+2190 'SA.Robert' 'november.sm' 172 0.0 1.0
+2191 'SA.Robert' 'november.sm' 175 0.0 1.0
+2192 'SA.Robert' 'november.sm' 176 0.0 1.0
+2193 'SA.Robert' 'november.sm' 177 0.0 1.0
+2194 'SA.Robert' 'november.sm' 178 0.0 1.0
+2195 'SA.Robert' 'november.sm' 179 0.0 1.0
+2196 'SA.Robert' 'november.sm' 182 0.0 1.0
+2197 'SA.Robert' 'november.sm' 183 0.0 1.0
+2198 'SA.Robert' 'november.sm' 184 0.0 1.0
+2199 'SA.Robert' 'november.sm' 185 0.0 1.0
+2200 'SA.Robert' 'november.sm' 186 0.0 1.0
+2201 'SA.Robert' 'november.sm' 189 0.0 1.0
+2202 'SA.Robert' 'november.sm' 190 0.0 1.0
+2203 'SA.Robert' 'november.sm' 191 0.0 1.0
+2204 'SA.Robert' 'november.sm' 192 0.0 1.0
+2205 'SA.Robert' 'november.sm' 193 0.0 1.0
+2206 'SA.Robert' 'november.sm' 196 0.0 1.0
+2207 'SA.Robert' 'november.sm' 197 0.0 1.0
+2208 'SA.Robert' 'november.sm' 198 0.0 1.0
+2209 'SA.Robert' 'november.sm' 199 0.0 1.0
+2210 'SA.Robert' 'november.sm' 200 0.0 1.0
+2211 'SA.Robert' 'november.sm' 203 0.0 1.0
+2212 'SA.Robert' 'november.sm' 204 0.0 1.0
+2213 'SA.Robert' 'november.sm' 205 0.0 1.0
+2214 'SA.Robert' 'november.sm' 206 0.0 1.0
+2215 'SA.Robert' 'november.sm' 207 0.0 1.0
+2216 'SA.Robert' 'november.sm' 210 0.0 1.0
+2217 'SA.Robert' 'november.sm' 211 0.0 1.0
+2218 'SA.Robert' 'november.sm' 212 0.0 1.0
+2219 'SA.Robert' 'november.sm' 213 0.0 1.0
+2220 'SA.Robert' 'november.sm' 214 0.0 1.0
+2221 'SA.Robert' 'november.sm' 217 0.0 1.0
+2222 'SA.Robert' 'november.sm' 218 0.0 1.0
+2223 'SA.Robert' 'november.sm' 219 0.0 1.0
+2224 'SA.Robert' 'november.sm' 220 0.0 1.0
+2225 'SA.Robert' 'november.sm' 221 0.0 1.0
+2226 'SA.Robert' 'november.sm' 224 0.0 1.0
+2227 'SA.Robert' 'november.sm' 225 0.0 1.0
+2228 'SA.Robert' 'november.sm' 226 0.0 1.0
+2229 'SA.Robert' 'november.sm' 227 0.0 1.0
+2230 'SA.Robert' 'november.sm' 228 0.0 1.0
+2231 'SA.Robert' 'november.sm' 231 0.0 1.0
+2232 'SA.Robert' 'november.sm' 232 0.0 1.0
+2233 'SA.Robert' 'november.sm' 233 0.0 1.0
+2234 'SA.Robert' 'november.sm' 234 0.0 1.0
+2235 'SA.Robert' 'november.sm' 235 0.0 1.0
+2236 'SA.Robert' 'november.sm' 238 0.0 1.0
+2237 'SA.Robert' 'november.sm' 239 0.0 1.0
+2238 'SA.Robert' 'november.sm' 240 0.0 1.0
+2239 'SA.Robert' 'november.sm' 241 0.0 1.0
+2240 'SA.Robert' 'november.sm' 242 0.0 1.0
+2241 'SA.Robert' 'november.sm' 245 0.0 1.0
+2242 'SA.Robert' 'november.sm' 246 0.0 1.0
+2243 'SA.Robert' 'november.sm' 247 0.0 1.0
+2244 'SA.Robert' 'november.sm' 248 0.0 1.0
+2245 'SA.Robert' 'november.sm' 249 0.0 1.0
+2246 'SA.Robert' 'november.sm' 252 0.0 1.0
+2247 'SA.Robert' 'november.sm' 253 0.0 1.0
+2248 'SA.Robert' 'november.sm' 254 0.0 1.0
+2249 'SA.Robert' 'november.sm' 255 0.0 1.0
+2250 'SA.Robert' 'november.sm' 256 0.0 1.0
+2251 'SA.Robert' 'november.sm' 259 0.0 1.0
+2252 'SA.Robert' 'november.sm' 260 0.0 1.0
+2253 'SA.Robert' 'november.sm' 261 0.0 1.0
+2254 'SA.Robert' 'november.sm' 262 0.0 1.0
+2255 'SA.Robert' 'november.sm' 263 0.0 1.0
+2256 'SA.Robert' 'november.sm' 266 0.0 1.0
+2257 'SA.Robert' 'november.sm' 267 0.0 1.0
+2258 'SA.Robert' 'november.sm' 268 0.0 1.0
+2259 'SA.Robert' 'november.sm' 269 0.0 1.0
+2260 'SA.Robert' 'november.sm' 270 0.0 1.0
+2261 'SA.Robert' 'november.sm' 273 0.0 1.0
+2262 'SA.Robert' 'november.sm' 274 0.0 1.0
+2263 'SA.Robert' 'november.sm' 275 0.0 1.0
+2264 'SA.Robert' 'november.sm' 276 0.0 1.0
+2265 'SA.Robert' 'november.sm' 277 0.0 1.0
+2266 'SA.Robert' 'november.sm' 280 0.0 1.0
+2267 'SA.Robert' 'november.sm' 281 0.0 1.0
+2268 'SA.Robert' 'november.sm' 282 0.0 1.0
+2269 'SA.Robert' 'november.sm' 283 0.0 1.0
+2270 'SA.Robert' 'november.sm' 284 0.0 1.0
+2271 'SA.Robert' 'november.sm' 287 0.0 1.0
+2272 'SA.Robert' 'november.sm' 288 0.0 1.0
+2273 'SA.Robert' 'november.sm' 289 0.0 1.0
+2274 'SA.Robert' 'november.sm' 290 0.0 1.0
+2275 'SA.Robert' 'november.sm' 291 0.0 1.0
+2276 'SA.Robert' 'november.sm' 294 0.0 1.0
+2277 'SA.Robert' 'november.sm' 295 0.0 1.0
+2278 'SA.Robert' 'november.sm' 296 0.0 1.0
+2279 'SA.Robert' 'november.sm' 297 0.0 1.0
+2280 'SA.Robert' 'november.sm' 298 0.0 1.0
+2281 'SA.Robert' 'november.sm' 301 0.0 1.0
+2282 'SA.Robert' 'november.sm' 302 0.0 1.0
+2283 'SA.Robert' 'november.sm' 303 0.0 1.0
+2284 'SA.Robert' 'november.sm' 304 0.0 1.0
+2285 'SA.Robert' 'november.sm' 305 0.0 1.0
+2286 'SA.Robert' 'november.sm' 308 0.0 1.0
+2287 'SA.Robert' 'november.sm' 309 0.0 1.0
+2288 'SA.Robert' 'november.sm' 310 0.0 1.0
+2289 'SA.Robert' 'november.sm' 311 0.0 1.0
+2290 'SA.Robert' 'november.sm' 312 0.0 1.0
+2291 'SA.Robert' 'november.sm' 315 0.0 1.0
+2292 'SA.Robert' 'november.sm' 316 0.0 1.0
+2293 'SA.Robert' 'november.sm' 317 0.0 1.0
+2294 'SA.Robert' 'november.sm' 318 0.0 1.0
+2295 'SA.Robert' 'november.sm' 319 0.0 1.0
+2296 'SA.Robert' 'november.sm' 322 0.0 1.0
+2297 'SA.Robert' 'november.sm' 323 0.0 1.0
+2298 'SA.Robert' 'november.sm' 324 0.0 1.0
+2299 'SA.Robert' 'november.sm' 325 0.0 1.0
+2300 'SA.Robert' 'november.sm' 326 0.0 1.0
+2301 'SA.Robert' 'november.sm' 329 0.0 1.0
+2302 'SA.Robert' 'november.sm' 330 0.0 1.0
+2303 'SA.Robert' 'november.sm' 331 0.0 1.0
+2304 'SA.Robert' 'november.sm' 332 0.0 1.0
+2305 'SA.Robert' 'november.sm' 333 0.0 1.0
+2306 'SA.Robert' 'november.sm' 336 0.0 1.0
+2307 'SA.Robert' 'november.sm' 337 0.0 1.0
+2308 'SA.Robert' 'november.sm' 338 0.0 1.0
+2309 'SA.Robert' 'november.sm' 339 0.0 1.0
+2310 'SA.Robert' 'november.sm' 340 0.0 1.0
+2311 'SA.Robert' 'november.sm' 343 0.0 1.0
+2312 'SA.Robert' 'november.sm' 344 0.0 1.0
+2313 'SA.Robert' 'november.sm' 345 0.0 1.0
+2314 'SA.Robert' 'november.sm' 346 0.0 1.0
+2315 'SA.Robert' 'november.sm' 347 0.0 1.0
+2316 'SA.Robert' 'november.sm' 350 0.0 1.0
+2317 'SA.Robert' 'november.sm' 351 0.0 1.0
+2318 'SA.Robert' 'november.sm' 352 0.0 1.0
+2319 'SA.Robert' 'november.sm' 353 0.0 1.0
+2320 'SA.Robert' 'november.sm' 354 0.0 1.0
+2321 'SA.Robert' 'november.sm' 357 0.0 1.0
+2322 'SA.Robert' 'november.sm' 358 0.0 1.0
+2323 'SA.Robert' 'november.sm' 359 0.0 1.0
+2324 'SA.Robert' 'november.sm' 360 0.0 1.0
+2325 'SA.Robert' 'november.sm' 361 0.0 1.0
+2326 'SA.Robert' 'november.sm' 364 0.0 1.0
+2327 'SA.Robert' 'november.sm' 365 0.0 1.0
+2328 'SA.Robert' 'november.sf' 366 0.0 1.0
+2329 'SA.Robert' 'november.sf' 367 0.0 1.0
+2330 'SA.Robert' 'november.sf' 368 0.0 1.0
+2331 'SA.Robert' 'november.sf' 371 0.0 1.0
+2332 'SA.Robert' 'november.sf' 372 0.0 1.0
+2333 'SA.Robert' 'november.sf' 373 0.0 1.0
+2334 'SA.Robert' 'november.sf' 374 0.0 1.0
+2335 'SA.Robert' 'november.sf' 375 0.0 1.0
+2336 'SA.Robert' 'november.sf' 378 0.0 1.0
+2337 'SA.Robert' 'november.sf' 379 0.0 1.0
+2338 'SA.Robert' 'november.sf' 380 0.0 1.0
+2339 'SA.Robert' 'november.sf' 381 0.0 1.0
+2340 'SA.Robert' 'november.sf' 382 0.0 1.0
+2341 'SA.Robert' 'november.sf' 385 0.0 1.0
+2342 'SA.Robert' 'november.sf' 386 0.0 1.0
+2343 'SA.Robert' 'november.sf' 387 0.0 1.0
+2344 'SA.Robert' 'november.sf' 388 0.0 1.0
+2345 'SA.Robert' 'november.sf' 389 0.0 1.0
+2346 'SA.Robert' 'november.sf' 392 0.0 1.0
+2347 'SA.Robert' 'november.sf' 393 0.0 1.0
+2348 'SA.Robert' 'november.sf' 394 0.0 1.0
+2349 'SA.Robert' 'november.sf' 395 0.0 1.0
+2350 'SA.Robert' 'november.sf' 396 0.0 1.0
+2351 'SA.Robert' 'oscar.se' 177 3.0 4.0
+2352 'SA.Robert' 'oscar.se' 178 3.0 4.0
+2353 'SA.Robert' 'oscar.se' 179 3.0 4.0
+2354 'SA.Robert' 'oscar.se' 182 3.0 4.0
+2355 'SA.Robert' 'oscar.se' 183 3.0 4.0
+2356 'SA.Robert' 'oscar.se' 184 3.0 4.0
+2357 'SA.Robert' 'oscar.se' 185 3.0 4.0
+2358 'SA.Robert' 'oscar.se' 186 3.0 4.0
+2359 'SA.Robert' 'oscar.se' 189 3.0 4.0
+2360 'SA.Robert' 'oscar.se' 190 3.0 4.0
+2361 'SA.Robert' 'oscar.se' 191 3.0 4.0
+2362 'SA.Robert' 'oscar.sm' 192 0.0 1.0
+2363 'SA.Robert' 'oscar.sm' 193 0.0 1.0
+2364 'SA.Robert' 'oscar.sm' 196 0.0 1.0
+2365 'SA.Robert' 'oscar.sm' 197 0.0 1.0
+2366 'SA.Robert' 'oscar.sm' 198 0.0 1.0
+2367 'SA.Robert' 'oscar.sm' 199 0.0 1.0
+2368 'SA.Robert' 'oscar.sm' 200 0.0 1.0
+2369 'SA.Robert' 'oscar.sm' 203 0.0 1.0
+2370 'SA.Robert' 'oscar.sm' 204 0.0 1.0
+2371 'SA.Robert' 'oscar.sm' 205 0.0 1.0
+2372 'SA.Robert' 'oscar.sm' 206 0.0 1.0
+2373 'SA.Robert' 'oscar.sm' 207 0.0 1.0
+2374 'SA.Robert' 'oscar.sm' 210 0.0 1.0
+2375 'SA.Robert' 'oscar.sm' 211 0.0 1.0
+2376 'SA.Robert' 'oscar.sm' 212 0.0 1.0
+2377 'SA.Robert' 'oscar.sm' 213 0.0 1.0
+2378 'SA.Robert' 'oscar.sm' 214 0.0 1.0
+2379 'SA.Robert' 'oscar.sm' 217 0.0 1.0
+2380 'SA.Robert' 'oscar.sm' 218 0.0 1.0
+2381 'SA.Robert' 'oscar.sm' 219 0.0 1.0
+2382 'SA.Robert' 'oscar.sm' 220 0.0 1.0
+2383 'SA.Robert' 'oscar.sm' 221 0.0 1.0
+2384 'SA.Robert' 'oscar.sm' 224 0.0 1.0
+2385 'SA.Robert' 'oscar.sm' 225 0.0 1.0
+2386 'SA.Robert' 'oscar.sm' 226 0.0 1.0
+2387 'SA.Robert' 'oscar.sm' 227 0.0 1.0
+2388 'SA.Robert' 'oscar.sm' 228 0.0 1.0
+2389 'SA.Robert' 'oscar.sm' 231 0.0 1.0
+2390 'SA.Robert' 'oscar.sm' 232 0.0 1.0
+2391 'SA.Robert' 'oscar.sm' 233 0.0 1.0
+2392 'SA.Robert' 'oscar.sm' 234 0.0 1.0
+2393 'SA.Robert' 'oscar.sm' 235 0.0 1.0
+2394 'SA.Robert' 'oscar.sm' 238 0.0 1.0
+2395 'SA.Robert' 'oscar.sm' 239 0.0 1.0
+2396 'SA.Robert' 'oscar.sm' 240 0.0 1.0
+2397 'SA.Robert' 'oscar.sm' 241 0.0 1.0
+2398 'SA.Robert' 'oscar.sm' 242 0.0 1.0
+2399 'SA.Robert' 'oscar.sm' 245 0.0 1.0
+2400 'SA.Robert' 'oscar.sm' 246 0.0 1.0
+2401 'SA.Robert' 'oscar.sm' 247 0.0 1.0
+2402 'SA.Robert' 'oscar.sm' 248 0.0 1.0
+2403 'SA.Robert' 'oscar.sm' 249 0.0 1.0
+2404 'SA.Robert' 'oscar.sm' 252 0.0 1.0
+2405 'SA.Robert' 'oscar.sm' 253 0.0 1.0
+2406 'SA.Robert' 'oscar.sm' 254 0.0 1.0
+2407 'SA.Robert' 'oscar.sm' 255 0.0 1.0
+2408 'SA.Robert' 'oscar.sm' 256 0.0 1.0
+2409 'SA.Robert' 'oscar.sm' 259 0.0 1.0
+2410 'SA.Robert' 'oscar.sm' 260 0.0 1.0
+2411 'SA.Robert' 'oscar.sm' 261 0.0 1.0
+2412 'SA.Robert' 'oscar.sm' 262 0.0 1.0
+2413 'SA.Robert' 'oscar.sm' 263 0.0 1.0
+2414 'SA.Robert' 'oscar.sm' 266 0.0 1.0
+2415 'SA.Robert' 'oscar.sm' 267 0.0 1.0
+2416 'SA.Robert' 'oscar.sm' 268 0.0 1.0
+2417 'SA.Robert' 'oscar.sm' 269 0.0 1.0
+2418 'SA.Robert' 'oscar.sm' 270 0.0 1.0
+2419 'SA.Robert' 'oscar.sm' 273 0.0 1.0
+2420 'SA.Robert' 'oscar.sm' 274 0.0 1.0
+2421 'SA.Robert' 'oscar.sm' 275 0.0 1.0
+2422 'SA.Robert' 'oscar.sm' 276 0.0 1.0
+2423 'SA.Robert' 'oscar.sm' 277 0.0 1.0
+2424 'SA.Robert' 'oscar.sm' 280 0.0 1.0
+2425 'SA.Robert' 'oscar.sm' 281 0.0 1.0
+2426 'SA.Robert' 'oscar.sm' 282 0.0 1.0
+2427 'SA.Robert' 'oscar.sm' 283 0.0 1.0
+2428 'SA.Robert' 'oscar.sm' 284 0.0 1.0
+2429 'SA.Robert' 'oscar.sm' 287 0.0 1.0
+2430 'SA.Robert' 'oscar.sm' 288 0.0 1.0
+2431 'SA.Robert' 'oscar.sm' 289 0.0 1.0
+2432 'SA.Robert' 'oscar.sm' 290 0.0 1.0
+2433 'SA.Robert' 'oscar.sm' 291 0.0 1.0
+2434 'SA.Robert' 'oscar.sm' 294 0.0 1.0
+2435 'SA.Robert' 'oscar.sm' 295 0.0 1.0
+2436 'SA.Robert' 'oscar.sm' 296 0.0 1.0
+2437 'SA.Robert' 'oscar.sm' 297 0.0 1.0
+2438 'SA.Robert' 'oscar.sm' 298 0.0 1.0
+2439 'SA.Robert' 'oscar.sm' 301 0.0 1.0
+2440 'SA.Robert' 'oscar.sm' 302 0.0 1.0
+2441 'SA.Robert' 'oscar.sm' 303 0.0 1.0
+2442 'SA.Robert' 'oscar.sm' 304 0.0 1.0
+2443 'SA.Robert' 'oscar.sm' 305 0.0 1.0
+2444 'SA.Robert' 'oscar.sm' 308 0.0 1.0
+2445 'SA.Robert' 'oscar.sm' 309 0.0 1.0
+2446 'SA.Robert' 'oscar.sm' 310 0.0 1.0
+2447 'SA.Robert' 'oscar.sm' 311 0.0 1.0
+2448 'SA.Robert' 'oscar.sm' 312 0.0 1.0
+2449 'SA.Robert' 'oscar.sm' 315 0.0 1.0
+2450 'SA.Robert' 'oscar.sm' 316 0.0 1.0
+2451 'SA.Robert' 'oscar.sm' 317 0.0 1.0
+2452 'SA.Robert' 'oscar.sm' 318 0.0 1.0
+2453 'SA.Robert' 'oscar.sm' 319 0.0 1.0
+2454 'SA.Robert' 'oscar.sm' 322 0.0 1.0
+2455 'SA.Robert' 'oscar.sm' 323 0.0 1.0
+2456 'SA.Robert' 'oscar.sm' 324 0.0 1.0
+2457 'SA.Robert' 'oscar.sm' 325 0.0 1.0
+2458 'SA.Robert' 'oscar.sm' 326 0.0 1.0
+2459 'SA.Robert' 'oscar.sm' 329 0.0 1.0
+2460 'SA.Robert' 'oscar.sm' 330 0.0 1.0
+2461 'SA.Robert' 'oscar.sm' 331 0.0 1.0
+2462 'SA.Robert' 'oscar.sm' 332 0.0 1.0
+2463 'SA.Robert' 'oscar.sm' 333 0.0 1.0
+2464 'SA.Robert' 'oscar.sm' 336 0.0 1.0
+2465 'SA.Robert' 'oscar.sm' 337 0.0 1.0
+2466 'SA.Robert' 'oscar.sm' 338 0.0 1.0
+2467 'SA.Robert' 'oscar.sm' 339 0.0 1.0
+2468 'SA.Robert' 'oscar.sm' 340 0.0 1.0
+2469 'SA.Robert' 'oscar.sm' 343 0.0 1.0
+2470 'SA.Robert' 'oscar.sm' 344 0.0 1.0
+2471 'SA.Robert' 'oscar.sm' 345 0.0 1.0
+2472 'SA.Robert' 'oscar.sm' 346 0.0 1.0
+2473 'SA.Robert' 'oscar.sm' 347 0.0 1.0
+2474 'SA.Robert' 'oscar.sm' 350 0.0 1.0
+2475 'SA.Robert' 'oscar.sm' 351 0.0 1.0
+2476 'SA.Robert' 'oscar.sm' 352 0.0 1.0
+2477 'SA.Robert' 'oscar.sm' 353 0.0 1.0
+2478 'SA.Robert' 'oscar.sm' 354 0.0 1.0
+2479 'SA.Robert' 'oscar.sm' 357 0.0 1.0
+2480 'SA.Robert' 'oscar.sm' 358 0.0 1.0
+2481 'SA.Robert' 'oscar.sm' 359 0.0 1.0
+2482 'SA.Robert' 'oscar.sm' 360 0.0 1.0
+2483 'SA.Robert' 'oscar.sm' 361 0.0 1.0
+2484 'SA.Robert' 'oscar.sm' 364 0.0 1.0
+2485 'SA.Robert' 'oscar.sm' 365 0.0 1.0
+2486 'SA.Robert' 'oscar.sf' 366 1.0 2.0
+2487 'SA.Robert' 'oscar.sf' 367 1.0 2.0
+2488 'SA.Robert' 'oscar.sf' 368 1.0 2.0
+2489 'SA.Robert' 'oscar.sf' 371 1.0 2.0
+2490 'SA.Robert' 'oscar.sf' 372 1.0 2.0
+2491 'SA.Robert' 'oscar.sf' 373 1.0 2.0
+2492 'SA.Robert' 'oscar.sf' 374 1.0 2.0
+2493 'SA.Robert' 'oscar.sf' 375 1.0 2.0
+2494 'SA.Robert' 'oscar.sf' 378 1.0 2.0
+2495 'SA.Robert' 'oscar.sf' 379 1.0 2.0
+2496 'SA.Robert' 'oscar.sf' 380 1.0 2.0
+2497 'SA.Robert' 'oscar.sf' 381 1.0 2.0
+2498 'SA.Robert' 'oscar.sf' 382 1.0 2.0
+2499 'SA.Robert' 'oscar.sf' 385 1.0 2.0
+2500 'SA.Robert' 'oscar.sf' 386 1.0 2.0
+2501 'SA.Robert' 'oscar.sf' 387 1.0 2.0
+2502 'SA.Robert' 'oscar.sf' 388 1.0 2.0
+2503 'SA.Robert' 'oscar.sf' 389 1.0 2.0
+2504 'SA.Robert' 'oscar.sf' 392 1.0 2.0
+2505 'SA.Robert' 'oscar.sf' 393 1.0 2.0
+2506 'SA.Robert' 'oscar.sf' 394 1.0 2.0
+2507 'SA.Robert' 'oscar.sf' 395 1.0 2.0
+2508 'SA.Robert' 'oscar.sf' 396 1.0 2.0
+2509 'SA.Kevin' 'alpha2.se' 28 9.0 10.0
+2510 'SA.Kevin' 'alpha2.se' 29 9.0 10.0
+2511 'SA.Kevin' 'alpha2.se' 30 9.0 10.0
+2512 'SA.Kevin' 'alpha2.se' 31 9.0 10.0
+2513 'SA.Kevin' 'alpha2.se' 32 9.0 10.0
+2514 'SA.Kevin' 'alpha2.sm' 35 2.0 3.0
+2515 'SA.Kevin' 'alpha2.sm' 36 2.0 3.0
+2516 'SA.Kevin' 'alpha2.sm' 37 2.0 3.0
+2517 'SA.Kevin' 'alpha2.sm' 38 2.0 3.0
+2518 'SA.Kevin' 'alpha2.sm' 39 2.0 3.0
+2519 'SA.Kevin' 'alpha2.sm' 42 2.0 3.0
+2520 'SA.Kevin' 'alpha2.sm' 43 2.0 3.0
+2521 'SA.Kevin' 'alpha2.sm' 44 2.0 3.0
+2522 'SA.Kevin' 'alpha2.sm' 45 2.0 3.0
+2523 'SA.Kevin' 'alpha2.sm' 46 2.0 3.0
+2524 'SA.Kevin' 'alpha2.sm' 49 2.0 3.0
+2525 'SA.Kevin' 'alpha2.sm' 50 2.0 3.0
+2526 'SA.Kevin' 'alpha2.sm' 51 2.0 3.0
+2527 'SA.Kevin' 'alpha2.sm' 52 2.0 3.0
+2528 'SA.Kevin' 'alpha2.sm' 53 2.0 3.0
+2529 'SA.Kevin' 'alpha2.sm' 56 2.0 3.0
+2530 'SA.Kevin' 'alpha2.sm' 57 2.0 3.0
+2531 'SA.Kevin' 'alpha2.sm' 58 2.0 3.0
+2532 'SA.Kevin' 'alpha2.sm' 59 2.0 3.0
+2533 'SA.Kevin' 'alpha2.sm' 60 2.0 3.0
+2534 'SA.Kevin' 'alpha2.sm' 63 2.0 3.0
+2535 'SA.Kevin' 'alpha2.sm' 64 2.0 3.0
+2536 'SA.Kevin' 'alpha2.sm' 65 2.0 3.0
+2537 'SA.Kevin' 'alpha2.sm' 66 2.0 3.0
+2538 'SA.Kevin' 'alpha2.sm' 67 2.0 3.0
+2539 'SA.Kevin' 'alpha2.sm' 70 2.0 3.0
+2540 'SA.Kevin' 'alpha2.sm' 71 2.0 3.0
+2541 'SA.Kevin' 'alpha2.sm' 72 2.0 3.0
+2542 'SA.Kevin' 'alpha2.sm' 73 2.0 3.0
+2543 'SA.Kevin' 'alpha2.sm' 74 2.0 3.0
+2544 'SA.Kevin' 'alpha2.sm' 77 2.0 3.0
+2545 'SA.Kevin' 'alpha2.sm' 78 2.0 3.0
+2546 'SA.Kevin' 'alpha2.sm' 79 2.0 3.0
+2547 'SA.Kevin' 'alpha2.sf' 80 3.0 4.0
+2548 'SA.Kevin' 'alpha2.sf' 81 3.0 4.0
+2549 'SA.Kevin' 'alpha2.sf' 84 3.0 4.0
+2550 'SA.Kevin' 'alpha2.sf' 85 3.0 4.0
+2551 'SA.Kevin' 'alpha2.sf' 86 3.0 4.0
+2552 'SA.Kevin' 'alpha2.sf' 87 3.0 4.0
+2553 'SA.Kevin' 'alpha2.sf' 88 3.0 4.0
+2554 'SA.Kevin' 'alpha2.sf' 91 3.0 4.0
+2555 'SA.Kevin' 'alpha2.sf' 92 3.0 4.0
+2556 'SA.Kevin' 'beta2.se' 7 15.0 16.0
+2557 'SA.Kevin' 'beta2.se' 8 15.0 16.0
+2558 'SA.Kevin' 'beta2.se' 9 15.0 16.0
+2559 'SA.Kevin' 'beta2.se' 10 15.0 16.0
+2560 'SA.Kevin' 'beta2.se' 11 15.0 16.0
+2561 'SA.Kevin' 'beta2.se' 14 15.0 16.0
+2562 'SA.Kevin' 'beta2.se' 15 15.0 16.0
+2563 'SA.Kevin' 'beta2.se' 16 15.0 16.0
+2564 'SA.Kevin' 'beta2.sm' 17 1.0 2.0
+2565 'SA.Kevin' 'beta2.sm' 18 1.0 2.0
+2566 'SA.Kevin' 'beta2.sm' 21 1.0 2.0
+2567 'SA.Kevin' 'beta2.sm' 22 1.0 2.0
+2568 'SA.Kevin' 'beta2.sm' 23 1.0 2.0
+2569 'SA.Kevin' 'beta2.sm' 24 1.0 2.0
+2570 'SA.Kevin' 'beta2.sm' 25 1.0 2.0
+2571 'SA.Kevin' 'beta2.sm' 28 1.0 2.0
+2572 'SA.Kevin' 'beta2.sm' 29 1.0 2.0
+2573 'SA.Kevin' 'beta2.sm' 30 1.0 2.0
+2574 'SA.Kevin' 'beta2.sm' 31 1.0 2.0
+2575 'SA.Kevin' 'beta2.sm' 32 1.0 2.0
+2576 'SA.Kevin' 'beta2.sm' 35 1.0 2.0
+2577 'SA.Kevin' 'beta2.sm' 36 1.0 2.0
+2578 'SA.Kevin' 'beta2.sm' 37 1.0 2.0
+2579 'SA.Kevin' 'beta2.sm' 38 1.0 2.0
+2580 'SA.Kevin' 'beta2.sm' 39 1.0 2.0
+2581 'SA.Kevin' 'beta2.sm' 42 1.0 2.0
+2582 'SA.Kevin' 'beta2.sm' 43 1.0 2.0
+2583 'SA.Kevin' 'beta2.sm' 44 1.0 2.0
+2584 'SA.Kevin' 'beta2.sm' 45 1.0 2.0
+2585 'SA.Kevin' 'beta2.sm' 46 1.0 2.0
+2586 'SA.Kevin' 'beta2.sm' 49 1.0 2.0
+2587 'SA.Kevin' 'beta2.sm' 50 1.0 2.0
+2588 'SA.Kevin' 'beta2.sm' 51 1.0 2.0
+2589 'SA.Kevin' 'beta2.sm' 52 1.0 2.0
+2590 'SA.Kevin' 'beta2.sm' 53 1.0 2.0
+2591 'SA.Kevin' 'beta2.sm' 56 1.0 2.0
+2592 'SA.Kevin' 'beta2.sm' 57 1.0 2.0
+2593 'SA.Kevin' 'beta2.sm' 58 1.0 2.0
+2594 'SA.Kevin' 'beta2.sm' 59 1.0 2.0
+2595 'SA.Kevin' 'beta2.sm' 60 1.0 2.0
+2596 'SA.Kevin' 'beta2.sm' 63 1.0 2.0
+2597 'SA.Kevin' 'beta2.sm' 64 1.0 2.0
+2598 'SA.Kevin' 'beta2.sm' 65 1.0 2.0
+2599 'SA.Kevin' 'beta2.sm' 66 1.0 2.0
+2600 'SA.Kevin' 'beta2.sm' 67 1.0 2.0
+2601 'SA.Kevin' 'beta2.sm' 70 1.0 2.0
+2602 'SA.Kevin' 'beta2.sm' 71 1.0 2.0
+2603 'SA.Kevin' 'beta2.sm' 72 1.0 2.0
+2604 'SA.Kevin' 'beta2.sm' 73 1.0 2.0
+2605 'SA.Kevin' 'beta2.sm' 74 1.0 2.0
+2606 'SA.Kevin' 'beta2.sm' 77 1.0 2.0
+2607 'SA.Kevin' 'beta2.sm' 78 1.0 2.0
+2608 'SA.Kevin' 'beta2.sm' 79 1.0 2.0
+2609 'SA.Kevin' 'beta2.sm' 80 1.0 2.0
+2610 'SA.Kevin' 'beta2.sm' 81 1.0 2.0
+2611 'SA.Kevin' 'beta2.sm' 84 1.0 2.0
+2612 'SA.Kevin' 'beta2.sm' 85 1.0 2.0
+2613 'SA.Kevin' 'beta2.sm' 86 1.0 2.0
+2614 'SA.Kevin' 'beta2.sm' 87 1.0 2.0
+2615 'SA.Kevin' 'beta2.sm' 88 1.0 2.0
+2616 'SA.Kevin' 'beta2.sm' 91 1.0 2.0
+2617 'SA.Kevin' 'beta2.sm' 92 1.0 2.0
+2618 'SA.Kevin' 'beta2.sm' 93 1.0 2.0
+2619 'SA.Kevin' 'beta2.sm' 94 1.0 2.0
+2620 'SA.Kevin' 'beta2.sm' 95 1.0 2.0
+2621 'SA.Kevin' 'beta2.sm' 98 1.0 2.0
+2622 'SA.Kevin' 'beta2.sm' 99 1.0 2.0
+2623 'SA.Kevin' 'beta2.sm' 100 1.0 2.0
+2624 'SA.Kevin' 'beta2.sm' 101 1.0 2.0
+2625 'SA.Kevin' 'beta2.sm' 102 1.0 2.0
+2626 'SA.Kevin' 'beta2.sm' 105 1.0 2.0
+2627 'SA.Kevin' 'beta2.sm' 106 1.0 2.0
+2628 'SA.Kevin' 'beta2.sm' 107 1.0 2.0
+2629 'SA.Kevin' 'beta2.sm' 108 1.0 2.0
+2630 'SA.Kevin' 'beta2.sm' 109 1.0 2.0
+2631 'SA.Kevin' 'beta2.sm' 112 1.0 2.0
+2632 'SA.Kevin' 'beta2.sm' 113 1.0 2.0
+2633 'SA.Kevin' 'beta2.sm' 114 1.0 2.0
+2634 'SA.Kevin' 'beta2.sm' 115 1.0 2.0
+2635 'SA.Kevin' 'beta2.sm' 116 1.0 2.0
+2636 'SA.Kevin' 'beta2.sm' 119 1.0 2.0
+2637 'SA.Kevin' 'beta2.sm' 120 1.0 2.0
+2638 'SA.Kevin' 'beta2.sm' 121 1.0 2.0
+2639 'SA.Kevin' 'beta2.sm' 123 1.0 2.0
+2640 'SA.Kevin' 'beta2.sm' 126 1.0 2.0
+2641 'SA.Kevin' 'beta2.sm' 127 1.0 2.0
+2642 'SA.Kevin' 'beta2.sm' 128 1.0 2.0
+2643 'SA.Kevin' 'beta2.sm' 129 1.0 2.0
+2644 'SA.Kevin' 'beta2.sm' 130 1.0 2.0
+2645 'SA.Kevin' 'beta2.sm' 133 1.0 2.0
+2646 'SA.Kevin' 'beta2.sm' 134 1.0 2.0
+2647 'SA.Kevin' 'beta2.sm' 135 1.0 2.0
+2648 'SA.Kevin' 'beta2.sm' 136 1.0 2.0
+2649 'SA.Kevin' 'beta2.sm' 137 1.0 2.0
+2650 'SA.Kevin' 'beta2.sm' 140 1.0 2.0
+2651 'SA.Kevin' 'beta2.sm' 141 1.0 2.0
+2652 'SA.Kevin' 'beta2.sm' 142 1.0 2.0
+2653 'SA.Kevin' 'beta2.sm' 143 1.0 2.0
+2654 'SA.Kevin' 'beta2.sm' 144 1.0 2.0
+2655 'SA.Kevin' 'beta2.sm' 147 1.0 2.0
+2656 'SA.Kevin' 'beta2.sm' 148 1.0 2.0
+2657 'SA.Kevin' 'beta2.sm' 149 1.0 2.0
+2658 'SA.Kevin' 'beta2.sm' 150 1.0 2.0
+2659 'SA.Kevin' 'beta2.sm' 151 1.0 2.0
+2660 'SA.Kevin' 'beta2.sm' 154 1.0 2.0
+2661 'SA.Kevin' 'beta2.sm' 155 1.0 2.0
+2662 'SA.Kevin' 'beta2.sm' 156 1.0 2.0
+2663 'SA.Kevin' 'beta2.sm' 157 1.0 2.0
+2664 'SA.Kevin' 'beta2.sm' 158 1.0 2.0
+2665 'SA.Kevin' 'beta2.sm' 161 1.0 2.0
+2666 'SA.Kevin' 'beta2.sm' 162 1.0 2.0
+2667 'SA.Kevin' 'beta2.sm' 163 1.0 2.0
+2668 'SA.Kevin' 'beta2.sm' 164 1.0 2.0
+2669 'SA.Kevin' 'beta2.sm' 165 1.0 2.0
+2670 'SA.Kevin' 'beta2.sm' 168 1.0 2.0
+2671 'SA.Kevin' 'beta2.sm' 169 1.0 2.0
+2672 'SA.Kevin' 'beta2.sm' 170 1.0 2.0
+2673 'SA.Kevin' 'beta2.sm' 171 1.0 2.0
+2674 'SA.Kevin' 'beta2.sm' 172 1.0 2.0
+2675 'SA.Kevin' 'beta2.sm' 175 1.0 2.0
+2676 'SA.Kevin' 'beta2.sm' 176 1.0 2.0
+2677 'SA.Kevin' 'beta2.sm' 177 1.0 2.0
+2678 'SA.Kevin' 'beta2.sm' 178 1.0 2.0
+2679 'SA.Kevin' 'beta2.sm' 179 1.0 2.0
+2680 'SA.Kevin' 'beta2.sm' 182 1.0 2.0
+2681 'SA.Kevin' 'beta2.sm' 183 1.0 2.0
+2682 'SA.Kevin' 'beta2.sm' 184 1.0 2.0
+2683 'SA.Kevin' 'beta2.sm' 185 1.0 2.0
+2684 'SA.Kevin' 'beta2.sm' 186 1.0 2.0
+2685 'SA.Kevin' 'beta2.sm' 189 1.0 2.0
+2686 'SA.Kevin' 'beta2.sm' 190 1.0 2.0
+2687 'SA.Kevin' 'beta2.sm' 191 1.0 2.0
+2688 'SA.Kevin' 'beta2.sm' 192 1.0 2.0
+2689 'SA.Kevin' 'beta2.sm' 193 1.0 2.0
+2690 'SA.Kevin' 'beta2.sm' 196 1.0 2.0
+2691 'SA.Kevin' 'beta2.sm' 197 1.0 2.0
+2692 'SA.Kevin' 'beta2.sf' 198 11.0 12.0
+2693 'SA.Kevin' 'beta2.sf' 199 11.0 12.0
+2694 'SA.Kevin' 'beta2.sf' 200 11.0 12.0
+2695 'SA.Kevin' 'beta2.sf' 203 11.0 12.0
+2696 'SA.Kevin' 'beta2.sf' 204 11.0 12.0
+2697 'SA.Kevin' 'beta2.sf' 205 11.0 12.0
+2698 'SA.Kevin' 'beta2.sf' 206 11.0 12.0
+2699 'SA.Kevin' 'beta2.sf' 207 11.0 12.0
+2700 'SA.Kevin' 'beta2.sf' 210 11.0 12.0
+2701 'SA.Kevin' 'beta2.sf' 211 11.0 12.0
+2702 'SA.Kevin' 'beta2.sf' 212 11.0 12.0
+2703 'SA.Kevin' 'beta2.sf' 213 11.0 12.0
+2704 'SA.Kevin' 'beta2.sf' 214 11.0 12.0
+2705 'SA.Kevin' 'beta2.sf' 217 11.0 12.0
+2706 'SA.Kevin' 'gamma2.sm' 3 4.0 5.0
+2707 'SA.Kevin' 'gamma2.sm' 4 4.0 5.0
+2708 'SA.Kevin' 'gamma2.sm' 7 4.0 5.0
+2709 'SA.Kevin' 'gamma2.sm' 8 4.0 5.0
+2710 'SA.Kevin' 'gamma2.sm' 9 4.0 5.0
+2711 'SA.Kevin' 'gamma2.sm' 10 4.0 5.0
+2712 'SA.Kevin' 'gamma2.sm' 11 4.0 5.0
+2713 'SA.Kevin' 'gamma2.sm' 14 4.0 5.0
+2714 'SA.Kevin' 'gamma2.sm' 15 4.0 5.0
+2715 'SA.Kevin' 'gamma2.sm' 16 4.0 5.0
+2716 'SA.Kevin' 'gamma2.sm' 17 4.0 5.0
+2717 'SA.Kevin' 'gamma2.sm' 18 4.0 5.0
+2718 'SA.Kevin' 'gamma2.sm' 21 4.0 5.0
+2719 'SA.Kevin' 'gamma2.sm' 22 4.0 5.0
+2720 'SA.Kevin' 'gamma2.sf' 23 2.0 3.0
+2721 'SA.Kevin' 'gamma2.sf' 24 2.0 3.0
+2722 'SA.Kevin' 'gamma2.sf' 25 2.0 3.0
+2723 'SA.Kevin' 'gamma2.sf' 28 2.0 3.0
+2724 'SA.Kevin' 'gamma2.sf' 29 2.0 3.0
+2725 'SA.Kevin' 'gamma2.sf' 30 2.0 3.0
+2726 'SA.Kevin' 'gamma2.sf' 31 2.0 3.0
+2727 'SA.Kevin' 'gamma2.sf' 32 2.0 3.0
+2728 'SA.Kevin' 'gamma2.sf' 35 2.0 3.0
+2729 'SA.Kevin' 'quebec2.se' 154 8.0 9.0
+2730 'SA.Kevin' 'quebec2.se' 155 8.0 9.0
+2731 'SA.Kevin' 'quebec2.se' 156 8.0 9.0
+2732 'SA.Kevin' 'quebec2.se' 157 8.0 9.0
+2733 'SA.Kevin' 'quebec2.se' 158 8.0 9.0
+2734 'SA.Kevin' 'quebec2.se' 161 8.0 9.0
+2735 'SA.Kevin' 'quebec2.se' 162 8.0 9.0
+2736 'SA.Kevin' 'quebec2.se' 163 8.0 9.0
+2737 'SA.Kevin' 'quebec2.se' 164 8.0 9.0
+2738 'SA.Kevin' 'quebec2.se' 165 8.0 9.0
+2739 'SA.Kevin' 'quebec2.se' 168 8.0 9.0
+2740 'SA.Kevin' 'quebec2.se' 169 8.0 9.0
+2741 'SA.Kevin' 'quebec2.se' 170 8.0 9.0
+2742 'SA.Kevin' 'quebec2.se' 171 8.0 9.0
+2743 'SA.Kevin' 'quebec2.se' 172 8.0 9.0
+2744 'SA.Kevin' 'quebec2.se' 175 8.0 9.0
+2745 'SA.Kevin' 'quebec2.se' 176 8.0 9.0
+2746 'SA.Kevin' 'quebec2.se' 177 8.0 9.0
+2747 'SA.Kevin' 'quebec2.se' 178 8.0 9.0
+2748 'SA.Kevin' 'quebec2.sm' 179 0.0 1.0
+2749 'SA.Kevin' 'quebec2.sm' 182 0.0 1.0
+2750 'SA.Kevin' 'quebec2.sm' 183 0.0 1.0
+2751 'SA.Kevin' 'quebec2.sm' 184 0.0 1.0
+2752 'SA.Kevin' 'quebec2.sm' 185 0.0 1.0
+2753 'SA.Kevin' 'quebec2.sm' 186 0.0 1.0
+2754 'SA.Kevin' 'quebec2.sm' 189 0.0 1.0
+2755 'SA.Kevin' 'quebec2.sm' 190 0.0 1.0
+2756 'SA.Kevin' 'quebec2.sm' 191 0.0 1.0
+2757 'SA.Kevin' 'quebec2.sm' 192 0.0 1.0
+2758 'SA.Kevin' 'quebec2.sm' 193 0.0 1.0
+2759 'SA.Kevin' 'quebec2.sm' 196 0.0 1.0
+2760 'SA.Kevin' 'quebec2.sm' 197 0.0 1.0
+2761 'SA.Kevin' 'quebec2.sm' 198 0.0 1.0
+2762 'SA.Kevin' 'quebec2.sm' 199 0.0 1.0
+2763 'SA.Kevin' 'quebec2.sm' 200 0.0 1.0
+2764 'SA.Kevin' 'quebec2.sm' 203 0.0 1.0
+2765 'SA.Kevin' 'quebec2.sm' 204 0.0 1.0
+2766 'SA.Kevin' 'quebec2.sm' 205 0.0 1.0
+2767 'SA.Kevin' 'quebec2.sm' 206 0.0 1.0
+2768 'SA.Kevin' 'quebec2.sm' 207 0.0 1.0
+2769 'SA.Kevin' 'quebec2.sm' 210 0.0 1.0
+2770 'SA.Kevin' 'quebec2.sm' 211 0.0 1.0
+2771 'SA.Kevin' 'quebec2.sm' 212 0.0 1.0
+2772 'SA.Kevin' 'quebec2.sm' 213 0.0 1.0
+2773 'SA.Kevin' 'quebec2.sm' 214 0.0 1.0
+2774 'SA.Kevin' 'quebec2.sm' 217 0.0 1.0
+2775 'SA.Kevin' 'quebec2.sm' 218 0.0 1.0
+2776 'SA.Kevin' 'quebec2.sm' 219 0.0 1.0
+2777 'SA.Kevin' 'quebec2.sm' 220 0.0 1.0
+2778 'SA.Kevin' 'quebec2.sm' 221 0.0 1.0
+2779 'SA.Kevin' 'quebec2.sm' 224 0.0 1.0
+2780 'SA.Kevin' 'quebec2.sm' 225 0.0 1.0
+2781 'SA.Kevin' 'quebec2.sm' 226 0.0 1.0
+2782 'SA.Kevin' 'quebec2.sm' 227 0.0 1.0
+2783 'SA.Kevin' 'quebec2.sm' 228 0.0 1.0
+2784 'SA.Kevin' 'quebec2.sm' 231 0.0 1.0
+2785 'SA.Kevin' 'quebec2.sm' 232 0.0 1.0
+2786 'SA.Kevin' 'quebec2.sm' 233 0.0 1.0
+2787 'SA.Kevin' 'quebec2.sm' 234 0.0 1.0
+2788 'SA.Kevin' 'quebec2.sm' 235 0.0 1.0
+2789 'SA.Kevin' 'quebec2.sm' 238 0.0 1.0
+2790 'SA.Kevin' 'quebec2.sm' 239 0.0 1.0
+2791 'SA.Kevin' 'quebec2.sm' 240 0.0 1.0
+2792 'SA.Kevin' 'quebec2.sm' 241 0.0 1.0
+2793 'SA.Kevin' 'quebec2.sm' 242 0.0 1.0
+2794 'SA.Kevin' 'quebec2.sm' 245 0.0 1.0
+2795 'SA.Kevin' 'quebec2.sm' 246 0.0 1.0
+2796 'SA.Kevin' 'quebec2.sm' 247 0.0 1.0
+2797 'SA.Kevin' 'quebec2.sm' 248 0.0 1.0
+2798 'SA.Kevin' 'quebec2.sm' 249 0.0 1.0
+2799 'SA.Kevin' 'quebec2.sm' 252 0.0 1.0
+2800 'SA.Kevin' 'quebec2.sm' 253 0.0 1.0
+2801 'SA.Kevin' 'quebec2.sm' 254 0.0 1.0
+2802 'SA.Kevin' 'quebec2.sm' 255 0.0 1.0
+2803 'SA.Kevin' 'quebec2.sm' 256 0.0 1.0
+2804 'SA.Kevin' 'quebec2.sm' 259 0.0 1.0
+2805 'SA.Kevin' 'quebec2.sm' 260 0.0 1.0
+2806 'SA.Kevin' 'quebec2.sm' 261 0.0 1.0
+2807 'SA.Kevin' 'quebec2.sm' 262 0.0 1.0
+2808 'SA.Kevin' 'quebec2.sm' 263 0.0 1.0
+2809 'SA.Kevin' 'quebec2.sm' 266 0.0 1.0
+2810 'SA.Kevin' 'quebec2.sm' 267 0.0 1.0
+2811 'SA.Kevin' 'quebec2.sm' 268 0.0 1.0
+2812 'SA.Kevin' 'quebec2.sm' 269 0.0 1.0
+2813 'SA.Kevin' 'quebec2.sm' 270 0.0 1.0
+2814 'SA.Kevin' 'quebec2.sm' 273 0.0 1.0
+2815 'SA.Kevin' 'quebec2.sm' 274 0.0 1.0
+2816 'SA.Kevin' 'quebec2.sm' 275 0.0 1.0
+2817 'SA.Kevin' 'quebec2.sm' 276 0.0 1.0
+2818 'SA.Kevin' 'quebec2.sm' 277 0.0 1.0
+2819 'SA.Kevin' 'quebec2.sm' 280 0.0 1.0
+2820 'SA.Kevin' 'quebec2.sm' 281 0.0 1.0
+2821 'SA.Kevin' 'quebec2.sm' 282 0.0 1.0
+2822 'SA.Kevin' 'quebec2.sm' 283 0.0 1.0
+2823 'SA.Kevin' 'quebec2.sm' 284 0.0 1.0
+2824 'SA.Kevin' 'quebec2.sm' 287 0.0 1.0
+2825 'SA.Kevin' 'quebec2.sm' 288 0.0 1.0
+2826 'SA.Kevin' 'quebec2.sm' 289 0.0 1.0
+2827 'SA.Kevin' 'quebec2.sm' 290 0.0 1.0
+2828 'SA.Kevin' 'quebec2.sm' 291 0.0 1.0
+2829 'SA.Kevin' 'quebec2.sm' 294 0.0 1.0
+2830 'SA.Kevin' 'quebec2.sm' 295 0.0 1.0
+2831 'SA.Kevin' 'quebec2.sm' 296 0.0 1.0
+2832 'SA.Kevin' 'quebec2.sm' 297 0.0 1.0
+2833 'SA.Kevin' 'quebec2.sm' 298 0.0 1.0
+2834 'SA.Kevin' 'quebec2.sm' 301 0.0 1.0
+2835 'SA.Kevin' 'quebec2.sm' 302 0.0 1.0
+2836 'SA.Kevin' 'quebec2.sm' 303 0.0 1.0
+2837 'SA.Kevin' 'quebec2.sm' 304 0.0 1.0
+2838 'SA.Kevin' 'quebec2.sm' 305 0.0 1.0
+2839 'SA.Kevin' 'quebec2.sm' 308 0.0 1.0
+2840 'SA.Kevin' 'quebec2.sm' 309 0.0 1.0
+2841 'SA.Kevin' 'quebec2.sm' 310 0.0 1.0
+2842 'SA.Kevin' 'quebec2.sm' 311 0.0 1.0
+2843 'SA.Kevin' 'quebec2.sm' 312 0.0 1.0
+2844 'SA.Kevin' 'quebec2.sm' 315 0.0 1.0
+2845 'SA.Kevin' 'quebec2.sm' 316 0.0 1.0
+2846 'SA.Kevin' 'quebec2.sm' 317 0.0 1.0
+2847 'SA.Kevin' 'quebec2.sm' 318 0.0 1.0
+2848 'SA.Kevin' 'quebec2.sm' 319 0.0 1.0
+2849 'SA.Kevin' 'quebec2.sm' 322 0.0 1.0
+2850 'SA.Kevin' 'quebec2.sm' 323 0.0 1.0
+2851 'SA.Kevin' 'quebec2.sm' 324 0.0 1.0
+2852 'SA.Kevin' 'quebec2.sm' 325 0.0 1.0
+2853 'SA.Kevin' 'quebec2.sm' 326 0.0 1.0
+2854 'SA.Kevin' 'quebec2.sm' 329 0.0 1.0
+2855 'SA.Kevin' 'quebec2.sm' 330 0.0 1.0
+2856 'SA.Kevin' 'quebec2.sm' 331 0.0 1.0
+2857 'SA.Kevin' 'quebec2.sm' 332 0.0 1.0
+2858 'SA.Kevin' 'quebec2.sm' 333 0.0 1.0
+2859 'SA.Kevin' 'quebec2.sm' 336 0.0 1.0
+2860 'SA.Kevin' 'quebec2.sm' 337 0.0 1.0
+2861 'SA.Kevin' 'quebec2.sm' 338 0.0 1.0
+2862 'SA.Kevin' 'quebec2.sm' 339 0.0 1.0
+2863 'SA.Kevin' 'quebec2.sm' 340 0.0 1.0
+2864 'SA.Kevin' 'quebec2.sm' 343 0.0 1.0
+2865 'SA.Kevin' 'quebec2.sm' 344 0.0 1.0
+2866 'SA.Kevin' 'quebec2.sm' 345 0.0 1.0
+2867 'SA.Kevin' 'quebec2.sm' 346 0.0 1.0
+2868 'SA.Kevin' 'quebec2.sm' 347 0.0 1.0
+2869 'SA.Kevin' 'quebec2.sm' 350 0.0 1.0
+2870 'SA.Kevin' 'quebec2.sm' 351 0.0 1.0
+2871 'SA.Kevin' 'quebec2.sm' 352 0.0 1.0
+2872 'SA.Kevin' 'quebec2.sm' 353 0.0 1.0
+2873 'SA.Kevin' 'quebec2.sm' 354 0.0 1.0
+2874 'SA.Kevin' 'quebec2.sm' 357 0.0 1.0
+2875 'SA.Kevin' 'quebec2.sm' 358 0.0 1.0
+2876 'SA.Kevin' 'quebec2.sm' 359 0.0 1.0
+2877 'SA.Kevin' 'quebec2.sm' 360 0.0 1.0
+2878 'SA.Kevin' 'quebec2.sm' 361 0.0 1.0
+2879 'SA.Kevin' 'quebec2.sm' 364 0.0 1.0
+2880 'SA.Kevin' 'quebec2.sm' 365 0.0 1.0
+2881 'SA.Kevin' 'quebec2.sm' 366 0.0 1.0
+2882 'SA.Kevin' 'quebec2.sm' 367 0.0 1.0
+2883 'SA.Kevin' 'quebec2.sm' 368 0.0 1.0
+2884 'SA.Kevin' 'quebec2.sm' 371 0.0 1.0
+2885 'SA.Kevin' 'quebec2.sm' 372 0.0 1.0
+2886 'SA.Kevin' 'quebec2.sm' 373 0.0 1.0
+2887 'SA.Kevin' 'quebec2.sm' 374 0.0 1.0
+2888 'SA.Kevin' 'quebec2.sm' 375 0.0 1.0
+2889 'SA.Kevin' 'quebec2.sm' 378 0.0 1.0
+2890 'SA.Kevin' 'quebec2.sm' 379 0.0 1.0
+2891 'SA.Kevin' 'quebec2.sm' 380 0.0 1.0
+2892 'SA.Kevin' 'quebec2.sm' 381 0.0 1.0
+2893 'SA.Kevin' 'quebec2.sm' 382 0.0 1.0
+2894 'SA.Kevin' 'quebec2.sm' 385 0.0 1.0
+2895 'SA.Kevin' 'quebec2.sm' 386 0.0 1.0
+2896 'SA.Kevin' 'quebec2.sm' 387 0.0 1.0
+2897 'SA.Kevin' 'quebec2.sm' 388 0.0 1.0
+2898 'SA.Kevin' 'quebec2.sm' 389 0.0 1.0
+2899 'SA.Kevin' 'quebec2.sm' 392 0.0 1.0
+2900 'SA.Kevin' 'quebec2.sm' 393 0.0 1.0
+2901 'SA.Kevin' 'quebec2.sm' 394 0.0 1.0
+2902 'SA.Kevin' 'quebec2.sm' 395 0.0 1.0
+2903 'SA.Kevin' 'quebec2.sm' 396 0.0 1.0
+2904 'SA.Kevin' 'quebec2.sm' 399 0.0 1.0
+2905 'SA.Kevin' 'quebec2.sm' 400 0.0 1.0
+2906 'SA.Kevin' 'quebec2.sm' 401 0.0 1.0
+2907 'SA.Kevin' 'quebec2.sm' 402 0.0 1.0
+2908 'SA.Kevin' 'quebec2.sm' 403 0.0 1.0
+2909 'SA.Kevin' 'quebec2.sm' 406 0.0 1.0
+2910 'SA.Kevin' 'quebec2.sm' 407 0.0 1.0
+2911 'SA.Kevin' 'quebec2.sm' 408 0.0 1.0
+2912 'SA.Kevin' 'quebec2.sm' 409 0.0 1.0
+2913 'SA.Kevin' 'quebec2.sm' 410 0.0 1.0
+2914 'SA.Kevin' 'quebec2.sm' 413 0.0 1.0
+2915 'SA.Kevin' 'quebec2.sm' 414 0.0 1.0
+2916 'SA.Kevin' 'quebec2.sm' 415 0.0 1.0
+2917 'SA.Kevin' 'quebec2.sm' 416 0.0 1.0
+2918 'SA.Kevin' 'quebec2.sm' 417 0.0 1.0
+2919 'SA.Kevin' 'quebec2.sm' 420 0.0 1.0
+2920 'SA.Kevin' 'quebec2.sm' 421 0.0 1.0
+2921 'SA.Kevin' 'quebec2.sm' 422 0.0 1.0
+2922 'SA.Kevin' 'quebec2.sm' 423 0.0 1.0
+2923 'SA.Kevin' 'quebec2.sm' 424 0.0 1.0
+2924 'SA.Kevin' 'quebec2.sm' 427 0.0 1.0
+2925 'SA.Kevin' 'quebec2.sm' 428 0.0 1.0
+2926 'SA.Kevin' 'quebec2.sm' 429 0.0 1.0
+2927 'SA.Kevin' 'quebec2.sm' 430 0.0 1.0
+2928 'SA.Kevin' 'quebec2.sm' 431 0.0 1.0
+2929 'SA.Kevin' 'quebec2.sm' 434 0.0 1.0
+2930 'SA.Kevin' 'quebec2.sm' 435 0.0 1.0
+2931 'SA.Kevin' 'quebec2.sm' 436 0.0 1.0
+2932 'SA.Kevin' 'quebec2.sm' 437 0.0 1.0
+2933 'SA.Kevin' 'quebec2.sm' 438 0.0 1.0
+2934 'SA.Kevin' 'quebec2.sm' 441 0.0 1.0
+2935 'SA.Kevin' 'quebec2.sm' 442 0.0 1.0
+2936 'SA.Kevin' 'quebec2.sm' 443 0.0 1.0
+2937 'SA.Kevin' 'quebec2.sm' 444 0.0 1.0
+2938 'SA.Kevin' 'quebec2.sm' 445 0.0 1.0
+2939 'SA.Kevin' 'quebec2.sm' 448 0.0 1.0
+2940 'SA.Kevin' 'quebec2.sm' 449 0.0 1.0
+2941 'SA.Kevin' 'quebec2.sm' 450 0.0 1.0
+2942 'SA.Kevin' 'quebec2.sm' 451 0.0 1.0
+2943 'SA.Kevin' 'quebec2.sm' 452 0.0 1.0
+2944 'SA.Kevin' 'quebec2.sm' 455 0.0 1.0
+2945 'SA.Kevin' 'quebec2.sm' 456 0.0 1.0
+2946 'SA.Kevin' 'quebec2.sm' 457 0.0 1.0
+2947 'SA.Kevin' 'quebec2.sm' 458 0.0 1.0
+2948 'SA.Kevin' 'quebec2.sm' 459 0.0 1.0
+2949 'SA.Kevin' 'quebec2.sm' 462 0.0 1.0
+2950 'SA.Kevin' 'quebec2.sm' 463 0.0 1.0
+2951 'SA.Kevin' 'quebec2.sm' 464 0.0 1.0
+2952 'SA.Kevin' 'quebec2.sm' 465 0.0 1.0
+2953 'SA.Kevin' 'quebec2.sm' 466 0.0 1.0
+2954 'SA.Kevin' 'quebec2.sm' 469 0.0 1.0
+2955 'SA.Kevin' 'quebec2.sm' 470 0.0 1.0
+2956 'SA.Kevin' 'quebec2.sm' 471 0.0 1.0
+2957 'SA.Kevin' 'quebec2.sm' 472 0.0 1.0
+2958 'SA.Kevin' 'quebec2.sm' 473 0.0 1.0
+2959 'SA.Kevin' 'quebec2.sm' 476 0.0 1.0
+2960 'SA.Kevin' 'quebec2.sm' 477 0.0 1.0
+2961 'SA.Kevin' 'quebec2.sm' 478 0.0 1.0
+2962 'SA.Kevin' 'quebec2.sm' 479 0.0 1.0
+2963 'SA.Kevin' 'quebec2.sm' 480 0.0 1.0
+2964 'SA.Kevin' 'quebec2.sm' 483 0.0 1.0
+2965 'SA.Kevin' 'quebec2.sm' 484 0.0 1.0
+2966 'SA.Kevin' 'quebec2.sm' 485 0.0 1.0
+2967 'SA.Kevin' 'quebec2.sm' 486 0.0 1.0
+2968 'SA.Kevin' 'quebec2.sm' 487 0.0 1.0
+2969 'SA.Kevin' 'quebec2.sm' 490 0.0 1.0
+2970 'SA.Kevin' 'quebec2.sm' 491 0.0 1.0
+2971 'SA.Kevin' 'quebec2.sm' 492 0.0 1.0
+2972 'SA.Kevin' 'quebec2.sm' 493 0.0 1.0
+2973 'SA.Kevin' 'quebec2.sm' 494 0.0 1.0
+2974 'SA.Kevin' 'quebec2.sm' 497 0.0 1.0
+2975 'SA.Kevin' 'quebec2.sm' 498 0.0 1.0
+2976 'SA.Kevin' 'quebec2.sm' 499 0.0 1.0
+2977 'SA.Kevin' 'quebec2.sm' 500 0.0 1.0
+2978 'SA.Kevin' 'quebec2.sm' 501 0.0 1.0
+2979 'SA.Kevin' 'quebec2.sm' 504 0.0 1.0
+2980 'SA.Kevin' 'quebec2.sm' 505 0.0 1.0
+2981 'SA.Kevin' 'quebec2.sm' 506 0.0 1.0
+2982 'SA.Kevin' 'quebec2.sm' 507 0.0 1.0
+2983 'SA.Kevin' 'quebec2.sm' 508 0.0 1.0
+2984 'SA.Kevin' 'quebec2.sm' 511 0.0 1.0
+2985 'SA.Kevin' 'quebec2.sm' 512 0.0 1.0
+2986 'SA.Kevin' 'quebec2.sm' 513 0.0 1.0
+2987 'SA.Kevin' 'quebec2.sm' 514 0.0 1.0
+2988 'SA.Kevin' 'quebec2.sm' 515 0.0 1.0
+2989 'SA.Kevin' 'quebec2.sm' 518 0.0 1.0
+2990 'SA.Kevin' 'quebec2.sm' 519 0.0 1.0
+2991 'SA.Kevin' 'quebec2.sm' 520 0.0 1.0
+2992 'SA.Kevin' 'quebec2.sm' 521 0.0 1.0
+2993 'SA.Kevin' 'quebec2.sm' 522 0.0 1.0
+2994 'SA.Kevin' 'quebec2.sm' 525 0.0 1.0
+2995 'SA.Kevin' 'quebec2.sm' 526 0.0 1.0
+2996 'SA.Kevin' 'quebec2.sm' 527 0.0 1.0
+2997 'SA.Kevin' 'quebec2.sm' 528 0.0 1.0
+2998 'SA.Kevin' 'quebec2.sm' 529 0.0 1.0
+2999 'SA.Kevin' 'quebec2.sm' 532 0.0 1.0
+3000 'SA.Kevin' 'quebec2.sm' 533 0.0 1.0
+3001 'SA.Kevin' 'quebec2.sm' 534 0.0 1.0
+3002 'SA.Kevin' 'quebec2.sm' 535 0.0 1.0
+3003 'SA.Kevin' 'quebec2.sm' 536 0.0 1.0
+3004 'SA.Kevin' 'quebec2.sm' 539 0.0 1.0
+3005 'SA.Kevin' 'quebec2.sm' 540 0.0 1.0
+3006 'SA.Kevin' 'quebec2.sm' 541 0.0 1.0
+3007 'SA.Kevin' 'quebec2.sm' 542 0.0 1.0
+3008 'SA.Kevin' 'quebec2.sm' 543 0.0 1.0
+3009 'SA.Kevin' 'quebec2.sm' 546 0.0 1.0
+3010 'SA.Kevin' 'quebec2.sm' 547 0.0 1.0
+3011 'SA.Kevin' 'quebec2.sm' 548 0.0 1.0
+3012 'SA.Kevin' 'quebec2.sm' 549 0.0 1.0
+3013 'SA.Kevin' 'quebec2.sm' 550 0.0 1.0
+3014 'SA.Kevin' 'quebec2.sm' 553 0.0 1.0
+3015 'SA.Kevin' 'quebec2.sm' 554 0.0 1.0
+3016 'SA.Kevin' 'quebec2.sm' 555 0.0 1.0
+3017 'SA.Kevin' 'quebec2.sm' 556 0.0 1.0
+3018 'SA.Kevin' 'quebec2.sm' 557 0.0 1.0
+3019 'SA.Kevin' 'quebec2.sm' 560 0.0 1.0
+3020 'SA.Kevin' 'quebec2.sm' 561 0.0 1.0
+3021 'SA.Kevin' 'quebec2.sm' 562 0.0 1.0
+3022 'SA.Kevin' 'quebec2.sm' 563 0.0 1.0
+3023 'SA.Kevin' 'quebec2.sm' 564 0.0 1.0
+3024 'SA.Kevin' 'quebec2.sm' 567 0.0 1.0
+3025 'SA.Kevin' 'quebec2.sm' 568 0.0 1.0
+3026 'SA.Kevin' 'quebec2.sm' 569 0.0 1.0
+3027 'SA.Kevin' 'quebec2.sm' 570 0.0 1.0
+3028 'SA.Kevin' 'quebec2.sm' 571 0.0 1.0
+3029 'SA.Kevin' 'quebec2.sm' 574 0.0 1.0
+3030 'SA.Kevin' 'quebec2.sm' 575 0.0 1.0
+3031 'SA.Kevin' 'quebec2.sm' 576 0.0 1.0
+3032 'SA.Kevin' 'quebec2.sm' 577 0.0 1.0
+3033 'SA.Kevin' 'quebec2.sm' 578 0.0 1.0
+3034 'SA.Kevin' 'quebec2.sm' 581 0.0 1.0
+3035 'SA.Kevin' 'quebec2.sm' 582 0.0 1.0
+3036 'SA.Kevin' 'quebec2.sm' 583 0.0 1.0
+3037 'SA.Kevin' 'quebec2.sm' 584 0.0 1.0
+3038 'SA.Kevin' 'quebec2.sm' 585 0.0 1.0
+3039 'SA.Kevin' 'quebec2.sm' 588 0.0 1.0
+3040 'SA.Kevin' 'quebec2.sm' 589 0.0 1.0
+3041 'SA.Kevin' 'quebec2.sm' 590 0.0 1.0
+3042 'SA.Kevin' 'quebec2.sm' 591 0.0 1.0
+3043 'SA.Kevin' 'quebec2.sm' 592 0.0 1.0
+3044 'SA.Kevin' 'quebec2.sm' 595 0.0 1.0
+3045 'SA.Kevin' 'quebec2.sm' 596 0.0 1.0
+3046 'SA.Kevin' 'quebec2.sm' 597 0.0 1.0
+3047 'SA.Kevin' 'quebec2.sm' 598 0.0 1.0
+3048 'SA.Kevin' 'quebec2.sm' 599 0.0 1.0
+3049 'SA.Kevin' 'quebec2.sm' 602 0.0 1.0
+3050 'SA.Kevin' 'quebec2.sm' 603 0.0 1.0
+3051 'SA.Kevin' 'quebec2.sm' 604 0.0 1.0
+3052 'SA.Kevin' 'quebec2.sm' 605 0.0 1.0
+3053 'SA.Kevin' 'quebec2.sm' 606 0.0 1.0
+3054 'SA.Kevin' 'quebec2.sm' 609 0.0 1.0
+3055 'SA.Kevin' 'quebec2.sm' 610 0.0 1.0
+3056 'SA.Kevin' 'quebec2.sm' 611 0.0 1.0
+3057 'SA.Kevin' 'quebec2.sm' 612 0.0 1.0
+3058 'SA.Kevin' 'quebec2.sm' 613 0.0 1.0
+3059 'SA.Kevin' 'quebec2.sm' 616 0.0 1.0
+3060 'SA.Kevin' 'quebec2.sm' 617 0.0 1.0
+3061 'SA.Kevin' 'quebec2.sm' 618 0.0 1.0
+3062 'SA.Kevin' 'quebec2.sm' 619 0.0 1.0
+3063 'SA.Kevin' 'quebec2.sm' 620 0.0 1.0
+3064 'SA.Kevin' 'quebec2.sm' 623 0.0 1.0
+3065 'SA.Kevin' 'quebec2.sm' 624 0.0 1.0
+3066 'SA.Kevin' 'quebec2.sm' 625 0.0 1.0
+3067 'SA.Kevin' 'quebec2.sm' 626 0.0 1.0
+3068 'SA.Kevin' 'quebec2.sm' 627 0.0 1.0
+3069 'SA.Kevin' 'quebec2.sm' 630 0.0 1.0
+3070 'SA.Kevin' 'quebec2.sm' 631 0.0 1.0
+3071 'SA.Kevin' 'quebec2.sm' 632 0.0 1.0
+3072 'SA.Kevin' 'quebec2.sm' 633 0.0 1.0
+3073 'SA.Kevin' 'quebec2.sm' 634 0.0 1.0
+3074 'SA.Kevin' 'quebec2.sm' 637 0.0 1.0
+3075 'SA.Kevin' 'quebec2.sm' 638 0.0 1.0
+3076 'SA.Kevin' 'quebec2.sm' 639 0.0 1.0
+3077 'SA.Kevin' 'quebec2.sm' 640 0.0 1.0
+3078 'SA.Kevin' 'quebec2.sm' 641 0.0 1.0
+3079 'SA.Kevin' 'quebec2.sm' 644 0.0 1.0
+3080 'SA.Kevin' 'quebec2.sm' 645 0.0 1.0
+3081 'SA.Kevin' 'quebec2.sm' 646 0.0 1.0
+3082 'SA.Kevin' 'quebec2.sm' 647 0.0 1.0
+3083 'SA.Kevin' 'quebec2.sm' 648 0.0 1.0
+3084 'SA.Kevin' 'quebec2.sm' 651 0.0 1.0
+3085 'SA.Kevin' 'quebec2.sm' 652 0.0 1.0
+3086 'SA.Kevin' 'quebec2.sm' 653 0.0 1.0
+3087 'SA.Kevin' 'quebec2.sm' 654 0.0 1.0
+3088 'SA.Kevin' 'quebec2.sm' 655 0.0 1.0
+3089 'SA.Kevin' 'quebec2.sm' 658 0.0 1.0
+3090 'SA.Kevin' 'quebec2.sm' 659 0.0 1.0
+3091 'SA.Kevin' 'quebec2.sm' 660 0.0 1.0
+3092 'SA.Kevin' 'quebec2.sm' 661 0.0 1.0
+3093 'SA.Kevin' 'quebec2.sm' 662 0.0 1.0
+3094 'SA.Kevin' 'quebec2.sm' 665 0.0 1.0
+3095 'SA.Kevin' 'quebec2.sm' 666 0.0 1.0
+3096 'SA.Kevin' 'quebec2.sm' 667 0.0 1.0
+3097 'SA.Kevin' 'quebec2.sm' 668 0.0 1.0
+3098 'SA.Kevin' 'quebec2.sm' 669 0.0 1.0
+3099 'SA.Kevin' 'quebec2.sm' 672 0.0 1.0
+3100 'SA.Kevin' 'quebec2.sm' 673 0.0 1.0
+3101 'SA.Kevin' 'quebec2.sm' 674 0.0 1.0
+3102 'SA.Kevin' 'quebec2.sm' 675 0.0 1.0
+3103 'SA.Kevin' 'quebec2.sm' 676 0.0 1.0
+3104 'SA.Kevin' 'quebec2.sm' 679 0.0 1.0
+3105 'SA.Kevin' 'quebec2.sf' 680 2.0 3.0
+3106 'SA.Kevin' 'quebec2.sf' 681 2.0 3.0
+3107 'SA.Kevin' 'quebec2.sf' 682 2.0 3.0
+3108 'SA.Kevin' 'quebec2.sf' 683 2.0 3.0
+3109 'SA.Kevin' 'quebec2.sf' 686 2.0 3.0
+3110 'SA.Kevin' 'quebec2.sf' 687 2.0 3.0
+3111 'SA.Kevin' 'quebec2.sf' 688 2.0 3.0
+3112 'SA.Kevin' 'quebec2.sf' 689 2.0 3.0
+3113 'SA.Kevin' 'quebec2.sf' 690 2.0 3.0
+3114 'SA.Kevin' 'quebec2.sf' 693 2.0 3.0
+3115 'SA.Kevin' 'quebec2.sf' 694 2.0 3.0
+3116 'SA.Kevin' 'quebec2.sf' 695 2.0 3.0
+3117 'SA.Kevin' 'quebec2.sf' 696 2.0 3.0
+3118 'SA.Kevin' 'quebec2.sf' 697 2.0 3.0
+3119 'SA.Kevin' 'quebec2.sf' 700 2.0 3.0
+3120 'SA.Kevin' 'quebec2.sf' 701 2.0 3.0
+3121 'SA.Kevin' 'quebec2.sf' 702 2.0 3.0
+3122 'SA.Kevin' 'quebec2.sf' 703 2.0 3.0
+3123 'SA.Kevin' 'quebec2.sf' 704 2.0 3.0
+3124 'SA.Kevin' 'quebec2.sf' 707 2.0 3.0
+3125 'SA.Kevin' 'quebec2.sf' 708 2.0 3.0
+3126 'SA.Kevin' 'quebec2.sf' 709 2.0 3.0
+3127 'SA.Kevin' 'quebec2.sf' 710 2.0 3.0
+3128 'SA.Kevin' 'quebec2.sf' 711 2.0 3.0
+3129 'SA.Kevin' 'quebec2.sf' 714 2.0 3.0
+3130 'SA.Kevin' 'quebec2.sf' 715 2.0 3.0
+3131 'SA.Kevin' 'quebec2.sf' 716 2.0 3.0
+3132 'SA.Kevin' 'quebec2.sf' 717 2.0 3.0
+3133 'SA.Kevin' 'quebec2.sf' 718 2.0 3.0
+3134 'SA.Kevin' 'quebec2.sf' 721 2.0 3.0
+3135 'SA.Kevin' 'quebec2.sf' 722 2.0 3.0
+3136 'SA.Kevin' 'quebec2.sf' 723 2.0 3.0
+3137 'SA.Kevin' 'quebec2.sf' 724 2.0 3.0
+3138 'SA.Kevin' 'quebec2.sf' 725 2.0 3.0
+3139 'SA.Kevin' 'quebec2.sf' 728 2.0 3.0
+3140 'SA.Kevin' 'quebec2.sf' 729 2.0 3.0
+3141 'SA.Kevin' 'quebec2.sf' 730 2.0 3.0
+3142 'SA.Kevin' 'quebec2.sf' 731 2.0 3.0
+3143 'SA.Kevin' 'quebec2.sf' 732 2.0 3.0
+3144 'SA.Kevin' 'quebec2.sf' 735 2.0 3.0
+3145 'SA.Kevin' 'uniform2.se' 123 21.0 22.0
+3146 'SA.Kevin' 'uniform2.se' 126 21.0 22.0
+3147 'SA.Kevin' 'uniform2.se' 127 21.0 22.0
+3148 'SA.Kevin' 'uniform2.se' 128 21.0 22.0
+3149 'SA.Kevin' 'uniform2.se' 129 21.0 22.0
+3150 'SA.Kevin' 'uniform2.se' 130 21.0 22.0
+3151 'SA.Kevin' 'uniform2.se' 133 21.0 22.0
+3152 'SA.Kevin' 'uniform2.se' 134 21.0 22.0
+3153 'SA.Kevin' 'uniform2.se' 135 21.0 22.0
+3154 'SA.Kevin' 'uniform2.se' 136 21.0 22.0
+3155 'SA.Kevin' 'uniform2.se' 137 21.0 22.0
+3156 'SA.Kevin' 'uniform2.sm' 140 1.0 2.0
+3157 'SA.Kevin' 'uniform2.sm' 141 1.0 2.0
+3158 'SA.Kevin' 'uniform2.sm' 142 1.0 2.0
+3159 'SA.Kevin' 'uniform2.sm' 143 1.0 2.0
+3160 'SA.Kevin' 'uniform2.sm' 144 1.0 2.0
+3161 'SA.Kevin' 'uniform2.sm' 147 1.0 2.0
+3162 'SA.Kevin' 'uniform2.sm' 148 1.0 2.0
+3163 'SA.Kevin' 'uniform2.sm' 149 1.0 2.0
+3164 'SA.Kevin' 'uniform2.sm' 150 1.0 2.0
+3165 'SA.Kevin' 'uniform2.sm' 151 1.0 2.0
+3166 'SA.Kevin' 'uniform2.sm' 154 1.0 2.0
+3167 'SA.Kevin' 'uniform2.sm' 155 1.0 2.0
+3168 'SA.Kevin' 'uniform2.sm' 156 1.0 2.0
+3169 'SA.Kevin' 'uniform2.sm' 157 1.0 2.0
+3170 'SA.Kevin' 'uniform2.sm' 158 1.0 2.0
+3171 'SA.Kevin' 'uniform2.sm' 161 1.0 2.0
+3172 'SA.Kevin' 'uniform2.sm' 162 1.0 2.0
+3173 'SA.Kevin' 'uniform2.sm' 163 1.0 2.0
+3174 'SA.Kevin' 'uniform2.sm' 164 1.0 2.0
+3175 'SA.Kevin' 'uniform2.sm' 165 1.0 2.0
+3176 'SA.Kevin' 'uniform2.sm' 168 1.0 2.0
+3177 'SA.Kevin' 'uniform2.sm' 169 1.0 2.0
+3178 'SA.Kevin' 'uniform2.sm' 170 1.0 2.0
+3179 'SA.Kevin' 'uniform2.sm' 171 1.0 2.0
+3180 'SA.Kevin' 'uniform2.sm' 172 1.0 2.0
+3181 'SA.Kevin' 'uniform2.sm' 175 1.0 2.0
+3182 'SA.Kevin' 'uniform2.sm' 176 1.0 2.0
+3183 'SA.Kevin' 'uniform2.sm' 177 1.0 2.0
+3184 'SA.Kevin' 'uniform2.sm' 178 1.0 2.0
+3185 'SA.Kevin' 'uniform2.sm' 179 1.0 2.0
+3186 'SA.Kevin' 'uniform2.sm' 182 1.0 2.0
+3187 'SA.Kevin' 'uniform2.sm' 183 1.0 2.0
+3188 'SA.Kevin' 'uniform2.sm' 184 1.0 2.0
+3189 'SA.Kevin' 'uniform2.sm' 185 1.0 2.0
+3190 'SA.Kevin' 'uniform2.sm' 186 1.0 2.0
+3191 'SA.Kevin' 'uniform2.sm' 189 1.0 2.0
+3192 'SA.Kevin' 'uniform2.sm' 190 1.0 2.0
+3193 'SA.Kevin' 'uniform2.sm' 191 1.0 2.0
+3194 'SA.Kevin' 'uniform2.sm' 192 1.0 2.0
+3195 'SA.Kevin' 'uniform2.sm' 193 1.0 2.0
+3196 'SA.Kevin' 'uniform2.sm' 196 1.0 2.0
+3197 'SA.Kevin' 'uniform2.sm' 197 1.0 2.0
+3198 'SA.Kevin' 'uniform2.sm' 198 1.0 2.0
+3199 'SA.Kevin' 'uniform2.sm' 199 1.0 2.0
+3200 'SA.Kevin' 'uniform2.sm' 200 1.0 2.0
+3201 'SA.Kevin' 'uniform2.sm' 203 1.0 2.0
+3202 'SA.Kevin' 'uniform2.sm' 204 1.0 2.0
+3203 'SA.Kevin' 'uniform2.sm' 205 1.0 2.0
+3204 'SA.Kevin' 'uniform2.sm' 206 1.0 2.0
+3205 'SA.Kevin' 'uniform2.sm' 207 1.0 2.0
+3206 'SA.Kevin' 'uniform2.sm' 210 1.0 2.0
+3207 'SA.Kevin' 'uniform2.sm' 211 1.0 2.0
+3208 'SA.Kevin' 'uniform2.sm' 212 1.0 2.0
+3209 'SA.Kevin' 'uniform2.sm' 213 1.0 2.0
+3210 'SA.Kevin' 'uniform2.sm' 214 1.0 2.0
+3211 'SA.Kevin' 'uniform2.sm' 217 1.0 2.0
+3212 'SA.Kevin' 'uniform2.sm' 218 1.0 2.0
+3213 'SA.Kevin' 'uniform2.sm' 219 1.0 2.0
+3214 'SA.Kevin' 'uniform2.sm' 220 1.0 2.0
+3215 'SA.Kevin' 'uniform2.sm' 221 1.0 2.0
+3216 'SA.Kevin' 'uniform2.sm' 224 1.0 2.0
+3217 'SA.Kevin' 'uniform2.sm' 225 1.0 2.0
+3218 'SA.Kevin' 'uniform2.sm' 226 1.0 2.0
+3219 'SA.Kevin' 'uniform2.sm' 227 1.0 2.0
+3220 'SA.Kevin' 'uniform2.sm' 228 1.0 2.0
+3221 'SA.Kevin' 'uniform2.sm' 231 1.0 2.0
+3222 'SA.Kevin' 'uniform2.sm' 232 1.0 2.0
+3223 'SA.Kevin' 'uniform2.sm' 233 1.0 2.0
+3224 'SA.Kevin' 'uniform2.sm' 234 1.0 2.0
+3225 'SA.Kevin' 'uniform2.sm' 235 1.0 2.0
+3226 'SA.Kevin' 'uniform2.sm' 238 1.0 2.0
+3227 'SA.Kevin' 'uniform2.sm' 239 1.0 2.0
+3228 'SA.Kevin' 'uniform2.sm' 240 1.0 2.0
+3229 'SA.Kevin' 'uniform2.sm' 241 1.0 2.0
+3230 'SA.Kevin' 'uniform2.sm' 242 1.0 2.0
+3231 'SA.Kevin' 'uniform2.sm' 245 1.0 2.0
+3232 'SA.Kevin' 'uniform2.sm' 246 1.0 2.0
+3233 'SA.Kevin' 'uniform2.sm' 247 1.0 2.0
+3234 'SA.Kevin' 'uniform2.sm' 248 1.0 2.0
+3235 'SA.Kevin' 'uniform2.sm' 249 1.0 2.0
+3236 'SA.Kevin' 'uniform2.sm' 252 1.0 2.0
+3237 'SA.Kevin' 'uniform2.sm' 253 1.0 2.0
+3238 'SA.Kevin' 'uniform2.sm' 254 1.0 2.0
+3239 'SA.Kevin' 'uniform2.sm' 255 1.0 2.0
+3240 'SA.Kevin' 'uniform2.sm' 256 1.0 2.0
+3241 'SA.Kevin' 'uniform2.sm' 259 1.0 2.0
+3242 'SA.Kevin' 'uniform2.sm' 260 1.0 2.0
+3243 'SA.Kevin' 'uniform2.sm' 261 1.0 2.0
+3244 'SA.Kevin' 'uniform2.sm' 262 1.0 2.0
+3245 'SA.Kevin' 'uniform2.sm' 263 1.0 2.0
+3246 'SA.Kevin' 'uniform2.sm' 266 1.0 2.0
+3247 'SA.Kevin' 'uniform2.sm' 267 1.0 2.0
+3248 'SA.Kevin' 'uniform2.sm' 268 1.0 2.0
+3249 'SA.Kevin' 'uniform2.sm' 269 1.0 2.0
+3250 'SA.Kevin' 'uniform2.sm' 270 1.0 2.0
+3251 'SA.Kevin' 'uniform2.sm' 273 1.0 2.0
+3252 'SA.Kevin' 'uniform2.sm' 274 1.0 2.0
+3253 'SA.Kevin' 'uniform2.sm' 275 1.0 2.0
+3254 'SA.Kevin' 'uniform2.sm' 276 1.0 2.0
+3255 'SA.Kevin' 'uniform2.sm' 277 1.0 2.0
+3256 'SA.Kevin' 'uniform2.sm' 280 1.0 2.0
+3257 'SA.Kevin' 'uniform2.sm' 281 1.0 2.0
+3258 'SA.Kevin' 'uniform2.sm' 282 1.0 2.0
+3259 'SA.Kevin' 'uniform2.sm' 283 1.0 2.0
+3260 'SA.Kevin' 'uniform2.sm' 284 1.0 2.0
+3261 'SA.Kevin' 'uniform2.sm' 287 1.0 2.0
+3262 'SA.Kevin' 'uniform2.sm' 288 1.0 2.0
+3263 'SA.Kevin' 'uniform2.sm' 289 1.0 2.0
+3264 'SA.Kevin' 'uniform2.sm' 290 1.0 2.0
+3265 'SA.Kevin' 'uniform2.sm' 291 1.0 2.0
+3266 'SA.Kevin' 'uniform2.sm' 294 1.0 2.0
+3267 'SA.Kevin' 'uniform2.sm' 295 1.0 2.0
+3268 'SA.Kevin' 'uniform2.sm' 296 1.0 2.0
+3269 'SA.Kevin' 'uniform2.sm' 297 1.0 2.0
+3270 'SA.Kevin' 'uniform2.sm' 298 1.0 2.0
+3271 'SA.Kevin' 'uniform2.sm' 301 1.0 2.0
+3272 'SA.Kevin' 'uniform2.sm' 302 1.0 2.0
+3273 'SA.Kevin' 'uniform2.sm' 303 1.0 2.0
+3274 'SA.Kevin' 'uniform2.sm' 304 1.0 2.0
+3275 'SA.Kevin' 'uniform2.sm' 305 1.0 2.0
+3276 'SA.Kevin' 'uniform2.sm' 308 1.0 2.0
+3277 'SA.Kevin' 'uniform2.sm' 309 1.0 2.0
+3278 'SA.Kevin' 'uniform2.sm' 310 1.0 2.0
+3279 'SA.Kevin' 'uniform2.sm' 311 1.0 2.0
+3280 'SA.Kevin' 'uniform2.sm' 312 1.0 2.0
+3281 'SA.Kevin' 'uniform2.sm' 315 1.0 2.0
+3282 'SA.Kevin' 'uniform2.sm' 316 1.0 2.0
+3283 'SA.Kevin' 'uniform2.sm' 317 1.0 2.0
+3284 'SA.Kevin' 'uniform2.sm' 318 1.0 2.0
+3285 'SA.Kevin' 'uniform2.sm' 319 1.0 2.0
+3286 'SA.Kevin' 'uniform2.sm' 322 1.0 2.0
+3287 'SA.Kevin' 'uniform2.sm' 323 1.0 2.0
+3288 'SA.Kevin' 'uniform2.sm' 324 1.0 2.0
+3289 'SA.Kevin' 'uniform2.sm' 325 1.0 2.0
+3290 'SA.Kevin' 'uniform2.sm' 326 1.0 2.0
+3291 'SA.Kevin' 'uniform2.sm' 329 1.0 2.0
+3292 'SA.Kevin' 'uniform2.sm' 330 1.0 2.0
+3293 'SA.Kevin' 'uniform2.sm' 331 1.0 2.0
+3294 'SA.Kevin' 'uniform2.sm' 332 1.0 2.0
+3295 'SA.Kevin' 'uniform2.sm' 333 1.0 2.0
+3296 'SA.Kevin' 'uniform2.sm' 336 1.0 2.0
+3297 'SA.Kevin' 'uniform2.sm' 337 1.0 2.0
+3298 'SA.Kevin' 'uniform2.sm' 338 1.0 2.0
+3299 'SA.Kevin' 'uniform2.sm' 339 1.0 2.0
+3300 'SA.Kevin' 'uniform2.sm' 340 1.0 2.0
+3301 'SA.Kevin' 'uniform2.sm' 343 1.0 2.0
+3302 'SA.Kevin' 'uniform2.sm' 344 1.0 2.0
+3303 'SA.Kevin' 'uniform2.sm' 345 1.0 2.0
+3304 'SA.Kevin' 'uniform2.sm' 346 1.0 2.0
+3305 'SA.Kevin' 'uniform2.sm' 347 1.0 2.0
+3306 'SA.Kevin' 'uniform2.sm' 350 1.0 2.0
+3307 'SA.Kevin' 'uniform2.sm' 351 1.0 2.0
+3308 'SA.Kevin' 'uniform2.sm' 352 1.0 2.0
+3309 'SA.Kevin' 'uniform2.sm' 353 1.0 2.0
+3310 'SA.Kevin' 'uniform2.sm' 354 1.0 2.0
+3311 'SA.Kevin' 'uniform2.sm' 357 1.0 2.0
+3312 'SA.Kevin' 'uniform2.sm' 358 1.0 2.0
+3313 'SA.Kevin' 'uniform2.sm' 359 1.0 2.0
+3314 'SA.Kevin' 'uniform2.sm' 360 1.0 2.0
+3315 'SA.Kevin' 'uniform2.sm' 361 1.0 2.0
+3316 'SA.Kevin' 'uniform2.sm' 364 1.0 2.0
+3317 'SA.Kevin' 'uniform2.sm' 365 1.0 2.0
+3318 'SA.Kevin' 'uniform2.sm' 366 1.0 2.0
+3319 'SA.Kevin' 'uniform2.sm' 367 1.0 2.0
+3320 'SA.Kevin' 'uniform2.sm' 368 1.0 2.0
+3321 'SA.Kevin' 'uniform2.sm' 371 1.0 2.0
+3322 'SA.Kevin' 'uniform2.sm' 372 1.0 2.0
+3323 'SA.Kevin' 'uniform2.sm' 373 1.0 2.0
+3324 'SA.Kevin' 'uniform2.sm' 374 1.0 2.0
+3325 'SA.Kevin' 'uniform2.sm' 375 1.0 2.0
+3326 'SA.Kevin' 'uniform2.sm' 378 1.0 2.0
+3327 'SA.Kevin' 'uniform2.sm' 379 1.0 2.0
+3328 'SA.Kevin' 'uniform2.sm' 380 1.0 2.0
+3329 'SA.Kevin' 'uniform2.sm' 381 1.0 2.0
+3330 'SA.Kevin' 'uniform2.sm' 382 1.0 2.0
+3331 'SA.Kevin' 'uniform2.sm' 385 1.0 2.0
+3332 'SA.Kevin' 'uniform2.sm' 386 1.0 2.0
+3333 'SA.Kevin' 'uniform2.sm' 387 1.0 2.0
+3334 'SA.Kevin' 'uniform2.sm' 388 1.0 2.0
+3335 'SA.Kevin' 'uniform2.sm' 389 1.0 2.0
+3336 'SA.Kevin' 'uniform2.sm' 392 1.0 2.0
+3337 'SA.Kevin' 'uniform2.sm' 393 1.0 2.0
+3338 'SA.Kevin' 'uniform2.sm' 394 1.0 2.0
+3339 'SA.Kevin' 'uniform2.sm' 395 1.0 2.0
+3340 'SA.Kevin' 'uniform2.sm' 396 1.0 2.0
+3341 'SA.Kevin' 'uniform2.sm' 399 1.0 2.0
+3342 'SA.Kevin' 'uniform2.sm' 400 1.0 2.0
+3343 'SA.Kevin' 'uniform2.sm' 401 1.0 2.0
+3344 'SA.Kevin' 'uniform2.sm' 402 1.0 2.0
+3345 'SA.Kevin' 'uniform2.sm' 403 1.0 2.0
+3346 'SA.Kevin' 'uniform2.sm' 406 1.0 2.0
+3347 'SA.Kevin' 'uniform2.sm' 407 1.0 2.0
+3348 'SA.Kevin' 'uniform2.sm' 408 1.0 2.0
+3349 'SA.Kevin' 'uniform2.sf' 409 6.0 7.0
+3350 'SA.Kevin' 'uniform2.sf' 410 6.0 7.0
+3351 'SA.Kevin' 'uniform2.sf' 413 6.0 7.0
+3352 'SA.Kevin' 'uniform2.sf' 414 6.0 7.0
+3353 'SA.Kevin' 'uniform2.sf' 415 6.0 7.0
+3354 'SA.Kevin' 'uniform2.sf' 416 6.0 7.0
+3355 'SA.Kevin' 'uniform2.sf' 417 6.0 7.0
+3356 'SA.Kevin' 'uniform2.sf' 420 6.0 7.0
+3357 'SA.Kevin' 'uniform2.sf' 421 6.0 7.0
+3358 'SA.Kevin' 'uniform2.sf' 422 6.0 7.0
+3359 'SA.Kevin' 'uniform2.sf' 423 6.0 7.0
+3360 'SA.Kevin' 'uniform2.sf' 424 6.0 7.0
+3361 'SA.Kevin' 'uniform2.sf' 427 6.0 7.0
+3362 'SA.Kevin' 'xray2.se' 197 4.0 5.0
+3363 'SA.Kevin' 'xray2.se' 198 4.0 5.0
+3364 'SA.Kevin' 'xray2.se' 199 4.0 5.0
+3365 'SA.Kevin' 'xray2.se' 200 4.0 5.0
+3366 'SA.Kevin' 'xray2.se' 203 4.0 5.0
+3367 'SA.Kevin' 'xray2.se' 204 4.0 5.0
+3368 'SA.Kevin' 'xray2.se' 205 4.0 5.0
+3369 'SA.Kevin' 'xray2.se' 206 4.0 5.0
+3370 'SA.Kevin' 'xray2.se' 207 4.0 5.0
+3371 'SA.Kevin' 'xray2.se' 210 4.0 5.0
+3372 'SA.Kevin' 'xray2.se' 211 4.0 5.0
+3373 'SA.Kevin' 'xray2.se' 212 4.0 5.0
+3374 'SA.Kevin' 'xray2.se' 213 4.0 5.0
+3375 'SA.Kevin' 'xray2.se' 214 4.0 5.0
+3376 'SA.Kevin' 'xray2.se' 217 4.0 5.0
+3377 'SA.Kevin' 'xray2.se' 218 4.0 5.0
+3378 'SA.Kevin' 'xray2.se' 219 4.0 5.0
+3379 'SA.Kevin' 'xray2.se' 220 4.0 5.0
+3380 'SA.Kevin' 'xray2.se' 221 4.0 5.0
+3381 'SA.Kevin' 'xray2.sm' 224 1.0 2.0
+3382 'SA.Kevin' 'xray2.sm' 225 1.0 2.0
+3383 'SA.Kevin' 'xray2.sm' 226 1.0 2.0
+3384 'SA.Kevin' 'xray2.sm' 227 1.0 2.0
+3385 'SA.Kevin' 'xray2.sm' 228 1.0 2.0
+3386 'SA.Kevin' 'xray2.sm' 231 1.0 2.0
+3387 'SA.Kevin' 'xray2.sm' 232 1.0 2.0
+3388 'SA.Kevin' 'xray2.sm' 233 1.0 2.0
+3389 'SA.Kevin' 'xray2.sm' 234 1.0 2.0
+3390 'SA.Kevin' 'xray2.sm' 235 1.0 2.0
+3391 'SA.Kevin' 'xray2.sm' 238 1.0 2.0
+3392 'SA.Kevin' 'xray2.sm' 239 1.0 2.0
+3393 'SA.Kevin' 'xray2.sm' 240 1.0 2.0
+3394 'SA.Kevin' 'xray2.sm' 241 1.0 2.0
+3395 'SA.Kevin' 'xray2.sm' 242 1.0 2.0
+3396 'SA.Kevin' 'xray2.sm' 245 1.0 2.0
+3397 'SA.Kevin' 'xray2.sm' 246 1.0 2.0
+3398 'SA.Kevin' 'xray2.sm' 247 1.0 2.0
+3399 'SA.Kevin' 'xray2.sm' 248 1.0 2.0
+3400 'SA.Kevin' 'xray2.sm' 249 1.0 2.0
+3401 'SA.Kevin' 'xray2.sm' 252 1.0 2.0
+3402 'SA.Kevin' 'xray2.sm' 253 1.0 2.0
+3403 'SA.Kevin' 'xray2.sm' 254 1.0 2.0
+3404 'SA.Kevin' 'xray2.sm' 255 1.0 2.0
+3405 'SA.Kevin' 'xray2.sm' 256 1.0 2.0
+3406 'SA.Kevin' 'xray2.sm' 259 1.0 2.0
+3407 'SA.Kevin' 'xray2.sm' 260 1.0 2.0
+3408 'SA.Kevin' 'xray2.sm' 261 1.0 2.0
+3409 'SA.Kevin' 'xray2.sm' 262 1.0 2.0
+3410 'SA.Kevin' 'xray2.sm' 263 1.0 2.0
+3411 'SA.Kevin' 'xray2.sm' 266 1.0 2.0
+3412 'SA.Kevin' 'xray2.sm' 267 1.0 2.0
+3413 'SA.Kevin' 'xray2.sm' 268 1.0 2.0
+3414 'SA.Kevin' 'xray2.sm' 269 1.0 2.0
+3415 'SA.Kevin' 'xray2.sm' 270 1.0 2.0
+3416 'SA.Kevin' 'xray2.sm' 273 1.0 2.0
+3417 'SA.Kevin' 'xray2.sm' 274 1.0 2.0
+3418 'SA.Kevin' 'xray2.sm' 275 1.0 2.0
+3419 'SA.Kevin' 'xray2.sm' 276 1.0 2.0
+3420 'SA.Kevin' 'xray2.sm' 277 1.0 2.0
+3421 'SA.Kevin' 'xray2.sm' 280 1.0 2.0
+3422 'SA.Kevin' 'xray2.sm' 281 1.0 2.0
+3423 'SA.Kevin' 'xray2.sm' 282 1.0 2.0
+3424 'SA.Kevin' 'xray2.sm' 283 1.0 2.0
+3425 'SA.Kevin' 'xray2.sm' 284 1.0 2.0
+3426 'SA.Kevin' 'xray2.sm' 287 1.0 2.0
+3427 'SA.Kevin' 'xray2.sm' 288 1.0 2.0
+3428 'SA.Kevin' 'xray2.sm' 289 1.0 2.0
+3429 'SA.Kevin' 'xray2.sm' 290 1.0 2.0
+3430 'SA.Kevin' 'xray2.sm' 291 1.0 2.0
+3431 'SA.Kevin' 'xray2.sm' 294 1.0 2.0
+3432 'SA.Kevin' 'xray2.sm' 295 1.0 2.0
+3433 'SA.Kevin' 'xray2.sm' 296 1.0 2.0
+3434 'SA.Kevin' 'xray2.sm' 297 1.0 2.0
+3435 'SA.Kevin' 'xray2.sm' 298 1.0 2.0
+3436 'SA.Kevin' 'xray2.sm' 301 1.0 2.0
+3437 'SA.Kevin' 'xray2.sm' 302 1.0 2.0
+3438 'SA.Kevin' 'xray2.sm' 303 1.0 2.0
+3439 'SA.Kevin' 'xray2.sm' 304 1.0 2.0
+3440 'SA.Kevin' 'xray2.sm' 305 1.0 2.0
+3441 'SA.Kevin' 'xray2.sm' 308 1.0 2.0
+3442 'SA.Kevin' 'xray2.sm' 309 1.0 2.0
+3443 'SA.Kevin' 'xray2.sm' 310 1.0 2.0
+3444 'SA.Kevin' 'xray2.sm' 311 1.0 2.0
+3445 'SA.Kevin' 'xray2.sm' 312 1.0 2.0
+3446 'SA.Kevin' 'xray2.sm' 315 1.0 2.0
+3447 'SA.Kevin' 'xray2.sm' 316 1.0 2.0
+3448 'SA.Kevin' 'xray2.sm' 317 1.0 2.0
+3449 'SA.Kevin' 'xray2.sm' 318 1.0 2.0
+3450 'SA.Kevin' 'xray2.sm' 319 1.0 2.0
+3451 'SA.Kevin' 'xray2.sm' 322 1.0 2.0
+3452 'SA.Kevin' 'xray2.sm' 323 1.0 2.0
+3453 'SA.Kevin' 'xray2.sm' 324 1.0 2.0
+3454 'SA.Kevin' 'xray2.sm' 325 1.0 2.0
+3455 'SA.Kevin' 'xray2.sm' 326 1.0 2.0
+3456 'SA.Kevin' 'xray2.sm' 329 1.0 2.0
+3457 'SA.Kevin' 'xray2.sm' 330 1.0 2.0
+3458 'SA.Kevin' 'xray2.sm' 331 1.0 2.0
+3459 'SA.Kevin' 'xray2.sm' 332 1.0 2.0
+3460 'SA.Kevin' 'xray2.sm' 333 1.0 2.0
+3461 'SA.Kevin' 'xray2.sm' 336 1.0 2.0
+3462 'SA.Kevin' 'xray2.sm' 337 1.0 2.0
+3463 'SA.Kevin' 'xray2.sm' 338 1.0 2.0
+3464 'SA.Kevin' 'xray2.sm' 339 1.0 2.0
+3465 'SA.Kevin' 'xray2.sm' 340 1.0 2.0
+3466 'SA.Kevin' 'xray2.sm' 343 1.0 2.0
+3467 'SA.Kevin' 'xray2.sm' 344 1.0 2.0
+3468 'SA.Kevin' 'xray2.sm' 345 1.0 2.0
+3469 'SA.Kevin' 'xray2.sm' 346 1.0 2.0
+3470 'SA.Kevin' 'xray2.sm' 347 1.0 2.0
+3471 'SA.Kevin' 'xray2.sm' 350 1.0 2.0
+3472 'SA.Kevin' 'xray2.sm' 351 1.0 2.0
+3473 'SA.Kevin' 'xray2.sm' 352 1.0 2.0
+3474 'SA.Kevin' 'xray2.sm' 353 1.0 2.0
+3475 'SA.Kevin' 'xray2.sm' 354 1.0 2.0
+3476 'SA.Kevin' 'xray2.sm' 357 1.0 2.0
+3477 'SA.Kevin' 'xray2.sm' 358 1.0 2.0
+3478 'SA.Kevin' 'xray2.sm' 359 1.0 2.0
+3479 'SA.Kevin' 'xray2.sm' 360 1.0 2.0
+3480 'SA.Kevin' 'xray2.sm' 361 1.0 2.0
+3481 'SA.Kevin' 'xray2.sm' 364 1.0 2.0
+3482 'SA.Kevin' 'xray2.sm' 365 1.0 2.0
+3483 'SA.Kevin' 'xray2.sm' 366 1.0 2.0
+3484 'SA.Kevin' 'xray2.sm' 367 1.0 2.0
+3485 'SA.Kevin' 'xray2.sm' 368 1.0 2.0
+3486 'SA.Kevin' 'xray2.sm' 371 1.0 2.0
+3487 'SA.Kevin' 'xray2.sm' 372 1.0 2.0
+3488 'SA.Kevin' 'xray2.sm' 373 1.0 2.0
+3489 'SA.Kevin' 'xray2.sf' 374 4.0 5.0
+3490 'SA.Kevin' 'xray2.sf' 375 4.0 5.0
+3491 'SA.Kevin' 'xray2.sf' 378 4.0 5.0
+3492 'SA.Kevin' 'xray2.sf' 379 4.0 5.0
+3493 'SA.Kevin' 'xray2.sf' 380 4.0 5.0
+3494 'SA.Kevin' 'xray2.sf' 381 4.0 5.0
+3495 'SA.Kevin' 'xray2.sf' 382 4.0 5.0
+3496 'SA.Kevin' 'xray2.sf' 385 4.0 5.0
+3497 'SA.Kevin' 'xray2.sf' 386 4.0 5.0
+3498 'SA.Kevin' 'xray2.sf' 387 4.0 5.0
+3499 'SA.Kevin' 'xray2.sf' 388 4.0 5.0
+3500 'SA.Kevin' 'xray2.sf' 389 4.0 5.0
+3501 'SA.Kevin' 'xray2.sf' 392 4.0 5.0
+3502 'SA.Kevin' 'xray2.sf' 393 4.0 5.0
+3503 'SA.Kevin' 'xray2.sf' 394 4.0 5.0
+3504 'SA.Kevin' 'xray2.sf' 395 4.0 5.0
+3505 'SA.Kevin' 'xray2.sf' 396 4.0 5.0
+3506 'SA.Justin' 'india2.sm' 3 0.0 1.0
+3507 'SA.Justin' 'india2.sm' 4 0.0 1.0
+3508 'SA.Justin' 'india2.sm' 7 0.0 1.0
+3509 'SA.Justin' 'india2.sm' 8 0.0 1.0
+3510 'SA.Justin' 'india2.sm' 9 0.0 1.0
+3511 'SA.Justin' 'india2.sm' 10 0.0 1.0
+3512 'SA.Justin' 'india2.sm' 11 0.0 1.0
+3513 'SA.Justin' 'india2.sm' 14 0.0 1.0
+3514 'SA.Justin' 'india2.sm' 15 0.0 1.0
+3515 'SA.Justin' 'india2.sm' 16 0.0 1.0
+3516 'SA.Justin' 'india2.sm' 17 0.0 1.0
+3517 'SA.Justin' 'india2.sm' 18 0.0 1.0
+3518 'SA.Justin' 'india2.sm' 21 0.0 1.0
+3519 'SA.Justin' 'india2.sm' 22 0.0 1.0
+3520 'SA.Justin' 'india2.sm' 23 0.0 1.0
+3521 'SA.Justin' 'india2.sm' 24 0.0 1.0
+3522 'SA.Justin' 'india2.sm' 25 0.0 1.0
+3523 'SA.Justin' 'india2.sm' 28 0.0 1.0
+3524 'SA.Justin' 'india2.sm' 29 0.0 1.0
+3525 'SA.Justin' 'india2.sm' 30 0.0 1.0
+3526 'SA.Justin' 'india2.sm' 31 0.0 1.0
+3527 'SA.Justin' 'india2.sm' 32 0.0 1.0
+3528 'SA.Justin' 'india2.sm' 35 0.0 1.0
+3529 'SA.Justin' 'india2.sm' 36 0.0 1.0
+3530 'SA.Justin' 'india2.sm' 37 0.0 1.0
+3531 'SA.Justin' 'india2.sm' 38 0.0 1.0
+3532 'SA.Justin' 'india2.sm' 39 0.0 1.0
+3533 'SA.Justin' 'india2.sm' 42 0.0 1.0
+3534 'SA.Justin' 'india2.sm' 43 0.0 1.0
+3535 'SA.Justin' 'india2.sm' 44 0.0 1.0
+3536 'SA.Justin' 'india2.sm' 45 0.0 1.0
+3537 'SA.Justin' 'india2.sm' 46 0.0 1.0
+3538 'SA.Justin' 'india2.sm' 49 0.0 1.0
+3539 'SA.Justin' 'india2.sm' 50 0.0 1.0
+3540 'SA.Justin' 'india2.sm' 51 0.0 1.0
+3541 'SA.Justin' 'india2.sm' 52 0.0 1.0
+3542 'SA.Justin' 'india2.sm' 53 0.0 1.0
+3543 'SA.Justin' 'india2.sm' 56 0.0 1.0
+3544 'SA.Justin' 'india2.sm' 57 0.0 1.0
+3545 'SA.Justin' 'india2.sm' 58 0.0 1.0
+3546 'SA.Justin' 'india2.sm' 59 0.0 1.0
+3547 'SA.Justin' 'india2.sm' 60 0.0 1.0
+3548 'SA.Justin' 'india2.sm' 63 0.0 1.0
+3549 'SA.Justin' 'india2.sm' 64 0.0 1.0
+3550 'SA.Justin' 'india2.sm' 65 0.0 1.0
+3551 'SA.Justin' 'india2.sm' 66 0.0 1.0
+3552 'SA.Justin' 'india2.sm' 67 0.0 1.0
+3553 'SA.Justin' 'india2.sm' 70 0.0 1.0
+3554 'SA.Justin' 'india2.sm' 71 0.0 1.0
+3555 'SA.Justin' 'india2.sm' 72 0.0 1.0
+3556 'SA.Justin' 'india2.sm' 73 0.0 1.0
+3557 'SA.Justin' 'india2.sm' 74 0.0 1.0
+3558 'SA.Justin' 'india2.sm' 77 0.0 1.0
+3559 'SA.Justin' 'india2.sf' 78 6.0 7.0
+3560 'SA.Justin' 'india2.sf' 79 6.0 7.0
+3561 'SA.Justin' 'india2.sf' 80 6.0 7.0
+3562 'SA.Justin' 'india2.sf' 81 6.0 7.0
+3563 'SA.Justin' 'india2.sf' 84 6.0 7.0
+3564 'SA.Justin' 'india2.sf' 85 6.0 7.0
+3565 'SA.Justin' 'juliet2.sm' 3 1.0 2.0
+3566 'SA.Justin' 'juliet2.sm' 4 1.0 2.0
+3567 'SA.Justin' 'juliet2.sm' 7 1.0 2.0
+3568 'SA.Justin' 'juliet2.sm' 8 1.0 2.0
+3569 'SA.Justin' 'juliet2.sm' 9 1.0 2.0
+3570 'SA.Justin' 'juliet2.sm' 10 1.0 2.0
+3571 'SA.Justin' 'juliet2.sm' 11 1.0 2.0
+3572 'SA.Justin' 'juliet2.sm' 14 1.0 2.0
+3573 'SA.Justin' 'juliet2.sm' 15 1.0 2.0
+3574 'SA.Justin' 'juliet2.sm' 16 1.0 2.0
+3575 'SA.Justin' 'juliet2.sm' 17 1.0 2.0
+3576 'SA.Justin' 'juliet2.sm' 18 1.0 2.0
+3577 'SA.Justin' 'juliet2.sm' 21 1.0 2.0
+3578 'SA.Justin' 'juliet2.sm' 22 1.0 2.0
+3579 'SA.Justin' 'juliet2.sm' 23 1.0 2.0
+3580 'SA.Justin' 'juliet2.sm' 24 1.0 2.0
+3581 'SA.Justin' 'juliet2.sm' 25 1.0 2.0
+3582 'SA.Justin' 'juliet2.sm' 28 1.0 2.0
+3583 'SA.Justin' 'juliet2.sm' 29 1.0 2.0
+3584 'SA.Justin' 'juliet2.sm' 30 1.0 2.0
+3585 'SA.Justin' 'juliet2.sm' 31 1.0 2.0
+3586 'SA.Justin' 'juliet2.sm' 32 1.0 2.0
+3587 'SA.Justin' 'juliet2.sm' 35 1.0 2.0
+3588 'SA.Justin' 'juliet2.sm' 36 1.0 2.0
+3589 'SA.Justin' 'juliet2.sm' 37 1.0 2.0
+3590 'SA.Justin' 'juliet2.sm' 38 1.0 2.0
+3591 'SA.Justin' 'juliet2.sm' 39 1.0 2.0
+3592 'SA.Justin' 'juliet2.sm' 42 1.0 2.0
+3593 'SA.Justin' 'juliet2.sm' 43 1.0 2.0
+3594 'SA.Justin' 'juliet2.sm' 44 1.0 2.0
+3595 'SA.Justin' 'juliet2.sm' 45 1.0 2.0
+3596 'SA.Justin' 'juliet2.sm' 46 1.0 2.0
+3597 'SA.Justin' 'juliet2.sm' 49 1.0 2.0
+3598 'SA.Justin' 'juliet2.sm' 50 1.0 2.0
+3599 'SA.Justin' 'juliet2.sm' 51 1.0 2.0
+3600 'SA.Justin' 'juliet2.sm' 52 1.0 2.0
+3601 'SA.Justin' 'juliet2.sm' 53 1.0 2.0
+3602 'SA.Justin' 'juliet2.sm' 56 1.0 2.0
+3603 'SA.Justin' 'juliet2.sm' 57 1.0 2.0
+3604 'SA.Justin' 'juliet2.sm' 58 1.0 2.0
+3605 'SA.Justin' 'juliet2.sm' 59 1.0 2.0
+3606 'SA.Justin' 'juliet2.sm' 60 1.0 2.0
+3607 'SA.Justin' 'juliet2.sm' 63 1.0 2.0
+3608 'SA.Justin' 'juliet2.sm' 64 1.0 2.0
+3609 'SA.Justin' 'juliet2.sm' 65 1.0 2.0
+3610 'SA.Justin' 'juliet2.sm' 66 1.0 2.0
+3611 'SA.Justin' 'juliet2.sm' 67 1.0 2.0
+3612 'SA.Justin' 'juliet2.sm' 70 1.0 2.0
+3613 'SA.Justin' 'juliet2.sm' 71 1.0 2.0
+3614 'SA.Justin' 'juliet2.sm' 72 1.0 2.0
+3615 'SA.Justin' 'juliet2.sm' 73 1.0 2.0
+3616 'SA.Justin' 'juliet2.sm' 74 1.0 2.0
+3617 'SA.Justin' 'juliet2.sm' 77 1.0 2.0
+3618 'SA.Justin' 'juliet2.sm' 78 1.0 2.0
+3619 'SA.Justin' 'juliet2.sm' 79 1.0 2.0
+3620 'SA.Justin' 'juliet2.sm' 80 1.0 2.0
+3621 'SA.Justin' 'juliet2.sm' 81 1.0 2.0
+3622 'SA.Justin' 'juliet2.sf' 84 8.0 9.0
+3623 'SA.Justin' 'juliet2.sf' 85 8.0 9.0
+3624 'SA.Justin' 'juliet2.sf' 86 8.0 9.0
+3625 'SA.Justin' 'juliet2.sf' 87 8.0 9.0
+3626 'SA.Justin' 'juliet2.sf' 88 8.0 9.0
+3627 'SA.Justin' 'juliet2.sf' 91 8.0 9.0
+3628 'SA.Justin' 'juliet2.sf' 92 8.0 9.0
+3629 'SA.Justin' 'lima2.sm' 3 1.0 2.0
+3630 'SA.Justin' 'lima2.sm' 4 1.0 2.0
+3631 'SA.Justin' 'lima2.sm' 7 1.0 2.0
+3632 'SA.Justin' 'lima2.sm' 8 1.0 2.0
+3633 'SA.Justin' 'lima2.sm' 9 1.0 2.0
+3634 'SA.Justin' 'lima2.sm' 10 1.0 2.0
+3635 'SA.Justin' 'lima2.sm' 11 1.0 2.0
+3636 'SA.Justin' 'lima2.sm' 14 1.0 2.0
+3637 'SA.Justin' 'lima2.sm' 15 1.0 2.0
+3638 'SA.Justin' 'lima2.sm' 16 1.0 2.0
+3639 'SA.Justin' 'lima2.sm' 17 1.0 2.0
+3640 'SA.Justin' 'lima2.sm' 18 1.0 2.0
+3641 'SA.Justin' 'lima2.sm' 21 1.0 2.0
+3642 'SA.Justin' 'lima2.sm' 22 1.0 2.0
+3643 'SA.Justin' 'lima2.sm' 23 1.0 2.0
+3644 'SA.Justin' 'lima2.sm' 24 1.0 2.0
+3645 'SA.Justin' 'lima2.sm' 25 1.0 2.0
+3646 'SA.Justin' 'lima2.sm' 28 1.0 2.0
+3647 'SA.Justin' 'lima2.sm' 29 1.0 2.0
+3648 'SA.Justin' 'lima2.sm' 30 1.0 2.0
+3649 'SA.Justin' 'lima2.sm' 31 1.0 2.0
+3650 'SA.Justin' 'lima2.sm' 32 1.0 2.0
+3651 'SA.Justin' 'lima2.sm' 35 1.0 2.0
+3652 'SA.Justin' 'lima2.sm' 36 1.0 2.0
+3653 'SA.Justin' 'lima2.sm' 37 1.0 2.0
+3654 'SA.Justin' 'lima2.sm' 38 1.0 2.0
+3655 'SA.Justin' 'lima2.sm' 39 1.0 2.0
+3656 'SA.Justin' 'lima2.sm' 42 1.0 2.0
+3657 'SA.Justin' 'lima2.sm' 43 1.0 2.0
+3658 'SA.Justin' 'lima2.sm' 44 1.0 2.0
+3659 'SA.Justin' 'lima2.sm' 45 1.0 2.0
+3660 'SA.Justin' 'lima2.sm' 46 1.0 2.0
+3661 'SA.Justin' 'lima2.sm' 49 1.0 2.0
+3662 'SA.Justin' 'lima2.sm' 50 1.0 2.0
+3663 'SA.Justin' 'lima2.sm' 51 1.0 2.0
+3664 'SA.Justin' 'lima2.sm' 52 1.0 2.0
+3665 'SA.Justin' 'lima2.sm' 53 1.0 2.0
+3666 'SA.Justin' 'lima2.sm' 56 1.0 2.0
+3667 'SA.Justin' 'lima2.sm' 57 1.0 2.0
+3668 'SA.Justin' 'lima2.sf' 58 10.0 11.0
+3669 'SA.Justin' 'lima2.sf' 59 10.0 11.0
+3670 'SA.Justin' 'lima2.sf' 60 10.0 11.0
+3671 'SA.Justin' 'lima2.sf' 63 10.0 11.0
+3672 'SA.Martha' 'kilo2.sm' 3 1.0 2.0
+3673 'SA.Martha' 'kilo2.sm' 4 1.0 2.0
+3674 'SA.Martha' 'kilo2.sm' 7 1.0 2.0
+3675 'SA.Martha' 'kilo2.sm' 8 1.0 2.0
+3676 'SA.Martha' 'kilo2.sm' 9 1.0 2.0
+3677 'SA.Martha' 'kilo2.sm' 10 1.0 2.0
+3678 'SA.Martha' 'kilo2.sm' 11 1.0 2.0
+3679 'SA.Martha' 'kilo2.sm' 14 1.0 2.0
+3680 'SA.Martha' 'kilo2.sm' 15 1.0 2.0
+3681 'SA.Martha' 'kilo2.sm' 16 1.0 2.0
+3682 'SA.Martha' 'kilo2.sm' 17 1.0 2.0
+3683 'SA.Martha' 'kilo2.sm' 18 1.0 2.0
+3684 'SA.Martha' 'kilo2.sm' 21 1.0 2.0
+3685 'SA.Martha' 'kilo2.sm' 22 1.0 2.0
+3686 'SA.Martha' 'kilo2.sm' 23 1.0 2.0
+3687 'SA.Martha' 'kilo2.sm' 24 1.0 2.0
+3688 'SA.Martha' 'kilo2.sm' 25 1.0 2.0
+3689 'SA.Martha' 'kilo2.sm' 28 1.0 2.0
+3690 'SA.Martha' 'kilo2.sm' 29 1.0 2.0
+3691 'SA.Martha' 'kilo2.sm' 30 1.0 2.0
+3692 'SA.Martha' 'kilo2.sm' 31 1.0 2.0
+3693 'SA.Martha' 'kilo2.sm' 32 1.0 2.0
+3694 'SA.Martha' 'kilo2.sm' 35 1.0 2.0
+3695 'SA.Martha' 'kilo2.sm' 36 1.0 2.0
+3696 'SA.Martha' 'kilo2.sm' 37 1.0 2.0
+3697 'SA.Martha' 'kilo2.sm' 38 1.0 2.0
+3698 'SA.Martha' 'kilo2.sm' 39 1.0 2.0
+3699 'SA.Martha' 'kilo2.sm' 42 1.0 2.0
+3700 'SA.Martha' 'kilo2.sm' 43 1.0 2.0
+3701 'SA.Martha' 'kilo2.sm' 44 1.0 2.0
+3702 'SA.Martha' 'kilo2.sm' 45 1.0 2.0
+3703 'SA.Martha' 'kilo2.sm' 46 1.0 2.0
+3704 'SA.Martha' 'kilo2.sm' 49 1.0 2.0
+3705 'SA.Martha' 'kilo2.sm' 50 1.0 2.0
+3706 'SA.Martha' 'kilo2.sm' 51 1.0 2.0
+3707 'SA.Martha' 'kilo2.sm' 52 1.0 2.0
+3708 'SA.Martha' 'kilo2.sm' 53 1.0 2.0
+3709 'SA.Martha' 'kilo2.sm' 56 1.0 2.0
+3710 'SA.Martha' 'kilo2.sm' 57 1.0 2.0
+3711 'SA.Martha' 'kilo2.sf' 58 10.0 11.0
+3712 'SA.Martha' 'kilo2.sf' 59 10.0 11.0
+3713 'SA.Martha' 'kilo2.sf' 60 10.0 11.0
+3714 'SA.Martha' 'kilo2.sf' 63 10.0 11.0
+3715 'SA.Martha' 'november2.sm' 3 1.0 2.0
+3716 'SA.Martha' 'november2.sm' 4 1.0 2.0
+3717 'SA.Martha' 'november2.sm' 7 1.0 2.0
+3718 'SA.Martha' 'november2.sm' 8 1.0 2.0
+3719 'SA.Martha' 'november2.sm' 9 1.0 2.0
+3720 'SA.Martha' 'november2.sm' 10 1.0 2.0
+3721 'SA.Martha' 'november2.sm' 11 1.0 2.0
+3722 'SA.Martha' 'november2.sm' 14 1.0 2.0
+3723 'SA.Martha' 'november2.sm' 15 1.0 2.0
+3724 'SA.Martha' 'november2.sm' 16 1.0 2.0
+3725 'SA.Martha' 'november2.sm' 17 1.0 2.0
+3726 'SA.Martha' 'november2.sm' 18 1.0 2.0
+3727 'SA.Martha' 'november2.sm' 21 1.0 2.0
+3728 'SA.Martha' 'november2.sm' 22 1.0 2.0
+3729 'SA.Martha' 'november2.sm' 23 1.0 2.0
+3730 'SA.Martha' 'november2.sm' 24 1.0 2.0
+3731 'SA.Martha' 'november2.sm' 25 1.0 2.0
+3732 'SA.Martha' 'november2.sm' 28 1.0 2.0
+3733 'SA.Martha' 'november2.sm' 29 1.0 2.0
+3734 'SA.Martha' 'november2.sm' 30 1.0 2.0
+3735 'SA.Martha' 'november2.sm' 31 1.0 2.0
+3736 'SA.Martha' 'november2.sm' 32 1.0 2.0
+3737 'SA.Martha' 'november2.sm' 35 1.0 2.0
+3738 'SA.Martha' 'november2.sm' 36 1.0 2.0
+3739 'SA.Martha' 'november2.sm' 37 1.0 2.0
+3740 'SA.Martha' 'november2.sm' 38 1.0 2.0
+3741 'SA.Martha' 'november2.sm' 39 1.0 2.0
+3742 'SA.Martha' 'november2.sm' 42 1.0 2.0
+3743 'SA.Martha' 'november2.sm' 43 1.0 2.0
+3744 'SA.Martha' 'november2.sm' 44 1.0 2.0
+3745 'SA.Martha' 'november2.sm' 45 1.0 2.0
+3746 'SA.Martha' 'november2.sm' 46 1.0 2.0
+3747 'SA.Martha' 'november2.sm' 49 1.0 2.0
+3748 'SA.Martha' 'november2.sm' 50 1.0 2.0
+3749 'SA.Martha' 'november2.sm' 51 1.0 2.0
+3750 'SA.Martha' 'november2.sm' 52 1.0 2.0
+3751 'SA.Martha' 'november2.sm' 53 1.0 2.0
+3752 'SA.Martha' 'november2.sm' 56 1.0 2.0
+3753 'SA.Martha' 'november2.sm' 57 1.0 2.0
+3754 'SA.Martha' 'november2.sm' 58 1.0 2.0
+3755 'SA.Martha' 'november2.sm' 59 1.0 2.0
+3756 'SA.Martha' 'november2.sm' 60 1.0 2.0
+3757 'SA.Martha' 'november2.sm' 63 1.0 2.0
+3758 'SA.Martha' 'november2.sm' 64 1.0 2.0
+3759 'SA.Martha' 'november2.sm' 65 1.0 2.0
+3760 'SA.Martha' 'november2.sm' 66 1.0 2.0
+3761 'SA.Martha' 'november2.sm' 67 1.0 2.0
+3762 'SA.Martha' 'november2.sm' 70 1.0 2.0
+3763 'SA.Martha' 'november2.sm' 71 1.0 2.0
+3764 'SA.Martha' 'november2.sm' 72 1.0 2.0
+3765 'SA.Martha' 'november2.sm' 73 1.0 2.0
+3766 'SA.Martha' 'november2.sm' 74 1.0 2.0
+3767 'SA.Martha' 'november2.sm' 77 1.0 2.0
+3768 'SA.Martha' 'november2.sm' 78 1.0 2.0
+3769 'SA.Martha' 'november2.sm' 79 1.0 2.0
+3770 'SA.Martha' 'november2.sm' 80 1.0 2.0
+3771 'SA.Martha' 'november2.sm' 81 1.0 2.0
+3772 'SA.Martha' 'november2.sm' 84 1.0 2.0
+3773 'SA.Martha' 'november2.sm' 85 1.0 2.0
+3774 'SA.Martha' 'november2.sm' 86 1.0 2.0
+3775 'SA.Martha' 'november2.sm' 87 1.0 2.0
+3776 'SA.Martha' 'november2.sf' 88 8.0 9.0
+3777 'SA.Martha' 'november2.sf' 91 8.0 9.0
+3778 'SA.Martha' 'november2.sf' 92 8.0 9.0
+3779 'SA.Martha' 'november2.sf' 93 8.0 9.0
+3780 'SA.Martha' 'november2.sf' 94 8.0 9.0
+3781 'SA.Martha' 'november2.sf' 95 8.0 9.0
+3782 'SA.Martha' 'november2.sf' 98 8.0 9.0
+3783 'SA.Martha' 'oscar2.sm' 3 0.0 1.0
+3784 'SA.Martha' 'oscar2.sm' 4 0.0 1.0
+3785 'SA.Martha' 'oscar2.sm' 7 0.0 1.0
+3786 'SA.Martha' 'oscar2.sm' 8 0.0 1.0
+3787 'SA.Martha' 'oscar2.sm' 9 0.0 1.0
+3788 'SA.Martha' 'oscar2.sm' 10 0.0 1.0
+3789 'SA.Martha' 'oscar2.sm' 11 0.0 1.0
+3790 'SA.Martha' 'oscar2.sm' 14 0.0 1.0
+3791 'SA.Martha' 'oscar2.sm' 15 0.0 1.0
+3792 'SA.Martha' 'oscar2.sm' 16 0.0 1.0
+3793 'SA.Martha' 'oscar2.sm' 17 0.0 1.0
+3794 'SA.Martha' 'oscar2.sm' 18 0.0 1.0
+3795 'SA.Martha' 'oscar2.sm' 21 0.0 1.0
+3796 'SA.Martha' 'oscar2.sm' 22 0.0 1.0
+3797 'SA.Martha' 'oscar2.sm' 23 0.0 1.0
+3798 'SA.Martha' 'oscar2.sm' 24 0.0 1.0
+3799 'SA.Martha' 'oscar2.sm' 25 0.0 1.0
+3800 'SA.Martha' 'oscar2.sm' 28 0.0 1.0
+3801 'SA.Martha' 'oscar2.sm' 29 0.0 1.0
+3802 'SA.Martha' 'oscar2.sm' 30 0.0 1.0
+3803 'SA.Martha' 'oscar2.sm' 31 0.0 1.0
+3804 'SA.Martha' 'oscar2.sm' 32 0.0 1.0
+3805 'SA.Martha' 'oscar2.sm' 35 0.0 1.0
+3806 'SA.Martha' 'oscar2.sm' 36 0.0 1.0
+3807 'SA.Martha' 'oscar2.sm' 37 0.0 1.0
+3808 'SA.Martha' 'oscar2.sm' 38 0.0 1.0
+3809 'SA.Martha' 'oscar2.sm' 39 0.0 1.0
+3810 'SA.Martha' 'oscar2.sm' 42 0.0 1.0
+3811 'SA.Martha' 'oscar2.sm' 43 0.0 1.0
+3812 'SA.Martha' 'oscar2.sm' 44 0.0 1.0
+3813 'SA.Martha' 'oscar2.sm' 45 0.0 1.0
+3814 'SA.Martha' 'oscar2.sm' 46 0.0 1.0
+3815 'SA.Martha' 'oscar2.sm' 49 0.0 1.0
+3816 'SA.Martha' 'oscar2.sm' 50 0.0 1.0
+3817 'SA.Martha' 'oscar2.sm' 51 0.0 1.0
+3818 'SA.Martha' 'oscar2.sm' 52 0.0 1.0
+3819 'SA.Martha' 'oscar2.sm' 53 0.0 1.0
+3820 'SA.Martha' 'oscar2.sm' 56 0.0 1.0
+3821 'SA.Martha' 'oscar2.sm' 57 0.0 1.0
+3822 'SA.Martha' 'oscar2.sm' 58 0.0 1.0
+3823 'SA.Martha' 'oscar2.sm' 59 0.0 1.0
+3824 'SA.Martha' 'oscar2.sm' 60 0.0 1.0
+3825 'SA.Martha' 'oscar2.sm' 63 0.0 1.0
+3826 'SA.Martha' 'oscar2.sm' 64 0.0 1.0
+3827 'SA.Martha' 'oscar2.sm' 65 0.0 1.0
+3828 'SA.Martha' 'oscar2.sm' 66 0.0 1.0
+3829 'SA.Martha' 'oscar2.sm' 67 0.0 1.0
+3830 'SA.Martha' 'oscar2.sm' 70 0.0 1.0
+3831 'SA.Martha' 'oscar2.sm' 71 0.0 1.0
+3832 'SA.Martha' 'oscar2.sm' 72 0.0 1.0
+3833 'SA.Martha' 'oscar2.sm' 73 0.0 1.0
+3834 'SA.Martha' 'oscar2.sm' 74 0.0 1.0
+3835 'SA.Martha' 'oscar2.sm' 77 0.0 1.0
+3836 'SA.Martha' 'oscar2.sm' 78 0.0 1.0
+3837 'SA.Martha' 'oscar2.sm' 79 0.0 1.0
+3838 'SA.Martha' 'oscar2.sm' 80 0.0 1.0
+3839 'SA.Martha' 'oscar2.sm' 81 0.0 1.0
+3840 'SA.Martha' 'oscar2.sm' 84 0.0 1.0
+3841 'SA.Martha' 'oscar2.sm' 85 0.0 1.0
+3842 'SA.Martha' 'oscar2.sm' 86 0.0 1.0
+3843 'SA.Martha' 'oscar2.sm' 87 0.0 1.0
+3844 'SA.Martha' 'oscar2.sm' 88 0.0 1.0
+3845 'SA.Martha' 'oscar2.sm' 91 0.0 1.0
+3846 'SA.Martha' 'oscar2.sm' 92 0.0 1.0
+3847 'SA.Martha' 'oscar2.sm' 93 0.0 1.0
+3848 'SA.Martha' 'oscar2.sm' 94 0.0 1.0
+3849 'SA.Martha' 'oscar2.sm' 95 0.0 1.0
+3850 'SA.Martha' 'oscar2.sm' 98 0.0 1.0
+3851 'SA.Martha' 'oscar2.sm' 99 0.0 1.0
+3852 'SA.Martha' 'oscar2.sm' 100 0.0 1.0
+3853 'SA.Martha' 'oscar2.sm' 101 0.0 1.0
+3854 'SA.Martha' 'oscar2.sm' 102 0.0 1.0
+3855 'SA.Martha' 'oscar2.sm' 105 0.0 1.0
+3856 'SA.Martha' 'oscar2.sm' 106 0.0 1.0
+3857 'SA.Martha' 'oscar2.sm' 107 0.0 1.0
+3858 'SA.Martha' 'oscar2.sm' 108 0.0 1.0
+3859 'SA.Martha' 'oscar2.sm' 109 0.0 1.0
+3860 'SA.Martha' 'oscar2.sm' 112 0.0 1.0
+3861 'SA.Martha' 'oscar2.sm' 113 0.0 1.0
+3862 'SA.Martha' 'oscar2.sm' 114 0.0 1.0
+3863 'SA.Martha' 'oscar2.sm' 115 0.0 1.0
+3864 'SA.Martha' 'oscar2.sm' 116 0.0 1.0
+3865 'SA.Martha' 'oscar2.sm' 119 0.0 1.0
+3866 'SA.Martha' 'oscar2.sm' 120 0.0 1.0
+3867 'SA.Martha' 'oscar2.sm' 121 0.0 1.0
+3868 'SA.Martha' 'oscar2.sm' 123 0.0 1.0
+3869 'SA.Martha' 'oscar2.sm' 126 0.0 1.0
+3870 'SA.Martha' 'oscar2.sm' 127 0.0 1.0
+3871 'SA.Martha' 'oscar2.sm' 128 0.0 1.0
+3872 'SA.Martha' 'oscar2.sm' 129 0.0 1.0
+3873 'SA.Martha' 'oscar2.sm' 130 0.0 1.0
+3874 'SA.Martha' 'oscar2.sm' 133 0.0 1.0
+3875 'SA.Martha' 'oscar2.sm' 134 0.0 1.0
+3876 'SA.Martha' 'oscar2.sm' 135 0.0 1.0
+3877 'SA.Martha' 'oscar2.sm' 136 0.0 1.0
+3878 'SA.Martha' 'oscar2.sm' 137 0.0 1.0
+3879 'SA.Martha' 'oscar2.sm' 140 0.0 1.0
+3880 'SA.Martha' 'oscar2.sm' 141 0.0 1.0
+3881 'SA.Martha' 'oscar2.sm' 142 0.0 1.0
+3882 'SA.Martha' 'oscar2.sm' 143 0.0 1.0
+3883 'SA.Martha' 'oscar2.sm' 144 0.0 1.0
+3884 'SA.Martha' 'oscar2.sm' 147 0.0 1.0
+3885 'SA.Martha' 'oscar2.sm' 148 0.0 1.0
+3886 'SA.Martha' 'oscar2.sm' 149 0.0 1.0
+3887 'SA.Martha' 'oscar2.sm' 150 0.0 1.0
+3888 'SA.Martha' 'oscar2.sm' 151 0.0 1.0
+3889 'SA.Martha' 'oscar2.sm' 154 0.0 1.0
+3890 'SA.Martha' 'oscar2.sm' 155 0.0 1.0
+3891 'SA.Martha' 'oscar2.sm' 156 0.0 1.0
+3892 'SA.Martha' 'oscar2.sm' 157 0.0 1.0
+3893 'SA.Martha' 'oscar2.sm' 158 0.0 1.0
+3894 'SA.Martha' 'oscar2.sm' 161 0.0 1.0
+3895 'SA.Martha' 'oscar2.sm' 162 0.0 1.0
+3896 'SA.Martha' 'oscar2.sm' 163 0.0 1.0
+3897 'SA.Martha' 'oscar2.sm' 164 0.0 1.0
+3898 'SA.Martha' 'oscar2.sm' 165 0.0 1.0
+3899 'SA.Martha' 'oscar2.sm' 168 0.0 1.0
+3900 'SA.Martha' 'oscar2.sm' 169 0.0 1.0
+3901 'SA.Martha' 'oscar2.sm' 170 0.0 1.0
+3902 'SA.Martha' 'oscar2.sm' 171 0.0 1.0
+3903 'SA.Martha' 'oscar2.sm' 172 0.0 1.0
+3904 'SA.Martha' 'oscar2.sf' 175 6.0 7.0
+3905 'SA.Martha' 'oscar2.sf' 176 6.0 7.0
+3906 'SA.Martha' 'oscar2.sf' 177 6.0 7.0
+3907 'SA.Martha' 'oscar2.sf' 178 6.0 7.0
+3908 'SA.Martha' 'oscar2.sf' 179 6.0 7.0
+3909 'SA.Martha' 'oscar2.sf' 182 6.0 7.0
+3910 'SA.Martha' 'papa2.sm' 3 1.0 2.0
+3911 'SA.Martha' 'papa2.sm' 4 1.0 2.0
+3912 'SA.Martha' 'papa2.sm' 7 1.0 2.0
+3913 'SA.Martha' 'papa2.sm' 8 1.0 2.0
+3914 'SA.Martha' 'papa2.sm' 9 1.0 2.0
+3915 'SA.Martha' 'papa2.sm' 10 1.0 2.0
+3916 'SA.Martha' 'papa2.sm' 11 1.0 2.0
+3917 'SA.Martha' 'papa2.sm' 14 1.0 2.0
+3918 'SA.Martha' 'papa2.sm' 15 1.0 2.0
+3919 'SA.Martha' 'papa2.sm' 16 1.0 2.0
+3920 'SA.Martha' 'papa2.sm' 17 1.0 2.0
+3921 'SA.Martha' 'papa2.sm' 18 1.0 2.0
+3922 'SA.Martha' 'papa2.sm' 21 1.0 2.0
+3923 'SA.Martha' 'papa2.sm' 22 1.0 2.0
+3924 'SA.Martha' 'papa2.sm' 23 1.0 2.0
+3925 'SA.Martha' 'papa2.sm' 24 1.0 2.0
+3926 'SA.Martha' 'papa2.sm' 25 1.0 2.0
+3927 'SA.Martha' 'papa2.sm' 28 1.0 2.0
+3928 'SA.Martha' 'papa2.sm' 29 1.0 2.0
+3929 'SA.Martha' 'papa2.sm' 30 1.0 2.0
+3930 'SA.Martha' 'papa2.sm' 31 1.0 2.0
+3931 'SA.Martha' 'papa2.sm' 32 1.0 2.0
+3932 'SA.Martha' 'papa2.sm' 35 1.0 2.0
+3933 'SA.Martha' 'papa2.sm' 36 1.0 2.0
+3934 'SA.Martha' 'papa2.sm' 37 1.0 2.0
+3935 'SA.Martha' 'papa2.sm' 38 1.0 2.0
+3936 'SA.Martha' 'papa2.sm' 39 1.0 2.0
+3937 'SA.Martha' 'papa2.sm' 42 1.0 2.0
+3938 'SA.Martha' 'papa2.sm' 43 1.0 2.0
+3939 'SA.Martha' 'papa2.sm' 44 1.0 2.0
+3940 'SA.Martha' 'papa2.sm' 45 1.0 2.0
+3941 'SA.Martha' 'papa2.sm' 46 1.0 2.0
+3942 'SA.Martha' 'papa2.sm' 49 1.0 2.0
+3943 'SA.Martha' 'papa2.sm' 50 1.0 2.0
+3944 'SA.Martha' 'papa2.sm' 51 1.0 2.0
+3945 'SA.Martha' 'papa2.sm' 52 1.0 2.0
+3946 'SA.Martha' 'papa2.sm' 53 1.0 2.0
+3947 'SA.Martha' 'papa2.sm' 56 1.0 2.0
+3948 'SA.Martha' 'papa2.sm' 57 1.0 2.0
+3949 'SA.Martha' 'papa2.sm' 58 1.0 2.0
+3950 'SA.Martha' 'papa2.sm' 59 1.0 2.0
+3951 'SA.Martha' 'papa2.sm' 60 1.0 2.0
+3952 'SA.Martha' 'papa2.sm' 63 1.0 2.0
+3953 'SA.Martha' 'papa2.sm' 64 1.0 2.0
+3954 'SA.Martha' 'papa2.sm' 65 1.0 2.0
+3955 'SA.Martha' 'papa2.sm' 66 1.0 2.0
+3956 'SA.Martha' 'papa2.sm' 67 1.0 2.0
+3957 'SA.Martha' 'papa2.sm' 70 1.0 2.0
+3958 'SA.Martha' 'papa2.sm' 71 1.0 2.0
+3959 'SA.Martha' 'papa2.sm' 72 1.0 2.0
+3960 'SA.Martha' 'papa2.sm' 73 1.0 2.0
+3961 'SA.Martha' 'papa2.sm' 74 1.0 2.0
+3962 'SA.Martha' 'papa2.sm' 77 1.0 2.0
+3963 'SA.Martha' 'papa2.sm' 78 1.0 2.0
+3964 'SA.Martha' 'papa2.sm' 79 1.0 2.0
+3965 'SA.Martha' 'papa2.sm' 80 1.0 2.0
+3966 'SA.Martha' 'papa2.sm' 81 1.0 2.0
+3967 'SA.Martha' 'papa2.sm' 84 1.0 2.0
+3968 'SA.Martha' 'papa2.sm' 85 1.0 2.0
+3969 'SA.Martha' 'papa2.sm' 86 1.0 2.0
+3970 'SA.Martha' 'papa2.sm' 87 1.0 2.0
+3971 'SA.Martha' 'papa2.sm' 88 1.0 2.0
+3972 'SA.Martha' 'papa2.sm' 91 1.0 2.0
+3973 'SA.Martha' 'papa2.sm' 92 1.0 2.0
+3974 'SA.Martha' 'papa2.sm' 93 1.0 2.0
+3975 'SA.Martha' 'papa2.sm' 94 1.0 2.0
+3976 'SA.Martha' 'papa2.sm' 95 1.0 2.0
+3977 'SA.Martha' 'papa2.sm' 98 1.0 2.0
+3978 'SA.Martha' 'papa2.sm' 99 1.0 2.0
+3979 'SA.Martha' 'papa2.sm' 100 1.0 2.0
+3980 'SA.Martha' 'papa2.sm' 101 1.0 2.0
+3981 'SA.Martha' 'papa2.sm' 102 1.0 2.0
+3982 'SA.Martha' 'papa2.sm' 105 1.0 2.0
+3983 'SA.Martha' 'papa2.sm' 106 1.0 2.0
+3984 'SA.Martha' 'papa2.sm' 107 1.0 2.0
+3985 'SA.Martha' 'papa2.sm' 108 1.0 2.0
+3986 'SA.Martha' 'papa2.sm' 109 1.0 2.0
+3987 'SA.Martha' 'papa2.sm' 112 1.0 2.0
+3988 'SA.Martha' 'papa2.sm' 113 1.0 2.0
+3989 'SA.Martha' 'papa2.sm' 114 1.0 2.0
+3990 'SA.Martha' 'papa2.sm' 115 1.0 2.0
+3991 'SA.Martha' 'papa2.sm' 116 1.0 2.0
+3992 'SA.Martha' 'papa2.sm' 119 1.0 2.0
+3993 'SA.Martha' 'papa2.sm' 120 1.0 2.0
+3994 'SA.Martha' 'papa2.sm' 121 1.0 2.0
+3995 'SA.Martha' 'papa2.sm' 123 1.0 2.0
+3996 'SA.Martha' 'papa2.sm' 126 1.0 2.0
+3997 'SA.Martha' 'papa2.sm' 127 1.0 2.0
+3998 'SA.Martha' 'papa2.sm' 128 1.0 2.0
+3999 'SA.Martha' 'papa2.sm' 129 1.0 2.0
+4000 'SA.Martha' 'papa2.sm' 130 1.0 2.0
+4001 'SA.Martha' 'papa2.sm' 133 1.0 2.0
+4002 'SA.Martha' 'papa2.sm' 134 1.0 2.0
+4003 'SA.Martha' 'papa2.sm' 135 1.0 2.0
+4004 'SA.Martha' 'papa2.sm' 136 1.0 2.0
+4005 'SA.Martha' 'papa2.sm' 137 1.0 2.0
+4006 'SA.Martha' 'papa2.sm' 140 1.0 2.0
+4007 'SA.Martha' 'papa2.sm' 141 1.0 2.0
+4008 'SA.Martha' 'papa2.sm' 142 1.0 2.0
+4009 'SA.Martha' 'papa2.sm' 143 1.0 2.0
+4010 'SA.Martha' 'papa2.sm' 144 1.0 2.0
+4011 'SA.Martha' 'papa2.sm' 147 1.0 2.0
+4012 'SA.Martha' 'papa2.sm' 148 1.0 2.0
+4013 'SA.Martha' 'papa2.sm' 149 1.0 2.0
+4014 'SA.Martha' 'papa2.sm' 150 1.0 2.0
+4015 'SA.Martha' 'papa2.sm' 151 1.0 2.0
+4016 'SA.Martha' 'papa2.sm' 154 1.0 2.0
+4017 'SA.Martha' 'papa2.sm' 155 1.0 2.0
+4018 'SA.Martha' 'papa2.sm' 156 1.0 2.0
+4019 'SA.Martha' 'papa2.sm' 157 1.0 2.0
+4020 'SA.Martha' 'papa2.sm' 158 1.0 2.0
+4021 'SA.Martha' 'papa2.sm' 161 1.0 2.0
+4022 'SA.Martha' 'papa2.sm' 162 1.0 2.0
+4023 'SA.Martha' 'papa2.sm' 163 1.0 2.0
+4024 'SA.Martha' 'papa2.sm' 164 1.0 2.0
+4025 'SA.Martha' 'papa2.sm' 165 1.0 2.0
+4026 'SA.Martha' 'papa2.sm' 168 1.0 2.0
+4027 'SA.Martha' 'papa2.sm' 169 1.0 2.0
+4028 'SA.Martha' 'papa2.sm' 170 1.0 2.0
+4029 'SA.Martha' 'papa2.sm' 171 1.0 2.0
+4030 'SA.Martha' 'papa2.sm' 172 1.0 2.0
+4031 'SA.Martha' 'papa2.sf' 175 10.0 11.0
+4032 'SA.Martha' 'papa2.sf' 176 10.0 11.0
+4033 'SA.Martha' 'papa2.sf' 177 10.0 11.0
+4034 'SA.Martha' 'papa2.sf' 178 10.0 11.0
+4035 'SA.Martha' 'papa2.sf' 179 10.0 11.0
+4036 'SA.Martha' 'papa2.sf' 182 10.0 11.0
+4037 'SA.Martha' 'zulu2.se' 168 9.0 10.0
+4038 'SA.Martha' 'zulu2.se' 169 9.0 10.0
+4039 'SA.Martha' 'zulu2.se' 170 9.0 10.0
+4040 'SA.Martha' 'zulu2.se' 171 9.0 10.0
+4041 'SA.Martha' 'zulu2.se' 172 9.0 10.0
+4042 'SA.Martha' 'zulu2.se' 175 9.0 10.0
+4043 'SA.Martha' 'zulu2.se' 176 9.0 10.0
+4044 'SA.Martha' 'zulu2.se' 177 9.0 10.0
+4045 'SA.Martha' 'zulu2.se' 178 9.0 10.0
+4046 'SA.Martha' 'zulu2.se' 179 9.0 10.0
+4047 'SA.Martha' 'zulu2.se' 182 9.0 10.0
+4048 'SA.Martha' 'zulu2.se' 183 9.0 10.0
+4049 'SA.Martha' 'zulu2.se' 184 9.0 10.0
+4050 'SA.Martha' 'zulu2.se' 185 9.0 10.0
+4051 'SA.Martha' 'zulu2.se' 186 9.0 10.0
+4052 'SA.Martha' 'zulu2.se' 189 9.0 10.0
+4053 'SA.Martha' 'zulu2.se' 190 9.0 10.0
+4054 'SA.Martha' 'zulu2.se' 191 9.0 10.0
+4055 'SA.Martha' 'zulu2.se' 192 9.0 10.0
+4056 'SA.Martha' 'zulu2.se' 193 9.0 10.0
+4057 'SA.Martha' 'zulu2.se' 196 9.0 10.0
+4058 'SA.Martha' 'zulu2.se' 197 9.0 10.0
+4059 'SA.Martha' 'zulu2.sm' 198 0.0 1.0
+4060 'SA.Martha' 'zulu2.sm' 199 0.0 1.0
+4061 'SA.Martha' 'zulu2.sm' 200 0.0 1.0
+4062 'SA.Martha' 'zulu2.sm' 203 0.0 1.0
+4063 'SA.Martha' 'zulu2.sm' 204 0.0 1.0
+4064 'SA.Martha' 'zulu2.sm' 205 0.0 1.0
+4065 'SA.Martha' 'zulu2.sm' 206 0.0 1.0
+4066 'SA.Martha' 'zulu2.sm' 207 0.0 1.0
+4067 'SA.Martha' 'zulu2.sm' 210 0.0 1.0
+4068 'SA.Martha' 'zulu2.sm' 211 0.0 1.0
+4069 'SA.Martha' 'zulu2.sm' 212 0.0 1.0
+4070 'SA.Martha' 'zulu2.sm' 213 0.0 1.0
+4071 'SA.Martha' 'zulu2.sm' 214 0.0 1.0
+4072 'SA.Martha' 'zulu2.sm' 217 0.0 1.0
+4073 'SA.Martha' 'zulu2.sm' 218 0.0 1.0
+4074 'SA.Martha' 'zulu2.sm' 219 0.0 1.0
+4075 'SA.Martha' 'zulu2.sm' 220 0.0 1.0
+4076 'SA.Martha' 'zulu2.sm' 221 0.0 1.0
+4077 'SA.Martha' 'zulu2.sm' 224 0.0 1.0
+4078 'SA.Martha' 'zulu2.sm' 225 0.0 1.0
+4079 'SA.Martha' 'zulu2.sm' 226 0.0 1.0
+4080 'SA.Martha' 'zulu2.sm' 227 0.0 1.0
+4081 'SA.Martha' 'zulu2.sm' 228 0.0 1.0
+4082 'SA.Martha' 'zulu2.sm' 231 0.0 1.0
+4083 'SA.Martha' 'zulu2.sm' 232 0.0 1.0
+4084 'SA.Martha' 'zulu2.sm' 233 0.0 1.0
+4085 'SA.Martha' 'zulu2.sm' 234 0.0 1.0
+4086 'SA.Martha' 'zulu2.sm' 235 0.0 1.0
+4087 'SA.Martha' 'zulu2.sm' 238 0.0 1.0
+4088 'SA.Martha' 'zulu2.sm' 239 0.0 1.0
+4089 'SA.Martha' 'zulu2.sm' 240 0.0 1.0
+4090 'SA.Martha' 'zulu2.sm' 241 0.0 1.0
+4091 'SA.Martha' 'zulu2.sm' 242 0.0 1.0
+4092 'SA.Martha' 'zulu2.sm' 245 0.0 1.0
+4093 'SA.Martha' 'zulu2.sm' 246 0.0 1.0
+4094 'SA.Martha' 'zulu2.sm' 247 0.0 1.0
+4095 'SA.Martha' 'zulu2.sm' 248 0.0 1.0
+4096 'SA.Martha' 'zulu2.sm' 249 0.0 1.0
+4097 'SA.Martha' 'zulu2.sm' 252 0.0 1.0
+4098 'SA.Martha' 'zulu2.sm' 253 0.0 1.0
+4099 'SA.Martha' 'zulu2.sm' 254 0.0 1.0
+4100 'SA.Martha' 'zulu2.sm' 255 0.0 1.0
+4101 'SA.Martha' 'zulu2.sm' 256 0.0 1.0
+4102 'SA.Martha' 'zulu2.sm' 259 0.0 1.0
+4103 'SA.Martha' 'zulu2.sm' 260 0.0 1.0
+4104 'SA.Martha' 'zulu2.sm' 261 0.0 1.0
+4105 'SA.Martha' 'zulu2.sm' 262 0.0 1.0
+4106 'SA.Martha' 'zulu2.sm' 263 0.0 1.0
+4107 'SA.Martha' 'zulu2.sm' 266 0.0 1.0
+4108 'SA.Martha' 'zulu2.sm' 267 0.0 1.0
+4109 'SA.Martha' 'zulu2.sm' 268 0.0 1.0
+4110 'SA.Martha' 'zulu2.sm' 269 0.0 1.0
+4111 'SA.Martha' 'zulu2.sm' 270 0.0 1.0
+4112 'SA.Martha' 'zulu2.sm' 273 0.0 1.0
+4113 'SA.Martha' 'zulu2.sm' 274 0.0 1.0
+4114 'SA.Martha' 'zulu2.sm' 275 0.0 1.0
+4115 'SA.Martha' 'zulu2.sm' 276 0.0 1.0
+4116 'SA.Martha' 'zulu2.sm' 277 0.0 1.0
+4117 'SA.Martha' 'zulu2.sm' 280 0.0 1.0
+4118 'SA.Martha' 'zulu2.sm' 281 0.0 1.0
+4119 'SA.Martha' 'zulu2.sm' 282 0.0 1.0
+4120 'SA.Martha' 'zulu2.sm' 283 0.0 1.0
+4121 'SA.Martha' 'zulu2.sm' 284 0.0 1.0
+4122 'SA.Martha' 'zulu2.sm' 287 0.0 1.0
+4123 'SA.Martha' 'zulu2.sm' 288 0.0 1.0
+4124 'SA.Martha' 'zulu2.sm' 289 0.0 1.0
+4125 'SA.Martha' 'zulu2.sm' 290 0.0 1.0
+4126 'SA.Martha' 'zulu2.sm' 291 0.0 1.0
+4127 'SA.Martha' 'zulu2.sm' 294 0.0 1.0
+4128 'SA.Martha' 'zulu2.sm' 295 0.0 1.0
+4129 'SA.Martha' 'zulu2.sm' 296 0.0 1.0
+4130 'SA.Martha' 'zulu2.sm' 297 0.0 1.0
+4131 'SA.Martha' 'zulu2.sm' 298 0.0 1.0
+4132 'SA.Martha' 'zulu2.sm' 301 0.0 1.0
+4133 'SA.Martha' 'zulu2.sm' 302 0.0 1.0
+4134 'SA.Martha' 'zulu2.sm' 303 0.0 1.0
+4135 'SA.Martha' 'zulu2.sm' 304 0.0 1.0
+4136 'SA.Martha' 'zulu2.sm' 305 0.0 1.0
+4137 'SA.Martha' 'zulu2.sm' 308 0.0 1.0
+4138 'SA.Martha' 'zulu2.sm' 309 0.0 1.0
+4139 'SA.Martha' 'zulu2.sm' 310 0.0 1.0
+4140 'SA.Martha' 'zulu2.sm' 311 0.0 1.0
+4141 'SA.Martha' 'zulu2.sm' 312 0.0 1.0
+4142 'SA.Martha' 'zulu2.sm' 315 0.0 1.0
+4143 'SA.Martha' 'zulu2.sm' 316 0.0 1.0
+4144 'SA.Martha' 'zulu2.sm' 317 0.0 1.0
+4145 'SA.Martha' 'zulu2.sm' 318 0.0 1.0
+4146 'SA.Martha' 'zulu2.sm' 319 0.0 1.0
+4147 'SA.Martha' 'zulu2.sm' 322 0.0 1.0
+4148 'SA.Martha' 'zulu2.sm' 323 0.0 1.0
+4149 'SA.Martha' 'zulu2.sm' 324 0.0 1.0
+4150 'SA.Martha' 'zulu2.sm' 325 0.0 1.0
+4151 'SA.Martha' 'zulu2.sm' 326 0.0 1.0
+4152 'SA.Martha' 'zulu2.sf' 329 6.0 7.0
+4153 'SA.Martha' 'zulu2.sf' 330 6.0 7.0
+4154 'SA.Martha' 'zulu2.sf' 331 6.0 7.0
+4155 'SA.Martha' 'zulu2.sf' 332 6.0 7.0
+4156 'SA.Martha' 'zulu2.sf' 333 6.0 7.0
+4157 'SA.Martha' 'zulu2.sf' 336 6.0 7.0
+4158 'SA.Melanie' 'delta2.sm' 3 0.0 1.0
+4159 'SA.Melanie' 'delta2.sm' 4 0.0 1.0
+4160 'SA.Melanie' 'delta2.sm' 7 0.0 1.0
+4161 'SA.Melanie' 'delta2.sm' 8 0.0 1.0
+4162 'SA.Melanie' 'delta2.sm' 9 0.0 1.0
+4163 'SA.Melanie' 'delta2.sm' 10 0.0 1.0
+4164 'SA.Melanie' 'delta2.sm' 11 0.0 1.0
+4165 'SA.Melanie' 'delta2.sm' 14 0.0 1.0
+4166 'SA.Melanie' 'delta2.sm' 15 0.0 1.0
+4167 'SA.Melanie' 'delta2.sm' 16 0.0 1.0
+4168 'SA.Melanie' 'delta2.sm' 17 0.0 1.0
+4169 'SA.Melanie' 'delta2.sm' 18 0.0 1.0
+4170 'SA.Melanie' 'delta2.sm' 21 0.0 1.0
+4171 'SA.Melanie' 'delta2.sm' 22 0.0 1.0
+4172 'SA.Melanie' 'delta2.sm' 23 0.0 1.0
+4173 'SA.Melanie' 'delta2.sm' 24 0.0 1.0
+4174 'SA.Melanie' 'delta2.sm' 25 0.0 1.0
+4175 'SA.Melanie' 'delta2.sm' 28 0.0 1.0
+4176 'SA.Melanie' 'delta2.sm' 29 0.0 1.0
+4177 'SA.Melanie' 'delta2.sm' 30 0.0 1.0
+4178 'SA.Melanie' 'delta2.sm' 31 0.0 1.0
+4179 'SA.Melanie' 'delta2.sm' 32 0.0 1.0
+4180 'SA.Melanie' 'delta2.sm' 35 0.0 1.0
+4181 'SA.Melanie' 'delta2.sm' 36 0.0 1.0
+4182 'SA.Melanie' 'delta2.sm' 37 0.0 1.0
+4183 'SA.Melanie' 'delta2.sm' 38 0.0 1.0
+4184 'SA.Melanie' 'delta2.sm' 39 0.0 1.0
+4185 'SA.Melanie' 'delta2.sm' 42 0.0 1.0
+4186 'SA.Melanie' 'delta2.sm' 43 0.0 1.0
+4187 'SA.Melanie' 'delta2.sm' 44 0.0 1.0
+4188 'SA.Melanie' 'delta2.sm' 45 0.0 1.0
+4189 'SA.Melanie' 'delta2.sm' 46 0.0 1.0
+4190 'SA.Melanie' 'delta2.sm' 49 0.0 1.0
+4191 'SA.Melanie' 'delta2.sm' 50 0.0 1.0
+4192 'SA.Melanie' 'delta2.sm' 51 0.0 1.0
+4193 'SA.Melanie' 'delta2.sm' 52 0.0 1.0
+4194 'SA.Melanie' 'delta2.sm' 53 0.0 1.0
+4195 'SA.Melanie' 'delta2.sm' 56 0.0 1.0
+4196 'SA.Melanie' 'delta2.sm' 57 0.0 1.0
+4197 'SA.Melanie' 'delta2.sm' 58 0.0 1.0
+4198 'SA.Melanie' 'delta2.sm' 59 0.0 1.0
+4199 'SA.Melanie' 'delta2.sm' 60 0.0 1.0
+4200 'SA.Melanie' 'delta2.sm' 63 0.0 1.0
+4201 'SA.Melanie' 'delta2.sm' 64 0.0 1.0
+4202 'SA.Melanie' 'delta2.sm' 65 0.0 1.0
+4203 'SA.Melanie' 'delta2.sm' 66 0.0 1.0
+4204 'SA.Melanie' 'delta2.sm' 67 0.0 1.0
+4205 'SA.Melanie' 'delta2.sm' 70 0.0 1.0
+4206 'SA.Melanie' 'delta2.sm' 71 0.0 1.0
+4207 'SA.Melanie' 'delta2.sm' 72 0.0 1.0
+4208 'SA.Melanie' 'delta2.sm' 73 0.0 1.0
+4209 'SA.Melanie' 'delta2.sm' 74 0.0 1.0
+4210 'SA.Melanie' 'delta2.sm' 77 0.0 1.0
+4211 'SA.Melanie' 'delta2.sm' 78 0.0 1.0
+4212 'SA.Melanie' 'delta2.sm' 79 0.0 1.0
+4213 'SA.Melanie' 'delta2.sm' 80 0.0 1.0
+4214 'SA.Melanie' 'delta2.sm' 81 0.0 1.0
+4215 'SA.Melanie' 'delta2.sm' 84 0.0 1.0
+4216 'SA.Melanie' 'delta2.sm' 85 0.0 1.0
+4217 'SA.Melanie' 'delta2.sm' 86 0.0 1.0
+4218 'SA.Melanie' 'delta2.sm' 87 0.0 1.0
+4219 'SA.Melanie' 'delta2.sm' 88 0.0 1.0
+4220 'SA.Melanie' 'delta2.sm' 91 0.0 1.0
+4221 'SA.Melanie' 'delta2.sm' 92 0.0 1.0
+4222 'SA.Melanie' 'delta2.sm' 93 0.0 1.0
+4223 'SA.Melanie' 'delta2.sm' 94 0.0 1.0
+4224 'SA.Melanie' 'delta2.sm' 95 0.0 1.0
+4225 'SA.Melanie' 'delta2.sm' 98 0.0 1.0
+4226 'SA.Melanie' 'delta2.sm' 99 0.0 1.0
+4227 'SA.Melanie' 'delta2.sm' 100 0.0 1.0
+4228 'SA.Melanie' 'delta2.sm' 101 0.0 1.0
+4229 'SA.Melanie' 'delta2.sm' 102 0.0 1.0
+4230 'SA.Melanie' 'delta2.sm' 105 0.0 1.0
+4231 'SA.Melanie' 'delta2.sm' 106 0.0 1.0
+4232 'SA.Melanie' 'delta2.sm' 107 0.0 1.0
+4233 'SA.Melanie' 'delta2.sm' 108 0.0 1.0
+4234 'SA.Melanie' 'delta2.sm' 109 0.0 1.0
+4235 'SA.Melanie' 'delta2.sm' 112 0.0 1.0
+4236 'SA.Melanie' 'delta2.sm' 113 0.0 1.0
+4237 'SA.Melanie' 'delta2.sm' 114 0.0 1.0
+4238 'SA.Melanie' 'delta2.sm' 115 0.0 1.0
+4239 'SA.Melanie' 'delta2.sm' 116 0.0 1.0
+4240 'SA.Melanie' 'delta2.sm' 119 0.0 1.0
+4241 'SA.Melanie' 'delta2.sm' 120 0.0 1.0
+4242 'SA.Melanie' 'delta2.sm' 121 0.0 1.0
+4243 'SA.Melanie' 'delta2.sm' 123 0.0 1.0
+4244 'SA.Melanie' 'delta2.sm' 126 0.0 1.0
+4245 'SA.Melanie' 'delta2.sm' 127 0.0 1.0
+4246 'SA.Melanie' 'delta2.sm' 128 0.0 1.0
+4247 'SA.Melanie' 'delta2.sm' 129 0.0 1.0
+4248 'SA.Melanie' 'delta2.sm' 130 0.0 1.0
+4249 'SA.Melanie' 'delta2.sm' 133 0.0 1.0
+4250 'SA.Melanie' 'delta2.sm' 134 0.0 1.0
+4251 'SA.Melanie' 'delta2.sm' 135 0.0 1.0
+4252 'SA.Melanie' 'delta2.sm' 136 0.0 1.0
+4253 'SA.Melanie' 'delta2.sm' 137 0.0 1.0
+4254 'SA.Melanie' 'delta2.sm' 140 0.0 1.0
+4255 'SA.Melanie' 'delta2.sm' 141 0.0 1.0
+4256 'SA.Melanie' 'delta2.sm' 142 0.0 1.0
+4257 'SA.Melanie' 'delta2.sm' 143 0.0 1.0
+4258 'SA.Melanie' 'delta2.sm' 144 0.0 1.0
+4259 'SA.Melanie' 'delta2.sm' 147 0.0 1.0
+4260 'SA.Melanie' 'delta2.sm' 148 0.0 1.0
+4261 'SA.Melanie' 'delta2.sm' 149 0.0 1.0
+4262 'SA.Melanie' 'delta2.sm' 150 0.0 1.0
+4263 'SA.Melanie' 'delta2.sm' 151 0.0 1.0
+4264 'SA.Melanie' 'delta2.sm' 154 0.0 1.0
+4265 'SA.Melanie' 'delta2.sm' 155 0.0 1.0
+4266 'SA.Melanie' 'delta2.sm' 156 0.0 1.0
+4267 'SA.Melanie' 'delta2.sm' 157 0.0 1.0
+4268 'SA.Melanie' 'delta2.sm' 158 0.0 1.0
+4269 'SA.Melanie' 'delta2.sm' 161 0.0 1.0
+4270 'SA.Melanie' 'delta2.sm' 162 0.0 1.0
+4271 'SA.Melanie' 'delta2.sm' 163 0.0 1.0
+4272 'SA.Melanie' 'delta2.sm' 164 0.0 1.0
+4273 'SA.Melanie' 'delta2.sm' 165 0.0 1.0
+4274 'SA.Melanie' 'delta2.sm' 168 0.0 1.0
+4275 'SA.Melanie' 'delta2.sm' 169 0.0 1.0
+4276 'SA.Melanie' 'delta2.sm' 170 0.0 1.0
+4277 'SA.Melanie' 'delta2.sm' 171 0.0 1.0
+4278 'SA.Melanie' 'delta2.sm' 172 0.0 1.0
+4279 'SA.Melanie' 'delta2.sf' 175 5.0 6.0
+4280 'SA.Melanie' 'delta2.sf' 176 5.0 6.0
+4281 'SA.Melanie' 'delta2.sf' 177 5.0 6.0
+4282 'SA.Melanie' 'delta2.sf' 178 5.0 6.0
+4283 'SA.Melanie' 'delta2.sf' 179 5.0 6.0
+4284 'SA.Melanie' 'delta2.sf' 182 5.0 6.0
+4285 'SA.Melanie' 'delta2.sf' 183 5.0 6.0
+4286 'SA.Melanie' 'echo2.sm' 3 2.0 3.0
+4287 'SA.Melanie' 'echo2.sm' 4 2.0 3.0
+4288 'SA.Melanie' 'echo2.sm' 7 2.0 3.0
+4289 'SA.Melanie' 'echo2.sm' 8 2.0 3.0
+4290 'SA.Melanie' 'echo2.sm' 9 2.0 3.0
+4291 'SA.Melanie' 'echo2.sm' 10 2.0 3.0
+4292 'SA.Melanie' 'echo2.sm' 11 2.0 3.0
+4293 'SA.Melanie' 'echo2.sm' 14 2.0 3.0
+4294 'SA.Melanie' 'echo2.sm' 15 2.0 3.0
+4295 'SA.Melanie' 'echo2.sm' 16 2.0 3.0
+4296 'SA.Melanie' 'echo2.sm' 17 2.0 3.0
+4297 'SA.Melanie' 'echo2.sm' 18 2.0 3.0
+4298 'SA.Melanie' 'echo2.sm' 21 2.0 3.0
+4299 'SA.Melanie' 'echo2.sm' 22 2.0 3.0
+4300 'SA.Melanie' 'echo2.sf' 23 0.0 1.0
+4301 'SA.Melanie' 'echo2.sf' 24 0.0 1.0
+4302 'SA.Melanie' 'echo2.sf' 25 0.0 1.0
+4303 'SA.Melanie' 'echo2.sf' 28 0.0 1.0
+4304 'SA.Melanie' 'echo2.sf' 29 0.0 1.0
+4305 'SA.Melanie' 'echo2.sf' 30 0.0 1.0
+4306 'SA.Melanie' 'echo2.sf' 31 0.0 1.0
+4307 'SA.Melanie' 'echo2.sf' 32 0.0 1.0
+4308 'SA.Melanie' 'echo2.sf' 35 0.0 1.0
+4309 'SA.Melanie' 'echo2.sf' 36 0.0 1.0
+4310 'SA.Melanie' 'echo2.sf' 37 0.0 1.0
+4311 'SA.Melanie' 'echo2.sf' 38 0.0 1.0
+4312 'SA.Melanie' 'echo2.sf' 39 0.0 1.0
+4313 'SA.Melanie' 'echo2.sf' 42 0.0 1.0
+4314 'SA.Melanie' 'echo2.sf' 43 0.0 1.0
+4315 'SA.Melanie' 'echo2.sf' 44 0.0 1.0
+4316 'SA.Melanie' 'echo2.sf' 45 0.0 1.0
+4317 'SA.Melanie' 'echo2.sf' 46 0.0 1.0
+4318 'SA.Melanie' 'echo2.sf' 49 0.0 1.0
+4319 'SA.Melanie' 'echo2.sf' 50 0.0 1.0
+4320 'SA.Melanie' 'echo2.sf' 51 0.0 1.0
+4321 'SA.Melanie' 'echo2.sf' 52 0.0 1.0
+4322 'SA.Melanie' 'echo2.sf' 53 0.0 1.0
+4323 'SA.Melanie' 'echo2.sf' 56 0.0 1.0
+4324 'SA.Melanie' 'echo2.sf' 57 0.0 1.0
+4325 'SA.Melanie' 'echo2.sf' 58 0.0 1.0
+4326 'SA.Melanie' 'echo2.sf' 59 0.0 1.0
+4327 'SA.Melanie' 'echo2.sf' 60 0.0 1.0
+4328 'SA.Melanie' 'echo2.sf' 63 0.0 1.0
+4329 'SA.Melanie' 'echo2.sf' 64 0.0 1.0
+4330 'SA.Melanie' 'echo2.sf' 65 0.0 1.0
+4331 'SA.Melanie' 'echo2.sf' 66 0.0 1.0
+4332 'SA.Melanie' 'echo2.sf' 67 0.0 1.0
+4333 'SA.Melanie' 'echo2.sf' 70 0.0 1.0
+4334 'SA.Melanie' 'foxtrot2.sm' 3 3.0 4.0
+4335 'SA.Melanie' 'foxtrot2.sm' 4 3.0 4.0
+4336 'SA.Melanie' 'foxtrot2.sm' 7 3.0 4.0
+4337 'SA.Melanie' 'foxtrot2.sm' 8 3.0 4.0
+4338 'SA.Melanie' 'foxtrot2.sm' 9 3.0 4.0
+4339 'SA.Melanie' 'foxtrot2.sm' 10 3.0 4.0
+4340 'SA.Melanie' 'foxtrot2.sm' 11 3.0 4.0
+4341 'SA.Melanie' 'foxtrot2.sm' 14 3.0 4.0
+4342 'SA.Melanie' 'foxtrot2.sm' 15 3.0 4.0
+4343 'SA.Melanie' 'foxtrot2.sm' 16 3.0 4.0
+4344 'SA.Melanie' 'foxtrot2.sm' 17 3.0 4.0
+4345 'SA.Melanie' 'foxtrot2.sm' 18 3.0 4.0
+4346 'SA.Melanie' 'foxtrot2.sm' 21 3.0 4.0
+4347 'SA.Melanie' 'foxtrot2.sm' 22 3.0 4.0
+4348 'SA.Melanie' 'foxtrot2.sm' 23 3.0 4.0
+4349 'SA.Melanie' 'foxtrot2.sm' 24 3.0 4.0
+4350 'SA.Melanie' 'foxtrot2.sm' 25 3.0 4.0
+4351 'SA.Melanie' 'foxtrot2.sm' 28 3.0 4.0
+4352 'SA.Melanie' 'foxtrot2.sm' 29 3.0 4.0
+4353 'SA.Melanie' 'foxtrot2.sm' 30 3.0 4.0
+4354 'SA.Melanie' 'foxtrot2.sm' 31 3.0 4.0
+4355 'SA.Melanie' 'foxtrot2.sm' 32 3.0 4.0
+4356 'SA.Melanie' 'foxtrot2.sm' 35 3.0 4.0
+4357 'SA.Melanie' 'foxtrot2.sm' 36 3.0 4.0
+4358 'SA.Melanie' 'foxtrot2.sm' 37 3.0 4.0
+4359 'SA.Melanie' 'foxtrot2.sm' 38 3.0 4.0
+4360 'SA.Melanie' 'foxtrot2.sm' 39 3.0 4.0
+4361 'SA.Melanie' 'foxtrot2.sm' 42 3.0 4.0
+4362 'SA.Melanie' 'foxtrot2.sm' 43 3.0 4.0
+4363 'SA.Melanie' 'foxtrot2.sm' 44 3.0 4.0
+4364 'SA.Melanie' 'foxtrot2.sm' 45 3.0 4.0
+4365 'SA.Melanie' 'foxtrot2.sm' 46 3.0 4.0
+4366 'SA.Melanie' 'foxtrot2.sm' 49 3.0 4.0
+4367 'SA.Melanie' 'foxtrot2.sm' 50 3.0 4.0
+4368 'SA.Melanie' 'foxtrot2.sm' 51 3.0 4.0
+4369 'SA.Melanie' 'foxtrot2.sm' 52 3.0 4.0
+4370 'SA.Melanie' 'foxtrot2.sm' 53 3.0 4.0
+4371 'SA.Melanie' 'foxtrot2.sm' 56 3.0 4.0
+4372 'SA.Melanie' 'foxtrot2.sm' 57 3.0 4.0
+4373 'SA.Melanie' 'foxtrot2.sm' 58 3.0 4.0
+4374 'SA.Melanie' 'foxtrot2.sm' 59 3.0 4.0
+4375 'SA.Melanie' 'foxtrot2.sm' 60 3.0 4.0
+4376 'SA.Melanie' 'foxtrot2.sm' 63 3.0 4.0
+4377 'SA.Melanie' 'foxtrot2.sm' 64 3.0 4.0
+4378 'SA.Melanie' 'foxtrot2.sm' 65 3.0 4.0
+4379 'SA.Melanie' 'foxtrot2.sm' 66 3.0 4.0
+4380 'SA.Melanie' 'foxtrot2.sm' 67 3.0 4.0
+4381 'SA.Melanie' 'foxtrot2.sm' 70 3.0 4.0
+4382 'SA.Melanie' 'foxtrot2.sm' 71 3.0 4.0
+4383 'SA.Melanie' 'foxtrot2.sm' 72 3.0 4.0
+4384 'SA.Melanie' 'foxtrot2.sm' 73 3.0 4.0
+4385 'SA.Melanie' 'foxtrot2.sm' 74 3.0 4.0
+4386 'SA.Melanie' 'foxtrot2.sm' 77 3.0 4.0
+4387 'SA.Melanie' 'foxtrot2.sm' 78 3.0 4.0
+4388 'SA.Melanie' 'foxtrot2.sm' 79 3.0 4.0
+4389 'SA.Melanie' 'foxtrot2.sm' 80 3.0 4.0
+4390 'SA.Melanie' 'foxtrot2.sm' 81 3.0 4.0
+4391 'SA.Melanie' 'foxtrot2.sf' 84 17.0 18.0
+4392 'SA.Melanie' 'foxtrot2.sf' 85 17.0 18.0
+4393 'SA.Melanie' 'foxtrot2.sf' 86 17.0 18.0
+4394 'SA.Melanie' 'foxtrot2.sf' 87 17.0 18.0
+4395 'SA.Melanie' 'foxtrot2.sf' 88 17.0 18.0
+4396 'SA.Melanie' 'foxtrot2.sf' 91 17.0 18.0
+4397 'SA.Melanie' 'foxtrot2.sf' 92 17.0 18.0
+4398 'SA.Melanie' 'hotel2.sm' 3 1.0 2.0
+4399 'SA.Melanie' 'hotel2.sm' 4 1.0 2.0
+4400 'SA.Melanie' 'hotel2.sm' 7 1.0 2.0
+4401 'SA.Melanie' 'hotel2.sm' 8 1.0 2.0
+4402 'SA.Melanie' 'hotel2.sm' 9 1.0 2.0
+4403 'SA.Melanie' 'hotel2.sm' 10 1.0 2.0
+4404 'SA.Melanie' 'hotel2.sm' 11 1.0 2.0
+4405 'SA.Melanie' 'hotel2.sm' 14 1.0 2.0
+4406 'SA.Melanie' 'hotel2.sm' 15 1.0 2.0
+4407 'SA.Melanie' 'hotel2.sm' 16 1.0 2.0
+4408 'SA.Melanie' 'hotel2.sm' 17 1.0 2.0
+4409 'SA.Melanie' 'hotel2.sm' 18 1.0 2.0
+4410 'SA.Melanie' 'hotel2.sm' 21 1.0 2.0
+4411 'SA.Melanie' 'hotel2.sm' 22 1.0 2.0
+4412 'SA.Melanie' 'hotel2.sm' 23 1.0 2.0
+4413 'SA.Melanie' 'hotel2.sm' 24 1.0 2.0
+4414 'SA.Melanie' 'hotel2.sm' 25 1.0 2.0
+4415 'SA.Melanie' 'hotel2.sm' 28 1.0 2.0
+4416 'SA.Melanie' 'hotel2.sm' 29 1.0 2.0
+4417 'SA.Melanie' 'hotel2.sm' 30 1.0 2.0
+4418 'SA.Melanie' 'hotel2.sm' 31 1.0 2.0
+4419 'SA.Melanie' 'hotel2.sm' 32 1.0 2.0
+4420 'SA.Melanie' 'hotel2.sm' 35 1.0 2.0
+4421 'SA.Melanie' 'hotel2.sm' 36 1.0 2.0
+4422 'SA.Melanie' 'hotel2.sm' 37 1.0 2.0
+4423 'SA.Melanie' 'hotel2.sm' 38 1.0 2.0
+4424 'SA.Melanie' 'hotel2.sm' 39 1.0 2.0
+4425 'SA.Melanie' 'hotel2.sm' 42 1.0 2.0
+4426 'SA.Melanie' 'hotel2.sm' 43 1.0 2.0
+4427 'SA.Melanie' 'hotel2.sm' 44 1.0 2.0
+4428 'SA.Melanie' 'hotel2.sm' 45 1.0 2.0
+4429 'SA.Melanie' 'hotel2.sm' 46 1.0 2.0
+4430 'SA.Melanie' 'hotel2.sf' 49 2.0 3.0
+4431 'SA.Melanie' 'hotel2.sf' 50 2.0 3.0
+4432 'SA.Melanie' 'hotel2.sf' 51 2.0 3.0
+4433 'SA.Melanie' 'hotel2.sf' 52 2.0 3.0
+4434 'SA.Melanie' 'hotel2.sf' 53 2.0 3.0
+4435 'SA.Melanie' 'hotel2.sf' 56 2.0 3.0
+4436 'SA.Melanie' 'hotel2.sf' 57 2.0 3.0
+4437 'SA.Melanie' 'mike2.se' 11 14.0 15.0
+4438 'SA.Melanie' 'mike2.se' 14 14.0 15.0
+4439 'SA.Melanie' 'mike2.se' 15 14.0 15.0
+4440 'SA.Melanie' 'mike2.se' 16 14.0 15.0
+4441 'SA.Melanie' 'mike2.sm' 28 1.0 2.0
+4442 'SA.Melanie' 'mike2.sm' 29 1.0 2.0
+4443 'SA.Melanie' 'mike2.sm' 30 1.0 2.0
+4444 'SA.Melanie' 'mike2.sm' 31 1.0 2.0
+4445 'SA.Melanie' 'mike2.sm' 32 1.0 2.0
+4446 'SA.Melanie' 'mike2.sm' 35 1.0 2.0
+4447 'SA.Melanie' 'mike2.sm' 36 1.0 2.0
+4448 'SA.Melanie' 'mike2.sm' 37 1.0 2.0
+4449 'SA.Melanie' 'mike2.sm' 38 1.0 2.0
+4450 'SA.Melanie' 'mike2.sm' 39 1.0 2.0
+4451 'SA.Melanie' 'mike2.sm' 42 1.0 2.0
+4452 'SA.Melanie' 'mike2.sm' 43 1.0 2.0
+4453 'SA.Melanie' 'mike2.sm' 44 1.0 2.0
+4454 'SA.Melanie' 'mike2.sm' 45 1.0 2.0
+4455 'SA.Melanie' 'mike2.sm' 46 1.0 2.0
+4456 'SA.Melanie' 'mike2.sm' 49 1.0 2.0
+4457 'SA.Melanie' 'mike2.sm' 50 1.0 2.0
+4458 'SA.Melanie' 'mike2.sm' 51 1.0 2.0
+4459 'SA.Melanie' 'mike2.sm' 52 1.0 2.0
+4460 'SA.Melanie' 'mike2.sm' 53 1.0 2.0
+4461 'SA.Melanie' 'mike2.sm' 56 1.0 2.0
+4462 'SA.Melanie' 'mike2.sm' 57 1.0 2.0
+4463 'SA.Melanie' 'mike2.sm' 58 1.0 2.0
+4464 'SA.Melanie' 'mike2.sm' 59 1.0 2.0
+4465 'SA.Melanie' 'mike2.sm' 60 1.0 2.0
+4466 'SA.Melanie' 'mike2.sm' 63 1.0 2.0
+4467 'SA.Melanie' 'mike2.sm' 64 1.0 2.0
+4468 'SA.Melanie' 'mike2.sm' 65 1.0 2.0
+4469 'SA.Melanie' 'mike2.sm' 66 1.0 2.0
+4470 'SA.Melanie' 'mike2.sm' 67 1.0 2.0
+4471 'SA.Melanie' 'mike2.sm' 70 1.0 2.0
+4472 'SA.Melanie' 'mike2.sm' 71 1.0 2.0
+4473 'SA.Melanie' 'mike2.sm' 72 1.0 2.0
+4474 'SA.Melanie' 'mike2.sm' 73 1.0 2.0
+4475 'SA.Melanie' 'mike2.sm' 74 1.0 2.0
+4476 'SA.Melanie' 'mike2.sm' 77 1.0 2.0
+4477 'SA.Melanie' 'mike2.sm' 78 1.0 2.0
+4478 'SA.Melanie' 'mike2.sm' 79 1.0 2.0
+4479 'SA.Melanie' 'mike2.sm' 80 1.0 2.0
+4480 'SA.Melanie' 'mike2.sm' 81 1.0 2.0
+4481 'SA.Melanie' 'mike2.sm' 84 1.0 2.0
+4482 'SA.Melanie' 'mike2.sm' 85 1.0 2.0
+4483 'SA.Melanie' 'mike2.sm' 86 1.0 2.0
+4484 'SA.Melanie' 'mike2.sm' 87 1.0 2.0
+4485 'SA.Melanie' 'mike2.sm' 88 1.0 2.0
+4486 'SA.Melanie' 'mike2.sm' 91 1.0 2.0
+4487 'SA.Melanie' 'mike2.sm' 92 1.0 2.0
+4488 'SA.Melanie' 'mike2.sm' 93 1.0 2.0
+4489 'SA.Melanie' 'mike2.sm' 94 1.0 2.0
+4490 'SA.Melanie' 'mike2.sm' 95 1.0 2.0
+4491 'SA.Melanie' 'mike2.sm' 98 1.0 2.0
+4492 'SA.Melanie' 'mike2.sm' 99 1.0 2.0
+4493 'SA.Melanie' 'mike2.sm' 100 1.0 2.0
+4494 'SA.Melanie' 'mike2.sm' 101 1.0 2.0
+4495 'SA.Melanie' 'mike2.sm' 102 1.0 2.0
+4496 'SA.Melanie' 'mike2.sm' 105 1.0 2.0
+4497 'SA.Melanie' 'mike2.sm' 106 1.0 2.0
+4498 'SA.Melanie' 'mike2.sm' 107 1.0 2.0
+4499 'SA.Melanie' 'mike2.sm' 108 1.0 2.0
+4500 'SA.Melanie' 'mike2.sm' 109 1.0 2.0
+4501 'SA.Melanie' 'mike2.sm' 112 1.0 2.0
+4502 'SA.Melanie' 'mike2.sm' 113 1.0 2.0
+4503 'SA.Melanie' 'mike2.sm' 114 1.0 2.0
+4504 'SA.Melanie' 'mike2.sm' 115 1.0 2.0
+4505 'SA.Melanie' 'mike2.sm' 116 1.0 2.0
+4506 'SA.Melanie' 'mike2.sm' 119 1.0 2.0
+4507 'SA.Melanie' 'mike2.sm' 120 1.0 2.0
+4508 'SA.Melanie' 'mike2.sm' 121 1.0 2.0
+4509 'SA.Melanie' 'mike2.sm' 123 1.0 2.0
+4510 'SA.Melanie' 'mike2.sm' 126 1.0 2.0
+4511 'SA.Melanie' 'mike2.sm' 127 1.0 2.0
+4512 'SA.Melanie' 'mike2.sm' 128 1.0 2.0
+4513 'SA.Melanie' 'mike2.sm' 129 1.0 2.0
+4514 'SA.Melanie' 'mike2.sm' 130 1.0 2.0
+4515 'SA.Melanie' 'mike2.sm' 133 1.0 2.0
+4516 'SA.Melanie' 'mike2.sm' 134 1.0 2.0
+4517 'SA.Melanie' 'mike2.sm' 135 1.0 2.0
+4518 'SA.Melanie' 'mike2.sm' 136 1.0 2.0
+4519 'SA.Melanie' 'mike2.sm' 137 1.0 2.0
+4520 'SA.Melanie' 'mike2.sf' 140 4.0 5.0
+4521 'SA.Melanie' 'mike2.sf' 141 4.0 5.0
+4522 'SA.Melanie' 'mike2.sf' 142 4.0 5.0
+4523 'SA.Melanie' 'mike2.sf' 143 4.0 5.0
+4524 'SA.Melanie' 'mike2.sf' 144 4.0 5.0
+4525 'SA.Melanie' 'mike2.sf' 147 4.0 5.0
+4526 'SA.Melanie' 'mike2.sf' 148 4.0 5.0
+4527 'SA.Melanie' 'mike2.sf' 149 4.0 5.0
+4528 'SA.Melanie' 'mike2.sf' 150 4.0 5.0
+4529 'SA.Melanie' 'mike2.sf' 151 4.0 5.0;
+
+param XBSUM_NO := 0;
+
+param XBSUM:
+1   2   3   4   5   6 :=
+;
+
+param UBDAY_NO := 0;
+
+param UBDAY:
+1   2   3   4 :=
+;
+
+param UBSUM_NO := 0;
+
+param UBSUM:
+1   2   3   4   5   6 :=
+;
+
+set LINKS :=
+'SA.Peter' 'golf2.sf'
+'SA.Peter' 'golf2.sm'
+'SA.Peter' 'tango2.se'
+'SA.Peter' 'tango2.sf'
+'SA.Peter' 'tango2.sm'
+'SA.Peter' 'victor2.se'
+'SA.Peter' 'victor2.sf'
+'SA.Peter' 'victor2.sm'
+'SA.Adrian' 'alpha.sf'
+'SA.Adrian' 'alpha.sm'
+'SA.Adrian' 'beta.sf'
+'SA.Adrian' 'beta.sm'
+'SA.Adrian' 'charlie.sf'
+'SA.Adrian' 'charlie.sm'
+'SA.Adrian' 'delta.sf'
+'SA.Adrian' 'delta.sm'
+'SA.Adrian' 'echo.sf'
+'SA.Adrian' 'echo.sm'
+'SA.Adrian' 'golf.sf'
+'SA.Adrian' 'golf.sm'
+'SA.Adrian' 'kilo.se'
+'SA.Adrian' 'kilo.sf'
+'SA.Adrian' 'kilo.sm'
+'SA.Adrian' 'lima.se'
+'SA.Adrian' 'lima.sf'
+'SA.Adrian' 'lima.sm'
+'SA.Adrian' 'mike.se'
+'SA.Adrian' 'mike.sf'
+'SA.Adrian' 'mike.sm'
+'SA.Robert' 'foxtrot.sf'
+'SA.Robert' 'foxtrot.sm'
+'SA.Robert' 'hotel.sf'
+'SA.Robert' 'hotel.sm'
+'SA.Robert' 'india.sf'
+'SA.Robert' 'india.sm'
+'SA.Robert' 'juliet.se'
+'SA.Robert' 'juliet.sf'
+'SA.Robert' 'juliet.sm'
+'SA.Robert' 'november.se'
+'SA.Robert' 'november.sf'
+'SA.Robert' 'november.sm'
+'SA.Robert' 'oscar.se'
+'SA.Robert' 'oscar.sf'
+'SA.Robert' 'oscar.sm'
+'SA.Kevin' 'alpha2.se'
+'SA.Kevin' 'alpha2.sf'
+'SA.Kevin' 'alpha2.sm'
+'SA.Kevin' 'beta2.se'
+'SA.Kevin' 'beta2.sf'
+'SA.Kevin' 'beta2.sm'
+'SA.Kevin' 'gamma2.sf'
+'SA.Kevin' 'gamma2.sm'
+'SA.Kevin' 'quebec2.se'
+'SA.Kevin' 'quebec2.sf'
+'SA.Kevin' 'quebec2.sm'
+'SA.Kevin' 'uniform2.se'
+'SA.Kevin' 'uniform2.sf'
+'SA.Kevin' 'uniform2.sm'
+'SA.Kevin' 'xray2.se'
+'SA.Kevin' 'xray2.sf'
+'SA.Kevin' 'xray2.sm'
+'SA.Justin' 'india2.sf'
+'SA.Justin' 'india2.sm'
+'SA.Justin' 'juliet2.sf'
+'SA.Justin' 'juliet2.sm'
+'SA.Justin' 'lima2.sf'
+'SA.Justin' 'lima2.sm'
+'SA.Martha' 'kilo2.sf'
+'SA.Martha' 'kilo2.sm'
+'SA.Martha' 'november2.sf'
+'SA.Martha' 'november2.sm'
+'SA.Martha' 'oscar2.sf'
+'SA.Martha' 'oscar2.sm'
+'SA.Martha' 'papa2.sf'
+'SA.Martha' 'papa2.sm'
+'SA.Martha' 'zulu2.se'
+'SA.Martha' 'zulu2.sf'
+'SA.Martha' 'zulu2.sm'
+'SA.Melanie' 'delta2.sf'
+'SA.Melanie' 'delta2.sm'
+'SA.Melanie' 'echo2.sf'
+'SA.Melanie' 'echo2.sm'
+'SA.Melanie' 'foxtrot2.sf'
+'SA.Melanie' 'foxtrot2.sm'
+'SA.Melanie' 'hotel2.sf'
+'SA.Melanie' 'hotel2.sm'
+'SA.Melanie' 'mike2.se'
+'SA.Melanie' 'mike2.sf'
+'SA.Melanie' 'mike2.sm';
+
