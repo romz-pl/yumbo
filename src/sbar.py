@@ -74,6 +74,7 @@ def customise_date_range():
     for key, label in sections.items():
         row = st.columns(3)
         row[0].write(label)
+
         glb.data[key]["Start"] = row[1].date_input(
             f"{key}:Start",
             format="YYYY-MM-DD",
@@ -82,6 +83,7 @@ def customise_date_range():
             label_visibility="collapsed",
             value=getattr(glb, key)("Start"),
         )
+
         glb.data[key]["End"] = row[2].date_input(
             f"{key}:End",
             format="YYYY-MM-DD",
@@ -91,11 +93,33 @@ def customise_date_range():
             value=getattr(glb, key)("End"),
         )
 
+def customise_chart_colours():
+    st.subheader("Chart colours", divider="blue")
+
+    # Mapping data keys to labels
+    sections = [
+        ("timg", "Tasks per day", "Bar:color"),
+        ("himg", "Hours per day", "Bar:color"),
+        ("gimg", "Task's Gantt Chart", "Barh:color"),
+        ("wimg", "Invoicing Periods Workload", "Bar:color"),
+    ]
+
+    for key, label, col in sections:
+        row = st.columns(2)
+        row[0].write(label)
+
+        glb.data[key][col] = row[1].color_picker(
+            f"{key}:Color",
+            label_visibility="collapsed",
+            value=getattr(glb, key)(col),
+
+        )
 
 def customise_report():
     customise_report_layout()
     customise_show_experts()
     customise_date_range()
+    customise_chart_colours()
 
 
 def show_tasks():
