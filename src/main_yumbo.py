@@ -1,17 +1,18 @@
+import bimg
 import datetime
+import gimg
+import glb
+import himg
+import numpy as np
 import os
 import pandas as pd
-import streamlit as st
 import romz_ampl
 import romz_datetime
-import himg
-import wimg
-import simg
-import bimg
-import gimg
-import timg
-import glb
 import sbar
+import simg
+import streamlit as st
+import timg
+import wimg
 
 
 def show_tasks_gantt_chart(expert_name):
@@ -20,20 +21,43 @@ def show_tasks_gantt_chart(expert_name):
     gimg.plot(tasks, work_done)
 
 
+def highlight_rows(row):
+    if row['Weekdays'] in ['Saturday', 'Sunday']:
+        return ['background-color: rgba(144,238,144, 0.2)'] * len(row)
+    else:
+        return [''] * len(row)
+
+
 def show_schedule_as_table(expert_name):
     tasks = glb.tasks_for_expert(expert_name)
-    start_date = romz_datetime.to_string(tasks["Start"].min())
-    end_date = romz_datetime.to_string(tasks["End"].max())
+    start_date = tasks["Start"].min()
+    end_date = tasks["End"].max()
 
     # Retrieve the relevant schedule data
+    days = pd.date_range(start=start_date, end=end_date, freq='D')
     df = glb.data[f"schedule {expert_name}"].loc[tasks["Name"], start_date:end_date]
+    df = df.replace(0, '')
+    df = df.transpose()
+    df.index = days.astype("str")
+    # df.index.name = "Date"
 
-    # Apply styling to the DataFrame
-    styled_df = df.style.format(precision=2) \
-                        .highlight_between(left=0.24, right=None, props='color:white; background-color:purple') \
-                        .highlight_between(left=None, right=0.24, props='color:white; background-color:white;')
+    df.insert(0, "Weekdays", days.day_name())
 
-    st.dataframe(styled_df)
+    # Style definitions
+    row_hover = {'selector': 'tr:hover', 'props': [('background-color', '#555555')]}
+    cell_format = {'selector': 'td', 'props': 'text-align: right;'}
+    headers = {'selector': 'th:not(.index_name)', 'props': 'background-color: #000066; color: white;'}
+
+    styled_df = df.style \
+                  .format(precision=2) \
+                  .apply(highlight_rows, axis=1) \
+                  .set_table_styles([row_hover, cell_format, headers], overwrite=True) \
+                  .map(lambda v: 'color:LightBlue', subset=['Weekdays'])
+
+    st.markdown(styled_df.to_html(), unsafe_allow_html=True)
+
+    if st.checkbox("Show schedule as Streamlit table", value=False, key=f"checkbox_html_table_{expert_name}") :
+        st.dataframe(styled_df, use_container_width=False)
 
 
 def show_commitment_per_task(expert_name):
@@ -99,8 +123,10 @@ def show_all_rows():
 
         if report.at[expert_name, "Charts"]:
             show_one_row(expert_name)
+
         if report.at[expert_name, "Table"]:
             show_schedule_as_table(expert_name)
+
         if report.at[expert_name, "Commitment"]:
             show_commitment_per_task(expert_name)
 
