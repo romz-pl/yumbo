@@ -2,7 +2,6 @@ import glb
 import matplotlib
 import numpy as np
 import pandas as pd
-import romz_datetime
 import stext
 import streamlit as st
 import time
@@ -41,7 +40,7 @@ def plot(expert_name):
             tz=None, minticks=3, maxticks=6, interval_multiples=True
         )
     )
-    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(romz_datetime.format()))
+    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))
     ax.yaxis.grid(alpha=0.4)
     ax.set_axisbelow(True)
     ax.tick_params(axis="x", labelsize="x-small")

@@ -1,7 +1,6 @@
 import glb
 import matplotlib
 import pandas as pd
-import romz_datetime
 import stext
 import streamlit as st
 import time
@@ -36,7 +35,7 @@ def plot_df(df):
     ax.set_xlim([left, right])
     ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=6, min_n_ticks=1))
     ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6, interval_multiples=True))
-    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(romz_datetime.format()))
+    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))
     ax.yaxis.grid(alpha=0.4)
     ax.set_axisbelow(True)
     ax.tick_params(axis="x", labelsize="x-small")

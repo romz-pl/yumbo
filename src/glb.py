@@ -5,6 +5,9 @@ import romz_excel
 
 data = dict()
 
+def format():
+    return "%Y-%m-%d"
+
 def himg(col):
     return data["himg"].iloc[0][col]
 

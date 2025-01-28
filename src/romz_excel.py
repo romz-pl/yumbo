@@ -1,12 +1,11 @@
 import numpy as np
 import pandas as pd
-import romz_datetime
 import glb
 
 # Helper function to handle the date columns parsing
 def parse_date_columns(df, date_columns):
     for column in date_columns:
-        df[column] = pd.to_datetime(df[column], format=romz_datetime.format())
+        df[column] = pd.to_datetime(df[column], format=glb.format())
     return df
 
 
@@ -147,7 +146,7 @@ def adjust_start_days():
         "invoicing periods",
     ]
 
-    tomorrow = pd.to_datetime(glb.tomorrow(), format=romz_datetime.format())
+    tomorrow = pd.to_datetime(glb.tomorrow(), format=glb.format())
 
     # Apply the adjustment to each target DataFrame
     for key in targets:

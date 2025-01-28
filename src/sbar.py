@@ -1,7 +1,6 @@
 import glb
 import numpy as np
 import pandas as pd
-import romz_datetime
 import streamlit as st
 
 def load_excel_file():
@@ -101,7 +100,7 @@ def customise_report():
 
 def show_tasks():
     st.subheader("Tasks definition", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Avg': "{:.4f}"}
+    format = {'Start': glb.format(), 'End': glb.format(), 'Avg': "{:.4f}"}
     df = glb.data["tasks"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
@@ -118,42 +117,42 @@ def show_links():
 
 def show_xbday():
     st.subheader("Bounds xbday", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
+    format = {'Start': glb.format(), 'End': glb.format()}
     df = glb.data["xbday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_xbsum():
     st.subheader("Bounds xbsum", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
+    format = {'Start': glb.format(), 'End': glb.format()}
     df = glb.data["xbsum"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_ubday():
     st.subheader("Bounds ubday", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
+    format = {'Start': glb.format(), 'End': glb.format()}
     df = glb.data["ubday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_ubsum():
     st.subheader("Bounds ubsum", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
+    format = {'Start': glb.format(), 'End': glb.format()}
     df = glb.data["ubsum"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_expert_bounds():
     st.subheader("Expert bounds and preferences", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
+    format = {'Start': glb.format(), 'End': glb.format()}
     df = glb.data["expert bounds"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_invoicing_periods():
     st.subheader("Invoicing periods", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
+    format = {'Start': glb.format(), 'End': glb.format()}
     df = glb.data["invoicing periods"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
