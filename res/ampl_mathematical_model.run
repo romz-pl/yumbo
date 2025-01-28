@@ -1,3 +1,10 @@
+option;
+
+option presolve 10;
+option show_stats 4;
+option times 1;
+# option gentimes 1;
+
 display HOURS_PER_DAY;
 display DAY_NO;
 
@@ -47,46 +54,46 @@ display _total_solve_time;
 # display objective_function;
 printf "objective_function = %.7E\n\n", objective_function;
 
-if solve_result = "solved" then
-{ 
-   #display X;
-   
-   for {e in EXPERTN}
-   {
-   
-     printf "\n=== SCHEDULE for EXPERT %s ===\n", e;
-     printf "%-5s", "ID";
-     for {t in TASKN}
-     {
-         printf " %8s", t;
-     }
-     printf "\n";
-   
-     for {d in 1..DAY_NO}
-     {
-        printf "%-5d", d;
-        for {t in TASKN}
-        {
-           printf " %8d", round(X[e, d, t]);
-        }
-        printf "\n";
-     }
-   
-     printf "\n=== TASK SUMMARY ===\n";
-     printf "---------------------------------\n";
-     printf "%8s    %s\n", "ID", "WORKING-HOURS-PER-DAY";
-   
-     for {t in TASKN}
-     {
-        printf "%8s    ", t;
-        for {d in TASKS[t]..TASKE[t]}
-        {
-           printf "%3d", round(X[e, d, t]);
-        }
-        printf "\n";
-     }
-   
-   
+#if solve_result = "solved" then
+#{
+#   #display X;
+#
+#   for {e in EXPERTN}
+#   {
+#
+#     printf "\n=== SCHEDULE for EXPERT %s ===\n", e;
+#     printf "%-5s", "ID";
+#     for {t in TASKN}
+#     {
+#         printf " %8s", t;
+#     }
+#     printf "\n";
+#
+#     for {d in 1..DAY_NO}
+#     {
+#        printf "%-5d", d;
+#        for {t in TASKN}
+#        {
+#           printf " %8d", round(X[e, d, t]);
+#        }
+#        printf "\n";
+#     }
+#
+#     printf "\n=== TASK SUMMARY ===\n";
+#     printf "---------------------------------\n";
+#     printf "%8s    %s\n", "ID", "WORKING-HOURS-PER-DAY";
+#
+#     for {t in TASKN}
+#     {
+#        printf "%8s    ", t;
+#        for {d in TASKS[t]..TASKE[t]}
+#        {
+#           printf "%3d", round(X[e, d, t]);
+#        }
+#        printf "\n";
+#     }
+#
+#
 #     printf "\n=== PAYROLL SUMMARY ===\n";
 #     printf "--------------------------\n";
 #     printf "%8s  %4s  %5s  %5s\n", "ID", "LOWER", "VALUE", "UPPER";
@@ -94,6 +101,6 @@ if solve_result = "solved" then
 #     {
 #       printf "%8s  %5d  %5d  %5d\n", k, PAYROLLBL[e, k], round(sum {d in PAYROLLS[k]..PAYROLLE[k], (e, t) in LINKS} X[e, d, t]), PAYROLLBU[e, k];
 #     }
-  }
-}
+#  }
+#}
 
