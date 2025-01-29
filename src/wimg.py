@@ -1,5 +1,4 @@
 import glb
-import io
 import matplotlib
 import numpy as np
 import pandas as pd
@@ -69,10 +68,6 @@ def wimg(expert_name, mm_hash):
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
 
-    fig.tight_layout()
-    buf = io.BytesIO()
-    fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
-
-    return buf
+    return glb.savefig(fig)
 
 

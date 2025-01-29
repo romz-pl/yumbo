@@ -1,5 +1,4 @@
 import glb
-import io
 import matplotlib
 import streamlit as st
 import time
@@ -58,10 +57,6 @@ def gimg(df, work_done, mm_hash):
     # Configure layout
     ax.set_ylim(bottom=-0.6)
 
-    fig.tight_layout()
-    buf = io.BytesIO()
-    fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
-
-    return buf
+    return glb.savefig(fig)
 
 

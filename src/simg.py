@@ -1,5 +1,4 @@
 import glb
-import io
 import matplotlib
 import numpy as np
 import pandas as pd
@@ -77,11 +76,7 @@ def simg(expert_name, mm_hash):
     # Add legend and adjust layout
     ax.legend(loc="upper right", fontsize="6")
 
-    fig.tight_layout()
-    buf = io.BytesIO()
-    fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
-
-    return buf
+    return glb.savefig(fig)
 
 
 

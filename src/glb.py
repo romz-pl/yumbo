@@ -1,5 +1,6 @@
 import datetime
 import hashlib
+import io
 import pickle
 import romz_excel
 import streamlit as st
@@ -94,3 +95,12 @@ def math_model_hash(img):
     pickled = pickle.dumps(input_data)
     return hashlib.blake2s(pickled).hexdigest()
 
+
+def savefig(fig):
+    fig.tight_layout()
+
+    buf = io.BytesIO()
+    fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
+    # fig.savefig(buf, format="png", pil_kwargs={"compress_level": 9})
+
+    return buf

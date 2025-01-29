@@ -1,5 +1,4 @@
 import glb
-import io
 import matplotlib
 import pandas as pd
 import streamlit as st
@@ -21,6 +20,7 @@ def plot(expert_name):
     time_end = time.perf_counter()
     st.session_state.glb["time:himg:cnt"] += 1
     st.session_state.glb["time:himg:val"] += time_end - time_start
+    # st.session_state.glb["time:himg:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource
@@ -66,10 +66,6 @@ def himg(df, mm_hash):
         alpha=glb.himg("Bar:alpha")
     )
 
-    fig.tight_layout()
-    buf = io.BytesIO()
-    fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
-
-    return buf
+    return glb.savefig(fig)
 
 

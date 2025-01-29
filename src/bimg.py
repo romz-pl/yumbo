@@ -1,5 +1,4 @@
 import glb
-import io
 import matplotlib
 import pandas as pd
 import streamlit as st
@@ -59,10 +58,6 @@ def bimg(task, schedule, bounds, mm_hash):
     # Add legend and finalize layout
     ax.legend(loc="upper right")
 
-    fig.tight_layout()
-    buf = io.BytesIO()
-    fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
-
-    return buf
+    return glb.savefig(fig)
 
 
