@@ -7,24 +7,24 @@ import time
 
 
 #
-# Hours per day
+# Hours per day (Summary)
 #
-def plot(expert_name):
-    df = st.session_state.glb[f"schedule {expert_name}"]
+def plot():
+    sum_df = sum(st.session_state.glb[f"schedule {e}"] for e in st.session_state.glb["experts"]["Name"])
 
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("himg")
-    buf = himg(df, mm_hash)
+    buf = himgsum(sum_df, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:himg:cnt"] += 1
-    st.session_state.glb["time:himg:val"] += time_end - time_start
+    st.session_state.glb["time:himgsum:cnt"] += 1
+    st.session_state.glb["time:himgsum:val"] += time_end - time_start
 
 
 @st.cache_resource
-def himg(df, mm_hash):
+def himgsum(df, mm_hash):
     start = glb.himg("Start")
     end = glb.himg("End")
 

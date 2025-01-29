@@ -4,6 +4,7 @@ import gimg
 import gimgsum
 import glb
 import himg
+import himgsum
 import numpy as np
 import os
 import pandas as pd
@@ -86,7 +87,7 @@ def show_summary():
         with col2:
             timgsum.plot()
         with col3:
-            himg.plot_summary()
+            himgsum.plot()
 
 
 def show_solver_output():
@@ -140,6 +141,7 @@ def show_time_counters():
         ("Task's Gantt Chart", "gimg"),
         ("Task's Gantt Chart (Summary)", "gimgsum"),
         ("Hours per day", "himg"),
+        ("Hours per day  (Summary)", "himgsum"),
         ("Hours per day stacked", "simg"),
         ("Tasks per day", "timg"),
         ("Tasks per day (Summary)", "timgsum"),
@@ -235,7 +237,7 @@ def show_yumbo_description():
 
 
 def zero_time_counters():
-    charts = ["bimg", "gimg", "gimgsum", "himg", "simg", "timg", "timgsum", "wimg"]
+    charts = ["bimg", "gimg", "gimgsum", "himg", "himgsum", "simg", "timg", "timgsum", "wimg"]
     for v in charts:
         st.session_state.glb[f"time:{v}:cnt"] = 0
         st.session_state.glb[f"time:{v}:val"] = 0
