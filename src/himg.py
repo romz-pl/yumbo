@@ -1,7 +1,7 @@
 import glb
+import io
 import matplotlib
 import pandas as pd
-import stext
 import streamlit as st
 import time
 
@@ -10,6 +10,19 @@ import time
 # Hours per day
 #
 def plot_df(df):
+    time_start = time.perf_counter()
+
+    mm_hash = glb.math_model_hash("himg")
+    buf = himg(df, mm_hash)
+    st.image(buf)
+
+    time_end = time.perf_counter()
+    st.session_state.glb["time:himg:cnt"] += 1
+    st.session_state.glb["time:himg:val"] += time_end - time_start
+
+
+@st.cache_resource
+def himg(df, mm_hash):
     start = glb.himg("Start")
     end = glb.himg("End")
 
@@ -51,17 +64,15 @@ def plot_df(df):
         alpha=glb.himg("Bar:alpha")
     )
 
-    stext.show_fig(fig)
+    fig.tight_layout()
+    buf = io.BytesIO()
+    fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
+
+    return buf
 
 
 def plot(expert_name):
-    time_start = time.perf_counter()
-
     plot_df(st.session_state.glb[f"schedule {expert_name}"])
-
-    time_end = time.perf_counter()
-    st.session_state.glb["time:himg:cnt"] += 1
-    st.session_state.glb["time:himg:val"] += time_end - time_start
 
 
 def plot_summary():
