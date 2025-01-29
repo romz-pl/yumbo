@@ -17,8 +17,20 @@ import timgsum
 import wimg
 
 
+
+def tasks_for_expert(expert_name):
+    tasks = st.session_state.glb["tasks"]
+    links = st.session_state.glb["links"]
+
+    # Filter the tasks related to the expert
+    filter = links[links["Expert"] == expert_name]["Task"]
+
+    # Use .isin() to filter tasks directly
+    return tasks[tasks["Name"].isin(filter)]
+
+
 def show_tasks_gantt_chart(expert_name):
-    tasks = glb.tasks_for_expert(expert_name)
+    tasks = tasks_for_expert(expert_name)
     work_done = st.session_state.glb[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
     gimg.plot(tasks, work_done)
 
@@ -31,7 +43,7 @@ def highlight_rows(row):
 
 
 def show_schedule_as_table(expert_name):
-    tasks = glb.tasks_for_expert(expert_name)
+    tasks = tasks_for_expert(expert_name)
     start_date = tasks["Start"].min()
     end_date = tasks["End"].max()
 
@@ -63,13 +75,13 @@ def show_schedule_as_table(expert_name):
 
 
 def show_commitment_per_task(expert_name):
-    tasks_for_expert = glb.tasks_for_expert(expert_name)
+    tasks = tasks_for_expert(expert_name)
     schedule = st.session_state.glb[f"schedule {expert_name}"]
     xbday = st.session_state.glb["xbday"][st.session_state.glb["xbday"]["Expert"] == expert_name]
     xbday_grouped = xbday.groupby('Task')
     cols = st.columns(3)
 
-    for jj, task in enumerate(tasks_for_expert.itertuples(index=False)):
+    for jj, task in enumerate(tasks.itertuples(index=False)):
         if task.Name in xbday_grouped.groups:
             bounds = xbday_grouped.get_group(task.Name)
         else:

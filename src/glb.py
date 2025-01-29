@@ -2,7 +2,6 @@ import datetime
 import hashlib
 import io
 import pickle
-import romz_excel
 import streamlit as st
 import tempfile
 
@@ -40,33 +39,6 @@ def tomorrow():
 
 def last_day():
     return max(st.session_state.glb["tasks"]["End"].max(), st.session_state.glb["invoicing periods"]["End"].max())
-
-def prepare(uploaded_file):
-
-    if 'key:uploaded_file' in st.session_state:
-        new_input = ( st.session_state['key:uploaded_file'] != uploaded_file )
-    else:
-        new_input = True
-
-    if new_input:
-        with tempfile.NamedTemporaryFile(suffix=".xlsx") as f:
-            f.write(uploaded_file.getvalue())
-            f.flush()
-            romz_excel.read(f.name)
-        st.session_state['key:uploaded_file'] = uploaded_file
-
-    return new_input
-
-
-def tasks_for_expert(expert_name):
-    tasks = st.session_state.glb["tasks"]
-    links = st.session_state.glb["links"]
-
-    # Filter the tasks related to the expert
-    tasks_for_expert = links[links["Expert"] == expert_name]["Task"]
-
-    # Use .isin() to filter tasks directly
-    return tasks[tasks["Name"].isin(tasks_for_expert)]
 
 
 def math_model_hash(img):
