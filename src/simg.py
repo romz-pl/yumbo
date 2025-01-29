@@ -13,8 +13,8 @@ import time
 def plot(expert_name):
     time_start = time.perf_counter()
 
-    hash_value = glb.math_model_hash("simg")
-    buf = simg(expert_name, hash_value)
+    mm_hash = glb.math_model_hash("simg")
+    buf = simg(expert_name, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -23,7 +23,7 @@ def plot(expert_name):
 
 
 @st.cache_resource
-def simg(expert_name, glb_hash):
+def simg(expert_name, mm_hash):
     start = glb.simg("Start")
     end = glb.simg("End")
 
