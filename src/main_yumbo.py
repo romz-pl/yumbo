@@ -134,7 +134,7 @@ def show_all_rows():
 
 
 def show_time_counters():
-    st.subheader(":green[Elapsed time for chart creation]", divider="blue")
+    st.subheader(":green[Statistics on chart creation]", divider="blue")
 
     chart_data = [
         ("Plot task with its constrains", "bimg"),
@@ -206,11 +206,17 @@ def show_time_counters():
     st.dataframe(df, hide_index=True, use_container_width=False)
 
 
+def show_ampl_stats():
+    st.subheader(":green[Statistics on AMPL solution]", divider="blue")
+
+    st.caption("Total elapsed time: {:.3f} [s]".format(st.session_state.glb['time:ampl:ttime']))
+
 def show_main_panel():
     show_summary()
     show_all_rows()
     show_solver_output()
     show_time_counters()
+    show_ampl_stats()
 
 
 def set_page_config():
@@ -255,6 +261,8 @@ def zero_time_counters():
         st.session_state.glb[f"time:{v}:ttime"] = 0
         st.session_state.glb[f"time:{v}:nbytes"] = 0
 
+    st.session_state.glb[f"time:ampl:ttime"] = 0
+
 
 def main():
 
@@ -277,7 +285,7 @@ def main():
 
     if new_input:
         try:
-            romz_ampl.solve(uploaded_file.name)
+            romz_ampl.solve(uploaded_file)
         except Exception as e:
             st.subheader(f":red[Exception during solving process.] {e}")
             return

@@ -5,6 +5,7 @@ import numpy as np
 import os
 import pandas as pd
 import streamlit as st
+import time
 import uuid
 
 quarters_in_hour = 4
@@ -276,24 +277,18 @@ def save_schedule(ampl):
     day_no = int(ampl.get_data("DAY_NO").to_pandas().iloc[0, 0])
     days = pd.date_range(start=today + pd.Timedelta(days=1), periods=day_no, freq='D')
 
+    solution = dict()
     for en in experts_name:
         schedule = {
             tn: ampl.get_data(f"{{d in 1..DAY_NO}} X['{en}', d, '{tn}']").to_pandas().iloc[:, 0]
             for tn in tasks_name
         }
         # Create DataFrame from fetched data
-        df = pd.DataFrame(schedule, dtype=np.float16).T
+        df = pd.DataFrame(schedule, dtype=np.float16).T / quarters_in_hour
         df.columns = days
-        st.session_state.glb[f"schedule {en}"] = df / quarters_in_hour
+        solution[f"schedule {en}"] = df / quarters_in_hour
 
-
-def save_day_no(ampl):
-    st.session_state.glb["DAY_NO"] = ampl.get_parameter("DAY_NO").to_pandas().astype(int).iat[0,0]
-
-
-def save(ampl):
-    save_schedule(ampl)
-    save_day_no(ampl)
+    return solution
 
 
 # activate AMPL license
@@ -303,7 +298,18 @@ def set_ampl_license():
         modules.activate(uuid)
 
 
-def solve(name):
+def solve(uploaded_file):
+    time_start = time.perf_counter()
+
+    solution = solve_ampl(uploaded_file.name, uploaded_file.getvalue())
+    st.session_state.glb.update( solution )
+
+    time_end = time.perf_counter()
+    st.session_state.glb["time:ampl:ttime"] += time_end - time_start
+
+
+@st.cache_resource
+def solve_ampl(name, file_data):
     file = data_file(name)
 
     set_ampl_license()
@@ -341,5 +347,5 @@ def solve(name):
     if ampl.solve_result != "solved":
         raise Exception(f"Failed to solve AMPL problem. AMPL returned flag: {ampl.solve_result}")
 
-    save(ampl)
+    return save_schedule(ampl)
 
