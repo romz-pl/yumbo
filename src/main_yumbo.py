@@ -1,6 +1,7 @@
 import bimg
 import datetime
 import gimg
+import gimgsum
 import glb
 import himg
 import numpy as np
@@ -80,7 +81,7 @@ def show_summary():
         st.subheader(":blue[Experts overview]", divider="blue")
         col1, col2, col3 = st.columns(3)
         with col1:
-            gimg.plot_summary()
+            gimgsum.plot()
         with col2:
             timg.plot_summary()
         with col3:
@@ -136,6 +137,7 @@ def show_time_counters():
     chart_data = [
         ("Plot task with its constrains", "bimg"),
         ("Task's Gantt Chart", "gimg"),
+        ("Task's Gantt Chart (Summary)", "gimgsum"),
         ("Hours per day", "himg"),
         ("Hours per day stacked", "simg"),
         ("Tasks per day", "timg"),
@@ -231,7 +233,7 @@ def show_yumbo_description():
 
 
 def zero_time_counters():
-    charts = ["bimg", "gimg", "himg", "simg", "timg", "wimg"]
+    charts = ["bimg", "gimg", "gimgsum", "himg", "simg", "timg", "wimg"]
     for v in charts:
         st.session_state.glb[f"time:{v}:cnt"] = 0
         st.session_state.glb[f"time:{v}:val"] = 0

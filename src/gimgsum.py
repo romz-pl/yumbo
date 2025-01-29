@@ -4,32 +4,33 @@ import matplotlib
 import streamlit as st
 import time
 
+
 #
-# Task's Gantt Chart
+# Task's Gantt Chart (Summary)
 #
-def plot(df, work_done):
+
+def plot():
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("gimg")
-    buf = gimg(df, work_done, mm_hash)
+    buf = gimgsum(mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:gimg:cnt"] += 1
-    st.session_state.glb["time:gimg:val"] += time_end - time_start
+    st.session_state.glb["time:gimgsum:cnt"] += 1
+    st.session_state.glb["time:gimgsum:val"] += time_end - time_start
 
 
 @st.cache_resource
-def gimg(df, work_done, mm_hash):
-
-
+def gimgsum(mm_hash):
+    df = st.session_state.glb["tasks"]
     # Create figure and axis
     fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")), dpi=glb.gimg("Dpi"))
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
 
     # Plot Gantt bars
-    rects = ax.barh(
+    ax.barh(
         y=df["Name"],
         width=df["Days"] - 1,
         left=df["Start"],
@@ -38,19 +39,13 @@ def gimg(df, work_done, mm_hash):
         alpha=glb.gimg("Barh:alpha"),
     )
 
-    # Add labels to the bars
-    labels = [
-        f"{round(done)} of {work}" for work, done in zip(df["Work"].to_numpy(), work_done.to_numpy())
-    ]
-    ax.bar_label(rects, labels=labels, size=6, label_type="center")
-
     # Configure x-axis
     ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5, integer=True))
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
     ax.set_xlim(left=glb.today())
 
     # Configure y-axis
-    ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(1))
+    ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5, integer=True))
     ax.tick_params(axis="y", rotation=0, labelsize="x-small")
     ax.yaxis.grid(alpha=0.5)
     ax.set_axisbelow(True)
@@ -63,5 +58,3 @@ def gimg(df, work_done, mm_hash):
     fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
 
     return buf
-
-
