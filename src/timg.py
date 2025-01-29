@@ -8,8 +8,8 @@ import time
 #
 # Tasks per day
 #
-def plot():
-    plot_df(st.session_state.glb[f"schedule {expert_name}"])
+def plot(expert_name):
+    df = st.session_state.glb[f"schedule {expert_name}"]
 
     time_start = time.perf_counter()
 
