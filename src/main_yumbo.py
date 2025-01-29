@@ -265,8 +265,6 @@ def main():
 
     show_main_panel()
 
-    st.write(st.session_state.glb)
-
 
 ######################## CALL MAIN FUNCTION ##################
 

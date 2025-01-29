@@ -1,7 +1,7 @@
 import glb
+import io
 import matplotlib
 import pandas as pd
-import stext
 import streamlit as st
 import time
 
@@ -12,6 +12,17 @@ import time
 def plot(task, schedule, bounds):
     time_start = time.perf_counter()
 
+    mm_hash = glb.math_model_hash("bimg")
+    buf = bimg(task, schedule, bounds, mm_hash)
+    st.image(buf)
+
+    time_end = time.perf_counter()
+    st.session_state.glb["time:bimg:cnt"] += 1
+    st.session_state.glb["time:bimg:val"] += time_end - time_start
+
+
+@st.cache_resource
+def bimg(task, schedule, bounds, mm_hash):
     # Generate task-specific data
     x_task = pd.date_range(start=task.Start, end=task.End, freq="D")
     y_task = schedule.loc[task.Name, x_task]
@@ -48,8 +59,10 @@ def plot(task, schedule, bounds):
     # Add legend and finalize layout
     ax.legend(loc="upper right")
 
-    stext.show_fig(fig)
+    fig.tight_layout()
+    buf = io.BytesIO()
+    fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
 
-    time_end = time.perf_counter()
-    st.session_state.glb["time:bimg:cnt"] += 1
-    st.session_state.glb["time:bimg:val"] += time_end - time_start
+    return buf
+
+
