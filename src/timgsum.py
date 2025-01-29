@@ -5,8 +5,9 @@ import pandas as pd
 import streamlit as st
 import time
 
+
 #
-# Tasks per day (summary)
+# Tasks per day (Summary)
 #
 def plot():
     sum_df = sum(st.session_state.glb[f"schedule {e}"] for e in st.session_state.glb["experts"]["Name"])
