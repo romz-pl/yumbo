@@ -3,7 +3,6 @@ import hashlib
 import io
 import pickle
 import streamlit as st
-import tempfile
 
 
 def format():
