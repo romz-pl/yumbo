@@ -5,6 +5,7 @@ import numpy as np
 import os
 import pandas as pd
 import streamlit as st
+import uuid
 
 quarters_in_hour = 4
 
@@ -189,7 +190,8 @@ def invoicing_periods_bounds():
 
 
 def data_file(name):
-    ampl_data_file = "./ampl-translated-from-excel/{}.dat".format(name)
+    random_uuid = uuid.uuid4()
+    ampl_data_file = f"./ampl-translated-from-excel/{name}-{random_uuid}.dat"
     with open(ampl_data_file, 'w') as f:
         f.write(f'param HOURS_PER_DAY := {glb.hours_per_day() * quarters_in_hour};\n\n')
 
