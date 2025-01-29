@@ -23,7 +23,7 @@ def plot():
 
 @st.cache_resource
 def gimgsum(mm_hash):
-    df = st.session_state.glb["tasks"]
+    df = st.session_state.mprob["tasks"]
     # Create figure and axis
     fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")), dpi=glb.gimg("Dpi"))
     ax = fig.subplots()

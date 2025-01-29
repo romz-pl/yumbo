@@ -23,9 +23,9 @@ def plot(expert_name):
 
 @st.cache_resource
 def wimg(expert_name, mm_hash):
-    invper = st.session_state.glb["invoicing periods"]
+    invper = st.session_state.mprob["invoicing periods"]
     schedule = st.session_state.glb[f"schedule {expert_name}"]
-    invper_bounds = st.session_state.glb["invoicing periods bounds"]
+    invper_bounds = st.session_state.mprob["invoicing periods bounds"]
 
     # Filter the bounds for the given expert
     bounds = invper_bounds[ invper_bounds["Expert"] == expert_name ]

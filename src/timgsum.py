@@ -9,11 +9,11 @@ import time
 # Tasks per day (Summary)
 #
 def plot():
-    sum_df = sum(st.session_state.glb[f"schedule {e}"] for e in st.session_state.glb["experts"]["Name"])
+    sum_df = sum(st.session_state.glb[f"schedule {e}"] for e in st.session_state.mprob["experts"]["Name"])
 
     # Is this better, faster??
     # Combine all schedules into a single DataFrame using pd.concat
-    #     df = (st.session_state.glb[f"schedule {e}"] for e in st.session_state.glb["experts"]["Name"])
+    #     df = (st.session_state.glb[f"schedule {e}"] for e in st.session_state.mprob["experts"]["Name"])
     #     sum_df = pd.concat(dfs, ignore_index=True)
 
     time_start = time.perf_counter()

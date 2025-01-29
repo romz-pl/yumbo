@@ -36,7 +36,7 @@ def customise_show_experts():
     st.subheader("Look and feel", divider="blue")
 
     # Extract expert names and define row/column counts
-    experts = st.session_state.glb["experts"]["Name"].to_numpy()
+    experts = st.session_state.mprob["experts"]["Name"].to_numpy()
     row_count = len(experts)
 
     # Create a DataFrame with predefined columns and default boolean values
@@ -69,31 +69,32 @@ def customise_date_range():
 
     # Mapping data keys to labels
     sections = {
-        "timg": "Tasks per day",
-        "simg": "Tasks per day stacked",
-        "himg": "Hours per day",
+        ("timg", "Tasks per day", glb.timg),
+        ("simg", "Tasks per day stacked", glb.simg),
+        ("himg", "Hours per day", glb.himg)
     }
 
-    for key, label in sections.items():
+    mprob = st.session_state.mprob
+    for key, label, fun in sections:
         row = st.columns(3)
         row[0].write(label)
 
-        st.session_state.glb[key]["Start"] = row[1].date_input(
+        mprob[key]["Start"] = row[1].date_input(
             f"{key}:Start",
             format="YYYY-MM-DD",
             min_value=glb.tomorrow(),
             max_value=glb.last_day(),
             label_visibility="collapsed",
-            value=getattr(glb, key)("Start"),
+            value=fun("Start"),
         )
 
-        st.session_state.glb[key]["End"] = row[2].date_input(
+        mprob[key]["End"] = row[2].date_input(
             f"{key}:End",
             format="YYYY-MM-DD",
             min_value=glb.tomorrow(),
             max_value=glb.last_day(),
             label_visibility="collapsed",
-            value=getattr(glb, key)("End"),
+            value=fun("End"),
         )
 
 def customise_chart_colours():
@@ -101,20 +102,21 @@ def customise_chart_colours():
 
     # Mapping data keys to labels
     sections = [
-        ("timg", "Tasks per day", "Bar:color"),
-        ("himg", "Hours per day", "Bar:color"),
-        ("gimg", "Task's Gantt Chart", "Barh:color"),
-        ("wimg", "Invoicing Periods Workload", "Bar:color"),
+        ("timg", "Tasks per day", "Bar:color", glb.timg),
+        ("himg", "Hours per day", "Bar:color", glb.himg),
+        ("gimg", "Task's Gantt Chart", "Barh:color", glb.gimg),
+        ("wimg", "Invoicing Periods Workload", "Bar:color", glb.wimg),
     ]
 
-    for key, label, col in sections:
+    mprob = st.session_state.mprob
+    for key, label, col, fun in sections:
         row = st.columns(2)
         row[0].write(label)
 
-        st.session_state.glb[key][col] = row[1].color_picker(
+        mprob[key][col] = row[1].color_picker(
             f"{key}:Color",
             label_visibility="collapsed",
-            value=getattr(glb, key)(col),
+            value=fun(col),
 
         )
 
@@ -128,65 +130,65 @@ def customise_report():
 def show_tasks():
     st.subheader("Tasks definition", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Avg': "{:.4f}"}
-    df = st.session_state.glb["tasks"].style.format(format)
+    df = st.session_state.mprob["tasks"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_experts():
     st.subheader("Experts names", divider="blue")
-    st.dataframe(st.session_state.glb["experts"], hide_index=True, use_container_width=True)
+    st.dataframe(st.session_state.mprob["experts"], hide_index=True, use_container_width=True)
 
 
 def show_links():
     st.subheader("Links", divider="blue")
-    st.dataframe(st.session_state.glb["links"], hide_index=True, use_container_width=True)
+    st.dataframe(st.session_state.mprob["links"], hide_index=True, use_container_width=True)
 
 
 def show_xbday():
     st.subheader("Bounds xbday", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.glb["xbday"].style.format(format)
+    df = st.session_state.mprob["xbday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_xbsum():
     st.subheader("Bounds xbsum", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.glb["xbsum"].style.format(format)
+    df = st.session_state.mprob["xbsum"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_ubday():
     st.subheader("Bounds ubday", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.glb["ubday"].style.format(format)
+    df = st.session_state.mprob["ubday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_ubsum():
     st.subheader("Bounds ubsum", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.glb["ubsum"].style.format(format)
+    df = st.session_state.mprob["ubsum"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_expert_bounds():
     st.subheader("Expert bounds and preferences", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.glb["expert bounds"].style.format(format)
+    df = st.session_state.mprob["expert bounds"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_invoicing_periods():
     st.subheader("Invoicing periods", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.glb["invoicing periods"].style.format(format)
+    df = st.session_state.mprob["invoicing periods"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_invoicing_periods_bounds():
     st.subheader("Invoicing periods bounds", divider="blue")
-    st.dataframe(st.session_state.glb["invoicing periods bounds"], hide_index=True, use_container_width=True)
+    st.dataframe(st.session_state.mprob["invoicing periods bounds"], hide_index=True, use_container_width=True)
 
 
 def prepare(uploaded_file):

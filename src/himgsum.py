@@ -9,7 +9,7 @@ import time
 # Hours per day (Summary)
 #
 def plot():
-    sum_df = sum(st.session_state.glb[f"schedule {e}"] for e in st.session_state.glb["experts"]["Name"])
+    sum_df = sum(st.session_state.glb[f"schedule {e}"] for e in st.session_state.mprob["experts"]["Name"])
 
     time_start = time.perf_counter()
 

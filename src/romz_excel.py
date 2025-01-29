@@ -20,7 +20,7 @@ def add_days_and_workdays(df, start, end):
     dtype = "datetime64[D]"
 
     # Convert public holidays to numpy datetime64[D]
-    holidays = st.session_state.glb["public holidays"]["Date"].to_numpy(dtype=dtype)
+    holidays = st.session_state.mprob["public holidays"]["Date"].to_numpy(dtype=dtype)
 
     # Calculate workdays using numpy's busday_count
     df["Workdays"] = np.busday_count(
@@ -37,100 +37,100 @@ def read_tasks(xlsx):
     df = parse_date_columns(df, ["Start", "End"])
     df = add_days_and_workdays(df, "Start", "End")
     df["Avg"] = df["Work"] / df["Workdays"]
-    st.session_state.glb["tasks"] = df
+    st.session_state.mprob["tasks"] = df
 
 
 def read_invoicing_periods(xlsx):
     df = xlsx.parse(sheet_name="invoicing periods", usecols="A:C")
     df = parse_date_columns(df, ["Start", "End"])
     df = add_days_and_workdays(df, "Start", "End")
-    st.session_state.glb["invoicing periods"] =  df
+    st.session_state.mprob["invoicing periods"] =  df
 
 
 def read_xbday(xlsx):
     df = xlsx.parse(sheet_name="xbday", usecols="A:F")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.glb["xbday"] = df
+    st.session_state.mprob["xbday"] = df
 
 
 def read_xbsum(xlsx):
     df = xlsx.parse(sheet_name="xbsum", usecols="A:F")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.glb["xbsum"] = df
+    st.session_state.mprob["xbsum"] = df
 
 
 def read_ubday(xlsx):
     df = xlsx.parse(sheet_name="ubday", usecols="A:E")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.glb["ubday"] = df
+    st.session_state.mprob["ubday"] = df
 
 
 def read_ubsum(xlsx):
     df = xlsx.parse(sheet_name="ubsum", usecols="A:F")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.glb["ubsum"] = df
+    st.session_state.mprob["ubsum"] = df
 
 
 def read_experts(xlsx):
-    st.session_state.glb["experts"] = xlsx.parse(sheet_name="experts", usecols="A:B")
+    st.session_state.mprob["experts"] = xlsx.parse(sheet_name="experts", usecols="A:B")
 
 
 def read_expert_bounds(xlsx):
     df = xlsx.parse(sheet_name="expert bounds", usecols="A:E")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.glb["expert bounds"] = df
+    st.session_state.mprob["expert bounds"] = df
 
 
 def read_public_holidays(xlsx):
     df = xlsx.parse(sheet_name="public holidays", usecols="A:A")
     df = parse_date_columns(df, ["Date"])
-    st.session_state.glb["public holidays"] = df
+    st.session_state.mprob["public holidays"] = df
 
 
 def read_misc(xlsx):
     df = xlsx.parse(sheet_name="misc", usecols="A:C")
-    st.session_state.glb["misc"] = df
+    st.session_state.mprob["misc"] = df
 
 
 def read_himg(xlsx):
     df = xlsx.parse(sheet_name="himg", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.glb["himg"] = df
+    st.session_state.mprob["himg"] = df
 
 
 def read_timg(xlsx):
     df = xlsx.parse(sheet_name="timg", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.glb["timg"] = df
+    st.session_state.mprob["timg"] = df
 
 
 def read_simg(xlsx):
     df = xlsx.parse(sheet_name="simg", usecols="B:G")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.glb["simg"] = df
+    st.session_state.mprob["simg"] = df
 
 
 def read_gimg(xlsx):
     df = xlsx.parse(sheet_name="gimg", usecols="B:G")
-    st.session_state.glb["gimg"] = df
+    st.session_state.mprob["gimg"] = df
 
 
 def read_wimg(xlsx):
     df = xlsx.parse(sheet_name="wimg", usecols="B:G")
-    st.session_state.glb["wimg"] = df
+    st.session_state.mprob["wimg"] = df
 
 
 def read_bimg(xlsx):
     df = xlsx.parse(sheet_name="bimg", usecols="B:J")
-    st.session_state.glb["bimg"] = df
+    st.session_state.mprob["bimg"] = df
 
 
 def read_links(xlsx):
-    st.session_state.glb["links"] = xlsx.parse(sheet_name="links", usecols="A:B")
+    st.session_state.mprob["links"] = xlsx.parse(sheet_name="links", usecols="A:B")
 
 
 def read_invoicing_periods_bounds(xlsx):
-    st.session_state.glb["invoicing periods bounds"] = xlsx.parse(sheet_name="invoicing periods bounds",
+    st.session_state.mprob["invoicing periods bounds"] = xlsx.parse(sheet_name="invoicing periods bounds",
                                                       usecols="A:D",
                                                       dtype={"Lower": np.float16, "Upper": np.float16})
 
@@ -152,8 +152,8 @@ def adjust_start_days():
     # Apply the adjustment to each target DataFrame
     for key in targets:
         col = "Start"
-        assert(col in st.session_state.glb[key].columns)
-        st.session_state.glb[key].loc[st.session_state.glb[key][col] < tomorrow, col] = tomorrow
+        assert(col in st.session_state.mprob[key].columns)
+        st.session_state.mprob[key].loc[st.session_state.mprob[key][col] < tomorrow, col] = tomorrow
 
 
 def read(file_path):

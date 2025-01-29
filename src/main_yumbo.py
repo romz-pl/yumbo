@@ -19,8 +19,8 @@ import wimg
 
 
 def tasks_for_expert(expert_name):
-    tasks = st.session_state.glb["tasks"]
-    links = st.session_state.glb["links"]
+    tasks = st.session_state.mprob["tasks"]
+    links = st.session_state.mprob["links"]
 
     # Filter the tasks related to the expert
     filter = links[links["Expert"] == expert_name]["Task"]
@@ -77,7 +77,7 @@ def show_schedule_as_table(expert_name):
 def show_commitment_per_task(expert_name):
     tasks = tasks_for_expert(expert_name)
     schedule = st.session_state.glb[f"schedule {expert_name}"]
-    xbday = st.session_state.glb["xbday"][st.session_state.glb["xbday"]["Expert"] == expert_name]
+    xbday = st.session_state.mprob["xbday"][st.session_state.mprob["xbday"]["Expert"] == expert_name]
     xbday_grouped = xbday.groupby('Task')
     cols = st.columns(3)
 
@@ -128,7 +128,7 @@ def show_one_row(expert_name):
 
 
 def show_all_rows():
-    experts = st.session_state.glb["experts"].sort_values(by="Name")
+    experts = st.session_state.mprob["experts"].sort_values(by="Name")
     report = st.session_state.glb["report"]
 
     for row in experts.itertuples(index=False):
@@ -280,6 +280,9 @@ def main():
 
     if 'glb' not in st.session_state:
         st.session_state.glb = dict()
+
+    if 'mprob' not in st.session_state:
+        st.session_state.mprob = dict()
 
     # plt.style.use('seaborn-v0_8-whitegrid')
     set_page_config()
