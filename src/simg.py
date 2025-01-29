@@ -5,7 +5,6 @@ import pandas as pd
 import streamlit as st
 import time
 
-
 #
 # Hours per day stacked
 #
