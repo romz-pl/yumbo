@@ -18,7 +18,8 @@ def plot(expert_name):
 
     time_end = time.perf_counter()
     st.session_state.glb["time:simg:cnt"] += 1
-    st.session_state.glb["time:simg:val"] += time_end - time_start
+    st.session_state.glb["time:simg:ttime"] += time_end - time_start
+    st.session_state.glb["time:simg:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource

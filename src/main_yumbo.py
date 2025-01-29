@@ -148,45 +148,57 @@ def show_time_counters():
         ("Invoicing Periods Workload", "wimg"),
     ]
 
-    elapsed_time_col = "Elapsed time [s]"
-    avg_time_col = "Average time per chart [s]"
+    time_total_col = "Total time [s]"
+    time_avg_col = "Average time [s]"
+
+    nbytes_total_col = "Total nbytes"
+    nbytes_avg_col = "Average nbytes"
 
     # Extract relevant data in a single pass
     chart_titles = []
     short_names = []
     num_calls = []
-    elapsed_times = []
-    avg_times = []
+    time_total = []
+    time_avg = []
+    nbytes_total = []
+    nbytes_avg = []
 
     for title, short_name in chart_data:
         chart_titles.append(title)
         short_names.append(short_name)
 
         cnt = st.session_state.glb[f"time:{short_name}:cnt"]
-        val = st.session_state.glb[f"time:{short_name}:val"]
+        ttime = st.session_state.glb[f"time:{short_name}:ttime"]
+        nbytes = st.session_state.glb[f"time:{short_name}:nbytes"]
 
         num_calls.append(cnt)
-        elapsed_times.append(val)
-        avg_times.append(val / cnt if cnt != 0 else 0)
+        time_total.append(ttime)
+        time_avg.append(ttime / cnt if cnt != 0 else 0)
+        nbytes_total.append(nbytes)
+        nbytes_avg.append(nbytes / cnt if cnt != 0 else 0)
 
     # Create a DataFrame to organize the data
     data = pd.DataFrame({
         "Chart title": chart_titles,
         "Chart short name": short_names,
         "Number of calls": num_calls,
-        elapsed_time_col: elapsed_times,
-        avg_time_col: avg_times,
+        time_total_col: time_total,
+        time_avg_col: time_avg,
+        nbytes_total_col: nbytes_total,
+        nbytes_avg_col: nbytes_avg,
     })
 
     # Create DataFrame and format it
     format_spec = {
-        elapsed_time_col: "{:.3f}",
-        avg_time_col: "{:.3f}",
+        time_total_col: "{:.3f}",
+        time_avg_col: "{:.3f}",
+        nbytes_total_col: "{:.0f}",
+        nbytes_avg_col: "{:.0f}",
     }
 
     df = (
         pd.DataFrame(data)
-        .sort_values(by=elapsed_time_col, ascending=False)
+        .sort_values(by=time_total_col, ascending=False)
         .style.format(format_spec)
     )
 
@@ -240,7 +252,8 @@ def zero_time_counters():
     charts = ["bimg", "gimg", "gimgsum", "himg", "himgsum", "simg", "timg", "timgsum", "wimg"]
     for v in charts:
         st.session_state.glb[f"time:{v}:cnt"] = 0
-        st.session_state.glb[f"time:{v}:val"] = 0
+        st.session_state.glb[f"time:{v}:ttime"] = 0
+        st.session_state.glb[f"time:{v}:nbytes"] = 0
 
 
 def main():

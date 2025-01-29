@@ -17,7 +17,8 @@ def plot():
 
     time_end = time.perf_counter()
     st.session_state.glb["time:gimgsum:cnt"] += 1
-    st.session_state.glb["time:gimgsum:val"] += time_end - time_start
+    st.session_state.glb["time:gimgsum:ttime"] += time_end - time_start
+    st.session_state.glb["time:gimgsum:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource

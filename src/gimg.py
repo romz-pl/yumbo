@@ -15,7 +15,8 @@ def plot(df, work_done):
 
     time_end = time.perf_counter()
     st.session_state.glb["time:gimg:cnt"] += 1
-    st.session_state.glb["time:gimg:val"] += time_end - time_start
+    st.session_state.glb["time:gimg:ttime"] += time_end - time_start
+    st.session_state.glb["time:gimg:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource
