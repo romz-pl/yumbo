@@ -1,8 +1,8 @@
 import glb
+import io
 import matplotlib
 import numpy as np
 import pandas as pd
-import stext
 import streamlit as st
 import time
 
@@ -12,6 +12,17 @@ import time
 def plot(expert_name):
     time_start = time.perf_counter()
 
+    mm_hash = glb.math_model_hash("wimg")
+    buf = wimg(expert_name, mm_hash)
+    st.image(buf)
+
+    time_end = time.perf_counter()
+    st.session_state.glb["time:wimg:cnt"] += 1
+    st.session_state.glb["time:wimg:val"] += time_end - time_start
+
+
+@st.cache_resource
+def wimg(expert_name, mm_hash):
     invper = st.session_state.glb["invoicing periods"]
     schedule = st.session_state.glb[f"schedule {expert_name}"]
     invper_bounds = st.session_state.glb["invoicing periods bounds"]
@@ -58,8 +69,10 @@ def plot(expert_name):
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
 
-    stext.show_fig(fig)
+    fig.tight_layout()
+    buf = io.BytesIO()
+    fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
 
-    time_end = time.perf_counter()
-    st.session_state.glb["time:wimg:cnt"] += 1
-    st.session_state.glb["time:wimg:val"] += time_end - time_start
+    return buf
+
+
