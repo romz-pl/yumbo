@@ -1,4 +1,5 @@
 import glb
+import io
 import matplotlib
 import stext
 import streamlit as st
@@ -42,8 +43,24 @@ def plot_summary():
     stext.show_fig(fig)
 
 
+
+
+
 def plot(df, work_done):
     time_start = time.perf_counter()
+
+    mm_hash = glb.math_model_hash("gimg")
+    buf = gimg(df, work_done, mm_hash)
+    st.image(buf)
+
+    time_end = time.perf_counter()
+    st.session_state.glb["time:gimg:cnt"] += 1
+    st.session_state.glb["time:gimg:val"] += time_end - time_start
+
+
+@st.cache_resource
+def gimg(df, work_done, mm_hash):
+
 
     # Create figure and axis
     fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")), dpi=glb.gimg("Dpi"))
@@ -80,8 +97,10 @@ def plot(df, work_done):
     # Configure layout
     ax.set_ylim(bottom=-0.6)
 
-    stext.show_fig(fig)
+    fig.tight_layout()
+    buf = io.BytesIO()
+    fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
 
-    time_end = time.perf_counter()
-    st.session_state.glb["time:gimg:cnt"] += 1
-    st.session_state.glb["time:gimg:val"] += time_end - time_start
+    return buf
+
+
