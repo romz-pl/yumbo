@@ -77,6 +77,7 @@ def savefig(fig):
     return buf
 
 
+
 def get_major_tick_locator(ax):
     # Get the current y-axis limits
     y_min, y_max = ax.get_ylim()
