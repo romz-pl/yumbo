@@ -286,7 +286,7 @@ def save_schedule(ampl):
         # Create DataFrame from fetched data
         df = pd.DataFrame(schedule, dtype=np.float16).T / quarters_in_hour
         df.columns = days
-        solution[f"schedule {en}"] = df / quarters_in_hour
+        solution[f"schedule {en}"] = df
 
     return solution
 
