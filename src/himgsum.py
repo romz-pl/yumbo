@@ -48,9 +48,8 @@ def himgsum(df, mm_hash):
     # Configure plot properties
     ax.set_title("Hours per day")
     ax.set_xlim([left, right])
-    ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=6, min_n_ticks=1))
-    ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6, interval_multiples=True))
-    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))
+
+
     ax.yaxis.grid(alpha=0.4)
     ax.set_axisbelow(True)
     ax.tick_params(axis="x", labelsize="x-small")
@@ -65,6 +64,13 @@ def himgsum(df, mm_hash):
         hatch=glb.himg("Bar:hatch"),
         alpha=glb.himg("Bar:alpha")
     )
+
+    step = glb.get_major_tick_step(ax)
+    ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(step))
+    ax.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.2f'))
+
+    ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6))
+    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))
 
     return glb.savefig(fig)
 

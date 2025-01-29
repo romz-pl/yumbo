@@ -21,6 +21,8 @@ def plot(expert_name):
     st.session_state.glb["time:simg:nbytes"] += buf.getbuffer().nbytes
 
 
+
+
 @st.cache_resource(max_entries=1000)
 def simg(expert_name, mm_hash):
     start = glb.simg("Start")
@@ -44,13 +46,8 @@ def simg(expert_name, mm_hash):
     ax.set_xlim([left, right])
 
     # Configure axis formatting and grid
-    ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=6, min_n_ticks=1))
-    ax.xaxis.set_major_locator(
-        matplotlib.dates.AutoDateLocator(
-            tz=None, minticks=3, maxticks=6, interval_multiples=True
-        )
-    )
-    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))
+
+
     ax.yaxis.grid(alpha=0.4)
     ax.set_axisbelow(True)
     ax.tick_params(axis="x", labelsize="x-small")
@@ -72,6 +69,13 @@ def simg(expert_name, mm_hash):
             alpha=glb.simg("Bar:alpha"),
         )
         bottom = bottom + task_data
+
+    step = glb.get_major_tick_step(ax)
+    ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(step))
+    ax.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.2f'))
+
+    ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6))
+    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))
 
     # Add legend and adjust layout
     ax.legend(loc="upper right", fontsize="6")
