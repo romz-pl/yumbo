@@ -301,8 +301,10 @@ def set_ampl_license():
 def solve(uploaded_file):
     time_start = time.perf_counter()
 
-    solution = solve_ampl(uploaded_file.name, uploaded_file.getvalue())
+    ampl_output, solution = solve_ampl(uploaded_file.name, uploaded_file.getvalue())
     st.session_state.glb.update( solution )
+    st.session_state.glb["solver output"] = ampl_output
+    st.session_state.glb["solver timestamp"] = datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")
 
     time_end = time.perf_counter()
     st.session_state.glb["time:ampl:ttime"] += time_end - time_start
@@ -339,13 +341,13 @@ def solve_ampl(name, file_data):
     ampl.read("./res/ampl_mathematical_model.mod.py")
     ampl.read_data(file)
 
-    # Capture solver output and timestamp
-    st.session_state.glb["solver output"] = ampl.get_output("solve;")
-    st.session_state.glb["solver timestamp"] = datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")
+    # Capture solver output
+    ampl_output = ampl.get_output("solve;")
 
     # Check if solving was successful
     if ampl.solve_result != "solved":
         raise Exception(f"Failed to solve AMPL problem. AMPL returned flag: {ampl.solve_result}")
 
-    return save_schedule(ampl)
+    solution = save_schedule(ampl)
+    return ampl_output, solution
 
