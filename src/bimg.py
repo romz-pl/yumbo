@@ -21,7 +21,7 @@ def plot(task, schedule, bounds):
     st.session_state.glb["time:bimg:nbytes"] += buf.getbuffer().nbytes
 
 
-@st.cache_resource
+@st.cache_resource(max_entries=1000)
 def bimg(task, schedule, bounds, mm_hash):
     # Generate task-specific data
     x_task = pd.date_range(start=task.Start, end=task.End, freq="D")

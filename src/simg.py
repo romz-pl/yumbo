@@ -21,7 +21,7 @@ def plot(expert_name):
     st.session_state.glb["time:simg:nbytes"] += buf.getbuffer().nbytes
 
 
-@st.cache_resource
+@st.cache_resource(max_entries=1000)
 def simg(expert_name, mm_hash):
     start = glb.simg("Start")
     end = glb.simg("End")

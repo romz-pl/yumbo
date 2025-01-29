@@ -310,7 +310,7 @@ def solve(uploaded_file):
     st.session_state.glb["time:ampl:ttime"] += time_end - time_start
 
 
-@st.cache_resource
+@st.cache_resource(max_entries=99)
 def solve_ampl(name, file_data):
     file = data_file(name)
 

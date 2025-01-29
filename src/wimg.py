@@ -21,7 +21,7 @@ def plot(expert_name):
     st.session_state.glb["time:wimg:nbytes"] += buf.getbuffer().nbytes
 
 
-@st.cache_resource
+@st.cache_resource(max_entries=1000)
 def wimg(expert_name, mm_hash):
     invper = st.session_state.mprob["invoicing periods"]
     schedule = st.session_state.glb[f"schedule {expert_name}"]

@@ -21,7 +21,7 @@ def plot():
     st.session_state.glb["time:gimgsum:nbytes"] += buf.getbuffer().nbytes
 
 
-@st.cache_resource
+@st.cache_resource(max_entries=1000)
 def gimgsum(mm_hash):
     df = st.session_state.mprob["tasks"]
     # Create figure and axis

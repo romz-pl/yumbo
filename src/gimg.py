@@ -19,7 +19,7 @@ def plot(df, work_done):
     st.session_state.glb["time:gimg:nbytes"] += buf.getbuffer().nbytes
 
 
-@st.cache_resource
+@st.cache_resource(max_entries=1000)
 def gimg(df, work_done, mm_hash):
 
 

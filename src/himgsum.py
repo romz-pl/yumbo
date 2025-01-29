@@ -23,7 +23,7 @@ def plot():
     st.session_state.glb["time:himgsum:nbytes"] += buf.getbuffer().nbytes
 
 
-@st.cache_resource
+@st.cache_resource(max_entries=1000)
 def himgsum(df, mm_hash):
     start = glb.himg("Start")
     end = glb.himg("End")

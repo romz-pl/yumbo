@@ -23,7 +23,7 @@ def plot(expert_name):
     st.session_state.glb["time:himg:nbytes"] += buf.getbuffer().nbytes
 
 
-@st.cache_resource
+@st.cache_resource(max_entries=1000)
 def himg(df, mm_hash):
     start = glb.himg("Start")
     end = glb.himg("End")
