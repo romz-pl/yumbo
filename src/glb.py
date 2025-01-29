@@ -1,7 +1,9 @@
 import datetime
+import hashlib
+import pickle
+import romz_excel
 import streamlit as st
 import tempfile
-import romz_excel
 
 
 def format():
@@ -64,3 +66,31 @@ def tasks_for_expert(expert_name):
 
     # Use .isin() to filter tasks directly
     return tasks[tasks["Name"].isin(tasks_for_expert)]
+
+
+def math_model_hash(img):
+    data = st.session_state.glb
+
+    keys = [
+        "experts",
+        "tasks",
+        "links",
+        "xbday",
+        "xbsum",
+        "ubday",
+        "ubsum",
+        "expert bounds",
+        "invoicing periods",
+        "invoicing periods bounds",
+        "public holidays",
+        "misc",
+        img,
+    ]
+
+    # Create the input tuple
+    input_data = tuple(data[k] for k in keys)
+
+    # Serialize and hash the input data
+    pickled = pickle.dumps(input_data)
+    return hashlib.blake2s(pickled).hexdigest()
+

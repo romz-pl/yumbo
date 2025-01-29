@@ -1,8 +1,8 @@
 import glb
+import io
 import matplotlib
 import numpy as np
 import pandas as pd
-import stext
 import streamlit as st
 import time
 
@@ -13,6 +13,17 @@ import time
 def plot(expert_name):
     time_start = time.perf_counter()
 
+    hash_value = glb.math_model_hash("simg")
+    buf = simg(expert_name, hash_value)
+    st.image(buf)
+
+    time_end = time.perf_counter()
+    st.session_state.glb["time:simg:cnt"] += 1
+    st.session_state.glb["time:simg:val"] += time_end - time_start
+
+
+@st.cache_resource
+def simg(expert_name, glb_hash):
     start = glb.simg("Start")
     end = glb.simg("End")
 
@@ -66,9 +77,11 @@ def plot(expert_name):
     # Add legend and adjust layout
     ax.legend(loc="upper right", fontsize="6")
 
-    stext.show_fig(fig)
+    fig.tight_layout()
+    buf = io.BytesIO()
+    fig.savefig(buf, format="WebP", pil_kwargs={"lossless":True, "quality":70, "method":3} )
 
-    time_end = time.perf_counter()
-    st.session_state.glb["time:simg:cnt"] += 1
-    st.session_state.glb["time:simg:val"] += time_end - time_start
+    return buf
+
+
 
