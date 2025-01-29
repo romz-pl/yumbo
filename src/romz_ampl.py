@@ -319,7 +319,7 @@ def solve_ampl(name, file_data):
 
     # Customise AMPL run
     ampl.set_option('presolve', 10)
-    ampl.set_option('show_stats', 4);
+    ampl.set_option('show_stats', 7);
     # ampl.set_option('times', 1);
 
     solver = st.session_state.mprob["misc"].iloc[0]["Solver"]
