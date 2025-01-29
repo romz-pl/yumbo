@@ -6,24 +6,29 @@ import streamlit as st
 import time
 
 #
-# Tasks per day
+# Tasks per day (summary)
 #
 def plot():
-    plot_df(st.session_state.glb[f"schedule {expert_name}"])
+    sum_df = sum(st.session_state.glb[f"schedule {e}"] for e in st.session_state.glb["experts"]["Name"])
+
+    # Is this better, faster??
+    # Combine all schedules into a single DataFrame using pd.concat
+    #     df = (st.session_state.glb[f"schedule {e}"] for e in st.session_state.glb["experts"]["Name"])
+    #     sum_df = pd.concat(dfs, ignore_index=True)
 
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("timg")
-    buf = timg(df, mm_hash)
+    buf = timgsum(sum_df, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:timg:cnt"] += 1
-    st.session_state.glb["time:timg:val"] += time_end - time_start
+    st.session_state.glb["time:timgsum:cnt"] += 1
+    st.session_state.glb["time:timgsum:val"] += time_end - time_start
 
 
 @st.cache_resource
-def timg(df, mm_hash):
+def timgsum(df, mm_hash):
     start = glb.timg("Start")
     end = glb.timg("End")
 

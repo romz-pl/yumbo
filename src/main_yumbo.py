@@ -12,6 +12,7 @@ import sbar
 import simg
 import streamlit as st
 import timg
+import timgsum
 import wimg
 
 
@@ -83,7 +84,7 @@ def show_summary():
         with col1:
             gimgsum.plot()
         with col2:
-            timg.plot_summary()
+            timgsum.plot()
         with col3:
             himg.plot_summary()
 
@@ -141,6 +142,7 @@ def show_time_counters():
         ("Hours per day", "himg"),
         ("Hours per day stacked", "simg"),
         ("Tasks per day", "timg"),
+        ("Tasks per day (Summary)", "timgsum"),
         ("Invoicing Periods Workload", "wimg"),
     ]
 
@@ -233,7 +235,7 @@ def show_yumbo_description():
 
 
 def zero_time_counters():
-    charts = ["bimg", "gimg", "gimgsum", "himg", "simg", "timg", "wimg"]
+    charts = ["bimg", "gimg", "gimgsum", "himg", "simg", "timg", "timgsum", "wimg"]
     for v in charts:
         st.session_state.glb[f"time:{v}:cnt"] = 0
         st.session_state.glb[f"time:{v}:val"] = 0
