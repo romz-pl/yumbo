@@ -1,6 +1,7 @@
 import datetime
 import hashlib
 import io
+import matplotlib
 import streamlit as st
 
 
@@ -76,21 +77,17 @@ def savefig(fig):
     return buf
 
 
-def get_major_tick_step(ax):
+def get_major_tick_locator(ax):
     # Get the current y-axis limits
     y_min, y_max = ax.get_ylim()
     y_range = y_max - y_min
 
-    # Determine the step based on the range
+    # Determine locator based on the range
     if y_range <= 2:
-        step = 0.25
+        locator = matplotlib.ticker.MultipleLocator(0.25)
     elif y_range <= 5:
-        step = 0.5
-    elif y_range <= 9:
-        step = 1.0
-    elif y_range <= 17:
-        step = 2.0
+        locator = matplotlib.ticker.MultipleLocator(0.5)
     else:
-        step = 5.0
+        locator = matplotlib.ticker.MaxNLocator(steps=[1, 2, 5], integer=True)
 
-    return step
+    return locator

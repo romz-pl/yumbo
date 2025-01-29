@@ -65,8 +65,8 @@ def himgsum(df, mm_hash):
         alpha=glb.himg("Bar:alpha")
     )
 
-    step = glb.get_major_tick_step(ax)
-    ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(step))
+    locator = glb.get_major_tick_locator(ax)
+    ax.yaxis.set_major_locator(locator)
     ax.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.2f'))
 
     ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6))
