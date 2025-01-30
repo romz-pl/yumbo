@@ -1,5 +1,6 @@
 import bimg
 import datetime
+import eimg
 import gimg
 import gimgsum
 import glb
@@ -74,6 +75,49 @@ def show_schedule_as_table(expert_name):
         st.dataframe(styled_df, use_container_width=False)
 
 
+def experts_in_tasks_as_table(task, as_html):
+
+    # Generate day labels and filter dataframe
+    days = pd.date_range(start=task.Start, end=task.End, freq="D")
+
+    experts = st.session_state.mprob["experts"].sort_values(by="Name")
+
+    df = pd.DataFrame()
+    for expert in experts.itertuples(index=False):
+        schedule = st.session_state.glb[f"schedule {expert.Name}"][days]
+        expert_data = schedule.loc[task.Name]
+        if expert_data.sum() > 0:
+            df[expert.Name] = expert_data
+
+    df = df.replace(0, '')
+    df.index = days.astype("str")
+    df.insert(0, "Weekdays", days.day_name())
+
+    # Style definitions
+    row_hover = {'selector': 'tr:hover', 'props': [('background-color', '#555555')]}
+    cell_format = {'selector': 'td', 'props': 'text-align: right;'}
+    headers = {'selector': 'th:not(.index_name)', 'props': 'background-color: #000066; color: white;'}
+
+    styled_df = df.style \
+                  .format(precision=2) \
+                  .apply(highlight_rows, axis=1) \
+                  .set_table_styles([row_hover, cell_format, headers], overwrite=True) \
+                  .map(lambda v: 'color:LightBlue', subset=['Weekdays'])
+
+    if as_html :
+        st.markdown(styled_df.to_html(), unsafe_allow_html=True)
+    else:
+        st.dataframe(styled_df)
+
+
+def experts_in_tasks_as_table_html(task):
+    experts_in_tasks_as_table(task, True)
+
+
+def experts_in_tasks_as_table_simple(task):
+    experts_in_tasks_as_table(task, False)
+
+
 def show_commitment_per_task(expert_name):
     tasks = tasks_for_expert(expert_name)
     schedule = st.session_state.glb[f"schedule {expert_name}"]
@@ -107,8 +151,8 @@ def show_solver_output():
     st.code(st.session_state.glb["solver output"])
 
 
-def show_one_row(expert_name):
-    report_column_no = st.session_state.glb["report_column_no"]
+def show_one_expert(expert_name):
+    report_column_no = st.session_state.glb["report_expert_column_no"]
     col_list = st.columns(report_column_no)
 
     # Define the mapping of chart names to functions
@@ -122,27 +166,67 @@ def show_one_row(expert_name):
 
     for ii, col in enumerate(col_list, start=1):
         with col:
-            chart_name = st.session_state.glb[f"report_column_{ii}"]
+            chart_name = st.session_state.glb[f"report_expert_column_{ii}"]
             # Call the corresponding function
             chart_functions.get(chart_name)(expert_name)
 
 
-def show_all_rows():
+def show_all_experts():
     experts = st.session_state.mprob["experts"].sort_values(by="Name")
-    report = st.session_state.glb["report"]
+    report = st.session_state.glb["report:experts"]
 
-    for row in experts.itertuples(index=False):
-        expert_name = row.Name
-        st.subheader(f":blue[{expert_name}] {row.Comment}", divider="blue")
+    for expert in experts.itertuples(index=False):
+        st.subheader(f"Expert: :blue['{expert.Name}'], {expert.Comment}", divider="blue")
 
-        if report.at[expert_name, "Charts"]:
-            show_one_row(expert_name)
+        if report.at[expert.Name, "Charts"]:
+            show_one_expert(expert.Name)
 
-        if report.at[expert_name, "Table"]:
-            show_schedule_as_table(expert_name)
+        if report.at[expert.Name, "Table"]:
+            show_schedule_as_table(expert.Name)
 
-        if report.at[expert_name, "Commitment"]:
-            show_commitment_per_task(expert_name)
+        if report.at[expert.Name, "Commitment"]:
+            show_commitment_per_task(expert.Name)
+
+
+def show_one_task(task):
+    column_no = st.session_state.glb["report_task_column_no"]
+    col_list = st.columns(column_no)
+
+    chart_functions = {
+        "Experts per day stacked": eimg.plot,
+        "HTML table": experts_in_tasks_as_table_html,
+        "Simple table": experts_in_tasks_as_table_simple,
+    }
+
+    for ii, col in enumerate(col_list, start=1):
+        with col:
+            chart_name = st.session_state.glb[f"report_task_column_{ii}"]
+            # Call the corresponding function
+            #st.write(chart_name)
+            #st.write(chart_functions.get(chart_name))
+            chart_functions.get(chart_name)(task)
+
+
+def show_all_tasks():
+    tasks = st.session_state.mprob["tasks"].sort_values(by="Name")
+    report = st.session_state.glb["report:tasks"]
+
+    for task in tasks.itertuples(index=False):
+        st.subheader(f"Task: :blue['{task.Name}']", divider="blue")
+
+        if report.at[task.Name, "Report"]:
+            show_one_task(task)
+
+        # col0, col1, col2 = st.columns(3)
+        # with col0:
+        #     if report.at[task.Name, "Chart"]:
+        #         eimg.plot(task)
+        # with col1:
+        #     if report.at[task.Name, "HTML table"]:
+        #         experts_in_tasks_as_table(task, True)
+        # with col2:
+        #     if report.at[task.Name, "Simple table"]:
+        #         experts_in_tasks_as_table(task, False)
 
 
 def show_time_counters():
@@ -158,13 +242,14 @@ def show_time_counters():
         ("Tasks per day", "timg"),
         ("Tasks per day (Summary)", "timgsum"),
         ("Invoicing Periods Workload", "wimg"),
+        ("Experts per day stacked", "eimg"),
     ]
 
     time_total_col = "Total time [s]"
     time_avg_col = "Average time [s]"
 
-    nbytes_total_col = "Total nbytes"
-    nbytes_avg_col = "Average nbytes"
+    nbytes_total_col = "Total nbytes [KiB]"
+    nbytes_avg_col = "Average nbytes [B]"
 
     # Extract relevant data in a single pass
     chart_titles = []
@@ -186,7 +271,7 @@ def show_time_counters():
         num_calls.append(cnt)
         time_total.append(ttime)
         time_avg.append(ttime / cnt if cnt != 0 else 0)
-        nbytes_total.append(nbytes)
+        nbytes_total.append(nbytes / 1024)
         nbytes_avg.append(nbytes / cnt if cnt != 0 else 0)
 
     # Create a DataFrame to organize the data
@@ -202,30 +287,35 @@ def show_time_counters():
 
     # Create DataFrame and format it
     format_spec = {
-        time_total_col: "{:.3f}",
-        time_avg_col: "{:.3f}",
-        nbytes_total_col: "{:.0f}",
-        nbytes_avg_col: "{:.0f}",
+        time_total_col: "{:,.3f}",
+        time_avg_col: "{:,.3f}",
+        nbytes_total_col: "{:,.0f}",
+        nbytes_avg_col: "{:,.0f}",
     }
 
-    df = (
-        pd.DataFrame(data)
+    df = pd.DataFrame(data)
+    df_styled = (
+        df
         .sort_values(by=time_total_col, ascending=False)
         .style.format(format_spec)
     )
 
     # Display DataFrame
-    st.dataframe(df, hide_index=True, use_container_width=False)
+    st.dataframe(df_styled, hide_index=True, use_container_width=False)
+
+    mb = df[nbytes_total_col].sum()  / 1024
+    st.markdown("**For all figures, the total number of data downloaded is: :green[{:,.3f} MiB]**".format(mb))
 
 
 def show_ampl_stats():
     st.subheader(":green[Statistics on AMPL solution]", divider="blue")
 
-    st.caption("Total elapsed time: {:.3f} [s]".format(st.session_state.glb['time:ampl:ttime']))
+    st.markdown("**Total elapsed time: :green[{:.3f} [s]]**".format(st.session_state.glb['time:ampl:ttime']))
 
 def show_main_panel():
     show_summary()
-    show_all_rows()
+    show_all_experts()
+    show_all_tasks()
     show_solver_output()
     show_time_counters()
     show_ampl_stats()
@@ -267,7 +357,7 @@ def show_yumbo_description():
 
 
 def zero_time_counters():
-    charts = ["bimg", "gimg", "gimgsum", "himg", "himgsum", "simg", "timg", "timgsum", "wimg"]
+    charts = ["bimg", "gimg", "gimgsum", "himg", "himgsum", "simg", "timg", "timgsum", "wimg", "eimg"]
     for v in charts:
         st.session_state.glb[f"time:{v}:cnt"] = 0
         st.session_state.glb[f"time:{v}:ttime"] = 0

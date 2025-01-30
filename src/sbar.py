@@ -15,21 +15,37 @@ def load_excel_file():
     return uploaded_file
 
 
-def customise_report_layout():
+def customise_expert_report_layout():
     st.subheader("Report layout", divider="blue")
     st.session_state.glb["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
     max_col_no = 5
     report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=max_col_no)
 
     for ii in range(1, max_col_no + 1):
-        st.session_state.glb[f"report_column_{ii}"] = st.selectbox(
+        st.session_state.glb[f"report_expert_column_{ii}"] = st.selectbox(
             f"Col {ii}",
             ("Task's Gantt chart", "Tasks per day", "Hours per day stacked", "Hours per day", "Invoice period workload"),
             disabled = (ii > report_column_no),
             index = (ii - 1),
             label_visibility = "collapsed",
         )
-    st.session_state.glb["report_column_no"] = report_column_no
+    st.session_state.glb["report_expert_column_no"] = report_column_no
+
+
+def customise_task_report_layout():
+    st.subheader("Report layout", divider="blue")
+    max_col_no = 3
+    report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=1)
+
+    for ii in range(1, max_col_no + 1):
+        st.session_state.glb[f"report_task_column_{ii}"] = st.selectbox(
+            f"Col {ii}",
+            ("Experts per day stacked", "HTML table", "Simple table"),
+            disabled = (ii > report_column_no),
+            index = (ii - 1),
+            label_visibility = "collapsed",
+        )
+    st.session_state.glb["report_task_column_no"] = report_column_no
 
 
 def customise_show_experts():
@@ -48,17 +64,48 @@ def customise_show_experts():
     df.sort_index(inplace=True)
 
     # Update column values based on user input from Streamlit checkboxes
-    df[names[0]] = st.checkbox(f"Show {names[0]}", value=True)
-    df[names[1]] = st.checkbox(f"Show {names[1]}", value=False)
-    df[names[2]] = st.checkbox(f"Show {names[2]}", value=False)
+    df[names[0]] = st.checkbox(f"Show {names[0]}", value=True , key=f"expert_{names[0]}")
+    df[names[1]] = st.checkbox(f"Show {names[1]}", value=False, key=f"expert_{names[1]}")
+    df[names[2]] = st.checkbox(f"Show {names[2]}", value=False, key=f"expert_{names[2]}")
 
     # Use Streamlit data editor with configuration for interaction
-    st.session_state.glb["report"] = st.data_editor(
+    st.session_state.glb["report:experts"] = st.data_editor(
         df,
         hide_index=True,
         use_container_width=True,
         column_config={
             "Expert": st.column_config.TextColumn(disabled=True, pinned=True),
+            **{col: st.column_config.CheckboxColumn() for col in names},
+        },
+    )
+
+
+def customise_show_tasks():
+    st.subheader("Look and feel", divider="blue")
+
+    # Extract expert names and define row/column counts
+    tasks = st.session_state.mprob["tasks"]["Name"].to_numpy()
+    row_count = len(tasks)
+
+    # Create a DataFrame with predefined columns and default boolean values
+    names = ["Report"]
+    df = pd.DataFrame(False, index=tasks, columns=names)
+    df.index.name = "Task"
+
+    # Sort the DataFrame by index (task names)
+    df.sort_index(inplace=True)
+
+    # Update column values based on user input from Streamlit checkboxes
+    df[names[0]] = st.checkbox(f"Show all reports", value=False , key=f"task_{names[0]}")
+
+
+    # Use Streamlit data editor with configuration for interaction
+    st.session_state.glb["report:tasks"] = st.data_editor(
+        df,
+        hide_index=True,
+        use_container_width=True,
+        column_config={
+            "Task": st.column_config.TextColumn(disabled=True, pinned=True),
             **{col: st.column_config.CheckboxColumn() for col in names},
         },
     )
@@ -119,12 +166,6 @@ def customise_chart_colours():
             value=fun(col),
 
         )
-
-def customise_report():
-    customise_report_layout()
-    customise_show_experts()
-    customise_date_range()
-    customise_chart_colours()
 
 
 def show_tasks():
@@ -207,15 +248,8 @@ def prepare(uploaded_file):
 
     return new_input
 
-def show(uploaded_file):
-    new_input = prepare(uploaded_file)
-    st.subheader(f"Planing horizon", divider="blue")
-    st.caption(f"Today: :green[{glb.today().date()}]")
-    st.caption(f"Tomorrow: :green[{glb.tomorrow().date()}]")
-    st.caption(f"Last day: :green[{glb.last_day().date()}]")
-    st.caption(f"Number of days: :green[{(glb.last_day() - glb.today()).days}]")
 
-    customise_report()
+def show_problem():
     show_tasks()
     show_experts()
     show_links()
@@ -226,4 +260,35 @@ def show(uploaded_file):
     show_expert_bounds()
     show_invoicing_periods()
     show_invoicing_periods_bounds()
+
+def customise_expert():
+    customise_expert_report_layout()
+    customise_show_experts()
+    customise_date_range()
+    customise_chart_colours()
+
+def customise_task():
+    customise_task_report_layout()
+    customise_show_tasks()
+
+
+
+def show(uploaded_file):
+    new_input = prepare(uploaded_file)
+    st.subheader(f"Planing horizon", divider="blue")
+    st.caption(f"Today: :green[{glb.today().date()}]")
+    st.caption(f"Tomorrow: :green[{glb.tomorrow().date()}]")
+    st.caption(f"Last day: :green[{glb.last_day().date()}]")
+    st.caption(f"Number of days: :green[{(glb.last_day() - glb.today()).days}]")
+
+    st.divider()
+
+    tab0, tab1, tab2 = st.tabs(["**Problem**", "**Experts**", "**Tasks**"])
+    with tab0:
+        show_problem()
+    with tab1:
+        customise_expert()
+    with tab2:
+        customise_task()
+
     return new_input

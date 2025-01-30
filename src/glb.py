@@ -8,23 +8,32 @@ import streamlit as st
 def format():
     return "%Y-%m-%d"
 
-def himg(col):
-    return st.session_state.mprob["himg"].iloc[0][col]
 
-def timg(col):
-    return st.session_state.mprob["timg"].iloc[0][col]
-
-def simg(col):
-    return st.session_state.mprob["simg"].iloc[0][col]
-
-def wimg(col):
-    return st.session_state.mprob["wimg"].iloc[0][col]
 
 def bimg(col):
     return st.session_state.mprob["bimg"].iloc[0][col]
 
+def eimg(col):
+    return st.session_state.mprob["eimg"].iloc[0][col]
+
 def gimg(col):
     return st.session_state.mprob["gimg"].iloc[0][col]
+
+def himg(col):
+    return st.session_state.mprob["himg"].iloc[0][col]
+
+def simg(col):
+    return st.session_state.mprob["simg"].iloc[0][col]
+
+def timg(col):
+    return st.session_state.mprob["timg"].iloc[0][col]
+
+def wimg(col):
+    return st.session_state.mprob["wimg"].iloc[0][col]
+
+
+
+
 
 def hours_per_day():
     return st.session_state.mprob["misc"].iloc[0]["Hours per day"]

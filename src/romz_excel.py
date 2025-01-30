@@ -125,6 +125,10 @@ def read_bimg(xlsx):
     st.session_state.mprob["bimg"] = df
 
 
+def read_eimg(xlsx):
+    st.session_state.mprob["eimg"] = xlsx.parse(sheet_name="eimg", usecols="B:E")
+
+
 def read_links(xlsx):
     st.session_state.mprob["links"] = xlsx.parse(sheet_name="links", usecols="A:B")
 
@@ -176,5 +180,6 @@ def read(file_path):
     read_gimg(xlsx)
     read_wimg(xlsx)
     read_bimg(xlsx)
+    read_eimg(xlsx)
     adjust_start_days()
 
