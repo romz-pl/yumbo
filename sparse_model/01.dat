@@ -5,32 +5,26 @@ param:
 TASKN:  WORK :=
 't1'      15
 't2'      15
+'t3'      15
 ;
 
-set SCOPE['t1'] :=
-1
-2
-3
-;
-
-set SCOPE['t2'] :=
-2
-3
-4
-5
-;
+set SCOPE['t1'] := 1 2 3 ;
+set SCOPE['t2'] := 2 3 4 5 ;
+set SCOPE['t3'] := 5 6 7 8 9 ;
 
 
 set EXPERTN :=
 'Alojzy'
 'Eugeniusz'
+'Ignacy'
 ;
 
 
 set LINK :=
-'Alojzy' 't1'
-'Alojzy' 't2'
+'Alojzy'    't1'
+'Alojzy'    't2'
 'Eugeniusz' 't2'
+'Ignacy'    't3'
 ;
 
 
@@ -40,5 +34,6 @@ XBDAY: XBL XBU :=
 'Alojzy' 't1' 2 0 7
 'Alojzy' 't1' 3 0 7
 'Alojzy' 't2' 2 0 7
+'Ignacy' 't3' 5 0 1
 ;
 

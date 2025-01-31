@@ -35,8 +35,8 @@ minimize objective_function:
 
 
 # The total number of working hours per day
-#subject to C_hours_per_day {e in EXPERTN, d in SCOPE[t]}:
-#    sum {(e, t) in LINKS} X[e, t, d] <= HOURS_PER_DAY;
+subject to C_hours_per_day {e in EXPERTN, d in union {t in TASKN: (e,t) in LINK} SCOPE[t] }:
+    sum {(e, t) in LINK} (if d in SCOPE[t] then X[e, t, d] else 0) <= HOURS_PER_DAY;
 
 # The total number of working hours in the task
 subject to C_work {t in TASKN}:

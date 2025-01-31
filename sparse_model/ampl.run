@@ -27,11 +27,19 @@ display XBDAY;
 display XBL;
 display XBU;
 
-expand objective_function;
+display union {t in TASKN} SCOPE[t];
 
+for {e in EXPERTN}
+{
+   display e, union {t in TASKN: (e,t) in LINK} SCOPE[t]
+}
+
+expand objective_function;
 expand C_work;
 expand C_xbday;
-# expand C_hours_per_day;
+expand C_hours_per_day;
+
+
 
 solve;
 
