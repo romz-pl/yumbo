@@ -2,18 +2,18 @@
 param HOURS_PER_DAY := 8;
 
 param:
-TASKN:  WORK :=
+TNAME: TWORK :=
 't1'      15
 't2'      15
 't3'      15
 ;
 
-set SCOPE['t1'] := 1 2 3 ;
-set SCOPE['t2'] := 2 3 4 5 ;
-set SCOPE['t3'] := 5 6 7 8 9 ;
+set TSCOPE['t1'] := 1 2 3 ;
+set TSCOPE['t2'] := 2 3 4 5 ;
+set TSCOPE['t3'] := 5 6 7 8 9 ;
 
 
-set EXPERTN :=
+set ENAME :=
 'Alojzy'
 'Eugeniusz'
 'Ignacy'
@@ -29,11 +29,33 @@ set LINK :=
 
 
 param:
-XBDAY: XBL XBU :=
+XBID: XBL XBU :=
 'Alojzy' 't1' 1 0 7
 'Alojzy' 't1' 2 0 7
 'Alojzy' 't1' 3 0 7
 'Alojzy' 't2' 2 0 7
 'Ignacy' 't3' 5 0 1
+;
+
+param:
+PAYROLLN: PAYROLLS PAYROLLE :=
+'25.Jan' 1 31
+'25.Feb' 32 60
+'25.Mar' 61 91
+'25.Apr' 92 120
+'25.May' 121 154;
+
+param:
+EXPPAY:   PAYROLLBL   PAYROLLBU :=
+'Alojzy'    '25.Jan' 0.0 800.0
+'Eugeniusz' '25.Jan' 0.0 800.0
+'Ignacy'    '25.Jan' 0.0 800.0
+;
+
+
+param:
+EBID: EBN EBS EBE EBL EBU :=
+1  'Alojzy'  1 48 0 20
+2  'Alojzy' 49 76 0 28
 ;
 

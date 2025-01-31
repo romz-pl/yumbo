@@ -7,38 +7,64 @@ option presolve 10;
 
 display HOURS_PER_DAY;
 
-display card(TASKN);
-display TASKN;
-display WORK;
+display card(TNAME);
+display TNAME;
+display TWORK;
 
-display card(EXPERTN);
-display EXPERTN;
+display card(ENAME);
+display ENAME;
 
 display card(LINK);
 display LINK;
 
-for {t in TASKN}
+for {t in TNAME}
 {
-    display t, card(SCOPE[t]);
-    display t, SCOPE[t];
+    display t;
+    display card(TSCOPE[t]);
+    display TSCOPE[t];
 }
 
-display XBDAY;
+display card(XBID);
+display XBID;
 display XBL;
 display XBU;
 
-display union {t in TASKN} SCOPE[t];
+display union {t in TNAME} TSCOPE[t];
 
-for {e in EXPERTN}
+for {e in ENAME}
 {
-   display e, union {t in TASKN: (e,t) in LINK} SCOPE[t]
+   display e, union {t in TNAME: (e,t) in LINK} TSCOPE[t]
+}
+
+display card(PAYROLLN);
+display PAYROLLN;
+display PAYROLLS;
+display PAYROLLE;
+
+
+display card(EBID);
+display EBID;
+display EBN;
+display EBS;
+display EBE;
+display EBL;
+display EBU;
+
+for {j in EBID}
+{
+   display j;
+   display EBN[j];
+   display (EBS[j]..EBE[j]);
+   display (union {(EBN[j],t) in LINK} TSCOPE[t]);
+   display (EBS[j]..EBE[j]) inter (union {(EBN[j],t) in LINK} TSCOPE[t]);
 }
 
 expand objective_function;
 expand C_work;
 expand C_xbday;
 expand C_hours_per_day;
-
+expand C_payroll;
+expand C_ebound;
 
 
 solve;
