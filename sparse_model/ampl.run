@@ -1,0 +1,39 @@
+# option;
+
+option presolve 10;
+option show_stats 4;
+# option times 1;
+# option gentimes 1;
+
+display card(TASKN);
+display TASKN;
+display TASKS;
+display TASKE;
+display TASKW;
+
+display card(EXPERTN);
+display EXPERTN;
+
+display card(LINKS);
+display LINKS;
+
+for {t in TASKN}
+{
+    display t, card(TASKD[t]);
+    display t, TASKD[t];
+}
+
+# display card(BOUND);
+display BOUND;
+# display BOUND['t1'];
+
+for {t in TASKN}
+{
+    # display e, t, card(BOUND[e, t, TASKD[t]]);
+    
+    for {d in TASKD[t]}
+    {
+       display t, d, BOUND[t, d];
+    }
+}
+
