@@ -1,15 +1,15 @@
 # option;
 
 option presolve 10;
-option show_stats 4;
+# option show_stats 4;
 # option times 1;
 # option gentimes 1;
 
+display HOURS_PER_DAY;
+
 display card(TASKN);
 display TASKN;
-display TASKS;
-display TASKE;
-display TASKW;
+display WORK;
 
 display card(EXPERTN);
 display EXPERTN;
@@ -19,33 +19,25 @@ display LINK;
 
 for {t in TASKN}
 {
-    display t, card(TASKD[t]);
-    display t, TASKD[t];
+    display t, card(SCOPE[t]);
+    display t, SCOPE[t];
 }
 
-display BBWW;
+display XBDAY;
+display XBL;
+display XBU;
 
-display {t in TASKN, d in TASKD[t]} (BBWW[t, d]);
+expand objective_function;
 
-for {t in TASKN}
-{
-    for {d in TASKD[t]}
-    {
-       display t, d, BBWW[t, d];
-    }
-}
+expand C_work;
+expand C_xbday;
+# expand C_hours_per_day;
 
-display BOUND;
+solve;
 
-display {(e, t) in LINK, d in TASKD[t]} BOUND[e, t, d];
+display objective_function;
 
-for {(e, t) in LINK}
-{
-    for {d in TASKD[t]}
-    {
-       display e, t, d, BOUND[e, t, d];
-    }
-}
+display X;
 
 
 

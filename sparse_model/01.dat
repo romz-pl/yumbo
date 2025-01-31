@@ -1,16 +1,19 @@
+
+param HOURS_PER_DAY := 8;
+
 param:
-TASKN: TASKS TASKE TASKW :=
-'t1'       1     3    15
-'t2'       2     5    15
+TASKN:  WORK :=
+'t1'      15
+'t2'      15
 ;
 
-set TASKD['t1'] :=
+set SCOPE['t1'] :=
 1
 2
 3
 ;
 
-set TASKD['t2'] :=
+set SCOPE['t2'] :=
 2
 3
 4
@@ -26,19 +29,16 @@ set EXPERTN :=
 
 set LINK :=
 'Alojzy' 't1'
+'Alojzy' 't2'
 'Eugeniusz' 't2'
 ;
 
 
-param BBWW :=
-  ['t1', *] 1 11 2 12 3 13
-  ['t2', *] 2 12 3 13 4 14 5 15
+param:
+XBDAY: XBL XBU :=
+'Alojzy' 't1' 1 0 7
+'Alojzy' 't1' 2 0 7
+'Alojzy' 't1' 3 0 7
+'Alojzy' 't2' 2 0 7
 ;
-
-param BOUND :=
-  ['Alojzy', 't1', *] 1 11 2 12 3 13
-  ['Eugeniusz', 't2', *] 2 12 3 13 4 14 5 15
-;
-
-
 
