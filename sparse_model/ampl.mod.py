@@ -21,12 +21,12 @@ check {t in TASKN}:
 # Set of expert names to be included in the schedule
 set EXPERTN ordered;
 
-set LINKS within {EXPERTN, TASKN};
+set LINK within {EXPERTN, TASKN};
 
 
-# param BOUND{(e, t) in LINKS, TASKD[t]} >= 0 integer;
+param BOUND{(e, t) in LINK, TASKD[t]} >= 0 integer;
 
-param BOUND{t in TASKN, TASKD[t]} >= 0 integer;
+param BBWW{t in TASKN, TASKD[t]} >= 0 integer;
 
 # Objective function. This function has the clear meaning, fortunatelly.
 #minimize objective_function:

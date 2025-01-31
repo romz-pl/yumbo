@@ -21,24 +21,23 @@ set TASKD['t2'] :=
 set EXPERTN :=
 'Alojzy'
 'Eugeniusz'
-'Ignacy'
-'Pafnucy'
-'Romuald'
 ;
 
 
-set LINKS :=
+set LINK :=
 'Alojzy' 't1'
-'Eugeniusz' 't1'
-'Ignacy' 't1'
-'Pafnucy' 't1'
-'Romuald' 't1'
+'Eugeniusz' 't2'
 ;
 
 
-param BOUND :=
+param BBWW :=
   ['t1', *] 1 11 2 12 3 13
   ['t2', *] 2 12 3 13 4 14 5 15
+;
+
+param BOUND :=
+  ['Alojzy', 't1', *] 1 11 2 12 3 13
+  ['Eugeniusz', 't2', *] 2 12 3 13 4 14 5 15
 ;
 
 

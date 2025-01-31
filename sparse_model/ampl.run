@@ -14,8 +14,8 @@ display TASKW;
 display card(EXPERTN);
 display EXPERTN;
 
-display card(LINKS);
-display LINKS;
+display card(LINK);
+display LINK;
 
 for {t in TASKN}
 {
@@ -23,17 +23,29 @@ for {t in TASKN}
     display t, TASKD[t];
 }
 
-# display card(BOUND);
-display BOUND;
-# display BOUND['t1'];
+display BBWW;
+
+display {t in TASKN, d in TASKD[t]} (BBWW[t, d]);
 
 for {t in TASKN}
 {
-    # display e, t, card(BOUND[e, t, TASKD[t]]);
-    
     for {d in TASKD[t]}
     {
-       display t, d, BOUND[t, d];
+       display t, d, BBWW[t, d];
     }
 }
+
+display BOUND;
+
+display {(e, t) in LINK, d in TASKD[t]} BOUND[e, t, d];
+
+for {(e, t) in LINK}
+{
+    for {d in TASKD[t]}
+    {
+       display e, t, d, BOUND[e, t, d];
+    }
+}
+
+
 
