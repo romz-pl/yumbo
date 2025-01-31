@@ -136,7 +136,9 @@ def show_commitment_per_task(expert_name):
 
 def show_summary():
     if st.session_state.glb["show_experts_overview"]:
-        st.subheader(":blue[Experts overview]", divider="blue")
+        st.divider()
+
+        st.header(":blue[Experts overview]", divider="blue")
         col1, col2, col3 = st.columns(3)
         with col1:
             gimgsum.plot()
@@ -175,17 +177,36 @@ def show_all_experts():
     experts = st.session_state.mprob["experts"].sort_values(by="Name")
     report = st.session_state.glb["report:experts"]
 
-    for expert in experts.itertuples(index=False):
-        st.subheader(f"Expert: :blue['{expert.Name}'], {expert.Comment}", divider="blue")
+    # Filter experts with any active field
+    active_experts = experts[
+        experts["Name"].apply(
+            lambda name: any(report.at[name, col] for col in ["Charts", "Table", "Commitment"])
+        )
+    ]
 
-        if report.at[expert.Name, "Charts"]:
-            show_one_expert(expert.Name)
+    if active_experts.empty:
+        return
 
-        if report.at[expert.Name, "Table"]:
-            show_schedule_as_table(expert.Name)
 
-        if report.at[expert.Name, "Commitment"]:
-            show_commitment_per_task(expert.Name)
+    st.divider()
+
+    st.header("Experts", divider="green")
+    for expert in active_experts.itertuples(index=False):
+        bCharts = report.at[expert.Name, "Charts"]
+        bTable = report.at[expert.Name, "Table"]
+        bCommitment = report.at[expert.Name, "Commitment"]
+
+        if bCharts or bTable or bCommitment:
+            st.subheader(f"Expert: :blue['{expert.Name}'], {expert.Comment}", divider="blue")
+
+            if bCharts:
+                show_one_expert(expert.Name)
+
+            if bTable:
+                show_schedule_as_table(expert.Name)
+
+            if bCommitment:
+                show_commitment_per_task(expert.Name)
 
 
 def show_one_task(task):
@@ -211,22 +232,16 @@ def show_all_tasks():
     tasks = st.session_state.mprob["tasks"].sort_values(by="Name")
     report = st.session_state.glb["report:tasks"]
 
+    if not report.loc[tasks["Name"], "Report"].any():
+        return
+
+    st.divider()
+
+    st.header("Tasks", divider="green")
     for task in tasks.itertuples(index=False):
-        st.subheader(f"Task: :blue['{task.Name}']", divider="blue")
-
         if report.at[task.Name, "Report"]:
+            st.subheader(f"Task: :blue['{task.Name}']", divider="blue")
             show_one_task(task)
-
-        # col0, col1, col2 = st.columns(3)
-        # with col0:
-        #     if report.at[task.Name, "Chart"]:
-        #         eimg.plot(task)
-        # with col1:
-        #     if report.at[task.Name, "HTML table"]:
-        #         experts_in_tasks_as_table(task, True)
-        # with col2:
-        #     if report.at[task.Name, "Simple table"]:
-        #         experts_in_tasks_as_table(task, False)
 
 
 def show_time_counters():
