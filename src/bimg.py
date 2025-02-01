@@ -60,5 +60,3 @@ def bimg(task, schedule, bounds, mm_hash):
     ax.legend(loc="upper right")
 
     return glb.savefig(fig)
-
-
