@@ -1,5 +1,5 @@
 
-param HOURS_PER_DAY := 8;
+param MAXWORK := 8;
 
 param:
 TNAME: TWORK :=
@@ -20,7 +20,7 @@ set ENAME :=
 ;
 
 
-set LINK :=
+set EXPTAS :=
 'Alojzy'    't1'
 'Alojzy'    't2'
 'Eugeniusz' 't2'
@@ -38,7 +38,7 @@ XBID: XBL XBU :=
 ;
 
 param:
-PAYROLLN: PAYROLLS PAYROLLE :=
+PNAME: PERS PERE :=
 '25.Jan' 1 31
 '25.Feb' 32 60
 '25.Mar' 61 91
@@ -46,10 +46,10 @@ PAYROLLN: PAYROLLS PAYROLLE :=
 '25.May' 121 154;
 
 param:
-EXPPAY:   PAYROLLBL   PAYROLLBU :=
-'Alojzy'    '25.Jan' 0.0 800.0
-'Eugeniusz' '25.Jan' 0.0 800.0
-'Ignacy'    '25.Jan' 0.0 800.0
+EXPPER:              PBL   PBU :=
+'Alojzy'    '25.Jan'   0   800
+'Eugeniusz' '25.Jan'   0   800
+'Ignacy'    '25.Jan'   0   800
 ;
 
 

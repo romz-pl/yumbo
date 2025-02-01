@@ -5,7 +5,7 @@ option presolve 10;
 # option times 1;
 # option gentimes 1;
 
-display HOURS_PER_DAY;
+display MAXWORK;
 
 display card(TNAME);
 display TNAME;
@@ -14,8 +14,8 @@ display TWORK;
 display card(ENAME);
 display ENAME;
 
-display card(LINK);
-display LINK;
+display card(EXPTAS);
+display EXPTAS;
 
 for {t in TNAME}
 {
@@ -33,13 +33,16 @@ display union {t in TNAME} TSCOPE[t];
 
 for {e in ENAME}
 {
-   display e, union {t in TNAME: (e,t) in LINK} TSCOPE[t]
+   display e, union {t in TNAME: (e,t) in EXPTAS} TSCOPE[t]
 }
 
-display card(PAYROLLN);
-display PAYROLLN;
-display PAYROLLS;
-display PAYROLLE;
+display card(PNAME);
+display PNAME;
+display PERS;
+display PERE;
+display EXPPER;
+display PBL;
+display PBU;
 
 
 display card(EBID);
@@ -55,15 +58,15 @@ for {j in EBID}
    display j;
    display EBN[j];
    display (EBS[j]..EBE[j]);
-   display (union {(EBN[j],t) in LINK} TSCOPE[t]);
-   display (EBS[j]..EBE[j]) inter (union {(EBN[j],t) in LINK} TSCOPE[t]);
+   display (union {(EBN[j],t) in EXPTAS} TSCOPE[t]);
+   display (EBS[j]..EBE[j]) inter (union {(EBN[j],t) in EXPTAS} TSCOPE[t]);
 }
 
 expand objective_function;
 expand C_work;
 expand C_xbday;
-expand C_hours_per_day;
-expand C_payroll;
+expand C_maxwork;
+expand C_period;
 expand C_ebound;
 
 
