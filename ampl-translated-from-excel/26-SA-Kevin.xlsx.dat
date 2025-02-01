@@ -1,1302 +1,113 @@
-param HOURS_PER_DAY := 32;
-
-set EXPERTN :=
-'SA.Kevin';
-
-param EBOUND_NO := 0;
-
-param EBOUND:
-1   2   3   4   5 :=
-;
+param MAXWORK := 32;
 
 param:
-TASKN: TASKS TASKE TASKW :=
-'alpha2.se' 28 33 48
-'alpha2.sm' 34 79 96
-'alpha2.sf' 80 92 32
-'beta2.se' 6 16 120
-'beta2.sm' 17 197 240
-'beta2.sf' 198 217 160
-'gamma2.sm' 2 22 60
-'gamma2.sf' 23 35 20
-'quebec2.se' 153 178 160
-'quebec2.sm' 179 679 80
-'quebec2.sf' 680 735 80
-'uniform2.se' 122 137 240
-'uniform2.sm' 138 408 200
-'uniform2.sf' 409 427 80
-'xray2.se' 197 222 80
-'xray2.sm' 223 373 120
-'xray2.sf' 374 398 80
+TNAME: TWORK :=
+'alpha2.se' 48
+'alpha2.sm' 96
+'alpha2.sf' 32
+'beta2.se' 120
+'beta2.sm' 240
+'beta2.sf' 160
+'gamma2.sm' 60
+'gamma2.sf' 20
+'quebec2.se' 160
+'quebec2.sm' 80
+'quebec2.sf' 80
+'uniform2.se' 240
+'uniform2.sm' 200
+'uniform2.sf' 80
+'xray2.se' 80
+'xray2.sm' 120
+'xray2.sf' 80
 ;
 
-param:
-PAYROLLN: PAYROLLS PAYROLLE :=
-'Jan.25' 1 16
-'Feb.25' 17 45
-'Mar.25' 46 76
-'Apr.25' 77 105
-'May.25' 106 139
-'Jun.25' 140 170
-'Jul.25' 171 199
-'Aug.25' 200 230
-'Sep.25' 231 259
-'Oct.25' 260 289
-'Nov.25' 290 317
-'Dec.25' 318 346;
-
-param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
-'SA.Kevin' 'Jan.25' 0.0 720.0
-'SA.Kevin' 'Feb.25' 0.0 720.0
-'SA.Kevin' 'Mar.25' 0.0 720.0
-'SA.Kevin' 'Apr.25' 0.0 720.0
-'SA.Kevin' 'May.25' 0.0 720.0
-'SA.Kevin' 'Jun.25' 0.0 720.0
-'SA.Kevin' 'Jul.25' 0.0 720.0
-'SA.Kevin' 'Aug.25' 0.0 720.0
-'SA.Kevin' 'Sep.25' 0.0 720.0
-'SA.Kevin' 'Oct.25' 0.0 720.0
-'SA.Kevin' 'Nov.25' 0.0 720.0
-'SA.Kevin' 'Dec.25' 0.0 720.0;
-
-param OFFDAY_NO := 212;
-
-param OFFDAY :=
-1 2
-2 5
-3 6
-4 12
-5 13
-6 19
-7 20
-8 26
-9 27
-10 33
-11 34
-12 40
-13 41
-14 47
-15 48
-16 54
-17 55
-18 61
-19 62
-20 68
-21 69
-22 75
-23 76
-24 82
-25 83
-26 89
-27 90
-28 96
-29 97
-30 103
-31 104
-32 110
-33 111
-34 117
-35 118
-36 122
-37 124
-38 125
-39 131
-40 132
-41 138
-42 139
-43 145
-44 146
-45 152
-46 153
-47 159
-48 160
-49 166
-50 167
-51 173
-52 174
-53 180
-54 181
-55 187
-56 188
-57 194
-58 195
-59 201
-60 202
-61 208
-62 209
-63 215
-64 216
-65 222
-66 223
-67 229
-68 230
-69 236
-70 237
-71 243
-72 244
-73 250
-74 251
-75 257
-76 258
-77 264
-78 265
-79 271
-80 272
-81 278
-82 279
-83 285
-84 286
-85 292
-86 293
-87 299
-88 300
-89 306
-90 307
-91 313
-92 314
-93 320
-94 321
-95 327
-96 328
-97 334
-98 335
-99 341
-100 342
-101 348
-102 349
-103 355
-104 356
-105 362
-106 363
-107 369
-108 370
-109 376
-110 377
-111 383
-112 384
-113 390
-114 391
-115 397
-116 398
-117 404
-118 405
-119 411
-120 412
-121 418
-122 419
-123 425
-124 426
-125 432
-126 433
-127 439
-128 440
-129 446
-130 447
-131 453
-132 454
-133 460
-134 461
-135 467
-136 468
-137 474
-138 475
-139 481
-140 482
-141 488
-142 489
-143 495
-144 496
-145 502
-146 503
-147 509
-148 510
-149 516
-150 517
-151 523
-152 524
-153 530
-154 531
-155 537
-156 538
-157 544
-158 545
-159 551
-160 552
-161 558
-162 559
-163 565
-164 566
-165 572
-166 573
-167 579
-168 580
-169 586
-170 587
-171 593
-172 594
-173 600
-174 601
-175 607
-176 608
-177 614
-178 615
-179 621
-180 622
-181 628
-182 629
-183 635
-184 636
-185 642
-186 643
-187 649
-188 650
-189 656
-190 657
-191 663
-192 664
-193 670
-194 671
-195 677
-196 678
-197 684
-198 685
-199 691
-200 692
-201 698
-202 699
-203 705
-204 706
-205 712
-206 713
-207 719
-208 720
-209 726
-210 727
-211 733
-212 734;
-
-param XBDAY_NO := 997;
-
-param XBDAY:
-1   2   3   4   5 :=
-1 'SA.Kevin' 'alpha2.se' 28 9.0 10.0
-2 'SA.Kevin' 'alpha2.se' 29 9.0 10.0
-3 'SA.Kevin' 'alpha2.se' 30 9.0 10.0
-4 'SA.Kevin' 'alpha2.se' 31 9.0 10.0
-5 'SA.Kevin' 'alpha2.se' 32 9.0 10.0
-6 'SA.Kevin' 'alpha2.sm' 35 2.0 3.0
-7 'SA.Kevin' 'alpha2.sm' 36 2.0 3.0
-8 'SA.Kevin' 'alpha2.sm' 37 2.0 3.0
-9 'SA.Kevin' 'alpha2.sm' 38 2.0 3.0
-10 'SA.Kevin' 'alpha2.sm' 39 2.0 3.0
-11 'SA.Kevin' 'alpha2.sm' 42 2.0 3.0
-12 'SA.Kevin' 'alpha2.sm' 43 2.0 3.0
-13 'SA.Kevin' 'alpha2.sm' 44 2.0 3.0
-14 'SA.Kevin' 'alpha2.sm' 45 2.0 3.0
-15 'SA.Kevin' 'alpha2.sm' 46 2.0 3.0
-16 'SA.Kevin' 'alpha2.sm' 49 2.0 3.0
-17 'SA.Kevin' 'alpha2.sm' 50 2.0 3.0
-18 'SA.Kevin' 'alpha2.sm' 51 2.0 3.0
-19 'SA.Kevin' 'alpha2.sm' 52 2.0 3.0
-20 'SA.Kevin' 'alpha2.sm' 53 2.0 3.0
-21 'SA.Kevin' 'alpha2.sm' 56 2.0 3.0
-22 'SA.Kevin' 'alpha2.sm' 57 2.0 3.0
-23 'SA.Kevin' 'alpha2.sm' 58 2.0 3.0
-24 'SA.Kevin' 'alpha2.sm' 59 2.0 3.0
-25 'SA.Kevin' 'alpha2.sm' 60 2.0 3.0
-26 'SA.Kevin' 'alpha2.sm' 63 2.0 3.0
-27 'SA.Kevin' 'alpha2.sm' 64 2.0 3.0
-28 'SA.Kevin' 'alpha2.sm' 65 2.0 3.0
-29 'SA.Kevin' 'alpha2.sm' 66 2.0 3.0
-30 'SA.Kevin' 'alpha2.sm' 67 2.0 3.0
-31 'SA.Kevin' 'alpha2.sm' 70 2.0 3.0
-32 'SA.Kevin' 'alpha2.sm' 71 2.0 3.0
-33 'SA.Kevin' 'alpha2.sm' 72 2.0 3.0
-34 'SA.Kevin' 'alpha2.sm' 73 2.0 3.0
-35 'SA.Kevin' 'alpha2.sm' 74 2.0 3.0
-36 'SA.Kevin' 'alpha2.sm' 77 2.0 3.0
-37 'SA.Kevin' 'alpha2.sm' 78 2.0 3.0
-38 'SA.Kevin' 'alpha2.sm' 79 2.0 3.0
-39 'SA.Kevin' 'alpha2.sf' 80 3.0 4.0
-40 'SA.Kevin' 'alpha2.sf' 81 3.0 4.0
-41 'SA.Kevin' 'alpha2.sf' 84 3.0 4.0
-42 'SA.Kevin' 'alpha2.sf' 85 3.0 4.0
-43 'SA.Kevin' 'alpha2.sf' 86 3.0 4.0
-44 'SA.Kevin' 'alpha2.sf' 87 3.0 4.0
-45 'SA.Kevin' 'alpha2.sf' 88 3.0 4.0
-46 'SA.Kevin' 'alpha2.sf' 91 3.0 4.0
-47 'SA.Kevin' 'alpha2.sf' 92 3.0 4.0
-48 'SA.Kevin' 'beta2.se' 7 15.0 16.0
-49 'SA.Kevin' 'beta2.se' 8 15.0 16.0
-50 'SA.Kevin' 'beta2.se' 9 15.0 16.0
-51 'SA.Kevin' 'beta2.se' 10 15.0 16.0
-52 'SA.Kevin' 'beta2.se' 11 15.0 16.0
-53 'SA.Kevin' 'beta2.se' 14 15.0 16.0
-54 'SA.Kevin' 'beta2.se' 15 15.0 16.0
-55 'SA.Kevin' 'beta2.se' 16 15.0 16.0
-56 'SA.Kevin' 'beta2.sm' 17 1.0 2.0
-57 'SA.Kevin' 'beta2.sm' 18 1.0 2.0
-58 'SA.Kevin' 'beta2.sm' 21 1.0 2.0
-59 'SA.Kevin' 'beta2.sm' 22 1.0 2.0
-60 'SA.Kevin' 'beta2.sm' 23 1.0 2.0
-61 'SA.Kevin' 'beta2.sm' 24 1.0 2.0
-62 'SA.Kevin' 'beta2.sm' 25 1.0 2.0
-63 'SA.Kevin' 'beta2.sm' 28 1.0 2.0
-64 'SA.Kevin' 'beta2.sm' 29 1.0 2.0
-65 'SA.Kevin' 'beta2.sm' 30 1.0 2.0
-66 'SA.Kevin' 'beta2.sm' 31 1.0 2.0
-67 'SA.Kevin' 'beta2.sm' 32 1.0 2.0
-68 'SA.Kevin' 'beta2.sm' 35 1.0 2.0
-69 'SA.Kevin' 'beta2.sm' 36 1.0 2.0
-70 'SA.Kevin' 'beta2.sm' 37 1.0 2.0
-71 'SA.Kevin' 'beta2.sm' 38 1.0 2.0
-72 'SA.Kevin' 'beta2.sm' 39 1.0 2.0
-73 'SA.Kevin' 'beta2.sm' 42 1.0 2.0
-74 'SA.Kevin' 'beta2.sm' 43 1.0 2.0
-75 'SA.Kevin' 'beta2.sm' 44 1.0 2.0
-76 'SA.Kevin' 'beta2.sm' 45 1.0 2.0
-77 'SA.Kevin' 'beta2.sm' 46 1.0 2.0
-78 'SA.Kevin' 'beta2.sm' 49 1.0 2.0
-79 'SA.Kevin' 'beta2.sm' 50 1.0 2.0
-80 'SA.Kevin' 'beta2.sm' 51 1.0 2.0
-81 'SA.Kevin' 'beta2.sm' 52 1.0 2.0
-82 'SA.Kevin' 'beta2.sm' 53 1.0 2.0
-83 'SA.Kevin' 'beta2.sm' 56 1.0 2.0
-84 'SA.Kevin' 'beta2.sm' 57 1.0 2.0
-85 'SA.Kevin' 'beta2.sm' 58 1.0 2.0
-86 'SA.Kevin' 'beta2.sm' 59 1.0 2.0
-87 'SA.Kevin' 'beta2.sm' 60 1.0 2.0
-88 'SA.Kevin' 'beta2.sm' 63 1.0 2.0
-89 'SA.Kevin' 'beta2.sm' 64 1.0 2.0
-90 'SA.Kevin' 'beta2.sm' 65 1.0 2.0
-91 'SA.Kevin' 'beta2.sm' 66 1.0 2.0
-92 'SA.Kevin' 'beta2.sm' 67 1.0 2.0
-93 'SA.Kevin' 'beta2.sm' 70 1.0 2.0
-94 'SA.Kevin' 'beta2.sm' 71 1.0 2.0
-95 'SA.Kevin' 'beta2.sm' 72 1.0 2.0
-96 'SA.Kevin' 'beta2.sm' 73 1.0 2.0
-97 'SA.Kevin' 'beta2.sm' 74 1.0 2.0
-98 'SA.Kevin' 'beta2.sm' 77 1.0 2.0
-99 'SA.Kevin' 'beta2.sm' 78 1.0 2.0
-100 'SA.Kevin' 'beta2.sm' 79 1.0 2.0
-101 'SA.Kevin' 'beta2.sm' 80 1.0 2.0
-102 'SA.Kevin' 'beta2.sm' 81 1.0 2.0
-103 'SA.Kevin' 'beta2.sm' 84 1.0 2.0
-104 'SA.Kevin' 'beta2.sm' 85 1.0 2.0
-105 'SA.Kevin' 'beta2.sm' 86 1.0 2.0
-106 'SA.Kevin' 'beta2.sm' 87 1.0 2.0
-107 'SA.Kevin' 'beta2.sm' 88 1.0 2.0
-108 'SA.Kevin' 'beta2.sm' 91 1.0 2.0
-109 'SA.Kevin' 'beta2.sm' 92 1.0 2.0
-110 'SA.Kevin' 'beta2.sm' 93 1.0 2.0
-111 'SA.Kevin' 'beta2.sm' 94 1.0 2.0
-112 'SA.Kevin' 'beta2.sm' 95 1.0 2.0
-113 'SA.Kevin' 'beta2.sm' 98 1.0 2.0
-114 'SA.Kevin' 'beta2.sm' 99 1.0 2.0
-115 'SA.Kevin' 'beta2.sm' 100 1.0 2.0
-116 'SA.Kevin' 'beta2.sm' 101 1.0 2.0
-117 'SA.Kevin' 'beta2.sm' 102 1.0 2.0
-118 'SA.Kevin' 'beta2.sm' 105 1.0 2.0
-119 'SA.Kevin' 'beta2.sm' 106 1.0 2.0
-120 'SA.Kevin' 'beta2.sm' 107 1.0 2.0
-121 'SA.Kevin' 'beta2.sm' 108 1.0 2.0
-122 'SA.Kevin' 'beta2.sm' 109 1.0 2.0
-123 'SA.Kevin' 'beta2.sm' 112 1.0 2.0
-124 'SA.Kevin' 'beta2.sm' 113 1.0 2.0
-125 'SA.Kevin' 'beta2.sm' 114 1.0 2.0
-126 'SA.Kevin' 'beta2.sm' 115 1.0 2.0
-127 'SA.Kevin' 'beta2.sm' 116 1.0 2.0
-128 'SA.Kevin' 'beta2.sm' 119 1.0 2.0
-129 'SA.Kevin' 'beta2.sm' 120 1.0 2.0
-130 'SA.Kevin' 'beta2.sm' 121 1.0 2.0
-131 'SA.Kevin' 'beta2.sm' 123 1.0 2.0
-132 'SA.Kevin' 'beta2.sm' 126 1.0 2.0
-133 'SA.Kevin' 'beta2.sm' 127 1.0 2.0
-134 'SA.Kevin' 'beta2.sm' 128 1.0 2.0
-135 'SA.Kevin' 'beta2.sm' 129 1.0 2.0
-136 'SA.Kevin' 'beta2.sm' 130 1.0 2.0
-137 'SA.Kevin' 'beta2.sm' 133 1.0 2.0
-138 'SA.Kevin' 'beta2.sm' 134 1.0 2.0
-139 'SA.Kevin' 'beta2.sm' 135 1.0 2.0
-140 'SA.Kevin' 'beta2.sm' 136 1.0 2.0
-141 'SA.Kevin' 'beta2.sm' 137 1.0 2.0
-142 'SA.Kevin' 'beta2.sm' 140 1.0 2.0
-143 'SA.Kevin' 'beta2.sm' 141 1.0 2.0
-144 'SA.Kevin' 'beta2.sm' 142 1.0 2.0
-145 'SA.Kevin' 'beta2.sm' 143 1.0 2.0
-146 'SA.Kevin' 'beta2.sm' 144 1.0 2.0
-147 'SA.Kevin' 'beta2.sm' 147 1.0 2.0
-148 'SA.Kevin' 'beta2.sm' 148 1.0 2.0
-149 'SA.Kevin' 'beta2.sm' 149 1.0 2.0
-150 'SA.Kevin' 'beta2.sm' 150 1.0 2.0
-151 'SA.Kevin' 'beta2.sm' 151 1.0 2.0
-152 'SA.Kevin' 'beta2.sm' 154 1.0 2.0
-153 'SA.Kevin' 'beta2.sm' 155 1.0 2.0
-154 'SA.Kevin' 'beta2.sm' 156 1.0 2.0
-155 'SA.Kevin' 'beta2.sm' 157 1.0 2.0
-156 'SA.Kevin' 'beta2.sm' 158 1.0 2.0
-157 'SA.Kevin' 'beta2.sm' 161 1.0 2.0
-158 'SA.Kevin' 'beta2.sm' 162 1.0 2.0
-159 'SA.Kevin' 'beta2.sm' 163 1.0 2.0
-160 'SA.Kevin' 'beta2.sm' 164 1.0 2.0
-161 'SA.Kevin' 'beta2.sm' 165 1.0 2.0
-162 'SA.Kevin' 'beta2.sm' 168 1.0 2.0
-163 'SA.Kevin' 'beta2.sm' 169 1.0 2.0
-164 'SA.Kevin' 'beta2.sm' 170 1.0 2.0
-165 'SA.Kevin' 'beta2.sm' 171 1.0 2.0
-166 'SA.Kevin' 'beta2.sm' 172 1.0 2.0
-167 'SA.Kevin' 'beta2.sm' 175 1.0 2.0
-168 'SA.Kevin' 'beta2.sm' 176 1.0 2.0
-169 'SA.Kevin' 'beta2.sm' 177 1.0 2.0
-170 'SA.Kevin' 'beta2.sm' 178 1.0 2.0
-171 'SA.Kevin' 'beta2.sm' 179 1.0 2.0
-172 'SA.Kevin' 'beta2.sm' 182 1.0 2.0
-173 'SA.Kevin' 'beta2.sm' 183 1.0 2.0
-174 'SA.Kevin' 'beta2.sm' 184 1.0 2.0
-175 'SA.Kevin' 'beta2.sm' 185 1.0 2.0
-176 'SA.Kevin' 'beta2.sm' 186 1.0 2.0
-177 'SA.Kevin' 'beta2.sm' 189 1.0 2.0
-178 'SA.Kevin' 'beta2.sm' 190 1.0 2.0
-179 'SA.Kevin' 'beta2.sm' 191 1.0 2.0
-180 'SA.Kevin' 'beta2.sm' 192 1.0 2.0
-181 'SA.Kevin' 'beta2.sm' 193 1.0 2.0
-182 'SA.Kevin' 'beta2.sm' 196 1.0 2.0
-183 'SA.Kevin' 'beta2.sm' 197 1.0 2.0
-184 'SA.Kevin' 'beta2.sf' 198 11.0 12.0
-185 'SA.Kevin' 'beta2.sf' 199 11.0 12.0
-186 'SA.Kevin' 'beta2.sf' 200 11.0 12.0
-187 'SA.Kevin' 'beta2.sf' 203 11.0 12.0
-188 'SA.Kevin' 'beta2.sf' 204 11.0 12.0
-189 'SA.Kevin' 'beta2.sf' 205 11.0 12.0
-190 'SA.Kevin' 'beta2.sf' 206 11.0 12.0
-191 'SA.Kevin' 'beta2.sf' 207 11.0 12.0
-192 'SA.Kevin' 'beta2.sf' 210 11.0 12.0
-193 'SA.Kevin' 'beta2.sf' 211 11.0 12.0
-194 'SA.Kevin' 'beta2.sf' 212 11.0 12.0
-195 'SA.Kevin' 'beta2.sf' 213 11.0 12.0
-196 'SA.Kevin' 'beta2.sf' 214 11.0 12.0
-197 'SA.Kevin' 'beta2.sf' 217 11.0 12.0
-198 'SA.Kevin' 'gamma2.sm' 3 4.0 5.0
-199 'SA.Kevin' 'gamma2.sm' 4 4.0 5.0
-200 'SA.Kevin' 'gamma2.sm' 7 4.0 5.0
-201 'SA.Kevin' 'gamma2.sm' 8 4.0 5.0
-202 'SA.Kevin' 'gamma2.sm' 9 4.0 5.0
-203 'SA.Kevin' 'gamma2.sm' 10 4.0 5.0
-204 'SA.Kevin' 'gamma2.sm' 11 4.0 5.0
-205 'SA.Kevin' 'gamma2.sm' 14 4.0 5.0
-206 'SA.Kevin' 'gamma2.sm' 15 4.0 5.0
-207 'SA.Kevin' 'gamma2.sm' 16 4.0 5.0
-208 'SA.Kevin' 'gamma2.sm' 17 4.0 5.0
-209 'SA.Kevin' 'gamma2.sm' 18 4.0 5.0
-210 'SA.Kevin' 'gamma2.sm' 21 4.0 5.0
-211 'SA.Kevin' 'gamma2.sm' 22 4.0 5.0
-212 'SA.Kevin' 'gamma2.sf' 23 2.0 3.0
-213 'SA.Kevin' 'gamma2.sf' 24 2.0 3.0
-214 'SA.Kevin' 'gamma2.sf' 25 2.0 3.0
-215 'SA.Kevin' 'gamma2.sf' 28 2.0 3.0
-216 'SA.Kevin' 'gamma2.sf' 29 2.0 3.0
-217 'SA.Kevin' 'gamma2.sf' 30 2.0 3.0
-218 'SA.Kevin' 'gamma2.sf' 31 2.0 3.0
-219 'SA.Kevin' 'gamma2.sf' 32 2.0 3.0
-220 'SA.Kevin' 'gamma2.sf' 35 2.0 3.0
-221 'SA.Kevin' 'quebec2.se' 154 8.0 9.0
-222 'SA.Kevin' 'quebec2.se' 155 8.0 9.0
-223 'SA.Kevin' 'quebec2.se' 156 8.0 9.0
-224 'SA.Kevin' 'quebec2.se' 157 8.0 9.0
-225 'SA.Kevin' 'quebec2.se' 158 8.0 9.0
-226 'SA.Kevin' 'quebec2.se' 161 8.0 9.0
-227 'SA.Kevin' 'quebec2.se' 162 8.0 9.0
-228 'SA.Kevin' 'quebec2.se' 163 8.0 9.0
-229 'SA.Kevin' 'quebec2.se' 164 8.0 9.0
-230 'SA.Kevin' 'quebec2.se' 165 8.0 9.0
-231 'SA.Kevin' 'quebec2.se' 168 8.0 9.0
-232 'SA.Kevin' 'quebec2.se' 169 8.0 9.0
-233 'SA.Kevin' 'quebec2.se' 170 8.0 9.0
-234 'SA.Kevin' 'quebec2.se' 171 8.0 9.0
-235 'SA.Kevin' 'quebec2.se' 172 8.0 9.0
-236 'SA.Kevin' 'quebec2.se' 175 8.0 9.0
-237 'SA.Kevin' 'quebec2.se' 176 8.0 9.0
-238 'SA.Kevin' 'quebec2.se' 177 8.0 9.0
-239 'SA.Kevin' 'quebec2.se' 178 8.0 9.0
-240 'SA.Kevin' 'quebec2.sm' 179 0.0 1.0
-241 'SA.Kevin' 'quebec2.sm' 182 0.0 1.0
-242 'SA.Kevin' 'quebec2.sm' 183 0.0 1.0
-243 'SA.Kevin' 'quebec2.sm' 184 0.0 1.0
-244 'SA.Kevin' 'quebec2.sm' 185 0.0 1.0
-245 'SA.Kevin' 'quebec2.sm' 186 0.0 1.0
-246 'SA.Kevin' 'quebec2.sm' 189 0.0 1.0
-247 'SA.Kevin' 'quebec2.sm' 190 0.0 1.0
-248 'SA.Kevin' 'quebec2.sm' 191 0.0 1.0
-249 'SA.Kevin' 'quebec2.sm' 192 0.0 1.0
-250 'SA.Kevin' 'quebec2.sm' 193 0.0 1.0
-251 'SA.Kevin' 'quebec2.sm' 196 0.0 1.0
-252 'SA.Kevin' 'quebec2.sm' 197 0.0 1.0
-253 'SA.Kevin' 'quebec2.sm' 198 0.0 1.0
-254 'SA.Kevin' 'quebec2.sm' 199 0.0 1.0
-255 'SA.Kevin' 'quebec2.sm' 200 0.0 1.0
-256 'SA.Kevin' 'quebec2.sm' 203 0.0 1.0
-257 'SA.Kevin' 'quebec2.sm' 204 0.0 1.0
-258 'SA.Kevin' 'quebec2.sm' 205 0.0 1.0
-259 'SA.Kevin' 'quebec2.sm' 206 0.0 1.0
-260 'SA.Kevin' 'quebec2.sm' 207 0.0 1.0
-261 'SA.Kevin' 'quebec2.sm' 210 0.0 1.0
-262 'SA.Kevin' 'quebec2.sm' 211 0.0 1.0
-263 'SA.Kevin' 'quebec2.sm' 212 0.0 1.0
-264 'SA.Kevin' 'quebec2.sm' 213 0.0 1.0
-265 'SA.Kevin' 'quebec2.sm' 214 0.0 1.0
-266 'SA.Kevin' 'quebec2.sm' 217 0.0 1.0
-267 'SA.Kevin' 'quebec2.sm' 218 0.0 1.0
-268 'SA.Kevin' 'quebec2.sm' 219 0.0 1.0
-269 'SA.Kevin' 'quebec2.sm' 220 0.0 1.0
-270 'SA.Kevin' 'quebec2.sm' 221 0.0 1.0
-271 'SA.Kevin' 'quebec2.sm' 224 0.0 1.0
-272 'SA.Kevin' 'quebec2.sm' 225 0.0 1.0
-273 'SA.Kevin' 'quebec2.sm' 226 0.0 1.0
-274 'SA.Kevin' 'quebec2.sm' 227 0.0 1.0
-275 'SA.Kevin' 'quebec2.sm' 228 0.0 1.0
-276 'SA.Kevin' 'quebec2.sm' 231 0.0 1.0
-277 'SA.Kevin' 'quebec2.sm' 232 0.0 1.0
-278 'SA.Kevin' 'quebec2.sm' 233 0.0 1.0
-279 'SA.Kevin' 'quebec2.sm' 234 0.0 1.0
-280 'SA.Kevin' 'quebec2.sm' 235 0.0 1.0
-281 'SA.Kevin' 'quebec2.sm' 238 0.0 1.0
-282 'SA.Kevin' 'quebec2.sm' 239 0.0 1.0
-283 'SA.Kevin' 'quebec2.sm' 240 0.0 1.0
-284 'SA.Kevin' 'quebec2.sm' 241 0.0 1.0
-285 'SA.Kevin' 'quebec2.sm' 242 0.0 1.0
-286 'SA.Kevin' 'quebec2.sm' 245 0.0 1.0
-287 'SA.Kevin' 'quebec2.sm' 246 0.0 1.0
-288 'SA.Kevin' 'quebec2.sm' 247 0.0 1.0
-289 'SA.Kevin' 'quebec2.sm' 248 0.0 1.0
-290 'SA.Kevin' 'quebec2.sm' 249 0.0 1.0
-291 'SA.Kevin' 'quebec2.sm' 252 0.0 1.0
-292 'SA.Kevin' 'quebec2.sm' 253 0.0 1.0
-293 'SA.Kevin' 'quebec2.sm' 254 0.0 1.0
-294 'SA.Kevin' 'quebec2.sm' 255 0.0 1.0
-295 'SA.Kevin' 'quebec2.sm' 256 0.0 1.0
-296 'SA.Kevin' 'quebec2.sm' 259 0.0 1.0
-297 'SA.Kevin' 'quebec2.sm' 260 0.0 1.0
-298 'SA.Kevin' 'quebec2.sm' 261 0.0 1.0
-299 'SA.Kevin' 'quebec2.sm' 262 0.0 1.0
-300 'SA.Kevin' 'quebec2.sm' 263 0.0 1.0
-301 'SA.Kevin' 'quebec2.sm' 266 0.0 1.0
-302 'SA.Kevin' 'quebec2.sm' 267 0.0 1.0
-303 'SA.Kevin' 'quebec2.sm' 268 0.0 1.0
-304 'SA.Kevin' 'quebec2.sm' 269 0.0 1.0
-305 'SA.Kevin' 'quebec2.sm' 270 0.0 1.0
-306 'SA.Kevin' 'quebec2.sm' 273 0.0 1.0
-307 'SA.Kevin' 'quebec2.sm' 274 0.0 1.0
-308 'SA.Kevin' 'quebec2.sm' 275 0.0 1.0
-309 'SA.Kevin' 'quebec2.sm' 276 0.0 1.0
-310 'SA.Kevin' 'quebec2.sm' 277 0.0 1.0
-311 'SA.Kevin' 'quebec2.sm' 280 0.0 1.0
-312 'SA.Kevin' 'quebec2.sm' 281 0.0 1.0
-313 'SA.Kevin' 'quebec2.sm' 282 0.0 1.0
-314 'SA.Kevin' 'quebec2.sm' 283 0.0 1.0
-315 'SA.Kevin' 'quebec2.sm' 284 0.0 1.0
-316 'SA.Kevin' 'quebec2.sm' 287 0.0 1.0
-317 'SA.Kevin' 'quebec2.sm' 288 0.0 1.0
-318 'SA.Kevin' 'quebec2.sm' 289 0.0 1.0
-319 'SA.Kevin' 'quebec2.sm' 290 0.0 1.0
-320 'SA.Kevin' 'quebec2.sm' 291 0.0 1.0
-321 'SA.Kevin' 'quebec2.sm' 294 0.0 1.0
-322 'SA.Kevin' 'quebec2.sm' 295 0.0 1.0
-323 'SA.Kevin' 'quebec2.sm' 296 0.0 1.0
-324 'SA.Kevin' 'quebec2.sm' 297 0.0 1.0
-325 'SA.Kevin' 'quebec2.sm' 298 0.0 1.0
-326 'SA.Kevin' 'quebec2.sm' 301 0.0 1.0
-327 'SA.Kevin' 'quebec2.sm' 302 0.0 1.0
-328 'SA.Kevin' 'quebec2.sm' 303 0.0 1.0
-329 'SA.Kevin' 'quebec2.sm' 304 0.0 1.0
-330 'SA.Kevin' 'quebec2.sm' 305 0.0 1.0
-331 'SA.Kevin' 'quebec2.sm' 308 0.0 1.0
-332 'SA.Kevin' 'quebec2.sm' 309 0.0 1.0
-333 'SA.Kevin' 'quebec2.sm' 310 0.0 1.0
-334 'SA.Kevin' 'quebec2.sm' 311 0.0 1.0
-335 'SA.Kevin' 'quebec2.sm' 312 0.0 1.0
-336 'SA.Kevin' 'quebec2.sm' 315 0.0 1.0
-337 'SA.Kevin' 'quebec2.sm' 316 0.0 1.0
-338 'SA.Kevin' 'quebec2.sm' 317 0.0 1.0
-339 'SA.Kevin' 'quebec2.sm' 318 0.0 1.0
-340 'SA.Kevin' 'quebec2.sm' 319 0.0 1.0
-341 'SA.Kevin' 'quebec2.sm' 322 0.0 1.0
-342 'SA.Kevin' 'quebec2.sm' 323 0.0 1.0
-343 'SA.Kevin' 'quebec2.sm' 324 0.0 1.0
-344 'SA.Kevin' 'quebec2.sm' 325 0.0 1.0
-345 'SA.Kevin' 'quebec2.sm' 326 0.0 1.0
-346 'SA.Kevin' 'quebec2.sm' 329 0.0 1.0
-347 'SA.Kevin' 'quebec2.sm' 330 0.0 1.0
-348 'SA.Kevin' 'quebec2.sm' 331 0.0 1.0
-349 'SA.Kevin' 'quebec2.sm' 332 0.0 1.0
-350 'SA.Kevin' 'quebec2.sm' 333 0.0 1.0
-351 'SA.Kevin' 'quebec2.sm' 336 0.0 1.0
-352 'SA.Kevin' 'quebec2.sm' 337 0.0 1.0
-353 'SA.Kevin' 'quebec2.sm' 338 0.0 1.0
-354 'SA.Kevin' 'quebec2.sm' 339 0.0 1.0
-355 'SA.Kevin' 'quebec2.sm' 340 0.0 1.0
-356 'SA.Kevin' 'quebec2.sm' 343 0.0 1.0
-357 'SA.Kevin' 'quebec2.sm' 344 0.0 1.0
-358 'SA.Kevin' 'quebec2.sm' 345 0.0 1.0
-359 'SA.Kevin' 'quebec2.sm' 346 0.0 1.0
-360 'SA.Kevin' 'quebec2.sm' 347 0.0 1.0
-361 'SA.Kevin' 'quebec2.sm' 350 0.0 1.0
-362 'SA.Kevin' 'quebec2.sm' 351 0.0 1.0
-363 'SA.Kevin' 'quebec2.sm' 352 0.0 1.0
-364 'SA.Kevin' 'quebec2.sm' 353 0.0 1.0
-365 'SA.Kevin' 'quebec2.sm' 354 0.0 1.0
-366 'SA.Kevin' 'quebec2.sm' 357 0.0 1.0
-367 'SA.Kevin' 'quebec2.sm' 358 0.0 1.0
-368 'SA.Kevin' 'quebec2.sm' 359 0.0 1.0
-369 'SA.Kevin' 'quebec2.sm' 360 0.0 1.0
-370 'SA.Kevin' 'quebec2.sm' 361 0.0 1.0
-371 'SA.Kevin' 'quebec2.sm' 364 0.0 1.0
-372 'SA.Kevin' 'quebec2.sm' 365 0.0 1.0
-373 'SA.Kevin' 'quebec2.sm' 366 0.0 1.0
-374 'SA.Kevin' 'quebec2.sm' 367 0.0 1.0
-375 'SA.Kevin' 'quebec2.sm' 368 0.0 1.0
-376 'SA.Kevin' 'quebec2.sm' 371 0.0 1.0
-377 'SA.Kevin' 'quebec2.sm' 372 0.0 1.0
-378 'SA.Kevin' 'quebec2.sm' 373 0.0 1.0
-379 'SA.Kevin' 'quebec2.sm' 374 0.0 1.0
-380 'SA.Kevin' 'quebec2.sm' 375 0.0 1.0
-381 'SA.Kevin' 'quebec2.sm' 378 0.0 1.0
-382 'SA.Kevin' 'quebec2.sm' 379 0.0 1.0
-383 'SA.Kevin' 'quebec2.sm' 380 0.0 1.0
-384 'SA.Kevin' 'quebec2.sm' 381 0.0 1.0
-385 'SA.Kevin' 'quebec2.sm' 382 0.0 1.0
-386 'SA.Kevin' 'quebec2.sm' 385 0.0 1.0
-387 'SA.Kevin' 'quebec2.sm' 386 0.0 1.0
-388 'SA.Kevin' 'quebec2.sm' 387 0.0 1.0
-389 'SA.Kevin' 'quebec2.sm' 388 0.0 1.0
-390 'SA.Kevin' 'quebec2.sm' 389 0.0 1.0
-391 'SA.Kevin' 'quebec2.sm' 392 0.0 1.0
-392 'SA.Kevin' 'quebec2.sm' 393 0.0 1.0
-393 'SA.Kevin' 'quebec2.sm' 394 0.0 1.0
-394 'SA.Kevin' 'quebec2.sm' 395 0.0 1.0
-395 'SA.Kevin' 'quebec2.sm' 396 0.0 1.0
-396 'SA.Kevin' 'quebec2.sm' 399 0.0 1.0
-397 'SA.Kevin' 'quebec2.sm' 400 0.0 1.0
-398 'SA.Kevin' 'quebec2.sm' 401 0.0 1.0
-399 'SA.Kevin' 'quebec2.sm' 402 0.0 1.0
-400 'SA.Kevin' 'quebec2.sm' 403 0.0 1.0
-401 'SA.Kevin' 'quebec2.sm' 406 0.0 1.0
-402 'SA.Kevin' 'quebec2.sm' 407 0.0 1.0
-403 'SA.Kevin' 'quebec2.sm' 408 0.0 1.0
-404 'SA.Kevin' 'quebec2.sm' 409 0.0 1.0
-405 'SA.Kevin' 'quebec2.sm' 410 0.0 1.0
-406 'SA.Kevin' 'quebec2.sm' 413 0.0 1.0
-407 'SA.Kevin' 'quebec2.sm' 414 0.0 1.0
-408 'SA.Kevin' 'quebec2.sm' 415 0.0 1.0
-409 'SA.Kevin' 'quebec2.sm' 416 0.0 1.0
-410 'SA.Kevin' 'quebec2.sm' 417 0.0 1.0
-411 'SA.Kevin' 'quebec2.sm' 420 0.0 1.0
-412 'SA.Kevin' 'quebec2.sm' 421 0.0 1.0
-413 'SA.Kevin' 'quebec2.sm' 422 0.0 1.0
-414 'SA.Kevin' 'quebec2.sm' 423 0.0 1.0
-415 'SA.Kevin' 'quebec2.sm' 424 0.0 1.0
-416 'SA.Kevin' 'quebec2.sm' 427 0.0 1.0
-417 'SA.Kevin' 'quebec2.sm' 428 0.0 1.0
-418 'SA.Kevin' 'quebec2.sm' 429 0.0 1.0
-419 'SA.Kevin' 'quebec2.sm' 430 0.0 1.0
-420 'SA.Kevin' 'quebec2.sm' 431 0.0 1.0
-421 'SA.Kevin' 'quebec2.sm' 434 0.0 1.0
-422 'SA.Kevin' 'quebec2.sm' 435 0.0 1.0
-423 'SA.Kevin' 'quebec2.sm' 436 0.0 1.0
-424 'SA.Kevin' 'quebec2.sm' 437 0.0 1.0
-425 'SA.Kevin' 'quebec2.sm' 438 0.0 1.0
-426 'SA.Kevin' 'quebec2.sm' 441 0.0 1.0
-427 'SA.Kevin' 'quebec2.sm' 442 0.0 1.0
-428 'SA.Kevin' 'quebec2.sm' 443 0.0 1.0
-429 'SA.Kevin' 'quebec2.sm' 444 0.0 1.0
-430 'SA.Kevin' 'quebec2.sm' 445 0.0 1.0
-431 'SA.Kevin' 'quebec2.sm' 448 0.0 1.0
-432 'SA.Kevin' 'quebec2.sm' 449 0.0 1.0
-433 'SA.Kevin' 'quebec2.sm' 450 0.0 1.0
-434 'SA.Kevin' 'quebec2.sm' 451 0.0 1.0
-435 'SA.Kevin' 'quebec2.sm' 452 0.0 1.0
-436 'SA.Kevin' 'quebec2.sm' 455 0.0 1.0
-437 'SA.Kevin' 'quebec2.sm' 456 0.0 1.0
-438 'SA.Kevin' 'quebec2.sm' 457 0.0 1.0
-439 'SA.Kevin' 'quebec2.sm' 458 0.0 1.0
-440 'SA.Kevin' 'quebec2.sm' 459 0.0 1.0
-441 'SA.Kevin' 'quebec2.sm' 462 0.0 1.0
-442 'SA.Kevin' 'quebec2.sm' 463 0.0 1.0
-443 'SA.Kevin' 'quebec2.sm' 464 0.0 1.0
-444 'SA.Kevin' 'quebec2.sm' 465 0.0 1.0
-445 'SA.Kevin' 'quebec2.sm' 466 0.0 1.0
-446 'SA.Kevin' 'quebec2.sm' 469 0.0 1.0
-447 'SA.Kevin' 'quebec2.sm' 470 0.0 1.0
-448 'SA.Kevin' 'quebec2.sm' 471 0.0 1.0
-449 'SA.Kevin' 'quebec2.sm' 472 0.0 1.0
-450 'SA.Kevin' 'quebec2.sm' 473 0.0 1.0
-451 'SA.Kevin' 'quebec2.sm' 476 0.0 1.0
-452 'SA.Kevin' 'quebec2.sm' 477 0.0 1.0
-453 'SA.Kevin' 'quebec2.sm' 478 0.0 1.0
-454 'SA.Kevin' 'quebec2.sm' 479 0.0 1.0
-455 'SA.Kevin' 'quebec2.sm' 480 0.0 1.0
-456 'SA.Kevin' 'quebec2.sm' 483 0.0 1.0
-457 'SA.Kevin' 'quebec2.sm' 484 0.0 1.0
-458 'SA.Kevin' 'quebec2.sm' 485 0.0 1.0
-459 'SA.Kevin' 'quebec2.sm' 486 0.0 1.0
-460 'SA.Kevin' 'quebec2.sm' 487 0.0 1.0
-461 'SA.Kevin' 'quebec2.sm' 490 0.0 1.0
-462 'SA.Kevin' 'quebec2.sm' 491 0.0 1.0
-463 'SA.Kevin' 'quebec2.sm' 492 0.0 1.0
-464 'SA.Kevin' 'quebec2.sm' 493 0.0 1.0
-465 'SA.Kevin' 'quebec2.sm' 494 0.0 1.0
-466 'SA.Kevin' 'quebec2.sm' 497 0.0 1.0
-467 'SA.Kevin' 'quebec2.sm' 498 0.0 1.0
-468 'SA.Kevin' 'quebec2.sm' 499 0.0 1.0
-469 'SA.Kevin' 'quebec2.sm' 500 0.0 1.0
-470 'SA.Kevin' 'quebec2.sm' 501 0.0 1.0
-471 'SA.Kevin' 'quebec2.sm' 504 0.0 1.0
-472 'SA.Kevin' 'quebec2.sm' 505 0.0 1.0
-473 'SA.Kevin' 'quebec2.sm' 506 0.0 1.0
-474 'SA.Kevin' 'quebec2.sm' 507 0.0 1.0
-475 'SA.Kevin' 'quebec2.sm' 508 0.0 1.0
-476 'SA.Kevin' 'quebec2.sm' 511 0.0 1.0
-477 'SA.Kevin' 'quebec2.sm' 512 0.0 1.0
-478 'SA.Kevin' 'quebec2.sm' 513 0.0 1.0
-479 'SA.Kevin' 'quebec2.sm' 514 0.0 1.0
-480 'SA.Kevin' 'quebec2.sm' 515 0.0 1.0
-481 'SA.Kevin' 'quebec2.sm' 518 0.0 1.0
-482 'SA.Kevin' 'quebec2.sm' 519 0.0 1.0
-483 'SA.Kevin' 'quebec2.sm' 520 0.0 1.0
-484 'SA.Kevin' 'quebec2.sm' 521 0.0 1.0
-485 'SA.Kevin' 'quebec2.sm' 522 0.0 1.0
-486 'SA.Kevin' 'quebec2.sm' 525 0.0 1.0
-487 'SA.Kevin' 'quebec2.sm' 526 0.0 1.0
-488 'SA.Kevin' 'quebec2.sm' 527 0.0 1.0
-489 'SA.Kevin' 'quebec2.sm' 528 0.0 1.0
-490 'SA.Kevin' 'quebec2.sm' 529 0.0 1.0
-491 'SA.Kevin' 'quebec2.sm' 532 0.0 1.0
-492 'SA.Kevin' 'quebec2.sm' 533 0.0 1.0
-493 'SA.Kevin' 'quebec2.sm' 534 0.0 1.0
-494 'SA.Kevin' 'quebec2.sm' 535 0.0 1.0
-495 'SA.Kevin' 'quebec2.sm' 536 0.0 1.0
-496 'SA.Kevin' 'quebec2.sm' 539 0.0 1.0
-497 'SA.Kevin' 'quebec2.sm' 540 0.0 1.0
-498 'SA.Kevin' 'quebec2.sm' 541 0.0 1.0
-499 'SA.Kevin' 'quebec2.sm' 542 0.0 1.0
-500 'SA.Kevin' 'quebec2.sm' 543 0.0 1.0
-501 'SA.Kevin' 'quebec2.sm' 546 0.0 1.0
-502 'SA.Kevin' 'quebec2.sm' 547 0.0 1.0
-503 'SA.Kevin' 'quebec2.sm' 548 0.0 1.0
-504 'SA.Kevin' 'quebec2.sm' 549 0.0 1.0
-505 'SA.Kevin' 'quebec2.sm' 550 0.0 1.0
-506 'SA.Kevin' 'quebec2.sm' 553 0.0 1.0
-507 'SA.Kevin' 'quebec2.sm' 554 0.0 1.0
-508 'SA.Kevin' 'quebec2.sm' 555 0.0 1.0
-509 'SA.Kevin' 'quebec2.sm' 556 0.0 1.0
-510 'SA.Kevin' 'quebec2.sm' 557 0.0 1.0
-511 'SA.Kevin' 'quebec2.sm' 560 0.0 1.0
-512 'SA.Kevin' 'quebec2.sm' 561 0.0 1.0
-513 'SA.Kevin' 'quebec2.sm' 562 0.0 1.0
-514 'SA.Kevin' 'quebec2.sm' 563 0.0 1.0
-515 'SA.Kevin' 'quebec2.sm' 564 0.0 1.0
-516 'SA.Kevin' 'quebec2.sm' 567 0.0 1.0
-517 'SA.Kevin' 'quebec2.sm' 568 0.0 1.0
-518 'SA.Kevin' 'quebec2.sm' 569 0.0 1.0
-519 'SA.Kevin' 'quebec2.sm' 570 0.0 1.0
-520 'SA.Kevin' 'quebec2.sm' 571 0.0 1.0
-521 'SA.Kevin' 'quebec2.sm' 574 0.0 1.0
-522 'SA.Kevin' 'quebec2.sm' 575 0.0 1.0
-523 'SA.Kevin' 'quebec2.sm' 576 0.0 1.0
-524 'SA.Kevin' 'quebec2.sm' 577 0.0 1.0
-525 'SA.Kevin' 'quebec2.sm' 578 0.0 1.0
-526 'SA.Kevin' 'quebec2.sm' 581 0.0 1.0
-527 'SA.Kevin' 'quebec2.sm' 582 0.0 1.0
-528 'SA.Kevin' 'quebec2.sm' 583 0.0 1.0
-529 'SA.Kevin' 'quebec2.sm' 584 0.0 1.0
-530 'SA.Kevin' 'quebec2.sm' 585 0.0 1.0
-531 'SA.Kevin' 'quebec2.sm' 588 0.0 1.0
-532 'SA.Kevin' 'quebec2.sm' 589 0.0 1.0
-533 'SA.Kevin' 'quebec2.sm' 590 0.0 1.0
-534 'SA.Kevin' 'quebec2.sm' 591 0.0 1.0
-535 'SA.Kevin' 'quebec2.sm' 592 0.0 1.0
-536 'SA.Kevin' 'quebec2.sm' 595 0.0 1.0
-537 'SA.Kevin' 'quebec2.sm' 596 0.0 1.0
-538 'SA.Kevin' 'quebec2.sm' 597 0.0 1.0
-539 'SA.Kevin' 'quebec2.sm' 598 0.0 1.0
-540 'SA.Kevin' 'quebec2.sm' 599 0.0 1.0
-541 'SA.Kevin' 'quebec2.sm' 602 0.0 1.0
-542 'SA.Kevin' 'quebec2.sm' 603 0.0 1.0
-543 'SA.Kevin' 'quebec2.sm' 604 0.0 1.0
-544 'SA.Kevin' 'quebec2.sm' 605 0.0 1.0
-545 'SA.Kevin' 'quebec2.sm' 606 0.0 1.0
-546 'SA.Kevin' 'quebec2.sm' 609 0.0 1.0
-547 'SA.Kevin' 'quebec2.sm' 610 0.0 1.0
-548 'SA.Kevin' 'quebec2.sm' 611 0.0 1.0
-549 'SA.Kevin' 'quebec2.sm' 612 0.0 1.0
-550 'SA.Kevin' 'quebec2.sm' 613 0.0 1.0
-551 'SA.Kevin' 'quebec2.sm' 616 0.0 1.0
-552 'SA.Kevin' 'quebec2.sm' 617 0.0 1.0
-553 'SA.Kevin' 'quebec2.sm' 618 0.0 1.0
-554 'SA.Kevin' 'quebec2.sm' 619 0.0 1.0
-555 'SA.Kevin' 'quebec2.sm' 620 0.0 1.0
-556 'SA.Kevin' 'quebec2.sm' 623 0.0 1.0
-557 'SA.Kevin' 'quebec2.sm' 624 0.0 1.0
-558 'SA.Kevin' 'quebec2.sm' 625 0.0 1.0
-559 'SA.Kevin' 'quebec2.sm' 626 0.0 1.0
-560 'SA.Kevin' 'quebec2.sm' 627 0.0 1.0
-561 'SA.Kevin' 'quebec2.sm' 630 0.0 1.0
-562 'SA.Kevin' 'quebec2.sm' 631 0.0 1.0
-563 'SA.Kevin' 'quebec2.sm' 632 0.0 1.0
-564 'SA.Kevin' 'quebec2.sm' 633 0.0 1.0
-565 'SA.Kevin' 'quebec2.sm' 634 0.0 1.0
-566 'SA.Kevin' 'quebec2.sm' 637 0.0 1.0
-567 'SA.Kevin' 'quebec2.sm' 638 0.0 1.0
-568 'SA.Kevin' 'quebec2.sm' 639 0.0 1.0
-569 'SA.Kevin' 'quebec2.sm' 640 0.0 1.0
-570 'SA.Kevin' 'quebec2.sm' 641 0.0 1.0
-571 'SA.Kevin' 'quebec2.sm' 644 0.0 1.0
-572 'SA.Kevin' 'quebec2.sm' 645 0.0 1.0
-573 'SA.Kevin' 'quebec2.sm' 646 0.0 1.0
-574 'SA.Kevin' 'quebec2.sm' 647 0.0 1.0
-575 'SA.Kevin' 'quebec2.sm' 648 0.0 1.0
-576 'SA.Kevin' 'quebec2.sm' 651 0.0 1.0
-577 'SA.Kevin' 'quebec2.sm' 652 0.0 1.0
-578 'SA.Kevin' 'quebec2.sm' 653 0.0 1.0
-579 'SA.Kevin' 'quebec2.sm' 654 0.0 1.0
-580 'SA.Kevin' 'quebec2.sm' 655 0.0 1.0
-581 'SA.Kevin' 'quebec2.sm' 658 0.0 1.0
-582 'SA.Kevin' 'quebec2.sm' 659 0.0 1.0
-583 'SA.Kevin' 'quebec2.sm' 660 0.0 1.0
-584 'SA.Kevin' 'quebec2.sm' 661 0.0 1.0
-585 'SA.Kevin' 'quebec2.sm' 662 0.0 1.0
-586 'SA.Kevin' 'quebec2.sm' 665 0.0 1.0
-587 'SA.Kevin' 'quebec2.sm' 666 0.0 1.0
-588 'SA.Kevin' 'quebec2.sm' 667 0.0 1.0
-589 'SA.Kevin' 'quebec2.sm' 668 0.0 1.0
-590 'SA.Kevin' 'quebec2.sm' 669 0.0 1.0
-591 'SA.Kevin' 'quebec2.sm' 672 0.0 1.0
-592 'SA.Kevin' 'quebec2.sm' 673 0.0 1.0
-593 'SA.Kevin' 'quebec2.sm' 674 0.0 1.0
-594 'SA.Kevin' 'quebec2.sm' 675 0.0 1.0
-595 'SA.Kevin' 'quebec2.sm' 676 0.0 1.0
-596 'SA.Kevin' 'quebec2.sm' 679 0.0 1.0
-597 'SA.Kevin' 'quebec2.sf' 680 2.0 3.0
-598 'SA.Kevin' 'quebec2.sf' 681 2.0 3.0
-599 'SA.Kevin' 'quebec2.sf' 682 2.0 3.0
-600 'SA.Kevin' 'quebec2.sf' 683 2.0 3.0
-601 'SA.Kevin' 'quebec2.sf' 686 2.0 3.0
-602 'SA.Kevin' 'quebec2.sf' 687 2.0 3.0
-603 'SA.Kevin' 'quebec2.sf' 688 2.0 3.0
-604 'SA.Kevin' 'quebec2.sf' 689 2.0 3.0
-605 'SA.Kevin' 'quebec2.sf' 690 2.0 3.0
-606 'SA.Kevin' 'quebec2.sf' 693 2.0 3.0
-607 'SA.Kevin' 'quebec2.sf' 694 2.0 3.0
-608 'SA.Kevin' 'quebec2.sf' 695 2.0 3.0
-609 'SA.Kevin' 'quebec2.sf' 696 2.0 3.0
-610 'SA.Kevin' 'quebec2.sf' 697 2.0 3.0
-611 'SA.Kevin' 'quebec2.sf' 700 2.0 3.0
-612 'SA.Kevin' 'quebec2.sf' 701 2.0 3.0
-613 'SA.Kevin' 'quebec2.sf' 702 2.0 3.0
-614 'SA.Kevin' 'quebec2.sf' 703 2.0 3.0
-615 'SA.Kevin' 'quebec2.sf' 704 2.0 3.0
-616 'SA.Kevin' 'quebec2.sf' 707 2.0 3.0
-617 'SA.Kevin' 'quebec2.sf' 708 2.0 3.0
-618 'SA.Kevin' 'quebec2.sf' 709 2.0 3.0
-619 'SA.Kevin' 'quebec2.sf' 710 2.0 3.0
-620 'SA.Kevin' 'quebec2.sf' 711 2.0 3.0
-621 'SA.Kevin' 'quebec2.sf' 714 2.0 3.0
-622 'SA.Kevin' 'quebec2.sf' 715 2.0 3.0
-623 'SA.Kevin' 'quebec2.sf' 716 2.0 3.0
-624 'SA.Kevin' 'quebec2.sf' 717 2.0 3.0
-625 'SA.Kevin' 'quebec2.sf' 718 2.0 3.0
-626 'SA.Kevin' 'quebec2.sf' 721 2.0 3.0
-627 'SA.Kevin' 'quebec2.sf' 722 2.0 3.0
-628 'SA.Kevin' 'quebec2.sf' 723 2.0 3.0
-629 'SA.Kevin' 'quebec2.sf' 724 2.0 3.0
-630 'SA.Kevin' 'quebec2.sf' 725 2.0 3.0
-631 'SA.Kevin' 'quebec2.sf' 728 2.0 3.0
-632 'SA.Kevin' 'quebec2.sf' 729 2.0 3.0
-633 'SA.Kevin' 'quebec2.sf' 730 2.0 3.0
-634 'SA.Kevin' 'quebec2.sf' 731 2.0 3.0
-635 'SA.Kevin' 'quebec2.sf' 732 2.0 3.0
-636 'SA.Kevin' 'quebec2.sf' 735 2.0 3.0
-637 'SA.Kevin' 'uniform2.se' 123 21.0 22.0
-638 'SA.Kevin' 'uniform2.se' 126 21.0 22.0
-639 'SA.Kevin' 'uniform2.se' 127 21.0 22.0
-640 'SA.Kevin' 'uniform2.se' 128 21.0 22.0
-641 'SA.Kevin' 'uniform2.se' 129 21.0 22.0
-642 'SA.Kevin' 'uniform2.se' 130 21.0 22.0
-643 'SA.Kevin' 'uniform2.se' 133 21.0 22.0
-644 'SA.Kevin' 'uniform2.se' 134 21.0 22.0
-645 'SA.Kevin' 'uniform2.se' 135 21.0 22.0
-646 'SA.Kevin' 'uniform2.se' 136 21.0 22.0
-647 'SA.Kevin' 'uniform2.se' 137 21.0 22.0
-648 'SA.Kevin' 'uniform2.sm' 140 1.0 2.0
-649 'SA.Kevin' 'uniform2.sm' 141 1.0 2.0
-650 'SA.Kevin' 'uniform2.sm' 142 1.0 2.0
-651 'SA.Kevin' 'uniform2.sm' 143 1.0 2.0
-652 'SA.Kevin' 'uniform2.sm' 144 1.0 2.0
-653 'SA.Kevin' 'uniform2.sm' 147 1.0 2.0
-654 'SA.Kevin' 'uniform2.sm' 148 1.0 2.0
-655 'SA.Kevin' 'uniform2.sm' 149 1.0 2.0
-656 'SA.Kevin' 'uniform2.sm' 150 1.0 2.0
-657 'SA.Kevin' 'uniform2.sm' 151 1.0 2.0
-658 'SA.Kevin' 'uniform2.sm' 154 1.0 2.0
-659 'SA.Kevin' 'uniform2.sm' 155 1.0 2.0
-660 'SA.Kevin' 'uniform2.sm' 156 1.0 2.0
-661 'SA.Kevin' 'uniform2.sm' 157 1.0 2.0
-662 'SA.Kevin' 'uniform2.sm' 158 1.0 2.0
-663 'SA.Kevin' 'uniform2.sm' 161 1.0 2.0
-664 'SA.Kevin' 'uniform2.sm' 162 1.0 2.0
-665 'SA.Kevin' 'uniform2.sm' 163 1.0 2.0
-666 'SA.Kevin' 'uniform2.sm' 164 1.0 2.0
-667 'SA.Kevin' 'uniform2.sm' 165 1.0 2.0
-668 'SA.Kevin' 'uniform2.sm' 168 1.0 2.0
-669 'SA.Kevin' 'uniform2.sm' 169 1.0 2.0
-670 'SA.Kevin' 'uniform2.sm' 170 1.0 2.0
-671 'SA.Kevin' 'uniform2.sm' 171 1.0 2.0
-672 'SA.Kevin' 'uniform2.sm' 172 1.0 2.0
-673 'SA.Kevin' 'uniform2.sm' 175 1.0 2.0
-674 'SA.Kevin' 'uniform2.sm' 176 1.0 2.0
-675 'SA.Kevin' 'uniform2.sm' 177 1.0 2.0
-676 'SA.Kevin' 'uniform2.sm' 178 1.0 2.0
-677 'SA.Kevin' 'uniform2.sm' 179 1.0 2.0
-678 'SA.Kevin' 'uniform2.sm' 182 1.0 2.0
-679 'SA.Kevin' 'uniform2.sm' 183 1.0 2.0
-680 'SA.Kevin' 'uniform2.sm' 184 1.0 2.0
-681 'SA.Kevin' 'uniform2.sm' 185 1.0 2.0
-682 'SA.Kevin' 'uniform2.sm' 186 1.0 2.0
-683 'SA.Kevin' 'uniform2.sm' 189 1.0 2.0
-684 'SA.Kevin' 'uniform2.sm' 190 1.0 2.0
-685 'SA.Kevin' 'uniform2.sm' 191 1.0 2.0
-686 'SA.Kevin' 'uniform2.sm' 192 1.0 2.0
-687 'SA.Kevin' 'uniform2.sm' 193 1.0 2.0
-688 'SA.Kevin' 'uniform2.sm' 196 1.0 2.0
-689 'SA.Kevin' 'uniform2.sm' 197 1.0 2.0
-690 'SA.Kevin' 'uniform2.sm' 198 1.0 2.0
-691 'SA.Kevin' 'uniform2.sm' 199 1.0 2.0
-692 'SA.Kevin' 'uniform2.sm' 200 1.0 2.0
-693 'SA.Kevin' 'uniform2.sm' 203 1.0 2.0
-694 'SA.Kevin' 'uniform2.sm' 204 1.0 2.0
-695 'SA.Kevin' 'uniform2.sm' 205 1.0 2.0
-696 'SA.Kevin' 'uniform2.sm' 206 1.0 2.0
-697 'SA.Kevin' 'uniform2.sm' 207 1.0 2.0
-698 'SA.Kevin' 'uniform2.sm' 210 1.0 2.0
-699 'SA.Kevin' 'uniform2.sm' 211 1.0 2.0
-700 'SA.Kevin' 'uniform2.sm' 212 1.0 2.0
-701 'SA.Kevin' 'uniform2.sm' 213 1.0 2.0
-702 'SA.Kevin' 'uniform2.sm' 214 1.0 2.0
-703 'SA.Kevin' 'uniform2.sm' 217 1.0 2.0
-704 'SA.Kevin' 'uniform2.sm' 218 1.0 2.0
-705 'SA.Kevin' 'uniform2.sm' 219 1.0 2.0
-706 'SA.Kevin' 'uniform2.sm' 220 1.0 2.0
-707 'SA.Kevin' 'uniform2.sm' 221 1.0 2.0
-708 'SA.Kevin' 'uniform2.sm' 224 1.0 2.0
-709 'SA.Kevin' 'uniform2.sm' 225 1.0 2.0
-710 'SA.Kevin' 'uniform2.sm' 226 1.0 2.0
-711 'SA.Kevin' 'uniform2.sm' 227 1.0 2.0
-712 'SA.Kevin' 'uniform2.sm' 228 1.0 2.0
-713 'SA.Kevin' 'uniform2.sm' 231 1.0 2.0
-714 'SA.Kevin' 'uniform2.sm' 232 1.0 2.0
-715 'SA.Kevin' 'uniform2.sm' 233 1.0 2.0
-716 'SA.Kevin' 'uniform2.sm' 234 1.0 2.0
-717 'SA.Kevin' 'uniform2.sm' 235 1.0 2.0
-718 'SA.Kevin' 'uniform2.sm' 238 1.0 2.0
-719 'SA.Kevin' 'uniform2.sm' 239 1.0 2.0
-720 'SA.Kevin' 'uniform2.sm' 240 1.0 2.0
-721 'SA.Kevin' 'uniform2.sm' 241 1.0 2.0
-722 'SA.Kevin' 'uniform2.sm' 242 1.0 2.0
-723 'SA.Kevin' 'uniform2.sm' 245 1.0 2.0
-724 'SA.Kevin' 'uniform2.sm' 246 1.0 2.0
-725 'SA.Kevin' 'uniform2.sm' 247 1.0 2.0
-726 'SA.Kevin' 'uniform2.sm' 248 1.0 2.0
-727 'SA.Kevin' 'uniform2.sm' 249 1.0 2.0
-728 'SA.Kevin' 'uniform2.sm' 252 1.0 2.0
-729 'SA.Kevin' 'uniform2.sm' 253 1.0 2.0
-730 'SA.Kevin' 'uniform2.sm' 254 1.0 2.0
-731 'SA.Kevin' 'uniform2.sm' 255 1.0 2.0
-732 'SA.Kevin' 'uniform2.sm' 256 1.0 2.0
-733 'SA.Kevin' 'uniform2.sm' 259 1.0 2.0
-734 'SA.Kevin' 'uniform2.sm' 260 1.0 2.0
-735 'SA.Kevin' 'uniform2.sm' 261 1.0 2.0
-736 'SA.Kevin' 'uniform2.sm' 262 1.0 2.0
-737 'SA.Kevin' 'uniform2.sm' 263 1.0 2.0
-738 'SA.Kevin' 'uniform2.sm' 266 1.0 2.0
-739 'SA.Kevin' 'uniform2.sm' 267 1.0 2.0
-740 'SA.Kevin' 'uniform2.sm' 268 1.0 2.0
-741 'SA.Kevin' 'uniform2.sm' 269 1.0 2.0
-742 'SA.Kevin' 'uniform2.sm' 270 1.0 2.0
-743 'SA.Kevin' 'uniform2.sm' 273 1.0 2.0
-744 'SA.Kevin' 'uniform2.sm' 274 1.0 2.0
-745 'SA.Kevin' 'uniform2.sm' 275 1.0 2.0
-746 'SA.Kevin' 'uniform2.sm' 276 1.0 2.0
-747 'SA.Kevin' 'uniform2.sm' 277 1.0 2.0
-748 'SA.Kevin' 'uniform2.sm' 280 1.0 2.0
-749 'SA.Kevin' 'uniform2.sm' 281 1.0 2.0
-750 'SA.Kevin' 'uniform2.sm' 282 1.0 2.0
-751 'SA.Kevin' 'uniform2.sm' 283 1.0 2.0
-752 'SA.Kevin' 'uniform2.sm' 284 1.0 2.0
-753 'SA.Kevin' 'uniform2.sm' 287 1.0 2.0
-754 'SA.Kevin' 'uniform2.sm' 288 1.0 2.0
-755 'SA.Kevin' 'uniform2.sm' 289 1.0 2.0
-756 'SA.Kevin' 'uniform2.sm' 290 1.0 2.0
-757 'SA.Kevin' 'uniform2.sm' 291 1.0 2.0
-758 'SA.Kevin' 'uniform2.sm' 294 1.0 2.0
-759 'SA.Kevin' 'uniform2.sm' 295 1.0 2.0
-760 'SA.Kevin' 'uniform2.sm' 296 1.0 2.0
-761 'SA.Kevin' 'uniform2.sm' 297 1.0 2.0
-762 'SA.Kevin' 'uniform2.sm' 298 1.0 2.0
-763 'SA.Kevin' 'uniform2.sm' 301 1.0 2.0
-764 'SA.Kevin' 'uniform2.sm' 302 1.0 2.0
-765 'SA.Kevin' 'uniform2.sm' 303 1.0 2.0
-766 'SA.Kevin' 'uniform2.sm' 304 1.0 2.0
-767 'SA.Kevin' 'uniform2.sm' 305 1.0 2.0
-768 'SA.Kevin' 'uniform2.sm' 308 1.0 2.0
-769 'SA.Kevin' 'uniform2.sm' 309 1.0 2.0
-770 'SA.Kevin' 'uniform2.sm' 310 1.0 2.0
-771 'SA.Kevin' 'uniform2.sm' 311 1.0 2.0
-772 'SA.Kevin' 'uniform2.sm' 312 1.0 2.0
-773 'SA.Kevin' 'uniform2.sm' 315 1.0 2.0
-774 'SA.Kevin' 'uniform2.sm' 316 1.0 2.0
-775 'SA.Kevin' 'uniform2.sm' 317 1.0 2.0
-776 'SA.Kevin' 'uniform2.sm' 318 1.0 2.0
-777 'SA.Kevin' 'uniform2.sm' 319 1.0 2.0
-778 'SA.Kevin' 'uniform2.sm' 322 1.0 2.0
-779 'SA.Kevin' 'uniform2.sm' 323 1.0 2.0
-780 'SA.Kevin' 'uniform2.sm' 324 1.0 2.0
-781 'SA.Kevin' 'uniform2.sm' 325 1.0 2.0
-782 'SA.Kevin' 'uniform2.sm' 326 1.0 2.0
-783 'SA.Kevin' 'uniform2.sm' 329 1.0 2.0
-784 'SA.Kevin' 'uniform2.sm' 330 1.0 2.0
-785 'SA.Kevin' 'uniform2.sm' 331 1.0 2.0
-786 'SA.Kevin' 'uniform2.sm' 332 1.0 2.0
-787 'SA.Kevin' 'uniform2.sm' 333 1.0 2.0
-788 'SA.Kevin' 'uniform2.sm' 336 1.0 2.0
-789 'SA.Kevin' 'uniform2.sm' 337 1.0 2.0
-790 'SA.Kevin' 'uniform2.sm' 338 1.0 2.0
-791 'SA.Kevin' 'uniform2.sm' 339 1.0 2.0
-792 'SA.Kevin' 'uniform2.sm' 340 1.0 2.0
-793 'SA.Kevin' 'uniform2.sm' 343 1.0 2.0
-794 'SA.Kevin' 'uniform2.sm' 344 1.0 2.0
-795 'SA.Kevin' 'uniform2.sm' 345 1.0 2.0
-796 'SA.Kevin' 'uniform2.sm' 346 1.0 2.0
-797 'SA.Kevin' 'uniform2.sm' 347 1.0 2.0
-798 'SA.Kevin' 'uniform2.sm' 350 1.0 2.0
-799 'SA.Kevin' 'uniform2.sm' 351 1.0 2.0
-800 'SA.Kevin' 'uniform2.sm' 352 1.0 2.0
-801 'SA.Kevin' 'uniform2.sm' 353 1.0 2.0
-802 'SA.Kevin' 'uniform2.sm' 354 1.0 2.0
-803 'SA.Kevin' 'uniform2.sm' 357 1.0 2.0
-804 'SA.Kevin' 'uniform2.sm' 358 1.0 2.0
-805 'SA.Kevin' 'uniform2.sm' 359 1.0 2.0
-806 'SA.Kevin' 'uniform2.sm' 360 1.0 2.0
-807 'SA.Kevin' 'uniform2.sm' 361 1.0 2.0
-808 'SA.Kevin' 'uniform2.sm' 364 1.0 2.0
-809 'SA.Kevin' 'uniform2.sm' 365 1.0 2.0
-810 'SA.Kevin' 'uniform2.sm' 366 1.0 2.0
-811 'SA.Kevin' 'uniform2.sm' 367 1.0 2.0
-812 'SA.Kevin' 'uniform2.sm' 368 1.0 2.0
-813 'SA.Kevin' 'uniform2.sm' 371 1.0 2.0
-814 'SA.Kevin' 'uniform2.sm' 372 1.0 2.0
-815 'SA.Kevin' 'uniform2.sm' 373 1.0 2.0
-816 'SA.Kevin' 'uniform2.sm' 374 1.0 2.0
-817 'SA.Kevin' 'uniform2.sm' 375 1.0 2.0
-818 'SA.Kevin' 'uniform2.sm' 378 1.0 2.0
-819 'SA.Kevin' 'uniform2.sm' 379 1.0 2.0
-820 'SA.Kevin' 'uniform2.sm' 380 1.0 2.0
-821 'SA.Kevin' 'uniform2.sm' 381 1.0 2.0
-822 'SA.Kevin' 'uniform2.sm' 382 1.0 2.0
-823 'SA.Kevin' 'uniform2.sm' 385 1.0 2.0
-824 'SA.Kevin' 'uniform2.sm' 386 1.0 2.0
-825 'SA.Kevin' 'uniform2.sm' 387 1.0 2.0
-826 'SA.Kevin' 'uniform2.sm' 388 1.0 2.0
-827 'SA.Kevin' 'uniform2.sm' 389 1.0 2.0
-828 'SA.Kevin' 'uniform2.sm' 392 1.0 2.0
-829 'SA.Kevin' 'uniform2.sm' 393 1.0 2.0
-830 'SA.Kevin' 'uniform2.sm' 394 1.0 2.0
-831 'SA.Kevin' 'uniform2.sm' 395 1.0 2.0
-832 'SA.Kevin' 'uniform2.sm' 396 1.0 2.0
-833 'SA.Kevin' 'uniform2.sm' 399 1.0 2.0
-834 'SA.Kevin' 'uniform2.sm' 400 1.0 2.0
-835 'SA.Kevin' 'uniform2.sm' 401 1.0 2.0
-836 'SA.Kevin' 'uniform2.sm' 402 1.0 2.0
-837 'SA.Kevin' 'uniform2.sm' 403 1.0 2.0
-838 'SA.Kevin' 'uniform2.sm' 406 1.0 2.0
-839 'SA.Kevin' 'uniform2.sm' 407 1.0 2.0
-840 'SA.Kevin' 'uniform2.sm' 408 1.0 2.0
-841 'SA.Kevin' 'uniform2.sf' 409 6.0 7.0
-842 'SA.Kevin' 'uniform2.sf' 410 6.0 7.0
-843 'SA.Kevin' 'uniform2.sf' 413 6.0 7.0
-844 'SA.Kevin' 'uniform2.sf' 414 6.0 7.0
-845 'SA.Kevin' 'uniform2.sf' 415 6.0 7.0
-846 'SA.Kevin' 'uniform2.sf' 416 6.0 7.0
-847 'SA.Kevin' 'uniform2.sf' 417 6.0 7.0
-848 'SA.Kevin' 'uniform2.sf' 420 6.0 7.0
-849 'SA.Kevin' 'uniform2.sf' 421 6.0 7.0
-850 'SA.Kevin' 'uniform2.sf' 422 6.0 7.0
-851 'SA.Kevin' 'uniform2.sf' 423 6.0 7.0
-852 'SA.Kevin' 'uniform2.sf' 424 6.0 7.0
-853 'SA.Kevin' 'uniform2.sf' 427 6.0 7.0
-854 'SA.Kevin' 'xray2.se' 197 4.0 5.0
-855 'SA.Kevin' 'xray2.se' 198 4.0 5.0
-856 'SA.Kevin' 'xray2.se' 199 4.0 5.0
-857 'SA.Kevin' 'xray2.se' 200 4.0 5.0
-858 'SA.Kevin' 'xray2.se' 203 4.0 5.0
-859 'SA.Kevin' 'xray2.se' 204 4.0 5.0
-860 'SA.Kevin' 'xray2.se' 205 4.0 5.0
-861 'SA.Kevin' 'xray2.se' 206 4.0 5.0
-862 'SA.Kevin' 'xray2.se' 207 4.0 5.0
-863 'SA.Kevin' 'xray2.se' 210 4.0 5.0
-864 'SA.Kevin' 'xray2.se' 211 4.0 5.0
-865 'SA.Kevin' 'xray2.se' 212 4.0 5.0
-866 'SA.Kevin' 'xray2.se' 213 4.0 5.0
-867 'SA.Kevin' 'xray2.se' 214 4.0 5.0
-868 'SA.Kevin' 'xray2.se' 217 4.0 5.0
-869 'SA.Kevin' 'xray2.se' 218 4.0 5.0
-870 'SA.Kevin' 'xray2.se' 219 4.0 5.0
-871 'SA.Kevin' 'xray2.se' 220 4.0 5.0
-872 'SA.Kevin' 'xray2.se' 221 4.0 5.0
-873 'SA.Kevin' 'xray2.sm' 224 1.0 2.0
-874 'SA.Kevin' 'xray2.sm' 225 1.0 2.0
-875 'SA.Kevin' 'xray2.sm' 226 1.0 2.0
-876 'SA.Kevin' 'xray2.sm' 227 1.0 2.0
-877 'SA.Kevin' 'xray2.sm' 228 1.0 2.0
-878 'SA.Kevin' 'xray2.sm' 231 1.0 2.0
-879 'SA.Kevin' 'xray2.sm' 232 1.0 2.0
-880 'SA.Kevin' 'xray2.sm' 233 1.0 2.0
-881 'SA.Kevin' 'xray2.sm' 234 1.0 2.0
-882 'SA.Kevin' 'xray2.sm' 235 1.0 2.0
-883 'SA.Kevin' 'xray2.sm' 238 1.0 2.0
-884 'SA.Kevin' 'xray2.sm' 239 1.0 2.0
-885 'SA.Kevin' 'xray2.sm' 240 1.0 2.0
-886 'SA.Kevin' 'xray2.sm' 241 1.0 2.0
-887 'SA.Kevin' 'xray2.sm' 242 1.0 2.0
-888 'SA.Kevin' 'xray2.sm' 245 1.0 2.0
-889 'SA.Kevin' 'xray2.sm' 246 1.0 2.0
-890 'SA.Kevin' 'xray2.sm' 247 1.0 2.0
-891 'SA.Kevin' 'xray2.sm' 248 1.0 2.0
-892 'SA.Kevin' 'xray2.sm' 249 1.0 2.0
-893 'SA.Kevin' 'xray2.sm' 252 1.0 2.0
-894 'SA.Kevin' 'xray2.sm' 253 1.0 2.0
-895 'SA.Kevin' 'xray2.sm' 254 1.0 2.0
-896 'SA.Kevin' 'xray2.sm' 255 1.0 2.0
-897 'SA.Kevin' 'xray2.sm' 256 1.0 2.0
-898 'SA.Kevin' 'xray2.sm' 259 1.0 2.0
-899 'SA.Kevin' 'xray2.sm' 260 1.0 2.0
-900 'SA.Kevin' 'xray2.sm' 261 1.0 2.0
-901 'SA.Kevin' 'xray2.sm' 262 1.0 2.0
-902 'SA.Kevin' 'xray2.sm' 263 1.0 2.0
-903 'SA.Kevin' 'xray2.sm' 266 1.0 2.0
-904 'SA.Kevin' 'xray2.sm' 267 1.0 2.0
-905 'SA.Kevin' 'xray2.sm' 268 1.0 2.0
-906 'SA.Kevin' 'xray2.sm' 269 1.0 2.0
-907 'SA.Kevin' 'xray2.sm' 270 1.0 2.0
-908 'SA.Kevin' 'xray2.sm' 273 1.0 2.0
-909 'SA.Kevin' 'xray2.sm' 274 1.0 2.0
-910 'SA.Kevin' 'xray2.sm' 275 1.0 2.0
-911 'SA.Kevin' 'xray2.sm' 276 1.0 2.0
-912 'SA.Kevin' 'xray2.sm' 277 1.0 2.0
-913 'SA.Kevin' 'xray2.sm' 280 1.0 2.0
-914 'SA.Kevin' 'xray2.sm' 281 1.0 2.0
-915 'SA.Kevin' 'xray2.sm' 282 1.0 2.0
-916 'SA.Kevin' 'xray2.sm' 283 1.0 2.0
-917 'SA.Kevin' 'xray2.sm' 284 1.0 2.0
-918 'SA.Kevin' 'xray2.sm' 287 1.0 2.0
-919 'SA.Kevin' 'xray2.sm' 288 1.0 2.0
-920 'SA.Kevin' 'xray2.sm' 289 1.0 2.0
-921 'SA.Kevin' 'xray2.sm' 290 1.0 2.0
-922 'SA.Kevin' 'xray2.sm' 291 1.0 2.0
-923 'SA.Kevin' 'xray2.sm' 294 1.0 2.0
-924 'SA.Kevin' 'xray2.sm' 295 1.0 2.0
-925 'SA.Kevin' 'xray2.sm' 296 1.0 2.0
-926 'SA.Kevin' 'xray2.sm' 297 1.0 2.0
-927 'SA.Kevin' 'xray2.sm' 298 1.0 2.0
-928 'SA.Kevin' 'xray2.sm' 301 1.0 2.0
-929 'SA.Kevin' 'xray2.sm' 302 1.0 2.0
-930 'SA.Kevin' 'xray2.sm' 303 1.0 2.0
-931 'SA.Kevin' 'xray2.sm' 304 1.0 2.0
-932 'SA.Kevin' 'xray2.sm' 305 1.0 2.0
-933 'SA.Kevin' 'xray2.sm' 308 1.0 2.0
-934 'SA.Kevin' 'xray2.sm' 309 1.0 2.0
-935 'SA.Kevin' 'xray2.sm' 310 1.0 2.0
-936 'SA.Kevin' 'xray2.sm' 311 1.0 2.0
-937 'SA.Kevin' 'xray2.sm' 312 1.0 2.0
-938 'SA.Kevin' 'xray2.sm' 315 1.0 2.0
-939 'SA.Kevin' 'xray2.sm' 316 1.0 2.0
-940 'SA.Kevin' 'xray2.sm' 317 1.0 2.0
-941 'SA.Kevin' 'xray2.sm' 318 1.0 2.0
-942 'SA.Kevin' 'xray2.sm' 319 1.0 2.0
-943 'SA.Kevin' 'xray2.sm' 322 1.0 2.0
-944 'SA.Kevin' 'xray2.sm' 323 1.0 2.0
-945 'SA.Kevin' 'xray2.sm' 324 1.0 2.0
-946 'SA.Kevin' 'xray2.sm' 325 1.0 2.0
-947 'SA.Kevin' 'xray2.sm' 326 1.0 2.0
-948 'SA.Kevin' 'xray2.sm' 329 1.0 2.0
-949 'SA.Kevin' 'xray2.sm' 330 1.0 2.0
-950 'SA.Kevin' 'xray2.sm' 331 1.0 2.0
-951 'SA.Kevin' 'xray2.sm' 332 1.0 2.0
-952 'SA.Kevin' 'xray2.sm' 333 1.0 2.0
-953 'SA.Kevin' 'xray2.sm' 336 1.0 2.0
-954 'SA.Kevin' 'xray2.sm' 337 1.0 2.0
-955 'SA.Kevin' 'xray2.sm' 338 1.0 2.0
-956 'SA.Kevin' 'xray2.sm' 339 1.0 2.0
-957 'SA.Kevin' 'xray2.sm' 340 1.0 2.0
-958 'SA.Kevin' 'xray2.sm' 343 1.0 2.0
-959 'SA.Kevin' 'xray2.sm' 344 1.0 2.0
-960 'SA.Kevin' 'xray2.sm' 345 1.0 2.0
-961 'SA.Kevin' 'xray2.sm' 346 1.0 2.0
-962 'SA.Kevin' 'xray2.sm' 347 1.0 2.0
-963 'SA.Kevin' 'xray2.sm' 350 1.0 2.0
-964 'SA.Kevin' 'xray2.sm' 351 1.0 2.0
-965 'SA.Kevin' 'xray2.sm' 352 1.0 2.0
-966 'SA.Kevin' 'xray2.sm' 353 1.0 2.0
-967 'SA.Kevin' 'xray2.sm' 354 1.0 2.0
-968 'SA.Kevin' 'xray2.sm' 357 1.0 2.0
-969 'SA.Kevin' 'xray2.sm' 358 1.0 2.0
-970 'SA.Kevin' 'xray2.sm' 359 1.0 2.0
-971 'SA.Kevin' 'xray2.sm' 360 1.0 2.0
-972 'SA.Kevin' 'xray2.sm' 361 1.0 2.0
-973 'SA.Kevin' 'xray2.sm' 364 1.0 2.0
-974 'SA.Kevin' 'xray2.sm' 365 1.0 2.0
-975 'SA.Kevin' 'xray2.sm' 366 1.0 2.0
-976 'SA.Kevin' 'xray2.sm' 367 1.0 2.0
-977 'SA.Kevin' 'xray2.sm' 368 1.0 2.0
-978 'SA.Kevin' 'xray2.sm' 371 1.0 2.0
-979 'SA.Kevin' 'xray2.sm' 372 1.0 2.0
-980 'SA.Kevin' 'xray2.sm' 373 1.0 2.0
-981 'SA.Kevin' 'xray2.sf' 374 4.0 5.0
-982 'SA.Kevin' 'xray2.sf' 375 4.0 5.0
-983 'SA.Kevin' 'xray2.sf' 378 4.0 5.0
-984 'SA.Kevin' 'xray2.sf' 379 4.0 5.0
-985 'SA.Kevin' 'xray2.sf' 380 4.0 5.0
-986 'SA.Kevin' 'xray2.sf' 381 4.0 5.0
-987 'SA.Kevin' 'xray2.sf' 382 4.0 5.0
-988 'SA.Kevin' 'xray2.sf' 385 4.0 5.0
-989 'SA.Kevin' 'xray2.sf' 386 4.0 5.0
-990 'SA.Kevin' 'xray2.sf' 387 4.0 5.0
-991 'SA.Kevin' 'xray2.sf' 388 4.0 5.0
-992 'SA.Kevin' 'xray2.sf' 389 4.0 5.0
-993 'SA.Kevin' 'xray2.sf' 392 4.0 5.0
-994 'SA.Kevin' 'xray2.sf' 393 4.0 5.0
-995 'SA.Kevin' 'xray2.sf' 394 4.0 5.0
-996 'SA.Kevin' 'xray2.sf' 395 4.0 5.0
-997 'SA.Kevin' 'xray2.sf' 396 4.0 5.0;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
+set TSCOPE['alpha2.se'] :=
+28 29 30 31 32
 ;
 
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
+set TSCOPE['alpha2.sm'] :=
+35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72 73 74 77 78 79
 ;
 
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
+set TSCOPE['alpha2.sf'] :=
+80 81 84 85 86 87 88 91 92
 ;
 
-set LINKS :=
+set TSCOPE['beta2.se'] :=
+7 8 9 10 11 14 15 16
+;
+
+set TSCOPE['beta2.sm'] :=
+17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72 73 74 77 78 79 80 81 84 85 86
+87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133 134 135 136 137 140 141 142 143 144 147 148 149 150 151 154 155 156 157
+158 161 162 163 164 165 168 169 170 171 172 175 176 177 178 179 182 183 184 185 186 189 190 191 192 193 196 197
+;
+
+set TSCOPE['beta2.sf'] :=
+198 199 200 203 204 205 206 207 210 211 212 213 214 217
+;
+
+set TSCOPE['gamma2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22
+;
+
+set TSCOPE['gamma2.sf'] :=
+23 24 25 28 29 30 31 32 35
+;
+
+set TSCOPE['quebec2.se'] :=
+154 155 156 157 158 161 162 163 164 165 168 169 170 171 172 175 176 177 178
+;
+
+set TSCOPE['quebec2.sm'] :=
+179 182 183 184 185 186 189 190 191 192 193 196 197 198 199 200 203 204 205 206 207 210 211 212 213 214 217 218 219 220 221 224 225 226 227 228 231 232 233 234 235 238 239 240 241 242 245 246 247 248
+249 252 253 254 255 256 259 260 261 262 263 266 267 268 269 270 273 274 275 276 277 280 281 282 283 284 287 288 289 290 291 294 295 296 297 298 301 302 303 304 305 308 309 310 311 312 315 316 317 318
+319 322 323 324 325 326 329 330 331 332 333 336 337 338 339 340 343 344 345 346 347 350 351 352 353 354 357 358 359 360 361 364 365 366 367 368 371 372 373 374 375 378 379 380 381 382 385 386 387 388
+389 392 393 394 395 396 399 400 401 402 403 406 407 408 409 410 413 414 415 416 417 420 421 422 423 424 427 428 429 430 431 434 435 436 437 438 441 442 443 444 445 448 449 450 451 452 455 456 457 458
+459 462 463 464 465 466 469 470 471 472 473 476 477 478 479 480 483 484 485 486 487 490 491 492 493 494 497 498 499 500 501 504 505 506 507 508 511 512 513 514 515 518 519 520 521 522 525 526 527 528
+529 532 533 534 535 536 539 540 541 542 543 546 547 548 549 550 553 554 555 556 557 560 561 562 563 564 567 568 569 570 571 574 575 576 577 578 581 582 583 584 585 588 589 590 591 592 595 596 597 598
+599 602 603 604 605 606 609 610 611 612 613 616 617 618 619 620 623 624 625 626 627 630 631 632 633 634 637 638 639 640 641 644 645 646 647 648 651 652 653 654 655 658 659 660 661 662 665 666 667 668
+669 672 673 674 675 676 679
+;
+
+set TSCOPE['quebec2.sf'] :=
+680 681 682 683 686 687 688 689 690 693 694 695 696 697 700 701 702 703 704 707 708 709 710 711 714 715 716 717 718 721 722 723 724 725 728 729 730 731 732 735
+;
+
+set TSCOPE['uniform2.se'] :=
+123 126 127 128 129 130 133 134 135 136 137
+;
+
+set TSCOPE['uniform2.sm'] :=
+140 141 142 143 144 147 148 149 150 151 154 155 156 157 158 161 162 163 164 165 168 169 170 171 172 175 176 177 178 179 182 183 184 185 186 189 190 191 192 193 196 197 198 199 200 203 204 205 206 207
+210 211 212 213 214 217 218 219 220 221 224 225 226 227 228 231 232 233 234 235 238 239 240 241 242 245 246 247 248 249 252 253 254 255 256 259 260 261 262 263 266 267 268 269 270 273 274 275 276 277
+280 281 282 283 284 287 288 289 290 291 294 295 296 297 298 301 302 303 304 305 308 309 310 311 312 315 316 317 318 319 322 323 324 325 326 329 330 331 332 333 336 337 338 339 340 343 344 345 346 347
+350 351 352 353 354 357 358 359 360 361 364 365 366 367 368 371 372 373 374 375 378 379 380 381 382 385 386 387 388 389 392 393 394 395 396 399 400 401 402 403 406 407 408
+;
+
+set TSCOPE['uniform2.sf'] :=
+409 410 413 414 415 416 417 420 421 422 423 424 427
+;
+
+set TSCOPE['xray2.se'] :=
+197 198 199 200 203 204 205 206 207 210 211 212 213 214 217 218 219 220 221
+;
+
+set TSCOPE['xray2.sm'] :=
+224 225 226 227 228 231 232 233 234 235 238 239 240 241 242 245 246 247 248 249 252 253 254 255 256 259 260 261 262 263 266 267 268 269 270 273 274 275 276 277 280 281 282 283 284 287 288 289 290 291
+294 295 296 297 298 301 302 303 304 305 308 309 310 311 312 315 316 317 318 319 322 323 324 325 326 329 330 331 332 333 336 337 338 339 340 343 344 345 346 347 350 351 352 353 354 357 358 359 360 361
+364 365 366 367 368 371 372 373
+;
+
+set TSCOPE['xray2.sf'] :=
+374 375 378 379 380 381 382 385 386 387 388 389 392 393 394 395 396
+;
+
+set ENAME :=
+'SA.Kevin'
+;
+
+set ASSIGN :=
 'SA.Kevin' 'alpha2.se'
 'SA.Kevin' 'alpha2.sf'
 'SA.Kevin' 'alpha2.sm'
@@ -1313,5 +124,1044 @@ set LINKS :=
 'SA.Kevin' 'uniform2.sm'
 'SA.Kevin' 'xray2.se'
 'SA.Kevin' 'xray2.sf'
-'SA.Kevin' 'xray2.sm';
+'SA.Kevin' 'xray2.sm'
+;
+
+param:
+XBID: XBL XBU :=
+'SA.Kevin' 'alpha2.se' 28 9.0 10.0
+'SA.Kevin' 'alpha2.se' 29 9.0 10.0
+'SA.Kevin' 'alpha2.se' 30 9.0 10.0
+'SA.Kevin' 'alpha2.se' 31 9.0 10.0
+'SA.Kevin' 'alpha2.se' 32 9.0 10.0
+'SA.Kevin' 'alpha2.sm' 35 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 36 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 37 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 38 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 39 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 42 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 43 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 44 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 45 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 46 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 49 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 50 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 51 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 52 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 53 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 56 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 57 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 58 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 59 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 60 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 63 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 64 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 65 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 66 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 67 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 70 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 71 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 72 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 73 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 74 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 77 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 78 2.0 3.0
+'SA.Kevin' 'alpha2.sm' 79 2.0 3.0
+'SA.Kevin' 'alpha2.sf' 80 3.0 4.0
+'SA.Kevin' 'alpha2.sf' 81 3.0 4.0
+'SA.Kevin' 'alpha2.sf' 84 3.0 4.0
+'SA.Kevin' 'alpha2.sf' 85 3.0 4.0
+'SA.Kevin' 'alpha2.sf' 86 3.0 4.0
+'SA.Kevin' 'alpha2.sf' 87 3.0 4.0
+'SA.Kevin' 'alpha2.sf' 88 3.0 4.0
+'SA.Kevin' 'alpha2.sf' 91 3.0 4.0
+'SA.Kevin' 'alpha2.sf' 92 3.0 4.0
+'SA.Kevin' 'beta2.se' 7 15.0 16.0
+'SA.Kevin' 'beta2.se' 8 15.0 16.0
+'SA.Kevin' 'beta2.se' 9 15.0 16.0
+'SA.Kevin' 'beta2.se' 10 15.0 16.0
+'SA.Kevin' 'beta2.se' 11 15.0 16.0
+'SA.Kevin' 'beta2.se' 14 15.0 16.0
+'SA.Kevin' 'beta2.se' 15 15.0 16.0
+'SA.Kevin' 'beta2.se' 16 15.0 16.0
+'SA.Kevin' 'beta2.sm' 17 1.0 2.0
+'SA.Kevin' 'beta2.sm' 18 1.0 2.0
+'SA.Kevin' 'beta2.sm' 21 1.0 2.0
+'SA.Kevin' 'beta2.sm' 22 1.0 2.0
+'SA.Kevin' 'beta2.sm' 23 1.0 2.0
+'SA.Kevin' 'beta2.sm' 24 1.0 2.0
+'SA.Kevin' 'beta2.sm' 25 1.0 2.0
+'SA.Kevin' 'beta2.sm' 28 1.0 2.0
+'SA.Kevin' 'beta2.sm' 29 1.0 2.0
+'SA.Kevin' 'beta2.sm' 30 1.0 2.0
+'SA.Kevin' 'beta2.sm' 31 1.0 2.0
+'SA.Kevin' 'beta2.sm' 32 1.0 2.0
+'SA.Kevin' 'beta2.sm' 35 1.0 2.0
+'SA.Kevin' 'beta2.sm' 36 1.0 2.0
+'SA.Kevin' 'beta2.sm' 37 1.0 2.0
+'SA.Kevin' 'beta2.sm' 38 1.0 2.0
+'SA.Kevin' 'beta2.sm' 39 1.0 2.0
+'SA.Kevin' 'beta2.sm' 42 1.0 2.0
+'SA.Kevin' 'beta2.sm' 43 1.0 2.0
+'SA.Kevin' 'beta2.sm' 44 1.0 2.0
+'SA.Kevin' 'beta2.sm' 45 1.0 2.0
+'SA.Kevin' 'beta2.sm' 46 1.0 2.0
+'SA.Kevin' 'beta2.sm' 49 1.0 2.0
+'SA.Kevin' 'beta2.sm' 50 1.0 2.0
+'SA.Kevin' 'beta2.sm' 51 1.0 2.0
+'SA.Kevin' 'beta2.sm' 52 1.0 2.0
+'SA.Kevin' 'beta2.sm' 53 1.0 2.0
+'SA.Kevin' 'beta2.sm' 56 1.0 2.0
+'SA.Kevin' 'beta2.sm' 57 1.0 2.0
+'SA.Kevin' 'beta2.sm' 58 1.0 2.0
+'SA.Kevin' 'beta2.sm' 59 1.0 2.0
+'SA.Kevin' 'beta2.sm' 60 1.0 2.0
+'SA.Kevin' 'beta2.sm' 63 1.0 2.0
+'SA.Kevin' 'beta2.sm' 64 1.0 2.0
+'SA.Kevin' 'beta2.sm' 65 1.0 2.0
+'SA.Kevin' 'beta2.sm' 66 1.0 2.0
+'SA.Kevin' 'beta2.sm' 67 1.0 2.0
+'SA.Kevin' 'beta2.sm' 70 1.0 2.0
+'SA.Kevin' 'beta2.sm' 71 1.0 2.0
+'SA.Kevin' 'beta2.sm' 72 1.0 2.0
+'SA.Kevin' 'beta2.sm' 73 1.0 2.0
+'SA.Kevin' 'beta2.sm' 74 1.0 2.0
+'SA.Kevin' 'beta2.sm' 77 1.0 2.0
+'SA.Kevin' 'beta2.sm' 78 1.0 2.0
+'SA.Kevin' 'beta2.sm' 79 1.0 2.0
+'SA.Kevin' 'beta2.sm' 80 1.0 2.0
+'SA.Kevin' 'beta2.sm' 81 1.0 2.0
+'SA.Kevin' 'beta2.sm' 84 1.0 2.0
+'SA.Kevin' 'beta2.sm' 85 1.0 2.0
+'SA.Kevin' 'beta2.sm' 86 1.0 2.0
+'SA.Kevin' 'beta2.sm' 87 1.0 2.0
+'SA.Kevin' 'beta2.sm' 88 1.0 2.0
+'SA.Kevin' 'beta2.sm' 91 1.0 2.0
+'SA.Kevin' 'beta2.sm' 92 1.0 2.0
+'SA.Kevin' 'beta2.sm' 93 1.0 2.0
+'SA.Kevin' 'beta2.sm' 94 1.0 2.0
+'SA.Kevin' 'beta2.sm' 95 1.0 2.0
+'SA.Kevin' 'beta2.sm' 98 1.0 2.0
+'SA.Kevin' 'beta2.sm' 99 1.0 2.0
+'SA.Kevin' 'beta2.sm' 100 1.0 2.0
+'SA.Kevin' 'beta2.sm' 101 1.0 2.0
+'SA.Kevin' 'beta2.sm' 102 1.0 2.0
+'SA.Kevin' 'beta2.sm' 105 1.0 2.0
+'SA.Kevin' 'beta2.sm' 106 1.0 2.0
+'SA.Kevin' 'beta2.sm' 107 1.0 2.0
+'SA.Kevin' 'beta2.sm' 108 1.0 2.0
+'SA.Kevin' 'beta2.sm' 109 1.0 2.0
+'SA.Kevin' 'beta2.sm' 112 1.0 2.0
+'SA.Kevin' 'beta2.sm' 113 1.0 2.0
+'SA.Kevin' 'beta2.sm' 114 1.0 2.0
+'SA.Kevin' 'beta2.sm' 115 1.0 2.0
+'SA.Kevin' 'beta2.sm' 116 1.0 2.0
+'SA.Kevin' 'beta2.sm' 119 1.0 2.0
+'SA.Kevin' 'beta2.sm' 120 1.0 2.0
+'SA.Kevin' 'beta2.sm' 121 1.0 2.0
+'SA.Kevin' 'beta2.sm' 123 1.0 2.0
+'SA.Kevin' 'beta2.sm' 126 1.0 2.0
+'SA.Kevin' 'beta2.sm' 127 1.0 2.0
+'SA.Kevin' 'beta2.sm' 128 1.0 2.0
+'SA.Kevin' 'beta2.sm' 129 1.0 2.0
+'SA.Kevin' 'beta2.sm' 130 1.0 2.0
+'SA.Kevin' 'beta2.sm' 133 1.0 2.0
+'SA.Kevin' 'beta2.sm' 134 1.0 2.0
+'SA.Kevin' 'beta2.sm' 135 1.0 2.0
+'SA.Kevin' 'beta2.sm' 136 1.0 2.0
+'SA.Kevin' 'beta2.sm' 137 1.0 2.0
+'SA.Kevin' 'beta2.sm' 140 1.0 2.0
+'SA.Kevin' 'beta2.sm' 141 1.0 2.0
+'SA.Kevin' 'beta2.sm' 142 1.0 2.0
+'SA.Kevin' 'beta2.sm' 143 1.0 2.0
+'SA.Kevin' 'beta2.sm' 144 1.0 2.0
+'SA.Kevin' 'beta2.sm' 147 1.0 2.0
+'SA.Kevin' 'beta2.sm' 148 1.0 2.0
+'SA.Kevin' 'beta2.sm' 149 1.0 2.0
+'SA.Kevin' 'beta2.sm' 150 1.0 2.0
+'SA.Kevin' 'beta2.sm' 151 1.0 2.0
+'SA.Kevin' 'beta2.sm' 154 1.0 2.0
+'SA.Kevin' 'beta2.sm' 155 1.0 2.0
+'SA.Kevin' 'beta2.sm' 156 1.0 2.0
+'SA.Kevin' 'beta2.sm' 157 1.0 2.0
+'SA.Kevin' 'beta2.sm' 158 1.0 2.0
+'SA.Kevin' 'beta2.sm' 161 1.0 2.0
+'SA.Kevin' 'beta2.sm' 162 1.0 2.0
+'SA.Kevin' 'beta2.sm' 163 1.0 2.0
+'SA.Kevin' 'beta2.sm' 164 1.0 2.0
+'SA.Kevin' 'beta2.sm' 165 1.0 2.0
+'SA.Kevin' 'beta2.sm' 168 1.0 2.0
+'SA.Kevin' 'beta2.sm' 169 1.0 2.0
+'SA.Kevin' 'beta2.sm' 170 1.0 2.0
+'SA.Kevin' 'beta2.sm' 171 1.0 2.0
+'SA.Kevin' 'beta2.sm' 172 1.0 2.0
+'SA.Kevin' 'beta2.sm' 175 1.0 2.0
+'SA.Kevin' 'beta2.sm' 176 1.0 2.0
+'SA.Kevin' 'beta2.sm' 177 1.0 2.0
+'SA.Kevin' 'beta2.sm' 178 1.0 2.0
+'SA.Kevin' 'beta2.sm' 179 1.0 2.0
+'SA.Kevin' 'beta2.sm' 182 1.0 2.0
+'SA.Kevin' 'beta2.sm' 183 1.0 2.0
+'SA.Kevin' 'beta2.sm' 184 1.0 2.0
+'SA.Kevin' 'beta2.sm' 185 1.0 2.0
+'SA.Kevin' 'beta2.sm' 186 1.0 2.0
+'SA.Kevin' 'beta2.sm' 189 1.0 2.0
+'SA.Kevin' 'beta2.sm' 190 1.0 2.0
+'SA.Kevin' 'beta2.sm' 191 1.0 2.0
+'SA.Kevin' 'beta2.sm' 192 1.0 2.0
+'SA.Kevin' 'beta2.sm' 193 1.0 2.0
+'SA.Kevin' 'beta2.sm' 196 1.0 2.0
+'SA.Kevin' 'beta2.sm' 197 1.0 2.0
+'SA.Kevin' 'beta2.sf' 198 11.0 12.0
+'SA.Kevin' 'beta2.sf' 199 11.0 12.0
+'SA.Kevin' 'beta2.sf' 200 11.0 12.0
+'SA.Kevin' 'beta2.sf' 203 11.0 12.0
+'SA.Kevin' 'beta2.sf' 204 11.0 12.0
+'SA.Kevin' 'beta2.sf' 205 11.0 12.0
+'SA.Kevin' 'beta2.sf' 206 11.0 12.0
+'SA.Kevin' 'beta2.sf' 207 11.0 12.0
+'SA.Kevin' 'beta2.sf' 210 11.0 12.0
+'SA.Kevin' 'beta2.sf' 211 11.0 12.0
+'SA.Kevin' 'beta2.sf' 212 11.0 12.0
+'SA.Kevin' 'beta2.sf' 213 11.0 12.0
+'SA.Kevin' 'beta2.sf' 214 11.0 12.0
+'SA.Kevin' 'beta2.sf' 217 11.0 12.0
+'SA.Kevin' 'gamma2.sm' 3 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 4 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 7 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 8 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 9 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 10 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 11 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 14 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 15 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 16 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 17 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 18 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 21 4.0 5.0
+'SA.Kevin' 'gamma2.sm' 22 4.0 5.0
+'SA.Kevin' 'gamma2.sf' 23 2.0 3.0
+'SA.Kevin' 'gamma2.sf' 24 2.0 3.0
+'SA.Kevin' 'gamma2.sf' 25 2.0 3.0
+'SA.Kevin' 'gamma2.sf' 28 2.0 3.0
+'SA.Kevin' 'gamma2.sf' 29 2.0 3.0
+'SA.Kevin' 'gamma2.sf' 30 2.0 3.0
+'SA.Kevin' 'gamma2.sf' 31 2.0 3.0
+'SA.Kevin' 'gamma2.sf' 32 2.0 3.0
+'SA.Kevin' 'gamma2.sf' 35 2.0 3.0
+'SA.Kevin' 'quebec2.se' 154 8.0 9.0
+'SA.Kevin' 'quebec2.se' 155 8.0 9.0
+'SA.Kevin' 'quebec2.se' 156 8.0 9.0
+'SA.Kevin' 'quebec2.se' 157 8.0 9.0
+'SA.Kevin' 'quebec2.se' 158 8.0 9.0
+'SA.Kevin' 'quebec2.se' 161 8.0 9.0
+'SA.Kevin' 'quebec2.se' 162 8.0 9.0
+'SA.Kevin' 'quebec2.se' 163 8.0 9.0
+'SA.Kevin' 'quebec2.se' 164 8.0 9.0
+'SA.Kevin' 'quebec2.se' 165 8.0 9.0
+'SA.Kevin' 'quebec2.se' 168 8.0 9.0
+'SA.Kevin' 'quebec2.se' 169 8.0 9.0
+'SA.Kevin' 'quebec2.se' 170 8.0 9.0
+'SA.Kevin' 'quebec2.se' 171 8.0 9.0
+'SA.Kevin' 'quebec2.se' 172 8.0 9.0
+'SA.Kevin' 'quebec2.se' 175 8.0 9.0
+'SA.Kevin' 'quebec2.se' 176 8.0 9.0
+'SA.Kevin' 'quebec2.se' 177 8.0 9.0
+'SA.Kevin' 'quebec2.se' 178 8.0 9.0
+'SA.Kevin' 'quebec2.sm' 179 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 182 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 183 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 184 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 185 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 186 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 189 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 190 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 191 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 192 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 193 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 196 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 197 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 198 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 199 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 200 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 203 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 204 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 205 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 206 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 207 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 210 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 211 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 212 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 213 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 214 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 217 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 218 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 219 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 220 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 221 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 224 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 225 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 226 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 227 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 228 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 231 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 232 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 233 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 234 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 235 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 238 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 239 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 240 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 241 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 242 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 245 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 246 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 247 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 248 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 249 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 252 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 253 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 254 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 255 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 256 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 259 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 260 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 261 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 262 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 263 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 266 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 267 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 268 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 269 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 270 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 273 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 274 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 275 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 276 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 277 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 280 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 281 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 282 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 283 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 284 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 287 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 288 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 289 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 290 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 291 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 294 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 295 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 296 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 297 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 298 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 301 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 302 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 303 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 304 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 305 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 308 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 309 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 310 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 311 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 312 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 315 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 316 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 317 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 318 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 319 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 322 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 323 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 324 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 325 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 326 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 329 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 330 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 331 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 332 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 333 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 336 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 337 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 338 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 339 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 340 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 343 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 344 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 345 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 346 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 347 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 350 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 351 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 352 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 353 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 354 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 357 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 358 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 359 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 360 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 361 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 364 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 365 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 366 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 367 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 368 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 371 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 372 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 373 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 374 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 375 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 378 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 379 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 380 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 381 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 382 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 385 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 386 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 387 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 388 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 389 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 392 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 393 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 394 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 395 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 396 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 399 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 400 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 401 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 402 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 403 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 406 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 407 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 408 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 409 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 410 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 413 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 414 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 415 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 416 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 417 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 420 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 421 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 422 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 423 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 424 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 427 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 428 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 429 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 430 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 431 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 434 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 435 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 436 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 437 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 438 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 441 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 442 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 443 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 444 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 445 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 448 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 449 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 450 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 451 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 452 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 455 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 456 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 457 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 458 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 459 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 462 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 463 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 464 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 465 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 466 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 469 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 470 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 471 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 472 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 473 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 476 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 477 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 478 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 479 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 480 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 483 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 484 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 485 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 486 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 487 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 490 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 491 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 492 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 493 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 494 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 497 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 498 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 499 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 500 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 501 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 504 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 505 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 506 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 507 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 508 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 511 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 512 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 513 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 514 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 515 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 518 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 519 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 520 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 521 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 522 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 525 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 526 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 527 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 528 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 529 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 532 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 533 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 534 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 535 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 536 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 539 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 540 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 541 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 542 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 543 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 546 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 547 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 548 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 549 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 550 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 553 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 554 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 555 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 556 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 557 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 560 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 561 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 562 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 563 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 564 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 567 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 568 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 569 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 570 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 571 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 574 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 575 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 576 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 577 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 578 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 581 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 582 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 583 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 584 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 585 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 588 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 589 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 590 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 591 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 592 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 595 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 596 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 597 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 598 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 599 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 602 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 603 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 604 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 605 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 606 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 609 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 610 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 611 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 612 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 613 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 616 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 617 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 618 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 619 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 620 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 623 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 624 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 625 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 626 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 627 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 630 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 631 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 632 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 633 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 634 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 637 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 638 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 639 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 640 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 641 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 644 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 645 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 646 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 647 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 648 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 651 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 652 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 653 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 654 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 655 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 658 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 659 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 660 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 661 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 662 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 665 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 666 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 667 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 668 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 669 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 672 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 673 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 674 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 675 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 676 0.0 1.0
+'SA.Kevin' 'quebec2.sm' 679 0.0 1.0
+'SA.Kevin' 'quebec2.sf' 680 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 681 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 682 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 683 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 686 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 687 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 688 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 689 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 690 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 693 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 694 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 695 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 696 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 697 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 700 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 701 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 702 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 703 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 704 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 707 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 708 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 709 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 710 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 711 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 714 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 715 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 716 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 717 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 718 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 721 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 722 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 723 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 724 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 725 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 728 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 729 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 730 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 731 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 732 2.0 3.0
+'SA.Kevin' 'quebec2.sf' 735 2.0 3.0
+'SA.Kevin' 'uniform2.se' 123 21.0 22.0
+'SA.Kevin' 'uniform2.se' 126 21.0 22.0
+'SA.Kevin' 'uniform2.se' 127 21.0 22.0
+'SA.Kevin' 'uniform2.se' 128 21.0 22.0
+'SA.Kevin' 'uniform2.se' 129 21.0 22.0
+'SA.Kevin' 'uniform2.se' 130 21.0 22.0
+'SA.Kevin' 'uniform2.se' 133 21.0 22.0
+'SA.Kevin' 'uniform2.se' 134 21.0 22.0
+'SA.Kevin' 'uniform2.se' 135 21.0 22.0
+'SA.Kevin' 'uniform2.se' 136 21.0 22.0
+'SA.Kevin' 'uniform2.se' 137 21.0 22.0
+'SA.Kevin' 'uniform2.sm' 140 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 141 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 142 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 143 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 144 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 147 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 148 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 149 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 150 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 151 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 154 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 155 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 156 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 157 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 158 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 161 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 162 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 163 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 164 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 165 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 168 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 169 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 170 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 171 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 172 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 175 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 176 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 177 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 178 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 179 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 182 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 183 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 184 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 185 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 186 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 189 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 190 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 191 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 192 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 193 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 196 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 197 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 198 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 199 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 200 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 203 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 204 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 205 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 206 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 207 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 210 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 211 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 212 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 213 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 214 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 217 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 218 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 219 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 220 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 221 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 224 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 225 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 226 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 227 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 228 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 231 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 232 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 233 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 234 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 235 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 238 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 239 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 240 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 241 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 242 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 245 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 246 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 247 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 248 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 249 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 252 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 253 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 254 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 255 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 256 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 259 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 260 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 261 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 262 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 263 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 266 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 267 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 268 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 269 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 270 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 273 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 274 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 275 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 276 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 277 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 280 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 281 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 282 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 283 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 284 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 287 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 288 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 289 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 290 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 291 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 294 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 295 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 296 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 297 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 298 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 301 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 302 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 303 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 304 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 305 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 308 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 309 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 310 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 311 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 312 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 315 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 316 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 317 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 318 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 319 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 322 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 323 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 324 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 325 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 326 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 329 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 330 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 331 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 332 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 333 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 336 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 337 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 338 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 339 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 340 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 343 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 344 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 345 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 346 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 347 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 350 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 351 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 352 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 353 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 354 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 357 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 358 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 359 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 360 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 361 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 364 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 365 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 366 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 367 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 368 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 371 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 372 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 373 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 374 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 375 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 378 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 379 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 380 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 381 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 382 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 385 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 386 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 387 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 388 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 389 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 392 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 393 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 394 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 395 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 396 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 399 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 400 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 401 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 402 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 403 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 406 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 407 1.0 2.0
+'SA.Kevin' 'uniform2.sm' 408 1.0 2.0
+'SA.Kevin' 'uniform2.sf' 409 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 410 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 413 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 414 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 415 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 416 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 417 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 420 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 421 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 422 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 423 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 424 6.0 7.0
+'SA.Kevin' 'uniform2.sf' 427 6.0 7.0
+'SA.Kevin' 'xray2.se' 197 4.0 5.0
+'SA.Kevin' 'xray2.se' 198 4.0 5.0
+'SA.Kevin' 'xray2.se' 199 4.0 5.0
+'SA.Kevin' 'xray2.se' 200 4.0 5.0
+'SA.Kevin' 'xray2.se' 203 4.0 5.0
+'SA.Kevin' 'xray2.se' 204 4.0 5.0
+'SA.Kevin' 'xray2.se' 205 4.0 5.0
+'SA.Kevin' 'xray2.se' 206 4.0 5.0
+'SA.Kevin' 'xray2.se' 207 4.0 5.0
+'SA.Kevin' 'xray2.se' 210 4.0 5.0
+'SA.Kevin' 'xray2.se' 211 4.0 5.0
+'SA.Kevin' 'xray2.se' 212 4.0 5.0
+'SA.Kevin' 'xray2.se' 213 4.0 5.0
+'SA.Kevin' 'xray2.se' 214 4.0 5.0
+'SA.Kevin' 'xray2.se' 217 4.0 5.0
+'SA.Kevin' 'xray2.se' 218 4.0 5.0
+'SA.Kevin' 'xray2.se' 219 4.0 5.0
+'SA.Kevin' 'xray2.se' 220 4.0 5.0
+'SA.Kevin' 'xray2.se' 221 4.0 5.0
+'SA.Kevin' 'xray2.sm' 224 1.0 2.0
+'SA.Kevin' 'xray2.sm' 225 1.0 2.0
+'SA.Kevin' 'xray2.sm' 226 1.0 2.0
+'SA.Kevin' 'xray2.sm' 227 1.0 2.0
+'SA.Kevin' 'xray2.sm' 228 1.0 2.0
+'SA.Kevin' 'xray2.sm' 231 1.0 2.0
+'SA.Kevin' 'xray2.sm' 232 1.0 2.0
+'SA.Kevin' 'xray2.sm' 233 1.0 2.0
+'SA.Kevin' 'xray2.sm' 234 1.0 2.0
+'SA.Kevin' 'xray2.sm' 235 1.0 2.0
+'SA.Kevin' 'xray2.sm' 238 1.0 2.0
+'SA.Kevin' 'xray2.sm' 239 1.0 2.0
+'SA.Kevin' 'xray2.sm' 240 1.0 2.0
+'SA.Kevin' 'xray2.sm' 241 1.0 2.0
+'SA.Kevin' 'xray2.sm' 242 1.0 2.0
+'SA.Kevin' 'xray2.sm' 245 1.0 2.0
+'SA.Kevin' 'xray2.sm' 246 1.0 2.0
+'SA.Kevin' 'xray2.sm' 247 1.0 2.0
+'SA.Kevin' 'xray2.sm' 248 1.0 2.0
+'SA.Kevin' 'xray2.sm' 249 1.0 2.0
+'SA.Kevin' 'xray2.sm' 252 1.0 2.0
+'SA.Kevin' 'xray2.sm' 253 1.0 2.0
+'SA.Kevin' 'xray2.sm' 254 1.0 2.0
+'SA.Kevin' 'xray2.sm' 255 1.0 2.0
+'SA.Kevin' 'xray2.sm' 256 1.0 2.0
+'SA.Kevin' 'xray2.sm' 259 1.0 2.0
+'SA.Kevin' 'xray2.sm' 260 1.0 2.0
+'SA.Kevin' 'xray2.sm' 261 1.0 2.0
+'SA.Kevin' 'xray2.sm' 262 1.0 2.0
+'SA.Kevin' 'xray2.sm' 263 1.0 2.0
+'SA.Kevin' 'xray2.sm' 266 1.0 2.0
+'SA.Kevin' 'xray2.sm' 267 1.0 2.0
+'SA.Kevin' 'xray2.sm' 268 1.0 2.0
+'SA.Kevin' 'xray2.sm' 269 1.0 2.0
+'SA.Kevin' 'xray2.sm' 270 1.0 2.0
+'SA.Kevin' 'xray2.sm' 273 1.0 2.0
+'SA.Kevin' 'xray2.sm' 274 1.0 2.0
+'SA.Kevin' 'xray2.sm' 275 1.0 2.0
+'SA.Kevin' 'xray2.sm' 276 1.0 2.0
+'SA.Kevin' 'xray2.sm' 277 1.0 2.0
+'SA.Kevin' 'xray2.sm' 280 1.0 2.0
+'SA.Kevin' 'xray2.sm' 281 1.0 2.0
+'SA.Kevin' 'xray2.sm' 282 1.0 2.0
+'SA.Kevin' 'xray2.sm' 283 1.0 2.0
+'SA.Kevin' 'xray2.sm' 284 1.0 2.0
+'SA.Kevin' 'xray2.sm' 287 1.0 2.0
+'SA.Kevin' 'xray2.sm' 288 1.0 2.0
+'SA.Kevin' 'xray2.sm' 289 1.0 2.0
+'SA.Kevin' 'xray2.sm' 290 1.0 2.0
+'SA.Kevin' 'xray2.sm' 291 1.0 2.0
+'SA.Kevin' 'xray2.sm' 294 1.0 2.0
+'SA.Kevin' 'xray2.sm' 295 1.0 2.0
+'SA.Kevin' 'xray2.sm' 296 1.0 2.0
+'SA.Kevin' 'xray2.sm' 297 1.0 2.0
+'SA.Kevin' 'xray2.sm' 298 1.0 2.0
+'SA.Kevin' 'xray2.sm' 301 1.0 2.0
+'SA.Kevin' 'xray2.sm' 302 1.0 2.0
+'SA.Kevin' 'xray2.sm' 303 1.0 2.0
+'SA.Kevin' 'xray2.sm' 304 1.0 2.0
+'SA.Kevin' 'xray2.sm' 305 1.0 2.0
+'SA.Kevin' 'xray2.sm' 308 1.0 2.0
+'SA.Kevin' 'xray2.sm' 309 1.0 2.0
+'SA.Kevin' 'xray2.sm' 310 1.0 2.0
+'SA.Kevin' 'xray2.sm' 311 1.0 2.0
+'SA.Kevin' 'xray2.sm' 312 1.0 2.0
+'SA.Kevin' 'xray2.sm' 315 1.0 2.0
+'SA.Kevin' 'xray2.sm' 316 1.0 2.0
+'SA.Kevin' 'xray2.sm' 317 1.0 2.0
+'SA.Kevin' 'xray2.sm' 318 1.0 2.0
+'SA.Kevin' 'xray2.sm' 319 1.0 2.0
+'SA.Kevin' 'xray2.sm' 322 1.0 2.0
+'SA.Kevin' 'xray2.sm' 323 1.0 2.0
+'SA.Kevin' 'xray2.sm' 324 1.0 2.0
+'SA.Kevin' 'xray2.sm' 325 1.0 2.0
+'SA.Kevin' 'xray2.sm' 326 1.0 2.0
+'SA.Kevin' 'xray2.sm' 329 1.0 2.0
+'SA.Kevin' 'xray2.sm' 330 1.0 2.0
+'SA.Kevin' 'xray2.sm' 331 1.0 2.0
+'SA.Kevin' 'xray2.sm' 332 1.0 2.0
+'SA.Kevin' 'xray2.sm' 333 1.0 2.0
+'SA.Kevin' 'xray2.sm' 336 1.0 2.0
+'SA.Kevin' 'xray2.sm' 337 1.0 2.0
+'SA.Kevin' 'xray2.sm' 338 1.0 2.0
+'SA.Kevin' 'xray2.sm' 339 1.0 2.0
+'SA.Kevin' 'xray2.sm' 340 1.0 2.0
+'SA.Kevin' 'xray2.sm' 343 1.0 2.0
+'SA.Kevin' 'xray2.sm' 344 1.0 2.0
+'SA.Kevin' 'xray2.sm' 345 1.0 2.0
+'SA.Kevin' 'xray2.sm' 346 1.0 2.0
+'SA.Kevin' 'xray2.sm' 347 1.0 2.0
+'SA.Kevin' 'xray2.sm' 350 1.0 2.0
+'SA.Kevin' 'xray2.sm' 351 1.0 2.0
+'SA.Kevin' 'xray2.sm' 352 1.0 2.0
+'SA.Kevin' 'xray2.sm' 353 1.0 2.0
+'SA.Kevin' 'xray2.sm' 354 1.0 2.0
+'SA.Kevin' 'xray2.sm' 357 1.0 2.0
+'SA.Kevin' 'xray2.sm' 358 1.0 2.0
+'SA.Kevin' 'xray2.sm' 359 1.0 2.0
+'SA.Kevin' 'xray2.sm' 360 1.0 2.0
+'SA.Kevin' 'xray2.sm' 361 1.0 2.0
+'SA.Kevin' 'xray2.sm' 364 1.0 2.0
+'SA.Kevin' 'xray2.sm' 365 1.0 2.0
+'SA.Kevin' 'xray2.sm' 366 1.0 2.0
+'SA.Kevin' 'xray2.sm' 367 1.0 2.0
+'SA.Kevin' 'xray2.sm' 368 1.0 2.0
+'SA.Kevin' 'xray2.sm' 371 1.0 2.0
+'SA.Kevin' 'xray2.sm' 372 1.0 2.0
+'SA.Kevin' 'xray2.sm' 373 1.0 2.0
+'SA.Kevin' 'xray2.sf' 374 4.0 5.0
+'SA.Kevin' 'xray2.sf' 375 4.0 5.0
+'SA.Kevin' 'xray2.sf' 378 4.0 5.0
+'SA.Kevin' 'xray2.sf' 379 4.0 5.0
+'SA.Kevin' 'xray2.sf' 380 4.0 5.0
+'SA.Kevin' 'xray2.sf' 381 4.0 5.0
+'SA.Kevin' 'xray2.sf' 382 4.0 5.0
+'SA.Kevin' 'xray2.sf' 385 4.0 5.0
+'SA.Kevin' 'xray2.sf' 386 4.0 5.0
+'SA.Kevin' 'xray2.sf' 387 4.0 5.0
+'SA.Kevin' 'xray2.sf' 388 4.0 5.0
+'SA.Kevin' 'xray2.sf' 389 4.0 5.0
+'SA.Kevin' 'xray2.sf' 392 4.0 5.0
+'SA.Kevin' 'xray2.sf' 393 4.0 5.0
+'SA.Kevin' 'xray2.sf' 394 4.0 5.0
+'SA.Kevin' 'xray2.sf' 395 4.0 5.0
+'SA.Kevin' 'xray2.sf' 396 4.0 5.0
+;
+
+param:
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
+'Jan.25' 1 16
+'Feb.25' 17 45
+'Mar.25' 46 76
+'Apr.25' 77 105
+'May.25' 106 139
+'Jun.25' 140 170
+'Jul.25' 171 199
+'Aug.25' 200 230
+'Sep.25' 231 259
+'Oct.25' 260 289
+'Nov.25' 290 317
+'Dec.25' 318 346
+;
+
+param:
+EXPPER: PBL PBU :=
+'SA.Kevin' 'Jan.25' 0 720
+'SA.Kevin' 'Feb.25' 0 720
+'SA.Kevin' 'Mar.25' 0 720
+'SA.Kevin' 'Apr.25' 0 720
+'SA.Kevin' 'May.25' 0 720
+'SA.Kevin' 'Jun.25' 0 720
+'SA.Kevin' 'Jul.25' 0 720
+'SA.Kevin' 'Aug.25' 0 720
+'SA.Kevin' 'Sep.25' 0 720
+'SA.Kevin' 'Oct.25' 0 720
+'SA.Kevin' 'Nov.25' 0 720
+'SA.Kevin' 'Dec.25' 0 720
+;
 

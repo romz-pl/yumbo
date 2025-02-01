@@ -52,7 +52,7 @@ def customise_show_experts():
     st.subheader("Look and feel", divider="blue")
 
     # Extract expert names and define row/column counts
-    experts = st.session_state.mprob["experts"]["Name"].to_numpy()
+    experts = st.session_state.mprob["expert"]["Name"].to_numpy()
     row_count = len(experts)
 
     # Create a DataFrame with predefined columns and default boolean values
@@ -84,7 +84,7 @@ def customise_show_tasks():
     st.subheader("Look and feel", divider="blue")
 
     # Extract expert names and define row/column counts
-    tasks = st.session_state.mprob["tasks"]["Name"].to_numpy()
+    tasks = st.session_state.mprob["task"]["Name"].to_numpy()
     row_count = len(tasks)
 
     # Create a DataFrame with predefined columns and default boolean values
@@ -168,68 +168,55 @@ def customise_chart_colours():
         )
 
 
-def show_tasks():
-    st.subheader("Tasks definition", divider="blue")
+def show_task():
+    st.subheader("Tasks", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Avg': "{:.4f}"}
-    df = st.session_state.mprob["tasks"].style.format(format)
+    df = st.session_state.mprob["task"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
-def show_experts():
-    st.subheader("Experts names", divider="blue")
-    st.dataframe(st.session_state.mprob["experts"], hide_index=True, use_container_width=True)
+def show_expert():
+    st.subheader("Experts", divider="blue")
+    st.dataframe(st.session_state.mprob["expert"], hide_index=True, use_container_width=True)
 
 
-def show_links():
-    st.subheader("Links", divider="blue")
-    st.dataframe(st.session_state.mprob["links"], hide_index=True, use_container_width=True)
+def show_assign():
+    st.subheader("Assignment (allocation)", divider="blue")
+    st.dataframe(st.session_state.mprob["assign"], hide_index=True, use_container_width=True)
 
 
 def show_xbday():
-    st.subheader("Bounds xbday", divider="blue")
+    st.subheader("XBDAY bounds", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
     df = st.session_state.mprob["xbday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
-def show_xbsum():
-    st.subheader("Bounds xbsum", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.mprob["xbsum"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
-
-
 def show_ubday():
-    st.subheader("Bounds ubday", divider="blue")
+    st.subheader("UBDAY bounds", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
     df = st.session_state.mprob["ubday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
-def show_ubsum():
-    st.subheader("Bounds ubsum", divider="blue")
+
+def show_ebday():
+    st.subheader("EBDAY bounds", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.mprob["ubsum"].style.format(format)
+    df = st.session_state.mprob["ebday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
-def show_expert_bounds():
-    st.subheader("Expert bounds and preferences", divider="blue")
+def show_period():
+    st.subheader("Periods", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.mprob["expert bounds"].style.format(format)
+    df = st.session_state.mprob["period"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
-def show_invoicing_periods():
-    st.subheader("Invoicing periods", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.mprob["invoicing periods"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
-
-
-def show_invoicing_periods_bounds():
-    st.subheader("Invoicing periods bounds", divider="blue")
-    st.dataframe(st.session_state.mprob["invoicing periods bounds"], hide_index=True, use_container_width=True)
+def show_pbsum():
+    st.subheader("PBSUM bounds", divider="blue")
+    st.dataframe(st.session_state.mprob["pbsum"], hide_index=True, use_container_width=True)
 
 
 def prepare(uploaded_file):
@@ -250,16 +237,14 @@ def prepare(uploaded_file):
 
 
 def show_problem():
-    show_tasks()
-    show_experts()
-    show_links()
+    show_task()
+    show_expert()
+    show_assign()
     show_xbday()
-    show_xbsum()
     show_ubday()
-    show_ubsum()
-    show_expert_bounds()
-    show_invoicing_periods()
-    show_invoicing_periods_bounds()
+    show_ebday()
+    show_period()
+    show_pbsum()
 
 def customise_expert():
     customise_expert_report_layout()

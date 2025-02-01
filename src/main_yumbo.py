@@ -20,11 +20,11 @@ import wimg
 
 
 def tasks_for_expert(expert_name):
-    tasks = st.session_state.mprob["tasks"]
-    links = st.session_state.mprob["links"]
+    tasks = st.session_state.mprob["task"]
+    assign = st.session_state.mprob["assign"]
 
     # Filter the tasks related to the expert
-    filter = links[links["Expert"] == expert_name]["Task"]
+    filter = assign[assign["Expert"] == expert_name]["Task"]
 
     # Use .isin() to filter tasks directly
     return tasks[tasks["Name"].isin(filter)]
@@ -32,7 +32,8 @@ def tasks_for_expert(expert_name):
 
 def show_tasks_gantt_chart(expert_name):
     tasks = tasks_for_expert(expert_name)
-    work_done = st.session_state.glb[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
+    # work_done = st.session_state.glb[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
+    work_done = pd.Series(np.zeros(st.session_state.amplsol.shape[0]))
     gimg.plot(tasks, work_done)
 
 
@@ -50,9 +51,10 @@ def show_schedule_as_table(expert_name):
 
     # Retrieve the relevant schedule data
     days = pd.date_range(start=start_date, end=end_date, freq='D')
-    df = st.session_state.glb[f"schedule {expert_name}"].loc[tasks["Name"], start_date:end_date]
+    #st.write(st.session_state.mprob)
+    df = st.session_state.amplsol[f"{expert_name}"].loc[start_date:end_date, tasks["Name"]]
     df = df.replace(0, '')
-    df = df.transpose()
+    # df = df.transpose()
     df.index = days.astype("str")
     # df.index.name = "Date"
 
@@ -120,7 +122,7 @@ def experts_in_tasks_as_table_simple(task):
 
 def show_commitment_per_task(expert_name):
     tasks = tasks_for_expert(expert_name)
-    schedule = st.session_state.glb[f"schedule {expert_name}"]
+    schedule = st.session_state.amplsol[f"{expert_name}"]
     xbday = st.session_state.mprob["xbday"][st.session_state.mprob["xbday"]["Expert"] == expert_name]
     xbday_grouped = xbday.groupby('Task')
     cols = st.columns(3)
@@ -174,7 +176,7 @@ def show_one_expert(expert_name):
 
 
 def show_all_experts():
-    experts = st.session_state.mprob["experts"].sort_values(by="Name")
+    experts = st.session_state.mprob["expert"].sort_values(by="Name")
     report = st.session_state.glb["report:experts"]
 
     # Filter experts with any active field
@@ -229,7 +231,7 @@ def show_one_task(task):
 
 
 def show_all_tasks():
-    tasks = st.session_state.mprob["tasks"].sort_values(by="Name")
+    tasks = st.session_state.mprob["task"].sort_values(by="Name")
     report = st.session_state.glb["report:tasks"]
 
     if not report.loc[tasks["Name"], "Report"].any():
@@ -381,13 +383,19 @@ def zero_time_counters():
     st.session_state.glb[f"time:ampl:ttime"] = 0
 
 
-def main():
-
+def init_sesion():
     if 'glb' not in st.session_state:
         st.session_state.glb = dict()
 
     if 'mprob' not in st.session_state:
         st.session_state.mprob = dict()
+
+    if 'amplsol' not in st.session_state:
+        st.session_state.amplsol = pd.DataFrame()
+
+def main():
+
+    init_sesion()
 
     # plt.style.use('seaborn-v0_8-whitegrid')
     set_page_config()
@@ -404,11 +412,12 @@ def main():
         return
 
     if new_input:
-        try:
-            romz_ampl.solve(uploaded_file)
-        except Exception as e:
-            st.subheader(f":red[Exception during solving process.] {e}")
-            return
+        romz_ampl.solve(uploaded_file)
+        # try:
+        #     romz_ampl.solve(uploaded_file)
+        # except Exception as e:
+        #     st.subheader(f":red[Exception during solving process.] {e}")
+        #     return
 
     show_main_panel()
 

@@ -1,72 +1,59 @@
-param HOURS_PER_DAY := 32;
+param MAXWORK := 32;
 
-set EXPERTN :=
+param:
+TNAME: TWORK :=
+'aaa' 288
+'bbb' 288
+'ccc' 288
+;
+
+set TSCOPE['aaa'] :=
+1 2 4 5 8 9 10 11 12
+;
+
+set TSCOPE['bbb'] :=
+2 4 5 8 9 10 11 12 15
+;
+
+set TSCOPE['ccc'] :=
+4 5 8 9 10 11 12 15 16
+;
+
+set ENAME :=
 'Żaneta'
 'Ździsław'
-'Zbigniew';
-
-param EBOUND_NO := 0;
-
-param EBOUND:
-1   2   3   4   5 :=
+'Zbigniew'
 ;
 
-param:
-TASKN: TASKS TASKE TASKW :=
-'aaa' 1 12 288
-'bbb' 2 15 288
-'ccc' 3 16 288
-;
-
-param:
-PAYROLLN: PAYROLLS PAYROLLE :=
-'Jan.25' 1 17
-'Feb.25' 18 46;
-
-param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
-'Żaneta' 'Jan.25' 0.0 720.0
-'Żaneta' 'Feb.25' 0.0 720.0
-'Ździsław' 'Jan.25' 0.0 720.0
-'Ździsław' 'Feb.25' 0.0 720.0
-'Zbigniew' 'Jan.25' 0.0 720.0
-'Zbigniew' 'Feb.25' 0.0 720.0;
-
-param OFFDAY_NO := 5;
-
-param OFFDAY :=
-1 3
-2 6
-3 7
-4 13
-5 14;
-
-param XBDAY_NO := 0;
-
-param XBDAY:
-1   2   3   4   5 :=
-;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
-;
-
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
-;
-
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
-;
-
-set LINKS :=
+set ASSIGN :=
 'Żaneta' 'aaa'
 'Ździsław' 'bbb'
-'Zbigniew' 'ccc';
+'Zbigniew' 'ccc'
+;
+
+param:
+XBID: XBL XBU :=
+
+;
+
+param:
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
+'Jan.25' 1 17
+'Feb.25' 18 46
+;
+
+param:
+EXPPER: PBL PBU :=
+'Żaneta' 'Jan.25' 0 720
+'Żaneta' 'Feb.25' 0 720
+'Ździsław' 'Jan.25' 0 720
+'Ździsław' 'Feb.25' 0 720
+'Zbigniew' 'Jan.25' 0 720
+'Zbigniew' 'Feb.25' 0 720
+;
 

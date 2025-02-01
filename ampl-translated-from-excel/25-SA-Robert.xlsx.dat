@@ -1,1186 +1,101 @@
-param HOURS_PER_DAY := 32;
-
-set EXPERTN :=
-'SA.Robert';
-
-param EBOUND_NO := 0;
-
-param EBOUND:
-1   2   3   4   5 :=
-;
+param MAXWORK := 32;
 
 param:
-TASKN: TASKS TASKE TASKW :=
-'foxtrot.sm' 2 92 32
-'foxtrot.sf' 93 123 32
-'hotel.sm' 2 245 60
-'hotel.sf' 246 291 20
-'india.sm' 2 275 120
-'india.sf' 276 306 48
-'juliet.se' 42 59 40
-'juliet.sm' 60 182 40
-'juliet.sf' 183 228 20
-'november.se' 147 166 40
-'november.sm' 167 365 40
-'november.sf' 366 397 20
-'oscar.se' 177 191 40
-'oscar.sm' 192 365 40
-'oscar.sf' 366 397 32
+TNAME: TWORK :=
+'foxtrot.sm' 32
+'foxtrot.sf' 32
+'hotel.sm' 60
+'hotel.sf' 20
+'india.sm' 120
+'india.sf' 48
+'juliet.se' 40
+'juliet.sm' 40
+'juliet.sf' 20
+'november.se' 40
+'november.sm' 40
+'november.sf' 20
+'oscar.se' 40
+'oscar.sm' 40
+'oscar.sf' 32
 ;
 
-param:
-PAYROLLN: PAYROLLS PAYROLLE :=
-'Jan.25' 1 16
-'Feb.25' 17 45
-'Mar.25' 46 76
-'Apr.25' 77 105
-'May.25' 106 139
-'Jun.25' 140 170
-'Jul.25' 171 199
-'Aug.25' 200 230
-'Sep.25' 231 259
-'Oct.25' 260 289
-'Nov.25' 290 317
-'Dec.25' 318 346;
-
-param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
-'SA.Robert' 'Jan.25' 0.0 720.0
-'SA.Robert' 'Feb.25' 0.0 720.0
-'SA.Robert' 'Mar.25' 0.0 720.0
-'SA.Robert' 'Apr.25' 0.0 720.0
-'SA.Robert' 'May.25' 0.0 720.0
-'SA.Robert' 'Jun.25' 0.0 720.0
-'SA.Robert' 'Jul.25' 0.0 720.0
-'SA.Robert' 'Aug.25' 0.0 720.0
-'SA.Robert' 'Sep.25' 0.0 720.0
-'SA.Robert' 'Oct.25' 0.0 720.0
-'SA.Robert' 'Nov.25' 0.0 720.0
-'SA.Robert' 'Dec.25' 0.0 720.0;
-
-param OFFDAY_NO := 115;
-
-param OFFDAY :=
-1 2
-2 5
-3 6
-4 12
-5 13
-6 19
-7 20
-8 26
-9 27
-10 33
-11 34
-12 40
-13 41
-14 47
-15 48
-16 54
-17 55
-18 61
-19 62
-20 68
-21 69
-22 75
-23 76
-24 82
-25 83
-26 89
-27 90
-28 96
-29 97
-30 103
-31 104
-32 110
-33 111
-34 117
-35 118
-36 122
-37 124
-38 125
-39 131
-40 132
-41 138
-42 139
-43 145
-44 146
-45 152
-46 153
-47 159
-48 160
-49 166
-50 167
-51 173
-52 174
-53 180
-54 181
-55 187
-56 188
-57 194
-58 195
-59 201
-60 202
-61 208
-62 209
-63 215
-64 216
-65 222
-66 223
-67 229
-68 230
-69 236
-70 237
-71 243
-72 244
-73 250
-74 251
-75 257
-76 258
-77 264
-78 265
-79 271
-80 272
-81 278
-82 279
-83 285
-84 286
-85 292
-86 293
-87 299
-88 300
-89 306
-90 307
-91 313
-92 314
-93 320
-94 321
-95 327
-96 328
-97 334
-98 335
-99 341
-100 342
-101 348
-102 349
-103 355
-104 356
-105 362
-106 363
-107 369
-108 370
-109 376
-110 377
-111 383
-112 384
-113 390
-114 391
-115 397;
-
-param XBDAY_NO := 980;
-
-param XBDAY:
-1   2   3   4   5 :=
-1 'SA.Robert' 'foxtrot.sm' 3 0.0 1.0
-2 'SA.Robert' 'foxtrot.sm' 4 0.0 1.0
-3 'SA.Robert' 'foxtrot.sm' 7 0.0 1.0
-4 'SA.Robert' 'foxtrot.sm' 8 0.0 1.0
-5 'SA.Robert' 'foxtrot.sm' 9 0.0 1.0
-6 'SA.Robert' 'foxtrot.sm' 10 0.0 1.0
-7 'SA.Robert' 'foxtrot.sm' 11 0.0 1.0
-8 'SA.Robert' 'foxtrot.sm' 14 0.0 1.0
-9 'SA.Robert' 'foxtrot.sm' 15 0.0 1.0
-10 'SA.Robert' 'foxtrot.sm' 16 0.0 1.0
-11 'SA.Robert' 'foxtrot.sm' 17 0.0 1.0
-12 'SA.Robert' 'foxtrot.sm' 18 0.0 1.0
-13 'SA.Robert' 'foxtrot.sm' 21 0.0 1.0
-14 'SA.Robert' 'foxtrot.sm' 22 0.0 1.0
-15 'SA.Robert' 'foxtrot.sm' 23 0.0 1.0
-16 'SA.Robert' 'foxtrot.sm' 24 0.0 1.0
-17 'SA.Robert' 'foxtrot.sm' 25 0.0 1.0
-18 'SA.Robert' 'foxtrot.sm' 28 0.0 1.0
-19 'SA.Robert' 'foxtrot.sm' 29 0.0 1.0
-20 'SA.Robert' 'foxtrot.sm' 30 0.0 1.0
-21 'SA.Robert' 'foxtrot.sm' 31 0.0 1.0
-22 'SA.Robert' 'foxtrot.sm' 32 0.0 1.0
-23 'SA.Robert' 'foxtrot.sm' 35 0.0 1.0
-24 'SA.Robert' 'foxtrot.sm' 36 0.0 1.0
-25 'SA.Robert' 'foxtrot.sm' 37 0.0 1.0
-26 'SA.Robert' 'foxtrot.sm' 38 0.0 1.0
-27 'SA.Robert' 'foxtrot.sm' 39 0.0 1.0
-28 'SA.Robert' 'foxtrot.sm' 42 0.0 1.0
-29 'SA.Robert' 'foxtrot.sm' 43 0.0 1.0
-30 'SA.Robert' 'foxtrot.sm' 44 0.0 1.0
-31 'SA.Robert' 'foxtrot.sm' 45 0.0 1.0
-32 'SA.Robert' 'foxtrot.sm' 46 0.0 1.0
-33 'SA.Robert' 'foxtrot.sm' 49 0.0 1.0
-34 'SA.Robert' 'foxtrot.sm' 50 0.0 1.0
-35 'SA.Robert' 'foxtrot.sm' 51 0.0 1.0
-36 'SA.Robert' 'foxtrot.sm' 52 0.0 1.0
-37 'SA.Robert' 'foxtrot.sm' 53 0.0 1.0
-38 'SA.Robert' 'foxtrot.sm' 56 0.0 1.0
-39 'SA.Robert' 'foxtrot.sm' 57 0.0 1.0
-40 'SA.Robert' 'foxtrot.sm' 58 0.0 1.0
-41 'SA.Robert' 'foxtrot.sm' 59 0.0 1.0
-42 'SA.Robert' 'foxtrot.sm' 60 0.0 1.0
-43 'SA.Robert' 'foxtrot.sm' 63 0.0 1.0
-44 'SA.Robert' 'foxtrot.sm' 64 0.0 1.0
-45 'SA.Robert' 'foxtrot.sm' 65 0.0 1.0
-46 'SA.Robert' 'foxtrot.sm' 66 0.0 1.0
-47 'SA.Robert' 'foxtrot.sm' 67 0.0 1.0
-48 'SA.Robert' 'foxtrot.sm' 70 0.0 1.0
-49 'SA.Robert' 'foxtrot.sm' 71 0.0 1.0
-50 'SA.Robert' 'foxtrot.sm' 72 0.0 1.0
-51 'SA.Robert' 'foxtrot.sm' 73 0.0 1.0
-52 'SA.Robert' 'foxtrot.sm' 74 0.0 1.0
-53 'SA.Robert' 'foxtrot.sm' 77 0.0 1.0
-54 'SA.Robert' 'foxtrot.sm' 78 0.0 1.0
-55 'SA.Robert' 'foxtrot.sm' 79 0.0 1.0
-56 'SA.Robert' 'foxtrot.sm' 80 0.0 1.0
-57 'SA.Robert' 'foxtrot.sm' 81 0.0 1.0
-58 'SA.Robert' 'foxtrot.sm' 84 0.0 1.0
-59 'SA.Robert' 'foxtrot.sm' 85 0.0 1.0
-60 'SA.Robert' 'foxtrot.sm' 86 0.0 1.0
-61 'SA.Robert' 'foxtrot.sm' 87 0.0 1.0
-62 'SA.Robert' 'foxtrot.sm' 88 0.0 1.0
-63 'SA.Robert' 'foxtrot.sm' 91 0.0 1.0
-64 'SA.Robert' 'foxtrot.sm' 92 0.0 1.0
-65 'SA.Robert' 'foxtrot.sf' 93 1.0 2.0
-66 'SA.Robert' 'foxtrot.sf' 94 1.0 2.0
-67 'SA.Robert' 'foxtrot.sf' 95 1.0 2.0
-68 'SA.Robert' 'foxtrot.sf' 98 1.0 2.0
-69 'SA.Robert' 'foxtrot.sf' 99 1.0 2.0
-70 'SA.Robert' 'foxtrot.sf' 100 1.0 2.0
-71 'SA.Robert' 'foxtrot.sf' 101 1.0 2.0
-72 'SA.Robert' 'foxtrot.sf' 102 1.0 2.0
-73 'SA.Robert' 'foxtrot.sf' 105 1.0 2.0
-74 'SA.Robert' 'foxtrot.sf' 106 1.0 2.0
-75 'SA.Robert' 'foxtrot.sf' 107 1.0 2.0
-76 'SA.Robert' 'foxtrot.sf' 108 1.0 2.0
-77 'SA.Robert' 'foxtrot.sf' 109 1.0 2.0
-78 'SA.Robert' 'foxtrot.sf' 112 1.0 2.0
-79 'SA.Robert' 'foxtrot.sf' 113 1.0 2.0
-80 'SA.Robert' 'foxtrot.sf' 114 1.0 2.0
-81 'SA.Robert' 'foxtrot.sf' 115 1.0 2.0
-82 'SA.Robert' 'foxtrot.sf' 116 1.0 2.0
-83 'SA.Robert' 'foxtrot.sf' 119 1.0 2.0
-84 'SA.Robert' 'foxtrot.sf' 120 1.0 2.0
-85 'SA.Robert' 'foxtrot.sf' 121 1.0 2.0
-86 'SA.Robert' 'foxtrot.sf' 123 1.0 2.0
-87 'SA.Robert' 'hotel.sm' 3 0.0 1.0
-88 'SA.Robert' 'hotel.sm' 4 0.0 1.0
-89 'SA.Robert' 'hotel.sm' 7 0.0 1.0
-90 'SA.Robert' 'hotel.sm' 8 0.0 1.0
-91 'SA.Robert' 'hotel.sm' 9 0.0 1.0
-92 'SA.Robert' 'hotel.sm' 10 0.0 1.0
-93 'SA.Robert' 'hotel.sm' 11 0.0 1.0
-94 'SA.Robert' 'hotel.sm' 14 0.0 1.0
-95 'SA.Robert' 'hotel.sm' 15 0.0 1.0
-96 'SA.Robert' 'hotel.sm' 16 0.0 1.0
-97 'SA.Robert' 'hotel.sm' 17 0.0 1.0
-98 'SA.Robert' 'hotel.sm' 18 0.0 1.0
-99 'SA.Robert' 'hotel.sm' 21 0.0 1.0
-100 'SA.Robert' 'hotel.sm' 22 0.0 1.0
-101 'SA.Robert' 'hotel.sm' 23 0.0 1.0
-102 'SA.Robert' 'hotel.sm' 24 0.0 1.0
-103 'SA.Robert' 'hotel.sm' 25 0.0 1.0
-104 'SA.Robert' 'hotel.sm' 28 0.0 1.0
-105 'SA.Robert' 'hotel.sm' 29 0.0 1.0
-106 'SA.Robert' 'hotel.sm' 30 0.0 1.0
-107 'SA.Robert' 'hotel.sm' 31 0.0 1.0
-108 'SA.Robert' 'hotel.sm' 32 0.0 1.0
-109 'SA.Robert' 'hotel.sm' 35 0.0 1.0
-110 'SA.Robert' 'hotel.sm' 36 0.0 1.0
-111 'SA.Robert' 'hotel.sm' 37 0.0 1.0
-112 'SA.Robert' 'hotel.sm' 38 0.0 1.0
-113 'SA.Robert' 'hotel.sm' 39 0.0 1.0
-114 'SA.Robert' 'hotel.sm' 42 0.0 1.0
-115 'SA.Robert' 'hotel.sm' 43 0.0 1.0
-116 'SA.Robert' 'hotel.sm' 44 0.0 1.0
-117 'SA.Robert' 'hotel.sm' 45 0.0 1.0
-118 'SA.Robert' 'hotel.sm' 46 0.0 1.0
-119 'SA.Robert' 'hotel.sm' 49 0.0 1.0
-120 'SA.Robert' 'hotel.sm' 50 0.0 1.0
-121 'SA.Robert' 'hotel.sm' 51 0.0 1.0
-122 'SA.Robert' 'hotel.sm' 52 0.0 1.0
-123 'SA.Robert' 'hotel.sm' 53 0.0 1.0
-124 'SA.Robert' 'hotel.sm' 56 0.0 1.0
-125 'SA.Robert' 'hotel.sm' 57 0.0 1.0
-126 'SA.Robert' 'hotel.sm' 58 0.0 1.0
-127 'SA.Robert' 'hotel.sm' 59 0.0 1.0
-128 'SA.Robert' 'hotel.sm' 60 0.0 1.0
-129 'SA.Robert' 'hotel.sm' 63 0.0 1.0
-130 'SA.Robert' 'hotel.sm' 64 0.0 1.0
-131 'SA.Robert' 'hotel.sm' 65 0.0 1.0
-132 'SA.Robert' 'hotel.sm' 66 0.0 1.0
-133 'SA.Robert' 'hotel.sm' 67 0.0 1.0
-134 'SA.Robert' 'hotel.sm' 70 0.0 1.0
-135 'SA.Robert' 'hotel.sm' 71 0.0 1.0
-136 'SA.Robert' 'hotel.sm' 72 0.0 1.0
-137 'SA.Robert' 'hotel.sm' 73 0.0 1.0
-138 'SA.Robert' 'hotel.sm' 74 0.0 1.0
-139 'SA.Robert' 'hotel.sm' 77 0.0 1.0
-140 'SA.Robert' 'hotel.sm' 78 0.0 1.0
-141 'SA.Robert' 'hotel.sm' 79 0.0 1.0
-142 'SA.Robert' 'hotel.sm' 80 0.0 1.0
-143 'SA.Robert' 'hotel.sm' 81 0.0 1.0
-144 'SA.Robert' 'hotel.sm' 84 0.0 1.0
-145 'SA.Robert' 'hotel.sm' 85 0.0 1.0
-146 'SA.Robert' 'hotel.sm' 86 0.0 1.0
-147 'SA.Robert' 'hotel.sm' 87 0.0 1.0
-148 'SA.Robert' 'hotel.sm' 88 0.0 1.0
-149 'SA.Robert' 'hotel.sm' 91 0.0 1.0
-150 'SA.Robert' 'hotel.sm' 92 0.0 1.0
-151 'SA.Robert' 'hotel.sm' 93 0.0 1.0
-152 'SA.Robert' 'hotel.sm' 94 0.0 1.0
-153 'SA.Robert' 'hotel.sm' 95 0.0 1.0
-154 'SA.Robert' 'hotel.sm' 98 0.0 1.0
-155 'SA.Robert' 'hotel.sm' 99 0.0 1.0
-156 'SA.Robert' 'hotel.sm' 100 0.0 1.0
-157 'SA.Robert' 'hotel.sm' 101 0.0 1.0
-158 'SA.Robert' 'hotel.sm' 102 0.0 1.0
-159 'SA.Robert' 'hotel.sm' 105 0.0 1.0
-160 'SA.Robert' 'hotel.sm' 106 0.0 1.0
-161 'SA.Robert' 'hotel.sm' 107 0.0 1.0
-162 'SA.Robert' 'hotel.sm' 108 0.0 1.0
-163 'SA.Robert' 'hotel.sm' 109 0.0 1.0
-164 'SA.Robert' 'hotel.sm' 112 0.0 1.0
-165 'SA.Robert' 'hotel.sm' 113 0.0 1.0
-166 'SA.Robert' 'hotel.sm' 114 0.0 1.0
-167 'SA.Robert' 'hotel.sm' 115 0.0 1.0
-168 'SA.Robert' 'hotel.sm' 116 0.0 1.0
-169 'SA.Robert' 'hotel.sm' 119 0.0 1.0
-170 'SA.Robert' 'hotel.sm' 120 0.0 1.0
-171 'SA.Robert' 'hotel.sm' 121 0.0 1.0
-172 'SA.Robert' 'hotel.sm' 123 0.0 1.0
-173 'SA.Robert' 'hotel.sm' 126 0.0 1.0
-174 'SA.Robert' 'hotel.sm' 127 0.0 1.0
-175 'SA.Robert' 'hotel.sm' 128 0.0 1.0
-176 'SA.Robert' 'hotel.sm' 129 0.0 1.0
-177 'SA.Robert' 'hotel.sm' 130 0.0 1.0
-178 'SA.Robert' 'hotel.sm' 133 0.0 1.0
-179 'SA.Robert' 'hotel.sm' 134 0.0 1.0
-180 'SA.Robert' 'hotel.sm' 135 0.0 1.0
-181 'SA.Robert' 'hotel.sm' 136 0.0 1.0
-182 'SA.Robert' 'hotel.sm' 137 0.0 1.0
-183 'SA.Robert' 'hotel.sm' 140 0.0 1.0
-184 'SA.Robert' 'hotel.sm' 141 0.0 1.0
-185 'SA.Robert' 'hotel.sm' 142 0.0 1.0
-186 'SA.Robert' 'hotel.sm' 143 0.0 1.0
-187 'SA.Robert' 'hotel.sm' 144 0.0 1.0
-188 'SA.Robert' 'hotel.sm' 147 0.0 1.0
-189 'SA.Robert' 'hotel.sm' 148 0.0 1.0
-190 'SA.Robert' 'hotel.sm' 149 0.0 1.0
-191 'SA.Robert' 'hotel.sm' 150 0.0 1.0
-192 'SA.Robert' 'hotel.sm' 151 0.0 1.0
-193 'SA.Robert' 'hotel.sm' 154 0.0 1.0
-194 'SA.Robert' 'hotel.sm' 155 0.0 1.0
-195 'SA.Robert' 'hotel.sm' 156 0.0 1.0
-196 'SA.Robert' 'hotel.sm' 157 0.0 1.0
-197 'SA.Robert' 'hotel.sm' 158 0.0 1.0
-198 'SA.Robert' 'hotel.sm' 161 0.0 1.0
-199 'SA.Robert' 'hotel.sm' 162 0.0 1.0
-200 'SA.Robert' 'hotel.sm' 163 0.0 1.0
-201 'SA.Robert' 'hotel.sm' 164 0.0 1.0
-202 'SA.Robert' 'hotel.sm' 165 0.0 1.0
-203 'SA.Robert' 'hotel.sm' 168 0.0 1.0
-204 'SA.Robert' 'hotel.sm' 169 0.0 1.0
-205 'SA.Robert' 'hotel.sm' 170 0.0 1.0
-206 'SA.Robert' 'hotel.sm' 171 0.0 1.0
-207 'SA.Robert' 'hotel.sm' 172 0.0 1.0
-208 'SA.Robert' 'hotel.sm' 175 0.0 1.0
-209 'SA.Robert' 'hotel.sm' 176 0.0 1.0
-210 'SA.Robert' 'hotel.sm' 177 0.0 1.0
-211 'SA.Robert' 'hotel.sm' 178 0.0 1.0
-212 'SA.Robert' 'hotel.sm' 179 0.0 1.0
-213 'SA.Robert' 'hotel.sm' 182 0.0 1.0
-214 'SA.Robert' 'hotel.sm' 183 0.0 1.0
-215 'SA.Robert' 'hotel.sm' 184 0.0 1.0
-216 'SA.Robert' 'hotel.sm' 185 0.0 1.0
-217 'SA.Robert' 'hotel.sm' 186 0.0 1.0
-218 'SA.Robert' 'hotel.sm' 189 0.0 1.0
-219 'SA.Robert' 'hotel.sm' 190 0.0 1.0
-220 'SA.Robert' 'hotel.sm' 191 0.0 1.0
-221 'SA.Robert' 'hotel.sm' 192 0.0 1.0
-222 'SA.Robert' 'hotel.sm' 193 0.0 1.0
-223 'SA.Robert' 'hotel.sm' 196 0.0 1.0
-224 'SA.Robert' 'hotel.sm' 197 0.0 1.0
-225 'SA.Robert' 'hotel.sm' 198 0.0 1.0
-226 'SA.Robert' 'hotel.sm' 199 0.0 1.0
-227 'SA.Robert' 'hotel.sm' 200 0.0 1.0
-228 'SA.Robert' 'hotel.sm' 203 0.0 1.0
-229 'SA.Robert' 'hotel.sm' 204 0.0 1.0
-230 'SA.Robert' 'hotel.sm' 205 0.0 1.0
-231 'SA.Robert' 'hotel.sm' 206 0.0 1.0
-232 'SA.Robert' 'hotel.sm' 207 0.0 1.0
-233 'SA.Robert' 'hotel.sm' 210 0.0 1.0
-234 'SA.Robert' 'hotel.sm' 211 0.0 1.0
-235 'SA.Robert' 'hotel.sm' 212 0.0 1.0
-236 'SA.Robert' 'hotel.sm' 213 0.0 1.0
-237 'SA.Robert' 'hotel.sm' 214 0.0 1.0
-238 'SA.Robert' 'hotel.sm' 217 0.0 1.0
-239 'SA.Robert' 'hotel.sm' 218 0.0 1.0
-240 'SA.Robert' 'hotel.sm' 219 0.0 1.0
-241 'SA.Robert' 'hotel.sm' 220 0.0 1.0
-242 'SA.Robert' 'hotel.sm' 221 0.0 1.0
-243 'SA.Robert' 'hotel.sm' 224 0.0 1.0
-244 'SA.Robert' 'hotel.sm' 225 0.0 1.0
-245 'SA.Robert' 'hotel.sm' 226 0.0 1.0
-246 'SA.Robert' 'hotel.sm' 227 0.0 1.0
-247 'SA.Robert' 'hotel.sm' 228 0.0 1.0
-248 'SA.Robert' 'hotel.sm' 231 0.0 1.0
-249 'SA.Robert' 'hotel.sm' 232 0.0 1.0
-250 'SA.Robert' 'hotel.sm' 233 0.0 1.0
-251 'SA.Robert' 'hotel.sm' 234 0.0 1.0
-252 'SA.Robert' 'hotel.sm' 235 0.0 1.0
-253 'SA.Robert' 'hotel.sm' 238 0.0 1.0
-254 'SA.Robert' 'hotel.sm' 239 0.0 1.0
-255 'SA.Robert' 'hotel.sm' 240 0.0 1.0
-256 'SA.Robert' 'hotel.sm' 241 0.0 1.0
-257 'SA.Robert' 'hotel.sm' 242 0.0 1.0
-258 'SA.Robert' 'hotel.sm' 245 0.0 1.0
-259 'SA.Robert' 'hotel.sf' 246 0.0 1.0
-260 'SA.Robert' 'hotel.sf' 247 0.0 1.0
-261 'SA.Robert' 'hotel.sf' 248 0.0 1.0
-262 'SA.Robert' 'hotel.sf' 249 0.0 1.0
-263 'SA.Robert' 'hotel.sf' 252 0.0 1.0
-264 'SA.Robert' 'hotel.sf' 253 0.0 1.0
-265 'SA.Robert' 'hotel.sf' 254 0.0 1.0
-266 'SA.Robert' 'hotel.sf' 255 0.0 1.0
-267 'SA.Robert' 'hotel.sf' 256 0.0 1.0
-268 'SA.Robert' 'hotel.sf' 259 0.0 1.0
-269 'SA.Robert' 'hotel.sf' 260 0.0 1.0
-270 'SA.Robert' 'hotel.sf' 261 0.0 1.0
-271 'SA.Robert' 'hotel.sf' 262 0.0 1.0
-272 'SA.Robert' 'hotel.sf' 263 0.0 1.0
-273 'SA.Robert' 'hotel.sf' 266 0.0 1.0
-274 'SA.Robert' 'hotel.sf' 267 0.0 1.0
-275 'SA.Robert' 'hotel.sf' 268 0.0 1.0
-276 'SA.Robert' 'hotel.sf' 269 0.0 1.0
-277 'SA.Robert' 'hotel.sf' 270 0.0 1.0
-278 'SA.Robert' 'hotel.sf' 273 0.0 1.0
-279 'SA.Robert' 'hotel.sf' 274 0.0 1.0
-280 'SA.Robert' 'hotel.sf' 275 0.0 1.0
-281 'SA.Robert' 'hotel.sf' 276 0.0 1.0
-282 'SA.Robert' 'hotel.sf' 277 0.0 1.0
-283 'SA.Robert' 'hotel.sf' 280 0.0 1.0
-284 'SA.Robert' 'hotel.sf' 281 0.0 1.0
-285 'SA.Robert' 'hotel.sf' 282 0.0 1.0
-286 'SA.Robert' 'hotel.sf' 283 0.0 1.0
-287 'SA.Robert' 'hotel.sf' 284 0.0 1.0
-288 'SA.Robert' 'hotel.sf' 287 0.0 1.0
-289 'SA.Robert' 'hotel.sf' 288 0.0 1.0
-290 'SA.Robert' 'hotel.sf' 289 0.0 1.0
-291 'SA.Robert' 'hotel.sf' 290 0.0 1.0
-292 'SA.Robert' 'hotel.sf' 291 0.0 1.0
-293 'SA.Robert' 'india.sm' 3 0.0 1.0
-294 'SA.Robert' 'india.sm' 4 0.0 1.0
-295 'SA.Robert' 'india.sm' 7 0.0 1.0
-296 'SA.Robert' 'india.sm' 8 0.0 1.0
-297 'SA.Robert' 'india.sm' 9 0.0 1.0
-298 'SA.Robert' 'india.sm' 10 0.0 1.0
-299 'SA.Robert' 'india.sm' 11 0.0 1.0
-300 'SA.Robert' 'india.sm' 14 0.0 1.0
-301 'SA.Robert' 'india.sm' 15 0.0 1.0
-302 'SA.Robert' 'india.sm' 16 0.0 1.0
-303 'SA.Robert' 'india.sm' 17 0.0 1.0
-304 'SA.Robert' 'india.sm' 18 0.0 1.0
-305 'SA.Robert' 'india.sm' 21 0.0 1.0
-306 'SA.Robert' 'india.sm' 22 0.0 1.0
-307 'SA.Robert' 'india.sm' 23 0.0 1.0
-308 'SA.Robert' 'india.sm' 24 0.0 1.0
-309 'SA.Robert' 'india.sm' 25 0.0 1.0
-310 'SA.Robert' 'india.sm' 28 0.0 1.0
-311 'SA.Robert' 'india.sm' 29 0.0 1.0
-312 'SA.Robert' 'india.sm' 30 0.0 1.0
-313 'SA.Robert' 'india.sm' 31 0.0 1.0
-314 'SA.Robert' 'india.sm' 32 0.0 1.0
-315 'SA.Robert' 'india.sm' 35 0.0 1.0
-316 'SA.Robert' 'india.sm' 36 0.0 1.0
-317 'SA.Robert' 'india.sm' 37 0.0 1.0
-318 'SA.Robert' 'india.sm' 38 0.0 1.0
-319 'SA.Robert' 'india.sm' 39 0.0 1.0
-320 'SA.Robert' 'india.sm' 42 0.0 1.0
-321 'SA.Robert' 'india.sm' 43 0.0 1.0
-322 'SA.Robert' 'india.sm' 44 0.0 1.0
-323 'SA.Robert' 'india.sm' 45 0.0 1.0
-324 'SA.Robert' 'india.sm' 46 0.0 1.0
-325 'SA.Robert' 'india.sm' 49 0.0 1.0
-326 'SA.Robert' 'india.sm' 50 0.0 1.0
-327 'SA.Robert' 'india.sm' 51 0.0 1.0
-328 'SA.Robert' 'india.sm' 52 0.0 1.0
-329 'SA.Robert' 'india.sm' 53 0.0 1.0
-330 'SA.Robert' 'india.sm' 56 0.0 1.0
-331 'SA.Robert' 'india.sm' 57 0.0 1.0
-332 'SA.Robert' 'india.sm' 58 0.0 1.0
-333 'SA.Robert' 'india.sm' 59 0.0 1.0
-334 'SA.Robert' 'india.sm' 60 0.0 1.0
-335 'SA.Robert' 'india.sm' 63 0.0 1.0
-336 'SA.Robert' 'india.sm' 64 0.0 1.0
-337 'SA.Robert' 'india.sm' 65 0.0 1.0
-338 'SA.Robert' 'india.sm' 66 0.0 1.0
-339 'SA.Robert' 'india.sm' 67 0.0 1.0
-340 'SA.Robert' 'india.sm' 70 0.0 1.0
-341 'SA.Robert' 'india.sm' 71 0.0 1.0
-342 'SA.Robert' 'india.sm' 72 0.0 1.0
-343 'SA.Robert' 'india.sm' 73 0.0 1.0
-344 'SA.Robert' 'india.sm' 74 0.0 1.0
-345 'SA.Robert' 'india.sm' 77 0.0 1.0
-346 'SA.Robert' 'india.sm' 78 0.0 1.0
-347 'SA.Robert' 'india.sm' 79 0.0 1.0
-348 'SA.Robert' 'india.sm' 80 0.0 1.0
-349 'SA.Robert' 'india.sm' 81 0.0 1.0
-350 'SA.Robert' 'india.sm' 84 0.0 1.0
-351 'SA.Robert' 'india.sm' 85 0.0 1.0
-352 'SA.Robert' 'india.sm' 86 0.0 1.0
-353 'SA.Robert' 'india.sm' 87 0.0 1.0
-354 'SA.Robert' 'india.sm' 88 0.0 1.0
-355 'SA.Robert' 'india.sm' 91 0.0 1.0
-356 'SA.Robert' 'india.sm' 92 0.0 1.0
-357 'SA.Robert' 'india.sm' 93 0.0 1.0
-358 'SA.Robert' 'india.sm' 94 0.0 1.0
-359 'SA.Robert' 'india.sm' 95 0.0 1.0
-360 'SA.Robert' 'india.sm' 98 0.0 1.0
-361 'SA.Robert' 'india.sm' 99 0.0 1.0
-362 'SA.Robert' 'india.sm' 100 0.0 1.0
-363 'SA.Robert' 'india.sm' 101 0.0 1.0
-364 'SA.Robert' 'india.sm' 102 0.0 1.0
-365 'SA.Robert' 'india.sm' 105 0.0 1.0
-366 'SA.Robert' 'india.sm' 106 0.0 1.0
-367 'SA.Robert' 'india.sm' 107 0.0 1.0
-368 'SA.Robert' 'india.sm' 108 0.0 1.0
-369 'SA.Robert' 'india.sm' 109 0.0 1.0
-370 'SA.Robert' 'india.sm' 112 0.0 1.0
-371 'SA.Robert' 'india.sm' 113 0.0 1.0
-372 'SA.Robert' 'india.sm' 114 0.0 1.0
-373 'SA.Robert' 'india.sm' 115 0.0 1.0
-374 'SA.Robert' 'india.sm' 116 0.0 1.0
-375 'SA.Robert' 'india.sm' 119 0.0 1.0
-376 'SA.Robert' 'india.sm' 120 0.0 1.0
-377 'SA.Robert' 'india.sm' 121 0.0 1.0
-378 'SA.Robert' 'india.sm' 123 0.0 1.0
-379 'SA.Robert' 'india.sm' 126 0.0 1.0
-380 'SA.Robert' 'india.sm' 127 0.0 1.0
-381 'SA.Robert' 'india.sm' 128 0.0 1.0
-382 'SA.Robert' 'india.sm' 129 0.0 1.0
-383 'SA.Robert' 'india.sm' 130 0.0 1.0
-384 'SA.Robert' 'india.sm' 133 0.0 1.0
-385 'SA.Robert' 'india.sm' 134 0.0 1.0
-386 'SA.Robert' 'india.sm' 135 0.0 1.0
-387 'SA.Robert' 'india.sm' 136 0.0 1.0
-388 'SA.Robert' 'india.sm' 137 0.0 1.0
-389 'SA.Robert' 'india.sm' 140 0.0 1.0
-390 'SA.Robert' 'india.sm' 141 0.0 1.0
-391 'SA.Robert' 'india.sm' 142 0.0 1.0
-392 'SA.Robert' 'india.sm' 143 0.0 1.0
-393 'SA.Robert' 'india.sm' 144 0.0 1.0
-394 'SA.Robert' 'india.sm' 147 0.0 1.0
-395 'SA.Robert' 'india.sm' 148 0.0 1.0
-396 'SA.Robert' 'india.sm' 149 0.0 1.0
-397 'SA.Robert' 'india.sm' 150 0.0 1.0
-398 'SA.Robert' 'india.sm' 151 0.0 1.0
-399 'SA.Robert' 'india.sm' 154 0.0 1.0
-400 'SA.Robert' 'india.sm' 155 0.0 1.0
-401 'SA.Robert' 'india.sm' 156 0.0 1.0
-402 'SA.Robert' 'india.sm' 157 0.0 1.0
-403 'SA.Robert' 'india.sm' 158 0.0 1.0
-404 'SA.Robert' 'india.sm' 161 0.0 1.0
-405 'SA.Robert' 'india.sm' 162 0.0 1.0
-406 'SA.Robert' 'india.sm' 163 0.0 1.0
-407 'SA.Robert' 'india.sm' 164 0.0 1.0
-408 'SA.Robert' 'india.sm' 165 0.0 1.0
-409 'SA.Robert' 'india.sm' 168 0.0 1.0
-410 'SA.Robert' 'india.sm' 169 0.0 1.0
-411 'SA.Robert' 'india.sm' 170 0.0 1.0
-412 'SA.Robert' 'india.sm' 171 0.0 1.0
-413 'SA.Robert' 'india.sm' 172 0.0 1.0
-414 'SA.Robert' 'india.sm' 175 0.0 1.0
-415 'SA.Robert' 'india.sm' 176 0.0 1.0
-416 'SA.Robert' 'india.sm' 177 0.0 1.0
-417 'SA.Robert' 'india.sm' 178 0.0 1.0
-418 'SA.Robert' 'india.sm' 179 0.0 1.0
-419 'SA.Robert' 'india.sm' 182 0.0 1.0
-420 'SA.Robert' 'india.sm' 183 0.0 1.0
-421 'SA.Robert' 'india.sm' 184 0.0 1.0
-422 'SA.Robert' 'india.sm' 185 0.0 1.0
-423 'SA.Robert' 'india.sm' 186 0.0 1.0
-424 'SA.Robert' 'india.sm' 189 0.0 1.0
-425 'SA.Robert' 'india.sm' 190 0.0 1.0
-426 'SA.Robert' 'india.sm' 191 0.0 1.0
-427 'SA.Robert' 'india.sm' 192 0.0 1.0
-428 'SA.Robert' 'india.sm' 193 0.0 1.0
-429 'SA.Robert' 'india.sm' 196 0.0 1.0
-430 'SA.Robert' 'india.sm' 197 0.0 1.0
-431 'SA.Robert' 'india.sm' 198 0.0 1.0
-432 'SA.Robert' 'india.sm' 199 0.0 1.0
-433 'SA.Robert' 'india.sm' 200 0.0 1.0
-434 'SA.Robert' 'india.sm' 203 0.0 1.0
-435 'SA.Robert' 'india.sm' 204 0.0 1.0
-436 'SA.Robert' 'india.sm' 205 0.0 1.0
-437 'SA.Robert' 'india.sm' 206 0.0 1.0
-438 'SA.Robert' 'india.sm' 207 0.0 1.0
-439 'SA.Robert' 'india.sm' 210 0.0 1.0
-440 'SA.Robert' 'india.sm' 211 0.0 1.0
-441 'SA.Robert' 'india.sm' 212 0.0 1.0
-442 'SA.Robert' 'india.sm' 213 0.0 1.0
-443 'SA.Robert' 'india.sm' 214 0.0 1.0
-444 'SA.Robert' 'india.sm' 217 0.0 1.0
-445 'SA.Robert' 'india.sm' 218 0.0 1.0
-446 'SA.Robert' 'india.sm' 219 0.0 1.0
-447 'SA.Robert' 'india.sm' 220 0.0 1.0
-448 'SA.Robert' 'india.sm' 221 0.0 1.0
-449 'SA.Robert' 'india.sm' 224 0.0 1.0
-450 'SA.Robert' 'india.sm' 225 0.0 1.0
-451 'SA.Robert' 'india.sm' 226 0.0 1.0
-452 'SA.Robert' 'india.sm' 227 0.0 1.0
-453 'SA.Robert' 'india.sm' 228 0.0 1.0
-454 'SA.Robert' 'india.sm' 231 0.0 1.0
-455 'SA.Robert' 'india.sm' 232 0.0 1.0
-456 'SA.Robert' 'india.sm' 233 0.0 1.0
-457 'SA.Robert' 'india.sm' 234 0.0 1.0
-458 'SA.Robert' 'india.sm' 235 0.0 1.0
-459 'SA.Robert' 'india.sm' 238 0.0 1.0
-460 'SA.Robert' 'india.sm' 239 0.0 1.0
-461 'SA.Robert' 'india.sm' 240 0.0 1.0
-462 'SA.Robert' 'india.sm' 241 0.0 1.0
-463 'SA.Robert' 'india.sm' 242 0.0 1.0
-464 'SA.Robert' 'india.sm' 245 0.0 1.0
-465 'SA.Robert' 'india.sm' 246 0.0 1.0
-466 'SA.Robert' 'india.sm' 247 0.0 1.0
-467 'SA.Robert' 'india.sm' 248 0.0 1.0
-468 'SA.Robert' 'india.sm' 249 0.0 1.0
-469 'SA.Robert' 'india.sm' 252 0.0 1.0
-470 'SA.Robert' 'india.sm' 253 0.0 1.0
-471 'SA.Robert' 'india.sm' 254 0.0 1.0
-472 'SA.Robert' 'india.sm' 255 0.0 1.0
-473 'SA.Robert' 'india.sm' 256 0.0 1.0
-474 'SA.Robert' 'india.sm' 259 0.0 1.0
-475 'SA.Robert' 'india.sm' 260 0.0 1.0
-476 'SA.Robert' 'india.sm' 261 0.0 1.0
-477 'SA.Robert' 'india.sm' 262 0.0 1.0
-478 'SA.Robert' 'india.sm' 263 0.0 1.0
-479 'SA.Robert' 'india.sm' 266 0.0 1.0
-480 'SA.Robert' 'india.sm' 267 0.0 1.0
-481 'SA.Robert' 'india.sm' 268 0.0 1.0
-482 'SA.Robert' 'india.sm' 269 0.0 1.0
-483 'SA.Robert' 'india.sm' 270 0.0 1.0
-484 'SA.Robert' 'india.sm' 273 0.0 1.0
-485 'SA.Robert' 'india.sm' 274 0.0 1.0
-486 'SA.Robert' 'india.sm' 275 0.0 1.0
-487 'SA.Robert' 'india.sf' 276 2.0 3.0
-488 'SA.Robert' 'india.sf' 277 2.0 3.0
-489 'SA.Robert' 'india.sf' 280 2.0 3.0
-490 'SA.Robert' 'india.sf' 281 2.0 3.0
-491 'SA.Robert' 'india.sf' 282 2.0 3.0
-492 'SA.Robert' 'india.sf' 283 2.0 3.0
-493 'SA.Robert' 'india.sf' 284 2.0 3.0
-494 'SA.Robert' 'india.sf' 287 2.0 3.0
-495 'SA.Robert' 'india.sf' 288 2.0 3.0
-496 'SA.Robert' 'india.sf' 289 2.0 3.0
-497 'SA.Robert' 'india.sf' 290 2.0 3.0
-498 'SA.Robert' 'india.sf' 291 2.0 3.0
-499 'SA.Robert' 'india.sf' 294 2.0 3.0
-500 'SA.Robert' 'india.sf' 295 2.0 3.0
-501 'SA.Robert' 'india.sf' 296 2.0 3.0
-502 'SA.Robert' 'india.sf' 297 2.0 3.0
-503 'SA.Robert' 'india.sf' 298 2.0 3.0
-504 'SA.Robert' 'india.sf' 301 2.0 3.0
-505 'SA.Robert' 'india.sf' 302 2.0 3.0
-506 'SA.Robert' 'india.sf' 303 2.0 3.0
-507 'SA.Robert' 'india.sf' 304 2.0 3.0
-508 'SA.Robert' 'india.sf' 305 2.0 3.0
-509 'SA.Robert' 'juliet.se' 42 2.0 3.0
-510 'SA.Robert' 'juliet.se' 43 2.0 3.0
-511 'SA.Robert' 'juliet.se' 44 2.0 3.0
-512 'SA.Robert' 'juliet.se' 45 2.0 3.0
-513 'SA.Robert' 'juliet.se' 46 2.0 3.0
-514 'SA.Robert' 'juliet.se' 49 2.0 3.0
-515 'SA.Robert' 'juliet.se' 50 2.0 3.0
-516 'SA.Robert' 'juliet.se' 51 2.0 3.0
-517 'SA.Robert' 'juliet.se' 52 2.0 3.0
-518 'SA.Robert' 'juliet.se' 53 2.0 3.0
-519 'SA.Robert' 'juliet.se' 56 2.0 3.0
-520 'SA.Robert' 'juliet.se' 57 2.0 3.0
-521 'SA.Robert' 'juliet.se' 58 2.0 3.0
-522 'SA.Robert' 'juliet.se' 59 2.0 3.0
-523 'SA.Robert' 'juliet.sm' 60 0.0 1.0
-524 'SA.Robert' 'juliet.sm' 63 0.0 1.0
-525 'SA.Robert' 'juliet.sm' 64 0.0 1.0
-526 'SA.Robert' 'juliet.sm' 65 0.0 1.0
-527 'SA.Robert' 'juliet.sm' 66 0.0 1.0
-528 'SA.Robert' 'juliet.sm' 67 0.0 1.0
-529 'SA.Robert' 'juliet.sm' 70 0.0 1.0
-530 'SA.Robert' 'juliet.sm' 71 0.0 1.0
-531 'SA.Robert' 'juliet.sm' 72 0.0 1.0
-532 'SA.Robert' 'juliet.sm' 73 0.0 1.0
-533 'SA.Robert' 'juliet.sm' 74 0.0 1.0
-534 'SA.Robert' 'juliet.sm' 77 0.0 1.0
-535 'SA.Robert' 'juliet.sm' 78 0.0 1.0
-536 'SA.Robert' 'juliet.sm' 79 0.0 1.0
-537 'SA.Robert' 'juliet.sm' 80 0.0 1.0
-538 'SA.Robert' 'juliet.sm' 81 0.0 1.0
-539 'SA.Robert' 'juliet.sm' 84 0.0 1.0
-540 'SA.Robert' 'juliet.sm' 85 0.0 1.0
-541 'SA.Robert' 'juliet.sm' 86 0.0 1.0
-542 'SA.Robert' 'juliet.sm' 87 0.0 1.0
-543 'SA.Robert' 'juliet.sm' 88 0.0 1.0
-544 'SA.Robert' 'juliet.sm' 91 0.0 1.0
-545 'SA.Robert' 'juliet.sm' 92 0.0 1.0
-546 'SA.Robert' 'juliet.sm' 93 0.0 1.0
-547 'SA.Robert' 'juliet.sm' 94 0.0 1.0
-548 'SA.Robert' 'juliet.sm' 95 0.0 1.0
-549 'SA.Robert' 'juliet.sm' 98 0.0 1.0
-550 'SA.Robert' 'juliet.sm' 99 0.0 1.0
-551 'SA.Robert' 'juliet.sm' 100 0.0 1.0
-552 'SA.Robert' 'juliet.sm' 101 0.0 1.0
-553 'SA.Robert' 'juliet.sm' 102 0.0 1.0
-554 'SA.Robert' 'juliet.sm' 105 0.0 1.0
-555 'SA.Robert' 'juliet.sm' 106 0.0 1.0
-556 'SA.Robert' 'juliet.sm' 107 0.0 1.0
-557 'SA.Robert' 'juliet.sm' 108 0.0 1.0
-558 'SA.Robert' 'juliet.sm' 109 0.0 1.0
-559 'SA.Robert' 'juliet.sm' 112 0.0 1.0
-560 'SA.Robert' 'juliet.sm' 113 0.0 1.0
-561 'SA.Robert' 'juliet.sm' 114 0.0 1.0
-562 'SA.Robert' 'juliet.sm' 115 0.0 1.0
-563 'SA.Robert' 'juliet.sm' 116 0.0 1.0
-564 'SA.Robert' 'juliet.sm' 119 0.0 1.0
-565 'SA.Robert' 'juliet.sm' 120 0.0 1.0
-566 'SA.Robert' 'juliet.sm' 121 0.0 1.0
-567 'SA.Robert' 'juliet.sm' 123 0.0 1.0
-568 'SA.Robert' 'juliet.sm' 126 0.0 1.0
-569 'SA.Robert' 'juliet.sm' 127 0.0 1.0
-570 'SA.Robert' 'juliet.sm' 128 0.0 1.0
-571 'SA.Robert' 'juliet.sm' 129 0.0 1.0
-572 'SA.Robert' 'juliet.sm' 130 0.0 1.0
-573 'SA.Robert' 'juliet.sm' 133 0.0 1.0
-574 'SA.Robert' 'juliet.sm' 134 0.0 1.0
-575 'SA.Robert' 'juliet.sm' 135 0.0 1.0
-576 'SA.Robert' 'juliet.sm' 136 0.0 1.0
-577 'SA.Robert' 'juliet.sm' 137 0.0 1.0
-578 'SA.Robert' 'juliet.sm' 140 0.0 1.0
-579 'SA.Robert' 'juliet.sm' 141 0.0 1.0
-580 'SA.Robert' 'juliet.sm' 142 0.0 1.0
-581 'SA.Robert' 'juliet.sm' 143 0.0 1.0
-582 'SA.Robert' 'juliet.sm' 144 0.0 1.0
-583 'SA.Robert' 'juliet.sm' 147 0.0 1.0
-584 'SA.Robert' 'juliet.sm' 148 0.0 1.0
-585 'SA.Robert' 'juliet.sm' 149 0.0 1.0
-586 'SA.Robert' 'juliet.sm' 150 0.0 1.0
-587 'SA.Robert' 'juliet.sm' 151 0.0 1.0
-588 'SA.Robert' 'juliet.sm' 154 0.0 1.0
-589 'SA.Robert' 'juliet.sm' 155 0.0 1.0
-590 'SA.Robert' 'juliet.sm' 156 0.0 1.0
-591 'SA.Robert' 'juliet.sm' 157 0.0 1.0
-592 'SA.Robert' 'juliet.sm' 158 0.0 1.0
-593 'SA.Robert' 'juliet.sm' 161 0.0 1.0
-594 'SA.Robert' 'juliet.sm' 162 0.0 1.0
-595 'SA.Robert' 'juliet.sm' 163 0.0 1.0
-596 'SA.Robert' 'juliet.sm' 164 0.0 1.0
-597 'SA.Robert' 'juliet.sm' 165 0.0 1.0
-598 'SA.Robert' 'juliet.sm' 168 0.0 1.0
-599 'SA.Robert' 'juliet.sm' 169 0.0 1.0
-600 'SA.Robert' 'juliet.sm' 170 0.0 1.0
-601 'SA.Robert' 'juliet.sm' 171 0.0 1.0
-602 'SA.Robert' 'juliet.sm' 172 0.0 1.0
-603 'SA.Robert' 'juliet.sm' 175 0.0 1.0
-604 'SA.Robert' 'juliet.sm' 176 0.0 1.0
-605 'SA.Robert' 'juliet.sm' 177 0.0 1.0
-606 'SA.Robert' 'juliet.sm' 178 0.0 1.0
-607 'SA.Robert' 'juliet.sm' 179 0.0 1.0
-608 'SA.Robert' 'juliet.sm' 182 0.0 1.0
-609 'SA.Robert' 'juliet.sf' 183 0.0 1.0
-610 'SA.Robert' 'juliet.sf' 184 0.0 1.0
-611 'SA.Robert' 'juliet.sf' 185 0.0 1.0
-612 'SA.Robert' 'juliet.sf' 186 0.0 1.0
-613 'SA.Robert' 'juliet.sf' 189 0.0 1.0
-614 'SA.Robert' 'juliet.sf' 190 0.0 1.0
-615 'SA.Robert' 'juliet.sf' 191 0.0 1.0
-616 'SA.Robert' 'juliet.sf' 192 0.0 1.0
-617 'SA.Robert' 'juliet.sf' 193 0.0 1.0
-618 'SA.Robert' 'juliet.sf' 196 0.0 1.0
-619 'SA.Robert' 'juliet.sf' 197 0.0 1.0
-620 'SA.Robert' 'juliet.sf' 198 0.0 1.0
-621 'SA.Robert' 'juliet.sf' 199 0.0 1.0
-622 'SA.Robert' 'juliet.sf' 200 0.0 1.0
-623 'SA.Robert' 'juliet.sf' 203 0.0 1.0
-624 'SA.Robert' 'juliet.sf' 204 0.0 1.0
-625 'SA.Robert' 'juliet.sf' 205 0.0 1.0
-626 'SA.Robert' 'juliet.sf' 206 0.0 1.0
-627 'SA.Robert' 'juliet.sf' 207 0.0 1.0
-628 'SA.Robert' 'juliet.sf' 210 0.0 1.0
-629 'SA.Robert' 'juliet.sf' 211 0.0 1.0
-630 'SA.Robert' 'juliet.sf' 212 0.0 1.0
-631 'SA.Robert' 'juliet.sf' 213 0.0 1.0
-632 'SA.Robert' 'juliet.sf' 214 0.0 1.0
-633 'SA.Robert' 'juliet.sf' 217 0.0 1.0
-634 'SA.Robert' 'juliet.sf' 218 0.0 1.0
-635 'SA.Robert' 'juliet.sf' 219 0.0 1.0
-636 'SA.Robert' 'juliet.sf' 220 0.0 1.0
-637 'SA.Robert' 'juliet.sf' 221 0.0 1.0
-638 'SA.Robert' 'juliet.sf' 224 0.0 1.0
-639 'SA.Robert' 'juliet.sf' 225 0.0 1.0
-640 'SA.Robert' 'juliet.sf' 226 0.0 1.0
-641 'SA.Robert' 'juliet.sf' 227 0.0 1.0
-642 'SA.Robert' 'juliet.sf' 228 0.0 1.0
-643 'SA.Robert' 'november.se' 147 2.0 3.0
-644 'SA.Robert' 'november.se' 148 2.0 3.0
-645 'SA.Robert' 'november.se' 149 2.0 3.0
-646 'SA.Robert' 'november.se' 150 2.0 3.0
-647 'SA.Robert' 'november.se' 151 2.0 3.0
-648 'SA.Robert' 'november.se' 154 2.0 3.0
-649 'SA.Robert' 'november.se' 155 2.0 3.0
-650 'SA.Robert' 'november.se' 156 2.0 3.0
-651 'SA.Robert' 'november.se' 157 2.0 3.0
-652 'SA.Robert' 'november.se' 158 2.0 3.0
-653 'SA.Robert' 'november.se' 161 2.0 3.0
-654 'SA.Robert' 'november.se' 162 2.0 3.0
-655 'SA.Robert' 'november.se' 163 2.0 3.0
-656 'SA.Robert' 'november.se' 164 2.0 3.0
-657 'SA.Robert' 'november.se' 165 2.0 3.0
-658 'SA.Robert' 'november.sm' 168 0.0 1.0
-659 'SA.Robert' 'november.sm' 169 0.0 1.0
-660 'SA.Robert' 'november.sm' 170 0.0 1.0
-661 'SA.Robert' 'november.sm' 171 0.0 1.0
-662 'SA.Robert' 'november.sm' 172 0.0 1.0
-663 'SA.Robert' 'november.sm' 175 0.0 1.0
-664 'SA.Robert' 'november.sm' 176 0.0 1.0
-665 'SA.Robert' 'november.sm' 177 0.0 1.0
-666 'SA.Robert' 'november.sm' 178 0.0 1.0
-667 'SA.Robert' 'november.sm' 179 0.0 1.0
-668 'SA.Robert' 'november.sm' 182 0.0 1.0
-669 'SA.Robert' 'november.sm' 183 0.0 1.0
-670 'SA.Robert' 'november.sm' 184 0.0 1.0
-671 'SA.Robert' 'november.sm' 185 0.0 1.0
-672 'SA.Robert' 'november.sm' 186 0.0 1.0
-673 'SA.Robert' 'november.sm' 189 0.0 1.0
-674 'SA.Robert' 'november.sm' 190 0.0 1.0
-675 'SA.Robert' 'november.sm' 191 0.0 1.0
-676 'SA.Robert' 'november.sm' 192 0.0 1.0
-677 'SA.Robert' 'november.sm' 193 0.0 1.0
-678 'SA.Robert' 'november.sm' 196 0.0 1.0
-679 'SA.Robert' 'november.sm' 197 0.0 1.0
-680 'SA.Robert' 'november.sm' 198 0.0 1.0
-681 'SA.Robert' 'november.sm' 199 0.0 1.0
-682 'SA.Robert' 'november.sm' 200 0.0 1.0
-683 'SA.Robert' 'november.sm' 203 0.0 1.0
-684 'SA.Robert' 'november.sm' 204 0.0 1.0
-685 'SA.Robert' 'november.sm' 205 0.0 1.0
-686 'SA.Robert' 'november.sm' 206 0.0 1.0
-687 'SA.Robert' 'november.sm' 207 0.0 1.0
-688 'SA.Robert' 'november.sm' 210 0.0 1.0
-689 'SA.Robert' 'november.sm' 211 0.0 1.0
-690 'SA.Robert' 'november.sm' 212 0.0 1.0
-691 'SA.Robert' 'november.sm' 213 0.0 1.0
-692 'SA.Robert' 'november.sm' 214 0.0 1.0
-693 'SA.Robert' 'november.sm' 217 0.0 1.0
-694 'SA.Robert' 'november.sm' 218 0.0 1.0
-695 'SA.Robert' 'november.sm' 219 0.0 1.0
-696 'SA.Robert' 'november.sm' 220 0.0 1.0
-697 'SA.Robert' 'november.sm' 221 0.0 1.0
-698 'SA.Robert' 'november.sm' 224 0.0 1.0
-699 'SA.Robert' 'november.sm' 225 0.0 1.0
-700 'SA.Robert' 'november.sm' 226 0.0 1.0
-701 'SA.Robert' 'november.sm' 227 0.0 1.0
-702 'SA.Robert' 'november.sm' 228 0.0 1.0
-703 'SA.Robert' 'november.sm' 231 0.0 1.0
-704 'SA.Robert' 'november.sm' 232 0.0 1.0
-705 'SA.Robert' 'november.sm' 233 0.0 1.0
-706 'SA.Robert' 'november.sm' 234 0.0 1.0
-707 'SA.Robert' 'november.sm' 235 0.0 1.0
-708 'SA.Robert' 'november.sm' 238 0.0 1.0
-709 'SA.Robert' 'november.sm' 239 0.0 1.0
-710 'SA.Robert' 'november.sm' 240 0.0 1.0
-711 'SA.Robert' 'november.sm' 241 0.0 1.0
-712 'SA.Robert' 'november.sm' 242 0.0 1.0
-713 'SA.Robert' 'november.sm' 245 0.0 1.0
-714 'SA.Robert' 'november.sm' 246 0.0 1.0
-715 'SA.Robert' 'november.sm' 247 0.0 1.0
-716 'SA.Robert' 'november.sm' 248 0.0 1.0
-717 'SA.Robert' 'november.sm' 249 0.0 1.0
-718 'SA.Robert' 'november.sm' 252 0.0 1.0
-719 'SA.Robert' 'november.sm' 253 0.0 1.0
-720 'SA.Robert' 'november.sm' 254 0.0 1.0
-721 'SA.Robert' 'november.sm' 255 0.0 1.0
-722 'SA.Robert' 'november.sm' 256 0.0 1.0
-723 'SA.Robert' 'november.sm' 259 0.0 1.0
-724 'SA.Robert' 'november.sm' 260 0.0 1.0
-725 'SA.Robert' 'november.sm' 261 0.0 1.0
-726 'SA.Robert' 'november.sm' 262 0.0 1.0
-727 'SA.Robert' 'november.sm' 263 0.0 1.0
-728 'SA.Robert' 'november.sm' 266 0.0 1.0
-729 'SA.Robert' 'november.sm' 267 0.0 1.0
-730 'SA.Robert' 'november.sm' 268 0.0 1.0
-731 'SA.Robert' 'november.sm' 269 0.0 1.0
-732 'SA.Robert' 'november.sm' 270 0.0 1.0
-733 'SA.Robert' 'november.sm' 273 0.0 1.0
-734 'SA.Robert' 'november.sm' 274 0.0 1.0
-735 'SA.Robert' 'november.sm' 275 0.0 1.0
-736 'SA.Robert' 'november.sm' 276 0.0 1.0
-737 'SA.Robert' 'november.sm' 277 0.0 1.0
-738 'SA.Robert' 'november.sm' 280 0.0 1.0
-739 'SA.Robert' 'november.sm' 281 0.0 1.0
-740 'SA.Robert' 'november.sm' 282 0.0 1.0
-741 'SA.Robert' 'november.sm' 283 0.0 1.0
-742 'SA.Robert' 'november.sm' 284 0.0 1.0
-743 'SA.Robert' 'november.sm' 287 0.0 1.0
-744 'SA.Robert' 'november.sm' 288 0.0 1.0
-745 'SA.Robert' 'november.sm' 289 0.0 1.0
-746 'SA.Robert' 'november.sm' 290 0.0 1.0
-747 'SA.Robert' 'november.sm' 291 0.0 1.0
-748 'SA.Robert' 'november.sm' 294 0.0 1.0
-749 'SA.Robert' 'november.sm' 295 0.0 1.0
-750 'SA.Robert' 'november.sm' 296 0.0 1.0
-751 'SA.Robert' 'november.sm' 297 0.0 1.0
-752 'SA.Robert' 'november.sm' 298 0.0 1.0
-753 'SA.Robert' 'november.sm' 301 0.0 1.0
-754 'SA.Robert' 'november.sm' 302 0.0 1.0
-755 'SA.Robert' 'november.sm' 303 0.0 1.0
-756 'SA.Robert' 'november.sm' 304 0.0 1.0
-757 'SA.Robert' 'november.sm' 305 0.0 1.0
-758 'SA.Robert' 'november.sm' 308 0.0 1.0
-759 'SA.Robert' 'november.sm' 309 0.0 1.0
-760 'SA.Robert' 'november.sm' 310 0.0 1.0
-761 'SA.Robert' 'november.sm' 311 0.0 1.0
-762 'SA.Robert' 'november.sm' 312 0.0 1.0
-763 'SA.Robert' 'november.sm' 315 0.0 1.0
-764 'SA.Robert' 'november.sm' 316 0.0 1.0
-765 'SA.Robert' 'november.sm' 317 0.0 1.0
-766 'SA.Robert' 'november.sm' 318 0.0 1.0
-767 'SA.Robert' 'november.sm' 319 0.0 1.0
-768 'SA.Robert' 'november.sm' 322 0.0 1.0
-769 'SA.Robert' 'november.sm' 323 0.0 1.0
-770 'SA.Robert' 'november.sm' 324 0.0 1.0
-771 'SA.Robert' 'november.sm' 325 0.0 1.0
-772 'SA.Robert' 'november.sm' 326 0.0 1.0
-773 'SA.Robert' 'november.sm' 329 0.0 1.0
-774 'SA.Robert' 'november.sm' 330 0.0 1.0
-775 'SA.Robert' 'november.sm' 331 0.0 1.0
-776 'SA.Robert' 'november.sm' 332 0.0 1.0
-777 'SA.Robert' 'november.sm' 333 0.0 1.0
-778 'SA.Robert' 'november.sm' 336 0.0 1.0
-779 'SA.Robert' 'november.sm' 337 0.0 1.0
-780 'SA.Robert' 'november.sm' 338 0.0 1.0
-781 'SA.Robert' 'november.sm' 339 0.0 1.0
-782 'SA.Robert' 'november.sm' 340 0.0 1.0
-783 'SA.Robert' 'november.sm' 343 0.0 1.0
-784 'SA.Robert' 'november.sm' 344 0.0 1.0
-785 'SA.Robert' 'november.sm' 345 0.0 1.0
-786 'SA.Robert' 'november.sm' 346 0.0 1.0
-787 'SA.Robert' 'november.sm' 347 0.0 1.0
-788 'SA.Robert' 'november.sm' 350 0.0 1.0
-789 'SA.Robert' 'november.sm' 351 0.0 1.0
-790 'SA.Robert' 'november.sm' 352 0.0 1.0
-791 'SA.Robert' 'november.sm' 353 0.0 1.0
-792 'SA.Robert' 'november.sm' 354 0.0 1.0
-793 'SA.Robert' 'november.sm' 357 0.0 1.0
-794 'SA.Robert' 'november.sm' 358 0.0 1.0
-795 'SA.Robert' 'november.sm' 359 0.0 1.0
-796 'SA.Robert' 'november.sm' 360 0.0 1.0
-797 'SA.Robert' 'november.sm' 361 0.0 1.0
-798 'SA.Robert' 'november.sm' 364 0.0 1.0
-799 'SA.Robert' 'november.sm' 365 0.0 1.0
-800 'SA.Robert' 'november.sf' 366 0.0 1.0
-801 'SA.Robert' 'november.sf' 367 0.0 1.0
-802 'SA.Robert' 'november.sf' 368 0.0 1.0
-803 'SA.Robert' 'november.sf' 371 0.0 1.0
-804 'SA.Robert' 'november.sf' 372 0.0 1.0
-805 'SA.Robert' 'november.sf' 373 0.0 1.0
-806 'SA.Robert' 'november.sf' 374 0.0 1.0
-807 'SA.Robert' 'november.sf' 375 0.0 1.0
-808 'SA.Robert' 'november.sf' 378 0.0 1.0
-809 'SA.Robert' 'november.sf' 379 0.0 1.0
-810 'SA.Robert' 'november.sf' 380 0.0 1.0
-811 'SA.Robert' 'november.sf' 381 0.0 1.0
-812 'SA.Robert' 'november.sf' 382 0.0 1.0
-813 'SA.Robert' 'november.sf' 385 0.0 1.0
-814 'SA.Robert' 'november.sf' 386 0.0 1.0
-815 'SA.Robert' 'november.sf' 387 0.0 1.0
-816 'SA.Robert' 'november.sf' 388 0.0 1.0
-817 'SA.Robert' 'november.sf' 389 0.0 1.0
-818 'SA.Robert' 'november.sf' 392 0.0 1.0
-819 'SA.Robert' 'november.sf' 393 0.0 1.0
-820 'SA.Robert' 'november.sf' 394 0.0 1.0
-821 'SA.Robert' 'november.sf' 395 0.0 1.0
-822 'SA.Robert' 'november.sf' 396 0.0 1.0
-823 'SA.Robert' 'oscar.se' 177 3.0 4.0
-824 'SA.Robert' 'oscar.se' 178 3.0 4.0
-825 'SA.Robert' 'oscar.se' 179 3.0 4.0
-826 'SA.Robert' 'oscar.se' 182 3.0 4.0
-827 'SA.Robert' 'oscar.se' 183 3.0 4.0
-828 'SA.Robert' 'oscar.se' 184 3.0 4.0
-829 'SA.Robert' 'oscar.se' 185 3.0 4.0
-830 'SA.Robert' 'oscar.se' 186 3.0 4.0
-831 'SA.Robert' 'oscar.se' 189 3.0 4.0
-832 'SA.Robert' 'oscar.se' 190 3.0 4.0
-833 'SA.Robert' 'oscar.se' 191 3.0 4.0
-834 'SA.Robert' 'oscar.sm' 192 0.0 1.0
-835 'SA.Robert' 'oscar.sm' 193 0.0 1.0
-836 'SA.Robert' 'oscar.sm' 196 0.0 1.0
-837 'SA.Robert' 'oscar.sm' 197 0.0 1.0
-838 'SA.Robert' 'oscar.sm' 198 0.0 1.0
-839 'SA.Robert' 'oscar.sm' 199 0.0 1.0
-840 'SA.Robert' 'oscar.sm' 200 0.0 1.0
-841 'SA.Robert' 'oscar.sm' 203 0.0 1.0
-842 'SA.Robert' 'oscar.sm' 204 0.0 1.0
-843 'SA.Robert' 'oscar.sm' 205 0.0 1.0
-844 'SA.Robert' 'oscar.sm' 206 0.0 1.0
-845 'SA.Robert' 'oscar.sm' 207 0.0 1.0
-846 'SA.Robert' 'oscar.sm' 210 0.0 1.0
-847 'SA.Robert' 'oscar.sm' 211 0.0 1.0
-848 'SA.Robert' 'oscar.sm' 212 0.0 1.0
-849 'SA.Robert' 'oscar.sm' 213 0.0 1.0
-850 'SA.Robert' 'oscar.sm' 214 0.0 1.0
-851 'SA.Robert' 'oscar.sm' 217 0.0 1.0
-852 'SA.Robert' 'oscar.sm' 218 0.0 1.0
-853 'SA.Robert' 'oscar.sm' 219 0.0 1.0
-854 'SA.Robert' 'oscar.sm' 220 0.0 1.0
-855 'SA.Robert' 'oscar.sm' 221 0.0 1.0
-856 'SA.Robert' 'oscar.sm' 224 0.0 1.0
-857 'SA.Robert' 'oscar.sm' 225 0.0 1.0
-858 'SA.Robert' 'oscar.sm' 226 0.0 1.0
-859 'SA.Robert' 'oscar.sm' 227 0.0 1.0
-860 'SA.Robert' 'oscar.sm' 228 0.0 1.0
-861 'SA.Robert' 'oscar.sm' 231 0.0 1.0
-862 'SA.Robert' 'oscar.sm' 232 0.0 1.0
-863 'SA.Robert' 'oscar.sm' 233 0.0 1.0
-864 'SA.Robert' 'oscar.sm' 234 0.0 1.0
-865 'SA.Robert' 'oscar.sm' 235 0.0 1.0
-866 'SA.Robert' 'oscar.sm' 238 0.0 1.0
-867 'SA.Robert' 'oscar.sm' 239 0.0 1.0
-868 'SA.Robert' 'oscar.sm' 240 0.0 1.0
-869 'SA.Robert' 'oscar.sm' 241 0.0 1.0
-870 'SA.Robert' 'oscar.sm' 242 0.0 1.0
-871 'SA.Robert' 'oscar.sm' 245 0.0 1.0
-872 'SA.Robert' 'oscar.sm' 246 0.0 1.0
-873 'SA.Robert' 'oscar.sm' 247 0.0 1.0
-874 'SA.Robert' 'oscar.sm' 248 0.0 1.0
-875 'SA.Robert' 'oscar.sm' 249 0.0 1.0
-876 'SA.Robert' 'oscar.sm' 252 0.0 1.0
-877 'SA.Robert' 'oscar.sm' 253 0.0 1.0
-878 'SA.Robert' 'oscar.sm' 254 0.0 1.0
-879 'SA.Robert' 'oscar.sm' 255 0.0 1.0
-880 'SA.Robert' 'oscar.sm' 256 0.0 1.0
-881 'SA.Robert' 'oscar.sm' 259 0.0 1.0
-882 'SA.Robert' 'oscar.sm' 260 0.0 1.0
-883 'SA.Robert' 'oscar.sm' 261 0.0 1.0
-884 'SA.Robert' 'oscar.sm' 262 0.0 1.0
-885 'SA.Robert' 'oscar.sm' 263 0.0 1.0
-886 'SA.Robert' 'oscar.sm' 266 0.0 1.0
-887 'SA.Robert' 'oscar.sm' 267 0.0 1.0
-888 'SA.Robert' 'oscar.sm' 268 0.0 1.0
-889 'SA.Robert' 'oscar.sm' 269 0.0 1.0
-890 'SA.Robert' 'oscar.sm' 270 0.0 1.0
-891 'SA.Robert' 'oscar.sm' 273 0.0 1.0
-892 'SA.Robert' 'oscar.sm' 274 0.0 1.0
-893 'SA.Robert' 'oscar.sm' 275 0.0 1.0
-894 'SA.Robert' 'oscar.sm' 276 0.0 1.0
-895 'SA.Robert' 'oscar.sm' 277 0.0 1.0
-896 'SA.Robert' 'oscar.sm' 280 0.0 1.0
-897 'SA.Robert' 'oscar.sm' 281 0.0 1.0
-898 'SA.Robert' 'oscar.sm' 282 0.0 1.0
-899 'SA.Robert' 'oscar.sm' 283 0.0 1.0
-900 'SA.Robert' 'oscar.sm' 284 0.0 1.0
-901 'SA.Robert' 'oscar.sm' 287 0.0 1.0
-902 'SA.Robert' 'oscar.sm' 288 0.0 1.0
-903 'SA.Robert' 'oscar.sm' 289 0.0 1.0
-904 'SA.Robert' 'oscar.sm' 290 0.0 1.0
-905 'SA.Robert' 'oscar.sm' 291 0.0 1.0
-906 'SA.Robert' 'oscar.sm' 294 0.0 1.0
-907 'SA.Robert' 'oscar.sm' 295 0.0 1.0
-908 'SA.Robert' 'oscar.sm' 296 0.0 1.0
-909 'SA.Robert' 'oscar.sm' 297 0.0 1.0
-910 'SA.Robert' 'oscar.sm' 298 0.0 1.0
-911 'SA.Robert' 'oscar.sm' 301 0.0 1.0
-912 'SA.Robert' 'oscar.sm' 302 0.0 1.0
-913 'SA.Robert' 'oscar.sm' 303 0.0 1.0
-914 'SA.Robert' 'oscar.sm' 304 0.0 1.0
-915 'SA.Robert' 'oscar.sm' 305 0.0 1.0
-916 'SA.Robert' 'oscar.sm' 308 0.0 1.0
-917 'SA.Robert' 'oscar.sm' 309 0.0 1.0
-918 'SA.Robert' 'oscar.sm' 310 0.0 1.0
-919 'SA.Robert' 'oscar.sm' 311 0.0 1.0
-920 'SA.Robert' 'oscar.sm' 312 0.0 1.0
-921 'SA.Robert' 'oscar.sm' 315 0.0 1.0
-922 'SA.Robert' 'oscar.sm' 316 0.0 1.0
-923 'SA.Robert' 'oscar.sm' 317 0.0 1.0
-924 'SA.Robert' 'oscar.sm' 318 0.0 1.0
-925 'SA.Robert' 'oscar.sm' 319 0.0 1.0
-926 'SA.Robert' 'oscar.sm' 322 0.0 1.0
-927 'SA.Robert' 'oscar.sm' 323 0.0 1.0
-928 'SA.Robert' 'oscar.sm' 324 0.0 1.0
-929 'SA.Robert' 'oscar.sm' 325 0.0 1.0
-930 'SA.Robert' 'oscar.sm' 326 0.0 1.0
-931 'SA.Robert' 'oscar.sm' 329 0.0 1.0
-932 'SA.Robert' 'oscar.sm' 330 0.0 1.0
-933 'SA.Robert' 'oscar.sm' 331 0.0 1.0
-934 'SA.Robert' 'oscar.sm' 332 0.0 1.0
-935 'SA.Robert' 'oscar.sm' 333 0.0 1.0
-936 'SA.Robert' 'oscar.sm' 336 0.0 1.0
-937 'SA.Robert' 'oscar.sm' 337 0.0 1.0
-938 'SA.Robert' 'oscar.sm' 338 0.0 1.0
-939 'SA.Robert' 'oscar.sm' 339 0.0 1.0
-940 'SA.Robert' 'oscar.sm' 340 0.0 1.0
-941 'SA.Robert' 'oscar.sm' 343 0.0 1.0
-942 'SA.Robert' 'oscar.sm' 344 0.0 1.0
-943 'SA.Robert' 'oscar.sm' 345 0.0 1.0
-944 'SA.Robert' 'oscar.sm' 346 0.0 1.0
-945 'SA.Robert' 'oscar.sm' 347 0.0 1.0
-946 'SA.Robert' 'oscar.sm' 350 0.0 1.0
-947 'SA.Robert' 'oscar.sm' 351 0.0 1.0
-948 'SA.Robert' 'oscar.sm' 352 0.0 1.0
-949 'SA.Robert' 'oscar.sm' 353 0.0 1.0
-950 'SA.Robert' 'oscar.sm' 354 0.0 1.0
-951 'SA.Robert' 'oscar.sm' 357 0.0 1.0
-952 'SA.Robert' 'oscar.sm' 358 0.0 1.0
-953 'SA.Robert' 'oscar.sm' 359 0.0 1.0
-954 'SA.Robert' 'oscar.sm' 360 0.0 1.0
-955 'SA.Robert' 'oscar.sm' 361 0.0 1.0
-956 'SA.Robert' 'oscar.sm' 364 0.0 1.0
-957 'SA.Robert' 'oscar.sm' 365 0.0 1.0
-958 'SA.Robert' 'oscar.sf' 366 1.0 2.0
-959 'SA.Robert' 'oscar.sf' 367 1.0 2.0
-960 'SA.Robert' 'oscar.sf' 368 1.0 2.0
-961 'SA.Robert' 'oscar.sf' 371 1.0 2.0
-962 'SA.Robert' 'oscar.sf' 372 1.0 2.0
-963 'SA.Robert' 'oscar.sf' 373 1.0 2.0
-964 'SA.Robert' 'oscar.sf' 374 1.0 2.0
-965 'SA.Robert' 'oscar.sf' 375 1.0 2.0
-966 'SA.Robert' 'oscar.sf' 378 1.0 2.0
-967 'SA.Robert' 'oscar.sf' 379 1.0 2.0
-968 'SA.Robert' 'oscar.sf' 380 1.0 2.0
-969 'SA.Robert' 'oscar.sf' 381 1.0 2.0
-970 'SA.Robert' 'oscar.sf' 382 1.0 2.0
-971 'SA.Robert' 'oscar.sf' 385 1.0 2.0
-972 'SA.Robert' 'oscar.sf' 386 1.0 2.0
-973 'SA.Robert' 'oscar.sf' 387 1.0 2.0
-974 'SA.Robert' 'oscar.sf' 388 1.0 2.0
-975 'SA.Robert' 'oscar.sf' 389 1.0 2.0
-976 'SA.Robert' 'oscar.sf' 392 1.0 2.0
-977 'SA.Robert' 'oscar.sf' 393 1.0 2.0
-978 'SA.Robert' 'oscar.sf' 394 1.0 2.0
-979 'SA.Robert' 'oscar.sf' 395 1.0 2.0
-980 'SA.Robert' 'oscar.sf' 396 1.0 2.0;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
+set TSCOPE['foxtrot.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81 84 85 86 87 88 91 92
 ;
 
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
+set TSCOPE['foxtrot.sf'] :=
+93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123
 ;
 
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
+set TSCOPE['hotel.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81 84 85 86 87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133 134 135 136 137 140 141 142 143
+144 147 148 149 150 151 154 155 156 157 158 161 162 163 164 165 168 169 170 171 172 175 176 177 178 179 182 183 184 185 186 189 190 191 192 193 196 197 198 199 200 203 204 205 206 207 210 211 212 213
+214 217 218 219 220 221 224 225 226 227 228 231 232 233 234 235 238 239 240 241 242 245
 ;
 
-set LINKS :=
+set TSCOPE['hotel.sf'] :=
+246 247 248 249 252 253 254 255 256 259 260 261 262 263 266 267 268 269 270 273 274 275 276 277 280 281 282 283 284 287 288 289 290 291
+;
+
+set TSCOPE['india.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81 84 85 86 87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133 134 135 136 137 140 141 142 143
+144 147 148 149 150 151 154 155 156 157 158 161 162 163 164 165 168 169 170 171 172 175 176 177 178 179 182 183 184 185 186 189 190 191 192 193 196 197 198 199 200 203 204 205 206 207 210 211 212 213
+214 217 218 219 220 221 224 225 226 227 228 231 232 233 234 235 238 239 240 241 242 245 246 247 248 249 252 253 254 255 256 259 260 261 262 263 266 267 268 269 270 273 274 275
+;
+
+set TSCOPE['india.sf'] :=
+276 277 280 281 282 283 284 287 288 289 290 291 294 295 296 297 298 301 302 303 304 305
+;
+
+set TSCOPE['juliet.se'] :=
+42 43 44 45 46 49 50 51 52 53 56 57 58 59
+;
+
+set TSCOPE['juliet.sm'] :=
+60 63 64 65 66 67 70 71 72 73 74 77 78 79 80 81 84 85 86 87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130
+133 134 135 136 137 140 141 142 143 144 147 148 149 150 151 154 155 156 157 158 161 162 163 164 165 168 169 170 171 172 175 176 177 178 179 182
+;
+
+set TSCOPE['juliet.sf'] :=
+183 184 185 186 189 190 191 192 193 196 197 198 199 200 203 204 205 206 207 210 211 212 213 214 217 218 219 220 221 224 225 226 227 228
+;
+
+set TSCOPE['november.se'] :=
+147 148 149 150 151 154 155 156 157 158 161 162 163 164 165
+;
+
+set TSCOPE['november.sm'] :=
+168 169 170 171 172 175 176 177 178 179 182 183 184 185 186 189 190 191 192 193 196 197 198 199 200 203 204 205 206 207 210 211 212 213 214 217 218 219 220 221 224 225 226 227 228 231 232 233 234 235
+238 239 240 241 242 245 246 247 248 249 252 253 254 255 256 259 260 261 262 263 266 267 268 269 270 273 274 275 276 277 280 281 282 283 284 287 288 289 290 291 294 295 296 297 298 301 302 303 304 305
+308 309 310 311 312 315 316 317 318 319 322 323 324 325 326 329 330 331 332 333 336 337 338 339 340 343 344 345 346 347 350 351 352 353 354 357 358 359 360 361 364 365
+;
+
+set TSCOPE['november.sf'] :=
+366 367 368 371 372 373 374 375 378 379 380 381 382 385 386 387 388 389 392 393 394 395 396
+;
+
+set TSCOPE['oscar.se'] :=
+177 178 179 182 183 184 185 186 189 190 191
+;
+
+set TSCOPE['oscar.sm'] :=
+192 193 196 197 198 199 200 203 204 205 206 207 210 211 212 213 214 217 218 219 220 221 224 225 226 227 228 231 232 233 234 235 238 239 240 241 242 245 246 247 248 249 252 253 254 255 256 259 260 261
+262 263 266 267 268 269 270 273 274 275 276 277 280 281 282 283 284 287 288 289 290 291 294 295 296 297 298 301 302 303 304 305 308 309 310 311 312 315 316 317 318 319 322 323 324 325 326 329 330 331
+332 333 336 337 338 339 340 343 344 345 346 347 350 351 352 353 354 357 358 359 360 361 364 365
+;
+
+set TSCOPE['oscar.sf'] :=
+366 367 368 371 372 373 374 375 378 379 380 381 382 385 386 387 388 389 392 393 394 395 396
+;
+
+set ENAME :=
+'SA.Robert'
+;
+
+set ASSIGN :=
 'SA.Robert' 'foxtrot.sf'
 'SA.Robert' 'foxtrot.sm'
 'SA.Robert' 'hotel.sf'
@@ -1195,5 +110,1027 @@ set LINKS :=
 'SA.Robert' 'november.sm'
 'SA.Robert' 'oscar.se'
 'SA.Robert' 'oscar.sf'
-'SA.Robert' 'oscar.sm';
+'SA.Robert' 'oscar.sm'
+;
+
+param:
+XBID: XBL XBU :=
+'SA.Robert' 'foxtrot.sm' 3 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 4 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 7 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 8 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 9 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 10 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 11 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 14 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 15 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 16 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 17 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 18 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 21 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 22 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 23 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 24 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 25 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 28 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 29 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 30 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 31 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 32 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 35 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 36 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 37 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 38 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 39 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 42 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 43 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 44 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 45 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 46 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 49 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 50 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 51 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 52 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 53 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 56 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 57 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 58 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 59 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 60 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 63 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 64 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 65 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 66 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 67 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 70 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 71 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 72 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 73 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 74 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 77 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 78 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 79 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 80 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 81 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 84 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 85 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 86 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 87 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 88 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 91 0.0 1.0
+'SA.Robert' 'foxtrot.sm' 92 0.0 1.0
+'SA.Robert' 'foxtrot.sf' 93 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 94 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 95 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 98 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 99 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 100 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 101 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 102 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 105 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 106 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 107 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 108 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 109 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 112 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 113 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 114 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 115 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 116 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 119 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 120 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 121 1.0 2.0
+'SA.Robert' 'foxtrot.sf' 123 1.0 2.0
+'SA.Robert' 'hotel.sm' 3 0.0 1.0
+'SA.Robert' 'hotel.sm' 4 0.0 1.0
+'SA.Robert' 'hotel.sm' 7 0.0 1.0
+'SA.Robert' 'hotel.sm' 8 0.0 1.0
+'SA.Robert' 'hotel.sm' 9 0.0 1.0
+'SA.Robert' 'hotel.sm' 10 0.0 1.0
+'SA.Robert' 'hotel.sm' 11 0.0 1.0
+'SA.Robert' 'hotel.sm' 14 0.0 1.0
+'SA.Robert' 'hotel.sm' 15 0.0 1.0
+'SA.Robert' 'hotel.sm' 16 0.0 1.0
+'SA.Robert' 'hotel.sm' 17 0.0 1.0
+'SA.Robert' 'hotel.sm' 18 0.0 1.0
+'SA.Robert' 'hotel.sm' 21 0.0 1.0
+'SA.Robert' 'hotel.sm' 22 0.0 1.0
+'SA.Robert' 'hotel.sm' 23 0.0 1.0
+'SA.Robert' 'hotel.sm' 24 0.0 1.0
+'SA.Robert' 'hotel.sm' 25 0.0 1.0
+'SA.Robert' 'hotel.sm' 28 0.0 1.0
+'SA.Robert' 'hotel.sm' 29 0.0 1.0
+'SA.Robert' 'hotel.sm' 30 0.0 1.0
+'SA.Robert' 'hotel.sm' 31 0.0 1.0
+'SA.Robert' 'hotel.sm' 32 0.0 1.0
+'SA.Robert' 'hotel.sm' 35 0.0 1.0
+'SA.Robert' 'hotel.sm' 36 0.0 1.0
+'SA.Robert' 'hotel.sm' 37 0.0 1.0
+'SA.Robert' 'hotel.sm' 38 0.0 1.0
+'SA.Robert' 'hotel.sm' 39 0.0 1.0
+'SA.Robert' 'hotel.sm' 42 0.0 1.0
+'SA.Robert' 'hotel.sm' 43 0.0 1.0
+'SA.Robert' 'hotel.sm' 44 0.0 1.0
+'SA.Robert' 'hotel.sm' 45 0.0 1.0
+'SA.Robert' 'hotel.sm' 46 0.0 1.0
+'SA.Robert' 'hotel.sm' 49 0.0 1.0
+'SA.Robert' 'hotel.sm' 50 0.0 1.0
+'SA.Robert' 'hotel.sm' 51 0.0 1.0
+'SA.Robert' 'hotel.sm' 52 0.0 1.0
+'SA.Robert' 'hotel.sm' 53 0.0 1.0
+'SA.Robert' 'hotel.sm' 56 0.0 1.0
+'SA.Robert' 'hotel.sm' 57 0.0 1.0
+'SA.Robert' 'hotel.sm' 58 0.0 1.0
+'SA.Robert' 'hotel.sm' 59 0.0 1.0
+'SA.Robert' 'hotel.sm' 60 0.0 1.0
+'SA.Robert' 'hotel.sm' 63 0.0 1.0
+'SA.Robert' 'hotel.sm' 64 0.0 1.0
+'SA.Robert' 'hotel.sm' 65 0.0 1.0
+'SA.Robert' 'hotel.sm' 66 0.0 1.0
+'SA.Robert' 'hotel.sm' 67 0.0 1.0
+'SA.Robert' 'hotel.sm' 70 0.0 1.0
+'SA.Robert' 'hotel.sm' 71 0.0 1.0
+'SA.Robert' 'hotel.sm' 72 0.0 1.0
+'SA.Robert' 'hotel.sm' 73 0.0 1.0
+'SA.Robert' 'hotel.sm' 74 0.0 1.0
+'SA.Robert' 'hotel.sm' 77 0.0 1.0
+'SA.Robert' 'hotel.sm' 78 0.0 1.0
+'SA.Robert' 'hotel.sm' 79 0.0 1.0
+'SA.Robert' 'hotel.sm' 80 0.0 1.0
+'SA.Robert' 'hotel.sm' 81 0.0 1.0
+'SA.Robert' 'hotel.sm' 84 0.0 1.0
+'SA.Robert' 'hotel.sm' 85 0.0 1.0
+'SA.Robert' 'hotel.sm' 86 0.0 1.0
+'SA.Robert' 'hotel.sm' 87 0.0 1.0
+'SA.Robert' 'hotel.sm' 88 0.0 1.0
+'SA.Robert' 'hotel.sm' 91 0.0 1.0
+'SA.Robert' 'hotel.sm' 92 0.0 1.0
+'SA.Robert' 'hotel.sm' 93 0.0 1.0
+'SA.Robert' 'hotel.sm' 94 0.0 1.0
+'SA.Robert' 'hotel.sm' 95 0.0 1.0
+'SA.Robert' 'hotel.sm' 98 0.0 1.0
+'SA.Robert' 'hotel.sm' 99 0.0 1.0
+'SA.Robert' 'hotel.sm' 100 0.0 1.0
+'SA.Robert' 'hotel.sm' 101 0.0 1.0
+'SA.Robert' 'hotel.sm' 102 0.0 1.0
+'SA.Robert' 'hotel.sm' 105 0.0 1.0
+'SA.Robert' 'hotel.sm' 106 0.0 1.0
+'SA.Robert' 'hotel.sm' 107 0.0 1.0
+'SA.Robert' 'hotel.sm' 108 0.0 1.0
+'SA.Robert' 'hotel.sm' 109 0.0 1.0
+'SA.Robert' 'hotel.sm' 112 0.0 1.0
+'SA.Robert' 'hotel.sm' 113 0.0 1.0
+'SA.Robert' 'hotel.sm' 114 0.0 1.0
+'SA.Robert' 'hotel.sm' 115 0.0 1.0
+'SA.Robert' 'hotel.sm' 116 0.0 1.0
+'SA.Robert' 'hotel.sm' 119 0.0 1.0
+'SA.Robert' 'hotel.sm' 120 0.0 1.0
+'SA.Robert' 'hotel.sm' 121 0.0 1.0
+'SA.Robert' 'hotel.sm' 123 0.0 1.0
+'SA.Robert' 'hotel.sm' 126 0.0 1.0
+'SA.Robert' 'hotel.sm' 127 0.0 1.0
+'SA.Robert' 'hotel.sm' 128 0.0 1.0
+'SA.Robert' 'hotel.sm' 129 0.0 1.0
+'SA.Robert' 'hotel.sm' 130 0.0 1.0
+'SA.Robert' 'hotel.sm' 133 0.0 1.0
+'SA.Robert' 'hotel.sm' 134 0.0 1.0
+'SA.Robert' 'hotel.sm' 135 0.0 1.0
+'SA.Robert' 'hotel.sm' 136 0.0 1.0
+'SA.Robert' 'hotel.sm' 137 0.0 1.0
+'SA.Robert' 'hotel.sm' 140 0.0 1.0
+'SA.Robert' 'hotel.sm' 141 0.0 1.0
+'SA.Robert' 'hotel.sm' 142 0.0 1.0
+'SA.Robert' 'hotel.sm' 143 0.0 1.0
+'SA.Robert' 'hotel.sm' 144 0.0 1.0
+'SA.Robert' 'hotel.sm' 147 0.0 1.0
+'SA.Robert' 'hotel.sm' 148 0.0 1.0
+'SA.Robert' 'hotel.sm' 149 0.0 1.0
+'SA.Robert' 'hotel.sm' 150 0.0 1.0
+'SA.Robert' 'hotel.sm' 151 0.0 1.0
+'SA.Robert' 'hotel.sm' 154 0.0 1.0
+'SA.Robert' 'hotel.sm' 155 0.0 1.0
+'SA.Robert' 'hotel.sm' 156 0.0 1.0
+'SA.Robert' 'hotel.sm' 157 0.0 1.0
+'SA.Robert' 'hotel.sm' 158 0.0 1.0
+'SA.Robert' 'hotel.sm' 161 0.0 1.0
+'SA.Robert' 'hotel.sm' 162 0.0 1.0
+'SA.Robert' 'hotel.sm' 163 0.0 1.0
+'SA.Robert' 'hotel.sm' 164 0.0 1.0
+'SA.Robert' 'hotel.sm' 165 0.0 1.0
+'SA.Robert' 'hotel.sm' 168 0.0 1.0
+'SA.Robert' 'hotel.sm' 169 0.0 1.0
+'SA.Robert' 'hotel.sm' 170 0.0 1.0
+'SA.Robert' 'hotel.sm' 171 0.0 1.0
+'SA.Robert' 'hotel.sm' 172 0.0 1.0
+'SA.Robert' 'hotel.sm' 175 0.0 1.0
+'SA.Robert' 'hotel.sm' 176 0.0 1.0
+'SA.Robert' 'hotel.sm' 177 0.0 1.0
+'SA.Robert' 'hotel.sm' 178 0.0 1.0
+'SA.Robert' 'hotel.sm' 179 0.0 1.0
+'SA.Robert' 'hotel.sm' 182 0.0 1.0
+'SA.Robert' 'hotel.sm' 183 0.0 1.0
+'SA.Robert' 'hotel.sm' 184 0.0 1.0
+'SA.Robert' 'hotel.sm' 185 0.0 1.0
+'SA.Robert' 'hotel.sm' 186 0.0 1.0
+'SA.Robert' 'hotel.sm' 189 0.0 1.0
+'SA.Robert' 'hotel.sm' 190 0.0 1.0
+'SA.Robert' 'hotel.sm' 191 0.0 1.0
+'SA.Robert' 'hotel.sm' 192 0.0 1.0
+'SA.Robert' 'hotel.sm' 193 0.0 1.0
+'SA.Robert' 'hotel.sm' 196 0.0 1.0
+'SA.Robert' 'hotel.sm' 197 0.0 1.0
+'SA.Robert' 'hotel.sm' 198 0.0 1.0
+'SA.Robert' 'hotel.sm' 199 0.0 1.0
+'SA.Robert' 'hotel.sm' 200 0.0 1.0
+'SA.Robert' 'hotel.sm' 203 0.0 1.0
+'SA.Robert' 'hotel.sm' 204 0.0 1.0
+'SA.Robert' 'hotel.sm' 205 0.0 1.0
+'SA.Robert' 'hotel.sm' 206 0.0 1.0
+'SA.Robert' 'hotel.sm' 207 0.0 1.0
+'SA.Robert' 'hotel.sm' 210 0.0 1.0
+'SA.Robert' 'hotel.sm' 211 0.0 1.0
+'SA.Robert' 'hotel.sm' 212 0.0 1.0
+'SA.Robert' 'hotel.sm' 213 0.0 1.0
+'SA.Robert' 'hotel.sm' 214 0.0 1.0
+'SA.Robert' 'hotel.sm' 217 0.0 1.0
+'SA.Robert' 'hotel.sm' 218 0.0 1.0
+'SA.Robert' 'hotel.sm' 219 0.0 1.0
+'SA.Robert' 'hotel.sm' 220 0.0 1.0
+'SA.Robert' 'hotel.sm' 221 0.0 1.0
+'SA.Robert' 'hotel.sm' 224 0.0 1.0
+'SA.Robert' 'hotel.sm' 225 0.0 1.0
+'SA.Robert' 'hotel.sm' 226 0.0 1.0
+'SA.Robert' 'hotel.sm' 227 0.0 1.0
+'SA.Robert' 'hotel.sm' 228 0.0 1.0
+'SA.Robert' 'hotel.sm' 231 0.0 1.0
+'SA.Robert' 'hotel.sm' 232 0.0 1.0
+'SA.Robert' 'hotel.sm' 233 0.0 1.0
+'SA.Robert' 'hotel.sm' 234 0.0 1.0
+'SA.Robert' 'hotel.sm' 235 0.0 1.0
+'SA.Robert' 'hotel.sm' 238 0.0 1.0
+'SA.Robert' 'hotel.sm' 239 0.0 1.0
+'SA.Robert' 'hotel.sm' 240 0.0 1.0
+'SA.Robert' 'hotel.sm' 241 0.0 1.0
+'SA.Robert' 'hotel.sm' 242 0.0 1.0
+'SA.Robert' 'hotel.sm' 245 0.0 1.0
+'SA.Robert' 'hotel.sf' 246 0.0 1.0
+'SA.Robert' 'hotel.sf' 247 0.0 1.0
+'SA.Robert' 'hotel.sf' 248 0.0 1.0
+'SA.Robert' 'hotel.sf' 249 0.0 1.0
+'SA.Robert' 'hotel.sf' 252 0.0 1.0
+'SA.Robert' 'hotel.sf' 253 0.0 1.0
+'SA.Robert' 'hotel.sf' 254 0.0 1.0
+'SA.Robert' 'hotel.sf' 255 0.0 1.0
+'SA.Robert' 'hotel.sf' 256 0.0 1.0
+'SA.Robert' 'hotel.sf' 259 0.0 1.0
+'SA.Robert' 'hotel.sf' 260 0.0 1.0
+'SA.Robert' 'hotel.sf' 261 0.0 1.0
+'SA.Robert' 'hotel.sf' 262 0.0 1.0
+'SA.Robert' 'hotel.sf' 263 0.0 1.0
+'SA.Robert' 'hotel.sf' 266 0.0 1.0
+'SA.Robert' 'hotel.sf' 267 0.0 1.0
+'SA.Robert' 'hotel.sf' 268 0.0 1.0
+'SA.Robert' 'hotel.sf' 269 0.0 1.0
+'SA.Robert' 'hotel.sf' 270 0.0 1.0
+'SA.Robert' 'hotel.sf' 273 0.0 1.0
+'SA.Robert' 'hotel.sf' 274 0.0 1.0
+'SA.Robert' 'hotel.sf' 275 0.0 1.0
+'SA.Robert' 'hotel.sf' 276 0.0 1.0
+'SA.Robert' 'hotel.sf' 277 0.0 1.0
+'SA.Robert' 'hotel.sf' 280 0.0 1.0
+'SA.Robert' 'hotel.sf' 281 0.0 1.0
+'SA.Robert' 'hotel.sf' 282 0.0 1.0
+'SA.Robert' 'hotel.sf' 283 0.0 1.0
+'SA.Robert' 'hotel.sf' 284 0.0 1.0
+'SA.Robert' 'hotel.sf' 287 0.0 1.0
+'SA.Robert' 'hotel.sf' 288 0.0 1.0
+'SA.Robert' 'hotel.sf' 289 0.0 1.0
+'SA.Robert' 'hotel.sf' 290 0.0 1.0
+'SA.Robert' 'hotel.sf' 291 0.0 1.0
+'SA.Robert' 'india.sm' 3 0.0 1.0
+'SA.Robert' 'india.sm' 4 0.0 1.0
+'SA.Robert' 'india.sm' 7 0.0 1.0
+'SA.Robert' 'india.sm' 8 0.0 1.0
+'SA.Robert' 'india.sm' 9 0.0 1.0
+'SA.Robert' 'india.sm' 10 0.0 1.0
+'SA.Robert' 'india.sm' 11 0.0 1.0
+'SA.Robert' 'india.sm' 14 0.0 1.0
+'SA.Robert' 'india.sm' 15 0.0 1.0
+'SA.Robert' 'india.sm' 16 0.0 1.0
+'SA.Robert' 'india.sm' 17 0.0 1.0
+'SA.Robert' 'india.sm' 18 0.0 1.0
+'SA.Robert' 'india.sm' 21 0.0 1.0
+'SA.Robert' 'india.sm' 22 0.0 1.0
+'SA.Robert' 'india.sm' 23 0.0 1.0
+'SA.Robert' 'india.sm' 24 0.0 1.0
+'SA.Robert' 'india.sm' 25 0.0 1.0
+'SA.Robert' 'india.sm' 28 0.0 1.0
+'SA.Robert' 'india.sm' 29 0.0 1.0
+'SA.Robert' 'india.sm' 30 0.0 1.0
+'SA.Robert' 'india.sm' 31 0.0 1.0
+'SA.Robert' 'india.sm' 32 0.0 1.0
+'SA.Robert' 'india.sm' 35 0.0 1.0
+'SA.Robert' 'india.sm' 36 0.0 1.0
+'SA.Robert' 'india.sm' 37 0.0 1.0
+'SA.Robert' 'india.sm' 38 0.0 1.0
+'SA.Robert' 'india.sm' 39 0.0 1.0
+'SA.Robert' 'india.sm' 42 0.0 1.0
+'SA.Robert' 'india.sm' 43 0.0 1.0
+'SA.Robert' 'india.sm' 44 0.0 1.0
+'SA.Robert' 'india.sm' 45 0.0 1.0
+'SA.Robert' 'india.sm' 46 0.0 1.0
+'SA.Robert' 'india.sm' 49 0.0 1.0
+'SA.Robert' 'india.sm' 50 0.0 1.0
+'SA.Robert' 'india.sm' 51 0.0 1.0
+'SA.Robert' 'india.sm' 52 0.0 1.0
+'SA.Robert' 'india.sm' 53 0.0 1.0
+'SA.Robert' 'india.sm' 56 0.0 1.0
+'SA.Robert' 'india.sm' 57 0.0 1.0
+'SA.Robert' 'india.sm' 58 0.0 1.0
+'SA.Robert' 'india.sm' 59 0.0 1.0
+'SA.Robert' 'india.sm' 60 0.0 1.0
+'SA.Robert' 'india.sm' 63 0.0 1.0
+'SA.Robert' 'india.sm' 64 0.0 1.0
+'SA.Robert' 'india.sm' 65 0.0 1.0
+'SA.Robert' 'india.sm' 66 0.0 1.0
+'SA.Robert' 'india.sm' 67 0.0 1.0
+'SA.Robert' 'india.sm' 70 0.0 1.0
+'SA.Robert' 'india.sm' 71 0.0 1.0
+'SA.Robert' 'india.sm' 72 0.0 1.0
+'SA.Robert' 'india.sm' 73 0.0 1.0
+'SA.Robert' 'india.sm' 74 0.0 1.0
+'SA.Robert' 'india.sm' 77 0.0 1.0
+'SA.Robert' 'india.sm' 78 0.0 1.0
+'SA.Robert' 'india.sm' 79 0.0 1.0
+'SA.Robert' 'india.sm' 80 0.0 1.0
+'SA.Robert' 'india.sm' 81 0.0 1.0
+'SA.Robert' 'india.sm' 84 0.0 1.0
+'SA.Robert' 'india.sm' 85 0.0 1.0
+'SA.Robert' 'india.sm' 86 0.0 1.0
+'SA.Robert' 'india.sm' 87 0.0 1.0
+'SA.Robert' 'india.sm' 88 0.0 1.0
+'SA.Robert' 'india.sm' 91 0.0 1.0
+'SA.Robert' 'india.sm' 92 0.0 1.0
+'SA.Robert' 'india.sm' 93 0.0 1.0
+'SA.Robert' 'india.sm' 94 0.0 1.0
+'SA.Robert' 'india.sm' 95 0.0 1.0
+'SA.Robert' 'india.sm' 98 0.0 1.0
+'SA.Robert' 'india.sm' 99 0.0 1.0
+'SA.Robert' 'india.sm' 100 0.0 1.0
+'SA.Robert' 'india.sm' 101 0.0 1.0
+'SA.Robert' 'india.sm' 102 0.0 1.0
+'SA.Robert' 'india.sm' 105 0.0 1.0
+'SA.Robert' 'india.sm' 106 0.0 1.0
+'SA.Robert' 'india.sm' 107 0.0 1.0
+'SA.Robert' 'india.sm' 108 0.0 1.0
+'SA.Robert' 'india.sm' 109 0.0 1.0
+'SA.Robert' 'india.sm' 112 0.0 1.0
+'SA.Robert' 'india.sm' 113 0.0 1.0
+'SA.Robert' 'india.sm' 114 0.0 1.0
+'SA.Robert' 'india.sm' 115 0.0 1.0
+'SA.Robert' 'india.sm' 116 0.0 1.0
+'SA.Robert' 'india.sm' 119 0.0 1.0
+'SA.Robert' 'india.sm' 120 0.0 1.0
+'SA.Robert' 'india.sm' 121 0.0 1.0
+'SA.Robert' 'india.sm' 123 0.0 1.0
+'SA.Robert' 'india.sm' 126 0.0 1.0
+'SA.Robert' 'india.sm' 127 0.0 1.0
+'SA.Robert' 'india.sm' 128 0.0 1.0
+'SA.Robert' 'india.sm' 129 0.0 1.0
+'SA.Robert' 'india.sm' 130 0.0 1.0
+'SA.Robert' 'india.sm' 133 0.0 1.0
+'SA.Robert' 'india.sm' 134 0.0 1.0
+'SA.Robert' 'india.sm' 135 0.0 1.0
+'SA.Robert' 'india.sm' 136 0.0 1.0
+'SA.Robert' 'india.sm' 137 0.0 1.0
+'SA.Robert' 'india.sm' 140 0.0 1.0
+'SA.Robert' 'india.sm' 141 0.0 1.0
+'SA.Robert' 'india.sm' 142 0.0 1.0
+'SA.Robert' 'india.sm' 143 0.0 1.0
+'SA.Robert' 'india.sm' 144 0.0 1.0
+'SA.Robert' 'india.sm' 147 0.0 1.0
+'SA.Robert' 'india.sm' 148 0.0 1.0
+'SA.Robert' 'india.sm' 149 0.0 1.0
+'SA.Robert' 'india.sm' 150 0.0 1.0
+'SA.Robert' 'india.sm' 151 0.0 1.0
+'SA.Robert' 'india.sm' 154 0.0 1.0
+'SA.Robert' 'india.sm' 155 0.0 1.0
+'SA.Robert' 'india.sm' 156 0.0 1.0
+'SA.Robert' 'india.sm' 157 0.0 1.0
+'SA.Robert' 'india.sm' 158 0.0 1.0
+'SA.Robert' 'india.sm' 161 0.0 1.0
+'SA.Robert' 'india.sm' 162 0.0 1.0
+'SA.Robert' 'india.sm' 163 0.0 1.0
+'SA.Robert' 'india.sm' 164 0.0 1.0
+'SA.Robert' 'india.sm' 165 0.0 1.0
+'SA.Robert' 'india.sm' 168 0.0 1.0
+'SA.Robert' 'india.sm' 169 0.0 1.0
+'SA.Robert' 'india.sm' 170 0.0 1.0
+'SA.Robert' 'india.sm' 171 0.0 1.0
+'SA.Robert' 'india.sm' 172 0.0 1.0
+'SA.Robert' 'india.sm' 175 0.0 1.0
+'SA.Robert' 'india.sm' 176 0.0 1.0
+'SA.Robert' 'india.sm' 177 0.0 1.0
+'SA.Robert' 'india.sm' 178 0.0 1.0
+'SA.Robert' 'india.sm' 179 0.0 1.0
+'SA.Robert' 'india.sm' 182 0.0 1.0
+'SA.Robert' 'india.sm' 183 0.0 1.0
+'SA.Robert' 'india.sm' 184 0.0 1.0
+'SA.Robert' 'india.sm' 185 0.0 1.0
+'SA.Robert' 'india.sm' 186 0.0 1.0
+'SA.Robert' 'india.sm' 189 0.0 1.0
+'SA.Robert' 'india.sm' 190 0.0 1.0
+'SA.Robert' 'india.sm' 191 0.0 1.0
+'SA.Robert' 'india.sm' 192 0.0 1.0
+'SA.Robert' 'india.sm' 193 0.0 1.0
+'SA.Robert' 'india.sm' 196 0.0 1.0
+'SA.Robert' 'india.sm' 197 0.0 1.0
+'SA.Robert' 'india.sm' 198 0.0 1.0
+'SA.Robert' 'india.sm' 199 0.0 1.0
+'SA.Robert' 'india.sm' 200 0.0 1.0
+'SA.Robert' 'india.sm' 203 0.0 1.0
+'SA.Robert' 'india.sm' 204 0.0 1.0
+'SA.Robert' 'india.sm' 205 0.0 1.0
+'SA.Robert' 'india.sm' 206 0.0 1.0
+'SA.Robert' 'india.sm' 207 0.0 1.0
+'SA.Robert' 'india.sm' 210 0.0 1.0
+'SA.Robert' 'india.sm' 211 0.0 1.0
+'SA.Robert' 'india.sm' 212 0.0 1.0
+'SA.Robert' 'india.sm' 213 0.0 1.0
+'SA.Robert' 'india.sm' 214 0.0 1.0
+'SA.Robert' 'india.sm' 217 0.0 1.0
+'SA.Robert' 'india.sm' 218 0.0 1.0
+'SA.Robert' 'india.sm' 219 0.0 1.0
+'SA.Robert' 'india.sm' 220 0.0 1.0
+'SA.Robert' 'india.sm' 221 0.0 1.0
+'SA.Robert' 'india.sm' 224 0.0 1.0
+'SA.Robert' 'india.sm' 225 0.0 1.0
+'SA.Robert' 'india.sm' 226 0.0 1.0
+'SA.Robert' 'india.sm' 227 0.0 1.0
+'SA.Robert' 'india.sm' 228 0.0 1.0
+'SA.Robert' 'india.sm' 231 0.0 1.0
+'SA.Robert' 'india.sm' 232 0.0 1.0
+'SA.Robert' 'india.sm' 233 0.0 1.0
+'SA.Robert' 'india.sm' 234 0.0 1.0
+'SA.Robert' 'india.sm' 235 0.0 1.0
+'SA.Robert' 'india.sm' 238 0.0 1.0
+'SA.Robert' 'india.sm' 239 0.0 1.0
+'SA.Robert' 'india.sm' 240 0.0 1.0
+'SA.Robert' 'india.sm' 241 0.0 1.0
+'SA.Robert' 'india.sm' 242 0.0 1.0
+'SA.Robert' 'india.sm' 245 0.0 1.0
+'SA.Robert' 'india.sm' 246 0.0 1.0
+'SA.Robert' 'india.sm' 247 0.0 1.0
+'SA.Robert' 'india.sm' 248 0.0 1.0
+'SA.Robert' 'india.sm' 249 0.0 1.0
+'SA.Robert' 'india.sm' 252 0.0 1.0
+'SA.Robert' 'india.sm' 253 0.0 1.0
+'SA.Robert' 'india.sm' 254 0.0 1.0
+'SA.Robert' 'india.sm' 255 0.0 1.0
+'SA.Robert' 'india.sm' 256 0.0 1.0
+'SA.Robert' 'india.sm' 259 0.0 1.0
+'SA.Robert' 'india.sm' 260 0.0 1.0
+'SA.Robert' 'india.sm' 261 0.0 1.0
+'SA.Robert' 'india.sm' 262 0.0 1.0
+'SA.Robert' 'india.sm' 263 0.0 1.0
+'SA.Robert' 'india.sm' 266 0.0 1.0
+'SA.Robert' 'india.sm' 267 0.0 1.0
+'SA.Robert' 'india.sm' 268 0.0 1.0
+'SA.Robert' 'india.sm' 269 0.0 1.0
+'SA.Robert' 'india.sm' 270 0.0 1.0
+'SA.Robert' 'india.sm' 273 0.0 1.0
+'SA.Robert' 'india.sm' 274 0.0 1.0
+'SA.Robert' 'india.sm' 275 0.0 1.0
+'SA.Robert' 'india.sf' 276 2.0 3.0
+'SA.Robert' 'india.sf' 277 2.0 3.0
+'SA.Robert' 'india.sf' 280 2.0 3.0
+'SA.Robert' 'india.sf' 281 2.0 3.0
+'SA.Robert' 'india.sf' 282 2.0 3.0
+'SA.Robert' 'india.sf' 283 2.0 3.0
+'SA.Robert' 'india.sf' 284 2.0 3.0
+'SA.Robert' 'india.sf' 287 2.0 3.0
+'SA.Robert' 'india.sf' 288 2.0 3.0
+'SA.Robert' 'india.sf' 289 2.0 3.0
+'SA.Robert' 'india.sf' 290 2.0 3.0
+'SA.Robert' 'india.sf' 291 2.0 3.0
+'SA.Robert' 'india.sf' 294 2.0 3.0
+'SA.Robert' 'india.sf' 295 2.0 3.0
+'SA.Robert' 'india.sf' 296 2.0 3.0
+'SA.Robert' 'india.sf' 297 2.0 3.0
+'SA.Robert' 'india.sf' 298 2.0 3.0
+'SA.Robert' 'india.sf' 301 2.0 3.0
+'SA.Robert' 'india.sf' 302 2.0 3.0
+'SA.Robert' 'india.sf' 303 2.0 3.0
+'SA.Robert' 'india.sf' 304 2.0 3.0
+'SA.Robert' 'india.sf' 305 2.0 3.0
+'SA.Robert' 'juliet.se' 42 2.0 3.0
+'SA.Robert' 'juliet.se' 43 2.0 3.0
+'SA.Robert' 'juliet.se' 44 2.0 3.0
+'SA.Robert' 'juliet.se' 45 2.0 3.0
+'SA.Robert' 'juliet.se' 46 2.0 3.0
+'SA.Robert' 'juliet.se' 49 2.0 3.0
+'SA.Robert' 'juliet.se' 50 2.0 3.0
+'SA.Robert' 'juliet.se' 51 2.0 3.0
+'SA.Robert' 'juliet.se' 52 2.0 3.0
+'SA.Robert' 'juliet.se' 53 2.0 3.0
+'SA.Robert' 'juliet.se' 56 2.0 3.0
+'SA.Robert' 'juliet.se' 57 2.0 3.0
+'SA.Robert' 'juliet.se' 58 2.0 3.0
+'SA.Robert' 'juliet.se' 59 2.0 3.0
+'SA.Robert' 'juliet.sm' 60 0.0 1.0
+'SA.Robert' 'juliet.sm' 63 0.0 1.0
+'SA.Robert' 'juliet.sm' 64 0.0 1.0
+'SA.Robert' 'juliet.sm' 65 0.0 1.0
+'SA.Robert' 'juliet.sm' 66 0.0 1.0
+'SA.Robert' 'juliet.sm' 67 0.0 1.0
+'SA.Robert' 'juliet.sm' 70 0.0 1.0
+'SA.Robert' 'juliet.sm' 71 0.0 1.0
+'SA.Robert' 'juliet.sm' 72 0.0 1.0
+'SA.Robert' 'juliet.sm' 73 0.0 1.0
+'SA.Robert' 'juliet.sm' 74 0.0 1.0
+'SA.Robert' 'juliet.sm' 77 0.0 1.0
+'SA.Robert' 'juliet.sm' 78 0.0 1.0
+'SA.Robert' 'juliet.sm' 79 0.0 1.0
+'SA.Robert' 'juliet.sm' 80 0.0 1.0
+'SA.Robert' 'juliet.sm' 81 0.0 1.0
+'SA.Robert' 'juliet.sm' 84 0.0 1.0
+'SA.Robert' 'juliet.sm' 85 0.0 1.0
+'SA.Robert' 'juliet.sm' 86 0.0 1.0
+'SA.Robert' 'juliet.sm' 87 0.0 1.0
+'SA.Robert' 'juliet.sm' 88 0.0 1.0
+'SA.Robert' 'juliet.sm' 91 0.0 1.0
+'SA.Robert' 'juliet.sm' 92 0.0 1.0
+'SA.Robert' 'juliet.sm' 93 0.0 1.0
+'SA.Robert' 'juliet.sm' 94 0.0 1.0
+'SA.Robert' 'juliet.sm' 95 0.0 1.0
+'SA.Robert' 'juliet.sm' 98 0.0 1.0
+'SA.Robert' 'juliet.sm' 99 0.0 1.0
+'SA.Robert' 'juliet.sm' 100 0.0 1.0
+'SA.Robert' 'juliet.sm' 101 0.0 1.0
+'SA.Robert' 'juliet.sm' 102 0.0 1.0
+'SA.Robert' 'juliet.sm' 105 0.0 1.0
+'SA.Robert' 'juliet.sm' 106 0.0 1.0
+'SA.Robert' 'juliet.sm' 107 0.0 1.0
+'SA.Robert' 'juliet.sm' 108 0.0 1.0
+'SA.Robert' 'juliet.sm' 109 0.0 1.0
+'SA.Robert' 'juliet.sm' 112 0.0 1.0
+'SA.Robert' 'juliet.sm' 113 0.0 1.0
+'SA.Robert' 'juliet.sm' 114 0.0 1.0
+'SA.Robert' 'juliet.sm' 115 0.0 1.0
+'SA.Robert' 'juliet.sm' 116 0.0 1.0
+'SA.Robert' 'juliet.sm' 119 0.0 1.0
+'SA.Robert' 'juliet.sm' 120 0.0 1.0
+'SA.Robert' 'juliet.sm' 121 0.0 1.0
+'SA.Robert' 'juliet.sm' 123 0.0 1.0
+'SA.Robert' 'juliet.sm' 126 0.0 1.0
+'SA.Robert' 'juliet.sm' 127 0.0 1.0
+'SA.Robert' 'juliet.sm' 128 0.0 1.0
+'SA.Robert' 'juliet.sm' 129 0.0 1.0
+'SA.Robert' 'juliet.sm' 130 0.0 1.0
+'SA.Robert' 'juliet.sm' 133 0.0 1.0
+'SA.Robert' 'juliet.sm' 134 0.0 1.0
+'SA.Robert' 'juliet.sm' 135 0.0 1.0
+'SA.Robert' 'juliet.sm' 136 0.0 1.0
+'SA.Robert' 'juliet.sm' 137 0.0 1.0
+'SA.Robert' 'juliet.sm' 140 0.0 1.0
+'SA.Robert' 'juliet.sm' 141 0.0 1.0
+'SA.Robert' 'juliet.sm' 142 0.0 1.0
+'SA.Robert' 'juliet.sm' 143 0.0 1.0
+'SA.Robert' 'juliet.sm' 144 0.0 1.0
+'SA.Robert' 'juliet.sm' 147 0.0 1.0
+'SA.Robert' 'juliet.sm' 148 0.0 1.0
+'SA.Robert' 'juliet.sm' 149 0.0 1.0
+'SA.Robert' 'juliet.sm' 150 0.0 1.0
+'SA.Robert' 'juliet.sm' 151 0.0 1.0
+'SA.Robert' 'juliet.sm' 154 0.0 1.0
+'SA.Robert' 'juliet.sm' 155 0.0 1.0
+'SA.Robert' 'juliet.sm' 156 0.0 1.0
+'SA.Robert' 'juliet.sm' 157 0.0 1.0
+'SA.Robert' 'juliet.sm' 158 0.0 1.0
+'SA.Robert' 'juliet.sm' 161 0.0 1.0
+'SA.Robert' 'juliet.sm' 162 0.0 1.0
+'SA.Robert' 'juliet.sm' 163 0.0 1.0
+'SA.Robert' 'juliet.sm' 164 0.0 1.0
+'SA.Robert' 'juliet.sm' 165 0.0 1.0
+'SA.Robert' 'juliet.sm' 168 0.0 1.0
+'SA.Robert' 'juliet.sm' 169 0.0 1.0
+'SA.Robert' 'juliet.sm' 170 0.0 1.0
+'SA.Robert' 'juliet.sm' 171 0.0 1.0
+'SA.Robert' 'juliet.sm' 172 0.0 1.0
+'SA.Robert' 'juliet.sm' 175 0.0 1.0
+'SA.Robert' 'juliet.sm' 176 0.0 1.0
+'SA.Robert' 'juliet.sm' 177 0.0 1.0
+'SA.Robert' 'juliet.sm' 178 0.0 1.0
+'SA.Robert' 'juliet.sm' 179 0.0 1.0
+'SA.Robert' 'juliet.sm' 182 0.0 1.0
+'SA.Robert' 'juliet.sf' 183 0.0 1.0
+'SA.Robert' 'juliet.sf' 184 0.0 1.0
+'SA.Robert' 'juliet.sf' 185 0.0 1.0
+'SA.Robert' 'juliet.sf' 186 0.0 1.0
+'SA.Robert' 'juliet.sf' 189 0.0 1.0
+'SA.Robert' 'juliet.sf' 190 0.0 1.0
+'SA.Robert' 'juliet.sf' 191 0.0 1.0
+'SA.Robert' 'juliet.sf' 192 0.0 1.0
+'SA.Robert' 'juliet.sf' 193 0.0 1.0
+'SA.Robert' 'juliet.sf' 196 0.0 1.0
+'SA.Robert' 'juliet.sf' 197 0.0 1.0
+'SA.Robert' 'juliet.sf' 198 0.0 1.0
+'SA.Robert' 'juliet.sf' 199 0.0 1.0
+'SA.Robert' 'juliet.sf' 200 0.0 1.0
+'SA.Robert' 'juliet.sf' 203 0.0 1.0
+'SA.Robert' 'juliet.sf' 204 0.0 1.0
+'SA.Robert' 'juliet.sf' 205 0.0 1.0
+'SA.Robert' 'juliet.sf' 206 0.0 1.0
+'SA.Robert' 'juliet.sf' 207 0.0 1.0
+'SA.Robert' 'juliet.sf' 210 0.0 1.0
+'SA.Robert' 'juliet.sf' 211 0.0 1.0
+'SA.Robert' 'juliet.sf' 212 0.0 1.0
+'SA.Robert' 'juliet.sf' 213 0.0 1.0
+'SA.Robert' 'juliet.sf' 214 0.0 1.0
+'SA.Robert' 'juliet.sf' 217 0.0 1.0
+'SA.Robert' 'juliet.sf' 218 0.0 1.0
+'SA.Robert' 'juliet.sf' 219 0.0 1.0
+'SA.Robert' 'juliet.sf' 220 0.0 1.0
+'SA.Robert' 'juliet.sf' 221 0.0 1.0
+'SA.Robert' 'juliet.sf' 224 0.0 1.0
+'SA.Robert' 'juliet.sf' 225 0.0 1.0
+'SA.Robert' 'juliet.sf' 226 0.0 1.0
+'SA.Robert' 'juliet.sf' 227 0.0 1.0
+'SA.Robert' 'juliet.sf' 228 0.0 1.0
+'SA.Robert' 'november.se' 147 2.0 3.0
+'SA.Robert' 'november.se' 148 2.0 3.0
+'SA.Robert' 'november.se' 149 2.0 3.0
+'SA.Robert' 'november.se' 150 2.0 3.0
+'SA.Robert' 'november.se' 151 2.0 3.0
+'SA.Robert' 'november.se' 154 2.0 3.0
+'SA.Robert' 'november.se' 155 2.0 3.0
+'SA.Robert' 'november.se' 156 2.0 3.0
+'SA.Robert' 'november.se' 157 2.0 3.0
+'SA.Robert' 'november.se' 158 2.0 3.0
+'SA.Robert' 'november.se' 161 2.0 3.0
+'SA.Robert' 'november.se' 162 2.0 3.0
+'SA.Robert' 'november.se' 163 2.0 3.0
+'SA.Robert' 'november.se' 164 2.0 3.0
+'SA.Robert' 'november.se' 165 2.0 3.0
+'SA.Robert' 'november.sm' 168 0.0 1.0
+'SA.Robert' 'november.sm' 169 0.0 1.0
+'SA.Robert' 'november.sm' 170 0.0 1.0
+'SA.Robert' 'november.sm' 171 0.0 1.0
+'SA.Robert' 'november.sm' 172 0.0 1.0
+'SA.Robert' 'november.sm' 175 0.0 1.0
+'SA.Robert' 'november.sm' 176 0.0 1.0
+'SA.Robert' 'november.sm' 177 0.0 1.0
+'SA.Robert' 'november.sm' 178 0.0 1.0
+'SA.Robert' 'november.sm' 179 0.0 1.0
+'SA.Robert' 'november.sm' 182 0.0 1.0
+'SA.Robert' 'november.sm' 183 0.0 1.0
+'SA.Robert' 'november.sm' 184 0.0 1.0
+'SA.Robert' 'november.sm' 185 0.0 1.0
+'SA.Robert' 'november.sm' 186 0.0 1.0
+'SA.Robert' 'november.sm' 189 0.0 1.0
+'SA.Robert' 'november.sm' 190 0.0 1.0
+'SA.Robert' 'november.sm' 191 0.0 1.0
+'SA.Robert' 'november.sm' 192 0.0 1.0
+'SA.Robert' 'november.sm' 193 0.0 1.0
+'SA.Robert' 'november.sm' 196 0.0 1.0
+'SA.Robert' 'november.sm' 197 0.0 1.0
+'SA.Robert' 'november.sm' 198 0.0 1.0
+'SA.Robert' 'november.sm' 199 0.0 1.0
+'SA.Robert' 'november.sm' 200 0.0 1.0
+'SA.Robert' 'november.sm' 203 0.0 1.0
+'SA.Robert' 'november.sm' 204 0.0 1.0
+'SA.Robert' 'november.sm' 205 0.0 1.0
+'SA.Robert' 'november.sm' 206 0.0 1.0
+'SA.Robert' 'november.sm' 207 0.0 1.0
+'SA.Robert' 'november.sm' 210 0.0 1.0
+'SA.Robert' 'november.sm' 211 0.0 1.0
+'SA.Robert' 'november.sm' 212 0.0 1.0
+'SA.Robert' 'november.sm' 213 0.0 1.0
+'SA.Robert' 'november.sm' 214 0.0 1.0
+'SA.Robert' 'november.sm' 217 0.0 1.0
+'SA.Robert' 'november.sm' 218 0.0 1.0
+'SA.Robert' 'november.sm' 219 0.0 1.0
+'SA.Robert' 'november.sm' 220 0.0 1.0
+'SA.Robert' 'november.sm' 221 0.0 1.0
+'SA.Robert' 'november.sm' 224 0.0 1.0
+'SA.Robert' 'november.sm' 225 0.0 1.0
+'SA.Robert' 'november.sm' 226 0.0 1.0
+'SA.Robert' 'november.sm' 227 0.0 1.0
+'SA.Robert' 'november.sm' 228 0.0 1.0
+'SA.Robert' 'november.sm' 231 0.0 1.0
+'SA.Robert' 'november.sm' 232 0.0 1.0
+'SA.Robert' 'november.sm' 233 0.0 1.0
+'SA.Robert' 'november.sm' 234 0.0 1.0
+'SA.Robert' 'november.sm' 235 0.0 1.0
+'SA.Robert' 'november.sm' 238 0.0 1.0
+'SA.Robert' 'november.sm' 239 0.0 1.0
+'SA.Robert' 'november.sm' 240 0.0 1.0
+'SA.Robert' 'november.sm' 241 0.0 1.0
+'SA.Robert' 'november.sm' 242 0.0 1.0
+'SA.Robert' 'november.sm' 245 0.0 1.0
+'SA.Robert' 'november.sm' 246 0.0 1.0
+'SA.Robert' 'november.sm' 247 0.0 1.0
+'SA.Robert' 'november.sm' 248 0.0 1.0
+'SA.Robert' 'november.sm' 249 0.0 1.0
+'SA.Robert' 'november.sm' 252 0.0 1.0
+'SA.Robert' 'november.sm' 253 0.0 1.0
+'SA.Robert' 'november.sm' 254 0.0 1.0
+'SA.Robert' 'november.sm' 255 0.0 1.0
+'SA.Robert' 'november.sm' 256 0.0 1.0
+'SA.Robert' 'november.sm' 259 0.0 1.0
+'SA.Robert' 'november.sm' 260 0.0 1.0
+'SA.Robert' 'november.sm' 261 0.0 1.0
+'SA.Robert' 'november.sm' 262 0.0 1.0
+'SA.Robert' 'november.sm' 263 0.0 1.0
+'SA.Robert' 'november.sm' 266 0.0 1.0
+'SA.Robert' 'november.sm' 267 0.0 1.0
+'SA.Robert' 'november.sm' 268 0.0 1.0
+'SA.Robert' 'november.sm' 269 0.0 1.0
+'SA.Robert' 'november.sm' 270 0.0 1.0
+'SA.Robert' 'november.sm' 273 0.0 1.0
+'SA.Robert' 'november.sm' 274 0.0 1.0
+'SA.Robert' 'november.sm' 275 0.0 1.0
+'SA.Robert' 'november.sm' 276 0.0 1.0
+'SA.Robert' 'november.sm' 277 0.0 1.0
+'SA.Robert' 'november.sm' 280 0.0 1.0
+'SA.Robert' 'november.sm' 281 0.0 1.0
+'SA.Robert' 'november.sm' 282 0.0 1.0
+'SA.Robert' 'november.sm' 283 0.0 1.0
+'SA.Robert' 'november.sm' 284 0.0 1.0
+'SA.Robert' 'november.sm' 287 0.0 1.0
+'SA.Robert' 'november.sm' 288 0.0 1.0
+'SA.Robert' 'november.sm' 289 0.0 1.0
+'SA.Robert' 'november.sm' 290 0.0 1.0
+'SA.Robert' 'november.sm' 291 0.0 1.0
+'SA.Robert' 'november.sm' 294 0.0 1.0
+'SA.Robert' 'november.sm' 295 0.0 1.0
+'SA.Robert' 'november.sm' 296 0.0 1.0
+'SA.Robert' 'november.sm' 297 0.0 1.0
+'SA.Robert' 'november.sm' 298 0.0 1.0
+'SA.Robert' 'november.sm' 301 0.0 1.0
+'SA.Robert' 'november.sm' 302 0.0 1.0
+'SA.Robert' 'november.sm' 303 0.0 1.0
+'SA.Robert' 'november.sm' 304 0.0 1.0
+'SA.Robert' 'november.sm' 305 0.0 1.0
+'SA.Robert' 'november.sm' 308 0.0 1.0
+'SA.Robert' 'november.sm' 309 0.0 1.0
+'SA.Robert' 'november.sm' 310 0.0 1.0
+'SA.Robert' 'november.sm' 311 0.0 1.0
+'SA.Robert' 'november.sm' 312 0.0 1.0
+'SA.Robert' 'november.sm' 315 0.0 1.0
+'SA.Robert' 'november.sm' 316 0.0 1.0
+'SA.Robert' 'november.sm' 317 0.0 1.0
+'SA.Robert' 'november.sm' 318 0.0 1.0
+'SA.Robert' 'november.sm' 319 0.0 1.0
+'SA.Robert' 'november.sm' 322 0.0 1.0
+'SA.Robert' 'november.sm' 323 0.0 1.0
+'SA.Robert' 'november.sm' 324 0.0 1.0
+'SA.Robert' 'november.sm' 325 0.0 1.0
+'SA.Robert' 'november.sm' 326 0.0 1.0
+'SA.Robert' 'november.sm' 329 0.0 1.0
+'SA.Robert' 'november.sm' 330 0.0 1.0
+'SA.Robert' 'november.sm' 331 0.0 1.0
+'SA.Robert' 'november.sm' 332 0.0 1.0
+'SA.Robert' 'november.sm' 333 0.0 1.0
+'SA.Robert' 'november.sm' 336 0.0 1.0
+'SA.Robert' 'november.sm' 337 0.0 1.0
+'SA.Robert' 'november.sm' 338 0.0 1.0
+'SA.Robert' 'november.sm' 339 0.0 1.0
+'SA.Robert' 'november.sm' 340 0.0 1.0
+'SA.Robert' 'november.sm' 343 0.0 1.0
+'SA.Robert' 'november.sm' 344 0.0 1.0
+'SA.Robert' 'november.sm' 345 0.0 1.0
+'SA.Robert' 'november.sm' 346 0.0 1.0
+'SA.Robert' 'november.sm' 347 0.0 1.0
+'SA.Robert' 'november.sm' 350 0.0 1.0
+'SA.Robert' 'november.sm' 351 0.0 1.0
+'SA.Robert' 'november.sm' 352 0.0 1.0
+'SA.Robert' 'november.sm' 353 0.0 1.0
+'SA.Robert' 'november.sm' 354 0.0 1.0
+'SA.Robert' 'november.sm' 357 0.0 1.0
+'SA.Robert' 'november.sm' 358 0.0 1.0
+'SA.Robert' 'november.sm' 359 0.0 1.0
+'SA.Robert' 'november.sm' 360 0.0 1.0
+'SA.Robert' 'november.sm' 361 0.0 1.0
+'SA.Robert' 'november.sm' 364 0.0 1.0
+'SA.Robert' 'november.sm' 365 0.0 1.0
+'SA.Robert' 'november.sf' 366 0.0 1.0
+'SA.Robert' 'november.sf' 367 0.0 1.0
+'SA.Robert' 'november.sf' 368 0.0 1.0
+'SA.Robert' 'november.sf' 371 0.0 1.0
+'SA.Robert' 'november.sf' 372 0.0 1.0
+'SA.Robert' 'november.sf' 373 0.0 1.0
+'SA.Robert' 'november.sf' 374 0.0 1.0
+'SA.Robert' 'november.sf' 375 0.0 1.0
+'SA.Robert' 'november.sf' 378 0.0 1.0
+'SA.Robert' 'november.sf' 379 0.0 1.0
+'SA.Robert' 'november.sf' 380 0.0 1.0
+'SA.Robert' 'november.sf' 381 0.0 1.0
+'SA.Robert' 'november.sf' 382 0.0 1.0
+'SA.Robert' 'november.sf' 385 0.0 1.0
+'SA.Robert' 'november.sf' 386 0.0 1.0
+'SA.Robert' 'november.sf' 387 0.0 1.0
+'SA.Robert' 'november.sf' 388 0.0 1.0
+'SA.Robert' 'november.sf' 389 0.0 1.0
+'SA.Robert' 'november.sf' 392 0.0 1.0
+'SA.Robert' 'november.sf' 393 0.0 1.0
+'SA.Robert' 'november.sf' 394 0.0 1.0
+'SA.Robert' 'november.sf' 395 0.0 1.0
+'SA.Robert' 'november.sf' 396 0.0 1.0
+'SA.Robert' 'oscar.se' 177 3.0 4.0
+'SA.Robert' 'oscar.se' 178 3.0 4.0
+'SA.Robert' 'oscar.se' 179 3.0 4.0
+'SA.Robert' 'oscar.se' 182 3.0 4.0
+'SA.Robert' 'oscar.se' 183 3.0 4.0
+'SA.Robert' 'oscar.se' 184 3.0 4.0
+'SA.Robert' 'oscar.se' 185 3.0 4.0
+'SA.Robert' 'oscar.se' 186 3.0 4.0
+'SA.Robert' 'oscar.se' 189 3.0 4.0
+'SA.Robert' 'oscar.se' 190 3.0 4.0
+'SA.Robert' 'oscar.se' 191 3.0 4.0
+'SA.Robert' 'oscar.sm' 192 0.0 1.0
+'SA.Robert' 'oscar.sm' 193 0.0 1.0
+'SA.Robert' 'oscar.sm' 196 0.0 1.0
+'SA.Robert' 'oscar.sm' 197 0.0 1.0
+'SA.Robert' 'oscar.sm' 198 0.0 1.0
+'SA.Robert' 'oscar.sm' 199 0.0 1.0
+'SA.Robert' 'oscar.sm' 200 0.0 1.0
+'SA.Robert' 'oscar.sm' 203 0.0 1.0
+'SA.Robert' 'oscar.sm' 204 0.0 1.0
+'SA.Robert' 'oscar.sm' 205 0.0 1.0
+'SA.Robert' 'oscar.sm' 206 0.0 1.0
+'SA.Robert' 'oscar.sm' 207 0.0 1.0
+'SA.Robert' 'oscar.sm' 210 0.0 1.0
+'SA.Robert' 'oscar.sm' 211 0.0 1.0
+'SA.Robert' 'oscar.sm' 212 0.0 1.0
+'SA.Robert' 'oscar.sm' 213 0.0 1.0
+'SA.Robert' 'oscar.sm' 214 0.0 1.0
+'SA.Robert' 'oscar.sm' 217 0.0 1.0
+'SA.Robert' 'oscar.sm' 218 0.0 1.0
+'SA.Robert' 'oscar.sm' 219 0.0 1.0
+'SA.Robert' 'oscar.sm' 220 0.0 1.0
+'SA.Robert' 'oscar.sm' 221 0.0 1.0
+'SA.Robert' 'oscar.sm' 224 0.0 1.0
+'SA.Robert' 'oscar.sm' 225 0.0 1.0
+'SA.Robert' 'oscar.sm' 226 0.0 1.0
+'SA.Robert' 'oscar.sm' 227 0.0 1.0
+'SA.Robert' 'oscar.sm' 228 0.0 1.0
+'SA.Robert' 'oscar.sm' 231 0.0 1.0
+'SA.Robert' 'oscar.sm' 232 0.0 1.0
+'SA.Robert' 'oscar.sm' 233 0.0 1.0
+'SA.Robert' 'oscar.sm' 234 0.0 1.0
+'SA.Robert' 'oscar.sm' 235 0.0 1.0
+'SA.Robert' 'oscar.sm' 238 0.0 1.0
+'SA.Robert' 'oscar.sm' 239 0.0 1.0
+'SA.Robert' 'oscar.sm' 240 0.0 1.0
+'SA.Robert' 'oscar.sm' 241 0.0 1.0
+'SA.Robert' 'oscar.sm' 242 0.0 1.0
+'SA.Robert' 'oscar.sm' 245 0.0 1.0
+'SA.Robert' 'oscar.sm' 246 0.0 1.0
+'SA.Robert' 'oscar.sm' 247 0.0 1.0
+'SA.Robert' 'oscar.sm' 248 0.0 1.0
+'SA.Robert' 'oscar.sm' 249 0.0 1.0
+'SA.Robert' 'oscar.sm' 252 0.0 1.0
+'SA.Robert' 'oscar.sm' 253 0.0 1.0
+'SA.Robert' 'oscar.sm' 254 0.0 1.0
+'SA.Robert' 'oscar.sm' 255 0.0 1.0
+'SA.Robert' 'oscar.sm' 256 0.0 1.0
+'SA.Robert' 'oscar.sm' 259 0.0 1.0
+'SA.Robert' 'oscar.sm' 260 0.0 1.0
+'SA.Robert' 'oscar.sm' 261 0.0 1.0
+'SA.Robert' 'oscar.sm' 262 0.0 1.0
+'SA.Robert' 'oscar.sm' 263 0.0 1.0
+'SA.Robert' 'oscar.sm' 266 0.0 1.0
+'SA.Robert' 'oscar.sm' 267 0.0 1.0
+'SA.Robert' 'oscar.sm' 268 0.0 1.0
+'SA.Robert' 'oscar.sm' 269 0.0 1.0
+'SA.Robert' 'oscar.sm' 270 0.0 1.0
+'SA.Robert' 'oscar.sm' 273 0.0 1.0
+'SA.Robert' 'oscar.sm' 274 0.0 1.0
+'SA.Robert' 'oscar.sm' 275 0.0 1.0
+'SA.Robert' 'oscar.sm' 276 0.0 1.0
+'SA.Robert' 'oscar.sm' 277 0.0 1.0
+'SA.Robert' 'oscar.sm' 280 0.0 1.0
+'SA.Robert' 'oscar.sm' 281 0.0 1.0
+'SA.Robert' 'oscar.sm' 282 0.0 1.0
+'SA.Robert' 'oscar.sm' 283 0.0 1.0
+'SA.Robert' 'oscar.sm' 284 0.0 1.0
+'SA.Robert' 'oscar.sm' 287 0.0 1.0
+'SA.Robert' 'oscar.sm' 288 0.0 1.0
+'SA.Robert' 'oscar.sm' 289 0.0 1.0
+'SA.Robert' 'oscar.sm' 290 0.0 1.0
+'SA.Robert' 'oscar.sm' 291 0.0 1.0
+'SA.Robert' 'oscar.sm' 294 0.0 1.0
+'SA.Robert' 'oscar.sm' 295 0.0 1.0
+'SA.Robert' 'oscar.sm' 296 0.0 1.0
+'SA.Robert' 'oscar.sm' 297 0.0 1.0
+'SA.Robert' 'oscar.sm' 298 0.0 1.0
+'SA.Robert' 'oscar.sm' 301 0.0 1.0
+'SA.Robert' 'oscar.sm' 302 0.0 1.0
+'SA.Robert' 'oscar.sm' 303 0.0 1.0
+'SA.Robert' 'oscar.sm' 304 0.0 1.0
+'SA.Robert' 'oscar.sm' 305 0.0 1.0
+'SA.Robert' 'oscar.sm' 308 0.0 1.0
+'SA.Robert' 'oscar.sm' 309 0.0 1.0
+'SA.Robert' 'oscar.sm' 310 0.0 1.0
+'SA.Robert' 'oscar.sm' 311 0.0 1.0
+'SA.Robert' 'oscar.sm' 312 0.0 1.0
+'SA.Robert' 'oscar.sm' 315 0.0 1.0
+'SA.Robert' 'oscar.sm' 316 0.0 1.0
+'SA.Robert' 'oscar.sm' 317 0.0 1.0
+'SA.Robert' 'oscar.sm' 318 0.0 1.0
+'SA.Robert' 'oscar.sm' 319 0.0 1.0
+'SA.Robert' 'oscar.sm' 322 0.0 1.0
+'SA.Robert' 'oscar.sm' 323 0.0 1.0
+'SA.Robert' 'oscar.sm' 324 0.0 1.0
+'SA.Robert' 'oscar.sm' 325 0.0 1.0
+'SA.Robert' 'oscar.sm' 326 0.0 1.0
+'SA.Robert' 'oscar.sm' 329 0.0 1.0
+'SA.Robert' 'oscar.sm' 330 0.0 1.0
+'SA.Robert' 'oscar.sm' 331 0.0 1.0
+'SA.Robert' 'oscar.sm' 332 0.0 1.0
+'SA.Robert' 'oscar.sm' 333 0.0 1.0
+'SA.Robert' 'oscar.sm' 336 0.0 1.0
+'SA.Robert' 'oscar.sm' 337 0.0 1.0
+'SA.Robert' 'oscar.sm' 338 0.0 1.0
+'SA.Robert' 'oscar.sm' 339 0.0 1.0
+'SA.Robert' 'oscar.sm' 340 0.0 1.0
+'SA.Robert' 'oscar.sm' 343 0.0 1.0
+'SA.Robert' 'oscar.sm' 344 0.0 1.0
+'SA.Robert' 'oscar.sm' 345 0.0 1.0
+'SA.Robert' 'oscar.sm' 346 0.0 1.0
+'SA.Robert' 'oscar.sm' 347 0.0 1.0
+'SA.Robert' 'oscar.sm' 350 0.0 1.0
+'SA.Robert' 'oscar.sm' 351 0.0 1.0
+'SA.Robert' 'oscar.sm' 352 0.0 1.0
+'SA.Robert' 'oscar.sm' 353 0.0 1.0
+'SA.Robert' 'oscar.sm' 354 0.0 1.0
+'SA.Robert' 'oscar.sm' 357 0.0 1.0
+'SA.Robert' 'oscar.sm' 358 0.0 1.0
+'SA.Robert' 'oscar.sm' 359 0.0 1.0
+'SA.Robert' 'oscar.sm' 360 0.0 1.0
+'SA.Robert' 'oscar.sm' 361 0.0 1.0
+'SA.Robert' 'oscar.sm' 364 0.0 1.0
+'SA.Robert' 'oscar.sm' 365 0.0 1.0
+'SA.Robert' 'oscar.sf' 366 1.0 2.0
+'SA.Robert' 'oscar.sf' 367 1.0 2.0
+'SA.Robert' 'oscar.sf' 368 1.0 2.0
+'SA.Robert' 'oscar.sf' 371 1.0 2.0
+'SA.Robert' 'oscar.sf' 372 1.0 2.0
+'SA.Robert' 'oscar.sf' 373 1.0 2.0
+'SA.Robert' 'oscar.sf' 374 1.0 2.0
+'SA.Robert' 'oscar.sf' 375 1.0 2.0
+'SA.Robert' 'oscar.sf' 378 1.0 2.0
+'SA.Robert' 'oscar.sf' 379 1.0 2.0
+'SA.Robert' 'oscar.sf' 380 1.0 2.0
+'SA.Robert' 'oscar.sf' 381 1.0 2.0
+'SA.Robert' 'oscar.sf' 382 1.0 2.0
+'SA.Robert' 'oscar.sf' 385 1.0 2.0
+'SA.Robert' 'oscar.sf' 386 1.0 2.0
+'SA.Robert' 'oscar.sf' 387 1.0 2.0
+'SA.Robert' 'oscar.sf' 388 1.0 2.0
+'SA.Robert' 'oscar.sf' 389 1.0 2.0
+'SA.Robert' 'oscar.sf' 392 1.0 2.0
+'SA.Robert' 'oscar.sf' 393 1.0 2.0
+'SA.Robert' 'oscar.sf' 394 1.0 2.0
+'SA.Robert' 'oscar.sf' 395 1.0 2.0
+'SA.Robert' 'oscar.sf' 396 1.0 2.0
+;
+
+param:
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
+'Jan.25' 1 16
+'Feb.25' 17 45
+'Mar.25' 46 76
+'Apr.25' 77 105
+'May.25' 106 139
+'Jun.25' 140 170
+'Jul.25' 171 199
+'Aug.25' 200 230
+'Sep.25' 231 259
+'Oct.25' 260 289
+'Nov.25' 290 317
+'Dec.25' 318 346
+;
+
+param:
+EXPPER: PBL PBU :=
+'SA.Robert' 'Jan.25' 0 720
+'SA.Robert' 'Feb.25' 0 720
+'SA.Robert' 'Mar.25' 0 720
+'SA.Robert' 'Apr.25' 0 720
+'SA.Robert' 'May.25' 0 720
+'SA.Robert' 'Jun.25' 0 720
+'SA.Robert' 'Jul.25' 0 720
+'SA.Robert' 'Aug.25' 0 720
+'SA.Robert' 'Sep.25' 0 720
+'SA.Robert' 'Oct.25' 0 720
+'SA.Robert' 'Nov.25' 0 720
+'SA.Robert' 'Dec.25' 0 720
+;
 

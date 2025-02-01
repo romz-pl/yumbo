@@ -1,1818 +1,106 @@
-param HOURS_PER_DAY := 32;
+param MAXWORK := 32;
 
-set EXPERTN :=
+param:
+TNAME: TWORK :=
+'p2.m' 2656
+'p2.f' 512
+'p2.pf' 256
+'p3.m' 2544
+'p3.f' 384
+'p3.pf' 256
+'p4.m' 4520
+'p4.f' 640
+'p4.pf' 256
+'p5.m' 2720
+'p5.f' 512
+'p5.pf' 256
+'p6.m' 4520
+'p6.f' 640
+'p6.pf' 256
+'Q1' 4
+;
+
+set TSCOPE['p2.m'] :=
+1 4 5 6 7 8 11 12 13 14 15 18 19 21 22 25 26 27 28 29 32 33 34 35 36 39 40 41 42 43 46 47 48 49 50 53 54 55 56 57 60 61 62 63 64 67 68 69 70 71
+74 75 76 77 78 81 82 83 84 85 88 89 90 91 92 95 96 97 98 99 102 103 104 105 106 109 110 111 112 113 116 117 118
+;
+
+set TSCOPE['p2.f'] :=
+119 120 123 124 125 126 127 130 131 132 133 134 137 138 139 140 141 144 145 146
+;
+
+set TSCOPE['p2.pf'] :=
+147 148 151 152 153 154 155 158 159
+;
+
+set TSCOPE['p3.m'] :=
+11 12 13 14 15 18 19 21 22 25 26 27 28 29 32 33 34 35 36 39 40 41 42 43 46 47 48 49 50 53 54 55 56 57 60 61 62 63 64 67 68 69 70 71 74 75 76 77 78 81
+82 83 84 85 88 89 90 91 92 95 96 97 98 99 102 103 104 105 106 109 110 111 112 113 116 117 118 119 120 123 124 125 126 127 130 131 132 133 134 137 138 139 140 141 144 145 146 147 148 151
+152 153 154 155 158 159 160 161 162 165 166 167 168 169 172 173 174 175 176
+;
+
+set TSCOPE['p3.f'] :=
+179 180 181 182 183 186 187 188 189 190 193 194 195 196 197 200 201 202 203 204
+;
+
+set TSCOPE['p3.pf'] :=
+207 208 209 210 211 214 215 216 217 218
+;
+
+set TSCOPE['p4.m'] :=
+32 33 34 35 36 39 40 41 42 43 46 47 48 49 50 53 54 55 56 57 60 61 62 63 64 67 68 69 70 71 74 75 76 77 78 81 82 83 84 85 88 89 90 91 92 95 96 97 98 99
+102 103 104 105 106 109 110 111 112 113 116 117 118 119 120 123 124 125 126 127 130 131 132 133 134 137 138 139 140 141 144 145 146 147 148 151 152 153 154 155 158 159 160 161 162 165 166 167 168 169
+172 173 174 175 176 179 180 181 182 183 186 187 188 189 190 193 194 195 196 197
+;
+
+set TSCOPE['p4.f'] :=
+200 201 202 203 204 207 208 209 210 211 214 215 216 217 218 221 222 223 224 225
+;
+
+set TSCOPE['p4.pf'] :=
+228 229 230 231 232 235 236 237 238 239
+;
+
+set TSCOPE['p5.m'] :=
+40 41 42 43 46 47 48 49 50 53 54 55 56 57 60 61 62 63 64 67 68 69 70 71 74 75 76 77 78 81 82 83 84 85 88 89 90 91 92 95 96 97 98 99 102 103 104 105 106 109
+110 111 112 113 116 117 118 119 120 123 124 125 126 127 130 131 132 133 134 137 138 139 140 141 144 145 146 147 148 151 152 153 154 155 158
+;
+
+set TSCOPE['p5.f'] :=
+159 160 161 162 165 166 167 168 169 172 173 174 175 176 179 180 181 182 183 186
+;
+
+set TSCOPE['p5.pf'] :=
+187 188 189 190 193 194 195 196 197 200
+;
+
+set TSCOPE['p6.m'] :=
+74 75 76 77 78 81 82 83 84 85 88 89 90 91 92 95 96 97 98 99 102 103 104 105 106 109 110 111 112 113 116 117 118 119 120 123 124 125 126 127 130 131 132 133 134 137 138 139 140 141
+144 145 146 147 148 151 152 153 154 155 158 159 160 161 162 165 166 167 168 169 172 173 174 175 176 179 180 181 182 183 186 187 188 189 190 193 194 195 196 197 200 201 202 203 204 207 208 209 210 211
+214 215 216 217 218 221 222 223 224 225 228 229 230 231 232 235 236 237 238 239
+;
+
+set TSCOPE['p6.f'] :=
+242 243 244 245 246 249 250 251 252 253 256 257 258 259 260 263 264 265 266 267
+;
+
+set TSCOPE['p6.pf'] :=
+270 271 272 273 274 277 278 279 280 281
+;
+
+set TSCOPE['Q1'] :=
+270 271 272 273 274 277 278 279 280 281
+;
+
+set ENAME :=
 'Alojzy'
 'Bartłomiej'
 'Franciszek'
 'Paweł'
-'Wojciech';
-
-param EBOUND_NO := 0;
-
-param EBOUND:
-1   2   3   4   5 :=
+'Wojciech'
 ;
 
-param:
-TASKN: TASKS TASKE TASKW :=
-'p2.m' 1 118 2656
-'p2.f' 119 146 512
-'p2.pf' 147 159 256
-'p3.m' 9 176 2544
-'p3.f' 177 204 384
-'p3.pf' 205 218 256
-'p4.m' 30 197 4520
-'p4.f' 198 225 640
-'p4.pf' 226 241 256
-'p5.m' 40 158 2720
-'p5.f' 159 186 512
-'p5.pf' 187 200 256
-'p6.m' 72 239 4520
-'p6.f' 240 267 640
-'p6.pf' 268 281 256
-;
-
-param:
-PAYROLLN: PAYROLLS PAYROLLE :=
-'25.Jan' 6 41
-'25.Feb' 42 70
-'25.Mar' 71 101
-'25.Apr' 102 130
-'25.May' 131 164;
-
-param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
-'Alojzy' '25.Jan' 0.0 800.0
-'Alojzy' '25.Feb' 0.0 800.0
-'Alojzy' '25.Mar' 0.0 800.0
-'Alojzy' '25.Apr' 0.0 800.0
-'Alojzy' '25.May' 0.0 800.0
-'Bartłomiej' '25.Jan' 0.0 800.0
-'Bartłomiej' '25.Feb' 0.0 800.0
-'Bartłomiej' '25.Mar' 0.0 800.0
-'Bartłomiej' '25.Apr' 0.0 800.0
-'Bartłomiej' '25.May' 0.0 800.0
-'Franciszek' '25.Jan' 0.0 800.0
-'Franciszek' '25.Feb' 0.0 800.0
-'Franciszek' '25.Mar' 0.0 800.0
-'Franciszek' '25.Apr' 0.0 800.0
-'Franciszek' '25.May' 0.0 800.0
-'Paweł' '25.Jan' 0.0 800.0
-'Paweł' '25.Feb' 0.0 800.0
-'Paweł' '25.Mar' 0.0 800.0
-'Paweł' '25.Apr' 0.0 800.0
-'Paweł' '25.May' 0.0 800.0
-'Wojciech' '25.Jan' 0.0 800.0
-'Wojciech' '25.Feb' 0.0 800.0
-'Wojciech' '25.Mar' 0.0 800.0
-'Wojciech' '25.Apr' 0.0 800.0
-'Wojciech' '25.May' 0.0 800.0;
-
-param OFFDAY_NO := 81;
-
-param OFFDAY :=
-1 2
-2 3
-3 9
-4 10
-5 16
-6 17
-7 20
-8 23
-9 24
-10 30
-11 31
-12 37
-13 38
-14 44
-15 45
-16 51
-17 52
-18 58
-19 59
-20 65
-21 66
-22 72
-23 73
-24 79
-25 80
-26 86
-27 87
-28 93
-29 94
-30 100
-31 101
-32 107
-33 108
-34 114
-35 115
-36 121
-37 122
-38 128
-39 129
-40 135
-41 136
-42 142
-43 143
-44 149
-45 150
-46 156
-47 157
-48 163
-49 164
-50 170
-51 171
-52 177
-53 178
-54 184
-55 185
-56 191
-57 192
-58 198
-59 199
-60 205
-61 206
-62 212
-63 213
-64 219
-65 220
-66 226
-67 227
-68 233
-69 234
-70 240
-71 241
-72 247
-73 248
-74 254
-75 255
-76 261
-77 262
-78 268
-79 269
-80 275
-81 276;
-
-param XBDAY_NO := 1636;
-
-param XBDAY:
-1   2   3   4   5 :=
-1 'Alojzy' 'p2.m' 1 28 32
-2 'Alojzy' 'p2.m' 4 28 32
-3 'Alojzy' 'p2.m' 5 28 32
-4 'Alojzy' 'p2.m' 6 28 32
-5 'Alojzy' 'p2.m' 7 28 32
-6 'Alojzy' 'p2.m' 8 28 32
-7 'Alojzy' 'p2.m' 11 28 32
-8 'Alojzy' 'p2.m' 12 28 32
-9 'Alojzy' 'p2.m' 13 28 32
-10 'Alojzy' 'p2.m' 14 28 32
-11 'Alojzy' 'p2.m' 15 28 32
-12 'Alojzy' 'p2.m' 18 28 32
-13 'Alojzy' 'p2.m' 19 28 32
-14 'Alojzy' 'p2.m' 21 28 32
-15 'Alojzy' 'p2.m' 22 28 32
-16 'Alojzy' 'p2.m' 25 28 32
-17 'Alojzy' 'p2.m' 26 28 32
-18 'Alojzy' 'p2.m' 27 28 32
-19 'Alojzy' 'p2.m' 28 28 32
-20 'Alojzy' 'p2.m' 29 28 32
-21 'Alojzy' 'p2.m' 32 28 32
-22 'Alojzy' 'p2.m' 33 28 32
-23 'Alojzy' 'p2.m' 34 28 32
-24 'Alojzy' 'p2.m' 35 28 32
-25 'Alojzy' 'p2.m' 36 28 32
-26 'Alojzy' 'p2.m' 39 28 32
-27 'Alojzy' 'p2.m' 40 28 32
-28 'Alojzy' 'p2.m' 41 28 32
-29 'Alojzy' 'p2.m' 42 28 32
-30 'Alojzy' 'p2.m' 43 28 32
-31 'Alojzy' 'p2.m' 46 28 32
-32 'Alojzy' 'p2.m' 47 28 32
-33 'Alojzy' 'p2.m' 48 28 32
-34 'Alojzy' 'p2.m' 49 28 32
-35 'Alojzy' 'p2.m' 50 28 32
-36 'Alojzy' 'p2.m' 53 28 32
-37 'Alojzy' 'p2.m' 54 28 32
-38 'Alojzy' 'p2.m' 55 28 32
-39 'Alojzy' 'p2.m' 56 28 32
-40 'Alojzy' 'p2.m' 57 28 32
-41 'Alojzy' 'p2.m' 60 28 32
-42 'Alojzy' 'p2.m' 61 28 32
-43 'Alojzy' 'p2.m' 62 28 32
-44 'Alojzy' 'p2.m' 63 28 32
-45 'Alojzy' 'p2.m' 64 28 32
-46 'Alojzy' 'p2.m' 67 28 32
-47 'Alojzy' 'p2.m' 68 28 32
-48 'Alojzy' 'p2.m' 69 28 32
-49 'Alojzy' 'p2.m' 70 28 32
-50 'Alojzy' 'p2.m' 71 28 32
-51 'Alojzy' 'p2.m' 74 28 32
-52 'Alojzy' 'p2.m' 75 28 32
-53 'Alojzy' 'p2.m' 76 28 32
-54 'Alojzy' 'p2.m' 77 28 32
-55 'Alojzy' 'p2.m' 78 28 32
-56 'Alojzy' 'p2.m' 81 28 32
-57 'Alojzy' 'p2.m' 82 28 32
-58 'Alojzy' 'p2.m' 83 28 32
-59 'Alojzy' 'p2.m' 84 28 32
-60 'Alojzy' 'p2.m' 85 28 32
-61 'Alojzy' 'p2.m' 88 28 32
-62 'Alojzy' 'p2.m' 89 28 32
-63 'Alojzy' 'p2.m' 90 28 32
-64 'Alojzy' 'p2.m' 91 28 32
-65 'Alojzy' 'p2.m' 92 28 32
-66 'Alojzy' 'p2.m' 95 28 32
-67 'Alojzy' 'p2.m' 96 28 32
-68 'Alojzy' 'p2.m' 97 28 32
-69 'Alojzy' 'p2.m' 98 28 32
-70 'Alojzy' 'p2.m' 99 28 32
-71 'Alojzy' 'p2.m' 102 28 32
-72 'Alojzy' 'p2.m' 103 28 32
-73 'Alojzy' 'p2.m' 104 28 32
-74 'Alojzy' 'p2.m' 105 28 32
-75 'Alojzy' 'p2.m' 106 28 32
-76 'Alojzy' 'p2.m' 109 28 32
-77 'Alojzy' 'p2.m' 110 28 32
-78 'Alojzy' 'p2.m' 111 28 32
-79 'Alojzy' 'p2.m' 112 28 32
-80 'Alojzy' 'p2.m' 113 28 32
-81 'Alojzy' 'p2.m' 116 28 32
-82 'Alojzy' 'p2.m' 117 28 32
-83 'Alojzy' 'p2.m' 118 28 32
-84 'Alojzy' 'p2.f' 119 24 28
-85 'Alojzy' 'p2.f' 120 24 28
-86 'Alojzy' 'p2.f' 123 24 28
-87 'Alojzy' 'p2.f' 124 24 28
-88 'Alojzy' 'p2.f' 125 24 28
-89 'Alojzy' 'p2.f' 126 24 28
-90 'Alojzy' 'p2.f' 127 24 28
-91 'Alojzy' 'p2.f' 130 24 28
-92 'Alojzy' 'p2.f' 131 24 28
-93 'Alojzy' 'p2.f' 132 24 28
-94 'Alojzy' 'p2.f' 133 24 28
-95 'Alojzy' 'p2.f' 134 24 28
-96 'Alojzy' 'p2.f' 137 24 28
-97 'Alojzy' 'p2.f' 138 24 28
-98 'Alojzy' 'p2.f' 139 24 28
-99 'Alojzy' 'p2.f' 140 24 28
-100 'Alojzy' 'p2.f' 141 24 28
-101 'Alojzy' 'p2.f' 144 24 28
-102 'Alojzy' 'p2.f' 145 24 28
-103 'Alojzy' 'p2.f' 146 24 28
-104 'Alojzy' 'p2.pf' 147 28 32
-105 'Alojzy' 'p2.pf' 148 28 32
-106 'Alojzy' 'p2.pf' 151 28 32
-107 'Alojzy' 'p2.pf' 152 28 32
-108 'Alojzy' 'p2.pf' 153 28 32
-109 'Alojzy' 'p2.pf' 154 28 32
-110 'Alojzy' 'p2.pf' 155 28 32
-111 'Alojzy' 'p2.pf' 158 28 32
-112 'Alojzy' 'p2.pf' 159 28 32
-113 'Bartłomiej' 'p3.m' 11 16 32
-114 'Bartłomiej' 'p3.m' 12 16 32
-115 'Bartłomiej' 'p3.m' 13 16 32
-116 'Bartłomiej' 'p3.m' 14 16 32
-117 'Bartłomiej' 'p3.m' 15 16 32
-118 'Bartłomiej' 'p3.m' 18 16 32
-119 'Bartłomiej' 'p3.m' 19 16 32
-120 'Bartłomiej' 'p3.m' 21 16 32
-121 'Bartłomiej' 'p3.m' 22 16 32
-122 'Bartłomiej' 'p3.m' 25 16 32
-123 'Bartłomiej' 'p3.m' 26 16 32
-124 'Bartłomiej' 'p3.m' 27 16 32
-125 'Bartłomiej' 'p3.m' 28 16 32
-126 'Bartłomiej' 'p3.m' 29 16 32
-127 'Bartłomiej' 'p3.m' 32 16 32
-128 'Bartłomiej' 'p3.m' 33 16 32
-129 'Bartłomiej' 'p3.m' 34 16 32
-130 'Bartłomiej' 'p3.m' 35 16 32
-131 'Bartłomiej' 'p3.m' 36 16 32
-132 'Bartłomiej' 'p3.m' 39 16 32
-133 'Bartłomiej' 'p3.m' 40 16 32
-134 'Bartłomiej' 'p3.m' 41 16 32
-135 'Bartłomiej' 'p3.m' 42 16 32
-136 'Bartłomiej' 'p3.m' 43 16 32
-137 'Bartłomiej' 'p3.m' 46 16 32
-138 'Bartłomiej' 'p3.m' 47 16 32
-139 'Bartłomiej' 'p3.m' 48 16 32
-140 'Bartłomiej' 'p3.m' 49 16 32
-141 'Bartłomiej' 'p3.m' 50 16 32
-142 'Bartłomiej' 'p3.m' 53 16 32
-143 'Bartłomiej' 'p3.m' 54 16 32
-144 'Bartłomiej' 'p3.m' 55 16 32
-145 'Bartłomiej' 'p3.m' 56 16 32
-146 'Bartłomiej' 'p3.m' 57 16 32
-147 'Bartłomiej' 'p3.m' 60 16 32
-148 'Bartłomiej' 'p3.m' 61 16 32
-149 'Bartłomiej' 'p3.m' 62 16 32
-150 'Bartłomiej' 'p3.m' 63 16 32
-151 'Bartłomiej' 'p3.m' 64 16 32
-152 'Bartłomiej' 'p3.m' 67 16 32
-153 'Bartłomiej' 'p3.m' 68 16 32
-154 'Bartłomiej' 'p3.m' 69 16 32
-155 'Bartłomiej' 'p3.m' 70 16 32
-156 'Bartłomiej' 'p3.m' 71 16 32
-157 'Bartłomiej' 'p3.m' 74 16 32
-158 'Bartłomiej' 'p3.m' 75 16 32
-159 'Bartłomiej' 'p3.m' 76 16 32
-160 'Bartłomiej' 'p3.m' 77 16 32
-161 'Bartłomiej' 'p3.m' 78 16 32
-162 'Bartłomiej' 'p3.m' 81 16 32
-163 'Bartłomiej' 'p3.m' 82 16 32
-164 'Bartłomiej' 'p3.m' 83 16 32
-165 'Bartłomiej' 'p3.m' 84 16 32
-166 'Bartłomiej' 'p3.m' 85 16 32
-167 'Bartłomiej' 'p3.m' 88 16 32
-168 'Bartłomiej' 'p3.m' 89 16 32
-169 'Bartłomiej' 'p3.m' 90 16 32
-170 'Bartłomiej' 'p3.m' 91 16 32
-171 'Bartłomiej' 'p3.m' 92 16 32
-172 'Bartłomiej' 'p3.m' 95 16 32
-173 'Bartłomiej' 'p3.m' 96 16 32
-174 'Bartłomiej' 'p3.m' 97 16 32
-175 'Bartłomiej' 'p3.m' 98 16 32
-176 'Bartłomiej' 'p3.m' 99 16 32
-177 'Bartłomiej' 'p3.m' 102 16 32
-178 'Bartłomiej' 'p3.m' 103 16 32
-179 'Bartłomiej' 'p3.m' 104 16 32
-180 'Bartłomiej' 'p3.m' 105 16 32
-181 'Bartłomiej' 'p3.m' 106 16 32
-182 'Bartłomiej' 'p3.m' 109 16 32
-183 'Bartłomiej' 'p3.m' 110 16 32
-184 'Bartłomiej' 'p3.m' 111 16 32
-185 'Bartłomiej' 'p3.m' 112 16 32
-186 'Bartłomiej' 'p3.m' 113 16 32
-187 'Bartłomiej' 'p3.m' 116 16 32
-188 'Bartłomiej' 'p3.m' 117 16 32
-189 'Bartłomiej' 'p3.m' 118 16 32
-190 'Bartłomiej' 'p3.m' 119 16 32
-191 'Bartłomiej' 'p3.m' 120 16 32
-192 'Bartłomiej' 'p3.m' 123 16 32
-193 'Bartłomiej' 'p3.m' 124 16 32
-194 'Bartłomiej' 'p3.m' 125 16 32
-195 'Bartłomiej' 'p3.m' 126 16 32
-196 'Bartłomiej' 'p3.m' 127 16 32
-197 'Bartłomiej' 'p3.m' 130 16 32
-198 'Bartłomiej' 'p3.m' 131 16 32
-199 'Bartłomiej' 'p3.m' 132 16 32
-200 'Bartłomiej' 'p3.m' 133 16 32
-201 'Bartłomiej' 'p3.m' 134 16 32
-202 'Bartłomiej' 'p3.m' 137 16 32
-203 'Bartłomiej' 'p3.m' 138 16 32
-204 'Bartłomiej' 'p3.m' 139 16 32
-205 'Bartłomiej' 'p3.m' 140 16 32
-206 'Bartłomiej' 'p3.m' 141 16 32
-207 'Bartłomiej' 'p3.m' 144 16 32
-208 'Bartłomiej' 'p3.m' 145 16 32
-209 'Bartłomiej' 'p3.m' 146 16 32
-210 'Bartłomiej' 'p3.m' 147 16 32
-211 'Bartłomiej' 'p3.m' 148 16 32
-212 'Bartłomiej' 'p3.m' 151 16 32
-213 'Bartłomiej' 'p3.m' 152 16 32
-214 'Bartłomiej' 'p3.m' 153 16 32
-215 'Bartłomiej' 'p3.m' 154 16 32
-216 'Bartłomiej' 'p3.m' 155 16 32
-217 'Bartłomiej' 'p3.m' 158 16 32
-218 'Bartłomiej' 'p3.m' 159 16 32
-219 'Bartłomiej' 'p3.m' 160 16 32
-220 'Bartłomiej' 'p3.m' 161 16 32
-221 'Bartłomiej' 'p3.m' 162 16 32
-222 'Bartłomiej' 'p3.m' 165 16 32
-223 'Bartłomiej' 'p3.m' 166 16 32
-224 'Bartłomiej' 'p3.m' 167 16 32
-225 'Bartłomiej' 'p3.m' 168 16 32
-226 'Bartłomiej' 'p3.m' 169 16 32
-227 'Bartłomiej' 'p3.m' 172 16 32
-228 'Bartłomiej' 'p3.m' 173 16 32
-229 'Bartłomiej' 'p3.m' 174 16 32
-230 'Bartłomiej' 'p3.m' 175 16 32
-231 'Bartłomiej' 'p3.m' 176 16 32
-232 'Bartłomiej' 'p3.f' 179 16 20
-233 'Bartłomiej' 'p3.f' 180 16 20
-234 'Bartłomiej' 'p3.f' 181 16 20
-235 'Bartłomiej' 'p3.f' 182 16 20
-236 'Bartłomiej' 'p3.f' 183 16 20
-237 'Bartłomiej' 'p3.f' 186 16 20
-238 'Bartłomiej' 'p3.f' 187 16 20
-239 'Bartłomiej' 'p3.f' 188 16 20
-240 'Bartłomiej' 'p3.f' 189 16 20
-241 'Bartłomiej' 'p3.f' 190 16 20
-242 'Bartłomiej' 'p3.f' 193 16 20
-243 'Bartłomiej' 'p3.f' 194 16 20
-244 'Bartłomiej' 'p3.f' 195 16 20
-245 'Bartłomiej' 'p3.f' 196 16 20
-246 'Bartłomiej' 'p3.f' 197 16 20
-247 'Bartłomiej' 'p3.f' 200 16 20
-248 'Bartłomiej' 'p3.f' 201 16 20
-249 'Bartłomiej' 'p3.f' 202 16 20
-250 'Bartłomiej' 'p3.f' 203 16 20
-251 'Bartłomiej' 'p3.f' 204 16 20
-252 'Bartłomiej' 'p3.pf' 207 24 28
-253 'Bartłomiej' 'p3.pf' 208 24 28
-254 'Bartłomiej' 'p3.pf' 209 24 28
-255 'Bartłomiej' 'p3.pf' 210 24 28
-256 'Bartłomiej' 'p3.pf' 211 24 28
-257 'Bartłomiej' 'p3.pf' 214 24 28
-258 'Bartłomiej' 'p3.pf' 215 24 28
-259 'Bartłomiej' 'p3.pf' 216 24 28
-260 'Bartłomiej' 'p3.pf' 217 24 28
-261 'Bartłomiej' 'p3.pf' 218 24 28
-262 'Paweł' 'p4.m' 32 32 32
-263 'Paweł' 'p4.m' 33 32 32
-264 'Paweł' 'p4.m' 34 32 32
-265 'Paweł' 'p4.m' 35 32 32
-266 'Paweł' 'p4.m' 36 32 32
-267 'Paweł' 'p4.m' 39 32 32
-268 'Paweł' 'p4.m' 40 32 32
-269 'Paweł' 'p4.m' 41 32 32
-270 'Paweł' 'p4.m' 42 32 32
-271 'Paweł' 'p4.m' 43 32 32
-272 'Paweł' 'p4.m' 46 32 32
-273 'Paweł' 'p4.m' 47 32 32
-274 'Paweł' 'p4.m' 48 32 32
-275 'Paweł' 'p4.m' 49 32 32
-276 'Paweł' 'p4.m' 50 32 32
-277 'Paweł' 'p4.m' 53 32 32
-278 'Paweł' 'p4.m' 54 32 32
-279 'Paweł' 'p4.m' 55 32 32
-280 'Paweł' 'p4.m' 56 32 32
-281 'Paweł' 'p4.m' 57 32 32
-282 'Paweł' 'p4.m' 60 32 32
-283 'Paweł' 'p4.m' 61 32 32
-284 'Paweł' 'p4.m' 62 32 32
-285 'Paweł' 'p4.m' 63 32 32
-286 'Paweł' 'p4.m' 64 32 32
-287 'Paweł' 'p4.m' 67 32 32
-288 'Paweł' 'p4.m' 68 32 32
-289 'Paweł' 'p4.m' 69 32 32
-290 'Paweł' 'p4.m' 70 32 32
-291 'Paweł' 'p4.m' 71 32 32
-292 'Paweł' 'p4.m' 74 32 32
-293 'Paweł' 'p4.m' 75 32 32
-294 'Paweł' 'p4.m' 76 32 32
-295 'Paweł' 'p4.m' 77 32 32
-296 'Paweł' 'p4.m' 78 32 32
-297 'Paweł' 'p4.m' 81 32 32
-298 'Paweł' 'p4.m' 82 32 32
-299 'Paweł' 'p4.m' 83 32 32
-300 'Paweł' 'p4.m' 84 32 32
-301 'Paweł' 'p4.m' 85 32 32
-302 'Paweł' 'p4.m' 88 32 32
-303 'Paweł' 'p4.m' 89 32 32
-304 'Paweł' 'p4.m' 90 32 32
-305 'Paweł' 'p4.m' 91 32 32
-306 'Paweł' 'p4.m' 92 32 32
-307 'Paweł' 'p4.m' 95 32 32
-308 'Paweł' 'p4.m' 96 32 32
-309 'Paweł' 'p4.m' 97 32 32
-310 'Paweł' 'p4.m' 98 32 32
-311 'Paweł' 'p4.m' 99 32 32
-312 'Paweł' 'p4.m' 102 32 32
-313 'Paweł' 'p4.m' 103 32 32
-314 'Paweł' 'p4.m' 104 32 32
-315 'Paweł' 'p4.m' 105 32 32
-316 'Paweł' 'p4.m' 106 32 32
-317 'Paweł' 'p4.m' 109 32 32
-318 'Paweł' 'p4.m' 110 32 32
-319 'Paweł' 'p4.m' 111 32 32
-320 'Paweł' 'p4.m' 112 32 32
-321 'Paweł' 'p4.m' 113 32 32
-322 'Paweł' 'p4.m' 116 32 32
-323 'Paweł' 'p4.m' 117 32 32
-324 'Paweł' 'p4.m' 118 32 32
-325 'Paweł' 'p4.m' 119 32 32
-326 'Paweł' 'p4.m' 120 32 32
-327 'Paweł' 'p4.m' 123 32 32
-328 'Paweł' 'p4.m' 124 32 32
-329 'Paweł' 'p4.m' 125 32 32
-330 'Paweł' 'p4.m' 126 32 32
-331 'Paweł' 'p4.m' 127 32 32
-332 'Paweł' 'p4.m' 130 32 32
-333 'Paweł' 'p4.m' 131 32 32
-334 'Paweł' 'p4.m' 132 32 32
-335 'Paweł' 'p4.m' 133 32 32
-336 'Paweł' 'p4.m' 134 32 32
-337 'Paweł' 'p4.m' 137 32 32
-338 'Paweł' 'p4.m' 138 32 32
-339 'Paweł' 'p4.m' 139 32 32
-340 'Paweł' 'p4.m' 140 32 32
-341 'Paweł' 'p4.m' 141 32 32
-342 'Paweł' 'p4.m' 144 32 32
-343 'Paweł' 'p4.m' 145 32 32
-344 'Paweł' 'p4.m' 146 32 32
-345 'Paweł' 'p4.m' 147 32 32
-346 'Paweł' 'p4.m' 148 32 32
-347 'Paweł' 'p4.m' 151 32 32
-348 'Paweł' 'p4.m' 152 32 32
-349 'Paweł' 'p4.m' 153 32 32
-350 'Paweł' 'p4.m' 154 32 32
-351 'Paweł' 'p4.m' 155 32 32
-352 'Paweł' 'p4.m' 158 32 32
-353 'Paweł' 'p4.m' 159 32 32
-354 'Paweł' 'p4.m' 160 32 32
-355 'Paweł' 'p4.m' 161 32 32
-356 'Paweł' 'p4.m' 162 32 32
-357 'Paweł' 'p4.m' 165 32 32
-358 'Paweł' 'p4.m' 166 32 32
-359 'Paweł' 'p4.m' 167 32 32
-360 'Paweł' 'p4.m' 168 32 32
-361 'Paweł' 'p4.m' 169 32 32
-362 'Paweł' 'p4.m' 172 32 32
-363 'Paweł' 'p4.m' 173 32 32
-364 'Paweł' 'p4.m' 174 32 32
-365 'Paweł' 'p4.m' 175 32 32
-366 'Paweł' 'p4.m' 176 32 32
-367 'Paweł' 'p4.m' 179 32 32
-368 'Paweł' 'p4.m' 180 32 32
-369 'Paweł' 'p4.m' 181 32 32
-370 'Paweł' 'p4.m' 182 32 32
-371 'Paweł' 'p4.m' 183 32 32
-372 'Paweł' 'p4.m' 186 32 32
-373 'Paweł' 'p4.m' 187 32 32
-374 'Paweł' 'p4.m' 188 32 32
-375 'Paweł' 'p4.m' 189 32 32
-376 'Paweł' 'p4.m' 190 32 32
-377 'Paweł' 'p4.m' 193 32 32
-378 'Paweł' 'p4.m' 194 32 32
-379 'Paweł' 'p4.m' 195 32 32
-380 'Paweł' 'p4.m' 196 32 32
-381 'Paweł' 'p4.m' 197 32 32
-382 'Paweł' 'p4.f' 200 0 32
-383 'Paweł' 'p4.f' 201 0 32
-384 'Paweł' 'p4.f' 202 0 32
-385 'Paweł' 'p4.f' 203 0 32
-386 'Paweł' 'p4.f' 204 0 32
-387 'Paweł' 'p4.f' 207 0 32
-388 'Paweł' 'p4.f' 208 0 32
-389 'Paweł' 'p4.f' 209 0 32
-390 'Paweł' 'p4.f' 210 0 32
-391 'Paweł' 'p4.f' 211 0 32
-392 'Paweł' 'p4.f' 214 0 32
-393 'Paweł' 'p4.f' 215 0 32
-394 'Paweł' 'p4.f' 216 0 32
-395 'Paweł' 'p4.f' 217 0 32
-396 'Paweł' 'p4.f' 218 0 32
-397 'Paweł' 'p4.f' 221 0 32
-398 'Paweł' 'p4.f' 222 0 32
-399 'Paweł' 'p4.f' 223 0 32
-400 'Paweł' 'p4.f' 224 0 32
-401 'Paweł' 'p4.f' 225 0 32
-402 'Paweł' 'p4.pf' 228 24 28
-403 'Paweł' 'p4.pf' 229 24 28
-404 'Paweł' 'p4.pf' 230 24 28
-405 'Paweł' 'p4.pf' 231 24 28
-406 'Paweł' 'p4.pf' 232 24 28
-407 'Paweł' 'p4.pf' 235 24 28
-408 'Paweł' 'p4.pf' 236 24 28
-409 'Paweł' 'p4.pf' 237 24 28
-410 'Paweł' 'p4.pf' 238 24 28
-411 'Paweł' 'p4.pf' 239 24 28
-412 'Wojciech' 'p5.m' 40 32 32
-413 'Wojciech' 'p5.m' 41 32 32
-414 'Wojciech' 'p5.m' 42 32 32
-415 'Wojciech' 'p5.m' 43 32 32
-416 'Wojciech' 'p5.m' 46 32 32
-417 'Wojciech' 'p5.m' 47 32 32
-418 'Wojciech' 'p5.m' 48 32 32
-419 'Wojciech' 'p5.m' 49 32 32
-420 'Wojciech' 'p5.m' 50 32 32
-421 'Wojciech' 'p5.m' 53 32 32
-422 'Wojciech' 'p5.m' 54 32 32
-423 'Wojciech' 'p5.m' 55 32 32
-424 'Wojciech' 'p5.m' 56 32 32
-425 'Wojciech' 'p5.m' 57 32 32
-426 'Wojciech' 'p5.m' 60 32 32
-427 'Wojciech' 'p5.m' 61 32 32
-428 'Wojciech' 'p5.m' 62 32 32
-429 'Wojciech' 'p5.m' 63 32 32
-430 'Wojciech' 'p5.m' 64 32 32
-431 'Wojciech' 'p5.m' 67 32 32
-432 'Wojciech' 'p5.m' 68 32 32
-433 'Wojciech' 'p5.m' 69 32 32
-434 'Wojciech' 'p5.m' 70 32 32
-435 'Wojciech' 'p5.m' 71 32 32
-436 'Wojciech' 'p5.m' 74 32 32
-437 'Wojciech' 'p5.m' 75 32 32
-438 'Wojciech' 'p5.m' 76 32 32
-439 'Wojciech' 'p5.m' 77 32 32
-440 'Wojciech' 'p5.m' 78 32 32
-441 'Wojciech' 'p5.m' 81 32 32
-442 'Wojciech' 'p5.m' 82 32 32
-443 'Wojciech' 'p5.m' 83 32 32
-444 'Wojciech' 'p5.m' 84 32 32
-445 'Wojciech' 'p5.m' 85 32 32
-446 'Wojciech' 'p5.m' 88 32 32
-447 'Wojciech' 'p5.m' 89 32 32
-448 'Wojciech' 'p5.m' 90 32 32
-449 'Wojciech' 'p5.m' 91 32 32
-450 'Wojciech' 'p5.m' 92 32 32
-451 'Wojciech' 'p5.m' 95 32 32
-452 'Wojciech' 'p5.m' 96 32 32
-453 'Wojciech' 'p5.m' 97 32 32
-454 'Wojciech' 'p5.m' 98 32 32
-455 'Wojciech' 'p5.m' 99 32 32
-456 'Wojciech' 'p5.m' 102 32 32
-457 'Wojciech' 'p5.m' 103 32 32
-458 'Wojciech' 'p5.m' 104 32 32
-459 'Wojciech' 'p5.m' 105 32 32
-460 'Wojciech' 'p5.m' 106 32 32
-461 'Wojciech' 'p5.m' 109 32 32
-462 'Wojciech' 'p5.m' 110 32 32
-463 'Wojciech' 'p5.m' 111 32 32
-464 'Wojciech' 'p5.m' 112 32 32
-465 'Wojciech' 'p5.m' 113 32 32
-466 'Wojciech' 'p5.m' 116 32 32
-467 'Wojciech' 'p5.m' 117 32 32
-468 'Wojciech' 'p5.m' 118 32 32
-469 'Wojciech' 'p5.m' 119 32 32
-470 'Wojciech' 'p5.m' 120 32 32
-471 'Wojciech' 'p5.m' 123 32 32
-472 'Wojciech' 'p5.m' 124 32 32
-473 'Wojciech' 'p5.m' 125 32 32
-474 'Wojciech' 'p5.m' 126 32 32
-475 'Wojciech' 'p5.m' 127 32 32
-476 'Wojciech' 'p5.m' 130 32 32
-477 'Wojciech' 'p5.m' 131 32 32
-478 'Wojciech' 'p5.m' 132 32 32
-479 'Wojciech' 'p5.m' 133 32 32
-480 'Wojciech' 'p5.m' 134 32 32
-481 'Wojciech' 'p5.m' 137 32 32
-482 'Wojciech' 'p5.m' 138 32 32
-483 'Wojciech' 'p5.m' 139 32 32
-484 'Wojciech' 'p5.m' 140 32 32
-485 'Wojciech' 'p5.m' 141 32 32
-486 'Wojciech' 'p5.m' 144 32 32
-487 'Wojciech' 'p5.m' 145 32 32
-488 'Wojciech' 'p5.m' 146 32 32
-489 'Wojciech' 'p5.m' 147 32 32
-490 'Wojciech' 'p5.m' 148 32 32
-491 'Wojciech' 'p5.m' 151 32 32
-492 'Wojciech' 'p5.m' 152 32 32
-493 'Wojciech' 'p5.m' 153 32 32
-494 'Wojciech' 'p5.m' 154 32 32
-495 'Wojciech' 'p5.m' 155 32 32
-496 'Wojciech' 'p5.m' 158 32 32
-497 'Wojciech' 'p5.f' 159 24 28
-498 'Wojciech' 'p5.f' 160 24 28
-499 'Wojciech' 'p5.f' 161 24 28
-500 'Wojciech' 'p5.f' 162 24 28
-501 'Wojciech' 'p5.f' 165 24 28
-502 'Wojciech' 'p5.f' 166 24 28
-503 'Wojciech' 'p5.f' 167 24 28
-504 'Wojciech' 'p5.f' 168 24 28
-505 'Wojciech' 'p5.f' 169 24 28
-506 'Wojciech' 'p5.f' 172 24 28
-507 'Wojciech' 'p5.f' 173 24 28
-508 'Wojciech' 'p5.f' 174 24 28
-509 'Wojciech' 'p5.f' 175 24 28
-510 'Wojciech' 'p5.f' 176 24 28
-511 'Wojciech' 'p5.f' 179 24 28
-512 'Wojciech' 'p5.f' 180 24 28
-513 'Wojciech' 'p5.f' 181 24 28
-514 'Wojciech' 'p5.f' 182 24 28
-515 'Wojciech' 'p5.f' 183 24 28
-516 'Wojciech' 'p5.f' 186 24 28
-517 'Wojciech' 'p5.pf' 187 24 28
-518 'Wojciech' 'p5.pf' 188 24 28
-519 'Wojciech' 'p5.pf' 189 24 28
-520 'Wojciech' 'p5.pf' 190 24 28
-521 'Wojciech' 'p5.pf' 193 24 28
-522 'Wojciech' 'p5.pf' 194 24 28
-523 'Wojciech' 'p5.pf' 195 24 28
-524 'Wojciech' 'p5.pf' 196 24 28
-525 'Wojciech' 'p5.pf' 197 24 28
-526 'Wojciech' 'p5.pf' 200 24 28
-527 'Alojzy' 'p4.m' 32 0 32
-528 'Alojzy' 'p4.m' 33 0 32
-529 'Alojzy' 'p4.m' 34 0 32
-530 'Alojzy' 'p4.m' 35 0 32
-531 'Alojzy' 'p4.m' 36 0 32
-532 'Alojzy' 'p4.m' 39 0 32
-533 'Alojzy' 'p4.m' 40 0 32
-534 'Alojzy' 'p4.m' 41 0 32
-535 'Alojzy' 'p4.m' 42 0 32
-536 'Alojzy' 'p4.m' 43 0 32
-537 'Alojzy' 'p4.m' 46 0 32
-538 'Alojzy' 'p4.m' 47 0 32
-539 'Alojzy' 'p4.m' 48 0 32
-540 'Alojzy' 'p4.m' 49 0 32
-541 'Alojzy' 'p4.m' 50 0 32
-542 'Alojzy' 'p4.m' 53 0 32
-543 'Alojzy' 'p4.m' 54 0 32
-544 'Alojzy' 'p4.m' 55 0 32
-545 'Alojzy' 'p4.m' 56 0 32
-546 'Alojzy' 'p4.m' 57 0 32
-547 'Alojzy' 'p4.m' 60 0 32
-548 'Alojzy' 'p4.m' 61 0 32
-549 'Alojzy' 'p4.m' 62 0 32
-550 'Alojzy' 'p4.m' 63 0 32
-551 'Alojzy' 'p4.m' 64 0 32
-552 'Alojzy' 'p4.m' 67 0 32
-553 'Alojzy' 'p4.m' 68 0 32
-554 'Alojzy' 'p4.m' 69 0 32
-555 'Alojzy' 'p4.m' 70 0 32
-556 'Alojzy' 'p4.m' 71 0 32
-557 'Alojzy' 'p4.m' 74 0 32
-558 'Alojzy' 'p4.m' 75 0 32
-559 'Alojzy' 'p4.m' 76 0 32
-560 'Alojzy' 'p4.m' 77 0 32
-561 'Alojzy' 'p4.m' 78 0 32
-562 'Alojzy' 'p4.m' 81 0 32
-563 'Alojzy' 'p4.m' 82 0 32
-564 'Alojzy' 'p4.m' 83 0 32
-565 'Alojzy' 'p4.m' 84 0 32
-566 'Alojzy' 'p4.m' 85 0 32
-567 'Alojzy' 'p4.m' 88 0 32
-568 'Alojzy' 'p4.m' 89 0 32
-569 'Alojzy' 'p4.m' 90 0 32
-570 'Alojzy' 'p4.m' 91 0 32
-571 'Alojzy' 'p4.m' 92 0 32
-572 'Alojzy' 'p4.m' 95 0 32
-573 'Alojzy' 'p4.m' 96 0 32
-574 'Alojzy' 'p4.m' 97 0 32
-575 'Alojzy' 'p4.m' 98 0 32
-576 'Alojzy' 'p4.m' 99 0 32
-577 'Alojzy' 'p4.m' 102 0 32
-578 'Alojzy' 'p4.m' 103 0 32
-579 'Alojzy' 'p4.m' 104 0 32
-580 'Alojzy' 'p4.m' 105 0 32
-581 'Alojzy' 'p4.m' 106 0 32
-582 'Alojzy' 'p4.m' 109 0 32
-583 'Alojzy' 'p4.m' 110 0 32
-584 'Alojzy' 'p4.m' 111 0 32
-585 'Alojzy' 'p4.m' 112 0 32
-586 'Alojzy' 'p4.m' 113 0 32
-587 'Alojzy' 'p4.m' 116 0 32
-588 'Alojzy' 'p4.m' 117 0 32
-589 'Alojzy' 'p4.m' 118 0 32
-590 'Alojzy' 'p4.m' 119 0 32
-591 'Alojzy' 'p4.m' 120 0 32
-592 'Alojzy' 'p4.m' 123 0 32
-593 'Alojzy' 'p4.m' 124 0 32
-594 'Alojzy' 'p4.m' 125 0 32
-595 'Alojzy' 'p4.m' 126 0 32
-596 'Alojzy' 'p4.m' 127 0 32
-597 'Alojzy' 'p4.m' 130 0 32
-598 'Alojzy' 'p4.m' 131 0 32
-599 'Alojzy' 'p4.m' 132 0 32
-600 'Alojzy' 'p4.m' 133 0 32
-601 'Alojzy' 'p4.m' 134 0 32
-602 'Alojzy' 'p4.m' 137 0 32
-603 'Alojzy' 'p4.m' 138 0 32
-604 'Alojzy' 'p4.m' 139 0 32
-605 'Alojzy' 'p4.m' 140 0 32
-606 'Alojzy' 'p4.m' 141 0 32
-607 'Alojzy' 'p4.m' 144 0 32
-608 'Alojzy' 'p4.m' 145 0 32
-609 'Alojzy' 'p4.m' 146 0 32
-610 'Alojzy' 'p4.m' 147 0 32
-611 'Alojzy' 'p4.m' 148 0 32
-612 'Alojzy' 'p4.m' 151 0 32
-613 'Alojzy' 'p4.m' 152 0 32
-614 'Alojzy' 'p4.m' 153 0 32
-615 'Alojzy' 'p4.m' 154 0 32
-616 'Alojzy' 'p4.m' 155 0 32
-617 'Alojzy' 'p4.m' 158 0 32
-618 'Alojzy' 'p4.m' 159 0 32
-619 'Alojzy' 'p4.m' 160 0 32
-620 'Alojzy' 'p4.m' 161 0 32
-621 'Alojzy' 'p4.m' 162 0 32
-622 'Alojzy' 'p4.m' 165 0 32
-623 'Alojzy' 'p4.m' 166 0 32
-624 'Alojzy' 'p4.m' 167 0 32
-625 'Alojzy' 'p4.m' 168 0 32
-626 'Alojzy' 'p4.m' 169 0 32
-627 'Alojzy' 'p4.m' 172 0 32
-628 'Alojzy' 'p4.m' 173 0 32
-629 'Alojzy' 'p4.m' 174 0 32
-630 'Alojzy' 'p4.m' 175 0 32
-631 'Alojzy' 'p4.m' 176 0 32
-632 'Alojzy' 'p4.m' 179 0 32
-633 'Alojzy' 'p4.m' 180 0 32
-634 'Alojzy' 'p4.m' 181 0 32
-635 'Alojzy' 'p4.m' 182 0 32
-636 'Alojzy' 'p4.m' 183 0 32
-637 'Alojzy' 'p4.m' 186 0 32
-638 'Alojzy' 'p4.m' 187 0 32
-639 'Alojzy' 'p4.m' 188 0 32
-640 'Alojzy' 'p4.m' 189 0 32
-641 'Alojzy' 'p4.m' 190 0 32
-642 'Alojzy' 'p4.m' 193 0 32
-643 'Alojzy' 'p4.m' 194 0 32
-644 'Alojzy' 'p4.m' 195 0 32
-645 'Alojzy' 'p4.m' 196 0 32
-646 'Alojzy' 'p4.m' 197 0 32
-647 'Bartłomiej' 'p4.m' 32 0 32
-648 'Bartłomiej' 'p4.m' 33 0 32
-649 'Bartłomiej' 'p4.m' 34 0 32
-650 'Bartłomiej' 'p4.m' 35 0 32
-651 'Bartłomiej' 'p4.m' 36 0 32
-652 'Bartłomiej' 'p4.m' 39 0 32
-653 'Bartłomiej' 'p4.m' 40 0 32
-654 'Bartłomiej' 'p4.m' 41 0 32
-655 'Bartłomiej' 'p4.m' 42 0 32
-656 'Bartłomiej' 'p4.m' 43 0 32
-657 'Bartłomiej' 'p4.m' 46 0 32
-658 'Bartłomiej' 'p4.m' 47 0 32
-659 'Bartłomiej' 'p4.m' 48 0 32
-660 'Bartłomiej' 'p4.m' 49 0 32
-661 'Bartłomiej' 'p4.m' 50 0 32
-662 'Bartłomiej' 'p4.m' 53 0 32
-663 'Bartłomiej' 'p4.m' 54 0 32
-664 'Bartłomiej' 'p4.m' 55 0 32
-665 'Bartłomiej' 'p4.m' 56 0 32
-666 'Bartłomiej' 'p4.m' 57 0 32
-667 'Bartłomiej' 'p4.m' 60 0 32
-668 'Bartłomiej' 'p4.m' 61 0 32
-669 'Bartłomiej' 'p4.m' 62 0 32
-670 'Bartłomiej' 'p4.m' 63 0 32
-671 'Bartłomiej' 'p4.m' 64 0 32
-672 'Bartłomiej' 'p4.m' 67 0 32
-673 'Bartłomiej' 'p4.m' 68 0 32
-674 'Bartłomiej' 'p4.m' 69 0 32
-675 'Bartłomiej' 'p4.m' 70 0 32
-676 'Bartłomiej' 'p4.m' 71 0 32
-677 'Bartłomiej' 'p4.m' 74 0 32
-678 'Bartłomiej' 'p4.m' 75 0 32
-679 'Bartłomiej' 'p4.m' 76 0 32
-680 'Bartłomiej' 'p4.m' 77 0 32
-681 'Bartłomiej' 'p4.m' 78 0 32
-682 'Bartłomiej' 'p4.m' 81 0 32
-683 'Bartłomiej' 'p4.m' 82 0 32
-684 'Bartłomiej' 'p4.m' 83 0 32
-685 'Bartłomiej' 'p4.m' 84 0 32
-686 'Bartłomiej' 'p4.m' 85 0 32
-687 'Bartłomiej' 'p4.m' 88 0 32
-688 'Bartłomiej' 'p4.m' 89 0 32
-689 'Bartłomiej' 'p4.m' 90 0 32
-690 'Bartłomiej' 'p4.m' 91 0 32
-691 'Bartłomiej' 'p4.m' 92 0 32
-692 'Bartłomiej' 'p4.m' 95 0 32
-693 'Bartłomiej' 'p4.m' 96 0 32
-694 'Bartłomiej' 'p4.m' 97 0 32
-695 'Bartłomiej' 'p4.m' 98 0 32
-696 'Bartłomiej' 'p4.m' 99 0 32
-697 'Bartłomiej' 'p4.m' 102 0 32
-698 'Bartłomiej' 'p4.m' 103 0 32
-699 'Bartłomiej' 'p4.m' 104 0 32
-700 'Bartłomiej' 'p4.m' 105 0 32
-701 'Bartłomiej' 'p4.m' 106 0 32
-702 'Bartłomiej' 'p4.m' 109 0 32
-703 'Bartłomiej' 'p4.m' 110 0 32
-704 'Bartłomiej' 'p4.m' 111 0 32
-705 'Bartłomiej' 'p4.m' 112 0 32
-706 'Bartłomiej' 'p4.m' 113 0 32
-707 'Bartłomiej' 'p4.m' 116 0 32
-708 'Bartłomiej' 'p4.m' 117 0 32
-709 'Bartłomiej' 'p4.m' 118 0 32
-710 'Bartłomiej' 'p4.m' 119 0 32
-711 'Bartłomiej' 'p4.m' 120 0 32
-712 'Bartłomiej' 'p4.m' 123 0 32
-713 'Bartłomiej' 'p4.m' 124 0 32
-714 'Bartłomiej' 'p4.m' 125 0 32
-715 'Bartłomiej' 'p4.m' 126 0 32
-716 'Bartłomiej' 'p4.m' 127 0 32
-717 'Bartłomiej' 'p4.m' 130 0 32
-718 'Bartłomiej' 'p4.m' 131 0 32
-719 'Bartłomiej' 'p4.m' 132 0 32
-720 'Bartłomiej' 'p4.m' 133 0 32
-721 'Bartłomiej' 'p4.m' 134 0 32
-722 'Bartłomiej' 'p4.m' 137 0 32
-723 'Bartłomiej' 'p4.m' 138 0 32
-724 'Bartłomiej' 'p4.m' 139 0 32
-725 'Bartłomiej' 'p4.m' 140 0 32
-726 'Bartłomiej' 'p4.m' 141 0 32
-727 'Bartłomiej' 'p4.m' 144 0 32
-728 'Bartłomiej' 'p4.m' 145 0 32
-729 'Bartłomiej' 'p4.m' 146 0 32
-730 'Bartłomiej' 'p4.m' 147 0 32
-731 'Bartłomiej' 'p4.m' 148 0 32
-732 'Bartłomiej' 'p4.m' 151 0 32
-733 'Bartłomiej' 'p4.m' 152 0 32
-734 'Bartłomiej' 'p4.m' 153 0 32
-735 'Bartłomiej' 'p4.m' 154 0 32
-736 'Bartłomiej' 'p4.m' 155 0 32
-737 'Bartłomiej' 'p4.m' 158 0 32
-738 'Bartłomiej' 'p4.m' 159 0 32
-739 'Bartłomiej' 'p4.m' 160 0 32
-740 'Bartłomiej' 'p4.m' 161 0 32
-741 'Bartłomiej' 'p4.m' 162 0 32
-742 'Bartłomiej' 'p4.m' 165 0 32
-743 'Bartłomiej' 'p4.m' 166 0 32
-744 'Bartłomiej' 'p4.m' 167 0 32
-745 'Bartłomiej' 'p4.m' 168 0 32
-746 'Bartłomiej' 'p4.m' 169 0 32
-747 'Bartłomiej' 'p4.m' 172 0 32
-748 'Bartłomiej' 'p4.m' 173 0 32
-749 'Bartłomiej' 'p4.m' 174 0 32
-750 'Bartłomiej' 'p4.m' 175 0 32
-751 'Bartłomiej' 'p4.m' 176 0 32
-752 'Bartłomiej' 'p4.m' 179 0 32
-753 'Bartłomiej' 'p4.m' 180 0 32
-754 'Bartłomiej' 'p4.m' 181 0 32
-755 'Bartłomiej' 'p4.m' 182 0 32
-756 'Bartłomiej' 'p4.m' 183 0 32
-757 'Bartłomiej' 'p4.m' 186 0 32
-758 'Bartłomiej' 'p4.m' 187 0 32
-759 'Bartłomiej' 'p4.m' 188 0 32
-760 'Bartłomiej' 'p4.m' 189 0 32
-761 'Bartłomiej' 'p4.m' 190 0 32
-762 'Bartłomiej' 'p4.m' 193 0 32
-763 'Bartłomiej' 'p4.m' 194 0 32
-764 'Bartłomiej' 'p4.m' 195 0 32
-765 'Bartłomiej' 'p4.m' 196 0 32
-766 'Bartłomiej' 'p4.m' 197 0 32
-767 'Franciszek' 'p4.m' 32 0 32
-768 'Franciszek' 'p4.m' 33 0 32
-769 'Franciszek' 'p4.m' 34 0 32
-770 'Franciszek' 'p4.m' 35 0 32
-771 'Franciszek' 'p4.m' 36 0 32
-772 'Franciszek' 'p4.m' 39 0 32
-773 'Franciszek' 'p4.m' 40 0 32
-774 'Franciszek' 'p4.m' 41 0 32
-775 'Franciszek' 'p4.m' 42 0 32
-776 'Franciszek' 'p4.m' 43 0 32
-777 'Franciszek' 'p4.m' 46 0 32
-778 'Franciszek' 'p4.m' 47 0 32
-779 'Franciszek' 'p4.m' 48 0 32
-780 'Franciszek' 'p4.m' 49 0 32
-781 'Franciszek' 'p4.m' 50 0 32
-782 'Franciszek' 'p4.m' 53 0 32
-783 'Franciszek' 'p4.m' 54 0 32
-784 'Franciszek' 'p4.m' 55 0 32
-785 'Franciszek' 'p4.m' 56 0 32
-786 'Franciszek' 'p4.m' 57 0 32
-787 'Franciszek' 'p4.m' 60 0 32
-788 'Franciszek' 'p4.m' 61 0 32
-789 'Franciszek' 'p4.m' 62 0 32
-790 'Franciszek' 'p4.m' 63 0 32
-791 'Franciszek' 'p4.m' 64 0 32
-792 'Franciszek' 'p4.m' 67 0 32
-793 'Franciszek' 'p4.m' 68 0 32
-794 'Franciszek' 'p4.m' 69 0 32
-795 'Franciszek' 'p4.m' 70 0 32
-796 'Franciszek' 'p4.m' 71 0 32
-797 'Franciszek' 'p4.m' 74 0 32
-798 'Franciszek' 'p4.m' 75 0 32
-799 'Franciszek' 'p4.m' 76 0 32
-800 'Franciszek' 'p4.m' 77 0 32
-801 'Franciszek' 'p4.m' 78 0 32
-802 'Franciszek' 'p4.m' 81 0 32
-803 'Franciszek' 'p4.m' 82 0 32
-804 'Franciszek' 'p4.m' 83 0 32
-805 'Franciszek' 'p4.m' 84 0 32
-806 'Franciszek' 'p4.m' 85 0 32
-807 'Franciszek' 'p4.m' 88 0 32
-808 'Franciszek' 'p4.m' 89 0 32
-809 'Franciszek' 'p4.m' 90 0 32
-810 'Franciszek' 'p4.m' 91 0 32
-811 'Franciszek' 'p4.m' 92 0 32
-812 'Franciszek' 'p4.m' 95 0 32
-813 'Franciszek' 'p4.m' 96 0 32
-814 'Franciszek' 'p4.m' 97 0 32
-815 'Franciszek' 'p4.m' 98 0 32
-816 'Franciszek' 'p4.m' 99 0 32
-817 'Franciszek' 'p4.m' 102 0 32
-818 'Franciszek' 'p4.m' 103 0 32
-819 'Franciszek' 'p4.m' 104 0 32
-820 'Franciszek' 'p4.m' 105 0 32
-821 'Franciszek' 'p4.m' 106 0 32
-822 'Franciszek' 'p4.m' 109 0 32
-823 'Franciszek' 'p4.m' 110 0 32
-824 'Franciszek' 'p4.m' 111 0 32
-825 'Franciszek' 'p4.m' 112 0 32
-826 'Franciszek' 'p4.m' 113 0 32
-827 'Franciszek' 'p4.m' 116 0 32
-828 'Franciszek' 'p4.m' 117 0 32
-829 'Franciszek' 'p4.m' 118 0 32
-830 'Franciszek' 'p4.m' 119 0 32
-831 'Franciszek' 'p4.m' 120 0 32
-832 'Franciszek' 'p4.m' 123 0 32
-833 'Franciszek' 'p4.m' 124 0 32
-834 'Franciszek' 'p4.m' 125 0 32
-835 'Franciszek' 'p4.m' 126 0 32
-836 'Franciszek' 'p4.m' 127 0 32
-837 'Franciszek' 'p4.m' 130 0 32
-838 'Franciszek' 'p4.m' 131 0 32
-839 'Franciszek' 'p4.m' 132 0 32
-840 'Franciszek' 'p4.m' 133 0 32
-841 'Franciszek' 'p4.m' 134 0 32
-842 'Franciszek' 'p4.m' 137 0 32
-843 'Franciszek' 'p4.m' 138 0 32
-844 'Franciszek' 'p4.m' 139 0 32
-845 'Franciszek' 'p4.m' 140 0 32
-846 'Franciszek' 'p4.m' 141 0 32
-847 'Franciszek' 'p4.m' 144 0 32
-848 'Franciszek' 'p4.m' 145 0 32
-849 'Franciszek' 'p4.m' 146 0 32
-850 'Franciszek' 'p4.m' 147 0 32
-851 'Franciszek' 'p4.m' 148 0 32
-852 'Franciszek' 'p4.m' 151 0 32
-853 'Franciszek' 'p4.m' 152 0 32
-854 'Franciszek' 'p4.m' 153 0 32
-855 'Franciszek' 'p4.m' 154 0 32
-856 'Franciszek' 'p4.m' 155 0 32
-857 'Franciszek' 'p4.m' 158 0 32
-858 'Franciszek' 'p4.m' 159 0 32
-859 'Franciszek' 'p4.m' 160 0 32
-860 'Franciszek' 'p4.m' 161 0 32
-861 'Franciszek' 'p4.m' 162 0 32
-862 'Franciszek' 'p4.m' 165 0 32
-863 'Franciszek' 'p4.m' 166 0 32
-864 'Franciszek' 'p4.m' 167 0 32
-865 'Franciszek' 'p4.m' 168 0 32
-866 'Franciszek' 'p4.m' 169 0 32
-867 'Franciszek' 'p4.m' 172 0 32
-868 'Franciszek' 'p4.m' 173 0 32
-869 'Franciszek' 'p4.m' 174 0 32
-870 'Franciszek' 'p4.m' 175 0 32
-871 'Franciszek' 'p4.m' 176 0 32
-872 'Franciszek' 'p4.m' 179 0 32
-873 'Franciszek' 'p4.m' 180 0 32
-874 'Franciszek' 'p4.m' 181 0 32
-875 'Franciszek' 'p4.m' 182 0 32
-876 'Franciszek' 'p4.m' 183 0 32
-877 'Franciszek' 'p4.m' 186 0 32
-878 'Franciszek' 'p4.m' 187 0 32
-879 'Franciszek' 'p4.m' 188 0 32
-880 'Franciszek' 'p4.m' 189 0 32
-881 'Franciszek' 'p4.m' 190 0 32
-882 'Franciszek' 'p4.m' 193 0 32
-883 'Franciszek' 'p4.m' 194 0 32
-884 'Franciszek' 'p4.m' 195 0 32
-885 'Franciszek' 'p4.m' 196 0 32
-886 'Franciszek' 'p4.m' 197 0 32
-887 'Wojciech' 'p4.m' 32 0 32
-888 'Wojciech' 'p4.m' 33 0 32
-889 'Wojciech' 'p4.m' 34 0 32
-890 'Wojciech' 'p4.m' 35 0 32
-891 'Wojciech' 'p4.m' 36 0 32
-892 'Wojciech' 'p4.m' 39 0 32
-893 'Wojciech' 'p4.m' 40 0 32
-894 'Wojciech' 'p4.m' 41 0 32
-895 'Wojciech' 'p4.m' 42 0 32
-896 'Wojciech' 'p4.m' 43 0 32
-897 'Wojciech' 'p4.m' 46 0 32
-898 'Wojciech' 'p4.m' 47 0 32
-899 'Wojciech' 'p4.m' 48 0 32
-900 'Wojciech' 'p4.m' 49 0 32
-901 'Wojciech' 'p4.m' 50 0 32
-902 'Wojciech' 'p4.m' 53 0 32
-903 'Wojciech' 'p4.m' 54 0 32
-904 'Wojciech' 'p4.m' 55 0 32
-905 'Wojciech' 'p4.m' 56 0 32
-906 'Wojciech' 'p4.m' 57 0 32
-907 'Wojciech' 'p4.m' 60 0 32
-908 'Wojciech' 'p4.m' 61 0 32
-909 'Wojciech' 'p4.m' 62 0 32
-910 'Wojciech' 'p4.m' 63 0 32
-911 'Wojciech' 'p4.m' 64 0 32
-912 'Wojciech' 'p4.m' 67 0 32
-913 'Wojciech' 'p4.m' 68 0 32
-914 'Wojciech' 'p4.m' 69 0 32
-915 'Wojciech' 'p4.m' 70 0 32
-916 'Wojciech' 'p4.m' 71 0 32
-917 'Wojciech' 'p4.m' 74 0 32
-918 'Wojciech' 'p4.m' 75 0 32
-919 'Wojciech' 'p4.m' 76 0 32
-920 'Wojciech' 'p4.m' 77 0 32
-921 'Wojciech' 'p4.m' 78 0 32
-922 'Wojciech' 'p4.m' 81 0 32
-923 'Wojciech' 'p4.m' 82 0 32
-924 'Wojciech' 'p4.m' 83 0 32
-925 'Wojciech' 'p4.m' 84 0 32
-926 'Wojciech' 'p4.m' 85 0 32
-927 'Wojciech' 'p4.m' 88 0 32
-928 'Wojciech' 'p4.m' 89 0 32
-929 'Wojciech' 'p4.m' 90 0 32
-930 'Wojciech' 'p4.m' 91 0 32
-931 'Wojciech' 'p4.m' 92 0 32
-932 'Wojciech' 'p4.m' 95 0 32
-933 'Wojciech' 'p4.m' 96 0 32
-934 'Wojciech' 'p4.m' 97 0 32
-935 'Wojciech' 'p4.m' 98 0 32
-936 'Wojciech' 'p4.m' 99 0 32
-937 'Wojciech' 'p4.m' 102 0 32
-938 'Wojciech' 'p4.m' 103 0 32
-939 'Wojciech' 'p4.m' 104 0 32
-940 'Wojciech' 'p4.m' 105 0 32
-941 'Wojciech' 'p4.m' 106 0 32
-942 'Wojciech' 'p4.m' 109 0 32
-943 'Wojciech' 'p4.m' 110 0 32
-944 'Wojciech' 'p4.m' 111 0 32
-945 'Wojciech' 'p4.m' 112 0 32
-946 'Wojciech' 'p4.m' 113 0 32
-947 'Wojciech' 'p4.m' 116 0 32
-948 'Wojciech' 'p4.m' 117 0 32
-949 'Wojciech' 'p4.m' 118 0 32
-950 'Wojciech' 'p4.m' 119 0 32
-951 'Wojciech' 'p4.m' 120 0 32
-952 'Wojciech' 'p4.m' 123 0 32
-953 'Wojciech' 'p4.m' 124 0 32
-954 'Wojciech' 'p4.m' 125 0 32
-955 'Wojciech' 'p4.m' 126 0 32
-956 'Wojciech' 'p4.m' 127 0 32
-957 'Wojciech' 'p4.m' 130 0 32
-958 'Wojciech' 'p4.m' 131 0 32
-959 'Wojciech' 'p4.m' 132 0 32
-960 'Wojciech' 'p4.m' 133 0 32
-961 'Wojciech' 'p4.m' 134 0 32
-962 'Wojciech' 'p4.m' 137 0 32
-963 'Wojciech' 'p4.m' 138 0 32
-964 'Wojciech' 'p4.m' 139 0 32
-965 'Wojciech' 'p4.m' 140 0 32
-966 'Wojciech' 'p4.m' 141 0 32
-967 'Wojciech' 'p4.m' 144 0 32
-968 'Wojciech' 'p4.m' 145 0 32
-969 'Wojciech' 'p4.m' 146 0 32
-970 'Wojciech' 'p4.m' 147 0 32
-971 'Wojciech' 'p4.m' 148 0 32
-972 'Wojciech' 'p4.m' 151 0 32
-973 'Wojciech' 'p4.m' 152 0 32
-974 'Wojciech' 'p4.m' 153 0 32
-975 'Wojciech' 'p4.m' 154 0 32
-976 'Wojciech' 'p4.m' 155 0 32
-977 'Wojciech' 'p4.m' 158 0 32
-978 'Wojciech' 'p4.m' 159 0 32
-979 'Wojciech' 'p4.m' 160 0 32
-980 'Wojciech' 'p4.m' 161 0 32
-981 'Wojciech' 'p4.m' 162 0 32
-982 'Wojciech' 'p4.m' 165 0 32
-983 'Wojciech' 'p4.m' 166 0 32
-984 'Wojciech' 'p4.m' 167 0 32
-985 'Wojciech' 'p4.m' 168 0 32
-986 'Wojciech' 'p4.m' 169 0 32
-987 'Wojciech' 'p4.m' 172 0 32
-988 'Wojciech' 'p4.m' 173 0 32
-989 'Wojciech' 'p4.m' 174 0 32
-990 'Wojciech' 'p4.m' 175 0 32
-991 'Wojciech' 'p4.m' 176 0 32
-992 'Wojciech' 'p4.m' 179 0 32
-993 'Wojciech' 'p4.m' 180 0 32
-994 'Wojciech' 'p4.m' 181 0 32
-995 'Wojciech' 'p4.m' 182 0 32
-996 'Wojciech' 'p4.m' 183 0 32
-997 'Wojciech' 'p4.m' 186 0 32
-998 'Wojciech' 'p4.m' 187 0 32
-999 'Wojciech' 'p4.m' 188 0 32
-1000 'Wojciech' 'p4.m' 189 0 32
-1001 'Wojciech' 'p4.m' 190 0 32
-1002 'Wojciech' 'p4.m' 193 0 32
-1003 'Wojciech' 'p4.m' 194 0 32
-1004 'Wojciech' 'p4.m' 195 0 32
-1005 'Wojciech' 'p4.m' 196 0 32
-1006 'Wojciech' 'p4.m' 197 0 32
-1007 'Franciszek' 'p6.m' 74 32 32
-1008 'Franciszek' 'p6.m' 75 32 32
-1009 'Franciszek' 'p6.m' 76 32 32
-1010 'Franciszek' 'p6.m' 77 32 32
-1011 'Franciszek' 'p6.m' 78 32 32
-1012 'Franciszek' 'p6.m' 81 32 32
-1013 'Franciszek' 'p6.m' 82 32 32
-1014 'Franciszek' 'p6.m' 83 32 32
-1015 'Franciszek' 'p6.m' 84 32 32
-1016 'Franciszek' 'p6.m' 85 32 32
-1017 'Franciszek' 'p6.m' 88 32 32
-1018 'Franciszek' 'p6.m' 89 32 32
-1019 'Franciszek' 'p6.m' 90 32 32
-1020 'Franciszek' 'p6.m' 91 32 32
-1021 'Franciszek' 'p6.m' 92 32 32
-1022 'Franciszek' 'p6.m' 95 32 32
-1023 'Franciszek' 'p6.m' 96 32 32
-1024 'Franciszek' 'p6.m' 97 32 32
-1025 'Franciszek' 'p6.m' 98 32 32
-1026 'Franciszek' 'p6.m' 99 32 32
-1027 'Franciszek' 'p6.m' 102 32 32
-1028 'Franciszek' 'p6.m' 103 32 32
-1029 'Franciszek' 'p6.m' 104 32 32
-1030 'Franciszek' 'p6.m' 105 32 32
-1031 'Franciszek' 'p6.m' 106 32 32
-1032 'Franciszek' 'p6.m' 109 32 32
-1033 'Franciszek' 'p6.m' 110 32 32
-1034 'Franciszek' 'p6.m' 111 32 32
-1035 'Franciszek' 'p6.m' 112 32 32
-1036 'Franciszek' 'p6.m' 113 32 32
-1037 'Franciszek' 'p6.m' 116 32 32
-1038 'Franciszek' 'p6.m' 117 32 32
-1039 'Franciszek' 'p6.m' 118 32 32
-1040 'Franciszek' 'p6.m' 119 32 32
-1041 'Franciszek' 'p6.m' 120 32 32
-1042 'Franciszek' 'p6.m' 123 32 32
-1043 'Franciszek' 'p6.m' 124 32 32
-1044 'Franciszek' 'p6.m' 125 32 32
-1045 'Franciszek' 'p6.m' 126 32 32
-1046 'Franciszek' 'p6.m' 127 32 32
-1047 'Franciszek' 'p6.m' 130 32 32
-1048 'Franciszek' 'p6.m' 131 32 32
-1049 'Franciszek' 'p6.m' 132 32 32
-1050 'Franciszek' 'p6.m' 133 32 32
-1051 'Franciszek' 'p6.m' 134 32 32
-1052 'Franciszek' 'p6.m' 137 32 32
-1053 'Franciszek' 'p6.m' 138 32 32
-1054 'Franciszek' 'p6.m' 139 32 32
-1055 'Franciszek' 'p6.m' 140 32 32
-1056 'Franciszek' 'p6.m' 141 32 32
-1057 'Franciszek' 'p6.m' 144 32 32
-1058 'Franciszek' 'p6.m' 145 32 32
-1059 'Franciszek' 'p6.m' 146 32 32
-1060 'Franciszek' 'p6.m' 147 32 32
-1061 'Franciszek' 'p6.m' 148 32 32
-1062 'Franciszek' 'p6.m' 151 32 32
-1063 'Franciszek' 'p6.m' 152 32 32
-1064 'Franciszek' 'p6.m' 153 32 32
-1065 'Franciszek' 'p6.m' 154 32 32
-1066 'Franciszek' 'p6.m' 155 32 32
-1067 'Franciszek' 'p6.m' 158 32 32
-1068 'Franciszek' 'p6.m' 159 32 32
-1069 'Franciszek' 'p6.m' 160 32 32
-1070 'Franciszek' 'p6.m' 161 32 32
-1071 'Franciszek' 'p6.m' 162 32 32
-1072 'Franciszek' 'p6.m' 165 32 32
-1073 'Franciszek' 'p6.m' 166 32 32
-1074 'Franciszek' 'p6.m' 167 32 32
-1075 'Franciszek' 'p6.m' 168 32 32
-1076 'Franciszek' 'p6.m' 169 32 32
-1077 'Franciszek' 'p6.m' 172 32 32
-1078 'Franciszek' 'p6.m' 173 32 32
-1079 'Franciszek' 'p6.m' 174 32 32
-1080 'Franciszek' 'p6.m' 175 32 32
-1081 'Franciszek' 'p6.m' 176 32 32
-1082 'Franciszek' 'p6.m' 179 32 32
-1083 'Franciszek' 'p6.m' 180 32 32
-1084 'Franciszek' 'p6.m' 181 32 32
-1085 'Franciszek' 'p6.m' 182 32 32
-1086 'Franciszek' 'p6.m' 183 32 32
-1087 'Franciszek' 'p6.m' 186 32 32
-1088 'Franciszek' 'p6.m' 187 32 32
-1089 'Franciszek' 'p6.m' 188 32 32
-1090 'Franciszek' 'p6.m' 189 32 32
-1091 'Franciszek' 'p6.m' 190 32 32
-1092 'Franciszek' 'p6.m' 193 32 32
-1093 'Franciszek' 'p6.m' 194 32 32
-1094 'Franciszek' 'p6.m' 195 32 32
-1095 'Franciszek' 'p6.m' 196 32 32
-1096 'Franciszek' 'p6.m' 197 32 32
-1097 'Franciszek' 'p6.m' 200 32 32
-1098 'Franciszek' 'p6.m' 201 32 32
-1099 'Franciszek' 'p6.m' 202 32 32
-1100 'Franciszek' 'p6.m' 203 32 32
-1101 'Franciszek' 'p6.m' 204 32 32
-1102 'Franciszek' 'p6.m' 207 32 32
-1103 'Franciszek' 'p6.m' 208 32 32
-1104 'Franciszek' 'p6.m' 209 32 32
-1105 'Franciszek' 'p6.m' 210 32 32
-1106 'Franciszek' 'p6.m' 211 32 32
-1107 'Franciszek' 'p6.m' 214 32 32
-1108 'Franciszek' 'p6.m' 215 32 32
-1109 'Franciszek' 'p6.m' 216 32 32
-1110 'Franciszek' 'p6.m' 217 32 32
-1111 'Franciszek' 'p6.m' 218 32 32
-1112 'Franciszek' 'p6.m' 221 32 32
-1113 'Franciszek' 'p6.m' 222 32 32
-1114 'Franciszek' 'p6.m' 223 32 32
-1115 'Franciszek' 'p6.m' 224 32 32
-1116 'Franciszek' 'p6.m' 225 32 32
-1117 'Franciszek' 'p6.m' 228 32 32
-1118 'Franciszek' 'p6.m' 229 32 32
-1119 'Franciszek' 'p6.m' 230 32 32
-1120 'Franciszek' 'p6.m' 231 32 32
-1121 'Franciszek' 'p6.m' 232 32 32
-1122 'Franciszek' 'p6.m' 235 32 32
-1123 'Franciszek' 'p6.m' 236 32 32
-1124 'Franciszek' 'p6.m' 237 32 32
-1125 'Franciszek' 'p6.m' 238 32 32
-1126 'Franciszek' 'p6.m' 239 32 32
-1127 'Franciszek' 'p6.f' 242 32 32
-1128 'Franciszek' 'p6.f' 243 32 32
-1129 'Franciszek' 'p6.f' 244 32 32
-1130 'Franciszek' 'p6.f' 245 32 32
-1131 'Franciszek' 'p6.f' 246 32 32
-1132 'Franciszek' 'p6.f' 249 32 32
-1133 'Franciszek' 'p6.f' 250 32 32
-1134 'Franciszek' 'p6.f' 251 32 32
-1135 'Franciszek' 'p6.f' 252 32 32
-1136 'Franciszek' 'p6.f' 253 32 32
-1137 'Franciszek' 'p6.f' 256 32 32
-1138 'Franciszek' 'p6.f' 257 32 32
-1139 'Franciszek' 'p6.f' 258 32 32
-1140 'Franciszek' 'p6.f' 259 32 32
-1141 'Franciszek' 'p6.f' 260 32 32
-1142 'Franciszek' 'p6.f' 263 32 32
-1143 'Franciszek' 'p6.f' 264 32 32
-1144 'Franciszek' 'p6.f' 265 32 32
-1145 'Franciszek' 'p6.f' 266 32 32
-1146 'Franciszek' 'p6.f' 267 32 32
-1147 'Franciszek' 'p6.pf' 270 24 28
-1148 'Franciszek' 'p6.pf' 271 24 28
-1149 'Franciszek' 'p6.pf' 272 24 28
-1150 'Franciszek' 'p6.pf' 273 24 28
-1151 'Franciszek' 'p6.pf' 274 24 28
-1152 'Franciszek' 'p6.pf' 277 24 28
-1153 'Franciszek' 'p6.pf' 278 24 28
-1154 'Franciszek' 'p6.pf' 279 24 28
-1155 'Franciszek' 'p6.pf' 280 24 28
-1156 'Franciszek' 'p6.pf' 281 24 28
-1157 'Alojzy' 'p6.m' 74 0 32
-1158 'Alojzy' 'p6.m' 75 0 32
-1159 'Alojzy' 'p6.m' 76 0 32
-1160 'Alojzy' 'p6.m' 77 0 32
-1161 'Alojzy' 'p6.m' 78 0 32
-1162 'Alojzy' 'p6.m' 81 0 32
-1163 'Alojzy' 'p6.m' 82 0 32
-1164 'Alojzy' 'p6.m' 83 0 32
-1165 'Alojzy' 'p6.m' 84 0 32
-1166 'Alojzy' 'p6.m' 85 0 32
-1167 'Alojzy' 'p6.m' 88 0 32
-1168 'Alojzy' 'p6.m' 89 0 32
-1169 'Alojzy' 'p6.m' 90 0 32
-1170 'Alojzy' 'p6.m' 91 0 32
-1171 'Alojzy' 'p6.m' 92 0 32
-1172 'Alojzy' 'p6.m' 95 0 32
-1173 'Alojzy' 'p6.m' 96 0 32
-1174 'Alojzy' 'p6.m' 97 0 32
-1175 'Alojzy' 'p6.m' 98 0 32
-1176 'Alojzy' 'p6.m' 99 0 32
-1177 'Alojzy' 'p6.m' 102 0 32
-1178 'Alojzy' 'p6.m' 103 0 32
-1179 'Alojzy' 'p6.m' 104 0 32
-1180 'Alojzy' 'p6.m' 105 0 32
-1181 'Alojzy' 'p6.m' 106 0 32
-1182 'Alojzy' 'p6.m' 109 0 32
-1183 'Alojzy' 'p6.m' 110 0 32
-1184 'Alojzy' 'p6.m' 111 0 32
-1185 'Alojzy' 'p6.m' 112 0 32
-1186 'Alojzy' 'p6.m' 113 0 32
-1187 'Alojzy' 'p6.m' 116 0 32
-1188 'Alojzy' 'p6.m' 117 0 32
-1189 'Alojzy' 'p6.m' 118 0 32
-1190 'Alojzy' 'p6.m' 119 0 32
-1191 'Alojzy' 'p6.m' 120 0 32
-1192 'Alojzy' 'p6.m' 123 0 32
-1193 'Alojzy' 'p6.m' 124 0 32
-1194 'Alojzy' 'p6.m' 125 0 32
-1195 'Alojzy' 'p6.m' 126 0 32
-1196 'Alojzy' 'p6.m' 127 0 32
-1197 'Alojzy' 'p6.m' 130 0 32
-1198 'Alojzy' 'p6.m' 131 0 32
-1199 'Alojzy' 'p6.m' 132 0 32
-1200 'Alojzy' 'p6.m' 133 0 32
-1201 'Alojzy' 'p6.m' 134 0 32
-1202 'Alojzy' 'p6.m' 137 0 32
-1203 'Alojzy' 'p6.m' 138 0 32
-1204 'Alojzy' 'p6.m' 139 0 32
-1205 'Alojzy' 'p6.m' 140 0 32
-1206 'Alojzy' 'p6.m' 141 0 32
-1207 'Alojzy' 'p6.m' 144 0 32
-1208 'Alojzy' 'p6.m' 145 0 32
-1209 'Alojzy' 'p6.m' 146 0 32
-1210 'Alojzy' 'p6.m' 147 0 32
-1211 'Alojzy' 'p6.m' 148 0 32
-1212 'Alojzy' 'p6.m' 151 0 32
-1213 'Alojzy' 'p6.m' 152 0 32
-1214 'Alojzy' 'p6.m' 153 0 32
-1215 'Alojzy' 'p6.m' 154 0 32
-1216 'Alojzy' 'p6.m' 155 0 32
-1217 'Alojzy' 'p6.m' 158 0 32
-1218 'Alojzy' 'p6.m' 159 0 32
-1219 'Alojzy' 'p6.m' 160 0 32
-1220 'Alojzy' 'p6.m' 161 0 32
-1221 'Alojzy' 'p6.m' 162 0 32
-1222 'Alojzy' 'p6.m' 165 0 32
-1223 'Alojzy' 'p6.m' 166 0 32
-1224 'Alojzy' 'p6.m' 167 0 32
-1225 'Alojzy' 'p6.m' 168 0 32
-1226 'Alojzy' 'p6.m' 169 0 32
-1227 'Alojzy' 'p6.m' 172 0 32
-1228 'Alojzy' 'p6.m' 173 0 32
-1229 'Alojzy' 'p6.m' 174 0 32
-1230 'Alojzy' 'p6.m' 175 0 32
-1231 'Alojzy' 'p6.m' 176 0 32
-1232 'Alojzy' 'p6.m' 179 0 32
-1233 'Alojzy' 'p6.m' 180 0 32
-1234 'Alojzy' 'p6.m' 181 0 32
-1235 'Alojzy' 'p6.m' 182 0 32
-1236 'Alojzy' 'p6.m' 183 0 32
-1237 'Alojzy' 'p6.m' 186 0 32
-1238 'Alojzy' 'p6.m' 187 0 32
-1239 'Alojzy' 'p6.m' 188 0 32
-1240 'Alojzy' 'p6.m' 189 0 32
-1241 'Alojzy' 'p6.m' 190 0 32
-1242 'Alojzy' 'p6.m' 193 0 32
-1243 'Alojzy' 'p6.m' 194 0 32
-1244 'Alojzy' 'p6.m' 195 0 32
-1245 'Alojzy' 'p6.m' 196 0 32
-1246 'Alojzy' 'p6.m' 197 0 32
-1247 'Alojzy' 'p6.m' 200 0 32
-1248 'Alojzy' 'p6.m' 201 0 32
-1249 'Alojzy' 'p6.m' 202 0 32
-1250 'Alojzy' 'p6.m' 203 0 32
-1251 'Alojzy' 'p6.m' 204 0 32
-1252 'Alojzy' 'p6.m' 207 0 32
-1253 'Alojzy' 'p6.m' 208 0 32
-1254 'Alojzy' 'p6.m' 209 0 32
-1255 'Alojzy' 'p6.m' 210 0 32
-1256 'Alojzy' 'p6.m' 211 0 32
-1257 'Alojzy' 'p6.m' 214 0 32
-1258 'Alojzy' 'p6.m' 215 0 32
-1259 'Alojzy' 'p6.m' 216 0 32
-1260 'Alojzy' 'p6.m' 217 0 32
-1261 'Alojzy' 'p6.m' 218 0 32
-1262 'Alojzy' 'p6.m' 221 0 32
-1263 'Alojzy' 'p6.m' 222 0 32
-1264 'Alojzy' 'p6.m' 223 0 32
-1265 'Alojzy' 'p6.m' 224 0 32
-1266 'Alojzy' 'p6.m' 225 0 32
-1267 'Alojzy' 'p6.m' 228 0 32
-1268 'Alojzy' 'p6.m' 229 0 32
-1269 'Alojzy' 'p6.m' 230 0 32
-1270 'Alojzy' 'p6.m' 231 0 32
-1271 'Alojzy' 'p6.m' 232 0 32
-1272 'Alojzy' 'p6.m' 235 0 32
-1273 'Alojzy' 'p6.m' 236 0 32
-1274 'Alojzy' 'p6.m' 237 0 32
-1275 'Alojzy' 'p6.m' 238 0 32
-1276 'Alojzy' 'p6.m' 239 0 32
-1277 'Bartłomiej' 'p6.m' 74 0 32
-1278 'Bartłomiej' 'p6.m' 75 0 32
-1279 'Bartłomiej' 'p6.m' 76 0 32
-1280 'Bartłomiej' 'p6.m' 77 0 32
-1281 'Bartłomiej' 'p6.m' 78 0 32
-1282 'Bartłomiej' 'p6.m' 81 0 32
-1283 'Bartłomiej' 'p6.m' 82 0 32
-1284 'Bartłomiej' 'p6.m' 83 0 32
-1285 'Bartłomiej' 'p6.m' 84 0 32
-1286 'Bartłomiej' 'p6.m' 85 0 32
-1287 'Bartłomiej' 'p6.m' 88 0 32
-1288 'Bartłomiej' 'p6.m' 89 0 32
-1289 'Bartłomiej' 'p6.m' 90 0 32
-1290 'Bartłomiej' 'p6.m' 91 0 32
-1291 'Bartłomiej' 'p6.m' 92 0 32
-1292 'Bartłomiej' 'p6.m' 95 0 32
-1293 'Bartłomiej' 'p6.m' 96 0 32
-1294 'Bartłomiej' 'p6.m' 97 0 32
-1295 'Bartłomiej' 'p6.m' 98 0 32
-1296 'Bartłomiej' 'p6.m' 99 0 32
-1297 'Bartłomiej' 'p6.m' 102 0 32
-1298 'Bartłomiej' 'p6.m' 103 0 32
-1299 'Bartłomiej' 'p6.m' 104 0 32
-1300 'Bartłomiej' 'p6.m' 105 0 32
-1301 'Bartłomiej' 'p6.m' 106 0 32
-1302 'Bartłomiej' 'p6.m' 109 0 32
-1303 'Bartłomiej' 'p6.m' 110 0 32
-1304 'Bartłomiej' 'p6.m' 111 0 32
-1305 'Bartłomiej' 'p6.m' 112 0 32
-1306 'Bartłomiej' 'p6.m' 113 0 32
-1307 'Bartłomiej' 'p6.m' 116 0 32
-1308 'Bartłomiej' 'p6.m' 117 0 32
-1309 'Bartłomiej' 'p6.m' 118 0 32
-1310 'Bartłomiej' 'p6.m' 119 0 32
-1311 'Bartłomiej' 'p6.m' 120 0 32
-1312 'Bartłomiej' 'p6.m' 123 0 32
-1313 'Bartłomiej' 'p6.m' 124 0 32
-1314 'Bartłomiej' 'p6.m' 125 0 32
-1315 'Bartłomiej' 'p6.m' 126 0 32
-1316 'Bartłomiej' 'p6.m' 127 0 32
-1317 'Bartłomiej' 'p6.m' 130 0 32
-1318 'Bartłomiej' 'p6.m' 131 0 32
-1319 'Bartłomiej' 'p6.m' 132 0 32
-1320 'Bartłomiej' 'p6.m' 133 0 32
-1321 'Bartłomiej' 'p6.m' 134 0 32
-1322 'Bartłomiej' 'p6.m' 137 0 32
-1323 'Bartłomiej' 'p6.m' 138 0 32
-1324 'Bartłomiej' 'p6.m' 139 0 32
-1325 'Bartłomiej' 'p6.m' 140 0 32
-1326 'Bartłomiej' 'p6.m' 141 0 32
-1327 'Bartłomiej' 'p6.m' 144 0 32
-1328 'Bartłomiej' 'p6.m' 145 0 32
-1329 'Bartłomiej' 'p6.m' 146 0 32
-1330 'Bartłomiej' 'p6.m' 147 0 32
-1331 'Bartłomiej' 'p6.m' 148 0 32
-1332 'Bartłomiej' 'p6.m' 151 0 32
-1333 'Bartłomiej' 'p6.m' 152 0 32
-1334 'Bartłomiej' 'p6.m' 153 0 32
-1335 'Bartłomiej' 'p6.m' 154 0 32
-1336 'Bartłomiej' 'p6.m' 155 0 32
-1337 'Bartłomiej' 'p6.m' 158 0 32
-1338 'Bartłomiej' 'p6.m' 159 0 32
-1339 'Bartłomiej' 'p6.m' 160 0 32
-1340 'Bartłomiej' 'p6.m' 161 0 32
-1341 'Bartłomiej' 'p6.m' 162 0 32
-1342 'Bartłomiej' 'p6.m' 165 0 32
-1343 'Bartłomiej' 'p6.m' 166 0 32
-1344 'Bartłomiej' 'p6.m' 167 0 32
-1345 'Bartłomiej' 'p6.m' 168 0 32
-1346 'Bartłomiej' 'p6.m' 169 0 32
-1347 'Bartłomiej' 'p6.m' 172 0 32
-1348 'Bartłomiej' 'p6.m' 173 0 32
-1349 'Bartłomiej' 'p6.m' 174 0 32
-1350 'Bartłomiej' 'p6.m' 175 0 32
-1351 'Bartłomiej' 'p6.m' 176 0 32
-1352 'Bartłomiej' 'p6.m' 179 0 32
-1353 'Bartłomiej' 'p6.m' 180 0 32
-1354 'Bartłomiej' 'p6.m' 181 0 32
-1355 'Bartłomiej' 'p6.m' 182 0 32
-1356 'Bartłomiej' 'p6.m' 183 0 32
-1357 'Bartłomiej' 'p6.m' 186 0 32
-1358 'Bartłomiej' 'p6.m' 187 0 32
-1359 'Bartłomiej' 'p6.m' 188 0 32
-1360 'Bartłomiej' 'p6.m' 189 0 32
-1361 'Bartłomiej' 'p6.m' 190 0 32
-1362 'Bartłomiej' 'p6.m' 193 0 32
-1363 'Bartłomiej' 'p6.m' 194 0 32
-1364 'Bartłomiej' 'p6.m' 195 0 32
-1365 'Bartłomiej' 'p6.m' 196 0 32
-1366 'Bartłomiej' 'p6.m' 197 0 32
-1367 'Bartłomiej' 'p6.m' 200 0 32
-1368 'Bartłomiej' 'p6.m' 201 0 32
-1369 'Bartłomiej' 'p6.m' 202 0 32
-1370 'Bartłomiej' 'p6.m' 203 0 32
-1371 'Bartłomiej' 'p6.m' 204 0 32
-1372 'Bartłomiej' 'p6.m' 207 0 32
-1373 'Bartłomiej' 'p6.m' 208 0 32
-1374 'Bartłomiej' 'p6.m' 209 0 32
-1375 'Bartłomiej' 'p6.m' 210 0 32
-1376 'Bartłomiej' 'p6.m' 211 0 32
-1377 'Bartłomiej' 'p6.m' 214 0 32
-1378 'Bartłomiej' 'p6.m' 215 0 32
-1379 'Bartłomiej' 'p6.m' 216 0 32
-1380 'Bartłomiej' 'p6.m' 217 0 32
-1381 'Bartłomiej' 'p6.m' 218 0 32
-1382 'Bartłomiej' 'p6.m' 221 0 32
-1383 'Bartłomiej' 'p6.m' 222 0 32
-1384 'Bartłomiej' 'p6.m' 223 0 32
-1385 'Bartłomiej' 'p6.m' 224 0 32
-1386 'Bartłomiej' 'p6.m' 225 0 32
-1387 'Bartłomiej' 'p6.m' 228 0 32
-1388 'Bartłomiej' 'p6.m' 229 0 32
-1389 'Bartłomiej' 'p6.m' 230 0 32
-1390 'Bartłomiej' 'p6.m' 231 0 32
-1391 'Bartłomiej' 'p6.m' 232 0 32
-1392 'Bartłomiej' 'p6.m' 235 0 32
-1393 'Bartłomiej' 'p6.m' 236 0 32
-1394 'Bartłomiej' 'p6.m' 237 0 32
-1395 'Bartłomiej' 'p6.m' 238 0 32
-1396 'Bartłomiej' 'p6.m' 239 0 32
-1397 'Paweł' 'p6.m' 74 0 32
-1398 'Paweł' 'p6.m' 75 0 32
-1399 'Paweł' 'p6.m' 76 0 32
-1400 'Paweł' 'p6.m' 77 0 32
-1401 'Paweł' 'p6.m' 78 0 32
-1402 'Paweł' 'p6.m' 81 0 32
-1403 'Paweł' 'p6.m' 82 0 32
-1404 'Paweł' 'p6.m' 83 0 32
-1405 'Paweł' 'p6.m' 84 0 32
-1406 'Paweł' 'p6.m' 85 0 32
-1407 'Paweł' 'p6.m' 88 0 32
-1408 'Paweł' 'p6.m' 89 0 32
-1409 'Paweł' 'p6.m' 90 0 32
-1410 'Paweł' 'p6.m' 91 0 32
-1411 'Paweł' 'p6.m' 92 0 32
-1412 'Paweł' 'p6.m' 95 0 32
-1413 'Paweł' 'p6.m' 96 0 32
-1414 'Paweł' 'p6.m' 97 0 32
-1415 'Paweł' 'p6.m' 98 0 32
-1416 'Paweł' 'p6.m' 99 0 32
-1417 'Paweł' 'p6.m' 102 0 32
-1418 'Paweł' 'p6.m' 103 0 32
-1419 'Paweł' 'p6.m' 104 0 32
-1420 'Paweł' 'p6.m' 105 0 32
-1421 'Paweł' 'p6.m' 106 0 32
-1422 'Paweł' 'p6.m' 109 0 32
-1423 'Paweł' 'p6.m' 110 0 32
-1424 'Paweł' 'p6.m' 111 0 32
-1425 'Paweł' 'p6.m' 112 0 32
-1426 'Paweł' 'p6.m' 113 0 32
-1427 'Paweł' 'p6.m' 116 0 32
-1428 'Paweł' 'p6.m' 117 0 32
-1429 'Paweł' 'p6.m' 118 0 32
-1430 'Paweł' 'p6.m' 119 0 32
-1431 'Paweł' 'p6.m' 120 0 32
-1432 'Paweł' 'p6.m' 123 0 32
-1433 'Paweł' 'p6.m' 124 0 32
-1434 'Paweł' 'p6.m' 125 0 32
-1435 'Paweł' 'p6.m' 126 0 32
-1436 'Paweł' 'p6.m' 127 0 32
-1437 'Paweł' 'p6.m' 130 0 32
-1438 'Paweł' 'p6.m' 131 0 32
-1439 'Paweł' 'p6.m' 132 0 32
-1440 'Paweł' 'p6.m' 133 0 32
-1441 'Paweł' 'p6.m' 134 0 32
-1442 'Paweł' 'p6.m' 137 0 32
-1443 'Paweł' 'p6.m' 138 0 32
-1444 'Paweł' 'p6.m' 139 0 32
-1445 'Paweł' 'p6.m' 140 0 32
-1446 'Paweł' 'p6.m' 141 0 32
-1447 'Paweł' 'p6.m' 144 0 32
-1448 'Paweł' 'p6.m' 145 0 32
-1449 'Paweł' 'p6.m' 146 0 32
-1450 'Paweł' 'p6.m' 147 0 32
-1451 'Paweł' 'p6.m' 148 0 32
-1452 'Paweł' 'p6.m' 151 0 32
-1453 'Paweł' 'p6.m' 152 0 32
-1454 'Paweł' 'p6.m' 153 0 32
-1455 'Paweł' 'p6.m' 154 0 32
-1456 'Paweł' 'p6.m' 155 0 32
-1457 'Paweł' 'p6.m' 158 0 32
-1458 'Paweł' 'p6.m' 159 0 32
-1459 'Paweł' 'p6.m' 160 0 32
-1460 'Paweł' 'p6.m' 161 0 32
-1461 'Paweł' 'p6.m' 162 0 32
-1462 'Paweł' 'p6.m' 165 0 32
-1463 'Paweł' 'p6.m' 166 0 32
-1464 'Paweł' 'p6.m' 167 0 32
-1465 'Paweł' 'p6.m' 168 0 32
-1466 'Paweł' 'p6.m' 169 0 32
-1467 'Paweł' 'p6.m' 172 0 32
-1468 'Paweł' 'p6.m' 173 0 32
-1469 'Paweł' 'p6.m' 174 0 32
-1470 'Paweł' 'p6.m' 175 0 32
-1471 'Paweł' 'p6.m' 176 0 32
-1472 'Paweł' 'p6.m' 179 0 32
-1473 'Paweł' 'p6.m' 180 0 32
-1474 'Paweł' 'p6.m' 181 0 32
-1475 'Paweł' 'p6.m' 182 0 32
-1476 'Paweł' 'p6.m' 183 0 32
-1477 'Paweł' 'p6.m' 186 0 32
-1478 'Paweł' 'p6.m' 187 0 32
-1479 'Paweł' 'p6.m' 188 0 32
-1480 'Paweł' 'p6.m' 189 0 32
-1481 'Paweł' 'p6.m' 190 0 32
-1482 'Paweł' 'p6.m' 193 0 32
-1483 'Paweł' 'p6.m' 194 0 32
-1484 'Paweł' 'p6.m' 195 0 32
-1485 'Paweł' 'p6.m' 196 0 32
-1486 'Paweł' 'p6.m' 197 0 32
-1487 'Paweł' 'p6.m' 200 0 32
-1488 'Paweł' 'p6.m' 201 0 32
-1489 'Paweł' 'p6.m' 202 0 32
-1490 'Paweł' 'p6.m' 203 0 32
-1491 'Paweł' 'p6.m' 204 0 32
-1492 'Paweł' 'p6.m' 207 0 32
-1493 'Paweł' 'p6.m' 208 0 32
-1494 'Paweł' 'p6.m' 209 0 32
-1495 'Paweł' 'p6.m' 210 0 32
-1496 'Paweł' 'p6.m' 211 0 32
-1497 'Paweł' 'p6.m' 214 0 32
-1498 'Paweł' 'p6.m' 215 0 32
-1499 'Paweł' 'p6.m' 216 0 32
-1500 'Paweł' 'p6.m' 217 0 32
-1501 'Paweł' 'p6.m' 218 0 32
-1502 'Paweł' 'p6.m' 221 0 32
-1503 'Paweł' 'p6.m' 222 0 32
-1504 'Paweł' 'p6.m' 223 0 32
-1505 'Paweł' 'p6.m' 224 0 32
-1506 'Paweł' 'p6.m' 225 0 32
-1507 'Paweł' 'p6.m' 228 0 32
-1508 'Paweł' 'p6.m' 229 0 32
-1509 'Paweł' 'p6.m' 230 0 32
-1510 'Paweł' 'p6.m' 231 0 32
-1511 'Paweł' 'p6.m' 232 0 32
-1512 'Paweł' 'p6.m' 235 0 32
-1513 'Paweł' 'p6.m' 236 0 32
-1514 'Paweł' 'p6.m' 237 0 32
-1515 'Paweł' 'p6.m' 238 0 32
-1516 'Paweł' 'p6.m' 239 0 32
-1517 'Wojciech' 'p6.m' 74 0 32
-1518 'Wojciech' 'p6.m' 75 0 32
-1519 'Wojciech' 'p6.m' 76 0 32
-1520 'Wojciech' 'p6.m' 77 0 32
-1521 'Wojciech' 'p6.m' 78 0 32
-1522 'Wojciech' 'p6.m' 81 0 32
-1523 'Wojciech' 'p6.m' 82 0 32
-1524 'Wojciech' 'p6.m' 83 0 32
-1525 'Wojciech' 'p6.m' 84 0 32
-1526 'Wojciech' 'p6.m' 85 0 32
-1527 'Wojciech' 'p6.m' 88 0 32
-1528 'Wojciech' 'p6.m' 89 0 32
-1529 'Wojciech' 'p6.m' 90 0 32
-1530 'Wojciech' 'p6.m' 91 0 32
-1531 'Wojciech' 'p6.m' 92 0 32
-1532 'Wojciech' 'p6.m' 95 0 32
-1533 'Wojciech' 'p6.m' 96 0 32
-1534 'Wojciech' 'p6.m' 97 0 32
-1535 'Wojciech' 'p6.m' 98 0 32
-1536 'Wojciech' 'p6.m' 99 0 32
-1537 'Wojciech' 'p6.m' 102 0 32
-1538 'Wojciech' 'p6.m' 103 0 32
-1539 'Wojciech' 'p6.m' 104 0 32
-1540 'Wojciech' 'p6.m' 105 0 32
-1541 'Wojciech' 'p6.m' 106 0 32
-1542 'Wojciech' 'p6.m' 109 0 32
-1543 'Wojciech' 'p6.m' 110 0 32
-1544 'Wojciech' 'p6.m' 111 0 32
-1545 'Wojciech' 'p6.m' 112 0 32
-1546 'Wojciech' 'p6.m' 113 0 32
-1547 'Wojciech' 'p6.m' 116 0 32
-1548 'Wojciech' 'p6.m' 117 0 32
-1549 'Wojciech' 'p6.m' 118 0 32
-1550 'Wojciech' 'p6.m' 119 0 32
-1551 'Wojciech' 'p6.m' 120 0 32
-1552 'Wojciech' 'p6.m' 123 0 32
-1553 'Wojciech' 'p6.m' 124 0 32
-1554 'Wojciech' 'p6.m' 125 0 32
-1555 'Wojciech' 'p6.m' 126 0 32
-1556 'Wojciech' 'p6.m' 127 0 32
-1557 'Wojciech' 'p6.m' 130 0 32
-1558 'Wojciech' 'p6.m' 131 0 32
-1559 'Wojciech' 'p6.m' 132 0 32
-1560 'Wojciech' 'p6.m' 133 0 32
-1561 'Wojciech' 'p6.m' 134 0 32
-1562 'Wojciech' 'p6.m' 137 0 32
-1563 'Wojciech' 'p6.m' 138 0 32
-1564 'Wojciech' 'p6.m' 139 0 32
-1565 'Wojciech' 'p6.m' 140 0 32
-1566 'Wojciech' 'p6.m' 141 0 32
-1567 'Wojciech' 'p6.m' 144 0 32
-1568 'Wojciech' 'p6.m' 145 0 32
-1569 'Wojciech' 'p6.m' 146 0 32
-1570 'Wojciech' 'p6.m' 147 0 32
-1571 'Wojciech' 'p6.m' 148 0 32
-1572 'Wojciech' 'p6.m' 151 0 32
-1573 'Wojciech' 'p6.m' 152 0 32
-1574 'Wojciech' 'p6.m' 153 0 32
-1575 'Wojciech' 'p6.m' 154 0 32
-1576 'Wojciech' 'p6.m' 155 0 32
-1577 'Wojciech' 'p6.m' 158 0 32
-1578 'Wojciech' 'p6.m' 159 0 32
-1579 'Wojciech' 'p6.m' 160 0 32
-1580 'Wojciech' 'p6.m' 161 0 32
-1581 'Wojciech' 'p6.m' 162 0 32
-1582 'Wojciech' 'p6.m' 165 0 32
-1583 'Wojciech' 'p6.m' 166 0 32
-1584 'Wojciech' 'p6.m' 167 0 32
-1585 'Wojciech' 'p6.m' 168 0 32
-1586 'Wojciech' 'p6.m' 169 0 32
-1587 'Wojciech' 'p6.m' 172 0 32
-1588 'Wojciech' 'p6.m' 173 0 32
-1589 'Wojciech' 'p6.m' 174 0 32
-1590 'Wojciech' 'p6.m' 175 0 32
-1591 'Wojciech' 'p6.m' 176 0 32
-1592 'Wojciech' 'p6.m' 179 0 32
-1593 'Wojciech' 'p6.m' 180 0 32
-1594 'Wojciech' 'p6.m' 181 0 32
-1595 'Wojciech' 'p6.m' 182 0 32
-1596 'Wojciech' 'p6.m' 183 0 32
-1597 'Wojciech' 'p6.m' 186 0 32
-1598 'Wojciech' 'p6.m' 187 0 32
-1599 'Wojciech' 'p6.m' 188 0 32
-1600 'Wojciech' 'p6.m' 189 0 32
-1601 'Wojciech' 'p6.m' 190 0 32
-1602 'Wojciech' 'p6.m' 193 0 32
-1603 'Wojciech' 'p6.m' 194 0 32
-1604 'Wojciech' 'p6.m' 195 0 32
-1605 'Wojciech' 'p6.m' 196 0 32
-1606 'Wojciech' 'p6.m' 197 0 32
-1607 'Wojciech' 'p6.m' 200 0 32
-1608 'Wojciech' 'p6.m' 201 0 32
-1609 'Wojciech' 'p6.m' 202 0 32
-1610 'Wojciech' 'p6.m' 203 0 32
-1611 'Wojciech' 'p6.m' 204 0 32
-1612 'Wojciech' 'p6.m' 207 0 32
-1613 'Wojciech' 'p6.m' 208 0 32
-1614 'Wojciech' 'p6.m' 209 0 32
-1615 'Wojciech' 'p6.m' 210 0 32
-1616 'Wojciech' 'p6.m' 211 0 32
-1617 'Wojciech' 'p6.m' 214 0 32
-1618 'Wojciech' 'p6.m' 215 0 32
-1619 'Wojciech' 'p6.m' 216 0 32
-1620 'Wojciech' 'p6.m' 217 0 32
-1621 'Wojciech' 'p6.m' 218 0 32
-1622 'Wojciech' 'p6.m' 221 0 32
-1623 'Wojciech' 'p6.m' 222 0 32
-1624 'Wojciech' 'p6.m' 223 0 32
-1625 'Wojciech' 'p6.m' 224 0 32
-1626 'Wojciech' 'p6.m' 225 0 32
-1627 'Wojciech' 'p6.m' 228 0 32
-1628 'Wojciech' 'p6.m' 229 0 32
-1629 'Wojciech' 'p6.m' 230 0 32
-1630 'Wojciech' 'p6.m' 231 0 32
-1631 'Wojciech' 'p6.m' 232 0 32
-1632 'Wojciech' 'p6.m' 235 0 32
-1633 'Wojciech' 'p6.m' 236 0 32
-1634 'Wojciech' 'p6.m' 237 0 32
-1635 'Wojciech' 'p6.m' 238 0 32
-1636 'Wojciech' 'p6.m' 239 0 32;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
-;
-
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
-;
-
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
-;
-
-set LINKS :=
+set ASSIGN :=
 'Alojzy' 'p2.m'
 'Alojzy' 'p2.f'
 'Alojzy' 'p2.pf'
@@ -1835,5 +123,1690 @@ set LINKS :=
 'Alojzy' 'p6.m'
 'Bartłomiej' 'p6.m'
 'Paweł' 'p6.m'
-'Wojciech' 'p6.m';
+'Wojciech' 'p6.m'
+'Franciszek' 'Q1'
+;
+
+param:
+XBID: XBL XBU :=
+'Alojzy' 'p2.m' 1 28 32
+'Alojzy' 'p2.m' 4 28 32
+'Alojzy' 'p2.m' 5 28 32
+'Alojzy' 'p2.m' 6 28 32
+'Alojzy' 'p2.m' 7 28 32
+'Alojzy' 'p2.m' 8 28 32
+'Alojzy' 'p2.m' 11 28 32
+'Alojzy' 'p2.m' 12 28 32
+'Alojzy' 'p2.m' 13 28 32
+'Alojzy' 'p2.m' 14 28 32
+'Alojzy' 'p2.m' 15 28 32
+'Alojzy' 'p2.m' 18 28 32
+'Alojzy' 'p2.m' 19 28 32
+'Alojzy' 'p2.m' 21 28 32
+'Alojzy' 'p2.m' 22 28 32
+'Alojzy' 'p2.m' 25 28 32
+'Alojzy' 'p2.m' 26 28 32
+'Alojzy' 'p2.m' 27 28 32
+'Alojzy' 'p2.m' 28 28 32
+'Alojzy' 'p2.m' 29 28 32
+'Alojzy' 'p2.m' 32 28 32
+'Alojzy' 'p2.m' 33 28 32
+'Alojzy' 'p2.m' 34 28 32
+'Alojzy' 'p2.m' 35 28 32
+'Alojzy' 'p2.m' 36 28 32
+'Alojzy' 'p2.m' 39 28 32
+'Alojzy' 'p2.m' 40 28 32
+'Alojzy' 'p2.m' 41 28 32
+'Alojzy' 'p2.m' 42 28 32
+'Alojzy' 'p2.m' 43 28 32
+'Alojzy' 'p2.m' 46 28 32
+'Alojzy' 'p2.m' 47 28 32
+'Alojzy' 'p2.m' 48 28 32
+'Alojzy' 'p2.m' 49 28 32
+'Alojzy' 'p2.m' 50 28 32
+'Alojzy' 'p2.m' 53 28 32
+'Alojzy' 'p2.m' 54 28 32
+'Alojzy' 'p2.m' 55 28 32
+'Alojzy' 'p2.m' 56 28 32
+'Alojzy' 'p2.m' 57 28 32
+'Alojzy' 'p2.m' 60 28 32
+'Alojzy' 'p2.m' 61 28 32
+'Alojzy' 'p2.m' 62 28 32
+'Alojzy' 'p2.m' 63 28 32
+'Alojzy' 'p2.m' 64 28 32
+'Alojzy' 'p2.m' 67 28 32
+'Alojzy' 'p2.m' 68 28 32
+'Alojzy' 'p2.m' 69 28 32
+'Alojzy' 'p2.m' 70 28 32
+'Alojzy' 'p2.m' 71 28 32
+'Alojzy' 'p2.m' 74 28 32
+'Alojzy' 'p2.m' 75 28 32
+'Alojzy' 'p2.m' 76 28 32
+'Alojzy' 'p2.m' 77 28 32
+'Alojzy' 'p2.m' 78 28 32
+'Alojzy' 'p2.m' 81 28 32
+'Alojzy' 'p2.m' 82 28 32
+'Alojzy' 'p2.m' 83 28 32
+'Alojzy' 'p2.m' 84 28 32
+'Alojzy' 'p2.m' 85 28 32
+'Alojzy' 'p2.m' 88 28 32
+'Alojzy' 'p2.m' 89 28 32
+'Alojzy' 'p2.m' 90 28 32
+'Alojzy' 'p2.m' 91 28 32
+'Alojzy' 'p2.m' 92 28 32
+'Alojzy' 'p2.m' 95 28 32
+'Alojzy' 'p2.m' 96 28 32
+'Alojzy' 'p2.m' 97 28 32
+'Alojzy' 'p2.m' 98 28 32
+'Alojzy' 'p2.m' 99 28 32
+'Alojzy' 'p2.m' 102 28 32
+'Alojzy' 'p2.m' 103 28 32
+'Alojzy' 'p2.m' 104 28 32
+'Alojzy' 'p2.m' 105 28 32
+'Alojzy' 'p2.m' 106 28 32
+'Alojzy' 'p2.m' 109 28 32
+'Alojzy' 'p2.m' 110 28 32
+'Alojzy' 'p2.m' 111 28 32
+'Alojzy' 'p2.m' 112 28 32
+'Alojzy' 'p2.m' 113 28 32
+'Alojzy' 'p2.m' 116 28 32
+'Alojzy' 'p2.m' 117 28 32
+'Alojzy' 'p2.m' 118 28 32
+'Alojzy' 'p2.f' 119 24 28
+'Alojzy' 'p2.f' 120 24 28
+'Alojzy' 'p2.f' 123 24 28
+'Alojzy' 'p2.f' 124 24 28
+'Alojzy' 'p2.f' 125 24 28
+'Alojzy' 'p2.f' 126 24 28
+'Alojzy' 'p2.f' 127 24 28
+'Alojzy' 'p2.f' 130 24 28
+'Alojzy' 'p2.f' 131 24 28
+'Alojzy' 'p2.f' 132 24 28
+'Alojzy' 'p2.f' 133 24 28
+'Alojzy' 'p2.f' 134 24 28
+'Alojzy' 'p2.f' 137 24 28
+'Alojzy' 'p2.f' 138 24 28
+'Alojzy' 'p2.f' 139 24 28
+'Alojzy' 'p2.f' 140 24 28
+'Alojzy' 'p2.f' 141 24 28
+'Alojzy' 'p2.f' 144 24 28
+'Alojzy' 'p2.f' 145 24 28
+'Alojzy' 'p2.f' 146 24 28
+'Alojzy' 'p2.pf' 147 28 32
+'Alojzy' 'p2.pf' 148 28 32
+'Alojzy' 'p2.pf' 151 28 32
+'Alojzy' 'p2.pf' 152 28 32
+'Alojzy' 'p2.pf' 153 28 32
+'Alojzy' 'p2.pf' 154 28 32
+'Alojzy' 'p2.pf' 155 28 32
+'Alojzy' 'p2.pf' 158 28 32
+'Alojzy' 'p2.pf' 159 28 32
+'Bartłomiej' 'p3.m' 11 16 32
+'Bartłomiej' 'p3.m' 12 16 32
+'Bartłomiej' 'p3.m' 13 16 32
+'Bartłomiej' 'p3.m' 14 16 32
+'Bartłomiej' 'p3.m' 15 16 32
+'Bartłomiej' 'p3.m' 18 16 32
+'Bartłomiej' 'p3.m' 19 16 32
+'Bartłomiej' 'p3.m' 21 16 32
+'Bartłomiej' 'p3.m' 22 16 32
+'Bartłomiej' 'p3.m' 25 16 32
+'Bartłomiej' 'p3.m' 26 16 32
+'Bartłomiej' 'p3.m' 27 16 32
+'Bartłomiej' 'p3.m' 28 16 32
+'Bartłomiej' 'p3.m' 29 16 32
+'Bartłomiej' 'p3.m' 32 16 32
+'Bartłomiej' 'p3.m' 33 16 32
+'Bartłomiej' 'p3.m' 34 16 32
+'Bartłomiej' 'p3.m' 35 16 32
+'Bartłomiej' 'p3.m' 36 16 32
+'Bartłomiej' 'p3.m' 39 16 32
+'Bartłomiej' 'p3.m' 40 16 32
+'Bartłomiej' 'p3.m' 41 16 32
+'Bartłomiej' 'p3.m' 42 16 32
+'Bartłomiej' 'p3.m' 43 16 32
+'Bartłomiej' 'p3.m' 46 16 32
+'Bartłomiej' 'p3.m' 47 16 32
+'Bartłomiej' 'p3.m' 48 16 32
+'Bartłomiej' 'p3.m' 49 16 32
+'Bartłomiej' 'p3.m' 50 16 32
+'Bartłomiej' 'p3.m' 53 16 32
+'Bartłomiej' 'p3.m' 54 16 32
+'Bartłomiej' 'p3.m' 55 16 32
+'Bartłomiej' 'p3.m' 56 16 32
+'Bartłomiej' 'p3.m' 57 16 32
+'Bartłomiej' 'p3.m' 60 16 32
+'Bartłomiej' 'p3.m' 61 16 32
+'Bartłomiej' 'p3.m' 62 16 32
+'Bartłomiej' 'p3.m' 63 16 32
+'Bartłomiej' 'p3.m' 64 16 32
+'Bartłomiej' 'p3.m' 67 16 32
+'Bartłomiej' 'p3.m' 68 16 32
+'Bartłomiej' 'p3.m' 69 16 32
+'Bartłomiej' 'p3.m' 70 16 32
+'Bartłomiej' 'p3.m' 71 16 32
+'Bartłomiej' 'p3.m' 74 16 32
+'Bartłomiej' 'p3.m' 75 16 32
+'Bartłomiej' 'p3.m' 76 16 32
+'Bartłomiej' 'p3.m' 77 16 32
+'Bartłomiej' 'p3.m' 78 16 32
+'Bartłomiej' 'p3.m' 81 16 32
+'Bartłomiej' 'p3.m' 82 16 32
+'Bartłomiej' 'p3.m' 83 16 32
+'Bartłomiej' 'p3.m' 84 16 32
+'Bartłomiej' 'p3.m' 85 16 32
+'Bartłomiej' 'p3.m' 88 16 32
+'Bartłomiej' 'p3.m' 89 16 32
+'Bartłomiej' 'p3.m' 90 16 32
+'Bartłomiej' 'p3.m' 91 16 32
+'Bartłomiej' 'p3.m' 92 16 32
+'Bartłomiej' 'p3.m' 95 16 32
+'Bartłomiej' 'p3.m' 96 16 32
+'Bartłomiej' 'p3.m' 97 16 32
+'Bartłomiej' 'p3.m' 98 16 32
+'Bartłomiej' 'p3.m' 99 16 32
+'Bartłomiej' 'p3.m' 102 16 32
+'Bartłomiej' 'p3.m' 103 16 32
+'Bartłomiej' 'p3.m' 104 16 32
+'Bartłomiej' 'p3.m' 105 16 32
+'Bartłomiej' 'p3.m' 106 16 32
+'Bartłomiej' 'p3.m' 109 16 32
+'Bartłomiej' 'p3.m' 110 16 32
+'Bartłomiej' 'p3.m' 111 16 32
+'Bartłomiej' 'p3.m' 112 16 32
+'Bartłomiej' 'p3.m' 113 16 32
+'Bartłomiej' 'p3.m' 116 16 32
+'Bartłomiej' 'p3.m' 117 16 32
+'Bartłomiej' 'p3.m' 118 16 32
+'Bartłomiej' 'p3.m' 119 16 32
+'Bartłomiej' 'p3.m' 120 16 32
+'Bartłomiej' 'p3.m' 123 16 32
+'Bartłomiej' 'p3.m' 124 16 32
+'Bartłomiej' 'p3.m' 125 16 32
+'Bartłomiej' 'p3.m' 126 16 32
+'Bartłomiej' 'p3.m' 127 16 32
+'Bartłomiej' 'p3.m' 130 16 32
+'Bartłomiej' 'p3.m' 131 16 32
+'Bartłomiej' 'p3.m' 132 16 32
+'Bartłomiej' 'p3.m' 133 16 32
+'Bartłomiej' 'p3.m' 134 16 32
+'Bartłomiej' 'p3.m' 137 16 32
+'Bartłomiej' 'p3.m' 138 16 32
+'Bartłomiej' 'p3.m' 139 16 32
+'Bartłomiej' 'p3.m' 140 16 32
+'Bartłomiej' 'p3.m' 141 16 32
+'Bartłomiej' 'p3.m' 144 16 32
+'Bartłomiej' 'p3.m' 145 16 32
+'Bartłomiej' 'p3.m' 146 16 32
+'Bartłomiej' 'p3.m' 147 16 32
+'Bartłomiej' 'p3.m' 148 16 32
+'Bartłomiej' 'p3.m' 151 16 32
+'Bartłomiej' 'p3.m' 152 16 32
+'Bartłomiej' 'p3.m' 153 16 32
+'Bartłomiej' 'p3.m' 154 16 32
+'Bartłomiej' 'p3.m' 155 16 32
+'Bartłomiej' 'p3.m' 158 16 32
+'Bartłomiej' 'p3.m' 159 16 32
+'Bartłomiej' 'p3.m' 160 16 32
+'Bartłomiej' 'p3.m' 161 16 32
+'Bartłomiej' 'p3.m' 162 16 32
+'Bartłomiej' 'p3.m' 165 16 32
+'Bartłomiej' 'p3.m' 166 16 32
+'Bartłomiej' 'p3.m' 167 16 32
+'Bartłomiej' 'p3.m' 168 16 32
+'Bartłomiej' 'p3.m' 169 16 32
+'Bartłomiej' 'p3.m' 172 16 32
+'Bartłomiej' 'p3.m' 173 16 32
+'Bartłomiej' 'p3.m' 174 16 32
+'Bartłomiej' 'p3.m' 175 16 32
+'Bartłomiej' 'p3.m' 176 16 32
+'Bartłomiej' 'p3.f' 179 16 20
+'Bartłomiej' 'p3.f' 180 16 20
+'Bartłomiej' 'p3.f' 181 16 20
+'Bartłomiej' 'p3.f' 182 16 20
+'Bartłomiej' 'p3.f' 183 16 20
+'Bartłomiej' 'p3.f' 186 16 20
+'Bartłomiej' 'p3.f' 187 16 20
+'Bartłomiej' 'p3.f' 188 16 20
+'Bartłomiej' 'p3.f' 189 16 20
+'Bartłomiej' 'p3.f' 190 16 20
+'Bartłomiej' 'p3.f' 193 16 20
+'Bartłomiej' 'p3.f' 194 16 20
+'Bartłomiej' 'p3.f' 195 16 20
+'Bartłomiej' 'p3.f' 196 16 20
+'Bartłomiej' 'p3.f' 197 16 20
+'Bartłomiej' 'p3.f' 200 16 20
+'Bartłomiej' 'p3.f' 201 16 20
+'Bartłomiej' 'p3.f' 202 16 20
+'Bartłomiej' 'p3.f' 203 16 20
+'Bartłomiej' 'p3.f' 204 16 20
+'Bartłomiej' 'p3.pf' 207 24 28
+'Bartłomiej' 'p3.pf' 208 24 28
+'Bartłomiej' 'p3.pf' 209 24 28
+'Bartłomiej' 'p3.pf' 210 24 28
+'Bartłomiej' 'p3.pf' 211 24 28
+'Bartłomiej' 'p3.pf' 214 24 28
+'Bartłomiej' 'p3.pf' 215 24 28
+'Bartłomiej' 'p3.pf' 216 24 28
+'Bartłomiej' 'p3.pf' 217 24 28
+'Bartłomiej' 'p3.pf' 218 24 28
+'Paweł' 'p4.m' 32 32 32
+'Paweł' 'p4.m' 33 32 32
+'Paweł' 'p4.m' 34 32 32
+'Paweł' 'p4.m' 35 32 32
+'Paweł' 'p4.m' 36 32 32
+'Paweł' 'p4.m' 39 32 32
+'Paweł' 'p4.m' 40 32 32
+'Paweł' 'p4.m' 41 32 32
+'Paweł' 'p4.m' 42 32 32
+'Paweł' 'p4.m' 43 32 32
+'Paweł' 'p4.m' 46 32 32
+'Paweł' 'p4.m' 47 32 32
+'Paweł' 'p4.m' 48 32 32
+'Paweł' 'p4.m' 49 32 32
+'Paweł' 'p4.m' 50 32 32
+'Paweł' 'p4.m' 53 32 32
+'Paweł' 'p4.m' 54 32 32
+'Paweł' 'p4.m' 55 32 32
+'Paweł' 'p4.m' 56 32 32
+'Paweł' 'p4.m' 57 32 32
+'Paweł' 'p4.m' 60 32 32
+'Paweł' 'p4.m' 61 32 32
+'Paweł' 'p4.m' 62 32 32
+'Paweł' 'p4.m' 63 32 32
+'Paweł' 'p4.m' 64 32 32
+'Paweł' 'p4.m' 67 32 32
+'Paweł' 'p4.m' 68 32 32
+'Paweł' 'p4.m' 69 32 32
+'Paweł' 'p4.m' 70 32 32
+'Paweł' 'p4.m' 71 32 32
+'Paweł' 'p4.m' 74 32 32
+'Paweł' 'p4.m' 75 32 32
+'Paweł' 'p4.m' 76 32 32
+'Paweł' 'p4.m' 77 32 32
+'Paweł' 'p4.m' 78 32 32
+'Paweł' 'p4.m' 81 32 32
+'Paweł' 'p4.m' 82 32 32
+'Paweł' 'p4.m' 83 32 32
+'Paweł' 'p4.m' 84 32 32
+'Paweł' 'p4.m' 85 32 32
+'Paweł' 'p4.m' 88 32 32
+'Paweł' 'p4.m' 89 32 32
+'Paweł' 'p4.m' 90 32 32
+'Paweł' 'p4.m' 91 32 32
+'Paweł' 'p4.m' 92 32 32
+'Paweł' 'p4.m' 95 32 32
+'Paweł' 'p4.m' 96 32 32
+'Paweł' 'p4.m' 97 32 32
+'Paweł' 'p4.m' 98 32 32
+'Paweł' 'p4.m' 99 32 32
+'Paweł' 'p4.m' 102 32 32
+'Paweł' 'p4.m' 103 32 32
+'Paweł' 'p4.m' 104 32 32
+'Paweł' 'p4.m' 105 32 32
+'Paweł' 'p4.m' 106 32 32
+'Paweł' 'p4.m' 109 32 32
+'Paweł' 'p4.m' 110 32 32
+'Paweł' 'p4.m' 111 32 32
+'Paweł' 'p4.m' 112 32 32
+'Paweł' 'p4.m' 113 32 32
+'Paweł' 'p4.m' 116 32 32
+'Paweł' 'p4.m' 117 32 32
+'Paweł' 'p4.m' 118 32 32
+'Paweł' 'p4.m' 119 32 32
+'Paweł' 'p4.m' 120 32 32
+'Paweł' 'p4.m' 123 32 32
+'Paweł' 'p4.m' 124 32 32
+'Paweł' 'p4.m' 125 32 32
+'Paweł' 'p4.m' 126 32 32
+'Paweł' 'p4.m' 127 32 32
+'Paweł' 'p4.m' 130 32 32
+'Paweł' 'p4.m' 131 32 32
+'Paweł' 'p4.m' 132 32 32
+'Paweł' 'p4.m' 133 32 32
+'Paweł' 'p4.m' 134 32 32
+'Paweł' 'p4.m' 137 32 32
+'Paweł' 'p4.m' 138 32 32
+'Paweł' 'p4.m' 139 32 32
+'Paweł' 'p4.m' 140 32 32
+'Paweł' 'p4.m' 141 32 32
+'Paweł' 'p4.m' 144 32 32
+'Paweł' 'p4.m' 145 32 32
+'Paweł' 'p4.m' 146 32 32
+'Paweł' 'p4.m' 147 32 32
+'Paweł' 'p4.m' 148 32 32
+'Paweł' 'p4.m' 151 32 32
+'Paweł' 'p4.m' 152 32 32
+'Paweł' 'p4.m' 153 32 32
+'Paweł' 'p4.m' 154 32 32
+'Paweł' 'p4.m' 155 32 32
+'Paweł' 'p4.m' 158 32 32
+'Paweł' 'p4.m' 159 32 32
+'Paweł' 'p4.m' 160 32 32
+'Paweł' 'p4.m' 161 32 32
+'Paweł' 'p4.m' 162 32 32
+'Paweł' 'p4.m' 165 32 32
+'Paweł' 'p4.m' 166 32 32
+'Paweł' 'p4.m' 167 32 32
+'Paweł' 'p4.m' 168 32 32
+'Paweł' 'p4.m' 169 32 32
+'Paweł' 'p4.m' 172 32 32
+'Paweł' 'p4.m' 173 32 32
+'Paweł' 'p4.m' 174 32 32
+'Paweł' 'p4.m' 175 32 32
+'Paweł' 'p4.m' 176 32 32
+'Paweł' 'p4.m' 179 32 32
+'Paweł' 'p4.m' 180 32 32
+'Paweł' 'p4.m' 181 32 32
+'Paweł' 'p4.m' 182 32 32
+'Paweł' 'p4.m' 183 32 32
+'Paweł' 'p4.m' 186 32 32
+'Paweł' 'p4.m' 187 32 32
+'Paweł' 'p4.m' 188 32 32
+'Paweł' 'p4.m' 189 32 32
+'Paweł' 'p4.m' 190 32 32
+'Paweł' 'p4.m' 193 32 32
+'Paweł' 'p4.m' 194 32 32
+'Paweł' 'p4.m' 195 32 32
+'Paweł' 'p4.m' 196 32 32
+'Paweł' 'p4.m' 197 32 32
+'Paweł' 'p4.f' 200 0 32
+'Paweł' 'p4.f' 201 0 32
+'Paweł' 'p4.f' 202 0 32
+'Paweł' 'p4.f' 203 0 32
+'Paweł' 'p4.f' 204 0 32
+'Paweł' 'p4.f' 207 0 32
+'Paweł' 'p4.f' 208 0 32
+'Paweł' 'p4.f' 209 0 32
+'Paweł' 'p4.f' 210 0 32
+'Paweł' 'p4.f' 211 0 32
+'Paweł' 'p4.f' 214 0 32
+'Paweł' 'p4.f' 215 0 32
+'Paweł' 'p4.f' 216 0 32
+'Paweł' 'p4.f' 217 0 32
+'Paweł' 'p4.f' 218 0 32
+'Paweł' 'p4.f' 221 0 32
+'Paweł' 'p4.f' 222 0 32
+'Paweł' 'p4.f' 223 0 32
+'Paweł' 'p4.f' 224 0 32
+'Paweł' 'p4.f' 225 0 32
+'Paweł' 'p4.pf' 228 24 28
+'Paweł' 'p4.pf' 229 24 28
+'Paweł' 'p4.pf' 230 24 28
+'Paweł' 'p4.pf' 231 24 28
+'Paweł' 'p4.pf' 232 24 28
+'Paweł' 'p4.pf' 235 24 28
+'Paweł' 'p4.pf' 236 24 28
+'Paweł' 'p4.pf' 237 24 28
+'Paweł' 'p4.pf' 238 24 28
+'Paweł' 'p4.pf' 239 24 28
+'Wojciech' 'p5.m' 40 32 32
+'Wojciech' 'p5.m' 41 32 32
+'Wojciech' 'p5.m' 42 32 32
+'Wojciech' 'p5.m' 43 32 32
+'Wojciech' 'p5.m' 46 32 32
+'Wojciech' 'p5.m' 47 32 32
+'Wojciech' 'p5.m' 48 32 32
+'Wojciech' 'p5.m' 49 32 32
+'Wojciech' 'p5.m' 50 32 32
+'Wojciech' 'p5.m' 53 32 32
+'Wojciech' 'p5.m' 54 32 32
+'Wojciech' 'p5.m' 55 32 32
+'Wojciech' 'p5.m' 56 32 32
+'Wojciech' 'p5.m' 57 32 32
+'Wojciech' 'p5.m' 60 32 32
+'Wojciech' 'p5.m' 61 32 32
+'Wojciech' 'p5.m' 62 32 32
+'Wojciech' 'p5.m' 63 32 32
+'Wojciech' 'p5.m' 64 32 32
+'Wojciech' 'p5.m' 67 32 32
+'Wojciech' 'p5.m' 68 32 32
+'Wojciech' 'p5.m' 69 32 32
+'Wojciech' 'p5.m' 70 32 32
+'Wojciech' 'p5.m' 71 32 32
+'Wojciech' 'p5.m' 74 32 32
+'Wojciech' 'p5.m' 75 32 32
+'Wojciech' 'p5.m' 76 32 32
+'Wojciech' 'p5.m' 77 32 32
+'Wojciech' 'p5.m' 78 32 32
+'Wojciech' 'p5.m' 81 32 32
+'Wojciech' 'p5.m' 82 32 32
+'Wojciech' 'p5.m' 83 32 32
+'Wojciech' 'p5.m' 84 32 32
+'Wojciech' 'p5.m' 85 32 32
+'Wojciech' 'p5.m' 88 32 32
+'Wojciech' 'p5.m' 89 32 32
+'Wojciech' 'p5.m' 90 32 32
+'Wojciech' 'p5.m' 91 32 32
+'Wojciech' 'p5.m' 92 32 32
+'Wojciech' 'p5.m' 95 32 32
+'Wojciech' 'p5.m' 96 32 32
+'Wojciech' 'p5.m' 97 32 32
+'Wojciech' 'p5.m' 98 32 32
+'Wojciech' 'p5.m' 99 32 32
+'Wojciech' 'p5.m' 102 32 32
+'Wojciech' 'p5.m' 103 32 32
+'Wojciech' 'p5.m' 104 32 32
+'Wojciech' 'p5.m' 105 32 32
+'Wojciech' 'p5.m' 106 32 32
+'Wojciech' 'p5.m' 109 32 32
+'Wojciech' 'p5.m' 110 32 32
+'Wojciech' 'p5.m' 111 32 32
+'Wojciech' 'p5.m' 112 32 32
+'Wojciech' 'p5.m' 113 32 32
+'Wojciech' 'p5.m' 116 32 32
+'Wojciech' 'p5.m' 117 32 32
+'Wojciech' 'p5.m' 118 32 32
+'Wojciech' 'p5.m' 119 32 32
+'Wojciech' 'p5.m' 120 32 32
+'Wojciech' 'p5.m' 123 32 32
+'Wojciech' 'p5.m' 124 32 32
+'Wojciech' 'p5.m' 125 32 32
+'Wojciech' 'p5.m' 126 32 32
+'Wojciech' 'p5.m' 127 32 32
+'Wojciech' 'p5.m' 130 32 32
+'Wojciech' 'p5.m' 131 32 32
+'Wojciech' 'p5.m' 132 32 32
+'Wojciech' 'p5.m' 133 32 32
+'Wojciech' 'p5.m' 134 32 32
+'Wojciech' 'p5.m' 137 32 32
+'Wojciech' 'p5.m' 138 32 32
+'Wojciech' 'p5.m' 139 32 32
+'Wojciech' 'p5.m' 140 32 32
+'Wojciech' 'p5.m' 141 32 32
+'Wojciech' 'p5.m' 144 32 32
+'Wojciech' 'p5.m' 145 32 32
+'Wojciech' 'p5.m' 146 32 32
+'Wojciech' 'p5.m' 147 32 32
+'Wojciech' 'p5.m' 148 32 32
+'Wojciech' 'p5.m' 151 32 32
+'Wojciech' 'p5.m' 152 32 32
+'Wojciech' 'p5.m' 153 32 32
+'Wojciech' 'p5.m' 154 32 32
+'Wojciech' 'p5.m' 155 32 32
+'Wojciech' 'p5.m' 158 32 32
+'Wojciech' 'p5.f' 159 24 28
+'Wojciech' 'p5.f' 160 24 28
+'Wojciech' 'p5.f' 161 24 28
+'Wojciech' 'p5.f' 162 24 28
+'Wojciech' 'p5.f' 165 24 28
+'Wojciech' 'p5.f' 166 24 28
+'Wojciech' 'p5.f' 167 24 28
+'Wojciech' 'p5.f' 168 24 28
+'Wojciech' 'p5.f' 169 24 28
+'Wojciech' 'p5.f' 172 24 28
+'Wojciech' 'p5.f' 173 24 28
+'Wojciech' 'p5.f' 174 24 28
+'Wojciech' 'p5.f' 175 24 28
+'Wojciech' 'p5.f' 176 24 28
+'Wojciech' 'p5.f' 179 24 28
+'Wojciech' 'p5.f' 180 24 28
+'Wojciech' 'p5.f' 181 24 28
+'Wojciech' 'p5.f' 182 24 28
+'Wojciech' 'p5.f' 183 24 28
+'Wojciech' 'p5.f' 186 24 28
+'Wojciech' 'p5.pf' 187 24 28
+'Wojciech' 'p5.pf' 188 24 28
+'Wojciech' 'p5.pf' 189 24 28
+'Wojciech' 'p5.pf' 190 24 28
+'Wojciech' 'p5.pf' 193 24 28
+'Wojciech' 'p5.pf' 194 24 28
+'Wojciech' 'p5.pf' 195 24 28
+'Wojciech' 'p5.pf' 196 24 28
+'Wojciech' 'p5.pf' 197 24 28
+'Wojciech' 'p5.pf' 200 24 28
+'Alojzy' 'p4.m' 32 0 32
+'Alojzy' 'p4.m' 33 0 32
+'Alojzy' 'p4.m' 34 0 32
+'Alojzy' 'p4.m' 35 0 32
+'Alojzy' 'p4.m' 36 0 32
+'Alojzy' 'p4.m' 39 0 32
+'Alojzy' 'p4.m' 40 0 32
+'Alojzy' 'p4.m' 41 0 32
+'Alojzy' 'p4.m' 42 0 32
+'Alojzy' 'p4.m' 43 0 32
+'Alojzy' 'p4.m' 46 0 32
+'Alojzy' 'p4.m' 47 0 32
+'Alojzy' 'p4.m' 48 0 32
+'Alojzy' 'p4.m' 49 0 32
+'Alojzy' 'p4.m' 50 0 32
+'Alojzy' 'p4.m' 53 0 32
+'Alojzy' 'p4.m' 54 0 32
+'Alojzy' 'p4.m' 55 0 32
+'Alojzy' 'p4.m' 56 0 32
+'Alojzy' 'p4.m' 57 0 32
+'Alojzy' 'p4.m' 60 0 32
+'Alojzy' 'p4.m' 61 0 32
+'Alojzy' 'p4.m' 62 0 32
+'Alojzy' 'p4.m' 63 0 32
+'Alojzy' 'p4.m' 64 0 32
+'Alojzy' 'p4.m' 67 0 32
+'Alojzy' 'p4.m' 68 0 32
+'Alojzy' 'p4.m' 69 0 32
+'Alojzy' 'p4.m' 70 0 32
+'Alojzy' 'p4.m' 71 0 32
+'Alojzy' 'p4.m' 74 0 32
+'Alojzy' 'p4.m' 75 0 32
+'Alojzy' 'p4.m' 76 0 32
+'Alojzy' 'p4.m' 77 0 32
+'Alojzy' 'p4.m' 78 0 32
+'Alojzy' 'p4.m' 81 0 32
+'Alojzy' 'p4.m' 82 0 32
+'Alojzy' 'p4.m' 83 0 32
+'Alojzy' 'p4.m' 84 0 32
+'Alojzy' 'p4.m' 85 0 32
+'Alojzy' 'p4.m' 88 0 32
+'Alojzy' 'p4.m' 89 0 32
+'Alojzy' 'p4.m' 90 0 32
+'Alojzy' 'p4.m' 91 0 32
+'Alojzy' 'p4.m' 92 0 32
+'Alojzy' 'p4.m' 95 0 32
+'Alojzy' 'p4.m' 96 0 32
+'Alojzy' 'p4.m' 97 0 32
+'Alojzy' 'p4.m' 98 0 32
+'Alojzy' 'p4.m' 99 0 32
+'Alojzy' 'p4.m' 102 0 32
+'Alojzy' 'p4.m' 103 0 32
+'Alojzy' 'p4.m' 104 0 32
+'Alojzy' 'p4.m' 105 0 32
+'Alojzy' 'p4.m' 106 0 32
+'Alojzy' 'p4.m' 109 0 32
+'Alojzy' 'p4.m' 110 0 32
+'Alojzy' 'p4.m' 111 0 32
+'Alojzy' 'p4.m' 112 0 32
+'Alojzy' 'p4.m' 113 0 32
+'Alojzy' 'p4.m' 116 0 32
+'Alojzy' 'p4.m' 117 0 32
+'Alojzy' 'p4.m' 118 0 32
+'Alojzy' 'p4.m' 119 0 32
+'Alojzy' 'p4.m' 120 0 32
+'Alojzy' 'p4.m' 123 0 32
+'Alojzy' 'p4.m' 124 0 32
+'Alojzy' 'p4.m' 125 0 32
+'Alojzy' 'p4.m' 126 0 32
+'Alojzy' 'p4.m' 127 0 32
+'Alojzy' 'p4.m' 130 0 32
+'Alojzy' 'p4.m' 131 0 32
+'Alojzy' 'p4.m' 132 0 32
+'Alojzy' 'p4.m' 133 0 32
+'Alojzy' 'p4.m' 134 0 32
+'Alojzy' 'p4.m' 137 0 32
+'Alojzy' 'p4.m' 138 0 32
+'Alojzy' 'p4.m' 139 0 32
+'Alojzy' 'p4.m' 140 0 32
+'Alojzy' 'p4.m' 141 0 32
+'Alojzy' 'p4.m' 144 0 32
+'Alojzy' 'p4.m' 145 0 32
+'Alojzy' 'p4.m' 146 0 32
+'Alojzy' 'p4.m' 147 0 32
+'Alojzy' 'p4.m' 148 0 32
+'Alojzy' 'p4.m' 151 0 32
+'Alojzy' 'p4.m' 152 0 32
+'Alojzy' 'p4.m' 153 0 32
+'Alojzy' 'p4.m' 154 0 32
+'Alojzy' 'p4.m' 155 0 32
+'Alojzy' 'p4.m' 158 0 32
+'Alojzy' 'p4.m' 159 0 32
+'Alojzy' 'p4.m' 160 0 32
+'Alojzy' 'p4.m' 161 0 32
+'Alojzy' 'p4.m' 162 0 32
+'Alojzy' 'p4.m' 165 0 32
+'Alojzy' 'p4.m' 166 0 32
+'Alojzy' 'p4.m' 167 0 32
+'Alojzy' 'p4.m' 168 0 32
+'Alojzy' 'p4.m' 169 0 32
+'Alojzy' 'p4.m' 172 0 32
+'Alojzy' 'p4.m' 173 0 32
+'Alojzy' 'p4.m' 174 0 32
+'Alojzy' 'p4.m' 175 0 32
+'Alojzy' 'p4.m' 176 0 32
+'Alojzy' 'p4.m' 179 0 32
+'Alojzy' 'p4.m' 180 0 32
+'Alojzy' 'p4.m' 181 0 32
+'Alojzy' 'p4.m' 182 0 32
+'Alojzy' 'p4.m' 183 0 32
+'Alojzy' 'p4.m' 186 0 32
+'Alojzy' 'p4.m' 187 0 32
+'Alojzy' 'p4.m' 188 0 32
+'Alojzy' 'p4.m' 189 0 32
+'Alojzy' 'p4.m' 190 0 32
+'Alojzy' 'p4.m' 193 0 32
+'Alojzy' 'p4.m' 194 0 32
+'Alojzy' 'p4.m' 195 0 32
+'Alojzy' 'p4.m' 196 0 32
+'Alojzy' 'p4.m' 197 0 32
+'Bartłomiej' 'p4.m' 32 0 32
+'Bartłomiej' 'p4.m' 33 0 32
+'Bartłomiej' 'p4.m' 34 0 32
+'Bartłomiej' 'p4.m' 35 0 32
+'Bartłomiej' 'p4.m' 36 0 32
+'Bartłomiej' 'p4.m' 39 0 32
+'Bartłomiej' 'p4.m' 40 0 32
+'Bartłomiej' 'p4.m' 41 0 32
+'Bartłomiej' 'p4.m' 42 0 32
+'Bartłomiej' 'p4.m' 43 0 32
+'Bartłomiej' 'p4.m' 46 0 32
+'Bartłomiej' 'p4.m' 47 0 32
+'Bartłomiej' 'p4.m' 48 0 32
+'Bartłomiej' 'p4.m' 49 0 32
+'Bartłomiej' 'p4.m' 50 0 32
+'Bartłomiej' 'p4.m' 53 0 32
+'Bartłomiej' 'p4.m' 54 0 32
+'Bartłomiej' 'p4.m' 55 0 32
+'Bartłomiej' 'p4.m' 56 0 32
+'Bartłomiej' 'p4.m' 57 0 32
+'Bartłomiej' 'p4.m' 60 0 32
+'Bartłomiej' 'p4.m' 61 0 32
+'Bartłomiej' 'p4.m' 62 0 32
+'Bartłomiej' 'p4.m' 63 0 32
+'Bartłomiej' 'p4.m' 64 0 32
+'Bartłomiej' 'p4.m' 67 0 32
+'Bartłomiej' 'p4.m' 68 0 32
+'Bartłomiej' 'p4.m' 69 0 32
+'Bartłomiej' 'p4.m' 70 0 32
+'Bartłomiej' 'p4.m' 71 0 32
+'Bartłomiej' 'p4.m' 74 0 32
+'Bartłomiej' 'p4.m' 75 0 32
+'Bartłomiej' 'p4.m' 76 0 32
+'Bartłomiej' 'p4.m' 77 0 32
+'Bartłomiej' 'p4.m' 78 0 32
+'Bartłomiej' 'p4.m' 81 0 32
+'Bartłomiej' 'p4.m' 82 0 32
+'Bartłomiej' 'p4.m' 83 0 32
+'Bartłomiej' 'p4.m' 84 0 32
+'Bartłomiej' 'p4.m' 85 0 32
+'Bartłomiej' 'p4.m' 88 0 32
+'Bartłomiej' 'p4.m' 89 0 32
+'Bartłomiej' 'p4.m' 90 0 32
+'Bartłomiej' 'p4.m' 91 0 32
+'Bartłomiej' 'p4.m' 92 0 32
+'Bartłomiej' 'p4.m' 95 0 32
+'Bartłomiej' 'p4.m' 96 0 32
+'Bartłomiej' 'p4.m' 97 0 32
+'Bartłomiej' 'p4.m' 98 0 32
+'Bartłomiej' 'p4.m' 99 0 32
+'Bartłomiej' 'p4.m' 102 0 32
+'Bartłomiej' 'p4.m' 103 0 32
+'Bartłomiej' 'p4.m' 104 0 32
+'Bartłomiej' 'p4.m' 105 0 32
+'Bartłomiej' 'p4.m' 106 0 32
+'Bartłomiej' 'p4.m' 109 0 32
+'Bartłomiej' 'p4.m' 110 0 32
+'Bartłomiej' 'p4.m' 111 0 32
+'Bartłomiej' 'p4.m' 112 0 32
+'Bartłomiej' 'p4.m' 113 0 32
+'Bartłomiej' 'p4.m' 116 0 32
+'Bartłomiej' 'p4.m' 117 0 32
+'Bartłomiej' 'p4.m' 118 0 32
+'Bartłomiej' 'p4.m' 119 0 32
+'Bartłomiej' 'p4.m' 120 0 32
+'Bartłomiej' 'p4.m' 123 0 32
+'Bartłomiej' 'p4.m' 124 0 32
+'Bartłomiej' 'p4.m' 125 0 32
+'Bartłomiej' 'p4.m' 126 0 32
+'Bartłomiej' 'p4.m' 127 0 32
+'Bartłomiej' 'p4.m' 130 0 32
+'Bartłomiej' 'p4.m' 131 0 32
+'Bartłomiej' 'p4.m' 132 0 32
+'Bartłomiej' 'p4.m' 133 0 32
+'Bartłomiej' 'p4.m' 134 0 32
+'Bartłomiej' 'p4.m' 137 0 32
+'Bartłomiej' 'p4.m' 138 0 32
+'Bartłomiej' 'p4.m' 139 0 32
+'Bartłomiej' 'p4.m' 140 0 32
+'Bartłomiej' 'p4.m' 141 0 32
+'Bartłomiej' 'p4.m' 144 0 32
+'Bartłomiej' 'p4.m' 145 0 32
+'Bartłomiej' 'p4.m' 146 0 32
+'Bartłomiej' 'p4.m' 147 0 32
+'Bartłomiej' 'p4.m' 148 0 32
+'Bartłomiej' 'p4.m' 151 0 32
+'Bartłomiej' 'p4.m' 152 0 32
+'Bartłomiej' 'p4.m' 153 0 32
+'Bartłomiej' 'p4.m' 154 0 32
+'Bartłomiej' 'p4.m' 155 0 32
+'Bartłomiej' 'p4.m' 158 0 32
+'Bartłomiej' 'p4.m' 159 0 32
+'Bartłomiej' 'p4.m' 160 0 32
+'Bartłomiej' 'p4.m' 161 0 32
+'Bartłomiej' 'p4.m' 162 0 32
+'Bartłomiej' 'p4.m' 165 0 32
+'Bartłomiej' 'p4.m' 166 0 32
+'Bartłomiej' 'p4.m' 167 0 32
+'Bartłomiej' 'p4.m' 168 0 32
+'Bartłomiej' 'p4.m' 169 0 32
+'Bartłomiej' 'p4.m' 172 0 32
+'Bartłomiej' 'p4.m' 173 0 32
+'Bartłomiej' 'p4.m' 174 0 32
+'Bartłomiej' 'p4.m' 175 0 32
+'Bartłomiej' 'p4.m' 176 0 32
+'Bartłomiej' 'p4.m' 179 0 32
+'Bartłomiej' 'p4.m' 180 0 32
+'Bartłomiej' 'p4.m' 181 0 32
+'Bartłomiej' 'p4.m' 182 0 32
+'Bartłomiej' 'p4.m' 183 0 32
+'Bartłomiej' 'p4.m' 186 0 32
+'Bartłomiej' 'p4.m' 187 0 32
+'Bartłomiej' 'p4.m' 188 0 32
+'Bartłomiej' 'p4.m' 189 0 32
+'Bartłomiej' 'p4.m' 190 0 32
+'Bartłomiej' 'p4.m' 193 0 32
+'Bartłomiej' 'p4.m' 194 0 32
+'Bartłomiej' 'p4.m' 195 0 32
+'Bartłomiej' 'p4.m' 196 0 32
+'Bartłomiej' 'p4.m' 197 0 32
+'Franciszek' 'p4.m' 32 0 32
+'Franciszek' 'p4.m' 33 0 32
+'Franciszek' 'p4.m' 34 0 32
+'Franciszek' 'p4.m' 35 0 32
+'Franciszek' 'p4.m' 36 0 32
+'Franciszek' 'p4.m' 39 0 32
+'Franciszek' 'p4.m' 40 0 32
+'Franciszek' 'p4.m' 41 0 32
+'Franciszek' 'p4.m' 42 0 32
+'Franciszek' 'p4.m' 43 0 32
+'Franciszek' 'p4.m' 46 0 32
+'Franciszek' 'p4.m' 47 0 32
+'Franciszek' 'p4.m' 48 0 32
+'Franciszek' 'p4.m' 49 0 32
+'Franciszek' 'p4.m' 50 0 32
+'Franciszek' 'p4.m' 53 0 32
+'Franciszek' 'p4.m' 54 0 32
+'Franciszek' 'p4.m' 55 0 32
+'Franciszek' 'p4.m' 56 0 32
+'Franciszek' 'p4.m' 57 0 32
+'Franciszek' 'p4.m' 60 0 32
+'Franciszek' 'p4.m' 61 0 32
+'Franciszek' 'p4.m' 62 0 32
+'Franciszek' 'p4.m' 63 0 32
+'Franciszek' 'p4.m' 64 0 32
+'Franciszek' 'p4.m' 67 0 32
+'Franciszek' 'p4.m' 68 0 32
+'Franciszek' 'p4.m' 69 0 32
+'Franciszek' 'p4.m' 70 0 32
+'Franciszek' 'p4.m' 71 0 32
+'Franciszek' 'p4.m' 74 0 32
+'Franciszek' 'p4.m' 75 0 32
+'Franciszek' 'p4.m' 76 0 32
+'Franciszek' 'p4.m' 77 0 32
+'Franciszek' 'p4.m' 78 0 32
+'Franciszek' 'p4.m' 81 0 32
+'Franciszek' 'p4.m' 82 0 32
+'Franciszek' 'p4.m' 83 0 32
+'Franciszek' 'p4.m' 84 0 32
+'Franciszek' 'p4.m' 85 0 32
+'Franciszek' 'p4.m' 88 0 32
+'Franciszek' 'p4.m' 89 0 32
+'Franciszek' 'p4.m' 90 0 32
+'Franciszek' 'p4.m' 91 0 32
+'Franciszek' 'p4.m' 92 0 32
+'Franciszek' 'p4.m' 95 0 32
+'Franciszek' 'p4.m' 96 0 32
+'Franciszek' 'p4.m' 97 0 32
+'Franciszek' 'p4.m' 98 0 32
+'Franciszek' 'p4.m' 99 0 32
+'Franciszek' 'p4.m' 102 0 32
+'Franciszek' 'p4.m' 103 0 32
+'Franciszek' 'p4.m' 104 0 32
+'Franciszek' 'p4.m' 105 0 32
+'Franciszek' 'p4.m' 106 0 32
+'Franciszek' 'p4.m' 109 0 32
+'Franciszek' 'p4.m' 110 0 32
+'Franciszek' 'p4.m' 111 0 32
+'Franciszek' 'p4.m' 112 0 32
+'Franciszek' 'p4.m' 113 0 32
+'Franciszek' 'p4.m' 116 0 32
+'Franciszek' 'p4.m' 117 0 32
+'Franciszek' 'p4.m' 118 0 32
+'Franciszek' 'p4.m' 119 0 32
+'Franciszek' 'p4.m' 120 0 32
+'Franciszek' 'p4.m' 123 0 32
+'Franciszek' 'p4.m' 124 0 32
+'Franciszek' 'p4.m' 125 0 32
+'Franciszek' 'p4.m' 126 0 32
+'Franciszek' 'p4.m' 127 0 32
+'Franciszek' 'p4.m' 130 0 32
+'Franciszek' 'p4.m' 131 0 32
+'Franciszek' 'p4.m' 132 0 32
+'Franciszek' 'p4.m' 133 0 32
+'Franciszek' 'p4.m' 134 0 32
+'Franciszek' 'p4.m' 137 0 32
+'Franciszek' 'p4.m' 138 0 32
+'Franciszek' 'p4.m' 139 0 32
+'Franciszek' 'p4.m' 140 0 32
+'Franciszek' 'p4.m' 141 0 32
+'Franciszek' 'p4.m' 144 0 32
+'Franciszek' 'p4.m' 145 0 32
+'Franciszek' 'p4.m' 146 0 32
+'Franciszek' 'p4.m' 147 0 32
+'Franciszek' 'p4.m' 148 0 32
+'Franciszek' 'p4.m' 151 0 32
+'Franciszek' 'p4.m' 152 0 32
+'Franciszek' 'p4.m' 153 0 32
+'Franciszek' 'p4.m' 154 0 32
+'Franciszek' 'p4.m' 155 0 32
+'Franciszek' 'p4.m' 158 0 32
+'Franciszek' 'p4.m' 159 0 32
+'Franciszek' 'p4.m' 160 0 32
+'Franciszek' 'p4.m' 161 0 32
+'Franciszek' 'p4.m' 162 0 32
+'Franciszek' 'p4.m' 165 0 32
+'Franciszek' 'p4.m' 166 0 32
+'Franciszek' 'p4.m' 167 0 32
+'Franciszek' 'p4.m' 168 0 32
+'Franciszek' 'p4.m' 169 0 32
+'Franciszek' 'p4.m' 172 0 32
+'Franciszek' 'p4.m' 173 0 32
+'Franciszek' 'p4.m' 174 0 32
+'Franciszek' 'p4.m' 175 0 32
+'Franciszek' 'p4.m' 176 0 32
+'Franciszek' 'p4.m' 179 0 32
+'Franciszek' 'p4.m' 180 0 32
+'Franciszek' 'p4.m' 181 0 32
+'Franciszek' 'p4.m' 182 0 32
+'Franciszek' 'p4.m' 183 0 32
+'Franciszek' 'p4.m' 186 0 32
+'Franciszek' 'p4.m' 187 0 32
+'Franciszek' 'p4.m' 188 0 32
+'Franciszek' 'p4.m' 189 0 32
+'Franciszek' 'p4.m' 190 0 32
+'Franciszek' 'p4.m' 193 0 32
+'Franciszek' 'p4.m' 194 0 32
+'Franciszek' 'p4.m' 195 0 32
+'Franciszek' 'p4.m' 196 0 32
+'Franciszek' 'p4.m' 197 0 32
+'Wojciech' 'p4.m' 32 0 32
+'Wojciech' 'p4.m' 33 0 32
+'Wojciech' 'p4.m' 34 0 32
+'Wojciech' 'p4.m' 35 0 32
+'Wojciech' 'p4.m' 36 0 32
+'Wojciech' 'p4.m' 39 0 32
+'Wojciech' 'p4.m' 40 0 32
+'Wojciech' 'p4.m' 41 0 32
+'Wojciech' 'p4.m' 42 0 32
+'Wojciech' 'p4.m' 43 0 32
+'Wojciech' 'p4.m' 46 0 32
+'Wojciech' 'p4.m' 47 0 32
+'Wojciech' 'p4.m' 48 0 32
+'Wojciech' 'p4.m' 49 0 32
+'Wojciech' 'p4.m' 50 0 32
+'Wojciech' 'p4.m' 53 0 32
+'Wojciech' 'p4.m' 54 0 32
+'Wojciech' 'p4.m' 55 0 32
+'Wojciech' 'p4.m' 56 0 32
+'Wojciech' 'p4.m' 57 0 32
+'Wojciech' 'p4.m' 60 0 32
+'Wojciech' 'p4.m' 61 0 32
+'Wojciech' 'p4.m' 62 0 32
+'Wojciech' 'p4.m' 63 0 32
+'Wojciech' 'p4.m' 64 0 32
+'Wojciech' 'p4.m' 67 0 32
+'Wojciech' 'p4.m' 68 0 32
+'Wojciech' 'p4.m' 69 0 32
+'Wojciech' 'p4.m' 70 0 32
+'Wojciech' 'p4.m' 71 0 32
+'Wojciech' 'p4.m' 74 0 32
+'Wojciech' 'p4.m' 75 0 32
+'Wojciech' 'p4.m' 76 0 32
+'Wojciech' 'p4.m' 77 0 32
+'Wojciech' 'p4.m' 78 0 32
+'Wojciech' 'p4.m' 81 0 32
+'Wojciech' 'p4.m' 82 0 32
+'Wojciech' 'p4.m' 83 0 32
+'Wojciech' 'p4.m' 84 0 32
+'Wojciech' 'p4.m' 85 0 32
+'Wojciech' 'p4.m' 88 0 32
+'Wojciech' 'p4.m' 89 0 32
+'Wojciech' 'p4.m' 90 0 32
+'Wojciech' 'p4.m' 91 0 32
+'Wojciech' 'p4.m' 92 0 32
+'Wojciech' 'p4.m' 95 0 32
+'Wojciech' 'p4.m' 96 0 32
+'Wojciech' 'p4.m' 97 0 32
+'Wojciech' 'p4.m' 98 0 32
+'Wojciech' 'p4.m' 99 0 32
+'Wojciech' 'p4.m' 102 0 32
+'Wojciech' 'p4.m' 103 0 32
+'Wojciech' 'p4.m' 104 0 32
+'Wojciech' 'p4.m' 105 0 32
+'Wojciech' 'p4.m' 106 0 32
+'Wojciech' 'p4.m' 109 0 32
+'Wojciech' 'p4.m' 110 0 32
+'Wojciech' 'p4.m' 111 0 32
+'Wojciech' 'p4.m' 112 0 32
+'Wojciech' 'p4.m' 113 0 32
+'Wojciech' 'p4.m' 116 0 32
+'Wojciech' 'p4.m' 117 0 32
+'Wojciech' 'p4.m' 118 0 32
+'Wojciech' 'p4.m' 119 0 32
+'Wojciech' 'p4.m' 120 0 32
+'Wojciech' 'p4.m' 123 0 32
+'Wojciech' 'p4.m' 124 0 32
+'Wojciech' 'p4.m' 125 0 32
+'Wojciech' 'p4.m' 126 0 32
+'Wojciech' 'p4.m' 127 0 32
+'Wojciech' 'p4.m' 130 0 32
+'Wojciech' 'p4.m' 131 0 32
+'Wojciech' 'p4.m' 132 0 32
+'Wojciech' 'p4.m' 133 0 32
+'Wojciech' 'p4.m' 134 0 32
+'Wojciech' 'p4.m' 137 0 32
+'Wojciech' 'p4.m' 138 0 32
+'Wojciech' 'p4.m' 139 0 32
+'Wojciech' 'p4.m' 140 0 32
+'Wojciech' 'p4.m' 141 0 32
+'Wojciech' 'p4.m' 144 0 32
+'Wojciech' 'p4.m' 145 0 32
+'Wojciech' 'p4.m' 146 0 32
+'Wojciech' 'p4.m' 147 0 32
+'Wojciech' 'p4.m' 148 0 32
+'Wojciech' 'p4.m' 151 0 32
+'Wojciech' 'p4.m' 152 0 32
+'Wojciech' 'p4.m' 153 0 32
+'Wojciech' 'p4.m' 154 0 32
+'Wojciech' 'p4.m' 155 0 32
+'Wojciech' 'p4.m' 158 0 32
+'Wojciech' 'p4.m' 159 0 32
+'Wojciech' 'p4.m' 160 0 32
+'Wojciech' 'p4.m' 161 0 32
+'Wojciech' 'p4.m' 162 0 32
+'Wojciech' 'p4.m' 165 0 32
+'Wojciech' 'p4.m' 166 0 32
+'Wojciech' 'p4.m' 167 0 32
+'Wojciech' 'p4.m' 168 0 32
+'Wojciech' 'p4.m' 169 0 32
+'Wojciech' 'p4.m' 172 0 32
+'Wojciech' 'p4.m' 173 0 32
+'Wojciech' 'p4.m' 174 0 32
+'Wojciech' 'p4.m' 175 0 32
+'Wojciech' 'p4.m' 176 0 32
+'Wojciech' 'p4.m' 179 0 32
+'Wojciech' 'p4.m' 180 0 32
+'Wojciech' 'p4.m' 181 0 32
+'Wojciech' 'p4.m' 182 0 32
+'Wojciech' 'p4.m' 183 0 32
+'Wojciech' 'p4.m' 186 0 32
+'Wojciech' 'p4.m' 187 0 32
+'Wojciech' 'p4.m' 188 0 32
+'Wojciech' 'p4.m' 189 0 32
+'Wojciech' 'p4.m' 190 0 32
+'Wojciech' 'p4.m' 193 0 32
+'Wojciech' 'p4.m' 194 0 32
+'Wojciech' 'p4.m' 195 0 32
+'Wojciech' 'p4.m' 196 0 32
+'Wojciech' 'p4.m' 197 0 32
+'Franciszek' 'p6.m' 74 32 32
+'Franciszek' 'p6.m' 75 32 32
+'Franciszek' 'p6.m' 76 32 32
+'Franciszek' 'p6.m' 77 32 32
+'Franciszek' 'p6.m' 78 32 32
+'Franciszek' 'p6.m' 81 32 32
+'Franciszek' 'p6.m' 82 32 32
+'Franciszek' 'p6.m' 83 32 32
+'Franciszek' 'p6.m' 84 32 32
+'Franciszek' 'p6.m' 85 32 32
+'Franciszek' 'p6.m' 88 32 32
+'Franciszek' 'p6.m' 89 32 32
+'Franciszek' 'p6.m' 90 32 32
+'Franciszek' 'p6.m' 91 32 32
+'Franciszek' 'p6.m' 92 32 32
+'Franciszek' 'p6.m' 95 32 32
+'Franciszek' 'p6.m' 96 32 32
+'Franciszek' 'p6.m' 97 32 32
+'Franciszek' 'p6.m' 98 32 32
+'Franciszek' 'p6.m' 99 32 32
+'Franciszek' 'p6.m' 102 32 32
+'Franciszek' 'p6.m' 103 32 32
+'Franciszek' 'p6.m' 104 32 32
+'Franciszek' 'p6.m' 105 32 32
+'Franciszek' 'p6.m' 106 32 32
+'Franciszek' 'p6.m' 109 32 32
+'Franciszek' 'p6.m' 110 32 32
+'Franciszek' 'p6.m' 111 32 32
+'Franciszek' 'p6.m' 112 32 32
+'Franciszek' 'p6.m' 113 32 32
+'Franciszek' 'p6.m' 116 32 32
+'Franciszek' 'p6.m' 117 32 32
+'Franciszek' 'p6.m' 118 32 32
+'Franciszek' 'p6.m' 119 32 32
+'Franciszek' 'p6.m' 120 32 32
+'Franciszek' 'p6.m' 123 32 32
+'Franciszek' 'p6.m' 124 32 32
+'Franciszek' 'p6.m' 125 32 32
+'Franciszek' 'p6.m' 126 32 32
+'Franciszek' 'p6.m' 127 32 32
+'Franciszek' 'p6.m' 130 32 32
+'Franciszek' 'p6.m' 131 32 32
+'Franciszek' 'p6.m' 132 32 32
+'Franciszek' 'p6.m' 133 32 32
+'Franciszek' 'p6.m' 134 32 32
+'Franciszek' 'p6.m' 137 32 32
+'Franciszek' 'p6.m' 138 32 32
+'Franciszek' 'p6.m' 139 32 32
+'Franciszek' 'p6.m' 140 32 32
+'Franciszek' 'p6.m' 141 32 32
+'Franciszek' 'p6.m' 144 32 32
+'Franciszek' 'p6.m' 145 32 32
+'Franciszek' 'p6.m' 146 32 32
+'Franciszek' 'p6.m' 147 32 32
+'Franciszek' 'p6.m' 148 32 32
+'Franciszek' 'p6.m' 151 32 32
+'Franciszek' 'p6.m' 152 32 32
+'Franciszek' 'p6.m' 153 32 32
+'Franciszek' 'p6.m' 154 32 32
+'Franciszek' 'p6.m' 155 32 32
+'Franciszek' 'p6.m' 158 32 32
+'Franciszek' 'p6.m' 159 32 32
+'Franciszek' 'p6.m' 160 32 32
+'Franciszek' 'p6.m' 161 32 32
+'Franciszek' 'p6.m' 162 32 32
+'Franciszek' 'p6.m' 165 32 32
+'Franciszek' 'p6.m' 166 32 32
+'Franciszek' 'p6.m' 167 32 32
+'Franciszek' 'p6.m' 168 32 32
+'Franciszek' 'p6.m' 169 32 32
+'Franciszek' 'p6.m' 172 32 32
+'Franciszek' 'p6.m' 173 32 32
+'Franciszek' 'p6.m' 174 32 32
+'Franciszek' 'p6.m' 175 32 32
+'Franciszek' 'p6.m' 176 32 32
+'Franciszek' 'p6.m' 179 32 32
+'Franciszek' 'p6.m' 180 32 32
+'Franciszek' 'p6.m' 181 32 32
+'Franciszek' 'p6.m' 182 32 32
+'Franciszek' 'p6.m' 183 32 32
+'Franciszek' 'p6.m' 186 32 32
+'Franciszek' 'p6.m' 187 32 32
+'Franciszek' 'p6.m' 188 32 32
+'Franciszek' 'p6.m' 189 32 32
+'Franciszek' 'p6.m' 190 32 32
+'Franciszek' 'p6.m' 193 32 32
+'Franciszek' 'p6.m' 194 32 32
+'Franciszek' 'p6.m' 195 32 32
+'Franciszek' 'p6.m' 196 32 32
+'Franciszek' 'p6.m' 197 32 32
+'Franciszek' 'p6.m' 200 32 32
+'Franciszek' 'p6.m' 201 32 32
+'Franciszek' 'p6.m' 202 32 32
+'Franciszek' 'p6.m' 203 32 32
+'Franciszek' 'p6.m' 204 32 32
+'Franciszek' 'p6.m' 207 32 32
+'Franciszek' 'p6.m' 208 32 32
+'Franciszek' 'p6.m' 209 32 32
+'Franciszek' 'p6.m' 210 32 32
+'Franciszek' 'p6.m' 211 32 32
+'Franciszek' 'p6.m' 214 32 32
+'Franciszek' 'p6.m' 215 32 32
+'Franciszek' 'p6.m' 216 32 32
+'Franciszek' 'p6.m' 217 32 32
+'Franciszek' 'p6.m' 218 32 32
+'Franciszek' 'p6.m' 221 32 32
+'Franciszek' 'p6.m' 222 32 32
+'Franciszek' 'p6.m' 223 32 32
+'Franciszek' 'p6.m' 224 32 32
+'Franciszek' 'p6.m' 225 32 32
+'Franciszek' 'p6.m' 228 32 32
+'Franciszek' 'p6.m' 229 32 32
+'Franciszek' 'p6.m' 230 32 32
+'Franciszek' 'p6.m' 231 32 32
+'Franciszek' 'p6.m' 232 32 32
+'Franciszek' 'p6.m' 235 32 32
+'Franciszek' 'p6.m' 236 32 32
+'Franciszek' 'p6.m' 237 32 32
+'Franciszek' 'p6.m' 238 32 32
+'Franciszek' 'p6.m' 239 32 32
+'Franciszek' 'p6.f' 242 32 32
+'Franciszek' 'p6.f' 243 32 32
+'Franciszek' 'p6.f' 244 32 32
+'Franciszek' 'p6.f' 245 32 32
+'Franciszek' 'p6.f' 246 32 32
+'Franciszek' 'p6.f' 249 32 32
+'Franciszek' 'p6.f' 250 32 32
+'Franciszek' 'p6.f' 251 32 32
+'Franciszek' 'p6.f' 252 32 32
+'Franciszek' 'p6.f' 253 32 32
+'Franciszek' 'p6.f' 256 32 32
+'Franciszek' 'p6.f' 257 32 32
+'Franciszek' 'p6.f' 258 32 32
+'Franciszek' 'p6.f' 259 32 32
+'Franciszek' 'p6.f' 260 32 32
+'Franciszek' 'p6.f' 263 32 32
+'Franciszek' 'p6.f' 264 32 32
+'Franciszek' 'p6.f' 265 32 32
+'Franciszek' 'p6.f' 266 32 32
+'Franciszek' 'p6.f' 267 32 32
+'Franciszek' 'p6.pf' 270 24 28
+'Franciszek' 'p6.pf' 271 24 28
+'Franciszek' 'p6.pf' 272 24 28
+'Franciszek' 'p6.pf' 273 24 28
+'Franciszek' 'p6.pf' 274 24 28
+'Franciszek' 'p6.pf' 277 24 28
+'Franciszek' 'p6.pf' 278 24 28
+'Franciszek' 'p6.pf' 279 24 28
+'Franciszek' 'p6.pf' 280 24 28
+'Franciszek' 'p6.pf' 281 24 28
+'Alojzy' 'p6.m' 74 0 32
+'Alojzy' 'p6.m' 75 0 32
+'Alojzy' 'p6.m' 76 0 32
+'Alojzy' 'p6.m' 77 0 32
+'Alojzy' 'p6.m' 78 0 32
+'Alojzy' 'p6.m' 81 0 32
+'Alojzy' 'p6.m' 82 0 32
+'Alojzy' 'p6.m' 83 0 32
+'Alojzy' 'p6.m' 84 0 32
+'Alojzy' 'p6.m' 85 0 32
+'Alojzy' 'p6.m' 88 0 32
+'Alojzy' 'p6.m' 89 0 32
+'Alojzy' 'p6.m' 90 0 32
+'Alojzy' 'p6.m' 91 0 32
+'Alojzy' 'p6.m' 92 0 32
+'Alojzy' 'p6.m' 95 0 32
+'Alojzy' 'p6.m' 96 0 32
+'Alojzy' 'p6.m' 97 0 32
+'Alojzy' 'p6.m' 98 0 32
+'Alojzy' 'p6.m' 99 0 32
+'Alojzy' 'p6.m' 102 0 32
+'Alojzy' 'p6.m' 103 0 32
+'Alojzy' 'p6.m' 104 0 32
+'Alojzy' 'p6.m' 105 0 32
+'Alojzy' 'p6.m' 106 0 32
+'Alojzy' 'p6.m' 109 0 32
+'Alojzy' 'p6.m' 110 0 32
+'Alojzy' 'p6.m' 111 0 32
+'Alojzy' 'p6.m' 112 0 32
+'Alojzy' 'p6.m' 113 0 32
+'Alojzy' 'p6.m' 116 0 32
+'Alojzy' 'p6.m' 117 0 32
+'Alojzy' 'p6.m' 118 0 32
+'Alojzy' 'p6.m' 119 0 32
+'Alojzy' 'p6.m' 120 0 32
+'Alojzy' 'p6.m' 123 0 32
+'Alojzy' 'p6.m' 124 0 32
+'Alojzy' 'p6.m' 125 0 32
+'Alojzy' 'p6.m' 126 0 32
+'Alojzy' 'p6.m' 127 0 32
+'Alojzy' 'p6.m' 130 0 32
+'Alojzy' 'p6.m' 131 0 32
+'Alojzy' 'p6.m' 132 0 32
+'Alojzy' 'p6.m' 133 0 32
+'Alojzy' 'p6.m' 134 0 32
+'Alojzy' 'p6.m' 137 0 32
+'Alojzy' 'p6.m' 138 0 32
+'Alojzy' 'p6.m' 139 0 32
+'Alojzy' 'p6.m' 140 0 32
+'Alojzy' 'p6.m' 141 0 32
+'Alojzy' 'p6.m' 144 0 32
+'Alojzy' 'p6.m' 145 0 32
+'Alojzy' 'p6.m' 146 0 32
+'Alojzy' 'p6.m' 147 0 32
+'Alojzy' 'p6.m' 148 0 32
+'Alojzy' 'p6.m' 151 0 32
+'Alojzy' 'p6.m' 152 0 32
+'Alojzy' 'p6.m' 153 0 32
+'Alojzy' 'p6.m' 154 0 32
+'Alojzy' 'p6.m' 155 0 32
+'Alojzy' 'p6.m' 158 0 32
+'Alojzy' 'p6.m' 159 0 32
+'Alojzy' 'p6.m' 160 0 32
+'Alojzy' 'p6.m' 161 0 32
+'Alojzy' 'p6.m' 162 0 32
+'Alojzy' 'p6.m' 165 0 32
+'Alojzy' 'p6.m' 166 0 32
+'Alojzy' 'p6.m' 167 0 32
+'Alojzy' 'p6.m' 168 0 32
+'Alojzy' 'p6.m' 169 0 32
+'Alojzy' 'p6.m' 172 0 32
+'Alojzy' 'p6.m' 173 0 32
+'Alojzy' 'p6.m' 174 0 32
+'Alojzy' 'p6.m' 175 0 32
+'Alojzy' 'p6.m' 176 0 32
+'Alojzy' 'p6.m' 179 0 32
+'Alojzy' 'p6.m' 180 0 32
+'Alojzy' 'p6.m' 181 0 32
+'Alojzy' 'p6.m' 182 0 32
+'Alojzy' 'p6.m' 183 0 32
+'Alojzy' 'p6.m' 186 0 32
+'Alojzy' 'p6.m' 187 0 32
+'Alojzy' 'p6.m' 188 0 32
+'Alojzy' 'p6.m' 189 0 32
+'Alojzy' 'p6.m' 190 0 32
+'Alojzy' 'p6.m' 193 0 32
+'Alojzy' 'p6.m' 194 0 32
+'Alojzy' 'p6.m' 195 0 32
+'Alojzy' 'p6.m' 196 0 32
+'Alojzy' 'p6.m' 197 0 32
+'Alojzy' 'p6.m' 200 0 32
+'Alojzy' 'p6.m' 201 0 32
+'Alojzy' 'p6.m' 202 0 32
+'Alojzy' 'p6.m' 203 0 32
+'Alojzy' 'p6.m' 204 0 32
+'Alojzy' 'p6.m' 207 0 32
+'Alojzy' 'p6.m' 208 0 32
+'Alojzy' 'p6.m' 209 0 32
+'Alojzy' 'p6.m' 210 0 32
+'Alojzy' 'p6.m' 211 0 32
+'Alojzy' 'p6.m' 214 0 32
+'Alojzy' 'p6.m' 215 0 32
+'Alojzy' 'p6.m' 216 0 32
+'Alojzy' 'p6.m' 217 0 32
+'Alojzy' 'p6.m' 218 0 32
+'Alojzy' 'p6.m' 221 0 32
+'Alojzy' 'p6.m' 222 0 32
+'Alojzy' 'p6.m' 223 0 32
+'Alojzy' 'p6.m' 224 0 32
+'Alojzy' 'p6.m' 225 0 32
+'Alojzy' 'p6.m' 228 0 32
+'Alojzy' 'p6.m' 229 0 32
+'Alojzy' 'p6.m' 230 0 32
+'Alojzy' 'p6.m' 231 0 32
+'Alojzy' 'p6.m' 232 0 32
+'Alojzy' 'p6.m' 235 0 32
+'Alojzy' 'p6.m' 236 0 32
+'Alojzy' 'p6.m' 237 0 32
+'Alojzy' 'p6.m' 238 0 32
+'Alojzy' 'p6.m' 239 0 32
+'Bartłomiej' 'p6.m' 74 0 32
+'Bartłomiej' 'p6.m' 75 0 32
+'Bartłomiej' 'p6.m' 76 0 32
+'Bartłomiej' 'p6.m' 77 0 32
+'Bartłomiej' 'p6.m' 78 0 32
+'Bartłomiej' 'p6.m' 81 0 32
+'Bartłomiej' 'p6.m' 82 0 32
+'Bartłomiej' 'p6.m' 83 0 32
+'Bartłomiej' 'p6.m' 84 0 32
+'Bartłomiej' 'p6.m' 85 0 32
+'Bartłomiej' 'p6.m' 88 0 32
+'Bartłomiej' 'p6.m' 89 0 32
+'Bartłomiej' 'p6.m' 90 0 32
+'Bartłomiej' 'p6.m' 91 0 32
+'Bartłomiej' 'p6.m' 92 0 32
+'Bartłomiej' 'p6.m' 95 0 32
+'Bartłomiej' 'p6.m' 96 0 32
+'Bartłomiej' 'p6.m' 97 0 32
+'Bartłomiej' 'p6.m' 98 0 32
+'Bartłomiej' 'p6.m' 99 0 32
+'Bartłomiej' 'p6.m' 102 0 32
+'Bartłomiej' 'p6.m' 103 0 32
+'Bartłomiej' 'p6.m' 104 0 32
+'Bartłomiej' 'p6.m' 105 0 32
+'Bartłomiej' 'p6.m' 106 0 32
+'Bartłomiej' 'p6.m' 109 0 32
+'Bartłomiej' 'p6.m' 110 0 32
+'Bartłomiej' 'p6.m' 111 0 32
+'Bartłomiej' 'p6.m' 112 0 32
+'Bartłomiej' 'p6.m' 113 0 32
+'Bartłomiej' 'p6.m' 116 0 32
+'Bartłomiej' 'p6.m' 117 0 32
+'Bartłomiej' 'p6.m' 118 0 32
+'Bartłomiej' 'p6.m' 119 0 32
+'Bartłomiej' 'p6.m' 120 0 32
+'Bartłomiej' 'p6.m' 123 0 32
+'Bartłomiej' 'p6.m' 124 0 32
+'Bartłomiej' 'p6.m' 125 0 32
+'Bartłomiej' 'p6.m' 126 0 32
+'Bartłomiej' 'p6.m' 127 0 32
+'Bartłomiej' 'p6.m' 130 0 32
+'Bartłomiej' 'p6.m' 131 0 32
+'Bartłomiej' 'p6.m' 132 0 32
+'Bartłomiej' 'p6.m' 133 0 32
+'Bartłomiej' 'p6.m' 134 0 32
+'Bartłomiej' 'p6.m' 137 0 32
+'Bartłomiej' 'p6.m' 138 0 32
+'Bartłomiej' 'p6.m' 139 0 32
+'Bartłomiej' 'p6.m' 140 0 32
+'Bartłomiej' 'p6.m' 141 0 32
+'Bartłomiej' 'p6.m' 144 0 32
+'Bartłomiej' 'p6.m' 145 0 32
+'Bartłomiej' 'p6.m' 146 0 32
+'Bartłomiej' 'p6.m' 147 0 32
+'Bartłomiej' 'p6.m' 148 0 32
+'Bartłomiej' 'p6.m' 151 0 32
+'Bartłomiej' 'p6.m' 152 0 32
+'Bartłomiej' 'p6.m' 153 0 32
+'Bartłomiej' 'p6.m' 154 0 32
+'Bartłomiej' 'p6.m' 155 0 32
+'Bartłomiej' 'p6.m' 158 0 32
+'Bartłomiej' 'p6.m' 159 0 32
+'Bartłomiej' 'p6.m' 160 0 32
+'Bartłomiej' 'p6.m' 161 0 32
+'Bartłomiej' 'p6.m' 162 0 32
+'Bartłomiej' 'p6.m' 165 0 32
+'Bartłomiej' 'p6.m' 166 0 32
+'Bartłomiej' 'p6.m' 167 0 32
+'Bartłomiej' 'p6.m' 168 0 32
+'Bartłomiej' 'p6.m' 169 0 32
+'Bartłomiej' 'p6.m' 172 0 32
+'Bartłomiej' 'p6.m' 173 0 32
+'Bartłomiej' 'p6.m' 174 0 32
+'Bartłomiej' 'p6.m' 175 0 32
+'Bartłomiej' 'p6.m' 176 0 32
+'Bartłomiej' 'p6.m' 179 0 32
+'Bartłomiej' 'p6.m' 180 0 32
+'Bartłomiej' 'p6.m' 181 0 32
+'Bartłomiej' 'p6.m' 182 0 32
+'Bartłomiej' 'p6.m' 183 0 32
+'Bartłomiej' 'p6.m' 186 0 32
+'Bartłomiej' 'p6.m' 187 0 32
+'Bartłomiej' 'p6.m' 188 0 32
+'Bartłomiej' 'p6.m' 189 0 32
+'Bartłomiej' 'p6.m' 190 0 32
+'Bartłomiej' 'p6.m' 193 0 32
+'Bartłomiej' 'p6.m' 194 0 32
+'Bartłomiej' 'p6.m' 195 0 32
+'Bartłomiej' 'p6.m' 196 0 32
+'Bartłomiej' 'p6.m' 197 0 32
+'Bartłomiej' 'p6.m' 200 0 32
+'Bartłomiej' 'p6.m' 201 0 32
+'Bartłomiej' 'p6.m' 202 0 32
+'Bartłomiej' 'p6.m' 203 0 32
+'Bartłomiej' 'p6.m' 204 0 32
+'Bartłomiej' 'p6.m' 207 0 32
+'Bartłomiej' 'p6.m' 208 0 32
+'Bartłomiej' 'p6.m' 209 0 32
+'Bartłomiej' 'p6.m' 210 0 32
+'Bartłomiej' 'p6.m' 211 0 32
+'Bartłomiej' 'p6.m' 214 0 32
+'Bartłomiej' 'p6.m' 215 0 32
+'Bartłomiej' 'p6.m' 216 0 32
+'Bartłomiej' 'p6.m' 217 0 32
+'Bartłomiej' 'p6.m' 218 0 32
+'Bartłomiej' 'p6.m' 221 0 32
+'Bartłomiej' 'p6.m' 222 0 32
+'Bartłomiej' 'p6.m' 223 0 32
+'Bartłomiej' 'p6.m' 224 0 32
+'Bartłomiej' 'p6.m' 225 0 32
+'Bartłomiej' 'p6.m' 228 0 32
+'Bartłomiej' 'p6.m' 229 0 32
+'Bartłomiej' 'p6.m' 230 0 32
+'Bartłomiej' 'p6.m' 231 0 32
+'Bartłomiej' 'p6.m' 232 0 32
+'Bartłomiej' 'p6.m' 235 0 32
+'Bartłomiej' 'p6.m' 236 0 32
+'Bartłomiej' 'p6.m' 237 0 32
+'Bartłomiej' 'p6.m' 238 0 32
+'Bartłomiej' 'p6.m' 239 0 32
+'Paweł' 'p6.m' 74 0 32
+'Paweł' 'p6.m' 75 0 32
+'Paweł' 'p6.m' 76 0 32
+'Paweł' 'p6.m' 77 0 32
+'Paweł' 'p6.m' 78 0 32
+'Paweł' 'p6.m' 81 0 32
+'Paweł' 'p6.m' 82 0 32
+'Paweł' 'p6.m' 83 0 32
+'Paweł' 'p6.m' 84 0 32
+'Paweł' 'p6.m' 85 0 32
+'Paweł' 'p6.m' 88 0 32
+'Paweł' 'p6.m' 89 0 32
+'Paweł' 'p6.m' 90 0 32
+'Paweł' 'p6.m' 91 0 32
+'Paweł' 'p6.m' 92 0 32
+'Paweł' 'p6.m' 95 0 32
+'Paweł' 'p6.m' 96 0 32
+'Paweł' 'p6.m' 97 0 32
+'Paweł' 'p6.m' 98 0 32
+'Paweł' 'p6.m' 99 0 32
+'Paweł' 'p6.m' 102 0 32
+'Paweł' 'p6.m' 103 0 32
+'Paweł' 'p6.m' 104 0 32
+'Paweł' 'p6.m' 105 0 32
+'Paweł' 'p6.m' 106 0 32
+'Paweł' 'p6.m' 109 0 32
+'Paweł' 'p6.m' 110 0 32
+'Paweł' 'p6.m' 111 0 32
+'Paweł' 'p6.m' 112 0 32
+'Paweł' 'p6.m' 113 0 32
+'Paweł' 'p6.m' 116 0 32
+'Paweł' 'p6.m' 117 0 32
+'Paweł' 'p6.m' 118 0 32
+'Paweł' 'p6.m' 119 0 32
+'Paweł' 'p6.m' 120 0 32
+'Paweł' 'p6.m' 123 0 32
+'Paweł' 'p6.m' 124 0 32
+'Paweł' 'p6.m' 125 0 32
+'Paweł' 'p6.m' 126 0 32
+'Paweł' 'p6.m' 127 0 32
+'Paweł' 'p6.m' 130 0 32
+'Paweł' 'p6.m' 131 0 32
+'Paweł' 'p6.m' 132 0 32
+'Paweł' 'p6.m' 133 0 32
+'Paweł' 'p6.m' 134 0 32
+'Paweł' 'p6.m' 137 0 32
+'Paweł' 'p6.m' 138 0 32
+'Paweł' 'p6.m' 139 0 32
+'Paweł' 'p6.m' 140 0 32
+'Paweł' 'p6.m' 141 0 32
+'Paweł' 'p6.m' 144 0 32
+'Paweł' 'p6.m' 145 0 32
+'Paweł' 'p6.m' 146 0 32
+'Paweł' 'p6.m' 147 0 32
+'Paweł' 'p6.m' 148 0 32
+'Paweł' 'p6.m' 151 0 32
+'Paweł' 'p6.m' 152 0 32
+'Paweł' 'p6.m' 153 0 32
+'Paweł' 'p6.m' 154 0 32
+'Paweł' 'p6.m' 155 0 32
+'Paweł' 'p6.m' 158 0 32
+'Paweł' 'p6.m' 159 0 32
+'Paweł' 'p6.m' 160 0 32
+'Paweł' 'p6.m' 161 0 32
+'Paweł' 'p6.m' 162 0 32
+'Paweł' 'p6.m' 165 0 32
+'Paweł' 'p6.m' 166 0 32
+'Paweł' 'p6.m' 167 0 32
+'Paweł' 'p6.m' 168 0 32
+'Paweł' 'p6.m' 169 0 32
+'Paweł' 'p6.m' 172 0 32
+'Paweł' 'p6.m' 173 0 32
+'Paweł' 'p6.m' 174 0 32
+'Paweł' 'p6.m' 175 0 32
+'Paweł' 'p6.m' 176 0 32
+'Paweł' 'p6.m' 179 0 32
+'Paweł' 'p6.m' 180 0 32
+'Paweł' 'p6.m' 181 0 32
+'Paweł' 'p6.m' 182 0 32
+'Paweł' 'p6.m' 183 0 32
+'Paweł' 'p6.m' 186 0 32
+'Paweł' 'p6.m' 187 0 32
+'Paweł' 'p6.m' 188 0 32
+'Paweł' 'p6.m' 189 0 32
+'Paweł' 'p6.m' 190 0 32
+'Paweł' 'p6.m' 193 0 32
+'Paweł' 'p6.m' 194 0 32
+'Paweł' 'p6.m' 195 0 32
+'Paweł' 'p6.m' 196 0 32
+'Paweł' 'p6.m' 197 0 32
+'Paweł' 'p6.m' 200 0 32
+'Paweł' 'p6.m' 201 0 32
+'Paweł' 'p6.m' 202 0 32
+'Paweł' 'p6.m' 203 0 32
+'Paweł' 'p6.m' 204 0 32
+'Paweł' 'p6.m' 207 0 32
+'Paweł' 'p6.m' 208 0 32
+'Paweł' 'p6.m' 209 0 32
+'Paweł' 'p6.m' 210 0 32
+'Paweł' 'p6.m' 211 0 32
+'Paweł' 'p6.m' 214 0 32
+'Paweł' 'p6.m' 215 0 32
+'Paweł' 'p6.m' 216 0 32
+'Paweł' 'p6.m' 217 0 32
+'Paweł' 'p6.m' 218 0 32
+'Paweł' 'p6.m' 221 0 32
+'Paweł' 'p6.m' 222 0 32
+'Paweł' 'p6.m' 223 0 32
+'Paweł' 'p6.m' 224 0 32
+'Paweł' 'p6.m' 225 0 32
+'Paweł' 'p6.m' 228 0 32
+'Paweł' 'p6.m' 229 0 32
+'Paweł' 'p6.m' 230 0 32
+'Paweł' 'p6.m' 231 0 32
+'Paweł' 'p6.m' 232 0 32
+'Paweł' 'p6.m' 235 0 32
+'Paweł' 'p6.m' 236 0 32
+'Paweł' 'p6.m' 237 0 32
+'Paweł' 'p6.m' 238 0 32
+'Paweł' 'p6.m' 239 0 32
+'Wojciech' 'p6.m' 74 0 32
+'Wojciech' 'p6.m' 75 0 32
+'Wojciech' 'p6.m' 76 0 32
+'Wojciech' 'p6.m' 77 0 32
+'Wojciech' 'p6.m' 78 0 32
+'Wojciech' 'p6.m' 81 0 32
+'Wojciech' 'p6.m' 82 0 32
+'Wojciech' 'p6.m' 83 0 32
+'Wojciech' 'p6.m' 84 0 32
+'Wojciech' 'p6.m' 85 0 32
+'Wojciech' 'p6.m' 88 0 32
+'Wojciech' 'p6.m' 89 0 32
+'Wojciech' 'p6.m' 90 0 32
+'Wojciech' 'p6.m' 91 0 32
+'Wojciech' 'p6.m' 92 0 32
+'Wojciech' 'p6.m' 95 0 32
+'Wojciech' 'p6.m' 96 0 32
+'Wojciech' 'p6.m' 97 0 32
+'Wojciech' 'p6.m' 98 0 32
+'Wojciech' 'p6.m' 99 0 32
+'Wojciech' 'p6.m' 102 0 32
+'Wojciech' 'p6.m' 103 0 32
+'Wojciech' 'p6.m' 104 0 32
+'Wojciech' 'p6.m' 105 0 32
+'Wojciech' 'p6.m' 106 0 32
+'Wojciech' 'p6.m' 109 0 32
+'Wojciech' 'p6.m' 110 0 32
+'Wojciech' 'p6.m' 111 0 32
+'Wojciech' 'p6.m' 112 0 32
+'Wojciech' 'p6.m' 113 0 32
+'Wojciech' 'p6.m' 116 0 32
+'Wojciech' 'p6.m' 117 0 32
+'Wojciech' 'p6.m' 118 0 32
+'Wojciech' 'p6.m' 119 0 32
+'Wojciech' 'p6.m' 120 0 32
+'Wojciech' 'p6.m' 123 0 32
+'Wojciech' 'p6.m' 124 0 32
+'Wojciech' 'p6.m' 125 0 32
+'Wojciech' 'p6.m' 126 0 32
+'Wojciech' 'p6.m' 127 0 32
+'Wojciech' 'p6.m' 130 0 32
+'Wojciech' 'p6.m' 131 0 32
+'Wojciech' 'p6.m' 132 0 32
+'Wojciech' 'p6.m' 133 0 32
+'Wojciech' 'p6.m' 134 0 32
+'Wojciech' 'p6.m' 137 0 32
+'Wojciech' 'p6.m' 138 0 32
+'Wojciech' 'p6.m' 139 0 32
+'Wojciech' 'p6.m' 140 0 32
+'Wojciech' 'p6.m' 141 0 32
+'Wojciech' 'p6.m' 144 0 32
+'Wojciech' 'p6.m' 145 0 32
+'Wojciech' 'p6.m' 146 0 32
+'Wojciech' 'p6.m' 147 0 32
+'Wojciech' 'p6.m' 148 0 32
+'Wojciech' 'p6.m' 151 0 32
+'Wojciech' 'p6.m' 152 0 32
+'Wojciech' 'p6.m' 153 0 32
+'Wojciech' 'p6.m' 154 0 32
+'Wojciech' 'p6.m' 155 0 32
+'Wojciech' 'p6.m' 158 0 32
+'Wojciech' 'p6.m' 159 0 32
+'Wojciech' 'p6.m' 160 0 32
+'Wojciech' 'p6.m' 161 0 32
+'Wojciech' 'p6.m' 162 0 32
+'Wojciech' 'p6.m' 165 0 32
+'Wojciech' 'p6.m' 166 0 32
+'Wojciech' 'p6.m' 167 0 32
+'Wojciech' 'p6.m' 168 0 32
+'Wojciech' 'p6.m' 169 0 32
+'Wojciech' 'p6.m' 172 0 32
+'Wojciech' 'p6.m' 173 0 32
+'Wojciech' 'p6.m' 174 0 32
+'Wojciech' 'p6.m' 175 0 32
+'Wojciech' 'p6.m' 176 0 32
+'Wojciech' 'p6.m' 179 0 32
+'Wojciech' 'p6.m' 180 0 32
+'Wojciech' 'p6.m' 181 0 32
+'Wojciech' 'p6.m' 182 0 32
+'Wojciech' 'p6.m' 183 0 32
+'Wojciech' 'p6.m' 186 0 32
+'Wojciech' 'p6.m' 187 0 32
+'Wojciech' 'p6.m' 188 0 32
+'Wojciech' 'p6.m' 189 0 32
+'Wojciech' 'p6.m' 190 0 32
+'Wojciech' 'p6.m' 193 0 32
+'Wojciech' 'p6.m' 194 0 32
+'Wojciech' 'p6.m' 195 0 32
+'Wojciech' 'p6.m' 196 0 32
+'Wojciech' 'p6.m' 197 0 32
+'Wojciech' 'p6.m' 200 0 32
+'Wojciech' 'p6.m' 201 0 32
+'Wojciech' 'p6.m' 202 0 32
+'Wojciech' 'p6.m' 203 0 32
+'Wojciech' 'p6.m' 204 0 32
+'Wojciech' 'p6.m' 207 0 32
+'Wojciech' 'p6.m' 208 0 32
+'Wojciech' 'p6.m' 209 0 32
+'Wojciech' 'p6.m' 210 0 32
+'Wojciech' 'p6.m' 211 0 32
+'Wojciech' 'p6.m' 214 0 32
+'Wojciech' 'p6.m' 215 0 32
+'Wojciech' 'p6.m' 216 0 32
+'Wojciech' 'p6.m' 217 0 32
+'Wojciech' 'p6.m' 218 0 32
+'Wojciech' 'p6.m' 221 0 32
+'Wojciech' 'p6.m' 222 0 32
+'Wojciech' 'p6.m' 223 0 32
+'Wojciech' 'p6.m' 224 0 32
+'Wojciech' 'p6.m' 225 0 32
+'Wojciech' 'p6.m' 228 0 32
+'Wojciech' 'p6.m' 229 0 32
+'Wojciech' 'p6.m' 230 0 32
+'Wojciech' 'p6.m' 231 0 32
+'Wojciech' 'p6.m' 232 0 32
+'Wojciech' 'p6.m' 235 0 32
+'Wojciech' 'p6.m' 236 0 32
+'Wojciech' 'p6.m' 237 0 32
+'Wojciech' 'p6.m' 238 0 32
+'Wojciech' 'p6.m' 239 0 32
+;
+
+param:
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
+'25.Jan' 6 41
+'25.Feb' 42 70
+'25.Mar' 71 101
+'25.Apr' 102 130
+'25.May' 131 164
+;
+
+param:
+EXPPER: PBL PBU :=
+'Alojzy' '25.Jan' 0 800
+'Alojzy' '25.Feb' 0 800
+'Alojzy' '25.Mar' 0 800
+'Alojzy' '25.Apr' 0 800
+'Alojzy' '25.May' 0 800
+'Bartłomiej' '25.Jan' 0 800
+'Bartłomiej' '25.Feb' 0 800
+'Bartłomiej' '25.Mar' 0 800
+'Bartłomiej' '25.Apr' 0 800
+'Bartłomiej' '25.May' 0 800
+'Franciszek' '25.Jan' 0 800
+'Franciszek' '25.Feb' 0 800
+'Franciszek' '25.Mar' 0 800
+'Franciszek' '25.Apr' 0 800
+'Franciszek' '25.May' 0 800
+'Paweł' '25.Jan' 0 800
+'Paweł' '25.Feb' 0 800
+'Paweł' '25.Mar' 0 800
+'Paweł' '25.Apr' 0 800
+'Paweł' '25.May' 0 800
+'Wojciech' '25.Jan' 0 800
+'Wojciech' '25.Feb' 0 800
+'Wojciech' '25.Mar' 0 800
+'Wojciech' '25.Apr' 0 800
+'Wojciech' '25.May' 0 800
+;
 

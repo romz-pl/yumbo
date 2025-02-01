@@ -25,7 +25,7 @@ def plot(task, schedule, bounds):
 def bimg(task, schedule, bounds, mm_hash):
     # Generate task-specific data
     x_task = pd.date_range(start=task.Start, end=task.End, freq="D")
-    y_task = schedule.loc[task.Name, x_task]
+    y_task = schedule.loc[x_task, task.Name]
 
     # Create figure and axis
     fig = matplotlib.figure.Figure(figsize=(glb.bimg("Width"), glb.bimg("Height")), dpi=glb.bimg("Dpi"))

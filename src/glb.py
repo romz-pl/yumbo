@@ -46,22 +46,20 @@ def tomorrow():
     return (today() + datetime.timedelta(days=1))
 
 def last_day():
-    return max(st.session_state.mprob["tasks"]["End"].max(), st.session_state.mprob["invoicing periods"]["End"].max())
+    return max(st.session_state.mprob["task"]["End"].max(), st.session_state.mprob["period"]["End"].max())
 
 
 def math_model_hash(img):
     keys = [
-        "experts",
-        "tasks",
-        "links",
+        "expert",
+        "task",
+        "assign",
         "xbday",
-        "xbsum",
-        "ubday",
-        "ubsum",
-        "expert bounds",
-        "invoicing periods",
-        "invoicing periods bounds",
-        "public holidays",
+        # "ubday",
+        "ebday",
+        "period",
+        "pbsum",
+        "holiday",
         "misc",
         img,
     ]

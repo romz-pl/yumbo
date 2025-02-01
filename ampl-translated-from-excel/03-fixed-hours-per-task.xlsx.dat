@@ -1,479 +1,111 @@
-param HOURS_PER_DAY := 32;
+param MAXWORK := 32;
 
-set EXPERTN :=
+param:
+TNAME: TWORK :=
+'p1' 1600
+'p5' 800
+'p6' 800
+'p13' 800
+'p14' 800
+'p15' 800
+'p20' 800
+'p21' 800
+'p22' 800
+'p23' 800
+'p30' 800
+'p31' 800
+'p32' 800
+'p33' 800
+'p34' 800
+;
+
+set TSCOPE['p1'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75 78 79 80 81 82 85 86 87 88 89 92 93 94 95 96 99 100 101 102 103 106 107 108
+;
+
+set TSCOPE['p5'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75
+;
+
+set TSCOPE['p6'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75 78 79 80 81 82 85 86 87 88 89 92 93 94 95 96 99 100 101 102 103 106 107 108
+;
+
+set TSCOPE['p13'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75
+;
+
+set TSCOPE['p14'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75 78 79 80 81 82 85 86 87 88 89 92 93 94 95 96 99 100 101 102 103 106 107 108
+;
+
+set TSCOPE['p15'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75 78 79 80 81 82 85 86 87 88 89 92 93 94 95 96 99 100 101 102 103 106 107 108 109 110 113 114 115 116 117 120 121 122 123 124 127 128 129 130 131 134 135 136 137 138
+;
+
+set TSCOPE['p20'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75
+;
+
+set TSCOPE['p21'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75 78 79 80 81 82 85 86 87 88 89 92 93 94 95 96 99 100 101 102 103 106 107 108
+;
+
+set TSCOPE['p22'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75 78 79 80 81 82 85 86 87 88 89 92 93 94 95 96 99 100 101 102 103 106 107 108 109 110 113 114 115 116 117 120 121 122 123 124 127 128 129 130 131 134 135 136 137 138
+;
+
+set TSCOPE['p23'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75 78 79 80 81 82 85 86 87 88 89 92 93 94 95 96 99 100 101 102 103 106 107 108 109 110 113 114 115 116 117 120 121 122 123 124 127 128 129 130 131 134 135 136 137 138 141
+142 143 144 145 148 149 150 151 152 155 156 157 158 159 162 163 164 165 166 169
+;
+
+set TSCOPE['p30'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75
+;
+
+set TSCOPE['p31'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75 78 79 80 81 82 85 86 87 88 89 92 93 94 95 96 99 100 101 102 103 106 107 108
+;
+
+set TSCOPE['p32'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75 78 79 80 81 82 85 86 87 88 89 92 93 94 95 96 99 100 101 102 103 106 107 108 109 110 113 114 115 116 117 120 121 122 123 124 127 128 129 130 131 134 135 136 137 138
+;
+
+set TSCOPE['p33'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75 78 79 80 81 82 85 86 87 88 89 92 93 94 95 96 99 100 101 102 103 106 107 108 109 110 113 114 115 116 117 120 121 122 123 124 127 128 129 130 131 134 135 136 137 138 141
+142 143 144 145 148 149 150 151 152 155 156 157 158 159 162 163 164 165 166 169
+;
+
+set TSCOPE['p34'] :=
+1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
+72 73 74 75 78 79 80 81 82 85 86 87 88 89 92 93 94 95 96 99 100 101 102 103 106 107 108 109 110 113 114 115 116 117 120 121 122 123 124 127 128 129 130 131 134 135 136 137 138 141
+142 143 144 145 148 149 150 151 152 155 156 157 158 159 162 163 164 165 166 169 170 171 172 173 176 177 178 179 180 183 184 185 186 187 190 191 192 193 194 197 198 199
+;
+
+set ENAME :=
 'Alojzy'
 'Eugeniusz'
 'Ignacy'
 'Pafnucy'
-'Romuald';
-
-param EBOUND_NO := 0;
-
-param EBOUND:
-1   2   3   4   5 :=
+'Romuald'
 ;
 
-param:
-TASKN: TASKS TASKE TASKW :=
-'p1' 1 108 1600
-'p5' 1 77 800
-'p6' 1 108 800
-'p13' 1 77 800
-'p14' 1 108 800
-'p15' 1 138 800
-'p20' 1 77 800
-'p21' 1 108 800
-'p22' 1 138 800
-'p23' 1 169 800
-'p30' 1 77 800
-'p31' 1 108 800
-'p32' 1 138 800
-'p33' 1 169 800
-'p34' 1 199 800
-;
-
-param:
-PAYROLLN: PAYROLLS PAYROLLE :=
-'25.Jan' 1 31
-'25.Feb' 32 60
-'25.Mar' 61 91
-'25.Apr' 92 120
-'25.May' 121 154;
-
-param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
-;
-
-param OFFDAY_NO := 57;
-
-param OFFDAY :=
-1 6
-2 7
-3 10
-4 13
-5 14
-6 20
-7 21
-8 27
-9 28
-10 34
-11 35
-12 41
-13 42
-14 48
-15 49
-16 55
-17 56
-18 62
-19 63
-20 69
-21 70
-22 76
-23 77
-24 83
-25 84
-26 90
-27 91
-28 97
-29 98
-30 104
-31 105
-32 111
-33 112
-34 118
-35 119
-36 125
-37 126
-38 132
-39 133
-40 139
-41 140
-42 146
-43 147
-44 153
-45 154
-46 160
-47 161
-48 167
-49 168
-50 174
-51 175
-52 181
-53 182
-54 188
-55 189
-56 195
-57 196;
-
-param XBDAY_NO := 345;
-
-param XBDAY:
-1   2   3   4   5 :=
-1 'Alojzy' 'p1' 1 8 8
-2 'Alojzy' 'p1' 2 8 8
-3 'Alojzy' 'p1' 3 8 8
-4 'Alojzy' 'p1' 4 8 8
-5 'Alojzy' 'p1' 5 8 8
-6 'Alojzy' 'p1' 8 8 8
-7 'Alojzy' 'p1' 9 8 8
-8 'Alojzy' 'p1' 11 8 8
-9 'Alojzy' 'p1' 12 8 8
-10 'Alojzy' 'p1' 15 8 8
-11 'Alojzy' 'p1' 16 8 8
-12 'Alojzy' 'p1' 17 8 8
-13 'Alojzy' 'p1' 18 8 8
-14 'Alojzy' 'p1' 19 8 8
-15 'Alojzy' 'p1' 22 8 8
-16 'Alojzy' 'p1' 23 8 8
-17 'Alojzy' 'p1' 24 8 8
-18 'Alojzy' 'p1' 25 8 8
-19 'Alojzy' 'p1' 26 8 8
-20 'Alojzy' 'p1' 29 8 8
-21 'Alojzy' 'p1' 30 8 8
-22 'Alojzy' 'p1' 31 8 8
-23 'Alojzy' 'p1' 32 8 8
-24 'Eugeniusz' 'p5' 1 8 8
-25 'Eugeniusz' 'p5' 2 8 8
-26 'Eugeniusz' 'p5' 3 8 8
-27 'Eugeniusz' 'p5' 4 8 8
-28 'Eugeniusz' 'p5' 5 8 8
-29 'Eugeniusz' 'p5' 8 8 8
-30 'Eugeniusz' 'p5' 9 8 8
-31 'Eugeniusz' 'p5' 11 8 8
-32 'Eugeniusz' 'p5' 12 8 8
-33 'Eugeniusz' 'p5' 15 8 8
-34 'Eugeniusz' 'p5' 16 8 8
-35 'Eugeniusz' 'p5' 17 8 8
-36 'Eugeniusz' 'p5' 18 8 8
-37 'Eugeniusz' 'p5' 19 8 8
-38 'Eugeniusz' 'p5' 22 8 8
-39 'Eugeniusz' 'p5' 23 8 8
-40 'Eugeniusz' 'p5' 24 8 8
-41 'Eugeniusz' 'p5' 25 8 8
-42 'Eugeniusz' 'p5' 26 8 8
-43 'Eugeniusz' 'p5' 29 8 8
-44 'Eugeniusz' 'p5' 30 8 8
-45 'Eugeniusz' 'p5' 31 8 8
-46 'Eugeniusz' 'p5' 32 8 8
-47 'Eugeniusz' 'p6' 1 8 8
-48 'Eugeniusz' 'p6' 2 8 8
-49 'Eugeniusz' 'p6' 3 8 8
-50 'Eugeniusz' 'p6' 4 8 8
-51 'Eugeniusz' 'p6' 5 8 8
-52 'Eugeniusz' 'p6' 8 8 8
-53 'Eugeniusz' 'p6' 9 8 8
-54 'Eugeniusz' 'p6' 11 8 8
-55 'Eugeniusz' 'p6' 12 8 8
-56 'Eugeniusz' 'p6' 15 8 8
-57 'Eugeniusz' 'p6' 16 8 8
-58 'Eugeniusz' 'p6' 17 8 8
-59 'Eugeniusz' 'p6' 18 8 8
-60 'Eugeniusz' 'p6' 19 8 8
-61 'Eugeniusz' 'p6' 22 8 8
-62 'Eugeniusz' 'p6' 23 8 8
-63 'Eugeniusz' 'p6' 24 8 8
-64 'Eugeniusz' 'p6' 25 8 8
-65 'Eugeniusz' 'p6' 26 8 8
-66 'Eugeniusz' 'p6' 29 8 8
-67 'Eugeniusz' 'p6' 30 8 8
-68 'Eugeniusz' 'p6' 31 8 8
-69 'Eugeniusz' 'p6' 32 8 8
-70 'Ignacy' 'p13' 1 8 8
-71 'Ignacy' 'p13' 2 8 8
-72 'Ignacy' 'p13' 3 8 8
-73 'Ignacy' 'p13' 4 8 8
-74 'Ignacy' 'p13' 5 8 8
-75 'Ignacy' 'p13' 8 8 8
-76 'Ignacy' 'p13' 9 8 8
-77 'Ignacy' 'p13' 11 8 8
-78 'Ignacy' 'p13' 12 8 8
-79 'Ignacy' 'p13' 15 8 8
-80 'Ignacy' 'p13' 16 8 8
-81 'Ignacy' 'p13' 17 8 8
-82 'Ignacy' 'p13' 18 8 8
-83 'Ignacy' 'p13' 19 8 8
-84 'Ignacy' 'p13' 22 8 8
-85 'Ignacy' 'p13' 23 8 8
-86 'Ignacy' 'p13' 24 8 8
-87 'Ignacy' 'p13' 25 8 8
-88 'Ignacy' 'p13' 26 8 8
-89 'Ignacy' 'p13' 29 8 8
-90 'Ignacy' 'p13' 30 8 8
-91 'Ignacy' 'p13' 31 8 8
-92 'Ignacy' 'p13' 32 8 8
-93 'Ignacy' 'p14' 1 8 8
-94 'Ignacy' 'p14' 2 8 8
-95 'Ignacy' 'p14' 3 8 8
-96 'Ignacy' 'p14' 4 8 8
-97 'Ignacy' 'p14' 5 8 8
-98 'Ignacy' 'p14' 8 8 8
-99 'Ignacy' 'p14' 9 8 8
-100 'Ignacy' 'p14' 11 8 8
-101 'Ignacy' 'p14' 12 8 8
-102 'Ignacy' 'p14' 15 8 8
-103 'Ignacy' 'p14' 16 8 8
-104 'Ignacy' 'p14' 17 8 8
-105 'Ignacy' 'p14' 18 8 8
-106 'Ignacy' 'p14' 19 8 8
-107 'Ignacy' 'p14' 22 8 8
-108 'Ignacy' 'p14' 23 8 8
-109 'Ignacy' 'p14' 24 8 8
-110 'Ignacy' 'p14' 25 8 8
-111 'Ignacy' 'p14' 26 8 8
-112 'Ignacy' 'p14' 29 8 8
-113 'Ignacy' 'p14' 30 8 8
-114 'Ignacy' 'p14' 31 8 8
-115 'Ignacy' 'p14' 32 8 8
-116 'Ignacy' 'p15' 1 8 8
-117 'Ignacy' 'p15' 2 8 8
-118 'Ignacy' 'p15' 3 8 8
-119 'Ignacy' 'p15' 4 8 8
-120 'Ignacy' 'p15' 5 8 8
-121 'Ignacy' 'p15' 8 8 8
-122 'Ignacy' 'p15' 9 8 8
-123 'Ignacy' 'p15' 11 8 8
-124 'Ignacy' 'p15' 12 8 8
-125 'Ignacy' 'p15' 15 8 8
-126 'Ignacy' 'p15' 16 8 8
-127 'Ignacy' 'p15' 17 8 8
-128 'Ignacy' 'p15' 18 8 8
-129 'Ignacy' 'p15' 19 8 8
-130 'Ignacy' 'p15' 22 8 8
-131 'Ignacy' 'p15' 23 8 8
-132 'Ignacy' 'p15' 24 8 8
-133 'Ignacy' 'p15' 25 8 8
-134 'Ignacy' 'p15' 26 8 8
-135 'Ignacy' 'p15' 29 8 8
-136 'Ignacy' 'p15' 30 8 8
-137 'Ignacy' 'p15' 31 8 8
-138 'Ignacy' 'p15' 32 8 8
-139 'Pafnucy' 'p20' 1 8 8
-140 'Pafnucy' 'p20' 2 8 8
-141 'Pafnucy' 'p20' 3 8 8
-142 'Pafnucy' 'p20' 4 8 8
-143 'Pafnucy' 'p20' 5 8 8
-144 'Pafnucy' 'p20' 8 8 8
-145 'Pafnucy' 'p20' 9 8 8
-146 'Pafnucy' 'p20' 11 8 8
-147 'Pafnucy' 'p20' 12 8 8
-148 'Pafnucy' 'p20' 15 8 8
-149 'Pafnucy' 'p20' 16 8 8
-150 'Pafnucy' 'p20' 17 8 8
-151 'Pafnucy' 'p20' 18 8 8
-152 'Pafnucy' 'p20' 19 8 8
-153 'Pafnucy' 'p20' 22 8 8
-154 'Pafnucy' 'p20' 23 8 8
-155 'Pafnucy' 'p20' 24 8 8
-156 'Pafnucy' 'p20' 25 8 8
-157 'Pafnucy' 'p20' 26 8 8
-158 'Pafnucy' 'p20' 29 8 8
-159 'Pafnucy' 'p20' 30 8 8
-160 'Pafnucy' 'p20' 31 8 8
-161 'Pafnucy' 'p20' 32 8 8
-162 'Pafnucy' 'p21' 1 8 8
-163 'Pafnucy' 'p21' 2 8 8
-164 'Pafnucy' 'p21' 3 8 8
-165 'Pafnucy' 'p21' 4 8 8
-166 'Pafnucy' 'p21' 5 8 8
-167 'Pafnucy' 'p21' 8 8 8
-168 'Pafnucy' 'p21' 9 8 8
-169 'Pafnucy' 'p21' 11 8 8
-170 'Pafnucy' 'p21' 12 8 8
-171 'Pafnucy' 'p21' 15 8 8
-172 'Pafnucy' 'p21' 16 8 8
-173 'Pafnucy' 'p21' 17 8 8
-174 'Pafnucy' 'p21' 18 8 8
-175 'Pafnucy' 'p21' 19 8 8
-176 'Pafnucy' 'p21' 22 8 8
-177 'Pafnucy' 'p21' 23 8 8
-178 'Pafnucy' 'p21' 24 8 8
-179 'Pafnucy' 'p21' 25 8 8
-180 'Pafnucy' 'p21' 26 8 8
-181 'Pafnucy' 'p21' 29 8 8
-182 'Pafnucy' 'p21' 30 8 8
-183 'Pafnucy' 'p21' 31 8 8
-184 'Pafnucy' 'p21' 32 8 8
-185 'Pafnucy' 'p22' 1 8 8
-186 'Pafnucy' 'p22' 2 8 8
-187 'Pafnucy' 'p22' 3 8 8
-188 'Pafnucy' 'p22' 4 8 8
-189 'Pafnucy' 'p22' 5 8 8
-190 'Pafnucy' 'p22' 8 8 8
-191 'Pafnucy' 'p22' 9 8 8
-192 'Pafnucy' 'p22' 11 8 8
-193 'Pafnucy' 'p22' 12 8 8
-194 'Pafnucy' 'p22' 15 8 8
-195 'Pafnucy' 'p22' 16 8 8
-196 'Pafnucy' 'p22' 17 8 8
-197 'Pafnucy' 'p22' 18 8 8
-198 'Pafnucy' 'p22' 19 8 8
-199 'Pafnucy' 'p22' 22 8 8
-200 'Pafnucy' 'p22' 23 8 8
-201 'Pafnucy' 'p22' 24 8 8
-202 'Pafnucy' 'p22' 25 8 8
-203 'Pafnucy' 'p22' 26 8 8
-204 'Pafnucy' 'p22' 29 8 8
-205 'Pafnucy' 'p22' 30 8 8
-206 'Pafnucy' 'p22' 31 8 8
-207 'Pafnucy' 'p22' 32 8 8
-208 'Pafnucy' 'p23' 1 8 8
-209 'Pafnucy' 'p23' 2 8 8
-210 'Pafnucy' 'p23' 3 8 8
-211 'Pafnucy' 'p23' 4 8 8
-212 'Pafnucy' 'p23' 5 8 8
-213 'Pafnucy' 'p23' 8 8 8
-214 'Pafnucy' 'p23' 9 8 8
-215 'Pafnucy' 'p23' 11 8 8
-216 'Pafnucy' 'p23' 12 8 8
-217 'Pafnucy' 'p23' 15 8 8
-218 'Pafnucy' 'p23' 16 8 8
-219 'Pafnucy' 'p23' 17 8 8
-220 'Pafnucy' 'p23' 18 8 8
-221 'Pafnucy' 'p23' 19 8 8
-222 'Pafnucy' 'p23' 22 8 8
-223 'Pafnucy' 'p23' 23 8 8
-224 'Pafnucy' 'p23' 24 8 8
-225 'Pafnucy' 'p23' 25 8 8
-226 'Pafnucy' 'p23' 26 8 8
-227 'Pafnucy' 'p23' 29 8 8
-228 'Pafnucy' 'p23' 30 8 8
-229 'Pafnucy' 'p23' 31 8 8
-230 'Pafnucy' 'p23' 32 8 8
-231 'Romuald' 'p30' 1 4 4
-232 'Romuald' 'p30' 2 4 4
-233 'Romuald' 'p30' 3 4 4
-234 'Romuald' 'p30' 4 4 4
-235 'Romuald' 'p30' 5 4 4
-236 'Romuald' 'p30' 8 4 4
-237 'Romuald' 'p30' 9 4 4
-238 'Romuald' 'p30' 11 4 4
-239 'Romuald' 'p30' 12 4 4
-240 'Romuald' 'p30' 15 4 4
-241 'Romuald' 'p30' 16 4 4
-242 'Romuald' 'p30' 17 4 4
-243 'Romuald' 'p30' 18 4 4
-244 'Romuald' 'p30' 19 4 4
-245 'Romuald' 'p30' 22 4 4
-246 'Romuald' 'p30' 23 4 4
-247 'Romuald' 'p30' 24 4 4
-248 'Romuald' 'p30' 25 4 4
-249 'Romuald' 'p30' 26 4 4
-250 'Romuald' 'p30' 29 4 4
-251 'Romuald' 'p30' 30 4 4
-252 'Romuald' 'p30' 31 4 4
-253 'Romuald' 'p30' 32 4 4
-254 'Romuald' 'p31' 1 4 4
-255 'Romuald' 'p31' 2 4 4
-256 'Romuald' 'p31' 3 4 4
-257 'Romuald' 'p31' 4 4 4
-258 'Romuald' 'p31' 5 4 4
-259 'Romuald' 'p31' 8 4 4
-260 'Romuald' 'p31' 9 4 4
-261 'Romuald' 'p31' 11 4 4
-262 'Romuald' 'p31' 12 4 4
-263 'Romuald' 'p31' 15 4 4
-264 'Romuald' 'p31' 16 4 4
-265 'Romuald' 'p31' 17 4 4
-266 'Romuald' 'p31' 18 4 4
-267 'Romuald' 'p31' 19 4 4
-268 'Romuald' 'p31' 22 4 4
-269 'Romuald' 'p31' 23 4 4
-270 'Romuald' 'p31' 24 4 4
-271 'Romuald' 'p31' 25 4 4
-272 'Romuald' 'p31' 26 4 4
-273 'Romuald' 'p31' 29 4 4
-274 'Romuald' 'p31' 30 4 4
-275 'Romuald' 'p31' 31 4 4
-276 'Romuald' 'p31' 32 4 4
-277 'Romuald' 'p32' 1 8 8
-278 'Romuald' 'p32' 2 8 8
-279 'Romuald' 'p32' 3 8 8
-280 'Romuald' 'p32' 4 8 8
-281 'Romuald' 'p32' 5 8 8
-282 'Romuald' 'p32' 8 8 8
-283 'Romuald' 'p32' 9 8 8
-284 'Romuald' 'p32' 11 8 8
-285 'Romuald' 'p32' 12 8 8
-286 'Romuald' 'p32' 15 8 8
-287 'Romuald' 'p32' 16 8 8
-288 'Romuald' 'p32' 17 8 8
-289 'Romuald' 'p32' 18 8 8
-290 'Romuald' 'p32' 19 8 8
-291 'Romuald' 'p32' 22 8 8
-292 'Romuald' 'p32' 23 8 8
-293 'Romuald' 'p32' 24 8 8
-294 'Romuald' 'p32' 25 8 8
-295 'Romuald' 'p32' 26 8 8
-296 'Romuald' 'p32' 29 8 8
-297 'Romuald' 'p32' 30 8 8
-298 'Romuald' 'p32' 31 8 8
-299 'Romuald' 'p32' 32 8 8
-300 'Romuald' 'p33' 1 8 8
-301 'Romuald' 'p33' 2 8 8
-302 'Romuald' 'p33' 3 8 8
-303 'Romuald' 'p33' 4 8 8
-304 'Romuald' 'p33' 5 8 8
-305 'Romuald' 'p33' 8 8 8
-306 'Romuald' 'p33' 9 8 8
-307 'Romuald' 'p33' 11 8 8
-308 'Romuald' 'p33' 12 8 8
-309 'Romuald' 'p33' 15 8 8
-310 'Romuald' 'p33' 16 8 8
-311 'Romuald' 'p33' 17 8 8
-312 'Romuald' 'p33' 18 8 8
-313 'Romuald' 'p33' 19 8 8
-314 'Romuald' 'p33' 22 8 8
-315 'Romuald' 'p33' 23 8 8
-316 'Romuald' 'p33' 24 8 8
-317 'Romuald' 'p33' 25 8 8
-318 'Romuald' 'p33' 26 8 8
-319 'Romuald' 'p33' 29 8 8
-320 'Romuald' 'p33' 30 8 8
-321 'Romuald' 'p33' 31 8 8
-322 'Romuald' 'p33' 32 8 8
-323 'Romuald' 'p34' 1 8 8
-324 'Romuald' 'p34' 2 8 8
-325 'Romuald' 'p34' 3 8 8
-326 'Romuald' 'p34' 4 8 8
-327 'Romuald' 'p34' 5 8 8
-328 'Romuald' 'p34' 8 8 8
-329 'Romuald' 'p34' 9 8 8
-330 'Romuald' 'p34' 11 8 8
-331 'Romuald' 'p34' 12 8 8
-332 'Romuald' 'p34' 15 8 8
-333 'Romuald' 'p34' 16 8 8
-334 'Romuald' 'p34' 17 8 8
-335 'Romuald' 'p34' 18 8 8
-336 'Romuald' 'p34' 19 8 8
-337 'Romuald' 'p34' 22 8 8
-338 'Romuald' 'p34' 23 8 8
-339 'Romuald' 'p34' 24 8 8
-340 'Romuald' 'p34' 25 8 8
-341 'Romuald' 'p34' 26 8 8
-342 'Romuald' 'p34' 29 8 8
-343 'Romuald' 'p34' 30 8 8
-344 'Romuald' 'p34' 31 8 8
-345 'Romuald' 'p34' 32 8 8;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
-;
-
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
-;
-
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
-;
-
-set LINKS :=
+set ASSIGN :=
 'Alojzy' 'p1'
 'Eugeniusz' 'p5'
 'Eugeniusz' 'p6'
@@ -488,5 +120,378 @@ set LINKS :=
 'Romuald' 'p31'
 'Romuald' 'p32'
 'Romuald' 'p33'
-'Romuald' 'p34';
+'Romuald' 'p34'
+;
+
+param:
+XBID: XBL XBU :=
+'Alojzy' 'p1' 1 8 8
+'Alojzy' 'p1' 2 8 8
+'Alojzy' 'p1' 3 8 8
+'Alojzy' 'p1' 4 8 8
+'Alojzy' 'p1' 5 8 8
+'Alojzy' 'p1' 8 8 8
+'Alojzy' 'p1' 9 8 8
+'Alojzy' 'p1' 11 8 8
+'Alojzy' 'p1' 12 8 8
+'Alojzy' 'p1' 15 8 8
+'Alojzy' 'p1' 16 8 8
+'Alojzy' 'p1' 17 8 8
+'Alojzy' 'p1' 18 8 8
+'Alojzy' 'p1' 19 8 8
+'Alojzy' 'p1' 22 8 8
+'Alojzy' 'p1' 23 8 8
+'Alojzy' 'p1' 24 8 8
+'Alojzy' 'p1' 25 8 8
+'Alojzy' 'p1' 26 8 8
+'Alojzy' 'p1' 29 8 8
+'Alojzy' 'p1' 30 8 8
+'Alojzy' 'p1' 31 8 8
+'Alojzy' 'p1' 32 8 8
+'Eugeniusz' 'p5' 1 8 8
+'Eugeniusz' 'p5' 2 8 8
+'Eugeniusz' 'p5' 3 8 8
+'Eugeniusz' 'p5' 4 8 8
+'Eugeniusz' 'p5' 5 8 8
+'Eugeniusz' 'p5' 8 8 8
+'Eugeniusz' 'p5' 9 8 8
+'Eugeniusz' 'p5' 11 8 8
+'Eugeniusz' 'p5' 12 8 8
+'Eugeniusz' 'p5' 15 8 8
+'Eugeniusz' 'p5' 16 8 8
+'Eugeniusz' 'p5' 17 8 8
+'Eugeniusz' 'p5' 18 8 8
+'Eugeniusz' 'p5' 19 8 8
+'Eugeniusz' 'p5' 22 8 8
+'Eugeniusz' 'p5' 23 8 8
+'Eugeniusz' 'p5' 24 8 8
+'Eugeniusz' 'p5' 25 8 8
+'Eugeniusz' 'p5' 26 8 8
+'Eugeniusz' 'p5' 29 8 8
+'Eugeniusz' 'p5' 30 8 8
+'Eugeniusz' 'p5' 31 8 8
+'Eugeniusz' 'p5' 32 8 8
+'Eugeniusz' 'p6' 1 8 8
+'Eugeniusz' 'p6' 2 8 8
+'Eugeniusz' 'p6' 3 8 8
+'Eugeniusz' 'p6' 4 8 8
+'Eugeniusz' 'p6' 5 8 8
+'Eugeniusz' 'p6' 8 8 8
+'Eugeniusz' 'p6' 9 8 8
+'Eugeniusz' 'p6' 11 8 8
+'Eugeniusz' 'p6' 12 8 8
+'Eugeniusz' 'p6' 15 8 8
+'Eugeniusz' 'p6' 16 8 8
+'Eugeniusz' 'p6' 17 8 8
+'Eugeniusz' 'p6' 18 8 8
+'Eugeniusz' 'p6' 19 8 8
+'Eugeniusz' 'p6' 22 8 8
+'Eugeniusz' 'p6' 23 8 8
+'Eugeniusz' 'p6' 24 8 8
+'Eugeniusz' 'p6' 25 8 8
+'Eugeniusz' 'p6' 26 8 8
+'Eugeniusz' 'p6' 29 8 8
+'Eugeniusz' 'p6' 30 8 8
+'Eugeniusz' 'p6' 31 8 8
+'Eugeniusz' 'p6' 32 8 8
+'Ignacy' 'p13' 1 8 8
+'Ignacy' 'p13' 2 8 8
+'Ignacy' 'p13' 3 8 8
+'Ignacy' 'p13' 4 8 8
+'Ignacy' 'p13' 5 8 8
+'Ignacy' 'p13' 8 8 8
+'Ignacy' 'p13' 9 8 8
+'Ignacy' 'p13' 11 8 8
+'Ignacy' 'p13' 12 8 8
+'Ignacy' 'p13' 15 8 8
+'Ignacy' 'p13' 16 8 8
+'Ignacy' 'p13' 17 8 8
+'Ignacy' 'p13' 18 8 8
+'Ignacy' 'p13' 19 8 8
+'Ignacy' 'p13' 22 8 8
+'Ignacy' 'p13' 23 8 8
+'Ignacy' 'p13' 24 8 8
+'Ignacy' 'p13' 25 8 8
+'Ignacy' 'p13' 26 8 8
+'Ignacy' 'p13' 29 8 8
+'Ignacy' 'p13' 30 8 8
+'Ignacy' 'p13' 31 8 8
+'Ignacy' 'p13' 32 8 8
+'Ignacy' 'p14' 1 8 8
+'Ignacy' 'p14' 2 8 8
+'Ignacy' 'p14' 3 8 8
+'Ignacy' 'p14' 4 8 8
+'Ignacy' 'p14' 5 8 8
+'Ignacy' 'p14' 8 8 8
+'Ignacy' 'p14' 9 8 8
+'Ignacy' 'p14' 11 8 8
+'Ignacy' 'p14' 12 8 8
+'Ignacy' 'p14' 15 8 8
+'Ignacy' 'p14' 16 8 8
+'Ignacy' 'p14' 17 8 8
+'Ignacy' 'p14' 18 8 8
+'Ignacy' 'p14' 19 8 8
+'Ignacy' 'p14' 22 8 8
+'Ignacy' 'p14' 23 8 8
+'Ignacy' 'p14' 24 8 8
+'Ignacy' 'p14' 25 8 8
+'Ignacy' 'p14' 26 8 8
+'Ignacy' 'p14' 29 8 8
+'Ignacy' 'p14' 30 8 8
+'Ignacy' 'p14' 31 8 8
+'Ignacy' 'p14' 32 8 8
+'Ignacy' 'p15' 1 8 8
+'Ignacy' 'p15' 2 8 8
+'Ignacy' 'p15' 3 8 8
+'Ignacy' 'p15' 4 8 8
+'Ignacy' 'p15' 5 8 8
+'Ignacy' 'p15' 8 8 8
+'Ignacy' 'p15' 9 8 8
+'Ignacy' 'p15' 11 8 8
+'Ignacy' 'p15' 12 8 8
+'Ignacy' 'p15' 15 8 8
+'Ignacy' 'p15' 16 8 8
+'Ignacy' 'p15' 17 8 8
+'Ignacy' 'p15' 18 8 8
+'Ignacy' 'p15' 19 8 8
+'Ignacy' 'p15' 22 8 8
+'Ignacy' 'p15' 23 8 8
+'Ignacy' 'p15' 24 8 8
+'Ignacy' 'p15' 25 8 8
+'Ignacy' 'p15' 26 8 8
+'Ignacy' 'p15' 29 8 8
+'Ignacy' 'p15' 30 8 8
+'Ignacy' 'p15' 31 8 8
+'Ignacy' 'p15' 32 8 8
+'Pafnucy' 'p20' 1 8 8
+'Pafnucy' 'p20' 2 8 8
+'Pafnucy' 'p20' 3 8 8
+'Pafnucy' 'p20' 4 8 8
+'Pafnucy' 'p20' 5 8 8
+'Pafnucy' 'p20' 8 8 8
+'Pafnucy' 'p20' 9 8 8
+'Pafnucy' 'p20' 11 8 8
+'Pafnucy' 'p20' 12 8 8
+'Pafnucy' 'p20' 15 8 8
+'Pafnucy' 'p20' 16 8 8
+'Pafnucy' 'p20' 17 8 8
+'Pafnucy' 'p20' 18 8 8
+'Pafnucy' 'p20' 19 8 8
+'Pafnucy' 'p20' 22 8 8
+'Pafnucy' 'p20' 23 8 8
+'Pafnucy' 'p20' 24 8 8
+'Pafnucy' 'p20' 25 8 8
+'Pafnucy' 'p20' 26 8 8
+'Pafnucy' 'p20' 29 8 8
+'Pafnucy' 'p20' 30 8 8
+'Pafnucy' 'p20' 31 8 8
+'Pafnucy' 'p20' 32 8 8
+'Pafnucy' 'p21' 1 8 8
+'Pafnucy' 'p21' 2 8 8
+'Pafnucy' 'p21' 3 8 8
+'Pafnucy' 'p21' 4 8 8
+'Pafnucy' 'p21' 5 8 8
+'Pafnucy' 'p21' 8 8 8
+'Pafnucy' 'p21' 9 8 8
+'Pafnucy' 'p21' 11 8 8
+'Pafnucy' 'p21' 12 8 8
+'Pafnucy' 'p21' 15 8 8
+'Pafnucy' 'p21' 16 8 8
+'Pafnucy' 'p21' 17 8 8
+'Pafnucy' 'p21' 18 8 8
+'Pafnucy' 'p21' 19 8 8
+'Pafnucy' 'p21' 22 8 8
+'Pafnucy' 'p21' 23 8 8
+'Pafnucy' 'p21' 24 8 8
+'Pafnucy' 'p21' 25 8 8
+'Pafnucy' 'p21' 26 8 8
+'Pafnucy' 'p21' 29 8 8
+'Pafnucy' 'p21' 30 8 8
+'Pafnucy' 'p21' 31 8 8
+'Pafnucy' 'p21' 32 8 8
+'Pafnucy' 'p22' 1 8 8
+'Pafnucy' 'p22' 2 8 8
+'Pafnucy' 'p22' 3 8 8
+'Pafnucy' 'p22' 4 8 8
+'Pafnucy' 'p22' 5 8 8
+'Pafnucy' 'p22' 8 8 8
+'Pafnucy' 'p22' 9 8 8
+'Pafnucy' 'p22' 11 8 8
+'Pafnucy' 'p22' 12 8 8
+'Pafnucy' 'p22' 15 8 8
+'Pafnucy' 'p22' 16 8 8
+'Pafnucy' 'p22' 17 8 8
+'Pafnucy' 'p22' 18 8 8
+'Pafnucy' 'p22' 19 8 8
+'Pafnucy' 'p22' 22 8 8
+'Pafnucy' 'p22' 23 8 8
+'Pafnucy' 'p22' 24 8 8
+'Pafnucy' 'p22' 25 8 8
+'Pafnucy' 'p22' 26 8 8
+'Pafnucy' 'p22' 29 8 8
+'Pafnucy' 'p22' 30 8 8
+'Pafnucy' 'p22' 31 8 8
+'Pafnucy' 'p22' 32 8 8
+'Pafnucy' 'p23' 1 8 8
+'Pafnucy' 'p23' 2 8 8
+'Pafnucy' 'p23' 3 8 8
+'Pafnucy' 'p23' 4 8 8
+'Pafnucy' 'p23' 5 8 8
+'Pafnucy' 'p23' 8 8 8
+'Pafnucy' 'p23' 9 8 8
+'Pafnucy' 'p23' 11 8 8
+'Pafnucy' 'p23' 12 8 8
+'Pafnucy' 'p23' 15 8 8
+'Pafnucy' 'p23' 16 8 8
+'Pafnucy' 'p23' 17 8 8
+'Pafnucy' 'p23' 18 8 8
+'Pafnucy' 'p23' 19 8 8
+'Pafnucy' 'p23' 22 8 8
+'Pafnucy' 'p23' 23 8 8
+'Pafnucy' 'p23' 24 8 8
+'Pafnucy' 'p23' 25 8 8
+'Pafnucy' 'p23' 26 8 8
+'Pafnucy' 'p23' 29 8 8
+'Pafnucy' 'p23' 30 8 8
+'Pafnucy' 'p23' 31 8 8
+'Pafnucy' 'p23' 32 8 8
+'Romuald' 'p30' 1 4 4
+'Romuald' 'p30' 2 4 4
+'Romuald' 'p30' 3 4 4
+'Romuald' 'p30' 4 4 4
+'Romuald' 'p30' 5 4 4
+'Romuald' 'p30' 8 4 4
+'Romuald' 'p30' 9 4 4
+'Romuald' 'p30' 11 4 4
+'Romuald' 'p30' 12 4 4
+'Romuald' 'p30' 15 4 4
+'Romuald' 'p30' 16 4 4
+'Romuald' 'p30' 17 4 4
+'Romuald' 'p30' 18 4 4
+'Romuald' 'p30' 19 4 4
+'Romuald' 'p30' 22 4 4
+'Romuald' 'p30' 23 4 4
+'Romuald' 'p30' 24 4 4
+'Romuald' 'p30' 25 4 4
+'Romuald' 'p30' 26 4 4
+'Romuald' 'p30' 29 4 4
+'Romuald' 'p30' 30 4 4
+'Romuald' 'p30' 31 4 4
+'Romuald' 'p30' 32 4 4
+'Romuald' 'p31' 1 4 4
+'Romuald' 'p31' 2 4 4
+'Romuald' 'p31' 3 4 4
+'Romuald' 'p31' 4 4 4
+'Romuald' 'p31' 5 4 4
+'Romuald' 'p31' 8 4 4
+'Romuald' 'p31' 9 4 4
+'Romuald' 'p31' 11 4 4
+'Romuald' 'p31' 12 4 4
+'Romuald' 'p31' 15 4 4
+'Romuald' 'p31' 16 4 4
+'Romuald' 'p31' 17 4 4
+'Romuald' 'p31' 18 4 4
+'Romuald' 'p31' 19 4 4
+'Romuald' 'p31' 22 4 4
+'Romuald' 'p31' 23 4 4
+'Romuald' 'p31' 24 4 4
+'Romuald' 'p31' 25 4 4
+'Romuald' 'p31' 26 4 4
+'Romuald' 'p31' 29 4 4
+'Romuald' 'p31' 30 4 4
+'Romuald' 'p31' 31 4 4
+'Romuald' 'p31' 32 4 4
+'Romuald' 'p32' 1 8 8
+'Romuald' 'p32' 2 8 8
+'Romuald' 'p32' 3 8 8
+'Romuald' 'p32' 4 8 8
+'Romuald' 'p32' 5 8 8
+'Romuald' 'p32' 8 8 8
+'Romuald' 'p32' 9 8 8
+'Romuald' 'p32' 11 8 8
+'Romuald' 'p32' 12 8 8
+'Romuald' 'p32' 15 8 8
+'Romuald' 'p32' 16 8 8
+'Romuald' 'p32' 17 8 8
+'Romuald' 'p32' 18 8 8
+'Romuald' 'p32' 19 8 8
+'Romuald' 'p32' 22 8 8
+'Romuald' 'p32' 23 8 8
+'Romuald' 'p32' 24 8 8
+'Romuald' 'p32' 25 8 8
+'Romuald' 'p32' 26 8 8
+'Romuald' 'p32' 29 8 8
+'Romuald' 'p32' 30 8 8
+'Romuald' 'p32' 31 8 8
+'Romuald' 'p32' 32 8 8
+'Romuald' 'p33' 1 8 8
+'Romuald' 'p33' 2 8 8
+'Romuald' 'p33' 3 8 8
+'Romuald' 'p33' 4 8 8
+'Romuald' 'p33' 5 8 8
+'Romuald' 'p33' 8 8 8
+'Romuald' 'p33' 9 8 8
+'Romuald' 'p33' 11 8 8
+'Romuald' 'p33' 12 8 8
+'Romuald' 'p33' 15 8 8
+'Romuald' 'p33' 16 8 8
+'Romuald' 'p33' 17 8 8
+'Romuald' 'p33' 18 8 8
+'Romuald' 'p33' 19 8 8
+'Romuald' 'p33' 22 8 8
+'Romuald' 'p33' 23 8 8
+'Romuald' 'p33' 24 8 8
+'Romuald' 'p33' 25 8 8
+'Romuald' 'p33' 26 8 8
+'Romuald' 'p33' 29 8 8
+'Romuald' 'p33' 30 8 8
+'Romuald' 'p33' 31 8 8
+'Romuald' 'p33' 32 8 8
+'Romuald' 'p34' 1 8 8
+'Romuald' 'p34' 2 8 8
+'Romuald' 'p34' 3 8 8
+'Romuald' 'p34' 4 8 8
+'Romuald' 'p34' 5 8 8
+'Romuald' 'p34' 8 8 8
+'Romuald' 'p34' 9 8 8
+'Romuald' 'p34' 11 8 8
+'Romuald' 'p34' 12 8 8
+'Romuald' 'p34' 15 8 8
+'Romuald' 'p34' 16 8 8
+'Romuald' 'p34' 17 8 8
+'Romuald' 'p34' 18 8 8
+'Romuald' 'p34' 19 8 8
+'Romuald' 'p34' 22 8 8
+'Romuald' 'p34' 23 8 8
+'Romuald' 'p34' 24 8 8
+'Romuald' 'p34' 25 8 8
+'Romuald' 'p34' 26 8 8
+'Romuald' 'p34' 29 8 8
+'Romuald' 'p34' 30 8 8
+'Romuald' 'p34' 31 8 8
+'Romuald' 'p34' 32 8 8
+;
+
+param:
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
+'25.Jan' 1 31
+'25.Feb' 32 60
+'25.Mar' 61 91
+'25.Apr' 92 120
+'25.May' 121 154
+;
+
+param:
+EXPPER: PBL PBU :=
+'Alojzy' '25.Jan' 0 800
+'Eugeniusz' '25.Jan' 0 800
+'Ignacy' '25.Jan' 0 800
+'Pafnucy' '25.Jan' 0 800
+'Romuald' '25.Jan' 0 800
+;
 

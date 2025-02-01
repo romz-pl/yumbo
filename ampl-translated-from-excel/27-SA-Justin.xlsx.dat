@@ -1,26 +1,231 @@
-param HOURS_PER_DAY := 32;
+param MAXWORK := 32;
 
-set EXPERTN :=
-'SA.Justin';
+param:
+TNAME: TWORK :=
+'india2.sm' 40
+'india2.sf' 40
+'juliet2.sm' 80
+'juliet2.sf' 60
+'lima2.sm' 40
+'lima2.sf' 40
+;
 
-param EBOUND_NO := 0;
+set TSCOPE['india2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77
+;
 
-param EBOUND:
-1   2   3   4   5 :=
+set TSCOPE['india2.sf'] :=
+78 79 80 81 84 85
+;
+
+set TSCOPE['juliet2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81
+;
+
+set TSCOPE['juliet2.sf'] :=
+84 85 86 87 88 91 92
+;
+
+set TSCOPE['lima2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57
+;
+
+set TSCOPE['lima2.sf'] :=
+58 59 60 63
+;
+
+set ENAME :=
+'SA.Justin'
+;
+
+set ASSIGN :=
+'SA.Justin' 'india2.sf'
+'SA.Justin' 'india2.sm'
+'SA.Justin' 'juliet2.sf'
+'SA.Justin' 'juliet2.sm'
+'SA.Justin' 'lima2.sf'
+'SA.Justin' 'lima2.sm'
 ;
 
 param:
-TASKN: TASKS TASKE TASKW :=
-'india2.sm' 2 77 40
-'india2.sf' 78 85 40
-'juliet2.sm' 2 82 80
-'juliet2.sf' 83 92 60
-'lima2.sm' 2 57 40
-'lima2.sf' 58 63 40
+XBID: XBL XBU :=
+'SA.Justin' 'india2.sm' 3 0.0 1.0
+'SA.Justin' 'india2.sm' 4 0.0 1.0
+'SA.Justin' 'india2.sm' 7 0.0 1.0
+'SA.Justin' 'india2.sm' 8 0.0 1.0
+'SA.Justin' 'india2.sm' 9 0.0 1.0
+'SA.Justin' 'india2.sm' 10 0.0 1.0
+'SA.Justin' 'india2.sm' 11 0.0 1.0
+'SA.Justin' 'india2.sm' 14 0.0 1.0
+'SA.Justin' 'india2.sm' 15 0.0 1.0
+'SA.Justin' 'india2.sm' 16 0.0 1.0
+'SA.Justin' 'india2.sm' 17 0.0 1.0
+'SA.Justin' 'india2.sm' 18 0.0 1.0
+'SA.Justin' 'india2.sm' 21 0.0 1.0
+'SA.Justin' 'india2.sm' 22 0.0 1.0
+'SA.Justin' 'india2.sm' 23 0.0 1.0
+'SA.Justin' 'india2.sm' 24 0.0 1.0
+'SA.Justin' 'india2.sm' 25 0.0 1.0
+'SA.Justin' 'india2.sm' 28 0.0 1.0
+'SA.Justin' 'india2.sm' 29 0.0 1.0
+'SA.Justin' 'india2.sm' 30 0.0 1.0
+'SA.Justin' 'india2.sm' 31 0.0 1.0
+'SA.Justin' 'india2.sm' 32 0.0 1.0
+'SA.Justin' 'india2.sm' 35 0.0 1.0
+'SA.Justin' 'india2.sm' 36 0.0 1.0
+'SA.Justin' 'india2.sm' 37 0.0 1.0
+'SA.Justin' 'india2.sm' 38 0.0 1.0
+'SA.Justin' 'india2.sm' 39 0.0 1.0
+'SA.Justin' 'india2.sm' 42 0.0 1.0
+'SA.Justin' 'india2.sm' 43 0.0 1.0
+'SA.Justin' 'india2.sm' 44 0.0 1.0
+'SA.Justin' 'india2.sm' 45 0.0 1.0
+'SA.Justin' 'india2.sm' 46 0.0 1.0
+'SA.Justin' 'india2.sm' 49 0.0 1.0
+'SA.Justin' 'india2.sm' 50 0.0 1.0
+'SA.Justin' 'india2.sm' 51 0.0 1.0
+'SA.Justin' 'india2.sm' 52 0.0 1.0
+'SA.Justin' 'india2.sm' 53 0.0 1.0
+'SA.Justin' 'india2.sm' 56 0.0 1.0
+'SA.Justin' 'india2.sm' 57 0.0 1.0
+'SA.Justin' 'india2.sm' 58 0.0 1.0
+'SA.Justin' 'india2.sm' 59 0.0 1.0
+'SA.Justin' 'india2.sm' 60 0.0 1.0
+'SA.Justin' 'india2.sm' 63 0.0 1.0
+'SA.Justin' 'india2.sm' 64 0.0 1.0
+'SA.Justin' 'india2.sm' 65 0.0 1.0
+'SA.Justin' 'india2.sm' 66 0.0 1.0
+'SA.Justin' 'india2.sm' 67 0.0 1.0
+'SA.Justin' 'india2.sm' 70 0.0 1.0
+'SA.Justin' 'india2.sm' 71 0.0 1.0
+'SA.Justin' 'india2.sm' 72 0.0 1.0
+'SA.Justin' 'india2.sm' 73 0.0 1.0
+'SA.Justin' 'india2.sm' 74 0.0 1.0
+'SA.Justin' 'india2.sm' 77 0.0 1.0
+'SA.Justin' 'india2.sf' 78 6.0 7.0
+'SA.Justin' 'india2.sf' 79 6.0 7.0
+'SA.Justin' 'india2.sf' 80 6.0 7.0
+'SA.Justin' 'india2.sf' 81 6.0 7.0
+'SA.Justin' 'india2.sf' 84 6.0 7.0
+'SA.Justin' 'india2.sf' 85 6.0 7.0
+'SA.Justin' 'juliet2.sm' 3 1.0 2.0
+'SA.Justin' 'juliet2.sm' 4 1.0 2.0
+'SA.Justin' 'juliet2.sm' 7 1.0 2.0
+'SA.Justin' 'juliet2.sm' 8 1.0 2.0
+'SA.Justin' 'juliet2.sm' 9 1.0 2.0
+'SA.Justin' 'juliet2.sm' 10 1.0 2.0
+'SA.Justin' 'juliet2.sm' 11 1.0 2.0
+'SA.Justin' 'juliet2.sm' 14 1.0 2.0
+'SA.Justin' 'juliet2.sm' 15 1.0 2.0
+'SA.Justin' 'juliet2.sm' 16 1.0 2.0
+'SA.Justin' 'juliet2.sm' 17 1.0 2.0
+'SA.Justin' 'juliet2.sm' 18 1.0 2.0
+'SA.Justin' 'juliet2.sm' 21 1.0 2.0
+'SA.Justin' 'juliet2.sm' 22 1.0 2.0
+'SA.Justin' 'juliet2.sm' 23 1.0 2.0
+'SA.Justin' 'juliet2.sm' 24 1.0 2.0
+'SA.Justin' 'juliet2.sm' 25 1.0 2.0
+'SA.Justin' 'juliet2.sm' 28 1.0 2.0
+'SA.Justin' 'juliet2.sm' 29 1.0 2.0
+'SA.Justin' 'juliet2.sm' 30 1.0 2.0
+'SA.Justin' 'juliet2.sm' 31 1.0 2.0
+'SA.Justin' 'juliet2.sm' 32 1.0 2.0
+'SA.Justin' 'juliet2.sm' 35 1.0 2.0
+'SA.Justin' 'juliet2.sm' 36 1.0 2.0
+'SA.Justin' 'juliet2.sm' 37 1.0 2.0
+'SA.Justin' 'juliet2.sm' 38 1.0 2.0
+'SA.Justin' 'juliet2.sm' 39 1.0 2.0
+'SA.Justin' 'juliet2.sm' 42 1.0 2.0
+'SA.Justin' 'juliet2.sm' 43 1.0 2.0
+'SA.Justin' 'juliet2.sm' 44 1.0 2.0
+'SA.Justin' 'juliet2.sm' 45 1.0 2.0
+'SA.Justin' 'juliet2.sm' 46 1.0 2.0
+'SA.Justin' 'juliet2.sm' 49 1.0 2.0
+'SA.Justin' 'juliet2.sm' 50 1.0 2.0
+'SA.Justin' 'juliet2.sm' 51 1.0 2.0
+'SA.Justin' 'juliet2.sm' 52 1.0 2.0
+'SA.Justin' 'juliet2.sm' 53 1.0 2.0
+'SA.Justin' 'juliet2.sm' 56 1.0 2.0
+'SA.Justin' 'juliet2.sm' 57 1.0 2.0
+'SA.Justin' 'juliet2.sm' 58 1.0 2.0
+'SA.Justin' 'juliet2.sm' 59 1.0 2.0
+'SA.Justin' 'juliet2.sm' 60 1.0 2.0
+'SA.Justin' 'juliet2.sm' 63 1.0 2.0
+'SA.Justin' 'juliet2.sm' 64 1.0 2.0
+'SA.Justin' 'juliet2.sm' 65 1.0 2.0
+'SA.Justin' 'juliet2.sm' 66 1.0 2.0
+'SA.Justin' 'juliet2.sm' 67 1.0 2.0
+'SA.Justin' 'juliet2.sm' 70 1.0 2.0
+'SA.Justin' 'juliet2.sm' 71 1.0 2.0
+'SA.Justin' 'juliet2.sm' 72 1.0 2.0
+'SA.Justin' 'juliet2.sm' 73 1.0 2.0
+'SA.Justin' 'juliet2.sm' 74 1.0 2.0
+'SA.Justin' 'juliet2.sm' 77 1.0 2.0
+'SA.Justin' 'juliet2.sm' 78 1.0 2.0
+'SA.Justin' 'juliet2.sm' 79 1.0 2.0
+'SA.Justin' 'juliet2.sm' 80 1.0 2.0
+'SA.Justin' 'juliet2.sm' 81 1.0 2.0
+'SA.Justin' 'juliet2.sf' 84 8.0 9.0
+'SA.Justin' 'juliet2.sf' 85 8.0 9.0
+'SA.Justin' 'juliet2.sf' 86 8.0 9.0
+'SA.Justin' 'juliet2.sf' 87 8.0 9.0
+'SA.Justin' 'juliet2.sf' 88 8.0 9.0
+'SA.Justin' 'juliet2.sf' 91 8.0 9.0
+'SA.Justin' 'juliet2.sf' 92 8.0 9.0
+'SA.Justin' 'lima2.sm' 3 1.0 2.0
+'SA.Justin' 'lima2.sm' 4 1.0 2.0
+'SA.Justin' 'lima2.sm' 7 1.0 2.0
+'SA.Justin' 'lima2.sm' 8 1.0 2.0
+'SA.Justin' 'lima2.sm' 9 1.0 2.0
+'SA.Justin' 'lima2.sm' 10 1.0 2.0
+'SA.Justin' 'lima2.sm' 11 1.0 2.0
+'SA.Justin' 'lima2.sm' 14 1.0 2.0
+'SA.Justin' 'lima2.sm' 15 1.0 2.0
+'SA.Justin' 'lima2.sm' 16 1.0 2.0
+'SA.Justin' 'lima2.sm' 17 1.0 2.0
+'SA.Justin' 'lima2.sm' 18 1.0 2.0
+'SA.Justin' 'lima2.sm' 21 1.0 2.0
+'SA.Justin' 'lima2.sm' 22 1.0 2.0
+'SA.Justin' 'lima2.sm' 23 1.0 2.0
+'SA.Justin' 'lima2.sm' 24 1.0 2.0
+'SA.Justin' 'lima2.sm' 25 1.0 2.0
+'SA.Justin' 'lima2.sm' 28 1.0 2.0
+'SA.Justin' 'lima2.sm' 29 1.0 2.0
+'SA.Justin' 'lima2.sm' 30 1.0 2.0
+'SA.Justin' 'lima2.sm' 31 1.0 2.0
+'SA.Justin' 'lima2.sm' 32 1.0 2.0
+'SA.Justin' 'lima2.sm' 35 1.0 2.0
+'SA.Justin' 'lima2.sm' 36 1.0 2.0
+'SA.Justin' 'lima2.sm' 37 1.0 2.0
+'SA.Justin' 'lima2.sm' 38 1.0 2.0
+'SA.Justin' 'lima2.sm' 39 1.0 2.0
+'SA.Justin' 'lima2.sm' 42 1.0 2.0
+'SA.Justin' 'lima2.sm' 43 1.0 2.0
+'SA.Justin' 'lima2.sm' 44 1.0 2.0
+'SA.Justin' 'lima2.sm' 45 1.0 2.0
+'SA.Justin' 'lima2.sm' 46 1.0 2.0
+'SA.Justin' 'lima2.sm' 49 1.0 2.0
+'SA.Justin' 'lima2.sm' 50 1.0 2.0
+'SA.Justin' 'lima2.sm' 51 1.0 2.0
+'SA.Justin' 'lima2.sm' 52 1.0 2.0
+'SA.Justin' 'lima2.sm' 53 1.0 2.0
+'SA.Justin' 'lima2.sm' 56 1.0 2.0
+'SA.Justin' 'lima2.sm' 57 1.0 2.0
+'SA.Justin' 'lima2.sf' 58 10.0 11.0
+'SA.Justin' 'lima2.sf' 59 10.0 11.0
+'SA.Justin' 'lima2.sf' 60 10.0 11.0
+'SA.Justin' 'lima2.sf' 63 10.0 11.0
 ;
 
 param:
-PAYROLLN: PAYROLLS PAYROLLE :=
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
 'Jan.25' 1 16
 'Feb.25' 17 45
 'Mar.25' 46 76
@@ -32,250 +237,22 @@ PAYROLLN: PAYROLLS PAYROLLE :=
 'Sep.25' 231 259
 'Oct.25' 260 289
 'Nov.25' 290 317
-'Dec.25' 318 346;
+'Dec.25' 318 346
+;
 
 param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
-'SA.Justin' 'Jan.25' 0.0 720.0
-'SA.Justin' 'Feb.25' 0.0 720.0
-'SA.Justin' 'Mar.25' 0.0 720.0
-'SA.Justin' 'Apr.25' 0.0 720.0
-'SA.Justin' 'May.25' 0.0 720.0
-'SA.Justin' 'Jun.25' 0.0 720.0
-'SA.Justin' 'Jul.25' 0.0 720.0
-'SA.Justin' 'Aug.25' 0.0 720.0
-'SA.Justin' 'Sep.25' 0.0 720.0
-'SA.Justin' 'Oct.25' 0.0 720.0
-'SA.Justin' 'Nov.25' 0.0 720.0
-'SA.Justin' 'Dec.25' 0.0 720.0;
-
-param OFFDAY_NO := 29;
-
-param OFFDAY :=
-1 2
-2 5
-3 6
-4 12
-5 13
-6 19
-7 20
-8 26
-9 27
-10 33
-11 34
-12 40
-13 41
-14 47
-15 48
-16 54
-17 55
-18 61
-19 62
-20 68
-21 69
-22 75
-23 76
-24 82
-25 83
-26 89
-27 90
-28 111
-29 122;
-
-param XBDAY_NO := 166;
-
-param XBDAY:
-1   2   3   4   5 :=
-1 'SA.Justin' 'india2.sm' 3 0.0 1.0
-2 'SA.Justin' 'india2.sm' 4 0.0 1.0
-3 'SA.Justin' 'india2.sm' 7 0.0 1.0
-4 'SA.Justin' 'india2.sm' 8 0.0 1.0
-5 'SA.Justin' 'india2.sm' 9 0.0 1.0
-6 'SA.Justin' 'india2.sm' 10 0.0 1.0
-7 'SA.Justin' 'india2.sm' 11 0.0 1.0
-8 'SA.Justin' 'india2.sm' 14 0.0 1.0
-9 'SA.Justin' 'india2.sm' 15 0.0 1.0
-10 'SA.Justin' 'india2.sm' 16 0.0 1.0
-11 'SA.Justin' 'india2.sm' 17 0.0 1.0
-12 'SA.Justin' 'india2.sm' 18 0.0 1.0
-13 'SA.Justin' 'india2.sm' 21 0.0 1.0
-14 'SA.Justin' 'india2.sm' 22 0.0 1.0
-15 'SA.Justin' 'india2.sm' 23 0.0 1.0
-16 'SA.Justin' 'india2.sm' 24 0.0 1.0
-17 'SA.Justin' 'india2.sm' 25 0.0 1.0
-18 'SA.Justin' 'india2.sm' 28 0.0 1.0
-19 'SA.Justin' 'india2.sm' 29 0.0 1.0
-20 'SA.Justin' 'india2.sm' 30 0.0 1.0
-21 'SA.Justin' 'india2.sm' 31 0.0 1.0
-22 'SA.Justin' 'india2.sm' 32 0.0 1.0
-23 'SA.Justin' 'india2.sm' 35 0.0 1.0
-24 'SA.Justin' 'india2.sm' 36 0.0 1.0
-25 'SA.Justin' 'india2.sm' 37 0.0 1.0
-26 'SA.Justin' 'india2.sm' 38 0.0 1.0
-27 'SA.Justin' 'india2.sm' 39 0.0 1.0
-28 'SA.Justin' 'india2.sm' 42 0.0 1.0
-29 'SA.Justin' 'india2.sm' 43 0.0 1.0
-30 'SA.Justin' 'india2.sm' 44 0.0 1.0
-31 'SA.Justin' 'india2.sm' 45 0.0 1.0
-32 'SA.Justin' 'india2.sm' 46 0.0 1.0
-33 'SA.Justin' 'india2.sm' 49 0.0 1.0
-34 'SA.Justin' 'india2.sm' 50 0.0 1.0
-35 'SA.Justin' 'india2.sm' 51 0.0 1.0
-36 'SA.Justin' 'india2.sm' 52 0.0 1.0
-37 'SA.Justin' 'india2.sm' 53 0.0 1.0
-38 'SA.Justin' 'india2.sm' 56 0.0 1.0
-39 'SA.Justin' 'india2.sm' 57 0.0 1.0
-40 'SA.Justin' 'india2.sm' 58 0.0 1.0
-41 'SA.Justin' 'india2.sm' 59 0.0 1.0
-42 'SA.Justin' 'india2.sm' 60 0.0 1.0
-43 'SA.Justin' 'india2.sm' 63 0.0 1.0
-44 'SA.Justin' 'india2.sm' 64 0.0 1.0
-45 'SA.Justin' 'india2.sm' 65 0.0 1.0
-46 'SA.Justin' 'india2.sm' 66 0.0 1.0
-47 'SA.Justin' 'india2.sm' 67 0.0 1.0
-48 'SA.Justin' 'india2.sm' 70 0.0 1.0
-49 'SA.Justin' 'india2.sm' 71 0.0 1.0
-50 'SA.Justin' 'india2.sm' 72 0.0 1.0
-51 'SA.Justin' 'india2.sm' 73 0.0 1.0
-52 'SA.Justin' 'india2.sm' 74 0.0 1.0
-53 'SA.Justin' 'india2.sm' 77 0.0 1.0
-54 'SA.Justin' 'india2.sf' 78 6.0 7.0
-55 'SA.Justin' 'india2.sf' 79 6.0 7.0
-56 'SA.Justin' 'india2.sf' 80 6.0 7.0
-57 'SA.Justin' 'india2.sf' 81 6.0 7.0
-58 'SA.Justin' 'india2.sf' 84 6.0 7.0
-59 'SA.Justin' 'india2.sf' 85 6.0 7.0
-60 'SA.Justin' 'juliet2.sm' 3 1.0 2.0
-61 'SA.Justin' 'juliet2.sm' 4 1.0 2.0
-62 'SA.Justin' 'juliet2.sm' 7 1.0 2.0
-63 'SA.Justin' 'juliet2.sm' 8 1.0 2.0
-64 'SA.Justin' 'juliet2.sm' 9 1.0 2.0
-65 'SA.Justin' 'juliet2.sm' 10 1.0 2.0
-66 'SA.Justin' 'juliet2.sm' 11 1.0 2.0
-67 'SA.Justin' 'juliet2.sm' 14 1.0 2.0
-68 'SA.Justin' 'juliet2.sm' 15 1.0 2.0
-69 'SA.Justin' 'juliet2.sm' 16 1.0 2.0
-70 'SA.Justin' 'juliet2.sm' 17 1.0 2.0
-71 'SA.Justin' 'juliet2.sm' 18 1.0 2.0
-72 'SA.Justin' 'juliet2.sm' 21 1.0 2.0
-73 'SA.Justin' 'juliet2.sm' 22 1.0 2.0
-74 'SA.Justin' 'juliet2.sm' 23 1.0 2.0
-75 'SA.Justin' 'juliet2.sm' 24 1.0 2.0
-76 'SA.Justin' 'juliet2.sm' 25 1.0 2.0
-77 'SA.Justin' 'juliet2.sm' 28 1.0 2.0
-78 'SA.Justin' 'juliet2.sm' 29 1.0 2.0
-79 'SA.Justin' 'juliet2.sm' 30 1.0 2.0
-80 'SA.Justin' 'juliet2.sm' 31 1.0 2.0
-81 'SA.Justin' 'juliet2.sm' 32 1.0 2.0
-82 'SA.Justin' 'juliet2.sm' 35 1.0 2.0
-83 'SA.Justin' 'juliet2.sm' 36 1.0 2.0
-84 'SA.Justin' 'juliet2.sm' 37 1.0 2.0
-85 'SA.Justin' 'juliet2.sm' 38 1.0 2.0
-86 'SA.Justin' 'juliet2.sm' 39 1.0 2.0
-87 'SA.Justin' 'juliet2.sm' 42 1.0 2.0
-88 'SA.Justin' 'juliet2.sm' 43 1.0 2.0
-89 'SA.Justin' 'juliet2.sm' 44 1.0 2.0
-90 'SA.Justin' 'juliet2.sm' 45 1.0 2.0
-91 'SA.Justin' 'juliet2.sm' 46 1.0 2.0
-92 'SA.Justin' 'juliet2.sm' 49 1.0 2.0
-93 'SA.Justin' 'juliet2.sm' 50 1.0 2.0
-94 'SA.Justin' 'juliet2.sm' 51 1.0 2.0
-95 'SA.Justin' 'juliet2.sm' 52 1.0 2.0
-96 'SA.Justin' 'juliet2.sm' 53 1.0 2.0
-97 'SA.Justin' 'juliet2.sm' 56 1.0 2.0
-98 'SA.Justin' 'juliet2.sm' 57 1.0 2.0
-99 'SA.Justin' 'juliet2.sm' 58 1.0 2.0
-100 'SA.Justin' 'juliet2.sm' 59 1.0 2.0
-101 'SA.Justin' 'juliet2.sm' 60 1.0 2.0
-102 'SA.Justin' 'juliet2.sm' 63 1.0 2.0
-103 'SA.Justin' 'juliet2.sm' 64 1.0 2.0
-104 'SA.Justin' 'juliet2.sm' 65 1.0 2.0
-105 'SA.Justin' 'juliet2.sm' 66 1.0 2.0
-106 'SA.Justin' 'juliet2.sm' 67 1.0 2.0
-107 'SA.Justin' 'juliet2.sm' 70 1.0 2.0
-108 'SA.Justin' 'juliet2.sm' 71 1.0 2.0
-109 'SA.Justin' 'juliet2.sm' 72 1.0 2.0
-110 'SA.Justin' 'juliet2.sm' 73 1.0 2.0
-111 'SA.Justin' 'juliet2.sm' 74 1.0 2.0
-112 'SA.Justin' 'juliet2.sm' 77 1.0 2.0
-113 'SA.Justin' 'juliet2.sm' 78 1.0 2.0
-114 'SA.Justin' 'juliet2.sm' 79 1.0 2.0
-115 'SA.Justin' 'juliet2.sm' 80 1.0 2.0
-116 'SA.Justin' 'juliet2.sm' 81 1.0 2.0
-117 'SA.Justin' 'juliet2.sf' 84 8.0 9.0
-118 'SA.Justin' 'juliet2.sf' 85 8.0 9.0
-119 'SA.Justin' 'juliet2.sf' 86 8.0 9.0
-120 'SA.Justin' 'juliet2.sf' 87 8.0 9.0
-121 'SA.Justin' 'juliet2.sf' 88 8.0 9.0
-122 'SA.Justin' 'juliet2.sf' 91 8.0 9.0
-123 'SA.Justin' 'juliet2.sf' 92 8.0 9.0
-124 'SA.Justin' 'lima2.sm' 3 1.0 2.0
-125 'SA.Justin' 'lima2.sm' 4 1.0 2.0
-126 'SA.Justin' 'lima2.sm' 7 1.0 2.0
-127 'SA.Justin' 'lima2.sm' 8 1.0 2.0
-128 'SA.Justin' 'lima2.sm' 9 1.0 2.0
-129 'SA.Justin' 'lima2.sm' 10 1.0 2.0
-130 'SA.Justin' 'lima2.sm' 11 1.0 2.0
-131 'SA.Justin' 'lima2.sm' 14 1.0 2.0
-132 'SA.Justin' 'lima2.sm' 15 1.0 2.0
-133 'SA.Justin' 'lima2.sm' 16 1.0 2.0
-134 'SA.Justin' 'lima2.sm' 17 1.0 2.0
-135 'SA.Justin' 'lima2.sm' 18 1.0 2.0
-136 'SA.Justin' 'lima2.sm' 21 1.0 2.0
-137 'SA.Justin' 'lima2.sm' 22 1.0 2.0
-138 'SA.Justin' 'lima2.sm' 23 1.0 2.0
-139 'SA.Justin' 'lima2.sm' 24 1.0 2.0
-140 'SA.Justin' 'lima2.sm' 25 1.0 2.0
-141 'SA.Justin' 'lima2.sm' 28 1.0 2.0
-142 'SA.Justin' 'lima2.sm' 29 1.0 2.0
-143 'SA.Justin' 'lima2.sm' 30 1.0 2.0
-144 'SA.Justin' 'lima2.sm' 31 1.0 2.0
-145 'SA.Justin' 'lima2.sm' 32 1.0 2.0
-146 'SA.Justin' 'lima2.sm' 35 1.0 2.0
-147 'SA.Justin' 'lima2.sm' 36 1.0 2.0
-148 'SA.Justin' 'lima2.sm' 37 1.0 2.0
-149 'SA.Justin' 'lima2.sm' 38 1.0 2.0
-150 'SA.Justin' 'lima2.sm' 39 1.0 2.0
-151 'SA.Justin' 'lima2.sm' 42 1.0 2.0
-152 'SA.Justin' 'lima2.sm' 43 1.0 2.0
-153 'SA.Justin' 'lima2.sm' 44 1.0 2.0
-154 'SA.Justin' 'lima2.sm' 45 1.0 2.0
-155 'SA.Justin' 'lima2.sm' 46 1.0 2.0
-156 'SA.Justin' 'lima2.sm' 49 1.0 2.0
-157 'SA.Justin' 'lima2.sm' 50 1.0 2.0
-158 'SA.Justin' 'lima2.sm' 51 1.0 2.0
-159 'SA.Justin' 'lima2.sm' 52 1.0 2.0
-160 'SA.Justin' 'lima2.sm' 53 1.0 2.0
-161 'SA.Justin' 'lima2.sm' 56 1.0 2.0
-162 'SA.Justin' 'lima2.sm' 57 1.0 2.0
-163 'SA.Justin' 'lima2.sf' 58 10.0 11.0
-164 'SA.Justin' 'lima2.sf' 59 10.0 11.0
-165 'SA.Justin' 'lima2.sf' 60 10.0 11.0
-166 'SA.Justin' 'lima2.sf' 63 10.0 11.0;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
+EXPPER: PBL PBU :=
+'SA.Justin' 'Jan.25' 0 720
+'SA.Justin' 'Feb.25' 0 720
+'SA.Justin' 'Mar.25' 0 720
+'SA.Justin' 'Apr.25' 0 720
+'SA.Justin' 'May.25' 0 720
+'SA.Justin' 'Jun.25' 0 720
+'SA.Justin' 'Jul.25' 0 720
+'SA.Justin' 'Aug.25' 0 720
+'SA.Justin' 'Sep.25' 0 720
+'SA.Justin' 'Oct.25' 0 720
+'SA.Justin' 'Nov.25' 0 720
+'SA.Justin' 'Dec.25' 0 720
 ;
-
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
-;
-
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
-;
-
-set LINKS :=
-'SA.Justin' 'india2.sf'
-'SA.Justin' 'india2.sm'
-'SA.Justin' 'juliet2.sf'
-'SA.Justin' 'juliet2.sm'
-'SA.Justin' 'lima2.sf'
-'SA.Justin' 'lima2.sm';
 

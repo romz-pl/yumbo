@@ -1,31 +1,585 @@
-param HOURS_PER_DAY := 32;
+param MAXWORK := 32;
 
-set EXPERTN :=
-'SA.Martha';
+param:
+TNAME: TWORK :=
+'kilo2.sm' 60
+'kilo2.sf' 40
+'november2.sm' 120
+'november2.sf' 60
+'oscar2.sm' 120
+'oscar2.sf' 40
+'papa2.sm' 160
+'papa2.sf' 60
+'zulu2.se' 200
+'zulu2.sm' 80
+'zulu2.sf' 40
+;
 
-param EBOUND_NO := 0;
+set TSCOPE['kilo2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57
+;
 
-param EBOUND:
-1   2   3   4   5 :=
+set TSCOPE['kilo2.sf'] :=
+58 59 60 63
+;
+
+set TSCOPE['november2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81 84 85 86 87
+;
+
+set TSCOPE['november2.sf'] :=
+88 91 92 93 94 95 98
+;
+
+set TSCOPE['oscar2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81 84 85 86 87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133 134 135 136 137 140 141 142 143
+144 147 148 149 150 151 154 155 156 157 158 161 162 163 164 165 168 169 170 171 172
+;
+
+set TSCOPE['oscar2.sf'] :=
+175 176 177 178 179 182
+;
+
+set TSCOPE['papa2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81 84 85 86 87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133 134 135 136 137 140 141 142 143
+144 147 148 149 150 151 154 155 156 157 158 161 162 163 164 165 168 169 170 171 172
+;
+
+set TSCOPE['papa2.sf'] :=
+175 176 177 178 179 182
+;
+
+set TSCOPE['zulu2.se'] :=
+168 169 170 171 172 175 176 177 178 179 182 183 184 185 186 189 190 191 192 193 196 197
+;
+
+set TSCOPE['zulu2.sm'] :=
+198 199 200 203 204 205 206 207 210 211 212 213 214 217 218 219 220 221 224 225 226 227 228 231 232 233 234 235 238 239 240 241 242 245 246 247 248 249 252 253 254 255 256 259 260 261 262 263 266 267
+268 269 270 273 274 275 276 277 280 281 282 283 284 287 288 289 290 291 294 295 296 297 298 301 302 303 304 305 308 309 310 311 312 315 316 317 318 319 322 323 324 325 326
+;
+
+set TSCOPE['zulu2.sf'] :=
+329 330 331 332 333 336
+;
+
+set ENAME :=
+'SA.Martha'
+;
+
+set ASSIGN :=
+'SA.Martha' 'kilo2.sf'
+'SA.Martha' 'kilo2.sm'
+'SA.Martha' 'november2.sf'
+'SA.Martha' 'november2.sm'
+'SA.Martha' 'oscar2.sf'
+'SA.Martha' 'oscar2.sm'
+'SA.Martha' 'papa2.sf'
+'SA.Martha' 'papa2.sm'
+'SA.Martha' 'zulu2.se'
+'SA.Martha' 'zulu2.sf'
+'SA.Martha' 'zulu2.sm'
 ;
 
 param:
-TASKN: TASKS TASKE TASKW :=
-'kilo2.sm' 2 57 60
-'kilo2.sf' 58 63 40
-'november2.sm' 2 87 120
-'november2.sf' 88 98 60
-'oscar2.sm' 2 172 120
-'oscar2.sf' 173 182 40
-'papa2.sm' 2 172 160
-'papa2.sf' 173 182 60
-'zulu2.se' 167 197 200
-'zulu2.sm' 198 328 80
-'zulu2.sf' 329 336 40
+XBID: XBL XBU :=
+'SA.Martha' 'kilo2.sm' 3 1.0 2.0
+'SA.Martha' 'kilo2.sm' 4 1.0 2.0
+'SA.Martha' 'kilo2.sm' 7 1.0 2.0
+'SA.Martha' 'kilo2.sm' 8 1.0 2.0
+'SA.Martha' 'kilo2.sm' 9 1.0 2.0
+'SA.Martha' 'kilo2.sm' 10 1.0 2.0
+'SA.Martha' 'kilo2.sm' 11 1.0 2.0
+'SA.Martha' 'kilo2.sm' 14 1.0 2.0
+'SA.Martha' 'kilo2.sm' 15 1.0 2.0
+'SA.Martha' 'kilo2.sm' 16 1.0 2.0
+'SA.Martha' 'kilo2.sm' 17 1.0 2.0
+'SA.Martha' 'kilo2.sm' 18 1.0 2.0
+'SA.Martha' 'kilo2.sm' 21 1.0 2.0
+'SA.Martha' 'kilo2.sm' 22 1.0 2.0
+'SA.Martha' 'kilo2.sm' 23 1.0 2.0
+'SA.Martha' 'kilo2.sm' 24 1.0 2.0
+'SA.Martha' 'kilo2.sm' 25 1.0 2.0
+'SA.Martha' 'kilo2.sm' 28 1.0 2.0
+'SA.Martha' 'kilo2.sm' 29 1.0 2.0
+'SA.Martha' 'kilo2.sm' 30 1.0 2.0
+'SA.Martha' 'kilo2.sm' 31 1.0 2.0
+'SA.Martha' 'kilo2.sm' 32 1.0 2.0
+'SA.Martha' 'kilo2.sm' 35 1.0 2.0
+'SA.Martha' 'kilo2.sm' 36 1.0 2.0
+'SA.Martha' 'kilo2.sm' 37 1.0 2.0
+'SA.Martha' 'kilo2.sm' 38 1.0 2.0
+'SA.Martha' 'kilo2.sm' 39 1.0 2.0
+'SA.Martha' 'kilo2.sm' 42 1.0 2.0
+'SA.Martha' 'kilo2.sm' 43 1.0 2.0
+'SA.Martha' 'kilo2.sm' 44 1.0 2.0
+'SA.Martha' 'kilo2.sm' 45 1.0 2.0
+'SA.Martha' 'kilo2.sm' 46 1.0 2.0
+'SA.Martha' 'kilo2.sm' 49 1.0 2.0
+'SA.Martha' 'kilo2.sm' 50 1.0 2.0
+'SA.Martha' 'kilo2.sm' 51 1.0 2.0
+'SA.Martha' 'kilo2.sm' 52 1.0 2.0
+'SA.Martha' 'kilo2.sm' 53 1.0 2.0
+'SA.Martha' 'kilo2.sm' 56 1.0 2.0
+'SA.Martha' 'kilo2.sm' 57 1.0 2.0
+'SA.Martha' 'kilo2.sf' 58 10.0 11.0
+'SA.Martha' 'kilo2.sf' 59 10.0 11.0
+'SA.Martha' 'kilo2.sf' 60 10.0 11.0
+'SA.Martha' 'kilo2.sf' 63 10.0 11.0
+'SA.Martha' 'november2.sm' 3 1.0 2.0
+'SA.Martha' 'november2.sm' 4 1.0 2.0
+'SA.Martha' 'november2.sm' 7 1.0 2.0
+'SA.Martha' 'november2.sm' 8 1.0 2.0
+'SA.Martha' 'november2.sm' 9 1.0 2.0
+'SA.Martha' 'november2.sm' 10 1.0 2.0
+'SA.Martha' 'november2.sm' 11 1.0 2.0
+'SA.Martha' 'november2.sm' 14 1.0 2.0
+'SA.Martha' 'november2.sm' 15 1.0 2.0
+'SA.Martha' 'november2.sm' 16 1.0 2.0
+'SA.Martha' 'november2.sm' 17 1.0 2.0
+'SA.Martha' 'november2.sm' 18 1.0 2.0
+'SA.Martha' 'november2.sm' 21 1.0 2.0
+'SA.Martha' 'november2.sm' 22 1.0 2.0
+'SA.Martha' 'november2.sm' 23 1.0 2.0
+'SA.Martha' 'november2.sm' 24 1.0 2.0
+'SA.Martha' 'november2.sm' 25 1.0 2.0
+'SA.Martha' 'november2.sm' 28 1.0 2.0
+'SA.Martha' 'november2.sm' 29 1.0 2.0
+'SA.Martha' 'november2.sm' 30 1.0 2.0
+'SA.Martha' 'november2.sm' 31 1.0 2.0
+'SA.Martha' 'november2.sm' 32 1.0 2.0
+'SA.Martha' 'november2.sm' 35 1.0 2.0
+'SA.Martha' 'november2.sm' 36 1.0 2.0
+'SA.Martha' 'november2.sm' 37 1.0 2.0
+'SA.Martha' 'november2.sm' 38 1.0 2.0
+'SA.Martha' 'november2.sm' 39 1.0 2.0
+'SA.Martha' 'november2.sm' 42 1.0 2.0
+'SA.Martha' 'november2.sm' 43 1.0 2.0
+'SA.Martha' 'november2.sm' 44 1.0 2.0
+'SA.Martha' 'november2.sm' 45 1.0 2.0
+'SA.Martha' 'november2.sm' 46 1.0 2.0
+'SA.Martha' 'november2.sm' 49 1.0 2.0
+'SA.Martha' 'november2.sm' 50 1.0 2.0
+'SA.Martha' 'november2.sm' 51 1.0 2.0
+'SA.Martha' 'november2.sm' 52 1.0 2.0
+'SA.Martha' 'november2.sm' 53 1.0 2.0
+'SA.Martha' 'november2.sm' 56 1.0 2.0
+'SA.Martha' 'november2.sm' 57 1.0 2.0
+'SA.Martha' 'november2.sm' 58 1.0 2.0
+'SA.Martha' 'november2.sm' 59 1.0 2.0
+'SA.Martha' 'november2.sm' 60 1.0 2.0
+'SA.Martha' 'november2.sm' 63 1.0 2.0
+'SA.Martha' 'november2.sm' 64 1.0 2.0
+'SA.Martha' 'november2.sm' 65 1.0 2.0
+'SA.Martha' 'november2.sm' 66 1.0 2.0
+'SA.Martha' 'november2.sm' 67 1.0 2.0
+'SA.Martha' 'november2.sm' 70 1.0 2.0
+'SA.Martha' 'november2.sm' 71 1.0 2.0
+'SA.Martha' 'november2.sm' 72 1.0 2.0
+'SA.Martha' 'november2.sm' 73 1.0 2.0
+'SA.Martha' 'november2.sm' 74 1.0 2.0
+'SA.Martha' 'november2.sm' 77 1.0 2.0
+'SA.Martha' 'november2.sm' 78 1.0 2.0
+'SA.Martha' 'november2.sm' 79 1.0 2.0
+'SA.Martha' 'november2.sm' 80 1.0 2.0
+'SA.Martha' 'november2.sm' 81 1.0 2.0
+'SA.Martha' 'november2.sm' 84 1.0 2.0
+'SA.Martha' 'november2.sm' 85 1.0 2.0
+'SA.Martha' 'november2.sm' 86 1.0 2.0
+'SA.Martha' 'november2.sm' 87 1.0 2.0
+'SA.Martha' 'november2.sf' 88 8.0 9.0
+'SA.Martha' 'november2.sf' 91 8.0 9.0
+'SA.Martha' 'november2.sf' 92 8.0 9.0
+'SA.Martha' 'november2.sf' 93 8.0 9.0
+'SA.Martha' 'november2.sf' 94 8.0 9.0
+'SA.Martha' 'november2.sf' 95 8.0 9.0
+'SA.Martha' 'november2.sf' 98 8.0 9.0
+'SA.Martha' 'oscar2.sm' 3 0.0 1.0
+'SA.Martha' 'oscar2.sm' 4 0.0 1.0
+'SA.Martha' 'oscar2.sm' 7 0.0 1.0
+'SA.Martha' 'oscar2.sm' 8 0.0 1.0
+'SA.Martha' 'oscar2.sm' 9 0.0 1.0
+'SA.Martha' 'oscar2.sm' 10 0.0 1.0
+'SA.Martha' 'oscar2.sm' 11 0.0 1.0
+'SA.Martha' 'oscar2.sm' 14 0.0 1.0
+'SA.Martha' 'oscar2.sm' 15 0.0 1.0
+'SA.Martha' 'oscar2.sm' 16 0.0 1.0
+'SA.Martha' 'oscar2.sm' 17 0.0 1.0
+'SA.Martha' 'oscar2.sm' 18 0.0 1.0
+'SA.Martha' 'oscar2.sm' 21 0.0 1.0
+'SA.Martha' 'oscar2.sm' 22 0.0 1.0
+'SA.Martha' 'oscar2.sm' 23 0.0 1.0
+'SA.Martha' 'oscar2.sm' 24 0.0 1.0
+'SA.Martha' 'oscar2.sm' 25 0.0 1.0
+'SA.Martha' 'oscar2.sm' 28 0.0 1.0
+'SA.Martha' 'oscar2.sm' 29 0.0 1.0
+'SA.Martha' 'oscar2.sm' 30 0.0 1.0
+'SA.Martha' 'oscar2.sm' 31 0.0 1.0
+'SA.Martha' 'oscar2.sm' 32 0.0 1.0
+'SA.Martha' 'oscar2.sm' 35 0.0 1.0
+'SA.Martha' 'oscar2.sm' 36 0.0 1.0
+'SA.Martha' 'oscar2.sm' 37 0.0 1.0
+'SA.Martha' 'oscar2.sm' 38 0.0 1.0
+'SA.Martha' 'oscar2.sm' 39 0.0 1.0
+'SA.Martha' 'oscar2.sm' 42 0.0 1.0
+'SA.Martha' 'oscar2.sm' 43 0.0 1.0
+'SA.Martha' 'oscar2.sm' 44 0.0 1.0
+'SA.Martha' 'oscar2.sm' 45 0.0 1.0
+'SA.Martha' 'oscar2.sm' 46 0.0 1.0
+'SA.Martha' 'oscar2.sm' 49 0.0 1.0
+'SA.Martha' 'oscar2.sm' 50 0.0 1.0
+'SA.Martha' 'oscar2.sm' 51 0.0 1.0
+'SA.Martha' 'oscar2.sm' 52 0.0 1.0
+'SA.Martha' 'oscar2.sm' 53 0.0 1.0
+'SA.Martha' 'oscar2.sm' 56 0.0 1.0
+'SA.Martha' 'oscar2.sm' 57 0.0 1.0
+'SA.Martha' 'oscar2.sm' 58 0.0 1.0
+'SA.Martha' 'oscar2.sm' 59 0.0 1.0
+'SA.Martha' 'oscar2.sm' 60 0.0 1.0
+'SA.Martha' 'oscar2.sm' 63 0.0 1.0
+'SA.Martha' 'oscar2.sm' 64 0.0 1.0
+'SA.Martha' 'oscar2.sm' 65 0.0 1.0
+'SA.Martha' 'oscar2.sm' 66 0.0 1.0
+'SA.Martha' 'oscar2.sm' 67 0.0 1.0
+'SA.Martha' 'oscar2.sm' 70 0.0 1.0
+'SA.Martha' 'oscar2.sm' 71 0.0 1.0
+'SA.Martha' 'oscar2.sm' 72 0.0 1.0
+'SA.Martha' 'oscar2.sm' 73 0.0 1.0
+'SA.Martha' 'oscar2.sm' 74 0.0 1.0
+'SA.Martha' 'oscar2.sm' 77 0.0 1.0
+'SA.Martha' 'oscar2.sm' 78 0.0 1.0
+'SA.Martha' 'oscar2.sm' 79 0.0 1.0
+'SA.Martha' 'oscar2.sm' 80 0.0 1.0
+'SA.Martha' 'oscar2.sm' 81 0.0 1.0
+'SA.Martha' 'oscar2.sm' 84 0.0 1.0
+'SA.Martha' 'oscar2.sm' 85 0.0 1.0
+'SA.Martha' 'oscar2.sm' 86 0.0 1.0
+'SA.Martha' 'oscar2.sm' 87 0.0 1.0
+'SA.Martha' 'oscar2.sm' 88 0.0 1.0
+'SA.Martha' 'oscar2.sm' 91 0.0 1.0
+'SA.Martha' 'oscar2.sm' 92 0.0 1.0
+'SA.Martha' 'oscar2.sm' 93 0.0 1.0
+'SA.Martha' 'oscar2.sm' 94 0.0 1.0
+'SA.Martha' 'oscar2.sm' 95 0.0 1.0
+'SA.Martha' 'oscar2.sm' 98 0.0 1.0
+'SA.Martha' 'oscar2.sm' 99 0.0 1.0
+'SA.Martha' 'oscar2.sm' 100 0.0 1.0
+'SA.Martha' 'oscar2.sm' 101 0.0 1.0
+'SA.Martha' 'oscar2.sm' 102 0.0 1.0
+'SA.Martha' 'oscar2.sm' 105 0.0 1.0
+'SA.Martha' 'oscar2.sm' 106 0.0 1.0
+'SA.Martha' 'oscar2.sm' 107 0.0 1.0
+'SA.Martha' 'oscar2.sm' 108 0.0 1.0
+'SA.Martha' 'oscar2.sm' 109 0.0 1.0
+'SA.Martha' 'oscar2.sm' 112 0.0 1.0
+'SA.Martha' 'oscar2.sm' 113 0.0 1.0
+'SA.Martha' 'oscar2.sm' 114 0.0 1.0
+'SA.Martha' 'oscar2.sm' 115 0.0 1.0
+'SA.Martha' 'oscar2.sm' 116 0.0 1.0
+'SA.Martha' 'oscar2.sm' 119 0.0 1.0
+'SA.Martha' 'oscar2.sm' 120 0.0 1.0
+'SA.Martha' 'oscar2.sm' 121 0.0 1.0
+'SA.Martha' 'oscar2.sm' 123 0.0 1.0
+'SA.Martha' 'oscar2.sm' 126 0.0 1.0
+'SA.Martha' 'oscar2.sm' 127 0.0 1.0
+'SA.Martha' 'oscar2.sm' 128 0.0 1.0
+'SA.Martha' 'oscar2.sm' 129 0.0 1.0
+'SA.Martha' 'oscar2.sm' 130 0.0 1.0
+'SA.Martha' 'oscar2.sm' 133 0.0 1.0
+'SA.Martha' 'oscar2.sm' 134 0.0 1.0
+'SA.Martha' 'oscar2.sm' 135 0.0 1.0
+'SA.Martha' 'oscar2.sm' 136 0.0 1.0
+'SA.Martha' 'oscar2.sm' 137 0.0 1.0
+'SA.Martha' 'oscar2.sm' 140 0.0 1.0
+'SA.Martha' 'oscar2.sm' 141 0.0 1.0
+'SA.Martha' 'oscar2.sm' 142 0.0 1.0
+'SA.Martha' 'oscar2.sm' 143 0.0 1.0
+'SA.Martha' 'oscar2.sm' 144 0.0 1.0
+'SA.Martha' 'oscar2.sm' 147 0.0 1.0
+'SA.Martha' 'oscar2.sm' 148 0.0 1.0
+'SA.Martha' 'oscar2.sm' 149 0.0 1.0
+'SA.Martha' 'oscar2.sm' 150 0.0 1.0
+'SA.Martha' 'oscar2.sm' 151 0.0 1.0
+'SA.Martha' 'oscar2.sm' 154 0.0 1.0
+'SA.Martha' 'oscar2.sm' 155 0.0 1.0
+'SA.Martha' 'oscar2.sm' 156 0.0 1.0
+'SA.Martha' 'oscar2.sm' 157 0.0 1.0
+'SA.Martha' 'oscar2.sm' 158 0.0 1.0
+'SA.Martha' 'oscar2.sm' 161 0.0 1.0
+'SA.Martha' 'oscar2.sm' 162 0.0 1.0
+'SA.Martha' 'oscar2.sm' 163 0.0 1.0
+'SA.Martha' 'oscar2.sm' 164 0.0 1.0
+'SA.Martha' 'oscar2.sm' 165 0.0 1.0
+'SA.Martha' 'oscar2.sm' 168 0.0 1.0
+'SA.Martha' 'oscar2.sm' 169 0.0 1.0
+'SA.Martha' 'oscar2.sm' 170 0.0 1.0
+'SA.Martha' 'oscar2.sm' 171 0.0 1.0
+'SA.Martha' 'oscar2.sm' 172 0.0 1.0
+'SA.Martha' 'oscar2.sf' 175 6.0 7.0
+'SA.Martha' 'oscar2.sf' 176 6.0 7.0
+'SA.Martha' 'oscar2.sf' 177 6.0 7.0
+'SA.Martha' 'oscar2.sf' 178 6.0 7.0
+'SA.Martha' 'oscar2.sf' 179 6.0 7.0
+'SA.Martha' 'oscar2.sf' 182 6.0 7.0
+'SA.Martha' 'papa2.sm' 3 1.0 2.0
+'SA.Martha' 'papa2.sm' 4 1.0 2.0
+'SA.Martha' 'papa2.sm' 7 1.0 2.0
+'SA.Martha' 'papa2.sm' 8 1.0 2.0
+'SA.Martha' 'papa2.sm' 9 1.0 2.0
+'SA.Martha' 'papa2.sm' 10 1.0 2.0
+'SA.Martha' 'papa2.sm' 11 1.0 2.0
+'SA.Martha' 'papa2.sm' 14 1.0 2.0
+'SA.Martha' 'papa2.sm' 15 1.0 2.0
+'SA.Martha' 'papa2.sm' 16 1.0 2.0
+'SA.Martha' 'papa2.sm' 17 1.0 2.0
+'SA.Martha' 'papa2.sm' 18 1.0 2.0
+'SA.Martha' 'papa2.sm' 21 1.0 2.0
+'SA.Martha' 'papa2.sm' 22 1.0 2.0
+'SA.Martha' 'papa2.sm' 23 1.0 2.0
+'SA.Martha' 'papa2.sm' 24 1.0 2.0
+'SA.Martha' 'papa2.sm' 25 1.0 2.0
+'SA.Martha' 'papa2.sm' 28 1.0 2.0
+'SA.Martha' 'papa2.sm' 29 1.0 2.0
+'SA.Martha' 'papa2.sm' 30 1.0 2.0
+'SA.Martha' 'papa2.sm' 31 1.0 2.0
+'SA.Martha' 'papa2.sm' 32 1.0 2.0
+'SA.Martha' 'papa2.sm' 35 1.0 2.0
+'SA.Martha' 'papa2.sm' 36 1.0 2.0
+'SA.Martha' 'papa2.sm' 37 1.0 2.0
+'SA.Martha' 'papa2.sm' 38 1.0 2.0
+'SA.Martha' 'papa2.sm' 39 1.0 2.0
+'SA.Martha' 'papa2.sm' 42 1.0 2.0
+'SA.Martha' 'papa2.sm' 43 1.0 2.0
+'SA.Martha' 'papa2.sm' 44 1.0 2.0
+'SA.Martha' 'papa2.sm' 45 1.0 2.0
+'SA.Martha' 'papa2.sm' 46 1.0 2.0
+'SA.Martha' 'papa2.sm' 49 1.0 2.0
+'SA.Martha' 'papa2.sm' 50 1.0 2.0
+'SA.Martha' 'papa2.sm' 51 1.0 2.0
+'SA.Martha' 'papa2.sm' 52 1.0 2.0
+'SA.Martha' 'papa2.sm' 53 1.0 2.0
+'SA.Martha' 'papa2.sm' 56 1.0 2.0
+'SA.Martha' 'papa2.sm' 57 1.0 2.0
+'SA.Martha' 'papa2.sm' 58 1.0 2.0
+'SA.Martha' 'papa2.sm' 59 1.0 2.0
+'SA.Martha' 'papa2.sm' 60 1.0 2.0
+'SA.Martha' 'papa2.sm' 63 1.0 2.0
+'SA.Martha' 'papa2.sm' 64 1.0 2.0
+'SA.Martha' 'papa2.sm' 65 1.0 2.0
+'SA.Martha' 'papa2.sm' 66 1.0 2.0
+'SA.Martha' 'papa2.sm' 67 1.0 2.0
+'SA.Martha' 'papa2.sm' 70 1.0 2.0
+'SA.Martha' 'papa2.sm' 71 1.0 2.0
+'SA.Martha' 'papa2.sm' 72 1.0 2.0
+'SA.Martha' 'papa2.sm' 73 1.0 2.0
+'SA.Martha' 'papa2.sm' 74 1.0 2.0
+'SA.Martha' 'papa2.sm' 77 1.0 2.0
+'SA.Martha' 'papa2.sm' 78 1.0 2.0
+'SA.Martha' 'papa2.sm' 79 1.0 2.0
+'SA.Martha' 'papa2.sm' 80 1.0 2.0
+'SA.Martha' 'papa2.sm' 81 1.0 2.0
+'SA.Martha' 'papa2.sm' 84 1.0 2.0
+'SA.Martha' 'papa2.sm' 85 1.0 2.0
+'SA.Martha' 'papa2.sm' 86 1.0 2.0
+'SA.Martha' 'papa2.sm' 87 1.0 2.0
+'SA.Martha' 'papa2.sm' 88 1.0 2.0
+'SA.Martha' 'papa2.sm' 91 1.0 2.0
+'SA.Martha' 'papa2.sm' 92 1.0 2.0
+'SA.Martha' 'papa2.sm' 93 1.0 2.0
+'SA.Martha' 'papa2.sm' 94 1.0 2.0
+'SA.Martha' 'papa2.sm' 95 1.0 2.0
+'SA.Martha' 'papa2.sm' 98 1.0 2.0
+'SA.Martha' 'papa2.sm' 99 1.0 2.0
+'SA.Martha' 'papa2.sm' 100 1.0 2.0
+'SA.Martha' 'papa2.sm' 101 1.0 2.0
+'SA.Martha' 'papa2.sm' 102 1.0 2.0
+'SA.Martha' 'papa2.sm' 105 1.0 2.0
+'SA.Martha' 'papa2.sm' 106 1.0 2.0
+'SA.Martha' 'papa2.sm' 107 1.0 2.0
+'SA.Martha' 'papa2.sm' 108 1.0 2.0
+'SA.Martha' 'papa2.sm' 109 1.0 2.0
+'SA.Martha' 'papa2.sm' 112 1.0 2.0
+'SA.Martha' 'papa2.sm' 113 1.0 2.0
+'SA.Martha' 'papa2.sm' 114 1.0 2.0
+'SA.Martha' 'papa2.sm' 115 1.0 2.0
+'SA.Martha' 'papa2.sm' 116 1.0 2.0
+'SA.Martha' 'papa2.sm' 119 1.0 2.0
+'SA.Martha' 'papa2.sm' 120 1.0 2.0
+'SA.Martha' 'papa2.sm' 121 1.0 2.0
+'SA.Martha' 'papa2.sm' 123 1.0 2.0
+'SA.Martha' 'papa2.sm' 126 1.0 2.0
+'SA.Martha' 'papa2.sm' 127 1.0 2.0
+'SA.Martha' 'papa2.sm' 128 1.0 2.0
+'SA.Martha' 'papa2.sm' 129 1.0 2.0
+'SA.Martha' 'papa2.sm' 130 1.0 2.0
+'SA.Martha' 'papa2.sm' 133 1.0 2.0
+'SA.Martha' 'papa2.sm' 134 1.0 2.0
+'SA.Martha' 'papa2.sm' 135 1.0 2.0
+'SA.Martha' 'papa2.sm' 136 1.0 2.0
+'SA.Martha' 'papa2.sm' 137 1.0 2.0
+'SA.Martha' 'papa2.sm' 140 1.0 2.0
+'SA.Martha' 'papa2.sm' 141 1.0 2.0
+'SA.Martha' 'papa2.sm' 142 1.0 2.0
+'SA.Martha' 'papa2.sm' 143 1.0 2.0
+'SA.Martha' 'papa2.sm' 144 1.0 2.0
+'SA.Martha' 'papa2.sm' 147 1.0 2.0
+'SA.Martha' 'papa2.sm' 148 1.0 2.0
+'SA.Martha' 'papa2.sm' 149 1.0 2.0
+'SA.Martha' 'papa2.sm' 150 1.0 2.0
+'SA.Martha' 'papa2.sm' 151 1.0 2.0
+'SA.Martha' 'papa2.sm' 154 1.0 2.0
+'SA.Martha' 'papa2.sm' 155 1.0 2.0
+'SA.Martha' 'papa2.sm' 156 1.0 2.0
+'SA.Martha' 'papa2.sm' 157 1.0 2.0
+'SA.Martha' 'papa2.sm' 158 1.0 2.0
+'SA.Martha' 'papa2.sm' 161 1.0 2.0
+'SA.Martha' 'papa2.sm' 162 1.0 2.0
+'SA.Martha' 'papa2.sm' 163 1.0 2.0
+'SA.Martha' 'papa2.sm' 164 1.0 2.0
+'SA.Martha' 'papa2.sm' 165 1.0 2.0
+'SA.Martha' 'papa2.sm' 168 1.0 2.0
+'SA.Martha' 'papa2.sm' 169 1.0 2.0
+'SA.Martha' 'papa2.sm' 170 1.0 2.0
+'SA.Martha' 'papa2.sm' 171 1.0 2.0
+'SA.Martha' 'papa2.sm' 172 1.0 2.0
+'SA.Martha' 'papa2.sf' 175 10.0 11.0
+'SA.Martha' 'papa2.sf' 176 10.0 11.0
+'SA.Martha' 'papa2.sf' 177 10.0 11.0
+'SA.Martha' 'papa2.sf' 178 10.0 11.0
+'SA.Martha' 'papa2.sf' 179 10.0 11.0
+'SA.Martha' 'papa2.sf' 182 10.0 11.0
+'SA.Martha' 'zulu2.se' 168 9.0 10.0
+'SA.Martha' 'zulu2.se' 169 9.0 10.0
+'SA.Martha' 'zulu2.se' 170 9.0 10.0
+'SA.Martha' 'zulu2.se' 171 9.0 10.0
+'SA.Martha' 'zulu2.se' 172 9.0 10.0
+'SA.Martha' 'zulu2.se' 175 9.0 10.0
+'SA.Martha' 'zulu2.se' 176 9.0 10.0
+'SA.Martha' 'zulu2.se' 177 9.0 10.0
+'SA.Martha' 'zulu2.se' 178 9.0 10.0
+'SA.Martha' 'zulu2.se' 179 9.0 10.0
+'SA.Martha' 'zulu2.se' 182 9.0 10.0
+'SA.Martha' 'zulu2.se' 183 9.0 10.0
+'SA.Martha' 'zulu2.se' 184 9.0 10.0
+'SA.Martha' 'zulu2.se' 185 9.0 10.0
+'SA.Martha' 'zulu2.se' 186 9.0 10.0
+'SA.Martha' 'zulu2.se' 189 9.0 10.0
+'SA.Martha' 'zulu2.se' 190 9.0 10.0
+'SA.Martha' 'zulu2.se' 191 9.0 10.0
+'SA.Martha' 'zulu2.se' 192 9.0 10.0
+'SA.Martha' 'zulu2.se' 193 9.0 10.0
+'SA.Martha' 'zulu2.se' 196 9.0 10.0
+'SA.Martha' 'zulu2.se' 197 9.0 10.0
+'SA.Martha' 'zulu2.sm' 198 0.0 1.0
+'SA.Martha' 'zulu2.sm' 199 0.0 1.0
+'SA.Martha' 'zulu2.sm' 200 0.0 1.0
+'SA.Martha' 'zulu2.sm' 203 0.0 1.0
+'SA.Martha' 'zulu2.sm' 204 0.0 1.0
+'SA.Martha' 'zulu2.sm' 205 0.0 1.0
+'SA.Martha' 'zulu2.sm' 206 0.0 1.0
+'SA.Martha' 'zulu2.sm' 207 0.0 1.0
+'SA.Martha' 'zulu2.sm' 210 0.0 1.0
+'SA.Martha' 'zulu2.sm' 211 0.0 1.0
+'SA.Martha' 'zulu2.sm' 212 0.0 1.0
+'SA.Martha' 'zulu2.sm' 213 0.0 1.0
+'SA.Martha' 'zulu2.sm' 214 0.0 1.0
+'SA.Martha' 'zulu2.sm' 217 0.0 1.0
+'SA.Martha' 'zulu2.sm' 218 0.0 1.0
+'SA.Martha' 'zulu2.sm' 219 0.0 1.0
+'SA.Martha' 'zulu2.sm' 220 0.0 1.0
+'SA.Martha' 'zulu2.sm' 221 0.0 1.0
+'SA.Martha' 'zulu2.sm' 224 0.0 1.0
+'SA.Martha' 'zulu2.sm' 225 0.0 1.0
+'SA.Martha' 'zulu2.sm' 226 0.0 1.0
+'SA.Martha' 'zulu2.sm' 227 0.0 1.0
+'SA.Martha' 'zulu2.sm' 228 0.0 1.0
+'SA.Martha' 'zulu2.sm' 231 0.0 1.0
+'SA.Martha' 'zulu2.sm' 232 0.0 1.0
+'SA.Martha' 'zulu2.sm' 233 0.0 1.0
+'SA.Martha' 'zulu2.sm' 234 0.0 1.0
+'SA.Martha' 'zulu2.sm' 235 0.0 1.0
+'SA.Martha' 'zulu2.sm' 238 0.0 1.0
+'SA.Martha' 'zulu2.sm' 239 0.0 1.0
+'SA.Martha' 'zulu2.sm' 240 0.0 1.0
+'SA.Martha' 'zulu2.sm' 241 0.0 1.0
+'SA.Martha' 'zulu2.sm' 242 0.0 1.0
+'SA.Martha' 'zulu2.sm' 245 0.0 1.0
+'SA.Martha' 'zulu2.sm' 246 0.0 1.0
+'SA.Martha' 'zulu2.sm' 247 0.0 1.0
+'SA.Martha' 'zulu2.sm' 248 0.0 1.0
+'SA.Martha' 'zulu2.sm' 249 0.0 1.0
+'SA.Martha' 'zulu2.sm' 252 0.0 1.0
+'SA.Martha' 'zulu2.sm' 253 0.0 1.0
+'SA.Martha' 'zulu2.sm' 254 0.0 1.0
+'SA.Martha' 'zulu2.sm' 255 0.0 1.0
+'SA.Martha' 'zulu2.sm' 256 0.0 1.0
+'SA.Martha' 'zulu2.sm' 259 0.0 1.0
+'SA.Martha' 'zulu2.sm' 260 0.0 1.0
+'SA.Martha' 'zulu2.sm' 261 0.0 1.0
+'SA.Martha' 'zulu2.sm' 262 0.0 1.0
+'SA.Martha' 'zulu2.sm' 263 0.0 1.0
+'SA.Martha' 'zulu2.sm' 266 0.0 1.0
+'SA.Martha' 'zulu2.sm' 267 0.0 1.0
+'SA.Martha' 'zulu2.sm' 268 0.0 1.0
+'SA.Martha' 'zulu2.sm' 269 0.0 1.0
+'SA.Martha' 'zulu2.sm' 270 0.0 1.0
+'SA.Martha' 'zulu2.sm' 273 0.0 1.0
+'SA.Martha' 'zulu2.sm' 274 0.0 1.0
+'SA.Martha' 'zulu2.sm' 275 0.0 1.0
+'SA.Martha' 'zulu2.sm' 276 0.0 1.0
+'SA.Martha' 'zulu2.sm' 277 0.0 1.0
+'SA.Martha' 'zulu2.sm' 280 0.0 1.0
+'SA.Martha' 'zulu2.sm' 281 0.0 1.0
+'SA.Martha' 'zulu2.sm' 282 0.0 1.0
+'SA.Martha' 'zulu2.sm' 283 0.0 1.0
+'SA.Martha' 'zulu2.sm' 284 0.0 1.0
+'SA.Martha' 'zulu2.sm' 287 0.0 1.0
+'SA.Martha' 'zulu2.sm' 288 0.0 1.0
+'SA.Martha' 'zulu2.sm' 289 0.0 1.0
+'SA.Martha' 'zulu2.sm' 290 0.0 1.0
+'SA.Martha' 'zulu2.sm' 291 0.0 1.0
+'SA.Martha' 'zulu2.sm' 294 0.0 1.0
+'SA.Martha' 'zulu2.sm' 295 0.0 1.0
+'SA.Martha' 'zulu2.sm' 296 0.0 1.0
+'SA.Martha' 'zulu2.sm' 297 0.0 1.0
+'SA.Martha' 'zulu2.sm' 298 0.0 1.0
+'SA.Martha' 'zulu2.sm' 301 0.0 1.0
+'SA.Martha' 'zulu2.sm' 302 0.0 1.0
+'SA.Martha' 'zulu2.sm' 303 0.0 1.0
+'SA.Martha' 'zulu2.sm' 304 0.0 1.0
+'SA.Martha' 'zulu2.sm' 305 0.0 1.0
+'SA.Martha' 'zulu2.sm' 308 0.0 1.0
+'SA.Martha' 'zulu2.sm' 309 0.0 1.0
+'SA.Martha' 'zulu2.sm' 310 0.0 1.0
+'SA.Martha' 'zulu2.sm' 311 0.0 1.0
+'SA.Martha' 'zulu2.sm' 312 0.0 1.0
+'SA.Martha' 'zulu2.sm' 315 0.0 1.0
+'SA.Martha' 'zulu2.sm' 316 0.0 1.0
+'SA.Martha' 'zulu2.sm' 317 0.0 1.0
+'SA.Martha' 'zulu2.sm' 318 0.0 1.0
+'SA.Martha' 'zulu2.sm' 319 0.0 1.0
+'SA.Martha' 'zulu2.sm' 322 0.0 1.0
+'SA.Martha' 'zulu2.sm' 323 0.0 1.0
+'SA.Martha' 'zulu2.sm' 324 0.0 1.0
+'SA.Martha' 'zulu2.sm' 325 0.0 1.0
+'SA.Martha' 'zulu2.sm' 326 0.0 1.0
+'SA.Martha' 'zulu2.sf' 329 6.0 7.0
+'SA.Martha' 'zulu2.sf' 330 6.0 7.0
+'SA.Martha' 'zulu2.sf' 331 6.0 7.0
+'SA.Martha' 'zulu2.sf' 332 6.0 7.0
+'SA.Martha' 'zulu2.sf' 333 6.0 7.0
+'SA.Martha' 'zulu2.sf' 336 6.0 7.0
 ;
 
 param:
-PAYROLLN: PAYROLLS PAYROLLE :=
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
 'Jan.25' 1 16
 'Feb.25' 17 45
 'Mar.25' 46 76
@@ -37,644 +591,22 @@ PAYROLLN: PAYROLLS PAYROLLE :=
 'Sep.25' 231 259
 'Oct.25' 260 289
 'Nov.25' 290 317
-'Dec.25' 318 346;
+'Dec.25' 318 346
+;
 
 param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
-'SA.Martha' 'Jan.25' 0.0 720.0
-'SA.Martha' 'Feb.25' 0.0 720.0
-'SA.Martha' 'Mar.25' 0.0 720.0
-'SA.Martha' 'Apr.25' 0.0 720.0
-'SA.Martha' 'May.25' 0.0 720.0
-'SA.Martha' 'Jun.25' 0.0 720.0
-'SA.Martha' 'Jul.25' 0.0 720.0
-'SA.Martha' 'Aug.25' 0.0 720.0
-'SA.Martha' 'Sep.25' 0.0 720.0
-'SA.Martha' 'Oct.25' 0.0 720.0
-'SA.Martha' 'Nov.25' 0.0 720.0
-'SA.Martha' 'Dec.25' 0.0 720.0;
-
-param OFFDAY_NO := 98;
-
-param OFFDAY :=
-1 2
-2 5
-3 6
-4 12
-5 13
-6 19
-7 20
-8 26
-9 27
-10 33
-11 34
-12 40
-13 41
-14 47
-15 48
-16 54
-17 55
-18 61
-19 62
-20 68
-21 69
-22 75
-23 76
-24 82
-25 83
-26 89
-27 90
-28 96
-29 97
-30 103
-31 104
-32 110
-33 111
-34 117
-35 118
-36 122
-37 124
-38 125
-39 131
-40 132
-41 138
-42 139
-43 145
-44 146
-45 152
-46 153
-47 159
-48 160
-49 166
-50 167
-51 173
-52 174
-53 180
-54 181
-55 187
-56 188
-57 194
-58 195
-59 201
-60 202
-61 208
-62 209
-63 215
-64 216
-65 222
-66 223
-67 229
-68 230
-69 236
-70 237
-71 243
-72 244
-73 250
-74 251
-75 257
-76 258
-77 264
-78 265
-79 271
-80 272
-81 278
-82 279
-83 285
-84 286
-85 292
-86 293
-87 299
-88 300
-89 306
-90 307
-91 313
-92 314
-93 320
-94 321
-95 327
-96 328
-97 334
-98 335;
-
-param XBDAY_NO := 486;
-
-param XBDAY:
-1   2   3   4   5 :=
-1 'SA.Martha' 'kilo2.sm' 3 1.0 2.0
-2 'SA.Martha' 'kilo2.sm' 4 1.0 2.0
-3 'SA.Martha' 'kilo2.sm' 7 1.0 2.0
-4 'SA.Martha' 'kilo2.sm' 8 1.0 2.0
-5 'SA.Martha' 'kilo2.sm' 9 1.0 2.0
-6 'SA.Martha' 'kilo2.sm' 10 1.0 2.0
-7 'SA.Martha' 'kilo2.sm' 11 1.0 2.0
-8 'SA.Martha' 'kilo2.sm' 14 1.0 2.0
-9 'SA.Martha' 'kilo2.sm' 15 1.0 2.0
-10 'SA.Martha' 'kilo2.sm' 16 1.0 2.0
-11 'SA.Martha' 'kilo2.sm' 17 1.0 2.0
-12 'SA.Martha' 'kilo2.sm' 18 1.0 2.0
-13 'SA.Martha' 'kilo2.sm' 21 1.0 2.0
-14 'SA.Martha' 'kilo2.sm' 22 1.0 2.0
-15 'SA.Martha' 'kilo2.sm' 23 1.0 2.0
-16 'SA.Martha' 'kilo2.sm' 24 1.0 2.0
-17 'SA.Martha' 'kilo2.sm' 25 1.0 2.0
-18 'SA.Martha' 'kilo2.sm' 28 1.0 2.0
-19 'SA.Martha' 'kilo2.sm' 29 1.0 2.0
-20 'SA.Martha' 'kilo2.sm' 30 1.0 2.0
-21 'SA.Martha' 'kilo2.sm' 31 1.0 2.0
-22 'SA.Martha' 'kilo2.sm' 32 1.0 2.0
-23 'SA.Martha' 'kilo2.sm' 35 1.0 2.0
-24 'SA.Martha' 'kilo2.sm' 36 1.0 2.0
-25 'SA.Martha' 'kilo2.sm' 37 1.0 2.0
-26 'SA.Martha' 'kilo2.sm' 38 1.0 2.0
-27 'SA.Martha' 'kilo2.sm' 39 1.0 2.0
-28 'SA.Martha' 'kilo2.sm' 42 1.0 2.0
-29 'SA.Martha' 'kilo2.sm' 43 1.0 2.0
-30 'SA.Martha' 'kilo2.sm' 44 1.0 2.0
-31 'SA.Martha' 'kilo2.sm' 45 1.0 2.0
-32 'SA.Martha' 'kilo2.sm' 46 1.0 2.0
-33 'SA.Martha' 'kilo2.sm' 49 1.0 2.0
-34 'SA.Martha' 'kilo2.sm' 50 1.0 2.0
-35 'SA.Martha' 'kilo2.sm' 51 1.0 2.0
-36 'SA.Martha' 'kilo2.sm' 52 1.0 2.0
-37 'SA.Martha' 'kilo2.sm' 53 1.0 2.0
-38 'SA.Martha' 'kilo2.sm' 56 1.0 2.0
-39 'SA.Martha' 'kilo2.sm' 57 1.0 2.0
-40 'SA.Martha' 'kilo2.sf' 58 10.0 11.0
-41 'SA.Martha' 'kilo2.sf' 59 10.0 11.0
-42 'SA.Martha' 'kilo2.sf' 60 10.0 11.0
-43 'SA.Martha' 'kilo2.sf' 63 10.0 11.0
-44 'SA.Martha' 'november2.sm' 3 1.0 2.0
-45 'SA.Martha' 'november2.sm' 4 1.0 2.0
-46 'SA.Martha' 'november2.sm' 7 1.0 2.0
-47 'SA.Martha' 'november2.sm' 8 1.0 2.0
-48 'SA.Martha' 'november2.sm' 9 1.0 2.0
-49 'SA.Martha' 'november2.sm' 10 1.0 2.0
-50 'SA.Martha' 'november2.sm' 11 1.0 2.0
-51 'SA.Martha' 'november2.sm' 14 1.0 2.0
-52 'SA.Martha' 'november2.sm' 15 1.0 2.0
-53 'SA.Martha' 'november2.sm' 16 1.0 2.0
-54 'SA.Martha' 'november2.sm' 17 1.0 2.0
-55 'SA.Martha' 'november2.sm' 18 1.0 2.0
-56 'SA.Martha' 'november2.sm' 21 1.0 2.0
-57 'SA.Martha' 'november2.sm' 22 1.0 2.0
-58 'SA.Martha' 'november2.sm' 23 1.0 2.0
-59 'SA.Martha' 'november2.sm' 24 1.0 2.0
-60 'SA.Martha' 'november2.sm' 25 1.0 2.0
-61 'SA.Martha' 'november2.sm' 28 1.0 2.0
-62 'SA.Martha' 'november2.sm' 29 1.0 2.0
-63 'SA.Martha' 'november2.sm' 30 1.0 2.0
-64 'SA.Martha' 'november2.sm' 31 1.0 2.0
-65 'SA.Martha' 'november2.sm' 32 1.0 2.0
-66 'SA.Martha' 'november2.sm' 35 1.0 2.0
-67 'SA.Martha' 'november2.sm' 36 1.0 2.0
-68 'SA.Martha' 'november2.sm' 37 1.0 2.0
-69 'SA.Martha' 'november2.sm' 38 1.0 2.0
-70 'SA.Martha' 'november2.sm' 39 1.0 2.0
-71 'SA.Martha' 'november2.sm' 42 1.0 2.0
-72 'SA.Martha' 'november2.sm' 43 1.0 2.0
-73 'SA.Martha' 'november2.sm' 44 1.0 2.0
-74 'SA.Martha' 'november2.sm' 45 1.0 2.0
-75 'SA.Martha' 'november2.sm' 46 1.0 2.0
-76 'SA.Martha' 'november2.sm' 49 1.0 2.0
-77 'SA.Martha' 'november2.sm' 50 1.0 2.0
-78 'SA.Martha' 'november2.sm' 51 1.0 2.0
-79 'SA.Martha' 'november2.sm' 52 1.0 2.0
-80 'SA.Martha' 'november2.sm' 53 1.0 2.0
-81 'SA.Martha' 'november2.sm' 56 1.0 2.0
-82 'SA.Martha' 'november2.sm' 57 1.0 2.0
-83 'SA.Martha' 'november2.sm' 58 1.0 2.0
-84 'SA.Martha' 'november2.sm' 59 1.0 2.0
-85 'SA.Martha' 'november2.sm' 60 1.0 2.0
-86 'SA.Martha' 'november2.sm' 63 1.0 2.0
-87 'SA.Martha' 'november2.sm' 64 1.0 2.0
-88 'SA.Martha' 'november2.sm' 65 1.0 2.0
-89 'SA.Martha' 'november2.sm' 66 1.0 2.0
-90 'SA.Martha' 'november2.sm' 67 1.0 2.0
-91 'SA.Martha' 'november2.sm' 70 1.0 2.0
-92 'SA.Martha' 'november2.sm' 71 1.0 2.0
-93 'SA.Martha' 'november2.sm' 72 1.0 2.0
-94 'SA.Martha' 'november2.sm' 73 1.0 2.0
-95 'SA.Martha' 'november2.sm' 74 1.0 2.0
-96 'SA.Martha' 'november2.sm' 77 1.0 2.0
-97 'SA.Martha' 'november2.sm' 78 1.0 2.0
-98 'SA.Martha' 'november2.sm' 79 1.0 2.0
-99 'SA.Martha' 'november2.sm' 80 1.0 2.0
-100 'SA.Martha' 'november2.sm' 81 1.0 2.0
-101 'SA.Martha' 'november2.sm' 84 1.0 2.0
-102 'SA.Martha' 'november2.sm' 85 1.0 2.0
-103 'SA.Martha' 'november2.sm' 86 1.0 2.0
-104 'SA.Martha' 'november2.sm' 87 1.0 2.0
-105 'SA.Martha' 'november2.sf' 88 8.0 9.0
-106 'SA.Martha' 'november2.sf' 91 8.0 9.0
-107 'SA.Martha' 'november2.sf' 92 8.0 9.0
-108 'SA.Martha' 'november2.sf' 93 8.0 9.0
-109 'SA.Martha' 'november2.sf' 94 8.0 9.0
-110 'SA.Martha' 'november2.sf' 95 8.0 9.0
-111 'SA.Martha' 'november2.sf' 98 8.0 9.0
-112 'SA.Martha' 'oscar2.sm' 3 0.0 1.0
-113 'SA.Martha' 'oscar2.sm' 4 0.0 1.0
-114 'SA.Martha' 'oscar2.sm' 7 0.0 1.0
-115 'SA.Martha' 'oscar2.sm' 8 0.0 1.0
-116 'SA.Martha' 'oscar2.sm' 9 0.0 1.0
-117 'SA.Martha' 'oscar2.sm' 10 0.0 1.0
-118 'SA.Martha' 'oscar2.sm' 11 0.0 1.0
-119 'SA.Martha' 'oscar2.sm' 14 0.0 1.0
-120 'SA.Martha' 'oscar2.sm' 15 0.0 1.0
-121 'SA.Martha' 'oscar2.sm' 16 0.0 1.0
-122 'SA.Martha' 'oscar2.sm' 17 0.0 1.0
-123 'SA.Martha' 'oscar2.sm' 18 0.0 1.0
-124 'SA.Martha' 'oscar2.sm' 21 0.0 1.0
-125 'SA.Martha' 'oscar2.sm' 22 0.0 1.0
-126 'SA.Martha' 'oscar2.sm' 23 0.0 1.0
-127 'SA.Martha' 'oscar2.sm' 24 0.0 1.0
-128 'SA.Martha' 'oscar2.sm' 25 0.0 1.0
-129 'SA.Martha' 'oscar2.sm' 28 0.0 1.0
-130 'SA.Martha' 'oscar2.sm' 29 0.0 1.0
-131 'SA.Martha' 'oscar2.sm' 30 0.0 1.0
-132 'SA.Martha' 'oscar2.sm' 31 0.0 1.0
-133 'SA.Martha' 'oscar2.sm' 32 0.0 1.0
-134 'SA.Martha' 'oscar2.sm' 35 0.0 1.0
-135 'SA.Martha' 'oscar2.sm' 36 0.0 1.0
-136 'SA.Martha' 'oscar2.sm' 37 0.0 1.0
-137 'SA.Martha' 'oscar2.sm' 38 0.0 1.0
-138 'SA.Martha' 'oscar2.sm' 39 0.0 1.0
-139 'SA.Martha' 'oscar2.sm' 42 0.0 1.0
-140 'SA.Martha' 'oscar2.sm' 43 0.0 1.0
-141 'SA.Martha' 'oscar2.sm' 44 0.0 1.0
-142 'SA.Martha' 'oscar2.sm' 45 0.0 1.0
-143 'SA.Martha' 'oscar2.sm' 46 0.0 1.0
-144 'SA.Martha' 'oscar2.sm' 49 0.0 1.0
-145 'SA.Martha' 'oscar2.sm' 50 0.0 1.0
-146 'SA.Martha' 'oscar2.sm' 51 0.0 1.0
-147 'SA.Martha' 'oscar2.sm' 52 0.0 1.0
-148 'SA.Martha' 'oscar2.sm' 53 0.0 1.0
-149 'SA.Martha' 'oscar2.sm' 56 0.0 1.0
-150 'SA.Martha' 'oscar2.sm' 57 0.0 1.0
-151 'SA.Martha' 'oscar2.sm' 58 0.0 1.0
-152 'SA.Martha' 'oscar2.sm' 59 0.0 1.0
-153 'SA.Martha' 'oscar2.sm' 60 0.0 1.0
-154 'SA.Martha' 'oscar2.sm' 63 0.0 1.0
-155 'SA.Martha' 'oscar2.sm' 64 0.0 1.0
-156 'SA.Martha' 'oscar2.sm' 65 0.0 1.0
-157 'SA.Martha' 'oscar2.sm' 66 0.0 1.0
-158 'SA.Martha' 'oscar2.sm' 67 0.0 1.0
-159 'SA.Martha' 'oscar2.sm' 70 0.0 1.0
-160 'SA.Martha' 'oscar2.sm' 71 0.0 1.0
-161 'SA.Martha' 'oscar2.sm' 72 0.0 1.0
-162 'SA.Martha' 'oscar2.sm' 73 0.0 1.0
-163 'SA.Martha' 'oscar2.sm' 74 0.0 1.0
-164 'SA.Martha' 'oscar2.sm' 77 0.0 1.0
-165 'SA.Martha' 'oscar2.sm' 78 0.0 1.0
-166 'SA.Martha' 'oscar2.sm' 79 0.0 1.0
-167 'SA.Martha' 'oscar2.sm' 80 0.0 1.0
-168 'SA.Martha' 'oscar2.sm' 81 0.0 1.0
-169 'SA.Martha' 'oscar2.sm' 84 0.0 1.0
-170 'SA.Martha' 'oscar2.sm' 85 0.0 1.0
-171 'SA.Martha' 'oscar2.sm' 86 0.0 1.0
-172 'SA.Martha' 'oscar2.sm' 87 0.0 1.0
-173 'SA.Martha' 'oscar2.sm' 88 0.0 1.0
-174 'SA.Martha' 'oscar2.sm' 91 0.0 1.0
-175 'SA.Martha' 'oscar2.sm' 92 0.0 1.0
-176 'SA.Martha' 'oscar2.sm' 93 0.0 1.0
-177 'SA.Martha' 'oscar2.sm' 94 0.0 1.0
-178 'SA.Martha' 'oscar2.sm' 95 0.0 1.0
-179 'SA.Martha' 'oscar2.sm' 98 0.0 1.0
-180 'SA.Martha' 'oscar2.sm' 99 0.0 1.0
-181 'SA.Martha' 'oscar2.sm' 100 0.0 1.0
-182 'SA.Martha' 'oscar2.sm' 101 0.0 1.0
-183 'SA.Martha' 'oscar2.sm' 102 0.0 1.0
-184 'SA.Martha' 'oscar2.sm' 105 0.0 1.0
-185 'SA.Martha' 'oscar2.sm' 106 0.0 1.0
-186 'SA.Martha' 'oscar2.sm' 107 0.0 1.0
-187 'SA.Martha' 'oscar2.sm' 108 0.0 1.0
-188 'SA.Martha' 'oscar2.sm' 109 0.0 1.0
-189 'SA.Martha' 'oscar2.sm' 112 0.0 1.0
-190 'SA.Martha' 'oscar2.sm' 113 0.0 1.0
-191 'SA.Martha' 'oscar2.sm' 114 0.0 1.0
-192 'SA.Martha' 'oscar2.sm' 115 0.0 1.0
-193 'SA.Martha' 'oscar2.sm' 116 0.0 1.0
-194 'SA.Martha' 'oscar2.sm' 119 0.0 1.0
-195 'SA.Martha' 'oscar2.sm' 120 0.0 1.0
-196 'SA.Martha' 'oscar2.sm' 121 0.0 1.0
-197 'SA.Martha' 'oscar2.sm' 123 0.0 1.0
-198 'SA.Martha' 'oscar2.sm' 126 0.0 1.0
-199 'SA.Martha' 'oscar2.sm' 127 0.0 1.0
-200 'SA.Martha' 'oscar2.sm' 128 0.0 1.0
-201 'SA.Martha' 'oscar2.sm' 129 0.0 1.0
-202 'SA.Martha' 'oscar2.sm' 130 0.0 1.0
-203 'SA.Martha' 'oscar2.sm' 133 0.0 1.0
-204 'SA.Martha' 'oscar2.sm' 134 0.0 1.0
-205 'SA.Martha' 'oscar2.sm' 135 0.0 1.0
-206 'SA.Martha' 'oscar2.sm' 136 0.0 1.0
-207 'SA.Martha' 'oscar2.sm' 137 0.0 1.0
-208 'SA.Martha' 'oscar2.sm' 140 0.0 1.0
-209 'SA.Martha' 'oscar2.sm' 141 0.0 1.0
-210 'SA.Martha' 'oscar2.sm' 142 0.0 1.0
-211 'SA.Martha' 'oscar2.sm' 143 0.0 1.0
-212 'SA.Martha' 'oscar2.sm' 144 0.0 1.0
-213 'SA.Martha' 'oscar2.sm' 147 0.0 1.0
-214 'SA.Martha' 'oscar2.sm' 148 0.0 1.0
-215 'SA.Martha' 'oscar2.sm' 149 0.0 1.0
-216 'SA.Martha' 'oscar2.sm' 150 0.0 1.0
-217 'SA.Martha' 'oscar2.sm' 151 0.0 1.0
-218 'SA.Martha' 'oscar2.sm' 154 0.0 1.0
-219 'SA.Martha' 'oscar2.sm' 155 0.0 1.0
-220 'SA.Martha' 'oscar2.sm' 156 0.0 1.0
-221 'SA.Martha' 'oscar2.sm' 157 0.0 1.0
-222 'SA.Martha' 'oscar2.sm' 158 0.0 1.0
-223 'SA.Martha' 'oscar2.sm' 161 0.0 1.0
-224 'SA.Martha' 'oscar2.sm' 162 0.0 1.0
-225 'SA.Martha' 'oscar2.sm' 163 0.0 1.0
-226 'SA.Martha' 'oscar2.sm' 164 0.0 1.0
-227 'SA.Martha' 'oscar2.sm' 165 0.0 1.0
-228 'SA.Martha' 'oscar2.sm' 168 0.0 1.0
-229 'SA.Martha' 'oscar2.sm' 169 0.0 1.0
-230 'SA.Martha' 'oscar2.sm' 170 0.0 1.0
-231 'SA.Martha' 'oscar2.sm' 171 0.0 1.0
-232 'SA.Martha' 'oscar2.sm' 172 0.0 1.0
-233 'SA.Martha' 'oscar2.sf' 175 6.0 7.0
-234 'SA.Martha' 'oscar2.sf' 176 6.0 7.0
-235 'SA.Martha' 'oscar2.sf' 177 6.0 7.0
-236 'SA.Martha' 'oscar2.sf' 178 6.0 7.0
-237 'SA.Martha' 'oscar2.sf' 179 6.0 7.0
-238 'SA.Martha' 'oscar2.sf' 182 6.0 7.0
-239 'SA.Martha' 'papa2.sm' 3 1.0 2.0
-240 'SA.Martha' 'papa2.sm' 4 1.0 2.0
-241 'SA.Martha' 'papa2.sm' 7 1.0 2.0
-242 'SA.Martha' 'papa2.sm' 8 1.0 2.0
-243 'SA.Martha' 'papa2.sm' 9 1.0 2.0
-244 'SA.Martha' 'papa2.sm' 10 1.0 2.0
-245 'SA.Martha' 'papa2.sm' 11 1.0 2.0
-246 'SA.Martha' 'papa2.sm' 14 1.0 2.0
-247 'SA.Martha' 'papa2.sm' 15 1.0 2.0
-248 'SA.Martha' 'papa2.sm' 16 1.0 2.0
-249 'SA.Martha' 'papa2.sm' 17 1.0 2.0
-250 'SA.Martha' 'papa2.sm' 18 1.0 2.0
-251 'SA.Martha' 'papa2.sm' 21 1.0 2.0
-252 'SA.Martha' 'papa2.sm' 22 1.0 2.0
-253 'SA.Martha' 'papa2.sm' 23 1.0 2.0
-254 'SA.Martha' 'papa2.sm' 24 1.0 2.0
-255 'SA.Martha' 'papa2.sm' 25 1.0 2.0
-256 'SA.Martha' 'papa2.sm' 28 1.0 2.0
-257 'SA.Martha' 'papa2.sm' 29 1.0 2.0
-258 'SA.Martha' 'papa2.sm' 30 1.0 2.0
-259 'SA.Martha' 'papa2.sm' 31 1.0 2.0
-260 'SA.Martha' 'papa2.sm' 32 1.0 2.0
-261 'SA.Martha' 'papa2.sm' 35 1.0 2.0
-262 'SA.Martha' 'papa2.sm' 36 1.0 2.0
-263 'SA.Martha' 'papa2.sm' 37 1.0 2.0
-264 'SA.Martha' 'papa2.sm' 38 1.0 2.0
-265 'SA.Martha' 'papa2.sm' 39 1.0 2.0
-266 'SA.Martha' 'papa2.sm' 42 1.0 2.0
-267 'SA.Martha' 'papa2.sm' 43 1.0 2.0
-268 'SA.Martha' 'papa2.sm' 44 1.0 2.0
-269 'SA.Martha' 'papa2.sm' 45 1.0 2.0
-270 'SA.Martha' 'papa2.sm' 46 1.0 2.0
-271 'SA.Martha' 'papa2.sm' 49 1.0 2.0
-272 'SA.Martha' 'papa2.sm' 50 1.0 2.0
-273 'SA.Martha' 'papa2.sm' 51 1.0 2.0
-274 'SA.Martha' 'papa2.sm' 52 1.0 2.0
-275 'SA.Martha' 'papa2.sm' 53 1.0 2.0
-276 'SA.Martha' 'papa2.sm' 56 1.0 2.0
-277 'SA.Martha' 'papa2.sm' 57 1.0 2.0
-278 'SA.Martha' 'papa2.sm' 58 1.0 2.0
-279 'SA.Martha' 'papa2.sm' 59 1.0 2.0
-280 'SA.Martha' 'papa2.sm' 60 1.0 2.0
-281 'SA.Martha' 'papa2.sm' 63 1.0 2.0
-282 'SA.Martha' 'papa2.sm' 64 1.0 2.0
-283 'SA.Martha' 'papa2.sm' 65 1.0 2.0
-284 'SA.Martha' 'papa2.sm' 66 1.0 2.0
-285 'SA.Martha' 'papa2.sm' 67 1.0 2.0
-286 'SA.Martha' 'papa2.sm' 70 1.0 2.0
-287 'SA.Martha' 'papa2.sm' 71 1.0 2.0
-288 'SA.Martha' 'papa2.sm' 72 1.0 2.0
-289 'SA.Martha' 'papa2.sm' 73 1.0 2.0
-290 'SA.Martha' 'papa2.sm' 74 1.0 2.0
-291 'SA.Martha' 'papa2.sm' 77 1.0 2.0
-292 'SA.Martha' 'papa2.sm' 78 1.0 2.0
-293 'SA.Martha' 'papa2.sm' 79 1.0 2.0
-294 'SA.Martha' 'papa2.sm' 80 1.0 2.0
-295 'SA.Martha' 'papa2.sm' 81 1.0 2.0
-296 'SA.Martha' 'papa2.sm' 84 1.0 2.0
-297 'SA.Martha' 'papa2.sm' 85 1.0 2.0
-298 'SA.Martha' 'papa2.sm' 86 1.0 2.0
-299 'SA.Martha' 'papa2.sm' 87 1.0 2.0
-300 'SA.Martha' 'papa2.sm' 88 1.0 2.0
-301 'SA.Martha' 'papa2.sm' 91 1.0 2.0
-302 'SA.Martha' 'papa2.sm' 92 1.0 2.0
-303 'SA.Martha' 'papa2.sm' 93 1.0 2.0
-304 'SA.Martha' 'papa2.sm' 94 1.0 2.0
-305 'SA.Martha' 'papa2.sm' 95 1.0 2.0
-306 'SA.Martha' 'papa2.sm' 98 1.0 2.0
-307 'SA.Martha' 'papa2.sm' 99 1.0 2.0
-308 'SA.Martha' 'papa2.sm' 100 1.0 2.0
-309 'SA.Martha' 'papa2.sm' 101 1.0 2.0
-310 'SA.Martha' 'papa2.sm' 102 1.0 2.0
-311 'SA.Martha' 'papa2.sm' 105 1.0 2.0
-312 'SA.Martha' 'papa2.sm' 106 1.0 2.0
-313 'SA.Martha' 'papa2.sm' 107 1.0 2.0
-314 'SA.Martha' 'papa2.sm' 108 1.0 2.0
-315 'SA.Martha' 'papa2.sm' 109 1.0 2.0
-316 'SA.Martha' 'papa2.sm' 112 1.0 2.0
-317 'SA.Martha' 'papa2.sm' 113 1.0 2.0
-318 'SA.Martha' 'papa2.sm' 114 1.0 2.0
-319 'SA.Martha' 'papa2.sm' 115 1.0 2.0
-320 'SA.Martha' 'papa2.sm' 116 1.0 2.0
-321 'SA.Martha' 'papa2.sm' 119 1.0 2.0
-322 'SA.Martha' 'papa2.sm' 120 1.0 2.0
-323 'SA.Martha' 'papa2.sm' 121 1.0 2.0
-324 'SA.Martha' 'papa2.sm' 123 1.0 2.0
-325 'SA.Martha' 'papa2.sm' 126 1.0 2.0
-326 'SA.Martha' 'papa2.sm' 127 1.0 2.0
-327 'SA.Martha' 'papa2.sm' 128 1.0 2.0
-328 'SA.Martha' 'papa2.sm' 129 1.0 2.0
-329 'SA.Martha' 'papa2.sm' 130 1.0 2.0
-330 'SA.Martha' 'papa2.sm' 133 1.0 2.0
-331 'SA.Martha' 'papa2.sm' 134 1.0 2.0
-332 'SA.Martha' 'papa2.sm' 135 1.0 2.0
-333 'SA.Martha' 'papa2.sm' 136 1.0 2.0
-334 'SA.Martha' 'papa2.sm' 137 1.0 2.0
-335 'SA.Martha' 'papa2.sm' 140 1.0 2.0
-336 'SA.Martha' 'papa2.sm' 141 1.0 2.0
-337 'SA.Martha' 'papa2.sm' 142 1.0 2.0
-338 'SA.Martha' 'papa2.sm' 143 1.0 2.0
-339 'SA.Martha' 'papa2.sm' 144 1.0 2.0
-340 'SA.Martha' 'papa2.sm' 147 1.0 2.0
-341 'SA.Martha' 'papa2.sm' 148 1.0 2.0
-342 'SA.Martha' 'papa2.sm' 149 1.0 2.0
-343 'SA.Martha' 'papa2.sm' 150 1.0 2.0
-344 'SA.Martha' 'papa2.sm' 151 1.0 2.0
-345 'SA.Martha' 'papa2.sm' 154 1.0 2.0
-346 'SA.Martha' 'papa2.sm' 155 1.0 2.0
-347 'SA.Martha' 'papa2.sm' 156 1.0 2.0
-348 'SA.Martha' 'papa2.sm' 157 1.0 2.0
-349 'SA.Martha' 'papa2.sm' 158 1.0 2.0
-350 'SA.Martha' 'papa2.sm' 161 1.0 2.0
-351 'SA.Martha' 'papa2.sm' 162 1.0 2.0
-352 'SA.Martha' 'papa2.sm' 163 1.0 2.0
-353 'SA.Martha' 'papa2.sm' 164 1.0 2.0
-354 'SA.Martha' 'papa2.sm' 165 1.0 2.0
-355 'SA.Martha' 'papa2.sm' 168 1.0 2.0
-356 'SA.Martha' 'papa2.sm' 169 1.0 2.0
-357 'SA.Martha' 'papa2.sm' 170 1.0 2.0
-358 'SA.Martha' 'papa2.sm' 171 1.0 2.0
-359 'SA.Martha' 'papa2.sm' 172 1.0 2.0
-360 'SA.Martha' 'papa2.sf' 175 10.0 11.0
-361 'SA.Martha' 'papa2.sf' 176 10.0 11.0
-362 'SA.Martha' 'papa2.sf' 177 10.0 11.0
-363 'SA.Martha' 'papa2.sf' 178 10.0 11.0
-364 'SA.Martha' 'papa2.sf' 179 10.0 11.0
-365 'SA.Martha' 'papa2.sf' 182 10.0 11.0
-366 'SA.Martha' 'zulu2.se' 168 9.0 10.0
-367 'SA.Martha' 'zulu2.se' 169 9.0 10.0
-368 'SA.Martha' 'zulu2.se' 170 9.0 10.0
-369 'SA.Martha' 'zulu2.se' 171 9.0 10.0
-370 'SA.Martha' 'zulu2.se' 172 9.0 10.0
-371 'SA.Martha' 'zulu2.se' 175 9.0 10.0
-372 'SA.Martha' 'zulu2.se' 176 9.0 10.0
-373 'SA.Martha' 'zulu2.se' 177 9.0 10.0
-374 'SA.Martha' 'zulu2.se' 178 9.0 10.0
-375 'SA.Martha' 'zulu2.se' 179 9.0 10.0
-376 'SA.Martha' 'zulu2.se' 182 9.0 10.0
-377 'SA.Martha' 'zulu2.se' 183 9.0 10.0
-378 'SA.Martha' 'zulu2.se' 184 9.0 10.0
-379 'SA.Martha' 'zulu2.se' 185 9.0 10.0
-380 'SA.Martha' 'zulu2.se' 186 9.0 10.0
-381 'SA.Martha' 'zulu2.se' 189 9.0 10.0
-382 'SA.Martha' 'zulu2.se' 190 9.0 10.0
-383 'SA.Martha' 'zulu2.se' 191 9.0 10.0
-384 'SA.Martha' 'zulu2.se' 192 9.0 10.0
-385 'SA.Martha' 'zulu2.se' 193 9.0 10.0
-386 'SA.Martha' 'zulu2.se' 196 9.0 10.0
-387 'SA.Martha' 'zulu2.se' 197 9.0 10.0
-388 'SA.Martha' 'zulu2.sm' 198 0.0 1.0
-389 'SA.Martha' 'zulu2.sm' 199 0.0 1.0
-390 'SA.Martha' 'zulu2.sm' 200 0.0 1.0
-391 'SA.Martha' 'zulu2.sm' 203 0.0 1.0
-392 'SA.Martha' 'zulu2.sm' 204 0.0 1.0
-393 'SA.Martha' 'zulu2.sm' 205 0.0 1.0
-394 'SA.Martha' 'zulu2.sm' 206 0.0 1.0
-395 'SA.Martha' 'zulu2.sm' 207 0.0 1.0
-396 'SA.Martha' 'zulu2.sm' 210 0.0 1.0
-397 'SA.Martha' 'zulu2.sm' 211 0.0 1.0
-398 'SA.Martha' 'zulu2.sm' 212 0.0 1.0
-399 'SA.Martha' 'zulu2.sm' 213 0.0 1.0
-400 'SA.Martha' 'zulu2.sm' 214 0.0 1.0
-401 'SA.Martha' 'zulu2.sm' 217 0.0 1.0
-402 'SA.Martha' 'zulu2.sm' 218 0.0 1.0
-403 'SA.Martha' 'zulu2.sm' 219 0.0 1.0
-404 'SA.Martha' 'zulu2.sm' 220 0.0 1.0
-405 'SA.Martha' 'zulu2.sm' 221 0.0 1.0
-406 'SA.Martha' 'zulu2.sm' 224 0.0 1.0
-407 'SA.Martha' 'zulu2.sm' 225 0.0 1.0
-408 'SA.Martha' 'zulu2.sm' 226 0.0 1.0
-409 'SA.Martha' 'zulu2.sm' 227 0.0 1.0
-410 'SA.Martha' 'zulu2.sm' 228 0.0 1.0
-411 'SA.Martha' 'zulu2.sm' 231 0.0 1.0
-412 'SA.Martha' 'zulu2.sm' 232 0.0 1.0
-413 'SA.Martha' 'zulu2.sm' 233 0.0 1.0
-414 'SA.Martha' 'zulu2.sm' 234 0.0 1.0
-415 'SA.Martha' 'zulu2.sm' 235 0.0 1.0
-416 'SA.Martha' 'zulu2.sm' 238 0.0 1.0
-417 'SA.Martha' 'zulu2.sm' 239 0.0 1.0
-418 'SA.Martha' 'zulu2.sm' 240 0.0 1.0
-419 'SA.Martha' 'zulu2.sm' 241 0.0 1.0
-420 'SA.Martha' 'zulu2.sm' 242 0.0 1.0
-421 'SA.Martha' 'zulu2.sm' 245 0.0 1.0
-422 'SA.Martha' 'zulu2.sm' 246 0.0 1.0
-423 'SA.Martha' 'zulu2.sm' 247 0.0 1.0
-424 'SA.Martha' 'zulu2.sm' 248 0.0 1.0
-425 'SA.Martha' 'zulu2.sm' 249 0.0 1.0
-426 'SA.Martha' 'zulu2.sm' 252 0.0 1.0
-427 'SA.Martha' 'zulu2.sm' 253 0.0 1.0
-428 'SA.Martha' 'zulu2.sm' 254 0.0 1.0
-429 'SA.Martha' 'zulu2.sm' 255 0.0 1.0
-430 'SA.Martha' 'zulu2.sm' 256 0.0 1.0
-431 'SA.Martha' 'zulu2.sm' 259 0.0 1.0
-432 'SA.Martha' 'zulu2.sm' 260 0.0 1.0
-433 'SA.Martha' 'zulu2.sm' 261 0.0 1.0
-434 'SA.Martha' 'zulu2.sm' 262 0.0 1.0
-435 'SA.Martha' 'zulu2.sm' 263 0.0 1.0
-436 'SA.Martha' 'zulu2.sm' 266 0.0 1.0
-437 'SA.Martha' 'zulu2.sm' 267 0.0 1.0
-438 'SA.Martha' 'zulu2.sm' 268 0.0 1.0
-439 'SA.Martha' 'zulu2.sm' 269 0.0 1.0
-440 'SA.Martha' 'zulu2.sm' 270 0.0 1.0
-441 'SA.Martha' 'zulu2.sm' 273 0.0 1.0
-442 'SA.Martha' 'zulu2.sm' 274 0.0 1.0
-443 'SA.Martha' 'zulu2.sm' 275 0.0 1.0
-444 'SA.Martha' 'zulu2.sm' 276 0.0 1.0
-445 'SA.Martha' 'zulu2.sm' 277 0.0 1.0
-446 'SA.Martha' 'zulu2.sm' 280 0.0 1.0
-447 'SA.Martha' 'zulu2.sm' 281 0.0 1.0
-448 'SA.Martha' 'zulu2.sm' 282 0.0 1.0
-449 'SA.Martha' 'zulu2.sm' 283 0.0 1.0
-450 'SA.Martha' 'zulu2.sm' 284 0.0 1.0
-451 'SA.Martha' 'zulu2.sm' 287 0.0 1.0
-452 'SA.Martha' 'zulu2.sm' 288 0.0 1.0
-453 'SA.Martha' 'zulu2.sm' 289 0.0 1.0
-454 'SA.Martha' 'zulu2.sm' 290 0.0 1.0
-455 'SA.Martha' 'zulu2.sm' 291 0.0 1.0
-456 'SA.Martha' 'zulu2.sm' 294 0.0 1.0
-457 'SA.Martha' 'zulu2.sm' 295 0.0 1.0
-458 'SA.Martha' 'zulu2.sm' 296 0.0 1.0
-459 'SA.Martha' 'zulu2.sm' 297 0.0 1.0
-460 'SA.Martha' 'zulu2.sm' 298 0.0 1.0
-461 'SA.Martha' 'zulu2.sm' 301 0.0 1.0
-462 'SA.Martha' 'zulu2.sm' 302 0.0 1.0
-463 'SA.Martha' 'zulu2.sm' 303 0.0 1.0
-464 'SA.Martha' 'zulu2.sm' 304 0.0 1.0
-465 'SA.Martha' 'zulu2.sm' 305 0.0 1.0
-466 'SA.Martha' 'zulu2.sm' 308 0.0 1.0
-467 'SA.Martha' 'zulu2.sm' 309 0.0 1.0
-468 'SA.Martha' 'zulu2.sm' 310 0.0 1.0
-469 'SA.Martha' 'zulu2.sm' 311 0.0 1.0
-470 'SA.Martha' 'zulu2.sm' 312 0.0 1.0
-471 'SA.Martha' 'zulu2.sm' 315 0.0 1.0
-472 'SA.Martha' 'zulu2.sm' 316 0.0 1.0
-473 'SA.Martha' 'zulu2.sm' 317 0.0 1.0
-474 'SA.Martha' 'zulu2.sm' 318 0.0 1.0
-475 'SA.Martha' 'zulu2.sm' 319 0.0 1.0
-476 'SA.Martha' 'zulu2.sm' 322 0.0 1.0
-477 'SA.Martha' 'zulu2.sm' 323 0.0 1.0
-478 'SA.Martha' 'zulu2.sm' 324 0.0 1.0
-479 'SA.Martha' 'zulu2.sm' 325 0.0 1.0
-480 'SA.Martha' 'zulu2.sm' 326 0.0 1.0
-481 'SA.Martha' 'zulu2.sf' 329 6.0 7.0
-482 'SA.Martha' 'zulu2.sf' 330 6.0 7.0
-483 'SA.Martha' 'zulu2.sf' 331 6.0 7.0
-484 'SA.Martha' 'zulu2.sf' 332 6.0 7.0
-485 'SA.Martha' 'zulu2.sf' 333 6.0 7.0
-486 'SA.Martha' 'zulu2.sf' 336 6.0 7.0;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
+EXPPER: PBL PBU :=
+'SA.Martha' 'Jan.25' 0 720
+'SA.Martha' 'Feb.25' 0 720
+'SA.Martha' 'Mar.25' 0 720
+'SA.Martha' 'Apr.25' 0 720
+'SA.Martha' 'May.25' 0 720
+'SA.Martha' 'Jun.25' 0 720
+'SA.Martha' 'Jul.25' 0 720
+'SA.Martha' 'Aug.25' 0 720
+'SA.Martha' 'Sep.25' 0 720
+'SA.Martha' 'Oct.25' 0 720
+'SA.Martha' 'Nov.25' 0 720
+'SA.Martha' 'Dec.25' 0 720
 ;
-
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
-;
-
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
-;
-
-set LINKS :=
-'SA.Martha' 'kilo2.sf'
-'SA.Martha' 'kilo2.sm'
-'SA.Martha' 'november2.sf'
-'SA.Martha' 'november2.sm'
-'SA.Martha' 'oscar2.sf'
-'SA.Martha' 'oscar2.sm'
-'SA.Martha' 'papa2.sf'
-'SA.Martha' 'papa2.sm'
-'SA.Martha' 'zulu2.se'
-'SA.Martha' 'zulu2.sf'
-'SA.Martha' 'zulu2.sm';
 

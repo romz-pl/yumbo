@@ -8,12 +8,11 @@ import time
 # Tasks per day
 #
 def plot(expert_name):
-    df = st.session_state.glb[f"schedule {expert_name}"]
 
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("timg")
-    buf = timg(df, mm_hash)
+    buf = timg(expert_name, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -23,22 +22,25 @@ def plot(expert_name):
 
 
 @st.cache_resource(max_entries=1000)
-def timg(df, mm_hash):
+def timg(expert_name, mm_hash):
+
+    df = (st.session_state.amplsol[f"{expert_name}"] > 0).sum(axis=1)
+
     start = glb.timg("Start")
     end = glb.timg("End")
 
     # Generate the date range as string
-    days = pd.date_range(start=start, end=end, freq="D")
+    #days = pd.date_range(start=start, end=end, freq="D")
 
     # Count the number of tasks per day
-    tasks_per_day = (df[days] > 0).sum()
+    #tasks_per_day = (df[days] > 0).sum()
 
     # Calculate plot limits
     left = pd.Timestamp(start) - pd.Timedelta(days=1)
     right = pd.Timestamp(end) + pd.Timedelta(days=1)
 
     # Determine bar width
-    width = 0.9 if days.size < 10 else 1.0
+    width = 0.9 if df.index.size < 10 else 1.0
 
     # Create figure and axis
     fig = matplotlib.figure.Figure(figsize=(glb.timg("Width"), glb.timg("Height")), dpi=glb.timg("Dpi"))
@@ -57,8 +59,8 @@ def timg(df, mm_hash):
 
     # Add bars to the plot
     ax.bar(
-        days,
-        tasks_per_day,
+        df.index,
+        df.values,
         width,
         color=glb.timg("Bar:color"),
         hatch=glb.timg("Bar:hatch"),

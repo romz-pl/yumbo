@@ -1,553 +1,64 @@
-param HOURS_PER_DAY := 32;
-
-set EXPERTN :=
-'Radosław';
-
-param EBOUND_NO := 0;
-
-param EBOUND:
-1   2   3   4   5 :=
-;
+param MAXWORK := 32;
 
 param:
-TASKN: TASKS TASKE TASKW :=
-'p2.e' 1 14 40
-'p2.m' 15 133 680
-'p2.f' 134 161 240
-'p3.e' 11 23 16
-'p3.m' 24 191 448
-'p3.f' 192 219 96
-'p4.e' 26 44 60
-'p4.m' 45 212 960
-'p4.f' 213 240 160
+TNAME: TWORK :=
+'p2.e' 40
+'p2.m' 680
+'p2.f' 240
+'p3.e' 16
+'p3.m' 448
+'p3.f' 96
+'p4.e' 60
+'p4.m' 960
+'p4.f' 160
 ;
 
-param:
-PAYROLLN: PAYROLLS PAYROLLE :=
-'25.Jan' 21 56
-'25.Feb' 57 85
-'25.Mar' 86 116
-'25.Apr' 117 145
-'25.May' 146 179;
-
-param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
+set TSCOPE['p2.e'] :=
+1 2 5 6 7 8 9 12 13 14
 ;
 
-param OFFDAY_NO := 69;
-
-param OFFDAY :=
-1 3
-2 4
-3 10
-4 11
-5 17
-6 18
-7 24
-8 25
-9 31
-10 32
-11 35
-12 38
-13 39
-14 45
-15 46
-16 52
-17 53
-18 59
-19 60
-20 66
-21 67
-22 73
-23 74
-24 80
-25 81
-26 87
-27 88
-28 94
-29 95
-30 101
-31 102
-32 108
-33 109
-34 115
-35 116
-36 122
-37 123
-38 129
-39 130
-40 136
-41 137
-42 143
-43 144
-44 150
-45 151
-46 157
-47 158
-48 164
-49 165
-50 171
-51 172
-52 178
-53 179
-54 185
-55 186
-56 192
-57 193
-58 199
-59 200
-60 206
-61 207
-62 213
-63 214
-64 220
-65 221
-66 227
-67 228
-68 234
-69 235;
-
-param XBDAY_NO := 417;
-
-param XBDAY:
-1   2   3   4   5 :=
-1 'Radosław' 'p2.e' 1 4 4
-2 'Radosław' 'p2.e' 2 4 4
-3 'Radosław' 'p2.e' 5 4 4
-4 'Radosław' 'p2.e' 6 4 4
-5 'Radosław' 'p2.e' 7 4 4
-6 'Radosław' 'p2.e' 8 4 4
-7 'Radosław' 'p2.e' 9 4 4
-8 'Radosław' 'p2.e' 12 4 4
-9 'Radosław' 'p2.e' 13 4 4
-10 'Radosław' 'p2.e' 14 4 4
-11 'Radosław' 'p2.m' 15 4 12
-12 'Radosław' 'p2.m' 16 4 12
-13 'Radosław' 'p2.m' 19 4 12
-14 'Radosław' 'p2.m' 20 4 12
-15 'Radosław' 'p2.m' 21 4 12
-16 'Radosław' 'p2.m' 22 4 12
-17 'Radosław' 'p2.m' 23 4 12
-18 'Radosław' 'p2.m' 26 4 12
-19 'Radosław' 'p2.m' 27 4 12
-20 'Radosław' 'p2.m' 28 4 12
-21 'Radosław' 'p2.m' 29 4 12
-22 'Radosław' 'p2.m' 30 4 12
-23 'Radosław' 'p2.m' 33 4 12
-24 'Radosław' 'p2.m' 34 4 12
-25 'Radosław' 'p2.m' 36 4 12
-26 'Radosław' 'p2.m' 37 4 12
-27 'Radosław' 'p2.m' 40 4 12
-28 'Radosław' 'p2.m' 41 4 12
-29 'Radosław' 'p2.m' 42 4 12
-30 'Radosław' 'p2.m' 43 4 12
-31 'Radosław' 'p2.m' 44 4 12
-32 'Radosław' 'p2.m' 47 4 12
-33 'Radosław' 'p2.m' 48 4 12
-34 'Radosław' 'p2.m' 49 4 12
-35 'Radosław' 'p2.m' 50 4 12
-36 'Radosław' 'p2.m' 51 4 12
-37 'Radosław' 'p2.m' 54 4 12
-38 'Radosław' 'p2.m' 55 4 12
-39 'Radosław' 'p2.m' 56 4 12
-40 'Radosław' 'p2.m' 57 4 12
-41 'Radosław' 'p2.m' 58 4 12
-42 'Radosław' 'p2.m' 61 4 12
-43 'Radosław' 'p2.m' 62 4 12
-44 'Radosław' 'p2.m' 63 4 12
-45 'Radosław' 'p2.m' 64 4 12
-46 'Radosław' 'p2.m' 65 4 12
-47 'Radosław' 'p2.m' 68 4 12
-48 'Radosław' 'p2.m' 69 4 12
-49 'Radosław' 'p2.m' 70 4 12
-50 'Radosław' 'p2.m' 71 4 12
-51 'Radosław' 'p2.m' 72 4 12
-52 'Radosław' 'p2.m' 75 4 12
-53 'Radosław' 'p2.m' 76 4 12
-54 'Radosław' 'p2.m' 77 4 12
-55 'Radosław' 'p2.m' 78 4 12
-56 'Radosław' 'p2.m' 79 4 12
-57 'Radosław' 'p2.m' 82 4 12
-58 'Radosław' 'p2.m' 83 4 12
-59 'Radosław' 'p2.m' 84 4 12
-60 'Radosław' 'p2.m' 85 4 12
-61 'Radosław' 'p2.m' 86 4 12
-62 'Radosław' 'p2.m' 89 4 12
-63 'Radosław' 'p2.m' 90 4 12
-64 'Radosław' 'p2.m' 91 4 12
-65 'Radosław' 'p2.m' 92 4 12
-66 'Radosław' 'p2.m' 93 4 12
-67 'Radosław' 'p2.m' 96 4 12
-68 'Radosław' 'p2.m' 97 4 12
-69 'Radosław' 'p2.m' 98 4 12
-70 'Radosław' 'p2.m' 99 4 12
-71 'Radosław' 'p2.m' 100 4 12
-72 'Radosław' 'p2.m' 103 4 12
-73 'Radosław' 'p2.m' 104 4 12
-74 'Radosław' 'p2.m' 105 4 12
-75 'Radosław' 'p2.m' 106 4 12
-76 'Radosław' 'p2.m' 107 4 12
-77 'Radosław' 'p2.m' 110 4 12
-78 'Radosław' 'p2.m' 111 4 12
-79 'Radosław' 'p2.m' 112 4 12
-80 'Radosław' 'p2.m' 113 4 12
-81 'Radosław' 'p2.m' 114 4 12
-82 'Radosław' 'p2.m' 117 4 12
-83 'Radosław' 'p2.m' 118 4 12
-84 'Radosław' 'p2.m' 119 4 12
-85 'Radosław' 'p2.m' 120 4 12
-86 'Radosław' 'p2.m' 121 4 12
-87 'Radosław' 'p2.m' 124 4 12
-88 'Radosław' 'p2.m' 125 4 12
-89 'Radosław' 'p2.m' 126 4 12
-90 'Radosław' 'p2.m' 127 4 12
-91 'Radosław' 'p2.m' 128 4 12
-92 'Radosław' 'p2.m' 131 4 12
-93 'Radosław' 'p2.m' 132 4 12
-94 'Radosław' 'p2.m' 133 4 12
-95 'Radosław' 'p2.f' 134 0 12
-96 'Radosław' 'p2.f' 135 0 12
-97 'Radosław' 'p2.f' 138 0 12
-98 'Radosław' 'p2.f' 139 0 12
-99 'Radosław' 'p2.f' 140 0 12
-100 'Radosław' 'p2.f' 141 0 12
-101 'Radosław' 'p2.f' 142 0 12
-102 'Radosław' 'p2.f' 145 0 12
-103 'Radosław' 'p2.f' 146 0 12
-104 'Radosław' 'p2.f' 147 0 12
-105 'Radosław' 'p2.f' 148 0 12
-106 'Radosław' 'p2.f' 149 0 12
-107 'Radosław' 'p2.f' 152 0 12
-108 'Radosław' 'p2.f' 153 0 12
-109 'Radosław' 'p2.f' 154 0 12
-110 'Radosław' 'p2.f' 155 0 12
-111 'Radosław' 'p2.f' 156 0 12
-112 'Radosław' 'p2.f' 159 0 12
-113 'Radosław' 'p2.f' 160 0 12
-114 'Radosław' 'p2.f' 161 0 12
-115 'Radosław' 'p3.e' 12 0 4
-116 'Radosław' 'p3.e' 13 0 4
-117 'Radosław' 'p3.e' 14 0 4
-118 'Radosław' 'p3.e' 15 0 4
-119 'Radosław' 'p3.e' 16 0 4
-120 'Radosław' 'p3.e' 19 0 4
-121 'Radosław' 'p3.e' 20 0 4
-122 'Radosław' 'p3.e' 21 0 4
-123 'Radosław' 'p3.e' 22 0 4
-124 'Radosław' 'p3.e' 23 0 4
-125 'Radosław' 'p3.f' 194 8 8
-126 'Radosław' 'p3.f' 195 8 8
-127 'Radosław' 'p3.f' 196 8 8
-128 'Radosław' 'p3.f' 197 8 8
-129 'Radosław' 'p3.f' 198 8 8
-130 'Radosław' 'p3.f' 201 0 4
-131 'Radosław' 'p3.f' 202 0 4
-132 'Radosław' 'p3.f' 203 0 4
-133 'Radosław' 'p3.f' 204 0 4
-134 'Radosław' 'p3.f' 205 0 4
-135 'Radosław' 'p3.f' 208 0 4
-136 'Radosław' 'p3.f' 209 0 4
-137 'Radosław' 'p3.f' 210 0 4
-138 'Radosław' 'p3.f' 211 0 4
-139 'Radosław' 'p3.f' 212 0 4
-140 'Radosław' 'p3.f' 215 0 4
-141 'Radosław' 'p3.f' 216 0 4
-142 'Radosław' 'p3.f' 217 0 4
-143 'Radosław' 'p3.f' 218 0 4
-144 'Radosław' 'p3.f' 219 0 4
-145 'Radosław' 'p3.m' 26 0 4
-146 'Radosław' 'p3.m' 27 0 4
-147 'Radosław' 'p3.m' 28 0 4
-148 'Radosław' 'p3.m' 29 0 4
-149 'Radosław' 'p3.m' 30 0 4
-150 'Radosław' 'p3.m' 33 0 4
-151 'Radosław' 'p3.m' 34 0 4
-152 'Radosław' 'p3.m' 36 0 4
-153 'Radosław' 'p3.m' 37 0 4
-154 'Radosław' 'p3.m' 40 0 4
-155 'Radosław' 'p3.m' 41 0 4
-156 'Radosław' 'p3.m' 42 0 4
-157 'Radosław' 'p3.m' 43 0 4
-158 'Radosław' 'p3.m' 44 0 4
-159 'Radosław' 'p3.m' 47 0 4
-160 'Radosław' 'p3.m' 48 0 4
-161 'Radosław' 'p3.m' 49 0 4
-162 'Radosław' 'p3.m' 50 0 4
-163 'Radosław' 'p3.m' 51 0 4
-164 'Radosław' 'p3.m' 54 0 4
-165 'Radosław' 'p3.m' 55 0 4
-166 'Radosław' 'p3.m' 56 0 4
-167 'Radosław' 'p3.m' 57 0 4
-168 'Radosław' 'p3.m' 58 0 4
-169 'Radosław' 'p3.m' 61 0 4
-170 'Radosław' 'p3.m' 62 0 4
-171 'Radosław' 'p3.m' 63 0 4
-172 'Radosław' 'p3.m' 64 0 4
-173 'Radosław' 'p3.m' 65 0 4
-174 'Radosław' 'p3.m' 68 0 4
-175 'Radosław' 'p3.m' 69 0 4
-176 'Radosław' 'p3.m' 70 0 4
-177 'Radosław' 'p3.m' 71 0 4
-178 'Radosław' 'p3.m' 72 0 4
-179 'Radosław' 'p3.m' 75 0 4
-180 'Radosław' 'p3.m' 76 0 4
-181 'Radosław' 'p3.m' 77 0 4
-182 'Radosław' 'p3.m' 78 0 4
-183 'Radosław' 'p3.m' 79 0 4
-184 'Radosław' 'p3.m' 82 0 4
-185 'Radosław' 'p3.m' 83 0 4
-186 'Radosław' 'p3.m' 84 0 4
-187 'Radosław' 'p3.m' 85 0 4
-188 'Radosław' 'p3.m' 86 0 4
-189 'Radosław' 'p3.m' 89 0 4
-190 'Radosław' 'p3.m' 90 0 4
-191 'Radosław' 'p3.m' 91 0 4
-192 'Radosław' 'p3.m' 92 0 4
-193 'Radosław' 'p3.m' 93 0 4
-194 'Radosław' 'p3.m' 96 0 4
-195 'Radosław' 'p3.m' 97 0 4
-196 'Radosław' 'p3.m' 98 0 4
-197 'Radosław' 'p3.m' 99 0 4
-198 'Radosław' 'p3.m' 100 0 4
-199 'Radosław' 'p3.m' 103 0 4
-200 'Radosław' 'p3.m' 104 0 4
-201 'Radosław' 'p3.m' 105 0 4
-202 'Radosław' 'p3.m' 106 0 4
-203 'Radosław' 'p3.m' 107 0 4
-204 'Radosław' 'p3.m' 110 0 4
-205 'Radosław' 'p3.m' 111 0 4
-206 'Radosław' 'p3.m' 112 0 4
-207 'Radosław' 'p3.m' 113 0 4
-208 'Radosław' 'p3.m' 114 0 4
-209 'Radosław' 'p3.m' 117 0 4
-210 'Radosław' 'p3.m' 118 0 4
-211 'Radosław' 'p3.m' 119 0 4
-212 'Radosław' 'p3.m' 120 0 4
-213 'Radosław' 'p3.m' 121 0 4
-214 'Radosław' 'p3.m' 124 0 4
-215 'Radosław' 'p3.m' 125 0 4
-216 'Radosław' 'p3.m' 126 0 4
-217 'Radosław' 'p3.m' 127 0 4
-218 'Radosław' 'p3.m' 128 0 4
-219 'Radosław' 'p3.m' 131 0 4
-220 'Radosław' 'p3.m' 132 0 4
-221 'Radosław' 'p3.m' 133 0 4
-222 'Radosław' 'p3.m' 134 0 4
-223 'Radosław' 'p3.m' 135 0 4
-224 'Radosław' 'p3.m' 138 0 4
-225 'Radosław' 'p3.m' 139 0 4
-226 'Radosław' 'p3.m' 140 0 4
-227 'Radosław' 'p3.m' 141 0 4
-228 'Radosław' 'p3.m' 142 0 4
-229 'Radosław' 'p3.m' 145 0 4
-230 'Radosław' 'p3.m' 146 0 4
-231 'Radosław' 'p3.m' 147 0 4
-232 'Radosław' 'p3.m' 148 0 4
-233 'Radosław' 'p3.m' 149 0 4
-234 'Radosław' 'p3.m' 152 0 4
-235 'Radosław' 'p3.m' 153 0 4
-236 'Radosław' 'p3.m' 154 0 4
-237 'Radosław' 'p3.m' 155 0 4
-238 'Radosław' 'p3.m' 156 0 4
-239 'Radosław' 'p3.m' 159 0 4
-240 'Radosław' 'p3.m' 160 0 4
-241 'Radosław' 'p3.m' 161 0 4
-242 'Radosław' 'p3.m' 162 0 4
-243 'Radosław' 'p3.m' 163 0 4
-244 'Radosław' 'p3.m' 166 0 4
-245 'Radosław' 'p3.m' 167 0 4
-246 'Radosław' 'p3.m' 168 0 4
-247 'Radosław' 'p3.m' 169 0 4
-248 'Radosław' 'p3.m' 170 0 4
-249 'Radosław' 'p3.m' 173 0 4
-250 'Radosław' 'p3.m' 174 0 4
-251 'Radosław' 'p3.m' 175 0 4
-252 'Radosław' 'p3.m' 176 0 4
-253 'Radosław' 'p3.m' 177 0 4
-254 'Radosław' 'p3.m' 180 0 4
-255 'Radosław' 'p3.m' 181 0 4
-256 'Radosław' 'p3.m' 182 0 4
-257 'Radosław' 'p3.m' 183 0 4
-258 'Radosław' 'p3.m' 184 0 4
-259 'Radosław' 'p3.m' 187 0 4
-260 'Radosław' 'p3.m' 188 0 4
-261 'Radosław' 'p3.m' 189 0 4
-262 'Radosław' 'p3.m' 190 0 4
-263 'Radosław' 'p3.m' 191 0 4
-264 'Radosław' 'p4.e' 26 0 8
-265 'Radosław' 'p4.e' 27 0 8
-266 'Radosław' 'p4.e' 28 0 8
-267 'Radosław' 'p4.e' 29 0 8
-268 'Radosław' 'p4.e' 30 0 8
-269 'Radosław' 'p4.e' 33 0 8
-270 'Radosław' 'p4.e' 34 0 8
-271 'Radosław' 'p4.e' 36 0 8
-272 'Radosław' 'p4.e' 37 0 8
-273 'Radosław' 'p4.e' 40 0 8
-274 'Radosław' 'p4.e' 41 0 8
-275 'Radosław' 'p4.e' 42 0 8
-276 'Radosław' 'p4.e' 43 0 8
-277 'Radosław' 'p4.e' 44 0 8
-278 'Radosław' 'p4.m' 47 12 12
-279 'Radosław' 'p4.m' 48 12 12
-280 'Radosław' 'p4.m' 49 12 12
-281 'Radosław' 'p4.m' 50 12 12
-282 'Radosław' 'p4.m' 51 12 12
-283 'Radosław' 'p4.m' 54 12 12
-284 'Radosław' 'p4.m' 55 12 12
-285 'Radosław' 'p4.m' 56 12 12
-286 'Radosław' 'p4.m' 57 12 12
-287 'Radosław' 'p4.m' 58 12 12
-288 'Radosław' 'p4.m' 61 12 12
-289 'Radosław' 'p4.m' 62 12 12
-290 'Radosław' 'p4.m' 63 12 12
-291 'Radosław' 'p4.m' 64 12 12
-292 'Radosław' 'p4.m' 65 12 12
-293 'Radosław' 'p4.m' 68 12 12
-294 'Radosław' 'p4.m' 69 12 12
-295 'Radosław' 'p4.m' 70 12 12
-296 'Radosław' 'p4.m' 71 12 12
-297 'Radosław' 'p4.m' 72 12 12
-298 'Radosław' 'p4.m' 75 12 12
-299 'Radosław' 'p4.m' 76 12 12
-300 'Radosław' 'p4.m' 77 12 12
-301 'Radosław' 'p4.m' 78 12 12
-302 'Radosław' 'p4.m' 79 12 12
-303 'Radosław' 'p4.m' 82 12 12
-304 'Radosław' 'p4.m' 83 12 12
-305 'Radosław' 'p4.m' 84 12 12
-306 'Radosław' 'p4.m' 85 12 12
-307 'Radosław' 'p4.m' 86 12 12
-308 'Radosław' 'p4.m' 89 12 12
-309 'Radosław' 'p4.m' 90 12 12
-310 'Radosław' 'p4.m' 91 12 12
-311 'Radosław' 'p4.m' 92 12 12
-312 'Radosław' 'p4.m' 93 12 12
-313 'Radosław' 'p4.m' 96 12 12
-314 'Radosław' 'p4.m' 97 12 12
-315 'Radosław' 'p4.m' 98 12 12
-316 'Radosław' 'p4.m' 99 12 12
-317 'Radosław' 'p4.m' 100 12 12
-318 'Radosław' 'p4.m' 103 12 12
-319 'Radosław' 'p4.m' 104 12 12
-320 'Radosław' 'p4.m' 105 8 8
-321 'Radosław' 'p4.m' 106 8 8
-322 'Radosław' 'p4.m' 107 8 8
-323 'Radosław' 'p4.m' 110 8 8
-324 'Radosław' 'p4.m' 111 8 8
-325 'Radosław' 'p4.m' 112 8 8
-326 'Radosław' 'p4.m' 113 8 8
-327 'Radosław' 'p4.m' 114 8 8
-328 'Radosław' 'p4.m' 117 8 8
-329 'Radosław' 'p4.m' 118 8 8
-330 'Radosław' 'p4.m' 119 8 8
-331 'Radosław' 'p4.m' 120 8 8
-332 'Radosław' 'p4.m' 121 8 8
-333 'Radosław' 'p4.m' 124 8 8
-334 'Radosław' 'p4.m' 125 8 8
-335 'Radosław' 'p4.m' 126 8 8
-336 'Radosław' 'p4.m' 127 8 8
-337 'Radosław' 'p4.m' 128 8 8
-338 'Radosław' 'p4.m' 131 8 8
-339 'Radosław' 'p4.m' 132 8 8
-340 'Radosław' 'p4.m' 133 8 8
-341 'Radosław' 'p4.m' 134 8 8
-342 'Radosław' 'p4.m' 135 8 8
-343 'Radosław' 'p4.m' 138 8 8
-344 'Radosław' 'p4.m' 139 8 8
-345 'Radosław' 'p4.m' 140 8 8
-346 'Radosław' 'p4.m' 141 8 8
-347 'Radosław' 'p4.m' 142 8 8
-348 'Radosław' 'p4.m' 145 8 8
-349 'Radosław' 'p4.m' 146 8 8
-350 'Radosław' 'p4.m' 147 8 8
-351 'Radosław' 'p4.m' 148 8 8
-352 'Radosław' 'p4.m' 149 8 8
-353 'Radosław' 'p4.m' 152 8 8
-354 'Radosław' 'p4.m' 153 8 8
-355 'Radosław' 'p4.m' 154 8 8
-356 'Radosław' 'p4.m' 155 8 8
-357 'Radosław' 'p4.m' 156 8 8
-358 'Radosław' 'p4.m' 159 8 8
-359 'Radosław' 'p4.m' 160 8 8
-360 'Radosław' 'p4.m' 161 8 8
-361 'Radosław' 'p4.m' 162 8 8
-362 'Radosław' 'p4.m' 163 0 4
-363 'Radosław' 'p4.m' 166 0 4
-364 'Radosław' 'p4.m' 167 0 4
-365 'Radosław' 'p4.m' 168 0 4
-366 'Radosław' 'p4.m' 169 0 4
-367 'Radosław' 'p4.m' 170 0 4
-368 'Radosław' 'p4.m' 173 0 4
-369 'Radosław' 'p4.m' 174 0 4
-370 'Radosław' 'p4.m' 175 0 4
-371 'Radosław' 'p4.m' 176 0 4
-372 'Radosław' 'p4.m' 177 0 4
-373 'Radosław' 'p4.m' 180 0 4
-374 'Radosław' 'p4.m' 181 0 4
-375 'Radosław' 'p4.m' 182 0 4
-376 'Radosław' 'p4.m' 183 0 4
-377 'Radosław' 'p4.m' 184 0 4
-378 'Radosław' 'p4.m' 187 0 4
-379 'Radosław' 'p4.m' 188 0 4
-380 'Radosław' 'p4.m' 189 0 4
-381 'Radosław' 'p4.m' 190 0 4
-382 'Radosław' 'p4.m' 191 0 4
-383 'Radosław' 'p4.m' 194 0 4
-384 'Radosław' 'p4.m' 195 0 4
-385 'Radosław' 'p4.m' 196 0 4
-386 'Radosław' 'p4.m' 197 0 4
-387 'Radosław' 'p4.m' 198 0 4
-388 'Radosław' 'p4.m' 201 0 4
-389 'Radosław' 'p4.m' 202 0 4
-390 'Radosław' 'p4.m' 203 0 4
-391 'Radosław' 'p4.m' 204 0 4
-392 'Radosław' 'p4.m' 205 0 4
-393 'Radosław' 'p4.m' 208 0 4
-394 'Radosław' 'p4.m' 209 0 4
-395 'Radosław' 'p4.m' 210 0 4
-396 'Radosław' 'p4.m' 211 0 4
-397 'Radosław' 'p4.m' 212 0 4
-398 'Radosław' 'p4.f' 215 0 8
-399 'Radosław' 'p4.f' 216 0 8
-400 'Radosław' 'p4.f' 217 0 8
-401 'Radosław' 'p4.f' 218 0 8
-402 'Radosław' 'p4.f' 219 0 8
-403 'Radosław' 'p4.f' 222 0 8
-404 'Radosław' 'p4.f' 223 0 8
-405 'Radosław' 'p4.f' 224 0 8
-406 'Radosław' 'p4.f' 225 0 8
-407 'Radosław' 'p4.f' 226 0 8
-408 'Radosław' 'p4.f' 229 0 8
-409 'Radosław' 'p4.f' 230 0 8
-410 'Radosław' 'p4.f' 231 0 8
-411 'Radosław' 'p4.f' 232 0 8
-412 'Radosław' 'p4.f' 233 0 8
-413 'Radosław' 'p4.f' 236 0 8
-414 'Radosław' 'p4.f' 237 0 8
-415 'Radosław' 'p4.f' 238 0 8
-416 'Radosław' 'p4.f' 239 0 8
-417 'Radosław' 'p4.f' 240 0 8;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
+set TSCOPE['p2.m'] :=
+15 16 19 20 21 22 23 26 27 28 29 30 33 34 36 37 40 41 42 43 44 47 48 49 50 51 54 55 56 57 58 61 62 63 64 65 68 69 70 71 72 75 76 77 78 79 82 83 84 85
+86 89 90 91 92 93 96 97 98 99 100 103 104 105 106 107 110 111 112 113 114 117 118 119 120 121 124 125 126 127 128 131 132 133
 ;
 
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
+set TSCOPE['p2.f'] :=
+134 135 138 139 140 141 142 145 146 147 148 149 152 153 154 155 156 159 160 161
 ;
 
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
+set TSCOPE['p3.e'] :=
+12 13 14 15 16 19 20 21 22 23
 ;
 
-set LINKS :=
+set TSCOPE['p3.m'] :=
+26 27 28 29 30 33 34 36 37 40 41 42 43 44 47 48 49 50 51 54 55 56 57 58 61 62 63 64 65 68 69 70 71 72 75 76 77 78 79 82 83 84 85 86 89 90 91 92 93 96
+97 98 99 100 103 104 105 106 107 110 111 112 113 114 117 118 119 120 121 124 125 126 127 128 131 132 133 134 135 138 139 140 141 142 145 146 147 148 149 152 153 154 155 156 159 160 161 162 163 166
+167 168 169 170 173 174 175 176 177 180 181 182 183 184 187 188 189 190 191
+;
+
+set TSCOPE['p3.f'] :=
+194 195 196 197 198 201 202 203 204 205 208 209 210 211 212 215 216 217 218 219
+;
+
+set TSCOPE['p4.e'] :=
+26 27 28 29 30 33 34 36 37 40 41 42 43 44
+;
+
+set TSCOPE['p4.m'] :=
+47 48 49 50 51 54 55 56 57 58 61 62 63 64 65 68 69 70 71 72 75 76 77 78 79 82 83 84 85 86 89 90 91 92 93 96 97 98 99 100 103 104 105 106 107 110 111 112 113 114
+117 118 119 120 121 124 125 126 127 128 131 132 133 134 135 138 139 140 141 142 145 146 147 148 149 152 153 154 155 156 159 160 161 162 163 166 167 168 169 170 173 174 175 176 177 180 181 182 183 184
+187 188 189 190 191 194 195 196 197 198 201 202 203 204 205 208 209 210 211 212
+;
+
+set TSCOPE['p4.f'] :=
+215 216 217 218 219 222 223 224 225 226 229 230 231 232 233 236 237 238 239 240
+;
+
+set ENAME :=
+'Radosław'
+;
+
+set ASSIGN :=
 'Radosław' 'p2.e'
 'Radosław' 'p2.m'
 'Radosław' 'p2.f'
@@ -556,5 +67,446 @@ set LINKS :=
 'Radosław' 'p3.f'
 'Radosław' 'p4.e'
 'Radosław' 'p4.m'
-'Radosław' 'p4.f';
+'Radosław' 'p4.f'
+;
+
+param:
+XBID: XBL XBU :=
+'Radosław' 'p2.e' 1 4 4
+'Radosław' 'p2.e' 2 4 4
+'Radosław' 'p2.e' 5 4 4
+'Radosław' 'p2.e' 6 4 4
+'Radosław' 'p2.e' 7 4 4
+'Radosław' 'p2.e' 8 4 4
+'Radosław' 'p2.e' 9 4 4
+'Radosław' 'p2.e' 12 4 4
+'Radosław' 'p2.e' 13 4 4
+'Radosław' 'p2.e' 14 4 4
+'Radosław' 'p2.m' 15 4 12
+'Radosław' 'p2.m' 16 4 12
+'Radosław' 'p2.m' 19 4 12
+'Radosław' 'p2.m' 20 4 12
+'Radosław' 'p2.m' 21 4 12
+'Radosław' 'p2.m' 22 4 12
+'Radosław' 'p2.m' 23 4 12
+'Radosław' 'p2.m' 26 4 12
+'Radosław' 'p2.m' 27 4 12
+'Radosław' 'p2.m' 28 4 12
+'Radosław' 'p2.m' 29 4 12
+'Radosław' 'p2.m' 30 4 12
+'Radosław' 'p2.m' 33 4 12
+'Radosław' 'p2.m' 34 4 12
+'Radosław' 'p2.m' 36 4 12
+'Radosław' 'p2.m' 37 4 12
+'Radosław' 'p2.m' 40 4 12
+'Radosław' 'p2.m' 41 4 12
+'Radosław' 'p2.m' 42 4 12
+'Radosław' 'p2.m' 43 4 12
+'Radosław' 'p2.m' 44 4 12
+'Radosław' 'p2.m' 47 4 12
+'Radosław' 'p2.m' 48 4 12
+'Radosław' 'p2.m' 49 4 12
+'Radosław' 'p2.m' 50 4 12
+'Radosław' 'p2.m' 51 4 12
+'Radosław' 'p2.m' 54 4 12
+'Radosław' 'p2.m' 55 4 12
+'Radosław' 'p2.m' 56 4 12
+'Radosław' 'p2.m' 57 4 12
+'Radosław' 'p2.m' 58 4 12
+'Radosław' 'p2.m' 61 4 12
+'Radosław' 'p2.m' 62 4 12
+'Radosław' 'p2.m' 63 4 12
+'Radosław' 'p2.m' 64 4 12
+'Radosław' 'p2.m' 65 4 12
+'Radosław' 'p2.m' 68 4 12
+'Radosław' 'p2.m' 69 4 12
+'Radosław' 'p2.m' 70 4 12
+'Radosław' 'p2.m' 71 4 12
+'Radosław' 'p2.m' 72 4 12
+'Radosław' 'p2.m' 75 4 12
+'Radosław' 'p2.m' 76 4 12
+'Radosław' 'p2.m' 77 4 12
+'Radosław' 'p2.m' 78 4 12
+'Radosław' 'p2.m' 79 4 12
+'Radosław' 'p2.m' 82 4 12
+'Radosław' 'p2.m' 83 4 12
+'Radosław' 'p2.m' 84 4 12
+'Radosław' 'p2.m' 85 4 12
+'Radosław' 'p2.m' 86 4 12
+'Radosław' 'p2.m' 89 4 12
+'Radosław' 'p2.m' 90 4 12
+'Radosław' 'p2.m' 91 4 12
+'Radosław' 'p2.m' 92 4 12
+'Radosław' 'p2.m' 93 4 12
+'Radosław' 'p2.m' 96 4 12
+'Radosław' 'p2.m' 97 4 12
+'Radosław' 'p2.m' 98 4 12
+'Radosław' 'p2.m' 99 4 12
+'Radosław' 'p2.m' 100 4 12
+'Radosław' 'p2.m' 103 4 12
+'Radosław' 'p2.m' 104 4 12
+'Radosław' 'p2.m' 105 4 12
+'Radosław' 'p2.m' 106 4 12
+'Radosław' 'p2.m' 107 4 12
+'Radosław' 'p2.m' 110 4 12
+'Radosław' 'p2.m' 111 4 12
+'Radosław' 'p2.m' 112 4 12
+'Radosław' 'p2.m' 113 4 12
+'Radosław' 'p2.m' 114 4 12
+'Radosław' 'p2.m' 117 4 12
+'Radosław' 'p2.m' 118 4 12
+'Radosław' 'p2.m' 119 4 12
+'Radosław' 'p2.m' 120 4 12
+'Radosław' 'p2.m' 121 4 12
+'Radosław' 'p2.m' 124 4 12
+'Radosław' 'p2.m' 125 4 12
+'Radosław' 'p2.m' 126 4 12
+'Radosław' 'p2.m' 127 4 12
+'Radosław' 'p2.m' 128 4 12
+'Radosław' 'p2.m' 131 4 12
+'Radosław' 'p2.m' 132 4 12
+'Radosław' 'p2.m' 133 4 12
+'Radosław' 'p2.f' 134 0 12
+'Radosław' 'p2.f' 135 0 12
+'Radosław' 'p2.f' 138 0 12
+'Radosław' 'p2.f' 139 0 12
+'Radosław' 'p2.f' 140 0 12
+'Radosław' 'p2.f' 141 0 12
+'Radosław' 'p2.f' 142 0 12
+'Radosław' 'p2.f' 145 0 12
+'Radosław' 'p2.f' 146 0 12
+'Radosław' 'p2.f' 147 0 12
+'Radosław' 'p2.f' 148 0 12
+'Radosław' 'p2.f' 149 0 12
+'Radosław' 'p2.f' 152 0 12
+'Radosław' 'p2.f' 153 0 12
+'Radosław' 'p2.f' 154 0 12
+'Radosław' 'p2.f' 155 0 12
+'Radosław' 'p2.f' 156 0 12
+'Radosław' 'p2.f' 159 0 12
+'Radosław' 'p2.f' 160 0 12
+'Radosław' 'p2.f' 161 0 12
+'Radosław' 'p3.e' 12 0 4
+'Radosław' 'p3.e' 13 0 4
+'Radosław' 'p3.e' 14 0 4
+'Radosław' 'p3.e' 15 0 4
+'Radosław' 'p3.e' 16 0 4
+'Radosław' 'p3.e' 19 0 8
+'Radosław' 'p3.e' 20 0 8
+'Radosław' 'p3.e' 21 0 8
+'Radosław' 'p3.e' 22 0 8
+'Radosław' 'p3.e' 23 0 8
+'Radosław' 'p3.f' 194 8 8
+'Radosław' 'p3.f' 195 8 8
+'Radosław' 'p3.f' 196 8 8
+'Radosław' 'p3.f' 197 8 8
+'Radosław' 'p3.f' 198 8 8
+'Radosław' 'p3.f' 201 0 4
+'Radosław' 'p3.f' 202 0 4
+'Radosław' 'p3.f' 203 0 4
+'Radosław' 'p3.f' 204 0 4
+'Radosław' 'p3.f' 205 0 4
+'Radosław' 'p3.f' 208 0 4
+'Radosław' 'p3.f' 209 0 4
+'Radosław' 'p3.f' 210 0 4
+'Radosław' 'p3.f' 211 0 4
+'Radosław' 'p3.f' 212 0 4
+'Radosław' 'p3.f' 215 0 4
+'Radosław' 'p3.f' 216 0 4
+'Radosław' 'p3.f' 217 0 4
+'Radosław' 'p3.f' 218 0 4
+'Radosław' 'p3.f' 219 0 4
+'Radosław' 'p3.m' 26 0 4
+'Radosław' 'p3.m' 27 0 4
+'Radosław' 'p3.m' 28 0 4
+'Radosław' 'p3.m' 29 0 4
+'Radosław' 'p3.m' 30 0 4
+'Radosław' 'p3.m' 33 0 4
+'Radosław' 'p3.m' 34 0 4
+'Radosław' 'p3.m' 36 0 4
+'Radosław' 'p3.m' 37 0 4
+'Radosław' 'p3.m' 40 0 4
+'Radosław' 'p3.m' 41 0 4
+'Radosław' 'p3.m' 42 0 4
+'Radosław' 'p3.m' 43 0 4
+'Radosław' 'p3.m' 44 0 4
+'Radosław' 'p3.m' 47 0 4
+'Radosław' 'p3.m' 48 0 4
+'Radosław' 'p3.m' 49 0 4
+'Radosław' 'p3.m' 50 0 4
+'Radosław' 'p3.m' 51 0 4
+'Radosław' 'p3.m' 54 0 4
+'Radosław' 'p3.m' 55 0 4
+'Radosław' 'p3.m' 56 0 4
+'Radosław' 'p3.m' 57 0 4
+'Radosław' 'p3.m' 58 0 4
+'Radosław' 'p3.m' 61 0 4
+'Radosław' 'p3.m' 62 0 4
+'Radosław' 'p3.m' 63 0 4
+'Radosław' 'p3.m' 64 0 4
+'Radosław' 'p3.m' 65 0 4
+'Radosław' 'p3.m' 68 0 4
+'Radosław' 'p3.m' 69 0 4
+'Radosław' 'p3.m' 70 0 4
+'Radosław' 'p3.m' 71 0 4
+'Radosław' 'p3.m' 72 0 4
+'Radosław' 'p3.m' 75 0 4
+'Radosław' 'p3.m' 76 0 4
+'Radosław' 'p3.m' 77 0 4
+'Radosław' 'p3.m' 78 0 4
+'Radosław' 'p3.m' 79 0 4
+'Radosław' 'p3.m' 82 0 4
+'Radosław' 'p3.m' 83 0 4
+'Radosław' 'p3.m' 84 0 4
+'Radosław' 'p3.m' 85 0 4
+'Radosław' 'p3.m' 86 0 4
+'Radosław' 'p3.m' 89 0 4
+'Radosław' 'p3.m' 90 0 4
+'Radosław' 'p3.m' 91 0 4
+'Radosław' 'p3.m' 92 0 4
+'Radosław' 'p3.m' 93 0 4
+'Radosław' 'p3.m' 96 0 4
+'Radosław' 'p3.m' 97 0 4
+'Radosław' 'p3.m' 98 0 4
+'Radosław' 'p3.m' 99 0 4
+'Radosław' 'p3.m' 100 0 4
+'Radosław' 'p3.m' 103 0 4
+'Radosław' 'p3.m' 104 0 4
+'Radosław' 'p3.m' 105 0 4
+'Radosław' 'p3.m' 106 0 4
+'Radosław' 'p3.m' 107 0 4
+'Radosław' 'p3.m' 110 0 4
+'Radosław' 'p3.m' 111 0 4
+'Radosław' 'p3.m' 112 0 4
+'Radosław' 'p3.m' 113 0 4
+'Radosław' 'p3.m' 114 0 4
+'Radosław' 'p3.m' 117 0 4
+'Radosław' 'p3.m' 118 0 4
+'Radosław' 'p3.m' 119 0 4
+'Radosław' 'p3.m' 120 0 4
+'Radosław' 'p3.m' 121 0 4
+'Radosław' 'p3.m' 124 0 4
+'Radosław' 'p3.m' 125 0 4
+'Radosław' 'p3.m' 126 0 4
+'Radosław' 'p3.m' 127 0 4
+'Radosław' 'p3.m' 128 0 4
+'Radosław' 'p3.m' 131 0 4
+'Radosław' 'p3.m' 132 0 4
+'Radosław' 'p3.m' 133 0 4
+'Radosław' 'p3.m' 134 0 4
+'Radosław' 'p3.m' 135 0 4
+'Radosław' 'p3.m' 138 0 4
+'Radosław' 'p3.m' 139 0 4
+'Radosław' 'p3.m' 140 0 4
+'Radosław' 'p3.m' 141 0 4
+'Radosław' 'p3.m' 142 0 4
+'Radosław' 'p3.m' 145 0 4
+'Radosław' 'p3.m' 146 0 4
+'Radosław' 'p3.m' 147 0 4
+'Radosław' 'p3.m' 148 0 4
+'Radosław' 'p3.m' 149 0 4
+'Radosław' 'p3.m' 152 0 4
+'Radosław' 'p3.m' 153 0 4
+'Radosław' 'p3.m' 154 0 4
+'Radosław' 'p3.m' 155 0 4
+'Radosław' 'p3.m' 156 0 4
+'Radosław' 'p3.m' 159 0 4
+'Radosław' 'p3.m' 160 0 4
+'Radosław' 'p3.m' 161 0 4
+'Radosław' 'p3.m' 162 0 4
+'Radosław' 'p3.m' 163 0 4
+'Radosław' 'p3.m' 166 0 4
+'Radosław' 'p3.m' 167 0 4
+'Radosław' 'p3.m' 168 0 4
+'Radosław' 'p3.m' 169 0 4
+'Radosław' 'p3.m' 170 0 4
+'Radosław' 'p3.m' 173 0 4
+'Radosław' 'p3.m' 174 0 4
+'Radosław' 'p3.m' 175 0 4
+'Radosław' 'p3.m' 176 0 4
+'Radosław' 'p3.m' 177 0 4
+'Radosław' 'p3.m' 180 0 4
+'Radosław' 'p3.m' 181 0 4
+'Radosław' 'p3.m' 182 0 4
+'Radosław' 'p3.m' 183 0 4
+'Radosław' 'p3.m' 184 0 4
+'Radosław' 'p3.m' 187 0 4
+'Radosław' 'p3.m' 188 0 4
+'Radosław' 'p3.m' 189 0 4
+'Radosław' 'p3.m' 190 0 4
+'Radosław' 'p3.m' 191 0 4
+'Radosław' 'p4.e' 26 0 8
+'Radosław' 'p4.e' 27 0 8
+'Radosław' 'p4.e' 28 0 8
+'Radosław' 'p4.e' 29 0 8
+'Radosław' 'p4.e' 30 0 8
+'Radosław' 'p4.e' 33 0 8
+'Radosław' 'p4.e' 34 0 8
+'Radosław' 'p4.e' 36 0 8
+'Radosław' 'p4.e' 37 0 8
+'Radosław' 'p4.e' 40 0 8
+'Radosław' 'p4.e' 41 0 8
+'Radosław' 'p4.e' 42 0 8
+'Radosław' 'p4.e' 43 0 8
+'Radosław' 'p4.e' 44 0 8
+'Radosław' 'p4.m' 47 12 12
+'Radosław' 'p4.m' 48 12 12
+'Radosław' 'p4.m' 49 12 12
+'Radosław' 'p4.m' 50 12 12
+'Radosław' 'p4.m' 51 12 12
+'Radosław' 'p4.m' 54 12 12
+'Radosław' 'p4.m' 55 12 12
+'Radosław' 'p4.m' 56 12 12
+'Radosław' 'p4.m' 57 12 12
+'Radosław' 'p4.m' 58 12 12
+'Radosław' 'p4.m' 61 12 12
+'Radosław' 'p4.m' 62 12 12
+'Radosław' 'p4.m' 63 12 12
+'Radosław' 'p4.m' 64 12 12
+'Radosław' 'p4.m' 65 12 12
+'Radosław' 'p4.m' 68 12 12
+'Radosław' 'p4.m' 69 12 12
+'Radosław' 'p4.m' 70 12 12
+'Radosław' 'p4.m' 71 12 12
+'Radosław' 'p4.m' 72 12 12
+'Radosław' 'p4.m' 75 12 12
+'Radosław' 'p4.m' 76 12 12
+'Radosław' 'p4.m' 77 12 12
+'Radosław' 'p4.m' 78 12 12
+'Radosław' 'p4.m' 79 12 12
+'Radosław' 'p4.m' 82 12 12
+'Radosław' 'p4.m' 83 12 12
+'Radosław' 'p4.m' 84 12 12
+'Radosław' 'p4.m' 85 12 12
+'Radosław' 'p4.m' 86 12 12
+'Radosław' 'p4.m' 89 12 12
+'Radosław' 'p4.m' 90 12 12
+'Radosław' 'p4.m' 91 12 12
+'Radosław' 'p4.m' 92 12 12
+'Radosław' 'p4.m' 93 12 12
+'Radosław' 'p4.m' 96 12 12
+'Radosław' 'p4.m' 97 12 12
+'Radosław' 'p4.m' 98 12 12
+'Radosław' 'p4.m' 99 12 12
+'Radosław' 'p4.m' 100 12 12
+'Radosław' 'p4.m' 103 12 12
+'Radosław' 'p4.m' 104 12 12
+'Radosław' 'p4.m' 105 8 8
+'Radosław' 'p4.m' 106 8 8
+'Radosław' 'p4.m' 107 8 8
+'Radosław' 'p4.m' 110 8 8
+'Radosław' 'p4.m' 111 8 8
+'Radosław' 'p4.m' 112 8 8
+'Radosław' 'p4.m' 113 8 8
+'Radosław' 'p4.m' 114 8 8
+'Radosław' 'p4.m' 117 8 8
+'Radosław' 'p4.m' 118 8 8
+'Radosław' 'p4.m' 119 8 8
+'Radosław' 'p4.m' 120 8 8
+'Radosław' 'p4.m' 121 8 8
+'Radosław' 'p4.m' 124 8 8
+'Radosław' 'p4.m' 125 8 8
+'Radosław' 'p4.m' 126 8 8
+'Radosław' 'p4.m' 127 8 8
+'Radosław' 'p4.m' 128 8 8
+'Radosław' 'p4.m' 131 8 8
+'Radosław' 'p4.m' 132 8 8
+'Radosław' 'p4.m' 133 8 8
+'Radosław' 'p4.m' 134 8 8
+'Radosław' 'p4.m' 135 8 8
+'Radosław' 'p4.m' 138 8 8
+'Radosław' 'p4.m' 139 8 8
+'Radosław' 'p4.m' 140 8 8
+'Radosław' 'p4.m' 141 8 8
+'Radosław' 'p4.m' 142 8 8
+'Radosław' 'p4.m' 145 8 8
+'Radosław' 'p4.m' 146 8 8
+'Radosław' 'p4.m' 147 8 8
+'Radosław' 'p4.m' 148 8 8
+'Radosław' 'p4.m' 149 8 8
+'Radosław' 'p4.m' 152 8 8
+'Radosław' 'p4.m' 153 8 8
+'Radosław' 'p4.m' 154 8 8
+'Radosław' 'p4.m' 155 8 8
+'Radosław' 'p4.m' 156 8 8
+'Radosław' 'p4.m' 159 8 8
+'Radosław' 'p4.m' 160 8 8
+'Radosław' 'p4.m' 161 8 8
+'Radosław' 'p4.m' 162 8 8
+'Radosław' 'p4.m' 163 0 4
+'Radosław' 'p4.m' 166 0 4
+'Radosław' 'p4.m' 167 0 4
+'Radosław' 'p4.m' 168 0 4
+'Radosław' 'p4.m' 169 0 4
+'Radosław' 'p4.m' 170 0 4
+'Radosław' 'p4.m' 173 0 4
+'Radosław' 'p4.m' 174 0 4
+'Radosław' 'p4.m' 175 0 4
+'Radosław' 'p4.m' 176 0 4
+'Radosław' 'p4.m' 177 0 4
+'Radosław' 'p4.m' 180 0 4
+'Radosław' 'p4.m' 181 0 4
+'Radosław' 'p4.m' 182 0 4
+'Radosław' 'p4.m' 183 0 4
+'Radosław' 'p4.m' 184 0 4
+'Radosław' 'p4.m' 187 0 4
+'Radosław' 'p4.m' 188 0 4
+'Radosław' 'p4.m' 189 0 4
+'Radosław' 'p4.m' 190 0 4
+'Radosław' 'p4.m' 191 0 4
+'Radosław' 'p4.m' 194 0 4
+'Radosław' 'p4.m' 195 0 4
+'Radosław' 'p4.m' 196 0 4
+'Radosław' 'p4.m' 197 0 4
+'Radosław' 'p4.m' 198 0 4
+'Radosław' 'p4.m' 201 0 4
+'Radosław' 'p4.m' 202 0 4
+'Radosław' 'p4.m' 203 0 4
+'Radosław' 'p4.m' 204 0 4
+'Radosław' 'p4.m' 205 0 4
+'Radosław' 'p4.m' 208 0 4
+'Radosław' 'p4.m' 209 0 4
+'Radosław' 'p4.m' 210 0 4
+'Radosław' 'p4.m' 211 0 4
+'Radosław' 'p4.m' 212 0 4
+'Radosław' 'p4.f' 215 0 8
+'Radosław' 'p4.f' 216 0 8
+'Radosław' 'p4.f' 217 0 8
+'Radosław' 'p4.f' 218 0 8
+'Radosław' 'p4.f' 219 0 8
+'Radosław' 'p4.f' 222 0 8
+'Radosław' 'p4.f' 223 0 8
+'Radosław' 'p4.f' 224 0 8
+'Radosław' 'p4.f' 225 0 8
+'Radosław' 'p4.f' 226 0 8
+'Radosław' 'p4.f' 229 0 8
+'Radosław' 'p4.f' 230 0 8
+'Radosław' 'p4.f' 231 0 8
+'Radosław' 'p4.f' 232 0 8
+'Radosław' 'p4.f' 233 0 8
+'Radosław' 'p4.f' 236 0 8
+'Radosław' 'p4.f' 237 0 8
+'Radosław' 'p4.f' 238 0 8
+'Radosław' 'p4.f' 239 0 8
+'Radosław' 'p4.f' 240 0 8
+;
+
+param:
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
+'25.Jan' 21 56
+'25.Feb' 57 85
+'25.Mar' 86 116
+'25.Apr' 117 145
+'25.May' 146 179
+;
+
+param:
+EXPPER: PBL PBU :=
+'Radosław' '25.Jan' 0 800
+;
 

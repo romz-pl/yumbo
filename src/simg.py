@@ -23,14 +23,15 @@ def plot(expert_name):
 
 
 
-@st.cache_resource(max_entries=1000)
+# @st.cache_resource(max_entries=1000)
 def simg(expert_name, mm_hash):
     start = glb.simg("Start")
     end = glb.simg("End")
 
     # Generate day labels and filter dataframe
     days = pd.date_range(start=start, end=end, freq="D")
-    df = st.session_state.glb[f"schedule {expert_name}"][days]
+    df = st.session_state.amplsol[f"{expert_name}"].loc[days]
+    # st.write(df.index.dtype)
 
     # Determine bar width
     width = 0.9 if days.size < 10 else 1.0
@@ -54,14 +55,23 @@ def simg(expert_name, mm_hash):
     ax.tick_params(axis="y", labelsize="x-small")
 
     # Filter out zero-sum tasks efficiently
-    mask = df.sum(axis=1) > 0
-    filtered_df = df[mask]
+    #st.write(df)
+    # mask = df.sum(axis=0) > 0
+    # #st.write(mask.iloc[0])
+    # st.write(mask.index)
+    # filtered_df = df[mask.index]
+    # st.write(filtered_df)
+    df = df.loc[:, df.sum() > 0]
+    #st.write(df)
 
     # Plot stacked bar chart
-    bottom = np.zeros(days.shape[0])
-    for task_name, task_data in filtered_df.iterrows():
+    bottom = np.zeros(df.index.shape[0])
+    for task_name in df.columns:
+        # st.write(filtered_df.index)
+        # st.write(filtered_df[task_name].values)
+        task_data = df[task_name].values
         ax.bar(
-            days,
+            df.index,
             task_data,
             width,
             label=task_name,
@@ -72,7 +82,7 @@ def simg(expert_name, mm_hash):
 
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)
-    ax.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.2f'))
+    # ax.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.2f'))
 
     ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6))
     ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))

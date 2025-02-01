@@ -1,28 +1,455 @@
-param HOURS_PER_DAY := 32;
+param MAXWORK := 32;
 
-set EXPERTN :=
-'SA.Peter';
+param:
+TNAME: TWORK :=
+'golf2.sm' 80
+'golf2.sf' 40
+'tango2.se' 240
+'tango2.sm' 240
+'tango2.sf' 80
+'victor2.se' 80
+'victor2.sm' 80
+'victor2.sf' 40
+;
 
-param EBOUND_NO := 0;
+set TSCOPE['golf2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81
+;
 
-param EBOUND:
-1   2   3   4   5 :=
+set TSCOPE['golf2.sf'] :=
+84 85 86 87 88 91
+;
+
+set TSCOPE['tango2.se'] :=
+35 36 37 38 39 42 43 44 45 46
+;
+
+set TSCOPE['tango2.sm'] :=
+49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72 73 74 77 78 79 80 81 84 85 86 87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116
+119 120 121 123 126 127 128 129 130 133 134 135 136 137 140 141 142 143 144 147 148 149 150 151 154 155 156 157 158 161 162 163 164 165 168 169 170 171 172 175 176 177 178 179 182 183 184 185 186 189
+190 191 192 193 196 197 198 199 200 203 204 205 206 207 210 211 212 213 214 217 218 219 220 221 224 225 226 227 228 231 232 233 234 235 238 239 240 241 242 245 246 247 248 249 252 253 254 255 256 259
+;
+
+set TSCOPE['tango2.sf'] :=
+260 261 262 263 266 267 268 269 270 273 274 275
+;
+
+set TSCOPE['victor2.se'] :=
+49 50 51 52 53 56 57 58 59 60
+;
+
+set TSCOPE['victor2.sm'] :=
+63 64 65 66 67 70 71 72 73 74 77 78 79 80 81 84 85 86 87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133
+134 135 136 137 140 141 142 143 144 147 148 149 150 151 154 155 156 157 158 161 162 163 164 165 168 169 170 171 172 175 176 177 178 179 182 183 184 185 186 189 190 191 192 193 196 197 198 199 200 203
+204 205 206 207 210 211 212 213 214 217 218 219 220 221 224 225 226 227 228 231 232 233
+;
+
+set TSCOPE['victor2.sf'] :=
+234 235 238 239 240 241 242 245
+;
+
+set ENAME :=
+'SA.Peter'
+;
+
+set ASSIGN :=
+'SA.Peter' 'golf2.sf'
+'SA.Peter' 'golf2.sm'
+'SA.Peter' 'tango2.se'
+'SA.Peter' 'tango2.sf'
+'SA.Peter' 'tango2.sm'
+'SA.Peter' 'victor2.se'
+'SA.Peter' 'victor2.sf'
+'SA.Peter' 'victor2.sm'
 ;
 
 param:
-TASKN: TASKS TASKE TASKW :=
-'golf2.sm' 2 82 80
-'golf2.sf' 83 91 40
-'tango2.se' 33 48 240
-'tango2.sm' 49 259 240
-'tango2.sf' 260 275 80
-'victor2.se' 47 62 80
-'victor2.sm' 63 233 80
-'victor2.sf' 234 245 40
+XBID: XBL XBU :=
+'SA.Peter' 'golf2.sm' 3 1.0 2.0
+'SA.Peter' 'golf2.sm' 4 1.0 2.0
+'SA.Peter' 'golf2.sm' 7 1.0 2.0
+'SA.Peter' 'golf2.sm' 8 1.0 2.0
+'SA.Peter' 'golf2.sm' 9 1.0 2.0
+'SA.Peter' 'golf2.sm' 10 1.0 2.0
+'SA.Peter' 'golf2.sm' 11 1.0 2.0
+'SA.Peter' 'golf2.sm' 14 1.0 2.0
+'SA.Peter' 'golf2.sm' 15 1.0 2.0
+'SA.Peter' 'golf2.sm' 16 1.0 2.0
+'SA.Peter' 'golf2.sm' 17 1.0 2.0
+'SA.Peter' 'golf2.sm' 18 1.0 2.0
+'SA.Peter' 'golf2.sm' 21 1.0 2.0
+'SA.Peter' 'golf2.sm' 22 1.0 2.0
+'SA.Peter' 'golf2.sm' 23 1.0 2.0
+'SA.Peter' 'golf2.sm' 24 1.0 2.0
+'SA.Peter' 'golf2.sm' 25 1.0 2.0
+'SA.Peter' 'golf2.sm' 28 1.0 2.0
+'SA.Peter' 'golf2.sm' 29 1.0 2.0
+'SA.Peter' 'golf2.sm' 30 1.0 2.0
+'SA.Peter' 'golf2.sm' 31 1.0 2.0
+'SA.Peter' 'golf2.sm' 32 1.0 2.0
+'SA.Peter' 'golf2.sm' 35 1.0 2.0
+'SA.Peter' 'golf2.sm' 36 1.0 2.0
+'SA.Peter' 'golf2.sm' 37 1.0 2.0
+'SA.Peter' 'golf2.sm' 38 1.0 2.0
+'SA.Peter' 'golf2.sm' 39 1.0 2.0
+'SA.Peter' 'golf2.sm' 42 1.0 2.0
+'SA.Peter' 'golf2.sm' 43 1.0 2.0
+'SA.Peter' 'golf2.sm' 44 1.0 2.0
+'SA.Peter' 'golf2.sm' 45 1.0 2.0
+'SA.Peter' 'golf2.sm' 46 1.0 2.0
+'SA.Peter' 'golf2.sm' 49 1.0 2.0
+'SA.Peter' 'golf2.sm' 50 1.0 2.0
+'SA.Peter' 'golf2.sm' 51 1.0 2.0
+'SA.Peter' 'golf2.sm' 52 1.0 2.0
+'SA.Peter' 'golf2.sm' 53 1.0 2.0
+'SA.Peter' 'golf2.sm' 56 1.0 2.0
+'SA.Peter' 'golf2.sm' 57 1.0 2.0
+'SA.Peter' 'golf2.sm' 58 1.0 2.0
+'SA.Peter' 'golf2.sm' 59 1.0 2.0
+'SA.Peter' 'golf2.sm' 60 1.0 2.0
+'SA.Peter' 'golf2.sm' 63 1.0 2.0
+'SA.Peter' 'golf2.sm' 64 1.0 2.0
+'SA.Peter' 'golf2.sm' 65 1.0 2.0
+'SA.Peter' 'golf2.sm' 66 1.0 2.0
+'SA.Peter' 'golf2.sm' 67 1.0 2.0
+'SA.Peter' 'golf2.sm' 70 1.0 2.0
+'SA.Peter' 'golf2.sm' 71 1.0 2.0
+'SA.Peter' 'golf2.sm' 72 1.0 2.0
+'SA.Peter' 'golf2.sm' 73 1.0 2.0
+'SA.Peter' 'golf2.sm' 74 1.0 2.0
+'SA.Peter' 'golf2.sm' 77 1.0 2.0
+'SA.Peter' 'golf2.sm' 78 1.0 2.0
+'SA.Peter' 'golf2.sm' 79 1.0 2.0
+'SA.Peter' 'golf2.sm' 80 1.0 2.0
+'SA.Peter' 'golf2.sm' 81 1.0 2.0
+'SA.Peter' 'golf2.sf' 84 6.0 7.0
+'SA.Peter' 'golf2.sf' 85 6.0 7.0
+'SA.Peter' 'golf2.sf' 86 6.0 7.0
+'SA.Peter' 'golf2.sf' 87 6.0 7.0
+'SA.Peter' 'golf2.sf' 88 6.0 7.0
+'SA.Peter' 'golf2.sf' 91 6.0 7.0
+'SA.Peter' 'tango2.se' 35 24.0 25.0
+'SA.Peter' 'tango2.se' 36 24.0 25.0
+'SA.Peter' 'tango2.se' 37 24.0 25.0
+'SA.Peter' 'tango2.se' 38 24.0 25.0
+'SA.Peter' 'tango2.se' 39 24.0 25.0
+'SA.Peter' 'tango2.se' 42 24.0 25.0
+'SA.Peter' 'tango2.se' 43 24.0 25.0
+'SA.Peter' 'tango2.se' 44 24.0 25.0
+'SA.Peter' 'tango2.se' 45 24.0 25.0
+'SA.Peter' 'tango2.se' 46 24.0 25.0
+'SA.Peter' 'tango2.sm' 49 1.0 2.0
+'SA.Peter' 'tango2.sm' 50 1.0 2.0
+'SA.Peter' 'tango2.sm' 51 1.0 2.0
+'SA.Peter' 'tango2.sm' 52 1.0 2.0
+'SA.Peter' 'tango2.sm' 53 1.0 2.0
+'SA.Peter' 'tango2.sm' 56 1.0 2.0
+'SA.Peter' 'tango2.sm' 57 1.0 2.0
+'SA.Peter' 'tango2.sm' 58 1.0 2.0
+'SA.Peter' 'tango2.sm' 59 1.0 2.0
+'SA.Peter' 'tango2.sm' 60 1.0 2.0
+'SA.Peter' 'tango2.sm' 63 1.0 2.0
+'SA.Peter' 'tango2.sm' 64 1.0 2.0
+'SA.Peter' 'tango2.sm' 65 1.0 2.0
+'SA.Peter' 'tango2.sm' 66 1.0 2.0
+'SA.Peter' 'tango2.sm' 67 1.0 2.0
+'SA.Peter' 'tango2.sm' 70 1.0 2.0
+'SA.Peter' 'tango2.sm' 71 1.0 2.0
+'SA.Peter' 'tango2.sm' 72 1.0 2.0
+'SA.Peter' 'tango2.sm' 73 1.0 2.0
+'SA.Peter' 'tango2.sm' 74 1.0 2.0
+'SA.Peter' 'tango2.sm' 77 1.0 2.0
+'SA.Peter' 'tango2.sm' 78 1.0 2.0
+'SA.Peter' 'tango2.sm' 79 1.0 2.0
+'SA.Peter' 'tango2.sm' 80 1.0 2.0
+'SA.Peter' 'tango2.sm' 81 1.0 2.0
+'SA.Peter' 'tango2.sm' 84 1.0 2.0
+'SA.Peter' 'tango2.sm' 85 1.0 2.0
+'SA.Peter' 'tango2.sm' 86 1.0 2.0
+'SA.Peter' 'tango2.sm' 87 1.0 2.0
+'SA.Peter' 'tango2.sm' 88 1.0 2.0
+'SA.Peter' 'tango2.sm' 91 1.0 2.0
+'SA.Peter' 'tango2.sm' 92 1.0 2.0
+'SA.Peter' 'tango2.sm' 93 1.0 2.0
+'SA.Peter' 'tango2.sm' 94 1.0 2.0
+'SA.Peter' 'tango2.sm' 95 1.0 2.0
+'SA.Peter' 'tango2.sm' 98 1.0 2.0
+'SA.Peter' 'tango2.sm' 99 1.0 2.0
+'SA.Peter' 'tango2.sm' 100 1.0 2.0
+'SA.Peter' 'tango2.sm' 101 1.0 2.0
+'SA.Peter' 'tango2.sm' 102 1.0 2.0
+'SA.Peter' 'tango2.sm' 105 1.0 2.0
+'SA.Peter' 'tango2.sm' 106 1.0 2.0
+'SA.Peter' 'tango2.sm' 107 1.0 2.0
+'SA.Peter' 'tango2.sm' 108 1.0 2.0
+'SA.Peter' 'tango2.sm' 109 1.0 2.0
+'SA.Peter' 'tango2.sm' 112 1.0 2.0
+'SA.Peter' 'tango2.sm' 113 1.0 2.0
+'SA.Peter' 'tango2.sm' 114 1.0 2.0
+'SA.Peter' 'tango2.sm' 115 1.0 2.0
+'SA.Peter' 'tango2.sm' 116 1.0 2.0
+'SA.Peter' 'tango2.sm' 119 1.0 2.0
+'SA.Peter' 'tango2.sm' 120 1.0 2.0
+'SA.Peter' 'tango2.sm' 121 1.0 2.0
+'SA.Peter' 'tango2.sm' 123 1.0 2.0
+'SA.Peter' 'tango2.sm' 126 1.0 2.0
+'SA.Peter' 'tango2.sm' 127 1.0 2.0
+'SA.Peter' 'tango2.sm' 128 1.0 2.0
+'SA.Peter' 'tango2.sm' 129 1.0 2.0
+'SA.Peter' 'tango2.sm' 130 1.0 2.0
+'SA.Peter' 'tango2.sm' 133 1.0 2.0
+'SA.Peter' 'tango2.sm' 134 1.0 2.0
+'SA.Peter' 'tango2.sm' 135 1.0 2.0
+'SA.Peter' 'tango2.sm' 136 1.0 2.0
+'SA.Peter' 'tango2.sm' 137 1.0 2.0
+'SA.Peter' 'tango2.sm' 140 1.0 2.0
+'SA.Peter' 'tango2.sm' 141 1.0 2.0
+'SA.Peter' 'tango2.sm' 142 1.0 2.0
+'SA.Peter' 'tango2.sm' 143 1.0 2.0
+'SA.Peter' 'tango2.sm' 144 1.0 2.0
+'SA.Peter' 'tango2.sm' 147 1.0 2.0
+'SA.Peter' 'tango2.sm' 148 1.0 2.0
+'SA.Peter' 'tango2.sm' 149 1.0 2.0
+'SA.Peter' 'tango2.sm' 150 1.0 2.0
+'SA.Peter' 'tango2.sm' 151 1.0 2.0
+'SA.Peter' 'tango2.sm' 154 1.0 2.0
+'SA.Peter' 'tango2.sm' 155 1.0 2.0
+'SA.Peter' 'tango2.sm' 156 1.0 2.0
+'SA.Peter' 'tango2.sm' 157 1.0 2.0
+'SA.Peter' 'tango2.sm' 158 1.0 2.0
+'SA.Peter' 'tango2.sm' 161 1.0 2.0
+'SA.Peter' 'tango2.sm' 162 1.0 2.0
+'SA.Peter' 'tango2.sm' 163 1.0 2.0
+'SA.Peter' 'tango2.sm' 164 1.0 2.0
+'SA.Peter' 'tango2.sm' 165 1.0 2.0
+'SA.Peter' 'tango2.sm' 168 1.0 2.0
+'SA.Peter' 'tango2.sm' 169 1.0 2.0
+'SA.Peter' 'tango2.sm' 170 1.0 2.0
+'SA.Peter' 'tango2.sm' 171 1.0 2.0
+'SA.Peter' 'tango2.sm' 172 1.0 2.0
+'SA.Peter' 'tango2.sm' 175 1.0 2.0
+'SA.Peter' 'tango2.sm' 176 1.0 2.0
+'SA.Peter' 'tango2.sm' 177 1.0 2.0
+'SA.Peter' 'tango2.sm' 178 1.0 2.0
+'SA.Peter' 'tango2.sm' 179 1.0 2.0
+'SA.Peter' 'tango2.sm' 182 1.0 2.0
+'SA.Peter' 'tango2.sm' 183 1.0 2.0
+'SA.Peter' 'tango2.sm' 184 1.0 2.0
+'SA.Peter' 'tango2.sm' 185 1.0 2.0
+'SA.Peter' 'tango2.sm' 186 1.0 2.0
+'SA.Peter' 'tango2.sm' 189 1.0 2.0
+'SA.Peter' 'tango2.sm' 190 1.0 2.0
+'SA.Peter' 'tango2.sm' 191 1.0 2.0
+'SA.Peter' 'tango2.sm' 192 1.0 2.0
+'SA.Peter' 'tango2.sm' 193 1.0 2.0
+'SA.Peter' 'tango2.sm' 196 1.0 2.0
+'SA.Peter' 'tango2.sm' 197 1.0 2.0
+'SA.Peter' 'tango2.sm' 198 1.0 2.0
+'SA.Peter' 'tango2.sm' 199 1.0 2.0
+'SA.Peter' 'tango2.sm' 200 1.0 2.0
+'SA.Peter' 'tango2.sm' 203 1.0 2.0
+'SA.Peter' 'tango2.sm' 204 1.0 2.0
+'SA.Peter' 'tango2.sm' 205 1.0 2.0
+'SA.Peter' 'tango2.sm' 206 1.0 2.0
+'SA.Peter' 'tango2.sm' 207 1.0 2.0
+'SA.Peter' 'tango2.sm' 210 1.0 2.0
+'SA.Peter' 'tango2.sm' 211 1.0 2.0
+'SA.Peter' 'tango2.sm' 212 1.0 2.0
+'SA.Peter' 'tango2.sm' 213 1.0 2.0
+'SA.Peter' 'tango2.sm' 214 1.0 2.0
+'SA.Peter' 'tango2.sm' 217 1.0 2.0
+'SA.Peter' 'tango2.sm' 218 1.0 2.0
+'SA.Peter' 'tango2.sm' 219 1.0 2.0
+'SA.Peter' 'tango2.sm' 220 1.0 2.0
+'SA.Peter' 'tango2.sm' 221 1.0 2.0
+'SA.Peter' 'tango2.sm' 224 1.0 2.0
+'SA.Peter' 'tango2.sm' 225 1.0 2.0
+'SA.Peter' 'tango2.sm' 226 1.0 2.0
+'SA.Peter' 'tango2.sm' 227 1.0 2.0
+'SA.Peter' 'tango2.sm' 228 1.0 2.0
+'SA.Peter' 'tango2.sm' 231 1.0 2.0
+'SA.Peter' 'tango2.sm' 232 1.0 2.0
+'SA.Peter' 'tango2.sm' 233 1.0 2.0
+'SA.Peter' 'tango2.sm' 234 1.0 2.0
+'SA.Peter' 'tango2.sm' 235 1.0 2.0
+'SA.Peter' 'tango2.sm' 238 1.0 2.0
+'SA.Peter' 'tango2.sm' 239 1.0 2.0
+'SA.Peter' 'tango2.sm' 240 1.0 2.0
+'SA.Peter' 'tango2.sm' 241 1.0 2.0
+'SA.Peter' 'tango2.sm' 242 1.0 2.0
+'SA.Peter' 'tango2.sm' 245 1.0 2.0
+'SA.Peter' 'tango2.sm' 246 1.0 2.0
+'SA.Peter' 'tango2.sm' 247 1.0 2.0
+'SA.Peter' 'tango2.sm' 248 1.0 2.0
+'SA.Peter' 'tango2.sm' 249 1.0 2.0
+'SA.Peter' 'tango2.sm' 252 1.0 2.0
+'SA.Peter' 'tango2.sm' 253 1.0 2.0
+'SA.Peter' 'tango2.sm' 254 1.0 2.0
+'SA.Peter' 'tango2.sm' 255 1.0 2.0
+'SA.Peter' 'tango2.sm' 256 1.0 2.0
+'SA.Peter' 'tango2.sm' 259 1.0 2.0
+'SA.Peter' 'tango2.sf' 260 6.0 7.0
+'SA.Peter' 'tango2.sf' 261 6.0 7.0
+'SA.Peter' 'tango2.sf' 262 6.0 7.0
+'SA.Peter' 'tango2.sf' 263 6.0 7.0
+'SA.Peter' 'tango2.sf' 266 6.0 7.0
+'SA.Peter' 'tango2.sf' 267 6.0 7.0
+'SA.Peter' 'tango2.sf' 268 6.0 7.0
+'SA.Peter' 'tango2.sf' 269 6.0 7.0
+'SA.Peter' 'tango2.sf' 270 6.0 7.0
+'SA.Peter' 'tango2.sf' 273 6.0 7.0
+'SA.Peter' 'tango2.sf' 274 6.0 7.0
+'SA.Peter' 'tango2.sf' 275 6.0 7.0
+'SA.Peter' 'victor2.se' 49 8.0 9.0
+'SA.Peter' 'victor2.se' 50 8.0 9.0
+'SA.Peter' 'victor2.se' 51 8.0 9.0
+'SA.Peter' 'victor2.se' 52 8.0 9.0
+'SA.Peter' 'victor2.se' 53 8.0 9.0
+'SA.Peter' 'victor2.se' 56 8.0 9.0
+'SA.Peter' 'victor2.se' 57 8.0 9.0
+'SA.Peter' 'victor2.se' 58 8.0 9.0
+'SA.Peter' 'victor2.se' 59 8.0 9.0
+'SA.Peter' 'victor2.se' 60 8.0 9.0
+'SA.Peter' 'victor2.sm' 63 0.0 1.0
+'SA.Peter' 'victor2.sm' 64 0.0 1.0
+'SA.Peter' 'victor2.sm' 65 0.0 1.0
+'SA.Peter' 'victor2.sm' 66 0.0 1.0
+'SA.Peter' 'victor2.sm' 67 0.0 1.0
+'SA.Peter' 'victor2.sm' 70 0.0 1.0
+'SA.Peter' 'victor2.sm' 71 0.0 1.0
+'SA.Peter' 'victor2.sm' 72 0.0 1.0
+'SA.Peter' 'victor2.sm' 73 0.0 1.0
+'SA.Peter' 'victor2.sm' 74 0.0 1.0
+'SA.Peter' 'victor2.sm' 77 0.0 1.0
+'SA.Peter' 'victor2.sm' 78 0.0 1.0
+'SA.Peter' 'victor2.sm' 79 0.0 1.0
+'SA.Peter' 'victor2.sm' 80 0.0 1.0
+'SA.Peter' 'victor2.sm' 81 0.0 1.0
+'SA.Peter' 'victor2.sm' 84 0.0 1.0
+'SA.Peter' 'victor2.sm' 85 0.0 1.0
+'SA.Peter' 'victor2.sm' 86 0.0 1.0
+'SA.Peter' 'victor2.sm' 87 0.0 1.0
+'SA.Peter' 'victor2.sm' 88 0.0 1.0
+'SA.Peter' 'victor2.sm' 91 0.0 1.0
+'SA.Peter' 'victor2.sm' 92 0.0 1.0
+'SA.Peter' 'victor2.sm' 93 0.0 1.0
+'SA.Peter' 'victor2.sm' 94 0.0 1.0
+'SA.Peter' 'victor2.sm' 95 0.0 1.0
+'SA.Peter' 'victor2.sm' 98 0.0 1.0
+'SA.Peter' 'victor2.sm' 99 0.0 1.0
+'SA.Peter' 'victor2.sm' 100 0.0 1.0
+'SA.Peter' 'victor2.sm' 101 0.0 1.0
+'SA.Peter' 'victor2.sm' 102 0.0 1.0
+'SA.Peter' 'victor2.sm' 105 0.0 1.0
+'SA.Peter' 'victor2.sm' 106 0.0 1.0
+'SA.Peter' 'victor2.sm' 107 0.0 1.0
+'SA.Peter' 'victor2.sm' 108 0.0 1.0
+'SA.Peter' 'victor2.sm' 109 0.0 1.0
+'SA.Peter' 'victor2.sm' 112 0.0 1.0
+'SA.Peter' 'victor2.sm' 113 0.0 1.0
+'SA.Peter' 'victor2.sm' 114 0.0 1.0
+'SA.Peter' 'victor2.sm' 115 0.0 1.0
+'SA.Peter' 'victor2.sm' 116 0.0 1.0
+'SA.Peter' 'victor2.sm' 119 0.0 1.0
+'SA.Peter' 'victor2.sm' 120 0.0 1.0
+'SA.Peter' 'victor2.sm' 121 0.0 1.0
+'SA.Peter' 'victor2.sm' 123 0.0 1.0
+'SA.Peter' 'victor2.sm' 126 0.0 1.0
+'SA.Peter' 'victor2.sm' 127 0.0 1.0
+'SA.Peter' 'victor2.sm' 128 0.0 1.0
+'SA.Peter' 'victor2.sm' 129 0.0 1.0
+'SA.Peter' 'victor2.sm' 130 0.0 1.0
+'SA.Peter' 'victor2.sm' 133 0.0 1.0
+'SA.Peter' 'victor2.sm' 134 0.0 1.0
+'SA.Peter' 'victor2.sm' 135 0.0 1.0
+'SA.Peter' 'victor2.sm' 136 0.0 1.0
+'SA.Peter' 'victor2.sm' 137 0.0 1.0
+'SA.Peter' 'victor2.sm' 140 0.0 1.0
+'SA.Peter' 'victor2.sm' 141 0.0 1.0
+'SA.Peter' 'victor2.sm' 142 0.0 1.0
+'SA.Peter' 'victor2.sm' 143 0.0 1.0
+'SA.Peter' 'victor2.sm' 144 0.0 1.0
+'SA.Peter' 'victor2.sm' 147 0.0 1.0
+'SA.Peter' 'victor2.sm' 148 0.0 1.0
+'SA.Peter' 'victor2.sm' 149 0.0 1.0
+'SA.Peter' 'victor2.sm' 150 0.0 1.0
+'SA.Peter' 'victor2.sm' 151 0.0 1.0
+'SA.Peter' 'victor2.sm' 154 0.0 1.0
+'SA.Peter' 'victor2.sm' 155 0.0 1.0
+'SA.Peter' 'victor2.sm' 156 0.0 1.0
+'SA.Peter' 'victor2.sm' 157 0.0 1.0
+'SA.Peter' 'victor2.sm' 158 0.0 1.0
+'SA.Peter' 'victor2.sm' 161 0.0 1.0
+'SA.Peter' 'victor2.sm' 162 0.0 1.0
+'SA.Peter' 'victor2.sm' 163 0.0 1.0
+'SA.Peter' 'victor2.sm' 164 0.0 1.0
+'SA.Peter' 'victor2.sm' 165 0.0 1.0
+'SA.Peter' 'victor2.sm' 168 0.0 1.0
+'SA.Peter' 'victor2.sm' 169 0.0 1.0
+'SA.Peter' 'victor2.sm' 170 0.0 1.0
+'SA.Peter' 'victor2.sm' 171 0.0 1.0
+'SA.Peter' 'victor2.sm' 172 0.0 1.0
+'SA.Peter' 'victor2.sm' 175 0.0 1.0
+'SA.Peter' 'victor2.sm' 176 0.0 1.0
+'SA.Peter' 'victor2.sm' 177 0.0 1.0
+'SA.Peter' 'victor2.sm' 178 0.0 1.0
+'SA.Peter' 'victor2.sm' 179 0.0 1.0
+'SA.Peter' 'victor2.sm' 182 0.0 1.0
+'SA.Peter' 'victor2.sm' 183 0.0 1.0
+'SA.Peter' 'victor2.sm' 184 0.0 1.0
+'SA.Peter' 'victor2.sm' 185 0.0 1.0
+'SA.Peter' 'victor2.sm' 186 0.0 1.0
+'SA.Peter' 'victor2.sm' 189 0.0 1.0
+'SA.Peter' 'victor2.sm' 190 0.0 1.0
+'SA.Peter' 'victor2.sm' 191 0.0 1.0
+'SA.Peter' 'victor2.sm' 192 0.0 1.0
+'SA.Peter' 'victor2.sm' 193 0.0 1.0
+'SA.Peter' 'victor2.sm' 196 0.0 1.0
+'SA.Peter' 'victor2.sm' 197 0.0 1.0
+'SA.Peter' 'victor2.sm' 198 0.0 1.0
+'SA.Peter' 'victor2.sm' 199 0.0 1.0
+'SA.Peter' 'victor2.sm' 200 0.0 1.0
+'SA.Peter' 'victor2.sm' 203 0.0 1.0
+'SA.Peter' 'victor2.sm' 204 0.0 1.0
+'SA.Peter' 'victor2.sm' 205 0.0 1.0
+'SA.Peter' 'victor2.sm' 206 0.0 1.0
+'SA.Peter' 'victor2.sm' 207 0.0 1.0
+'SA.Peter' 'victor2.sm' 210 0.0 1.0
+'SA.Peter' 'victor2.sm' 211 0.0 1.0
+'SA.Peter' 'victor2.sm' 212 0.0 1.0
+'SA.Peter' 'victor2.sm' 213 0.0 1.0
+'SA.Peter' 'victor2.sm' 214 0.0 1.0
+'SA.Peter' 'victor2.sm' 217 0.0 1.0
+'SA.Peter' 'victor2.sm' 218 0.0 1.0
+'SA.Peter' 'victor2.sm' 219 0.0 1.0
+'SA.Peter' 'victor2.sm' 220 0.0 1.0
+'SA.Peter' 'victor2.sm' 221 0.0 1.0
+'SA.Peter' 'victor2.sm' 224 0.0 1.0
+'SA.Peter' 'victor2.sm' 225 0.0 1.0
+'SA.Peter' 'victor2.sm' 226 0.0 1.0
+'SA.Peter' 'victor2.sm' 227 0.0 1.0
+'SA.Peter' 'victor2.sm' 228 0.0 1.0
+'SA.Peter' 'victor2.sm' 231 0.0 1.0
+'SA.Peter' 'victor2.sm' 232 0.0 1.0
+'SA.Peter' 'victor2.sm' 233 0.0 1.0
+'SA.Peter' 'victor2.sf' 234 5.0 6.0
+'SA.Peter' 'victor2.sf' 235 5.0 6.0
+'SA.Peter' 'victor2.sf' 238 5.0 6.0
+'SA.Peter' 'victor2.sf' 239 5.0 6.0
+'SA.Peter' 'victor2.sf' 240 5.0 6.0
+'SA.Peter' 'victor2.sf' 241 5.0 6.0
+'SA.Peter' 'victor2.sf' 242 5.0 6.0
+'SA.Peter' 'victor2.sf' 245 5.0 6.0
 ;
 
 param:
-PAYROLLN: PAYROLLS PAYROLLE :=
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
 'Jan.25' 1 16
 'Feb.25' 17 45
 'Mar.25' 46 76
@@ -34,512 +461,22 @@ PAYROLLN: PAYROLLS PAYROLLE :=
 'Sep.25' 231 259
 'Oct.25' 260 289
 'Nov.25' 290 317
-'Dec.25' 318 346;
+'Dec.25' 318 346
+;
 
 param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
-'SA.Peter' 'Jan.25' 0.0 720.0
-'SA.Peter' 'Feb.25' 0.0 720.0
-'SA.Peter' 'Mar.25' 0.0 720.0
-'SA.Peter' 'Apr.25' 0.0 720.0
-'SA.Peter' 'May.25' 0.0 720.0
-'SA.Peter' 'Jun.25' 0.0 720.0
-'SA.Peter' 'Jul.25' 0.0 720.0
-'SA.Peter' 'Aug.25' 0.0 720.0
-'SA.Peter' 'Sep.25' 0.0 720.0
-'SA.Peter' 'Oct.25' 0.0 720.0
-'SA.Peter' 'Nov.25' 0.0 720.0
-'SA.Peter' 'Dec.25' 0.0 720.0;
-
-param OFFDAY_NO := 80;
-
-param OFFDAY :=
-1 2
-2 5
-3 6
-4 12
-5 13
-6 19
-7 20
-8 26
-9 27
-10 33
-11 34
-12 40
-13 41
-14 47
-15 48
-16 54
-17 55
-18 61
-19 62
-20 68
-21 69
-22 75
-23 76
-24 82
-25 83
-26 89
-27 90
-28 96
-29 97
-30 103
-31 104
-32 110
-33 111
-34 117
-35 118
-36 122
-37 124
-38 125
-39 131
-40 132
-41 138
-42 139
-43 145
-44 146
-45 152
-46 153
-47 159
-48 160
-49 166
-50 167
-51 173
-52 174
-53 180
-54 181
-55 187
-56 188
-57 194
-58 195
-59 201
-60 202
-61 208
-62 209
-63 215
-64 216
-65 222
-66 223
-67 229
-68 230
-69 236
-70 237
-71 243
-72 244
-73 250
-74 251
-75 257
-76 258
-77 264
-78 265
-79 271
-80 272;
-
-param XBDAY_NO := 375;
-
-param XBDAY:
-1   2   3   4   5 :=
-1 'SA.Peter' 'golf2.sm' 3 1.0 2.0
-2 'SA.Peter' 'golf2.sm' 4 1.0 2.0
-3 'SA.Peter' 'golf2.sm' 7 1.0 2.0
-4 'SA.Peter' 'golf2.sm' 8 1.0 2.0
-5 'SA.Peter' 'golf2.sm' 9 1.0 2.0
-6 'SA.Peter' 'golf2.sm' 10 1.0 2.0
-7 'SA.Peter' 'golf2.sm' 11 1.0 2.0
-8 'SA.Peter' 'golf2.sm' 14 1.0 2.0
-9 'SA.Peter' 'golf2.sm' 15 1.0 2.0
-10 'SA.Peter' 'golf2.sm' 16 1.0 2.0
-11 'SA.Peter' 'golf2.sm' 17 1.0 2.0
-12 'SA.Peter' 'golf2.sm' 18 1.0 2.0
-13 'SA.Peter' 'golf2.sm' 21 1.0 2.0
-14 'SA.Peter' 'golf2.sm' 22 1.0 2.0
-15 'SA.Peter' 'golf2.sm' 23 1.0 2.0
-16 'SA.Peter' 'golf2.sm' 24 1.0 2.0
-17 'SA.Peter' 'golf2.sm' 25 1.0 2.0
-18 'SA.Peter' 'golf2.sm' 28 1.0 2.0
-19 'SA.Peter' 'golf2.sm' 29 1.0 2.0
-20 'SA.Peter' 'golf2.sm' 30 1.0 2.0
-21 'SA.Peter' 'golf2.sm' 31 1.0 2.0
-22 'SA.Peter' 'golf2.sm' 32 1.0 2.0
-23 'SA.Peter' 'golf2.sm' 35 1.0 2.0
-24 'SA.Peter' 'golf2.sm' 36 1.0 2.0
-25 'SA.Peter' 'golf2.sm' 37 1.0 2.0
-26 'SA.Peter' 'golf2.sm' 38 1.0 2.0
-27 'SA.Peter' 'golf2.sm' 39 1.0 2.0
-28 'SA.Peter' 'golf2.sm' 42 1.0 2.0
-29 'SA.Peter' 'golf2.sm' 43 1.0 2.0
-30 'SA.Peter' 'golf2.sm' 44 1.0 2.0
-31 'SA.Peter' 'golf2.sm' 45 1.0 2.0
-32 'SA.Peter' 'golf2.sm' 46 1.0 2.0
-33 'SA.Peter' 'golf2.sm' 49 1.0 2.0
-34 'SA.Peter' 'golf2.sm' 50 1.0 2.0
-35 'SA.Peter' 'golf2.sm' 51 1.0 2.0
-36 'SA.Peter' 'golf2.sm' 52 1.0 2.0
-37 'SA.Peter' 'golf2.sm' 53 1.0 2.0
-38 'SA.Peter' 'golf2.sm' 56 1.0 2.0
-39 'SA.Peter' 'golf2.sm' 57 1.0 2.0
-40 'SA.Peter' 'golf2.sm' 58 1.0 2.0
-41 'SA.Peter' 'golf2.sm' 59 1.0 2.0
-42 'SA.Peter' 'golf2.sm' 60 1.0 2.0
-43 'SA.Peter' 'golf2.sm' 63 1.0 2.0
-44 'SA.Peter' 'golf2.sm' 64 1.0 2.0
-45 'SA.Peter' 'golf2.sm' 65 1.0 2.0
-46 'SA.Peter' 'golf2.sm' 66 1.0 2.0
-47 'SA.Peter' 'golf2.sm' 67 1.0 2.0
-48 'SA.Peter' 'golf2.sm' 70 1.0 2.0
-49 'SA.Peter' 'golf2.sm' 71 1.0 2.0
-50 'SA.Peter' 'golf2.sm' 72 1.0 2.0
-51 'SA.Peter' 'golf2.sm' 73 1.0 2.0
-52 'SA.Peter' 'golf2.sm' 74 1.0 2.0
-53 'SA.Peter' 'golf2.sm' 77 1.0 2.0
-54 'SA.Peter' 'golf2.sm' 78 1.0 2.0
-55 'SA.Peter' 'golf2.sm' 79 1.0 2.0
-56 'SA.Peter' 'golf2.sm' 80 1.0 2.0
-57 'SA.Peter' 'golf2.sm' 81 1.0 2.0
-58 'SA.Peter' 'golf2.sf' 84 6.0 7.0
-59 'SA.Peter' 'golf2.sf' 85 6.0 7.0
-60 'SA.Peter' 'golf2.sf' 86 6.0 7.0
-61 'SA.Peter' 'golf2.sf' 87 6.0 7.0
-62 'SA.Peter' 'golf2.sf' 88 6.0 7.0
-63 'SA.Peter' 'golf2.sf' 91 6.0 7.0
-64 'SA.Peter' 'tango2.se' 35 24.0 25.0
-65 'SA.Peter' 'tango2.se' 36 24.0 25.0
-66 'SA.Peter' 'tango2.se' 37 24.0 25.0
-67 'SA.Peter' 'tango2.se' 38 24.0 25.0
-68 'SA.Peter' 'tango2.se' 39 24.0 25.0
-69 'SA.Peter' 'tango2.se' 42 24.0 25.0
-70 'SA.Peter' 'tango2.se' 43 24.0 25.0
-71 'SA.Peter' 'tango2.se' 44 24.0 25.0
-72 'SA.Peter' 'tango2.se' 45 24.0 25.0
-73 'SA.Peter' 'tango2.se' 46 24.0 25.0
-74 'SA.Peter' 'tango2.sm' 49 1.0 2.0
-75 'SA.Peter' 'tango2.sm' 50 1.0 2.0
-76 'SA.Peter' 'tango2.sm' 51 1.0 2.0
-77 'SA.Peter' 'tango2.sm' 52 1.0 2.0
-78 'SA.Peter' 'tango2.sm' 53 1.0 2.0
-79 'SA.Peter' 'tango2.sm' 56 1.0 2.0
-80 'SA.Peter' 'tango2.sm' 57 1.0 2.0
-81 'SA.Peter' 'tango2.sm' 58 1.0 2.0
-82 'SA.Peter' 'tango2.sm' 59 1.0 2.0
-83 'SA.Peter' 'tango2.sm' 60 1.0 2.0
-84 'SA.Peter' 'tango2.sm' 63 1.0 2.0
-85 'SA.Peter' 'tango2.sm' 64 1.0 2.0
-86 'SA.Peter' 'tango2.sm' 65 1.0 2.0
-87 'SA.Peter' 'tango2.sm' 66 1.0 2.0
-88 'SA.Peter' 'tango2.sm' 67 1.0 2.0
-89 'SA.Peter' 'tango2.sm' 70 1.0 2.0
-90 'SA.Peter' 'tango2.sm' 71 1.0 2.0
-91 'SA.Peter' 'tango2.sm' 72 1.0 2.0
-92 'SA.Peter' 'tango2.sm' 73 1.0 2.0
-93 'SA.Peter' 'tango2.sm' 74 1.0 2.0
-94 'SA.Peter' 'tango2.sm' 77 1.0 2.0
-95 'SA.Peter' 'tango2.sm' 78 1.0 2.0
-96 'SA.Peter' 'tango2.sm' 79 1.0 2.0
-97 'SA.Peter' 'tango2.sm' 80 1.0 2.0
-98 'SA.Peter' 'tango2.sm' 81 1.0 2.0
-99 'SA.Peter' 'tango2.sm' 84 1.0 2.0
-100 'SA.Peter' 'tango2.sm' 85 1.0 2.0
-101 'SA.Peter' 'tango2.sm' 86 1.0 2.0
-102 'SA.Peter' 'tango2.sm' 87 1.0 2.0
-103 'SA.Peter' 'tango2.sm' 88 1.0 2.0
-104 'SA.Peter' 'tango2.sm' 91 1.0 2.0
-105 'SA.Peter' 'tango2.sm' 92 1.0 2.0
-106 'SA.Peter' 'tango2.sm' 93 1.0 2.0
-107 'SA.Peter' 'tango2.sm' 94 1.0 2.0
-108 'SA.Peter' 'tango2.sm' 95 1.0 2.0
-109 'SA.Peter' 'tango2.sm' 98 1.0 2.0
-110 'SA.Peter' 'tango2.sm' 99 1.0 2.0
-111 'SA.Peter' 'tango2.sm' 100 1.0 2.0
-112 'SA.Peter' 'tango2.sm' 101 1.0 2.0
-113 'SA.Peter' 'tango2.sm' 102 1.0 2.0
-114 'SA.Peter' 'tango2.sm' 105 1.0 2.0
-115 'SA.Peter' 'tango2.sm' 106 1.0 2.0
-116 'SA.Peter' 'tango2.sm' 107 1.0 2.0
-117 'SA.Peter' 'tango2.sm' 108 1.0 2.0
-118 'SA.Peter' 'tango2.sm' 109 1.0 2.0
-119 'SA.Peter' 'tango2.sm' 112 1.0 2.0
-120 'SA.Peter' 'tango2.sm' 113 1.0 2.0
-121 'SA.Peter' 'tango2.sm' 114 1.0 2.0
-122 'SA.Peter' 'tango2.sm' 115 1.0 2.0
-123 'SA.Peter' 'tango2.sm' 116 1.0 2.0
-124 'SA.Peter' 'tango2.sm' 119 1.0 2.0
-125 'SA.Peter' 'tango2.sm' 120 1.0 2.0
-126 'SA.Peter' 'tango2.sm' 121 1.0 2.0
-127 'SA.Peter' 'tango2.sm' 123 1.0 2.0
-128 'SA.Peter' 'tango2.sm' 126 1.0 2.0
-129 'SA.Peter' 'tango2.sm' 127 1.0 2.0
-130 'SA.Peter' 'tango2.sm' 128 1.0 2.0
-131 'SA.Peter' 'tango2.sm' 129 1.0 2.0
-132 'SA.Peter' 'tango2.sm' 130 1.0 2.0
-133 'SA.Peter' 'tango2.sm' 133 1.0 2.0
-134 'SA.Peter' 'tango2.sm' 134 1.0 2.0
-135 'SA.Peter' 'tango2.sm' 135 1.0 2.0
-136 'SA.Peter' 'tango2.sm' 136 1.0 2.0
-137 'SA.Peter' 'tango2.sm' 137 1.0 2.0
-138 'SA.Peter' 'tango2.sm' 140 1.0 2.0
-139 'SA.Peter' 'tango2.sm' 141 1.0 2.0
-140 'SA.Peter' 'tango2.sm' 142 1.0 2.0
-141 'SA.Peter' 'tango2.sm' 143 1.0 2.0
-142 'SA.Peter' 'tango2.sm' 144 1.0 2.0
-143 'SA.Peter' 'tango2.sm' 147 1.0 2.0
-144 'SA.Peter' 'tango2.sm' 148 1.0 2.0
-145 'SA.Peter' 'tango2.sm' 149 1.0 2.0
-146 'SA.Peter' 'tango2.sm' 150 1.0 2.0
-147 'SA.Peter' 'tango2.sm' 151 1.0 2.0
-148 'SA.Peter' 'tango2.sm' 154 1.0 2.0
-149 'SA.Peter' 'tango2.sm' 155 1.0 2.0
-150 'SA.Peter' 'tango2.sm' 156 1.0 2.0
-151 'SA.Peter' 'tango2.sm' 157 1.0 2.0
-152 'SA.Peter' 'tango2.sm' 158 1.0 2.0
-153 'SA.Peter' 'tango2.sm' 161 1.0 2.0
-154 'SA.Peter' 'tango2.sm' 162 1.0 2.0
-155 'SA.Peter' 'tango2.sm' 163 1.0 2.0
-156 'SA.Peter' 'tango2.sm' 164 1.0 2.0
-157 'SA.Peter' 'tango2.sm' 165 1.0 2.0
-158 'SA.Peter' 'tango2.sm' 168 1.0 2.0
-159 'SA.Peter' 'tango2.sm' 169 1.0 2.0
-160 'SA.Peter' 'tango2.sm' 170 1.0 2.0
-161 'SA.Peter' 'tango2.sm' 171 1.0 2.0
-162 'SA.Peter' 'tango2.sm' 172 1.0 2.0
-163 'SA.Peter' 'tango2.sm' 175 1.0 2.0
-164 'SA.Peter' 'tango2.sm' 176 1.0 2.0
-165 'SA.Peter' 'tango2.sm' 177 1.0 2.0
-166 'SA.Peter' 'tango2.sm' 178 1.0 2.0
-167 'SA.Peter' 'tango2.sm' 179 1.0 2.0
-168 'SA.Peter' 'tango2.sm' 182 1.0 2.0
-169 'SA.Peter' 'tango2.sm' 183 1.0 2.0
-170 'SA.Peter' 'tango2.sm' 184 1.0 2.0
-171 'SA.Peter' 'tango2.sm' 185 1.0 2.0
-172 'SA.Peter' 'tango2.sm' 186 1.0 2.0
-173 'SA.Peter' 'tango2.sm' 189 1.0 2.0
-174 'SA.Peter' 'tango2.sm' 190 1.0 2.0
-175 'SA.Peter' 'tango2.sm' 191 1.0 2.0
-176 'SA.Peter' 'tango2.sm' 192 1.0 2.0
-177 'SA.Peter' 'tango2.sm' 193 1.0 2.0
-178 'SA.Peter' 'tango2.sm' 196 1.0 2.0
-179 'SA.Peter' 'tango2.sm' 197 1.0 2.0
-180 'SA.Peter' 'tango2.sm' 198 1.0 2.0
-181 'SA.Peter' 'tango2.sm' 199 1.0 2.0
-182 'SA.Peter' 'tango2.sm' 200 1.0 2.0
-183 'SA.Peter' 'tango2.sm' 203 1.0 2.0
-184 'SA.Peter' 'tango2.sm' 204 1.0 2.0
-185 'SA.Peter' 'tango2.sm' 205 1.0 2.0
-186 'SA.Peter' 'tango2.sm' 206 1.0 2.0
-187 'SA.Peter' 'tango2.sm' 207 1.0 2.0
-188 'SA.Peter' 'tango2.sm' 210 1.0 2.0
-189 'SA.Peter' 'tango2.sm' 211 1.0 2.0
-190 'SA.Peter' 'tango2.sm' 212 1.0 2.0
-191 'SA.Peter' 'tango2.sm' 213 1.0 2.0
-192 'SA.Peter' 'tango2.sm' 214 1.0 2.0
-193 'SA.Peter' 'tango2.sm' 217 1.0 2.0
-194 'SA.Peter' 'tango2.sm' 218 1.0 2.0
-195 'SA.Peter' 'tango2.sm' 219 1.0 2.0
-196 'SA.Peter' 'tango2.sm' 220 1.0 2.0
-197 'SA.Peter' 'tango2.sm' 221 1.0 2.0
-198 'SA.Peter' 'tango2.sm' 224 1.0 2.0
-199 'SA.Peter' 'tango2.sm' 225 1.0 2.0
-200 'SA.Peter' 'tango2.sm' 226 1.0 2.0
-201 'SA.Peter' 'tango2.sm' 227 1.0 2.0
-202 'SA.Peter' 'tango2.sm' 228 1.0 2.0
-203 'SA.Peter' 'tango2.sm' 231 1.0 2.0
-204 'SA.Peter' 'tango2.sm' 232 1.0 2.0
-205 'SA.Peter' 'tango2.sm' 233 1.0 2.0
-206 'SA.Peter' 'tango2.sm' 234 1.0 2.0
-207 'SA.Peter' 'tango2.sm' 235 1.0 2.0
-208 'SA.Peter' 'tango2.sm' 238 1.0 2.0
-209 'SA.Peter' 'tango2.sm' 239 1.0 2.0
-210 'SA.Peter' 'tango2.sm' 240 1.0 2.0
-211 'SA.Peter' 'tango2.sm' 241 1.0 2.0
-212 'SA.Peter' 'tango2.sm' 242 1.0 2.0
-213 'SA.Peter' 'tango2.sm' 245 1.0 2.0
-214 'SA.Peter' 'tango2.sm' 246 1.0 2.0
-215 'SA.Peter' 'tango2.sm' 247 1.0 2.0
-216 'SA.Peter' 'tango2.sm' 248 1.0 2.0
-217 'SA.Peter' 'tango2.sm' 249 1.0 2.0
-218 'SA.Peter' 'tango2.sm' 252 1.0 2.0
-219 'SA.Peter' 'tango2.sm' 253 1.0 2.0
-220 'SA.Peter' 'tango2.sm' 254 1.0 2.0
-221 'SA.Peter' 'tango2.sm' 255 1.0 2.0
-222 'SA.Peter' 'tango2.sm' 256 1.0 2.0
-223 'SA.Peter' 'tango2.sm' 259 1.0 2.0
-224 'SA.Peter' 'tango2.sf' 260 6.0 7.0
-225 'SA.Peter' 'tango2.sf' 261 6.0 7.0
-226 'SA.Peter' 'tango2.sf' 262 6.0 7.0
-227 'SA.Peter' 'tango2.sf' 263 6.0 7.0
-228 'SA.Peter' 'tango2.sf' 266 6.0 7.0
-229 'SA.Peter' 'tango2.sf' 267 6.0 7.0
-230 'SA.Peter' 'tango2.sf' 268 6.0 7.0
-231 'SA.Peter' 'tango2.sf' 269 6.0 7.0
-232 'SA.Peter' 'tango2.sf' 270 6.0 7.0
-233 'SA.Peter' 'tango2.sf' 273 6.0 7.0
-234 'SA.Peter' 'tango2.sf' 274 6.0 7.0
-235 'SA.Peter' 'tango2.sf' 275 6.0 7.0
-236 'SA.Peter' 'victor2.se' 49 8.0 9.0
-237 'SA.Peter' 'victor2.se' 50 8.0 9.0
-238 'SA.Peter' 'victor2.se' 51 8.0 9.0
-239 'SA.Peter' 'victor2.se' 52 8.0 9.0
-240 'SA.Peter' 'victor2.se' 53 8.0 9.0
-241 'SA.Peter' 'victor2.se' 56 8.0 9.0
-242 'SA.Peter' 'victor2.se' 57 8.0 9.0
-243 'SA.Peter' 'victor2.se' 58 8.0 9.0
-244 'SA.Peter' 'victor2.se' 59 8.0 9.0
-245 'SA.Peter' 'victor2.se' 60 8.0 9.0
-246 'SA.Peter' 'victor2.sm' 63 0.0 1.0
-247 'SA.Peter' 'victor2.sm' 64 0.0 1.0
-248 'SA.Peter' 'victor2.sm' 65 0.0 1.0
-249 'SA.Peter' 'victor2.sm' 66 0.0 1.0
-250 'SA.Peter' 'victor2.sm' 67 0.0 1.0
-251 'SA.Peter' 'victor2.sm' 70 0.0 1.0
-252 'SA.Peter' 'victor2.sm' 71 0.0 1.0
-253 'SA.Peter' 'victor2.sm' 72 0.0 1.0
-254 'SA.Peter' 'victor2.sm' 73 0.0 1.0
-255 'SA.Peter' 'victor2.sm' 74 0.0 1.0
-256 'SA.Peter' 'victor2.sm' 77 0.0 1.0
-257 'SA.Peter' 'victor2.sm' 78 0.0 1.0
-258 'SA.Peter' 'victor2.sm' 79 0.0 1.0
-259 'SA.Peter' 'victor2.sm' 80 0.0 1.0
-260 'SA.Peter' 'victor2.sm' 81 0.0 1.0
-261 'SA.Peter' 'victor2.sm' 84 0.0 1.0
-262 'SA.Peter' 'victor2.sm' 85 0.0 1.0
-263 'SA.Peter' 'victor2.sm' 86 0.0 1.0
-264 'SA.Peter' 'victor2.sm' 87 0.0 1.0
-265 'SA.Peter' 'victor2.sm' 88 0.0 1.0
-266 'SA.Peter' 'victor2.sm' 91 0.0 1.0
-267 'SA.Peter' 'victor2.sm' 92 0.0 1.0
-268 'SA.Peter' 'victor2.sm' 93 0.0 1.0
-269 'SA.Peter' 'victor2.sm' 94 0.0 1.0
-270 'SA.Peter' 'victor2.sm' 95 0.0 1.0
-271 'SA.Peter' 'victor2.sm' 98 0.0 1.0
-272 'SA.Peter' 'victor2.sm' 99 0.0 1.0
-273 'SA.Peter' 'victor2.sm' 100 0.0 1.0
-274 'SA.Peter' 'victor2.sm' 101 0.0 1.0
-275 'SA.Peter' 'victor2.sm' 102 0.0 1.0
-276 'SA.Peter' 'victor2.sm' 105 0.0 1.0
-277 'SA.Peter' 'victor2.sm' 106 0.0 1.0
-278 'SA.Peter' 'victor2.sm' 107 0.0 1.0
-279 'SA.Peter' 'victor2.sm' 108 0.0 1.0
-280 'SA.Peter' 'victor2.sm' 109 0.0 1.0
-281 'SA.Peter' 'victor2.sm' 112 0.0 1.0
-282 'SA.Peter' 'victor2.sm' 113 0.0 1.0
-283 'SA.Peter' 'victor2.sm' 114 0.0 1.0
-284 'SA.Peter' 'victor2.sm' 115 0.0 1.0
-285 'SA.Peter' 'victor2.sm' 116 0.0 1.0
-286 'SA.Peter' 'victor2.sm' 119 0.0 1.0
-287 'SA.Peter' 'victor2.sm' 120 0.0 1.0
-288 'SA.Peter' 'victor2.sm' 121 0.0 1.0
-289 'SA.Peter' 'victor2.sm' 123 0.0 1.0
-290 'SA.Peter' 'victor2.sm' 126 0.0 1.0
-291 'SA.Peter' 'victor2.sm' 127 0.0 1.0
-292 'SA.Peter' 'victor2.sm' 128 0.0 1.0
-293 'SA.Peter' 'victor2.sm' 129 0.0 1.0
-294 'SA.Peter' 'victor2.sm' 130 0.0 1.0
-295 'SA.Peter' 'victor2.sm' 133 0.0 1.0
-296 'SA.Peter' 'victor2.sm' 134 0.0 1.0
-297 'SA.Peter' 'victor2.sm' 135 0.0 1.0
-298 'SA.Peter' 'victor2.sm' 136 0.0 1.0
-299 'SA.Peter' 'victor2.sm' 137 0.0 1.0
-300 'SA.Peter' 'victor2.sm' 140 0.0 1.0
-301 'SA.Peter' 'victor2.sm' 141 0.0 1.0
-302 'SA.Peter' 'victor2.sm' 142 0.0 1.0
-303 'SA.Peter' 'victor2.sm' 143 0.0 1.0
-304 'SA.Peter' 'victor2.sm' 144 0.0 1.0
-305 'SA.Peter' 'victor2.sm' 147 0.0 1.0
-306 'SA.Peter' 'victor2.sm' 148 0.0 1.0
-307 'SA.Peter' 'victor2.sm' 149 0.0 1.0
-308 'SA.Peter' 'victor2.sm' 150 0.0 1.0
-309 'SA.Peter' 'victor2.sm' 151 0.0 1.0
-310 'SA.Peter' 'victor2.sm' 154 0.0 1.0
-311 'SA.Peter' 'victor2.sm' 155 0.0 1.0
-312 'SA.Peter' 'victor2.sm' 156 0.0 1.0
-313 'SA.Peter' 'victor2.sm' 157 0.0 1.0
-314 'SA.Peter' 'victor2.sm' 158 0.0 1.0
-315 'SA.Peter' 'victor2.sm' 161 0.0 1.0
-316 'SA.Peter' 'victor2.sm' 162 0.0 1.0
-317 'SA.Peter' 'victor2.sm' 163 0.0 1.0
-318 'SA.Peter' 'victor2.sm' 164 0.0 1.0
-319 'SA.Peter' 'victor2.sm' 165 0.0 1.0
-320 'SA.Peter' 'victor2.sm' 168 0.0 1.0
-321 'SA.Peter' 'victor2.sm' 169 0.0 1.0
-322 'SA.Peter' 'victor2.sm' 170 0.0 1.0
-323 'SA.Peter' 'victor2.sm' 171 0.0 1.0
-324 'SA.Peter' 'victor2.sm' 172 0.0 1.0
-325 'SA.Peter' 'victor2.sm' 175 0.0 1.0
-326 'SA.Peter' 'victor2.sm' 176 0.0 1.0
-327 'SA.Peter' 'victor2.sm' 177 0.0 1.0
-328 'SA.Peter' 'victor2.sm' 178 0.0 1.0
-329 'SA.Peter' 'victor2.sm' 179 0.0 1.0
-330 'SA.Peter' 'victor2.sm' 182 0.0 1.0
-331 'SA.Peter' 'victor2.sm' 183 0.0 1.0
-332 'SA.Peter' 'victor2.sm' 184 0.0 1.0
-333 'SA.Peter' 'victor2.sm' 185 0.0 1.0
-334 'SA.Peter' 'victor2.sm' 186 0.0 1.0
-335 'SA.Peter' 'victor2.sm' 189 0.0 1.0
-336 'SA.Peter' 'victor2.sm' 190 0.0 1.0
-337 'SA.Peter' 'victor2.sm' 191 0.0 1.0
-338 'SA.Peter' 'victor2.sm' 192 0.0 1.0
-339 'SA.Peter' 'victor2.sm' 193 0.0 1.0
-340 'SA.Peter' 'victor2.sm' 196 0.0 1.0
-341 'SA.Peter' 'victor2.sm' 197 0.0 1.0
-342 'SA.Peter' 'victor2.sm' 198 0.0 1.0
-343 'SA.Peter' 'victor2.sm' 199 0.0 1.0
-344 'SA.Peter' 'victor2.sm' 200 0.0 1.0
-345 'SA.Peter' 'victor2.sm' 203 0.0 1.0
-346 'SA.Peter' 'victor2.sm' 204 0.0 1.0
-347 'SA.Peter' 'victor2.sm' 205 0.0 1.0
-348 'SA.Peter' 'victor2.sm' 206 0.0 1.0
-349 'SA.Peter' 'victor2.sm' 207 0.0 1.0
-350 'SA.Peter' 'victor2.sm' 210 0.0 1.0
-351 'SA.Peter' 'victor2.sm' 211 0.0 1.0
-352 'SA.Peter' 'victor2.sm' 212 0.0 1.0
-353 'SA.Peter' 'victor2.sm' 213 0.0 1.0
-354 'SA.Peter' 'victor2.sm' 214 0.0 1.0
-355 'SA.Peter' 'victor2.sm' 217 0.0 1.0
-356 'SA.Peter' 'victor2.sm' 218 0.0 1.0
-357 'SA.Peter' 'victor2.sm' 219 0.0 1.0
-358 'SA.Peter' 'victor2.sm' 220 0.0 1.0
-359 'SA.Peter' 'victor2.sm' 221 0.0 1.0
-360 'SA.Peter' 'victor2.sm' 224 0.0 1.0
-361 'SA.Peter' 'victor2.sm' 225 0.0 1.0
-362 'SA.Peter' 'victor2.sm' 226 0.0 1.0
-363 'SA.Peter' 'victor2.sm' 227 0.0 1.0
-364 'SA.Peter' 'victor2.sm' 228 0.0 1.0
-365 'SA.Peter' 'victor2.sm' 231 0.0 1.0
-366 'SA.Peter' 'victor2.sm' 232 0.0 1.0
-367 'SA.Peter' 'victor2.sm' 233 0.0 1.0
-368 'SA.Peter' 'victor2.sf' 234 5.0 6.0
-369 'SA.Peter' 'victor2.sf' 235 5.0 6.0
-370 'SA.Peter' 'victor2.sf' 238 5.0 6.0
-371 'SA.Peter' 'victor2.sf' 239 5.0 6.0
-372 'SA.Peter' 'victor2.sf' 240 5.0 6.0
-373 'SA.Peter' 'victor2.sf' 241 5.0 6.0
-374 'SA.Peter' 'victor2.sf' 242 5.0 6.0
-375 'SA.Peter' 'victor2.sf' 245 5.0 6.0;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
+EXPPER: PBL PBU :=
+'SA.Peter' 'Jan.25' 0 720
+'SA.Peter' 'Feb.25' 0 720
+'SA.Peter' 'Mar.25' 0 720
+'SA.Peter' 'Apr.25' 0 720
+'SA.Peter' 'May.25' 0 720
+'SA.Peter' 'Jun.25' 0 720
+'SA.Peter' 'Jul.25' 0 720
+'SA.Peter' 'Aug.25' 0 720
+'SA.Peter' 'Sep.25' 0 720
+'SA.Peter' 'Oct.25' 0 720
+'SA.Peter' 'Nov.25' 0 720
+'SA.Peter' 'Dec.25' 0 720
 ;
-
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
-;
-
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
-;
-
-set LINKS :=
-'SA.Peter' 'golf2.sf'
-'SA.Peter' 'golf2.sm'
-'SA.Peter' 'tango2.se'
-'SA.Peter' 'tango2.sf'
-'SA.Peter' 'tango2.sm'
-'SA.Peter' 'victor2.se'
-'SA.Peter' 'victor2.sf'
-'SA.Peter' 'victor2.sm';
 

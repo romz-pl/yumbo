@@ -1,28 +1,339 @@
-param HOURS_PER_DAY := 32;
+param MAXWORK := 32;
 
-set EXPERTN :=
-'PM.Henry';
+param:
+TNAME: TWORK :=
+'alpha2.pe' 40
+'alpha2.pm' 160
+'alpha2.pf' 40
+'beta2.pe' 200
+'beta2.pm' 320
+'beta2.pf' 160
+'juliet2.pm' 200
+'juliet2.pf' 40
+;
 
-param EBOUND_NO := 0;
+set TSCOPE['alpha2.pe'] :=
+28 29 30 31 32
+;
 
-param EBOUND:
-1   2   3   4   5 :=
+set TSCOPE['alpha2.pm'] :=
+35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72 73 74 77 78 79
+;
+
+set TSCOPE['alpha2.pf'] :=
+80 81 84 85 86 87 88 91 92
+;
+
+set TSCOPE['beta2.pe'] :=
+7 8 9 10 11 14 15 16
+;
+
+set TSCOPE['beta2.pm'] :=
+17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72 73 74 77 78 79 80 81 84 85 86
+87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133 134 135 136 137 140 141 142 143 144 147 148 149 150 151 154 155 156 157
+158 161 162 163 164 165 168 169 170 171 172 175 176 177 178 179 182 183 184 185 186 189 190 191 192 193 196 197
+;
+
+set TSCOPE['beta2.pf'] :=
+198 199 200 203 204 205 206 207 210 211 212 213 214 217
+;
+
+set TSCOPE['juliet2.pm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81
+;
+
+set TSCOPE['juliet2.pf'] :=
+84 85 86 87 88 91 92
+;
+
+set ENAME :=
+'PM.Henry'
+;
+
+set ASSIGN :=
+'PM.Henry' 'alpha2.pe'
+'PM.Henry' 'alpha2.pf'
+'PM.Henry' 'alpha2.pm'
+'PM.Henry' 'beta2.pe'
+'PM.Henry' 'beta2.pf'
+'PM.Henry' 'beta2.pm'
+'PM.Henry' 'juliet2.pf'
+'PM.Henry' 'juliet2.pm'
 ;
 
 param:
-TASKN: TASKS TASKE TASKW :=
-'alpha2.pe' 28 33 40
-'alpha2.pm' 34 79 160
-'alpha2.pf' 80 92 40
-'beta2.pe' 6 16 200
-'beta2.pm' 17 197 320
-'beta2.pf' 198 217 160
-'juliet2.pm' 2 82 200
-'juliet2.pf' 83 92 40
+XBID: XBL XBU :=
+'PM.Henry' 'alpha2.pe' 28 8.0 9.0
+'PM.Henry' 'alpha2.pe' 29 8.0 9.0
+'PM.Henry' 'alpha2.pe' 30 8.0 9.0
+'PM.Henry' 'alpha2.pe' 31 8.0 9.0
+'PM.Henry' 'alpha2.pe' 32 8.0 9.0
+'PM.Henry' 'alpha2.pm' 35 4.0 5.0
+'PM.Henry' 'alpha2.pm' 36 4.0 5.0
+'PM.Henry' 'alpha2.pm' 37 4.0 5.0
+'PM.Henry' 'alpha2.pm' 38 4.0 5.0
+'PM.Henry' 'alpha2.pm' 39 4.0 5.0
+'PM.Henry' 'alpha2.pm' 42 4.0 5.0
+'PM.Henry' 'alpha2.pm' 43 4.0 5.0
+'PM.Henry' 'alpha2.pm' 44 4.0 5.0
+'PM.Henry' 'alpha2.pm' 45 4.0 5.0
+'PM.Henry' 'alpha2.pm' 46 4.0 5.0
+'PM.Henry' 'alpha2.pm' 49 4.0 5.0
+'PM.Henry' 'alpha2.pm' 50 4.0 5.0
+'PM.Henry' 'alpha2.pm' 51 4.0 5.0
+'PM.Henry' 'alpha2.pm' 52 4.0 5.0
+'PM.Henry' 'alpha2.pm' 53 4.0 5.0
+'PM.Henry' 'alpha2.pm' 56 4.0 5.0
+'PM.Henry' 'alpha2.pm' 57 4.0 5.0
+'PM.Henry' 'alpha2.pm' 58 4.0 5.0
+'PM.Henry' 'alpha2.pm' 59 4.0 5.0
+'PM.Henry' 'alpha2.pm' 60 4.0 5.0
+'PM.Henry' 'alpha2.pm' 63 4.0 5.0
+'PM.Henry' 'alpha2.pm' 64 4.0 5.0
+'PM.Henry' 'alpha2.pm' 65 4.0 5.0
+'PM.Henry' 'alpha2.pm' 66 4.0 5.0
+'PM.Henry' 'alpha2.pm' 67 4.0 5.0
+'PM.Henry' 'alpha2.pm' 70 4.0 5.0
+'PM.Henry' 'alpha2.pm' 71 4.0 5.0
+'PM.Henry' 'alpha2.pm' 72 4.0 5.0
+'PM.Henry' 'alpha2.pm' 73 4.0 5.0
+'PM.Henry' 'alpha2.pm' 74 4.0 5.0
+'PM.Henry' 'alpha2.pm' 77 4.0 5.0
+'PM.Henry' 'alpha2.pm' 78 4.0 5.0
+'PM.Henry' 'alpha2.pm' 79 4.0 5.0
+'PM.Henry' 'alpha2.pf' 80 4.0 5.0
+'PM.Henry' 'alpha2.pf' 81 4.0 5.0
+'PM.Henry' 'alpha2.pf' 84 4.0 5.0
+'PM.Henry' 'alpha2.pf' 85 4.0 5.0
+'PM.Henry' 'alpha2.pf' 86 4.0 5.0
+'PM.Henry' 'alpha2.pf' 87 4.0 5.0
+'PM.Henry' 'alpha2.pf' 88 4.0 5.0
+'PM.Henry' 'alpha2.pf' 91 4.0 5.0
+'PM.Henry' 'alpha2.pf' 92 4.0 5.0
+'PM.Henry' 'beta2.pe' 7 25.0 26.0
+'PM.Henry' 'beta2.pe' 8 25.0 26.0
+'PM.Henry' 'beta2.pe' 9 25.0 26.0
+'PM.Henry' 'beta2.pe' 10 25.0 26.0
+'PM.Henry' 'beta2.pe' 11 25.0 26.0
+'PM.Henry' 'beta2.pe' 14 25.0 26.0
+'PM.Henry' 'beta2.pe' 15 25.0 26.0
+'PM.Henry' 'beta2.pe' 16 25.0 26.0
+'PM.Henry' 'beta2.pm' 17 2.0 3.0
+'PM.Henry' 'beta2.pm' 18 2.0 3.0
+'PM.Henry' 'beta2.pm' 21 2.0 3.0
+'PM.Henry' 'beta2.pm' 22 2.0 3.0
+'PM.Henry' 'beta2.pm' 23 2.0 3.0
+'PM.Henry' 'beta2.pm' 24 2.0 3.0
+'PM.Henry' 'beta2.pm' 25 2.0 3.0
+'PM.Henry' 'beta2.pm' 28 2.0 3.0
+'PM.Henry' 'beta2.pm' 29 2.0 3.0
+'PM.Henry' 'beta2.pm' 30 2.0 3.0
+'PM.Henry' 'beta2.pm' 31 2.0 3.0
+'PM.Henry' 'beta2.pm' 32 2.0 3.0
+'PM.Henry' 'beta2.pm' 35 2.0 3.0
+'PM.Henry' 'beta2.pm' 36 2.0 3.0
+'PM.Henry' 'beta2.pm' 37 2.0 3.0
+'PM.Henry' 'beta2.pm' 38 2.0 3.0
+'PM.Henry' 'beta2.pm' 39 2.0 3.0
+'PM.Henry' 'beta2.pm' 42 2.0 3.0
+'PM.Henry' 'beta2.pm' 43 2.0 3.0
+'PM.Henry' 'beta2.pm' 44 2.0 3.0
+'PM.Henry' 'beta2.pm' 45 2.0 3.0
+'PM.Henry' 'beta2.pm' 46 2.0 3.0
+'PM.Henry' 'beta2.pm' 49 2.0 3.0
+'PM.Henry' 'beta2.pm' 50 2.0 3.0
+'PM.Henry' 'beta2.pm' 51 2.0 3.0
+'PM.Henry' 'beta2.pm' 52 2.0 3.0
+'PM.Henry' 'beta2.pm' 53 2.0 3.0
+'PM.Henry' 'beta2.pm' 56 2.0 3.0
+'PM.Henry' 'beta2.pm' 57 2.0 3.0
+'PM.Henry' 'beta2.pm' 58 2.0 3.0
+'PM.Henry' 'beta2.pm' 59 2.0 3.0
+'PM.Henry' 'beta2.pm' 60 2.0 3.0
+'PM.Henry' 'beta2.pm' 63 2.0 3.0
+'PM.Henry' 'beta2.pm' 64 2.0 3.0
+'PM.Henry' 'beta2.pm' 65 2.0 3.0
+'PM.Henry' 'beta2.pm' 66 2.0 3.0
+'PM.Henry' 'beta2.pm' 67 2.0 3.0
+'PM.Henry' 'beta2.pm' 70 2.0 3.0
+'PM.Henry' 'beta2.pm' 71 2.0 3.0
+'PM.Henry' 'beta2.pm' 72 2.0 3.0
+'PM.Henry' 'beta2.pm' 73 2.0 3.0
+'PM.Henry' 'beta2.pm' 74 2.0 3.0
+'PM.Henry' 'beta2.pm' 77 2.0 3.0
+'PM.Henry' 'beta2.pm' 78 2.0 3.0
+'PM.Henry' 'beta2.pm' 79 2.0 3.0
+'PM.Henry' 'beta2.pm' 80 2.0 3.0
+'PM.Henry' 'beta2.pm' 81 2.0 3.0
+'PM.Henry' 'beta2.pm' 84 2.0 3.0
+'PM.Henry' 'beta2.pm' 85 2.0 3.0
+'PM.Henry' 'beta2.pm' 86 2.0 3.0
+'PM.Henry' 'beta2.pm' 87 2.0 3.0
+'PM.Henry' 'beta2.pm' 88 2.0 3.0
+'PM.Henry' 'beta2.pm' 91 2.0 3.0
+'PM.Henry' 'beta2.pm' 92 2.0 3.0
+'PM.Henry' 'beta2.pm' 93 2.0 3.0
+'PM.Henry' 'beta2.pm' 94 2.0 3.0
+'PM.Henry' 'beta2.pm' 95 2.0 3.0
+'PM.Henry' 'beta2.pm' 98 2.0 3.0
+'PM.Henry' 'beta2.pm' 99 2.0 3.0
+'PM.Henry' 'beta2.pm' 100 2.0 3.0
+'PM.Henry' 'beta2.pm' 101 2.0 3.0
+'PM.Henry' 'beta2.pm' 102 2.0 3.0
+'PM.Henry' 'beta2.pm' 105 2.0 3.0
+'PM.Henry' 'beta2.pm' 106 2.0 3.0
+'PM.Henry' 'beta2.pm' 107 2.0 3.0
+'PM.Henry' 'beta2.pm' 108 2.0 3.0
+'PM.Henry' 'beta2.pm' 109 2.0 3.0
+'PM.Henry' 'beta2.pm' 112 2.0 3.0
+'PM.Henry' 'beta2.pm' 113 2.0 3.0
+'PM.Henry' 'beta2.pm' 114 2.0 3.0
+'PM.Henry' 'beta2.pm' 115 2.0 3.0
+'PM.Henry' 'beta2.pm' 116 2.0 3.0
+'PM.Henry' 'beta2.pm' 119 2.0 3.0
+'PM.Henry' 'beta2.pm' 120 2.0 3.0
+'PM.Henry' 'beta2.pm' 121 2.0 3.0
+'PM.Henry' 'beta2.pm' 123 2.0 3.0
+'PM.Henry' 'beta2.pm' 126 2.0 3.0
+'PM.Henry' 'beta2.pm' 127 2.0 3.0
+'PM.Henry' 'beta2.pm' 128 2.0 3.0
+'PM.Henry' 'beta2.pm' 129 2.0 3.0
+'PM.Henry' 'beta2.pm' 130 2.0 3.0
+'PM.Henry' 'beta2.pm' 133 2.0 3.0
+'PM.Henry' 'beta2.pm' 134 2.0 3.0
+'PM.Henry' 'beta2.pm' 135 2.0 3.0
+'PM.Henry' 'beta2.pm' 136 2.0 3.0
+'PM.Henry' 'beta2.pm' 137 2.0 3.0
+'PM.Henry' 'beta2.pm' 140 2.0 3.0
+'PM.Henry' 'beta2.pm' 141 2.0 3.0
+'PM.Henry' 'beta2.pm' 142 2.0 3.0
+'PM.Henry' 'beta2.pm' 143 2.0 3.0
+'PM.Henry' 'beta2.pm' 144 2.0 3.0
+'PM.Henry' 'beta2.pm' 147 2.0 3.0
+'PM.Henry' 'beta2.pm' 148 2.0 3.0
+'PM.Henry' 'beta2.pm' 149 2.0 3.0
+'PM.Henry' 'beta2.pm' 150 2.0 3.0
+'PM.Henry' 'beta2.pm' 151 2.0 3.0
+'PM.Henry' 'beta2.pm' 154 2.0 3.0
+'PM.Henry' 'beta2.pm' 155 2.0 3.0
+'PM.Henry' 'beta2.pm' 156 2.0 3.0
+'PM.Henry' 'beta2.pm' 157 2.0 3.0
+'PM.Henry' 'beta2.pm' 158 2.0 3.0
+'PM.Henry' 'beta2.pm' 161 2.0 3.0
+'PM.Henry' 'beta2.pm' 162 2.0 3.0
+'PM.Henry' 'beta2.pm' 163 2.0 3.0
+'PM.Henry' 'beta2.pm' 164 2.0 3.0
+'PM.Henry' 'beta2.pm' 165 2.0 3.0
+'PM.Henry' 'beta2.pm' 168 2.0 3.0
+'PM.Henry' 'beta2.pm' 169 2.0 3.0
+'PM.Henry' 'beta2.pm' 170 2.0 3.0
+'PM.Henry' 'beta2.pm' 171 2.0 3.0
+'PM.Henry' 'beta2.pm' 172 2.0 3.0
+'PM.Henry' 'beta2.pm' 175 2.0 3.0
+'PM.Henry' 'beta2.pm' 176 2.0 3.0
+'PM.Henry' 'beta2.pm' 177 2.0 3.0
+'PM.Henry' 'beta2.pm' 178 2.0 3.0
+'PM.Henry' 'beta2.pm' 179 2.0 3.0
+'PM.Henry' 'beta2.pm' 182 2.0 3.0
+'PM.Henry' 'beta2.pm' 183 2.0 3.0
+'PM.Henry' 'beta2.pm' 184 2.0 3.0
+'PM.Henry' 'beta2.pm' 185 2.0 3.0
+'PM.Henry' 'beta2.pm' 186 2.0 3.0
+'PM.Henry' 'beta2.pm' 189 2.0 3.0
+'PM.Henry' 'beta2.pm' 190 2.0 3.0
+'PM.Henry' 'beta2.pm' 191 2.0 3.0
+'PM.Henry' 'beta2.pm' 192 2.0 3.0
+'PM.Henry' 'beta2.pm' 193 2.0 3.0
+'PM.Henry' 'beta2.pm' 196 2.0 3.0
+'PM.Henry' 'beta2.pm' 197 2.0 3.0
+'PM.Henry' 'beta2.pf' 198 11.0 12.0
+'PM.Henry' 'beta2.pf' 199 11.0 12.0
+'PM.Henry' 'beta2.pf' 200 11.0 12.0
+'PM.Henry' 'beta2.pf' 203 11.0 12.0
+'PM.Henry' 'beta2.pf' 204 11.0 12.0
+'PM.Henry' 'beta2.pf' 205 11.0 12.0
+'PM.Henry' 'beta2.pf' 206 11.0 12.0
+'PM.Henry' 'beta2.pf' 207 11.0 12.0
+'PM.Henry' 'beta2.pf' 210 11.0 12.0
+'PM.Henry' 'beta2.pf' 211 11.0 12.0
+'PM.Henry' 'beta2.pf' 212 11.0 12.0
+'PM.Henry' 'beta2.pf' 213 11.0 12.0
+'PM.Henry' 'beta2.pf' 214 11.0 12.0
+'PM.Henry' 'beta2.pf' 217 11.0 12.0
+'PM.Henry' 'juliet2.pm' 3 3.0 4.0
+'PM.Henry' 'juliet2.pm' 4 3.0 4.0
+'PM.Henry' 'juliet2.pm' 7 3.0 4.0
+'PM.Henry' 'juliet2.pm' 8 3.0 4.0
+'PM.Henry' 'juliet2.pm' 9 3.0 4.0
+'PM.Henry' 'juliet2.pm' 10 3.0 4.0
+'PM.Henry' 'juliet2.pm' 11 3.0 4.0
+'PM.Henry' 'juliet2.pm' 14 3.0 4.0
+'PM.Henry' 'juliet2.pm' 15 3.0 4.0
+'PM.Henry' 'juliet2.pm' 16 3.0 4.0
+'PM.Henry' 'juliet2.pm' 17 3.0 4.0
+'PM.Henry' 'juliet2.pm' 18 3.0 4.0
+'PM.Henry' 'juliet2.pm' 21 3.0 4.0
+'PM.Henry' 'juliet2.pm' 22 3.0 4.0
+'PM.Henry' 'juliet2.pm' 23 3.0 4.0
+'PM.Henry' 'juliet2.pm' 24 3.0 4.0
+'PM.Henry' 'juliet2.pm' 25 3.0 4.0
+'PM.Henry' 'juliet2.pm' 28 3.0 4.0
+'PM.Henry' 'juliet2.pm' 29 3.0 4.0
+'PM.Henry' 'juliet2.pm' 30 3.0 4.0
+'PM.Henry' 'juliet2.pm' 31 3.0 4.0
+'PM.Henry' 'juliet2.pm' 32 3.0 4.0
+'PM.Henry' 'juliet2.pm' 35 3.0 4.0
+'PM.Henry' 'juliet2.pm' 36 3.0 4.0
+'PM.Henry' 'juliet2.pm' 37 3.0 4.0
+'PM.Henry' 'juliet2.pm' 38 3.0 4.0
+'PM.Henry' 'juliet2.pm' 39 3.0 4.0
+'PM.Henry' 'juliet2.pm' 42 3.0 4.0
+'PM.Henry' 'juliet2.pm' 43 3.0 4.0
+'PM.Henry' 'juliet2.pm' 44 3.0 4.0
+'PM.Henry' 'juliet2.pm' 45 3.0 4.0
+'PM.Henry' 'juliet2.pm' 46 3.0 4.0
+'PM.Henry' 'juliet2.pm' 49 3.0 4.0
+'PM.Henry' 'juliet2.pm' 50 3.0 4.0
+'PM.Henry' 'juliet2.pm' 51 3.0 4.0
+'PM.Henry' 'juliet2.pm' 52 3.0 4.0
+'PM.Henry' 'juliet2.pm' 53 3.0 4.0
+'PM.Henry' 'juliet2.pm' 56 3.0 4.0
+'PM.Henry' 'juliet2.pm' 57 3.0 4.0
+'PM.Henry' 'juliet2.pm' 58 3.0 4.0
+'PM.Henry' 'juliet2.pm' 59 3.0 4.0
+'PM.Henry' 'juliet2.pm' 60 3.0 4.0
+'PM.Henry' 'juliet2.pm' 63 3.0 4.0
+'PM.Henry' 'juliet2.pm' 64 3.0 4.0
+'PM.Henry' 'juliet2.pm' 65 3.0 4.0
+'PM.Henry' 'juliet2.pm' 66 3.0 4.0
+'PM.Henry' 'juliet2.pm' 67 3.0 4.0
+'PM.Henry' 'juliet2.pm' 70 3.0 4.0
+'PM.Henry' 'juliet2.pm' 71 3.0 4.0
+'PM.Henry' 'juliet2.pm' 72 3.0 4.0
+'PM.Henry' 'juliet2.pm' 73 3.0 4.0
+'PM.Henry' 'juliet2.pm' 74 3.0 4.0
+'PM.Henry' 'juliet2.pm' 77 3.0 4.0
+'PM.Henry' 'juliet2.pm' 78 3.0 4.0
+'PM.Henry' 'juliet2.pm' 79 3.0 4.0
+'PM.Henry' 'juliet2.pm' 80 3.0 4.0
+'PM.Henry' 'juliet2.pm' 81 3.0 4.0
+'PM.Henry' 'juliet2.pf' 84 5.0 6.0
+'PM.Henry' 'juliet2.pf' 85 5.0 6.0
+'PM.Henry' 'juliet2.pf' 86 5.0 6.0
+'PM.Henry' 'juliet2.pf' 87 5.0 6.0
+'PM.Henry' 'juliet2.pf' 88 5.0 6.0
+'PM.Henry' 'juliet2.pf' 91 5.0 6.0
+'PM.Henry' 'juliet2.pf' 92 5.0 6.0
 ;
 
 param:
-PAYROLLN: PAYROLLS PAYROLLE :=
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
 'Jan.25' 1 16
 'Feb.25' 17 45
 'Mar.25' 46 76
@@ -34,382 +345,22 @@ PAYROLLN: PAYROLLS PAYROLLE :=
 'Sep.25' 231 259
 'Oct.25' 260 289
 'Nov.25' 290 317
-'Dec.25' 318 346;
+'Dec.25' 318 346
+;
 
 param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
-'PM.Henry' 'Jan.25' 0.0 720.0
-'PM.Henry' 'Feb.25' 0.0 720.0
-'PM.Henry' 'Mar.25' 0.0 720.0
-'PM.Henry' 'Apr.25' 0.0 720.0
-'PM.Henry' 'May.25' 0.0 720.0
-'PM.Henry' 'Jun.25' 0.0 720.0
-'PM.Henry' 'Jul.25' 0.0 720.0
-'PM.Henry' 'Aug.25' 0.0 720.0
-'PM.Henry' 'Sep.25' 0.0 720.0
-'PM.Henry' 'Oct.25' 0.0 720.0
-'PM.Henry' 'Nov.25' 0.0 720.0
-'PM.Henry' 'Dec.25' 0.0 720.0;
-
-param OFFDAY_NO := 64;
-
-param OFFDAY :=
-1 2
-2 5
-3 6
-4 12
-5 13
-6 19
-7 20
-8 26
-9 27
-10 33
-11 34
-12 40
-13 41
-14 47
-15 48
-16 54
-17 55
-18 61
-19 62
-20 68
-21 69
-22 75
-23 76
-24 82
-25 83
-26 89
-27 90
-28 96
-29 97
-30 103
-31 104
-32 110
-33 111
-34 117
-35 118
-36 122
-37 124
-38 125
-39 131
-40 132
-41 138
-42 139
-43 145
-44 146
-45 152
-46 153
-47 159
-48 160
-49 166
-50 167
-51 173
-52 174
-53 180
-54 181
-55 187
-56 188
-57 194
-58 195
-59 201
-60 202
-61 208
-62 209
-63 215
-64 216;
-
-param XBDAY_NO := 261;
-
-param XBDAY:
-1   2   3   4   5 :=
-1 'PM.Henry' 'alpha2.pe' 28 8.0 9.0
-2 'PM.Henry' 'alpha2.pe' 29 8.0 9.0
-3 'PM.Henry' 'alpha2.pe' 30 8.0 9.0
-4 'PM.Henry' 'alpha2.pe' 31 8.0 9.0
-5 'PM.Henry' 'alpha2.pe' 32 8.0 9.0
-6 'PM.Henry' 'alpha2.pm' 35 4.0 5.0
-7 'PM.Henry' 'alpha2.pm' 36 4.0 5.0
-8 'PM.Henry' 'alpha2.pm' 37 4.0 5.0
-9 'PM.Henry' 'alpha2.pm' 38 4.0 5.0
-10 'PM.Henry' 'alpha2.pm' 39 4.0 5.0
-11 'PM.Henry' 'alpha2.pm' 42 4.0 5.0
-12 'PM.Henry' 'alpha2.pm' 43 4.0 5.0
-13 'PM.Henry' 'alpha2.pm' 44 4.0 5.0
-14 'PM.Henry' 'alpha2.pm' 45 4.0 5.0
-15 'PM.Henry' 'alpha2.pm' 46 4.0 5.0
-16 'PM.Henry' 'alpha2.pm' 49 4.0 5.0
-17 'PM.Henry' 'alpha2.pm' 50 4.0 5.0
-18 'PM.Henry' 'alpha2.pm' 51 4.0 5.0
-19 'PM.Henry' 'alpha2.pm' 52 4.0 5.0
-20 'PM.Henry' 'alpha2.pm' 53 4.0 5.0
-21 'PM.Henry' 'alpha2.pm' 56 4.0 5.0
-22 'PM.Henry' 'alpha2.pm' 57 4.0 5.0
-23 'PM.Henry' 'alpha2.pm' 58 4.0 5.0
-24 'PM.Henry' 'alpha2.pm' 59 4.0 5.0
-25 'PM.Henry' 'alpha2.pm' 60 4.0 5.0
-26 'PM.Henry' 'alpha2.pm' 63 4.0 5.0
-27 'PM.Henry' 'alpha2.pm' 64 4.0 5.0
-28 'PM.Henry' 'alpha2.pm' 65 4.0 5.0
-29 'PM.Henry' 'alpha2.pm' 66 4.0 5.0
-30 'PM.Henry' 'alpha2.pm' 67 4.0 5.0
-31 'PM.Henry' 'alpha2.pm' 70 4.0 5.0
-32 'PM.Henry' 'alpha2.pm' 71 4.0 5.0
-33 'PM.Henry' 'alpha2.pm' 72 4.0 5.0
-34 'PM.Henry' 'alpha2.pm' 73 4.0 5.0
-35 'PM.Henry' 'alpha2.pm' 74 4.0 5.0
-36 'PM.Henry' 'alpha2.pm' 77 4.0 5.0
-37 'PM.Henry' 'alpha2.pm' 78 4.0 5.0
-38 'PM.Henry' 'alpha2.pm' 79 4.0 5.0
-39 'PM.Henry' 'alpha2.pf' 80 4.0 5.0
-40 'PM.Henry' 'alpha2.pf' 81 4.0 5.0
-41 'PM.Henry' 'alpha2.pf' 84 4.0 5.0
-42 'PM.Henry' 'alpha2.pf' 85 4.0 5.0
-43 'PM.Henry' 'alpha2.pf' 86 4.0 5.0
-44 'PM.Henry' 'alpha2.pf' 87 4.0 5.0
-45 'PM.Henry' 'alpha2.pf' 88 4.0 5.0
-46 'PM.Henry' 'alpha2.pf' 91 4.0 5.0
-47 'PM.Henry' 'alpha2.pf' 92 4.0 5.0
-48 'PM.Henry' 'beta2.pe' 7 25.0 26.0
-49 'PM.Henry' 'beta2.pe' 8 25.0 26.0
-50 'PM.Henry' 'beta2.pe' 9 25.0 26.0
-51 'PM.Henry' 'beta2.pe' 10 25.0 26.0
-52 'PM.Henry' 'beta2.pe' 11 25.0 26.0
-53 'PM.Henry' 'beta2.pe' 14 25.0 26.0
-54 'PM.Henry' 'beta2.pe' 15 25.0 26.0
-55 'PM.Henry' 'beta2.pe' 16 25.0 26.0
-56 'PM.Henry' 'beta2.pm' 17 2.0 3.0
-57 'PM.Henry' 'beta2.pm' 18 2.0 3.0
-58 'PM.Henry' 'beta2.pm' 21 2.0 3.0
-59 'PM.Henry' 'beta2.pm' 22 2.0 3.0
-60 'PM.Henry' 'beta2.pm' 23 2.0 3.0
-61 'PM.Henry' 'beta2.pm' 24 2.0 3.0
-62 'PM.Henry' 'beta2.pm' 25 2.0 3.0
-63 'PM.Henry' 'beta2.pm' 28 2.0 3.0
-64 'PM.Henry' 'beta2.pm' 29 2.0 3.0
-65 'PM.Henry' 'beta2.pm' 30 2.0 3.0
-66 'PM.Henry' 'beta2.pm' 31 2.0 3.0
-67 'PM.Henry' 'beta2.pm' 32 2.0 3.0
-68 'PM.Henry' 'beta2.pm' 35 2.0 3.0
-69 'PM.Henry' 'beta2.pm' 36 2.0 3.0
-70 'PM.Henry' 'beta2.pm' 37 2.0 3.0
-71 'PM.Henry' 'beta2.pm' 38 2.0 3.0
-72 'PM.Henry' 'beta2.pm' 39 2.0 3.0
-73 'PM.Henry' 'beta2.pm' 42 2.0 3.0
-74 'PM.Henry' 'beta2.pm' 43 2.0 3.0
-75 'PM.Henry' 'beta2.pm' 44 2.0 3.0
-76 'PM.Henry' 'beta2.pm' 45 2.0 3.0
-77 'PM.Henry' 'beta2.pm' 46 2.0 3.0
-78 'PM.Henry' 'beta2.pm' 49 2.0 3.0
-79 'PM.Henry' 'beta2.pm' 50 2.0 3.0
-80 'PM.Henry' 'beta2.pm' 51 2.0 3.0
-81 'PM.Henry' 'beta2.pm' 52 2.0 3.0
-82 'PM.Henry' 'beta2.pm' 53 2.0 3.0
-83 'PM.Henry' 'beta2.pm' 56 2.0 3.0
-84 'PM.Henry' 'beta2.pm' 57 2.0 3.0
-85 'PM.Henry' 'beta2.pm' 58 2.0 3.0
-86 'PM.Henry' 'beta2.pm' 59 2.0 3.0
-87 'PM.Henry' 'beta2.pm' 60 2.0 3.0
-88 'PM.Henry' 'beta2.pm' 63 2.0 3.0
-89 'PM.Henry' 'beta2.pm' 64 2.0 3.0
-90 'PM.Henry' 'beta2.pm' 65 2.0 3.0
-91 'PM.Henry' 'beta2.pm' 66 2.0 3.0
-92 'PM.Henry' 'beta2.pm' 67 2.0 3.0
-93 'PM.Henry' 'beta2.pm' 70 2.0 3.0
-94 'PM.Henry' 'beta2.pm' 71 2.0 3.0
-95 'PM.Henry' 'beta2.pm' 72 2.0 3.0
-96 'PM.Henry' 'beta2.pm' 73 2.0 3.0
-97 'PM.Henry' 'beta2.pm' 74 2.0 3.0
-98 'PM.Henry' 'beta2.pm' 77 2.0 3.0
-99 'PM.Henry' 'beta2.pm' 78 2.0 3.0
-100 'PM.Henry' 'beta2.pm' 79 2.0 3.0
-101 'PM.Henry' 'beta2.pm' 80 2.0 3.0
-102 'PM.Henry' 'beta2.pm' 81 2.0 3.0
-103 'PM.Henry' 'beta2.pm' 84 2.0 3.0
-104 'PM.Henry' 'beta2.pm' 85 2.0 3.0
-105 'PM.Henry' 'beta2.pm' 86 2.0 3.0
-106 'PM.Henry' 'beta2.pm' 87 2.0 3.0
-107 'PM.Henry' 'beta2.pm' 88 2.0 3.0
-108 'PM.Henry' 'beta2.pm' 91 2.0 3.0
-109 'PM.Henry' 'beta2.pm' 92 2.0 3.0
-110 'PM.Henry' 'beta2.pm' 93 2.0 3.0
-111 'PM.Henry' 'beta2.pm' 94 2.0 3.0
-112 'PM.Henry' 'beta2.pm' 95 2.0 3.0
-113 'PM.Henry' 'beta2.pm' 98 2.0 3.0
-114 'PM.Henry' 'beta2.pm' 99 2.0 3.0
-115 'PM.Henry' 'beta2.pm' 100 2.0 3.0
-116 'PM.Henry' 'beta2.pm' 101 2.0 3.0
-117 'PM.Henry' 'beta2.pm' 102 2.0 3.0
-118 'PM.Henry' 'beta2.pm' 105 2.0 3.0
-119 'PM.Henry' 'beta2.pm' 106 2.0 3.0
-120 'PM.Henry' 'beta2.pm' 107 2.0 3.0
-121 'PM.Henry' 'beta2.pm' 108 2.0 3.0
-122 'PM.Henry' 'beta2.pm' 109 2.0 3.0
-123 'PM.Henry' 'beta2.pm' 112 2.0 3.0
-124 'PM.Henry' 'beta2.pm' 113 2.0 3.0
-125 'PM.Henry' 'beta2.pm' 114 2.0 3.0
-126 'PM.Henry' 'beta2.pm' 115 2.0 3.0
-127 'PM.Henry' 'beta2.pm' 116 2.0 3.0
-128 'PM.Henry' 'beta2.pm' 119 2.0 3.0
-129 'PM.Henry' 'beta2.pm' 120 2.0 3.0
-130 'PM.Henry' 'beta2.pm' 121 2.0 3.0
-131 'PM.Henry' 'beta2.pm' 123 2.0 3.0
-132 'PM.Henry' 'beta2.pm' 126 2.0 3.0
-133 'PM.Henry' 'beta2.pm' 127 2.0 3.0
-134 'PM.Henry' 'beta2.pm' 128 2.0 3.0
-135 'PM.Henry' 'beta2.pm' 129 2.0 3.0
-136 'PM.Henry' 'beta2.pm' 130 2.0 3.0
-137 'PM.Henry' 'beta2.pm' 133 2.0 3.0
-138 'PM.Henry' 'beta2.pm' 134 2.0 3.0
-139 'PM.Henry' 'beta2.pm' 135 2.0 3.0
-140 'PM.Henry' 'beta2.pm' 136 2.0 3.0
-141 'PM.Henry' 'beta2.pm' 137 2.0 3.0
-142 'PM.Henry' 'beta2.pm' 140 2.0 3.0
-143 'PM.Henry' 'beta2.pm' 141 2.0 3.0
-144 'PM.Henry' 'beta2.pm' 142 2.0 3.0
-145 'PM.Henry' 'beta2.pm' 143 2.0 3.0
-146 'PM.Henry' 'beta2.pm' 144 2.0 3.0
-147 'PM.Henry' 'beta2.pm' 147 2.0 3.0
-148 'PM.Henry' 'beta2.pm' 148 2.0 3.0
-149 'PM.Henry' 'beta2.pm' 149 2.0 3.0
-150 'PM.Henry' 'beta2.pm' 150 2.0 3.0
-151 'PM.Henry' 'beta2.pm' 151 2.0 3.0
-152 'PM.Henry' 'beta2.pm' 154 2.0 3.0
-153 'PM.Henry' 'beta2.pm' 155 2.0 3.0
-154 'PM.Henry' 'beta2.pm' 156 2.0 3.0
-155 'PM.Henry' 'beta2.pm' 157 2.0 3.0
-156 'PM.Henry' 'beta2.pm' 158 2.0 3.0
-157 'PM.Henry' 'beta2.pm' 161 2.0 3.0
-158 'PM.Henry' 'beta2.pm' 162 2.0 3.0
-159 'PM.Henry' 'beta2.pm' 163 2.0 3.0
-160 'PM.Henry' 'beta2.pm' 164 2.0 3.0
-161 'PM.Henry' 'beta2.pm' 165 2.0 3.0
-162 'PM.Henry' 'beta2.pm' 168 2.0 3.0
-163 'PM.Henry' 'beta2.pm' 169 2.0 3.0
-164 'PM.Henry' 'beta2.pm' 170 2.0 3.0
-165 'PM.Henry' 'beta2.pm' 171 2.0 3.0
-166 'PM.Henry' 'beta2.pm' 172 2.0 3.0
-167 'PM.Henry' 'beta2.pm' 175 2.0 3.0
-168 'PM.Henry' 'beta2.pm' 176 2.0 3.0
-169 'PM.Henry' 'beta2.pm' 177 2.0 3.0
-170 'PM.Henry' 'beta2.pm' 178 2.0 3.0
-171 'PM.Henry' 'beta2.pm' 179 2.0 3.0
-172 'PM.Henry' 'beta2.pm' 182 2.0 3.0
-173 'PM.Henry' 'beta2.pm' 183 2.0 3.0
-174 'PM.Henry' 'beta2.pm' 184 2.0 3.0
-175 'PM.Henry' 'beta2.pm' 185 2.0 3.0
-176 'PM.Henry' 'beta2.pm' 186 2.0 3.0
-177 'PM.Henry' 'beta2.pm' 189 2.0 3.0
-178 'PM.Henry' 'beta2.pm' 190 2.0 3.0
-179 'PM.Henry' 'beta2.pm' 191 2.0 3.0
-180 'PM.Henry' 'beta2.pm' 192 2.0 3.0
-181 'PM.Henry' 'beta2.pm' 193 2.0 3.0
-182 'PM.Henry' 'beta2.pm' 196 2.0 3.0
-183 'PM.Henry' 'beta2.pm' 197 2.0 3.0
-184 'PM.Henry' 'beta2.pf' 198 11.0 12.0
-185 'PM.Henry' 'beta2.pf' 199 11.0 12.0
-186 'PM.Henry' 'beta2.pf' 200 11.0 12.0
-187 'PM.Henry' 'beta2.pf' 203 11.0 12.0
-188 'PM.Henry' 'beta2.pf' 204 11.0 12.0
-189 'PM.Henry' 'beta2.pf' 205 11.0 12.0
-190 'PM.Henry' 'beta2.pf' 206 11.0 12.0
-191 'PM.Henry' 'beta2.pf' 207 11.0 12.0
-192 'PM.Henry' 'beta2.pf' 210 11.0 12.0
-193 'PM.Henry' 'beta2.pf' 211 11.0 12.0
-194 'PM.Henry' 'beta2.pf' 212 11.0 12.0
-195 'PM.Henry' 'beta2.pf' 213 11.0 12.0
-196 'PM.Henry' 'beta2.pf' 214 11.0 12.0
-197 'PM.Henry' 'beta2.pf' 217 11.0 12.0
-198 'PM.Henry' 'juliet2.pm' 3 3.0 4.0
-199 'PM.Henry' 'juliet2.pm' 4 3.0 4.0
-200 'PM.Henry' 'juliet2.pm' 7 3.0 4.0
-201 'PM.Henry' 'juliet2.pm' 8 3.0 4.0
-202 'PM.Henry' 'juliet2.pm' 9 3.0 4.0
-203 'PM.Henry' 'juliet2.pm' 10 3.0 4.0
-204 'PM.Henry' 'juliet2.pm' 11 3.0 4.0
-205 'PM.Henry' 'juliet2.pm' 14 3.0 4.0
-206 'PM.Henry' 'juliet2.pm' 15 3.0 4.0
-207 'PM.Henry' 'juliet2.pm' 16 3.0 4.0
-208 'PM.Henry' 'juliet2.pm' 17 3.0 4.0
-209 'PM.Henry' 'juliet2.pm' 18 3.0 4.0
-210 'PM.Henry' 'juliet2.pm' 21 3.0 4.0
-211 'PM.Henry' 'juliet2.pm' 22 3.0 4.0
-212 'PM.Henry' 'juliet2.pm' 23 3.0 4.0
-213 'PM.Henry' 'juliet2.pm' 24 3.0 4.0
-214 'PM.Henry' 'juliet2.pm' 25 3.0 4.0
-215 'PM.Henry' 'juliet2.pm' 28 3.0 4.0
-216 'PM.Henry' 'juliet2.pm' 29 3.0 4.0
-217 'PM.Henry' 'juliet2.pm' 30 3.0 4.0
-218 'PM.Henry' 'juliet2.pm' 31 3.0 4.0
-219 'PM.Henry' 'juliet2.pm' 32 3.0 4.0
-220 'PM.Henry' 'juliet2.pm' 35 3.0 4.0
-221 'PM.Henry' 'juliet2.pm' 36 3.0 4.0
-222 'PM.Henry' 'juliet2.pm' 37 3.0 4.0
-223 'PM.Henry' 'juliet2.pm' 38 3.0 4.0
-224 'PM.Henry' 'juliet2.pm' 39 3.0 4.0
-225 'PM.Henry' 'juliet2.pm' 42 3.0 4.0
-226 'PM.Henry' 'juliet2.pm' 43 3.0 4.0
-227 'PM.Henry' 'juliet2.pm' 44 3.0 4.0
-228 'PM.Henry' 'juliet2.pm' 45 3.0 4.0
-229 'PM.Henry' 'juliet2.pm' 46 3.0 4.0
-230 'PM.Henry' 'juliet2.pm' 49 3.0 4.0
-231 'PM.Henry' 'juliet2.pm' 50 3.0 4.0
-232 'PM.Henry' 'juliet2.pm' 51 3.0 4.0
-233 'PM.Henry' 'juliet2.pm' 52 3.0 4.0
-234 'PM.Henry' 'juliet2.pm' 53 3.0 4.0
-235 'PM.Henry' 'juliet2.pm' 56 3.0 4.0
-236 'PM.Henry' 'juliet2.pm' 57 3.0 4.0
-237 'PM.Henry' 'juliet2.pm' 58 3.0 4.0
-238 'PM.Henry' 'juliet2.pm' 59 3.0 4.0
-239 'PM.Henry' 'juliet2.pm' 60 3.0 4.0
-240 'PM.Henry' 'juliet2.pm' 63 3.0 4.0
-241 'PM.Henry' 'juliet2.pm' 64 3.0 4.0
-242 'PM.Henry' 'juliet2.pm' 65 3.0 4.0
-243 'PM.Henry' 'juliet2.pm' 66 3.0 4.0
-244 'PM.Henry' 'juliet2.pm' 67 3.0 4.0
-245 'PM.Henry' 'juliet2.pm' 70 3.0 4.0
-246 'PM.Henry' 'juliet2.pm' 71 3.0 4.0
-247 'PM.Henry' 'juliet2.pm' 72 3.0 4.0
-248 'PM.Henry' 'juliet2.pm' 73 3.0 4.0
-249 'PM.Henry' 'juliet2.pm' 74 3.0 4.0
-250 'PM.Henry' 'juliet2.pm' 77 3.0 4.0
-251 'PM.Henry' 'juliet2.pm' 78 3.0 4.0
-252 'PM.Henry' 'juliet2.pm' 79 3.0 4.0
-253 'PM.Henry' 'juliet2.pm' 80 3.0 4.0
-254 'PM.Henry' 'juliet2.pm' 81 3.0 4.0
-255 'PM.Henry' 'juliet2.pf' 84 5.0 6.0
-256 'PM.Henry' 'juliet2.pf' 85 5.0 6.0
-257 'PM.Henry' 'juliet2.pf' 86 5.0 6.0
-258 'PM.Henry' 'juliet2.pf' 87 5.0 6.0
-259 'PM.Henry' 'juliet2.pf' 88 5.0 6.0
-260 'PM.Henry' 'juliet2.pf' 91 5.0 6.0
-261 'PM.Henry' 'juliet2.pf' 92 5.0 6.0;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
+EXPPER: PBL PBU :=
+'PM.Henry' 'Jan.25' 0 720
+'PM.Henry' 'Feb.25' 0 720
+'PM.Henry' 'Mar.25' 0 720
+'PM.Henry' 'Apr.25' 0 720
+'PM.Henry' 'May.25' 0 720
+'PM.Henry' 'Jun.25' 0 720
+'PM.Henry' 'Jul.25' 0 720
+'PM.Henry' 'Aug.25' 0 720
+'PM.Henry' 'Sep.25' 0 720
+'PM.Henry' 'Oct.25' 0 720
+'PM.Henry' 'Nov.25' 0 720
+'PM.Henry' 'Dec.25' 0 720
 ;
-
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
-;
-
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
-;
-
-set LINKS :=
-'PM.Henry' 'alpha2.pe'
-'PM.Henry' 'alpha2.pf'
-'PM.Henry' 'alpha2.pm'
-'PM.Henry' 'beta2.pe'
-'PM.Henry' 'beta2.pf'
-'PM.Henry' 'beta2.pm'
-'PM.Henry' 'juliet2.pf'
-'PM.Henry' 'juliet2.pm';
 

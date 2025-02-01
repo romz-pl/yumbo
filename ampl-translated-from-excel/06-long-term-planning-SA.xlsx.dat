@@ -1,846 +1,97 @@
-param HOURS_PER_DAY := 32;
-
-set EXPERTN :=
-'Bożydar';
-
-param EBOUND_NO := 0;
-
-param EBOUND:
-1   2   3   4   5 :=
-;
+param MAXWORK := 32;
 
 param:
-TASKN: TASKS TASKE TASKW :=
-'p2.e' 1 14 160
-'p2.m' 15 133 340
-'p2.f' 134 161 160
-'p3.e' 11 23 80
-'p3.m' 24 191 420
-'p3.f' 192 219 160
-'p4.e' 26 44 180
-'p4.m' 45 212 420
-'p4.f' 213 240 160
-'p5.e' 41 54 160
-'p5.m' 55 173 340
-'p5.f' 174 201 160
-'p6.e' 61 86 80
-'p6.m' 87 254 420
-'p6.f' 255 282 160
+TNAME: TWORK :=
+'p2.e' 160
+'p2.m' 340
+'p2.f' 160
+'p3.e' 80
+'p3.m' 420
+'p3.f' 160
+'p4.e' 180
+'p4.m' 420
+'p4.f' 160
+'p5.e' 160
+'p5.m' 340
+'p5.f' 160
+'p6.e' 80
+'p6.m' 420
+'p6.f' 160
 ;
 
-param:
-PAYROLLN: PAYROLLS PAYROLLE :=
-'25.Jan' 21 56
-'25.Feb' 57 85
-'25.Mar' 86 116
-'25.Apr' 117 145
-'25.May' 146 179;
-
-param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
+set TSCOPE['p2.e'] :=
+1 2 5 6 7 8 9 12 13 14
 ;
 
-param OFFDAY_NO := 81;
-
-param OFFDAY :=
-1 3
-2 4
-3 10
-4 11
-5 17
-6 18
-7 24
-8 25
-9 31
-10 32
-11 35
-12 38
-13 39
-14 45
-15 46
-16 52
-17 53
-18 59
-19 60
-20 66
-21 67
-22 73
-23 74
-24 80
-25 81
-26 87
-27 88
-28 94
-29 95
-30 101
-31 102
-32 108
-33 109
-34 115
-35 116
-36 122
-37 123
-38 129
-39 130
-40 136
-41 137
-42 143
-43 144
-44 150
-45 151
-46 157
-47 158
-48 164
-49 165
-50 171
-51 172
-52 178
-53 179
-54 185
-55 186
-56 192
-57 193
-58 199
-59 200
-60 206
-61 207
-62 213
-63 214
-64 220
-65 221
-66 227
-67 228
-68 234
-69 235
-70 241
-71 242
-72 248
-73 249
-74 255
-75 256
-76 262
-77 263
-78 269
-79 270
-80 276
-81 277;
-
-param XBDAY_NO := 692;
-
-param XBDAY:
-1   2   3   4   5 :=
-1 'Bożydar' 'p2.e' 1 12 20
-2 'Bożydar' 'p2.e' 2 12 20
-3 'Bożydar' 'p2.e' 5 12 20
-4 'Bożydar' 'p2.e' 6 12 20
-5 'Bożydar' 'p2.e' 7 12 20
-6 'Bożydar' 'p2.e' 8 12 20
-7 'Bożydar' 'p2.e' 9 12 20
-8 'Bożydar' 'p2.e' 12 12 20
-9 'Bożydar' 'p2.e' 13 12 20
-10 'Bożydar' 'p2.e' 14 12 20
-11 'Bożydar' 'p2.m' 15 0 8
-12 'Bożydar' 'p2.m' 16 0 8
-13 'Bożydar' 'p2.m' 19 0 8
-14 'Bożydar' 'p2.m' 20 0 8
-15 'Bożydar' 'p2.m' 21 0 8
-16 'Bożydar' 'p2.m' 22 0 8
-17 'Bożydar' 'p2.m' 23 0 8
-18 'Bożydar' 'p2.m' 26 0 8
-19 'Bożydar' 'p2.m' 27 0 8
-20 'Bożydar' 'p2.m' 28 0 8
-21 'Bożydar' 'p2.m' 29 0 8
-22 'Bożydar' 'p2.m' 30 0 8
-23 'Bożydar' 'p2.m' 33 0 8
-24 'Bożydar' 'p2.m' 34 0 8
-25 'Bożydar' 'p2.m' 36 0 8
-26 'Bożydar' 'p2.m' 37 0 8
-27 'Bożydar' 'p2.m' 40 0 8
-28 'Bożydar' 'p2.m' 41 0 8
-29 'Bożydar' 'p2.m' 42 0 8
-30 'Bożydar' 'p2.m' 43 0 8
-31 'Bożydar' 'p2.m' 44 0 8
-32 'Bożydar' 'p2.m' 47 0 8
-33 'Bożydar' 'p2.m' 48 0 8
-34 'Bożydar' 'p2.m' 49 0 8
-35 'Bożydar' 'p2.m' 50 0 8
-36 'Bożydar' 'p2.m' 51 0 8
-37 'Bożydar' 'p2.m' 54 0 8
-38 'Bożydar' 'p2.m' 55 0 8
-39 'Bożydar' 'p2.m' 56 0 8
-40 'Bożydar' 'p2.m' 57 0 8
-41 'Bożydar' 'p2.m' 58 0 8
-42 'Bożydar' 'p2.m' 61 0 8
-43 'Bożydar' 'p2.m' 62 0 8
-44 'Bożydar' 'p2.m' 63 0 8
-45 'Bożydar' 'p2.m' 64 0 8
-46 'Bożydar' 'p2.m' 65 0 8
-47 'Bożydar' 'p2.m' 68 0 8
-48 'Bożydar' 'p2.m' 69 0 8
-49 'Bożydar' 'p2.m' 70 0 8
-50 'Bożydar' 'p2.m' 71 0 8
-51 'Bożydar' 'p2.m' 72 0 8
-52 'Bożydar' 'p2.m' 75 0 8
-53 'Bożydar' 'p2.m' 76 0 8
-54 'Bożydar' 'p2.m' 77 0 8
-55 'Bożydar' 'p2.m' 78 0 8
-56 'Bożydar' 'p2.m' 79 0 8
-57 'Bożydar' 'p2.m' 82 0 8
-58 'Bożydar' 'p2.m' 83 0 8
-59 'Bożydar' 'p2.m' 84 0 8
-60 'Bożydar' 'p2.m' 85 0 8
-61 'Bożydar' 'p2.m' 86 0 8
-62 'Bożydar' 'p2.m' 89 0 8
-63 'Bożydar' 'p2.m' 90 0 8
-64 'Bożydar' 'p2.m' 91 0 8
-65 'Bożydar' 'p2.m' 92 0 8
-66 'Bożydar' 'p2.m' 93 0 8
-67 'Bożydar' 'p2.m' 96 0 8
-68 'Bożydar' 'p2.m' 97 0 8
-69 'Bożydar' 'p2.m' 98 0 8
-70 'Bożydar' 'p2.m' 99 0 8
-71 'Bożydar' 'p2.m' 100 0 8
-72 'Bożydar' 'p2.m' 103 0 8
-73 'Bożydar' 'p2.m' 104 0 8
-74 'Bożydar' 'p2.m' 105 0 8
-75 'Bożydar' 'p2.m' 106 0 8
-76 'Bożydar' 'p2.m' 107 0 8
-77 'Bożydar' 'p2.m' 110 0 8
-78 'Bożydar' 'p2.m' 111 0 8
-79 'Bożydar' 'p2.m' 112 0 8
-80 'Bożydar' 'p2.m' 113 0 8
-81 'Bożydar' 'p2.m' 114 0 8
-82 'Bożydar' 'p2.m' 117 0 8
-83 'Bożydar' 'p2.m' 118 0 8
-84 'Bożydar' 'p2.m' 119 0 8
-85 'Bożydar' 'p2.m' 120 0 8
-86 'Bożydar' 'p2.m' 121 0 8
-87 'Bożydar' 'p2.m' 124 0 8
-88 'Bożydar' 'p2.m' 125 0 8
-89 'Bożydar' 'p2.m' 126 0 8
-90 'Bożydar' 'p2.m' 127 0 8
-91 'Bożydar' 'p2.m' 128 0 8
-92 'Bożydar' 'p2.m' 131 0 8
-93 'Bożydar' 'p2.m' 132 0 8
-94 'Bożydar' 'p2.m' 133 0 8
-95 'Bożydar' 'p2.f' 134 8 8
-96 'Bożydar' 'p2.f' 135 8 8
-97 'Bożydar' 'p2.f' 138 8 8
-98 'Bożydar' 'p2.f' 139 8 8
-99 'Bożydar' 'p2.f' 140 8 8
-100 'Bożydar' 'p2.f' 141 8 8
-101 'Bożydar' 'p2.f' 142 8 8
-102 'Bożydar' 'p2.f' 145 8 8
-103 'Bożydar' 'p2.f' 146 8 8
-104 'Bożydar' 'p2.f' 147 8 8
-105 'Bożydar' 'p2.f' 148 8 8
-106 'Bożydar' 'p2.f' 149 8 8
-107 'Bożydar' 'p2.f' 152 8 8
-108 'Bożydar' 'p2.f' 153 8 8
-109 'Bożydar' 'p2.f' 154 8 8
-110 'Bożydar' 'p2.f' 155 8 8
-111 'Bożydar' 'p2.f' 156 8 8
-112 'Bożydar' 'p2.f' 159 8 8
-113 'Bożydar' 'p2.f' 160 8 8
-114 'Bożydar' 'p2.f' 161 8 8
-115 'Bożydar' 'p3.e' 12 4 12
-116 'Bożydar' 'p3.e' 13 4 12
-117 'Bożydar' 'p3.e' 14 4 12
-118 'Bożydar' 'p3.e' 15 4 12
-119 'Bożydar' 'p3.e' 16 4 12
-120 'Bożydar' 'p3.e' 19 4 12
-121 'Bożydar' 'p3.e' 20 4 12
-122 'Bożydar' 'p3.e' 21 4 12
-123 'Bożydar' 'p3.e' 22 4 12
-124 'Bożydar' 'p3.e' 23 4 12
-125 'Bożydar' 'p3.m' 26 0 4
-126 'Bożydar' 'p3.m' 27 0 4
-127 'Bożydar' 'p3.m' 28 0 4
-128 'Bożydar' 'p3.m' 29 0 4
-129 'Bożydar' 'p3.m' 30 0 4
-130 'Bożydar' 'p3.m' 33 0 4
-131 'Bożydar' 'p3.m' 34 0 4
-132 'Bożydar' 'p3.m' 36 0 4
-133 'Bożydar' 'p3.m' 37 0 4
-134 'Bożydar' 'p3.m' 40 0 4
-135 'Bożydar' 'p3.m' 41 0 4
-136 'Bożydar' 'p3.m' 42 0 4
-137 'Bożydar' 'p3.m' 43 0 4
-138 'Bożydar' 'p3.m' 44 0 4
-139 'Bożydar' 'p3.m' 47 0 4
-140 'Bożydar' 'p3.m' 48 0 4
-141 'Bożydar' 'p3.m' 49 0 4
-142 'Bożydar' 'p3.m' 50 0 4
-143 'Bożydar' 'p3.m' 51 0 4
-144 'Bożydar' 'p3.m' 54 0 4
-145 'Bożydar' 'p3.m' 55 0 4
-146 'Bożydar' 'p3.m' 56 0 4
-147 'Bożydar' 'p3.m' 57 0 4
-148 'Bożydar' 'p3.m' 58 0 4
-149 'Bożydar' 'p3.m' 61 0 4
-150 'Bożydar' 'p3.m' 62 0 4
-151 'Bożydar' 'p3.m' 63 0 4
-152 'Bożydar' 'p3.m' 64 0 4
-153 'Bożydar' 'p3.m' 65 0 4
-154 'Bożydar' 'p3.m' 68 0 4
-155 'Bożydar' 'p3.m' 69 0 4
-156 'Bożydar' 'p3.m' 70 0 4
-157 'Bożydar' 'p3.m' 71 0 4
-158 'Bożydar' 'p3.m' 72 0 4
-159 'Bożydar' 'p3.m' 75 0 4
-160 'Bożydar' 'p3.m' 76 0 4
-161 'Bożydar' 'p3.m' 77 0 4
-162 'Bożydar' 'p3.m' 78 0 4
-163 'Bożydar' 'p3.m' 79 0 4
-164 'Bożydar' 'p3.m' 82 0 4
-165 'Bożydar' 'p3.m' 83 0 4
-166 'Bożydar' 'p3.m' 84 0 4
-167 'Bożydar' 'p3.m' 85 0 4
-168 'Bożydar' 'p3.m' 86 0 4
-169 'Bożydar' 'p3.m' 89 0 4
-170 'Bożydar' 'p3.m' 90 0 4
-171 'Bożydar' 'p3.m' 91 0 4
-172 'Bożydar' 'p3.m' 92 0 4
-173 'Bożydar' 'p3.m' 93 0 4
-174 'Bożydar' 'p3.m' 96 0 4
-175 'Bożydar' 'p3.m' 97 0 4
-176 'Bożydar' 'p3.m' 98 0 4
-177 'Bożydar' 'p3.m' 99 0 4
-178 'Bożydar' 'p3.m' 100 0 4
-179 'Bożydar' 'p3.m' 103 0 4
-180 'Bożydar' 'p3.m' 104 0 4
-181 'Bożydar' 'p3.m' 105 0 4
-182 'Bożydar' 'p3.m' 106 0 4
-183 'Bożydar' 'p3.m' 107 0 4
-184 'Bożydar' 'p3.m' 110 0 4
-185 'Bożydar' 'p3.m' 111 0 4
-186 'Bożydar' 'p3.m' 112 0 4
-187 'Bożydar' 'p3.m' 113 0 4
-188 'Bożydar' 'p3.m' 114 0 4
-189 'Bożydar' 'p3.m' 117 0 4
-190 'Bożydar' 'p3.m' 118 0 4
-191 'Bożydar' 'p3.m' 119 0 4
-192 'Bożydar' 'p3.m' 120 0 4
-193 'Bożydar' 'p3.m' 121 0 4
-194 'Bożydar' 'p3.m' 124 0 4
-195 'Bożydar' 'p3.m' 125 0 4
-196 'Bożydar' 'p3.m' 126 0 4
-197 'Bożydar' 'p3.m' 127 0 4
-198 'Bożydar' 'p3.m' 128 0 4
-199 'Bożydar' 'p3.m' 131 0 4
-200 'Bożydar' 'p3.m' 132 0 4
-201 'Bożydar' 'p3.m' 133 0 4
-202 'Bożydar' 'p3.m' 134 0 4
-203 'Bożydar' 'p3.m' 135 0 4
-204 'Bożydar' 'p3.m' 138 0 4
-205 'Bożydar' 'p3.m' 139 0 4
-206 'Bożydar' 'p3.m' 140 0 4
-207 'Bożydar' 'p3.m' 141 0 4
-208 'Bożydar' 'p3.m' 142 0 4
-209 'Bożydar' 'p3.m' 145 0 4
-210 'Bożydar' 'p3.m' 146 0 4
-211 'Bożydar' 'p3.m' 147 0 4
-212 'Bożydar' 'p3.m' 148 0 4
-213 'Bożydar' 'p3.m' 149 0 4
-214 'Bożydar' 'p3.m' 152 0 4
-215 'Bożydar' 'p3.m' 153 0 4
-216 'Bożydar' 'p3.m' 154 0 4
-217 'Bożydar' 'p3.m' 155 0 4
-218 'Bożydar' 'p3.m' 156 0 4
-219 'Bożydar' 'p3.m' 159 0 4
-220 'Bożydar' 'p3.m' 160 0 4
-221 'Bożydar' 'p3.m' 161 0 4
-222 'Bożydar' 'p3.m' 162 0 4
-223 'Bożydar' 'p3.m' 163 0 4
-224 'Bożydar' 'p3.m' 166 0 4
-225 'Bożydar' 'p3.m' 167 0 4
-226 'Bożydar' 'p3.m' 168 0 4
-227 'Bożydar' 'p3.m' 169 0 4
-228 'Bożydar' 'p3.m' 170 0 4
-229 'Bożydar' 'p3.m' 173 0 4
-230 'Bożydar' 'p3.m' 174 0 4
-231 'Bożydar' 'p3.m' 175 0 4
-232 'Bożydar' 'p3.m' 176 0 4
-233 'Bożydar' 'p3.m' 177 0 4
-234 'Bożydar' 'p3.m' 180 0 4
-235 'Bożydar' 'p3.m' 181 0 4
-236 'Bożydar' 'p3.m' 182 0 4
-237 'Bożydar' 'p3.m' 183 0 4
-238 'Bożydar' 'p3.m' 184 0 4
-239 'Bożydar' 'p3.m' 187 0 4
-240 'Bożydar' 'p3.m' 188 0 4
-241 'Bożydar' 'p3.m' 189 0 4
-242 'Bożydar' 'p3.m' 190 0 4
-243 'Bożydar' 'p3.m' 191 0 4
-244 'Bożydar' 'p3.f' 194 8 8
-245 'Bożydar' 'p3.f' 195 8 8
-246 'Bożydar' 'p3.f' 196 8 8
-247 'Bożydar' 'p3.f' 197 8 8
-248 'Bożydar' 'p3.f' 198 8 8
-249 'Bożydar' 'p3.f' 201 8 8
-250 'Bożydar' 'p3.f' 202 8 8
-251 'Bożydar' 'p3.f' 203 8 8
-252 'Bożydar' 'p3.f' 204 8 8
-253 'Bożydar' 'p3.f' 205 8 8
-254 'Bożydar' 'p3.f' 208 8 8
-255 'Bożydar' 'p3.f' 209 8 8
-256 'Bożydar' 'p3.f' 210 8 8
-257 'Bożydar' 'p3.f' 211 8 8
-258 'Bożydar' 'p3.f' 212 8 8
-259 'Bożydar' 'p3.f' 215 8 8
-260 'Bożydar' 'p3.f' 216 8 8
-261 'Bożydar' 'p3.f' 217 8 8
-262 'Bożydar' 'p3.f' 218 8 8
-263 'Bożydar' 'p3.f' 219 8 8
-264 'Bożydar' 'p4.e' 26 12 16
-265 'Bożydar' 'p4.e' 27 12 16
-266 'Bożydar' 'p4.e' 28 12 16
-267 'Bożydar' 'p4.e' 29 12 16
-268 'Bożydar' 'p4.e' 30 12 16
-269 'Bożydar' 'p4.e' 33 12 16
-270 'Bożydar' 'p4.e' 34 12 16
-271 'Bożydar' 'p4.e' 36 12 16
-272 'Bożydar' 'p4.e' 37 12 16
-273 'Bożydar' 'p4.e' 40 12 16
-274 'Bożydar' 'p4.e' 41 12 16
-275 'Bożydar' 'p4.e' 42 12 16
-276 'Bożydar' 'p4.e' 43 12 16
-277 'Bożydar' 'p4.e' 44 12 16
-278 'Bożydar' 'p4.m' 47 0 4
-279 'Bożydar' 'p4.m' 48 0 4
-280 'Bożydar' 'p4.m' 49 0 4
-281 'Bożydar' 'p4.m' 50 0 4
-282 'Bożydar' 'p4.m' 51 0 4
-283 'Bożydar' 'p4.m' 54 0 4
-284 'Bożydar' 'p4.m' 55 0 4
-285 'Bożydar' 'p4.m' 56 0 4
-286 'Bożydar' 'p4.m' 57 0 4
-287 'Bożydar' 'p4.m' 58 0 4
-288 'Bożydar' 'p4.m' 61 0 4
-289 'Bożydar' 'p4.m' 62 0 4
-290 'Bożydar' 'p4.m' 63 0 4
-291 'Bożydar' 'p4.m' 64 0 4
-292 'Bożydar' 'p4.m' 65 0 4
-293 'Bożydar' 'p4.m' 68 0 4
-294 'Bożydar' 'p4.m' 69 0 4
-295 'Bożydar' 'p4.m' 70 0 4
-296 'Bożydar' 'p4.m' 71 0 4
-297 'Bożydar' 'p4.m' 72 0 4
-298 'Bożydar' 'p4.m' 75 0 4
-299 'Bożydar' 'p4.m' 76 0 4
-300 'Bożydar' 'p4.m' 77 0 4
-301 'Bożydar' 'p4.m' 78 0 4
-302 'Bożydar' 'p4.m' 79 0 4
-303 'Bożydar' 'p4.m' 82 0 4
-304 'Bożydar' 'p4.m' 83 0 4
-305 'Bożydar' 'p4.m' 84 0 4
-306 'Bożydar' 'p4.m' 85 0 4
-307 'Bożydar' 'p4.m' 86 0 4
-308 'Bożydar' 'p4.m' 89 0 4
-309 'Bożydar' 'p4.m' 90 0 4
-310 'Bożydar' 'p4.m' 91 0 4
-311 'Bożydar' 'p4.m' 92 0 4
-312 'Bożydar' 'p4.m' 93 0 4
-313 'Bożydar' 'p4.m' 96 0 4
-314 'Bożydar' 'p4.m' 97 0 4
-315 'Bożydar' 'p4.m' 98 0 4
-316 'Bożydar' 'p4.m' 99 0 4
-317 'Bożydar' 'p4.m' 100 0 4
-318 'Bożydar' 'p4.m' 103 0 4
-319 'Bożydar' 'p4.m' 104 0 4
-320 'Bożydar' 'p4.m' 105 0 4
-321 'Bożydar' 'p4.m' 106 0 4
-322 'Bożydar' 'p4.m' 107 0 4
-323 'Bożydar' 'p4.m' 110 0 4
-324 'Bożydar' 'p4.m' 111 0 4
-325 'Bożydar' 'p4.m' 112 0 4
-326 'Bożydar' 'p4.m' 113 0 4
-327 'Bożydar' 'p4.m' 114 0 4
-328 'Bożydar' 'p4.m' 117 0 4
-329 'Bożydar' 'p4.m' 118 0 4
-330 'Bożydar' 'p4.m' 119 0 4
-331 'Bożydar' 'p4.m' 120 0 4
-332 'Bożydar' 'p4.m' 121 0 4
-333 'Bożydar' 'p4.m' 124 0 4
-334 'Bożydar' 'p4.m' 125 0 4
-335 'Bożydar' 'p4.m' 126 0 4
-336 'Bożydar' 'p4.m' 127 0 4
-337 'Bożydar' 'p4.m' 128 0 4
-338 'Bożydar' 'p4.m' 131 0 4
-339 'Bożydar' 'p4.m' 132 0 4
-340 'Bożydar' 'p4.m' 133 0 4
-341 'Bożydar' 'p4.m' 134 0 4
-342 'Bożydar' 'p4.m' 135 0 4
-343 'Bożydar' 'p4.m' 138 0 4
-344 'Bożydar' 'p4.m' 139 0 4
-345 'Bożydar' 'p4.m' 140 0 4
-346 'Bożydar' 'p4.m' 141 0 4
-347 'Bożydar' 'p4.m' 142 0 4
-348 'Bożydar' 'p4.m' 145 0 4
-349 'Bożydar' 'p4.m' 146 0 4
-350 'Bożydar' 'p4.m' 147 0 4
-351 'Bożydar' 'p4.m' 148 0 4
-352 'Bożydar' 'p4.m' 149 0 4
-353 'Bożydar' 'p4.m' 152 0 4
-354 'Bożydar' 'p4.m' 153 0 4
-355 'Bożydar' 'p4.m' 154 0 4
-356 'Bożydar' 'p4.m' 155 0 4
-357 'Bożydar' 'p4.m' 156 0 4
-358 'Bożydar' 'p4.m' 159 0 4
-359 'Bożydar' 'p4.m' 160 0 4
-360 'Bożydar' 'p4.m' 161 0 4
-361 'Bożydar' 'p4.m' 162 0 4
-362 'Bożydar' 'p4.m' 163 0 4
-363 'Bożydar' 'p4.m' 166 0 4
-364 'Bożydar' 'p4.m' 167 0 4
-365 'Bożydar' 'p4.m' 168 0 4
-366 'Bożydar' 'p4.m' 169 0 4
-367 'Bożydar' 'p4.m' 170 0 4
-368 'Bożydar' 'p4.m' 173 0 4
-369 'Bożydar' 'p4.m' 174 0 4
-370 'Bożydar' 'p4.m' 175 0 4
-371 'Bożydar' 'p4.m' 176 0 4
-372 'Bożydar' 'p4.m' 177 0 4
-373 'Bożydar' 'p4.m' 180 0 4
-374 'Bożydar' 'p4.m' 181 0 4
-375 'Bożydar' 'p4.m' 182 0 4
-376 'Bożydar' 'p4.m' 183 0 4
-377 'Bożydar' 'p4.m' 184 0 4
-378 'Bożydar' 'p4.m' 187 0 4
-379 'Bożydar' 'p4.m' 188 0 4
-380 'Bożydar' 'p4.m' 189 0 4
-381 'Bożydar' 'p4.m' 190 0 4
-382 'Bożydar' 'p4.m' 191 0 4
-383 'Bożydar' 'p4.m' 194 0 4
-384 'Bożydar' 'p4.m' 195 0 4
-385 'Bożydar' 'p4.m' 196 0 4
-386 'Bożydar' 'p4.m' 197 0 4
-387 'Bożydar' 'p4.m' 198 0 4
-388 'Bożydar' 'p4.m' 201 0 4
-389 'Bożydar' 'p4.m' 202 0 4
-390 'Bożydar' 'p4.m' 203 0 4
-391 'Bożydar' 'p4.m' 204 0 4
-392 'Bożydar' 'p4.m' 205 0 4
-393 'Bożydar' 'p4.m' 208 0 4
-394 'Bożydar' 'p4.m' 209 0 4
-395 'Bożydar' 'p4.m' 210 0 4
-396 'Bożydar' 'p4.m' 211 0 4
-397 'Bożydar' 'p4.m' 212 0 4
-398 'Bożydar' 'p4.f' 215 8 8
-399 'Bożydar' 'p4.f' 216 8 8
-400 'Bożydar' 'p4.f' 217 8 8
-401 'Bożydar' 'p4.f' 218 8 8
-402 'Bożydar' 'p4.f' 219 8 8
-403 'Bożydar' 'p4.f' 222 8 8
-404 'Bożydar' 'p4.f' 223 8 8
-405 'Bożydar' 'p4.f' 224 8 8
-406 'Bożydar' 'p4.f' 225 8 8
-407 'Bożydar' 'p4.f' 226 8 8
-408 'Bożydar' 'p4.f' 229 8 8
-409 'Bożydar' 'p4.f' 230 8 8
-410 'Bożydar' 'p4.f' 231 8 8
-411 'Bożydar' 'p4.f' 232 8 8
-412 'Bożydar' 'p4.f' 233 8 8
-413 'Bożydar' 'p4.f' 236 8 8
-414 'Bożydar' 'p4.f' 237 8 8
-415 'Bożydar' 'p4.f' 238 8 8
-416 'Bożydar' 'p4.f' 239 8 8
-417 'Bożydar' 'p4.f' 240 8 8
-418 'Bożydar' 'p5.e' 41 16 16
-419 'Bożydar' 'p5.e' 42 16 16
-420 'Bożydar' 'p5.e' 43 16 16
-421 'Bożydar' 'p5.e' 44 16 16
-422 'Bożydar' 'p5.e' 47 16 16
-423 'Bożydar' 'p5.e' 48 16 16
-424 'Bożydar' 'p5.e' 49 16 16
-425 'Bożydar' 'p5.e' 50 16 16
-426 'Bożydar' 'p5.e' 51 16 16
-427 'Bożydar' 'p5.e' 54 16 16
-428 'Bożydar' 'p5.m' 55 0 8
-429 'Bożydar' 'p5.m' 56 0 8
-430 'Bożydar' 'p5.m' 57 0 8
-431 'Bożydar' 'p5.m' 58 0 8
-432 'Bożydar' 'p5.m' 61 0 8
-433 'Bożydar' 'p5.m' 62 0 8
-434 'Bożydar' 'p5.m' 63 0 8
-435 'Bożydar' 'p5.m' 64 0 8
-436 'Bożydar' 'p5.m' 65 0 8
-437 'Bożydar' 'p5.m' 68 0 8
-438 'Bożydar' 'p5.m' 69 0 8
-439 'Bożydar' 'p5.m' 70 0 8
-440 'Bożydar' 'p5.m' 71 0 8
-441 'Bożydar' 'p5.m' 72 0 8
-442 'Bożydar' 'p5.m' 75 0 8
-443 'Bożydar' 'p5.m' 76 0 8
-444 'Bożydar' 'p5.m' 77 0 8
-445 'Bożydar' 'p5.m' 78 0 8
-446 'Bożydar' 'p5.m' 79 0 8
-447 'Bożydar' 'p5.m' 82 0 8
-448 'Bożydar' 'p5.m' 83 0 8
-449 'Bożydar' 'p5.m' 84 0 8
-450 'Bożydar' 'p5.m' 85 0 8
-451 'Bożydar' 'p5.m' 86 0 8
-452 'Bożydar' 'p5.m' 89 0 8
-453 'Bożydar' 'p5.m' 90 0 8
-454 'Bożydar' 'p5.m' 91 0 8
-455 'Bożydar' 'p5.m' 92 0 8
-456 'Bożydar' 'p5.m' 93 0 8
-457 'Bożydar' 'p5.m' 96 0 8
-458 'Bożydar' 'p5.m' 97 0 8
-459 'Bożydar' 'p5.m' 98 0 8
-460 'Bożydar' 'p5.m' 99 0 8
-461 'Bożydar' 'p5.m' 100 0 8
-462 'Bożydar' 'p5.m' 103 0 8
-463 'Bożydar' 'p5.m' 104 0 8
-464 'Bożydar' 'p5.m' 105 0 8
-465 'Bożydar' 'p5.m' 106 0 8
-466 'Bożydar' 'p5.m' 107 0 8
-467 'Bożydar' 'p5.m' 110 0 8
-468 'Bożydar' 'p5.m' 111 0 8
-469 'Bożydar' 'p5.m' 112 0 8
-470 'Bożydar' 'p5.m' 113 0 8
-471 'Bożydar' 'p5.m' 114 0 8
-472 'Bożydar' 'p5.m' 117 0 8
-473 'Bożydar' 'p5.m' 118 0 8
-474 'Bożydar' 'p5.m' 119 0 8
-475 'Bożydar' 'p5.m' 120 0 8
-476 'Bożydar' 'p5.m' 121 0 8
-477 'Bożydar' 'p5.m' 124 0 8
-478 'Bożydar' 'p5.m' 125 0 8
-479 'Bożydar' 'p5.m' 126 0 8
-480 'Bożydar' 'p5.m' 127 0 8
-481 'Bożydar' 'p5.m' 128 0 8
-482 'Bożydar' 'p5.m' 131 0 8
-483 'Bożydar' 'p5.m' 132 0 8
-484 'Bożydar' 'p5.m' 133 0 8
-485 'Bożydar' 'p5.m' 134 0 8
-486 'Bożydar' 'p5.m' 135 0 8
-487 'Bożydar' 'p5.m' 138 0 8
-488 'Bożydar' 'p5.m' 139 0 8
-489 'Bożydar' 'p5.m' 140 0 8
-490 'Bożydar' 'p5.m' 141 0 8
-491 'Bożydar' 'p5.m' 142 0 8
-492 'Bożydar' 'p5.m' 145 0 8
-493 'Bożydar' 'p5.m' 146 0 8
-494 'Bożydar' 'p5.m' 147 0 8
-495 'Bożydar' 'p5.m' 148 0 8
-496 'Bożydar' 'p5.m' 149 0 8
-497 'Bożydar' 'p5.m' 152 0 8
-498 'Bożydar' 'p5.m' 153 0 8
-499 'Bożydar' 'p5.m' 154 0 8
-500 'Bożydar' 'p5.m' 155 0 8
-501 'Bożydar' 'p5.m' 156 0 8
-502 'Bożydar' 'p5.m' 159 0 8
-503 'Bożydar' 'p5.m' 160 0 8
-504 'Bożydar' 'p5.m' 161 0 8
-505 'Bożydar' 'p5.m' 162 0 8
-506 'Bożydar' 'p5.m' 163 0 8
-507 'Bożydar' 'p5.m' 166 0 8
-508 'Bożydar' 'p5.m' 167 0 8
-509 'Bożydar' 'p5.m' 168 0 8
-510 'Bożydar' 'p5.m' 169 0 8
-511 'Bożydar' 'p5.m' 170 0 8
-512 'Bożydar' 'p5.m' 173 0 8
-513 'Bożydar' 'p5.f' 174 8 8
-514 'Bożydar' 'p5.f' 175 8 8
-515 'Bożydar' 'p5.f' 176 8 8
-516 'Bożydar' 'p5.f' 177 8 8
-517 'Bożydar' 'p5.f' 180 8 8
-518 'Bożydar' 'p5.f' 181 8 8
-519 'Bożydar' 'p5.f' 182 8 8
-520 'Bożydar' 'p5.f' 183 8 8
-521 'Bożydar' 'p5.f' 184 8 8
-522 'Bożydar' 'p5.f' 187 8 8
-523 'Bożydar' 'p5.f' 188 8 8
-524 'Bożydar' 'p5.f' 189 8 8
-525 'Bożydar' 'p5.f' 190 8 8
-526 'Bożydar' 'p5.f' 191 8 8
-527 'Bożydar' 'p5.f' 194 8 8
-528 'Bożydar' 'p5.f' 195 8 8
-529 'Bożydar' 'p5.f' 196 8 8
-530 'Bożydar' 'p5.f' 197 8 8
-531 'Bożydar' 'p5.f' 198 8 8
-532 'Bożydar' 'p5.f' 201 8 8
-533 'Bożydar' 'p6.e' 61 0 8
-534 'Bożydar' 'p6.e' 62 0 8
-535 'Bożydar' 'p6.e' 63 0 8
-536 'Bożydar' 'p6.e' 64 0 8
-537 'Bożydar' 'p6.e' 65 0 8
-538 'Bożydar' 'p6.e' 68 0 8
-539 'Bożydar' 'p6.e' 69 0 8
-540 'Bożydar' 'p6.e' 70 0 8
-541 'Bożydar' 'p6.e' 71 0 8
-542 'Bożydar' 'p6.e' 72 0 8
-543 'Bożydar' 'p6.e' 75 0 8
-544 'Bożydar' 'p6.e' 76 0 8
-545 'Bożydar' 'p6.e' 77 0 8
-546 'Bożydar' 'p6.e' 78 0 8
-547 'Bożydar' 'p6.e' 79 0 8
-548 'Bożydar' 'p6.e' 82 0 8
-549 'Bożydar' 'p6.e' 83 0 8
-550 'Bożydar' 'p6.e' 84 0 8
-551 'Bożydar' 'p6.e' 85 0 8
-552 'Bożydar' 'p6.e' 86 0 8
-553 'Bożydar' 'p6.m' 89 0 4
-554 'Bożydar' 'p6.m' 90 0 4
-555 'Bożydar' 'p6.m' 91 0 4
-556 'Bożydar' 'p6.m' 92 0 4
-557 'Bożydar' 'p6.m' 93 0 4
-558 'Bożydar' 'p6.m' 96 0 4
-559 'Bożydar' 'p6.m' 97 0 4
-560 'Bożydar' 'p6.m' 98 0 4
-561 'Bożydar' 'p6.m' 99 0 4
-562 'Bożydar' 'p6.m' 100 0 4
-563 'Bożydar' 'p6.m' 103 0 4
-564 'Bożydar' 'p6.m' 104 0 4
-565 'Bożydar' 'p6.m' 105 0 4
-566 'Bożydar' 'p6.m' 106 0 4
-567 'Bożydar' 'p6.m' 107 0 4
-568 'Bożydar' 'p6.m' 110 0 4
-569 'Bożydar' 'p6.m' 111 0 4
-570 'Bożydar' 'p6.m' 112 0 4
-571 'Bożydar' 'p6.m' 113 0 4
-572 'Bożydar' 'p6.m' 114 0 4
-573 'Bożydar' 'p6.m' 117 0 4
-574 'Bożydar' 'p6.m' 118 0 4
-575 'Bożydar' 'p6.m' 119 0 4
-576 'Bożydar' 'p6.m' 120 0 4
-577 'Bożydar' 'p6.m' 121 0 4
-578 'Bożydar' 'p6.m' 124 0 4
-579 'Bożydar' 'p6.m' 125 0 4
-580 'Bożydar' 'p6.m' 126 0 4
-581 'Bożydar' 'p6.m' 127 0 4
-582 'Bożydar' 'p6.m' 128 0 4
-583 'Bożydar' 'p6.m' 131 0 4
-584 'Bożydar' 'p6.m' 132 0 4
-585 'Bożydar' 'p6.m' 133 0 4
-586 'Bożydar' 'p6.m' 134 0 4
-587 'Bożydar' 'p6.m' 135 0 4
-588 'Bożydar' 'p6.m' 138 0 4
-589 'Bożydar' 'p6.m' 139 0 4
-590 'Bożydar' 'p6.m' 140 0 4
-591 'Bożydar' 'p6.m' 141 0 4
-592 'Bożydar' 'p6.m' 142 0 4
-593 'Bożydar' 'p6.m' 145 0 4
-594 'Bożydar' 'p6.m' 146 0 4
-595 'Bożydar' 'p6.m' 147 0 4
-596 'Bożydar' 'p6.m' 148 0 4
-597 'Bożydar' 'p6.m' 149 0 4
-598 'Bożydar' 'p6.m' 152 0 4
-599 'Bożydar' 'p6.m' 153 0 4
-600 'Bożydar' 'p6.m' 154 0 4
-601 'Bożydar' 'p6.m' 155 0 4
-602 'Bożydar' 'p6.m' 156 0 4
-603 'Bożydar' 'p6.m' 159 0 4
-604 'Bożydar' 'p6.m' 160 0 4
-605 'Bożydar' 'p6.m' 161 0 4
-606 'Bożydar' 'p6.m' 162 0 4
-607 'Bożydar' 'p6.m' 163 0 4
-608 'Bożydar' 'p6.m' 166 0 4
-609 'Bożydar' 'p6.m' 167 0 4
-610 'Bożydar' 'p6.m' 168 0 4
-611 'Bożydar' 'p6.m' 169 0 4
-612 'Bożydar' 'p6.m' 170 0 4
-613 'Bożydar' 'p6.m' 173 0 4
-614 'Bożydar' 'p6.m' 174 0 4
-615 'Bożydar' 'p6.m' 175 0 4
-616 'Bożydar' 'p6.m' 176 0 4
-617 'Bożydar' 'p6.m' 177 0 4
-618 'Bożydar' 'p6.m' 180 0 4
-619 'Bożydar' 'p6.m' 181 0 4
-620 'Bożydar' 'p6.m' 182 0 4
-621 'Bożydar' 'p6.m' 183 0 4
-622 'Bożydar' 'p6.m' 184 0 4
-623 'Bożydar' 'p6.m' 187 0 4
-624 'Bożydar' 'p6.m' 188 0 4
-625 'Bożydar' 'p6.m' 189 0 4
-626 'Bożydar' 'p6.m' 190 0 4
-627 'Bożydar' 'p6.m' 191 0 4
-628 'Bożydar' 'p6.m' 194 0 4
-629 'Bożydar' 'p6.m' 195 0 4
-630 'Bożydar' 'p6.m' 196 0 4
-631 'Bożydar' 'p6.m' 197 0 4
-632 'Bożydar' 'p6.m' 198 0 4
-633 'Bożydar' 'p6.m' 201 0 4
-634 'Bożydar' 'p6.m' 202 0 4
-635 'Bożydar' 'p6.m' 203 0 4
-636 'Bożydar' 'p6.m' 204 0 4
-637 'Bożydar' 'p6.m' 205 0 4
-638 'Bożydar' 'p6.m' 208 0 4
-639 'Bożydar' 'p6.m' 209 0 4
-640 'Bożydar' 'p6.m' 210 0 4
-641 'Bożydar' 'p6.m' 211 0 4
-642 'Bożydar' 'p6.m' 212 0 4
-643 'Bożydar' 'p6.m' 215 0 4
-644 'Bożydar' 'p6.m' 216 0 4
-645 'Bożydar' 'p6.m' 217 0 4
-646 'Bożydar' 'p6.m' 218 0 4
-647 'Bożydar' 'p6.m' 219 0 4
-648 'Bożydar' 'p6.m' 222 0 4
-649 'Bożydar' 'p6.m' 223 0 4
-650 'Bożydar' 'p6.m' 224 0 4
-651 'Bożydar' 'p6.m' 225 0 4
-652 'Bożydar' 'p6.m' 226 0 4
-653 'Bożydar' 'p6.m' 229 0 4
-654 'Bożydar' 'p6.m' 230 0 4
-655 'Bożydar' 'p6.m' 231 0 4
-656 'Bożydar' 'p6.m' 232 0 4
-657 'Bożydar' 'p6.m' 233 0 4
-658 'Bożydar' 'p6.m' 236 0 4
-659 'Bożydar' 'p6.m' 237 0 4
-660 'Bożydar' 'p6.m' 238 0 4
-661 'Bożydar' 'p6.m' 239 0 4
-662 'Bożydar' 'p6.m' 240 0 4
-663 'Bożydar' 'p6.m' 243 0 4
-664 'Bożydar' 'p6.m' 244 0 4
-665 'Bożydar' 'p6.m' 245 0 4
-666 'Bożydar' 'p6.m' 246 0 4
-667 'Bożydar' 'p6.m' 247 0 4
-668 'Bożydar' 'p6.m' 250 0 4
-669 'Bożydar' 'p6.m' 251 0 4
-670 'Bożydar' 'p6.m' 252 0 4
-671 'Bożydar' 'p6.m' 253 0 4
-672 'Bożydar' 'p6.m' 254 0 4
-673 'Bożydar' 'p6.f' 257 8 8
-674 'Bożydar' 'p6.f' 258 8 8
-675 'Bożydar' 'p6.f' 259 8 8
-676 'Bożydar' 'p6.f' 260 8 8
-677 'Bożydar' 'p6.f' 261 8 8
-678 'Bożydar' 'p6.f' 264 8 8
-679 'Bożydar' 'p6.f' 265 8 8
-680 'Bożydar' 'p6.f' 266 8 8
-681 'Bożydar' 'p6.f' 267 8 8
-682 'Bożydar' 'p6.f' 268 8 8
-683 'Bożydar' 'p6.f' 271 8 8
-684 'Bożydar' 'p6.f' 272 8 8
-685 'Bożydar' 'p6.f' 273 8 8
-686 'Bożydar' 'p6.f' 274 8 8
-687 'Bożydar' 'p6.f' 275 8 8
-688 'Bożydar' 'p6.f' 278 8 8
-689 'Bożydar' 'p6.f' 279 8 8
-690 'Bożydar' 'p6.f' 280 8 8
-691 'Bożydar' 'p6.f' 281 8 8
-692 'Bożydar' 'p6.f' 282 8 8;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
+set TSCOPE['p2.m'] :=
+15 16 19 20 21 22 23 26 27 28 29 30 33 34 36 37 40 41 42 43 44 47 48 49 50 51 54 55 56 57 58 61 62 63 64 65 68 69 70 71 72 75 76 77 78 79 82 83 84 85
+86 89 90 91 92 93 96 97 98 99 100 103 104 105 106 107 110 111 112 113 114 117 118 119 120 121 124 125 126 127 128 131 132 133
 ;
 
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
+set TSCOPE['p2.f'] :=
+134 135 138 139 140 141 142 145 146 147 148 149 152 153 154 155 156 159 160 161
 ;
 
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
+set TSCOPE['p3.e'] :=
+12 13 14 15 16 19 20 21 22 23
 ;
 
-set LINKS :=
+set TSCOPE['p3.m'] :=
+26 27 28 29 30 33 34 36 37 40 41 42 43 44 47 48 49 50 51 54 55 56 57 58 61 62 63 64 65 68 69 70 71 72 75 76 77 78 79 82 83 84 85 86 89 90 91 92 93 96
+97 98 99 100 103 104 105 106 107 110 111 112 113 114 117 118 119 120 121 124 125 126 127 128 131 132 133 134 135 138 139 140 141 142 145 146 147 148 149 152 153 154 155 156 159 160 161 162 163 166
+167 168 169 170 173 174 175 176 177 180 181 182 183 184 187 188 189 190 191
+;
+
+set TSCOPE['p3.f'] :=
+194 195 196 197 198 201 202 203 204 205 208 209 210 211 212 215 216 217 218 219
+;
+
+set TSCOPE['p4.e'] :=
+26 27 28 29 30 33 34 36 37 40 41 42 43 44
+;
+
+set TSCOPE['p4.m'] :=
+47 48 49 50 51 54 55 56 57 58 61 62 63 64 65 68 69 70 71 72 75 76 77 78 79 82 83 84 85 86 89 90 91 92 93 96 97 98 99 100 103 104 105 106 107 110 111 112 113 114
+117 118 119 120 121 124 125 126 127 128 131 132 133 134 135 138 139 140 141 142 145 146 147 148 149 152 153 154 155 156 159 160 161 162 163 166 167 168 169 170 173 174 175 176 177 180 181 182 183 184
+187 188 189 190 191 194 195 196 197 198 201 202 203 204 205 208 209 210 211 212
+;
+
+set TSCOPE['p4.f'] :=
+215 216 217 218 219 222 223 224 225 226 229 230 231 232 233 236 237 238 239 240
+;
+
+set TSCOPE['p5.e'] :=
+41 42 43 44 47 48 49 50 51 54
+;
+
+set TSCOPE['p5.m'] :=
+55 56 57 58 61 62 63 64 65 68 69 70 71 72 75 76 77 78 79 82 83 84 85 86 89 90 91 92 93 96 97 98 99 100 103 104 105 106 107 110 111 112 113 114 117 118 119 120 121 124
+125 126 127 128 131 132 133 134 135 138 139 140 141 142 145 146 147 148 149 152 153 154 155 156 159 160 161 162 163 166 167 168 169 170 173
+;
+
+set TSCOPE['p5.f'] :=
+174 175 176 177 180 181 182 183 184 187 188 189 190 191 194 195 196 197 198 201
+;
+
+set TSCOPE['p6.e'] :=
+61 62 63 64 65 68 69 70 71 72 75 76 77 78 79 82 83 84 85 86
+;
+
+set TSCOPE['p6.m'] :=
+89 90 91 92 93 96 97 98 99 100 103 104 105 106 107 110 111 112 113 114 117 118 119 120 121 124 125 126 127 128 131 132 133 134 135 138 139 140 141 142 145 146 147 148 149 152 153 154 155 156
+159 160 161 162 163 166 167 168 169 170 173 174 175 176 177 180 181 182 183 184 187 188 189 190 191 194 195 196 197 198 201 202 203 204 205 208 209 210 211 212 215 216 217 218 219 222 223 224 225 226
+229 230 231 232 233 236 237 238 239 240 243 244 245 246 247 250 251 252 253 254
+;
+
+set TSCOPE['p6.f'] :=
+257 258 259 260 261 264 265 266 267 268 271 272 273 274 275 278 279 280 281 282
+;
+
+set ENAME :=
+'Bożydar'
+;
+
+set ASSIGN :=
 'Bożydar' 'p2.e'
 'Bożydar' 'p2.m'
 'Bożydar' 'p2.f'
@@ -855,5 +106,721 @@ set LINKS :=
 'Bożydar' 'p5.f'
 'Bożydar' 'p6.e'
 'Bożydar' 'p6.m'
-'Bożydar' 'p6.f';
+'Bożydar' 'p6.f'
+;
+
+param:
+XBID: XBL XBU :=
+'Bożydar' 'p2.e' 1 12 20
+'Bożydar' 'p2.e' 2 12 20
+'Bożydar' 'p2.e' 5 12 20
+'Bożydar' 'p2.e' 6 12 20
+'Bożydar' 'p2.e' 7 12 20
+'Bożydar' 'p2.e' 8 12 20
+'Bożydar' 'p2.e' 9 12 20
+'Bożydar' 'p2.e' 12 12 20
+'Bożydar' 'p2.e' 13 12 20
+'Bożydar' 'p2.e' 14 12 20
+'Bożydar' 'p2.m' 15 0 8
+'Bożydar' 'p2.m' 16 0 8
+'Bożydar' 'p2.m' 19 0 8
+'Bożydar' 'p2.m' 20 0 8
+'Bożydar' 'p2.m' 21 0 8
+'Bożydar' 'p2.m' 22 0 8
+'Bożydar' 'p2.m' 23 0 8
+'Bożydar' 'p2.m' 26 0 8
+'Bożydar' 'p2.m' 27 0 8
+'Bożydar' 'p2.m' 28 0 8
+'Bożydar' 'p2.m' 29 0 8
+'Bożydar' 'p2.m' 30 0 8
+'Bożydar' 'p2.m' 33 0 8
+'Bożydar' 'p2.m' 34 0 8
+'Bożydar' 'p2.m' 36 0 8
+'Bożydar' 'p2.m' 37 0 8
+'Bożydar' 'p2.m' 40 0 8
+'Bożydar' 'p2.m' 41 0 8
+'Bożydar' 'p2.m' 42 0 8
+'Bożydar' 'p2.m' 43 0 8
+'Bożydar' 'p2.m' 44 0 8
+'Bożydar' 'p2.m' 47 0 8
+'Bożydar' 'p2.m' 48 0 8
+'Bożydar' 'p2.m' 49 0 8
+'Bożydar' 'p2.m' 50 0 8
+'Bożydar' 'p2.m' 51 0 8
+'Bożydar' 'p2.m' 54 0 8
+'Bożydar' 'p2.m' 55 0 8
+'Bożydar' 'p2.m' 56 0 8
+'Bożydar' 'p2.m' 57 0 8
+'Bożydar' 'p2.m' 58 0 8
+'Bożydar' 'p2.m' 61 0 8
+'Bożydar' 'p2.m' 62 0 8
+'Bożydar' 'p2.m' 63 0 8
+'Bożydar' 'p2.m' 64 0 8
+'Bożydar' 'p2.m' 65 0 8
+'Bożydar' 'p2.m' 68 0 8
+'Bożydar' 'p2.m' 69 0 8
+'Bożydar' 'p2.m' 70 0 8
+'Bożydar' 'p2.m' 71 0 8
+'Bożydar' 'p2.m' 72 0 8
+'Bożydar' 'p2.m' 75 0 8
+'Bożydar' 'p2.m' 76 0 8
+'Bożydar' 'p2.m' 77 0 8
+'Bożydar' 'p2.m' 78 0 8
+'Bożydar' 'p2.m' 79 0 8
+'Bożydar' 'p2.m' 82 0 8
+'Bożydar' 'p2.m' 83 0 8
+'Bożydar' 'p2.m' 84 0 8
+'Bożydar' 'p2.m' 85 0 8
+'Bożydar' 'p2.m' 86 0 8
+'Bożydar' 'p2.m' 89 0 8
+'Bożydar' 'p2.m' 90 0 8
+'Bożydar' 'p2.m' 91 0 8
+'Bożydar' 'p2.m' 92 0 8
+'Bożydar' 'p2.m' 93 0 8
+'Bożydar' 'p2.m' 96 0 8
+'Bożydar' 'p2.m' 97 0 8
+'Bożydar' 'p2.m' 98 0 8
+'Bożydar' 'p2.m' 99 0 8
+'Bożydar' 'p2.m' 100 0 8
+'Bożydar' 'p2.m' 103 0 8
+'Bożydar' 'p2.m' 104 0 8
+'Bożydar' 'p2.m' 105 0 8
+'Bożydar' 'p2.m' 106 0 8
+'Bożydar' 'p2.m' 107 0 8
+'Bożydar' 'p2.m' 110 0 8
+'Bożydar' 'p2.m' 111 0 8
+'Bożydar' 'p2.m' 112 0 8
+'Bożydar' 'p2.m' 113 0 8
+'Bożydar' 'p2.m' 114 0 8
+'Bożydar' 'p2.m' 117 0 8
+'Bożydar' 'p2.m' 118 0 8
+'Bożydar' 'p2.m' 119 0 8
+'Bożydar' 'p2.m' 120 0 8
+'Bożydar' 'p2.m' 121 0 8
+'Bożydar' 'p2.m' 124 0 8
+'Bożydar' 'p2.m' 125 0 8
+'Bożydar' 'p2.m' 126 0 8
+'Bożydar' 'p2.m' 127 0 8
+'Bożydar' 'p2.m' 128 0 8
+'Bożydar' 'p2.m' 131 0 8
+'Bożydar' 'p2.m' 132 0 8
+'Bożydar' 'p2.m' 133 0 8
+'Bożydar' 'p2.f' 134 8 8
+'Bożydar' 'p2.f' 135 8 8
+'Bożydar' 'p2.f' 138 8 8
+'Bożydar' 'p2.f' 139 8 8
+'Bożydar' 'p2.f' 140 8 8
+'Bożydar' 'p2.f' 141 8 8
+'Bożydar' 'p2.f' 142 8 8
+'Bożydar' 'p2.f' 145 8 8
+'Bożydar' 'p2.f' 146 8 8
+'Bożydar' 'p2.f' 147 8 8
+'Bożydar' 'p2.f' 148 8 8
+'Bożydar' 'p2.f' 149 8 8
+'Bożydar' 'p2.f' 152 8 8
+'Bożydar' 'p2.f' 153 8 8
+'Bożydar' 'p2.f' 154 8 8
+'Bożydar' 'p2.f' 155 8 8
+'Bożydar' 'p2.f' 156 8 8
+'Bożydar' 'p2.f' 159 8 8
+'Bożydar' 'p2.f' 160 8 8
+'Bożydar' 'p2.f' 161 8 8
+'Bożydar' 'p3.e' 12 4 12
+'Bożydar' 'p3.e' 13 4 12
+'Bożydar' 'p3.e' 14 4 12
+'Bożydar' 'p3.e' 15 4 12
+'Bożydar' 'p3.e' 16 4 12
+'Bożydar' 'p3.e' 19 4 12
+'Bożydar' 'p3.e' 20 4 12
+'Bożydar' 'p3.e' 21 4 12
+'Bożydar' 'p3.e' 22 4 12
+'Bożydar' 'p3.e' 23 4 12
+'Bożydar' 'p3.m' 26 0 4
+'Bożydar' 'p3.m' 27 0 4
+'Bożydar' 'p3.m' 28 0 4
+'Bożydar' 'p3.m' 29 0 4
+'Bożydar' 'p3.m' 30 0 4
+'Bożydar' 'p3.m' 33 0 4
+'Bożydar' 'p3.m' 34 0 4
+'Bożydar' 'p3.m' 36 0 4
+'Bożydar' 'p3.m' 37 0 4
+'Bożydar' 'p3.m' 40 0 4
+'Bożydar' 'p3.m' 41 0 4
+'Bożydar' 'p3.m' 42 0 4
+'Bożydar' 'p3.m' 43 0 4
+'Bożydar' 'p3.m' 44 0 4
+'Bożydar' 'p3.m' 47 0 4
+'Bożydar' 'p3.m' 48 0 4
+'Bożydar' 'p3.m' 49 0 4
+'Bożydar' 'p3.m' 50 0 4
+'Bożydar' 'p3.m' 51 0 4
+'Bożydar' 'p3.m' 54 0 4
+'Bożydar' 'p3.m' 55 0 4
+'Bożydar' 'p3.m' 56 0 4
+'Bożydar' 'p3.m' 57 0 4
+'Bożydar' 'p3.m' 58 0 4
+'Bożydar' 'p3.m' 61 0 4
+'Bożydar' 'p3.m' 62 0 4
+'Bożydar' 'p3.m' 63 0 4
+'Bożydar' 'p3.m' 64 0 4
+'Bożydar' 'p3.m' 65 0 4
+'Bożydar' 'p3.m' 68 0 4
+'Bożydar' 'p3.m' 69 0 4
+'Bożydar' 'p3.m' 70 0 4
+'Bożydar' 'p3.m' 71 0 4
+'Bożydar' 'p3.m' 72 0 4
+'Bożydar' 'p3.m' 75 0 4
+'Bożydar' 'p3.m' 76 0 4
+'Bożydar' 'p3.m' 77 0 4
+'Bożydar' 'p3.m' 78 0 4
+'Bożydar' 'p3.m' 79 0 4
+'Bożydar' 'p3.m' 82 0 4
+'Bożydar' 'p3.m' 83 0 4
+'Bożydar' 'p3.m' 84 0 4
+'Bożydar' 'p3.m' 85 0 4
+'Bożydar' 'p3.m' 86 0 4
+'Bożydar' 'p3.m' 89 0 4
+'Bożydar' 'p3.m' 90 0 4
+'Bożydar' 'p3.m' 91 0 4
+'Bożydar' 'p3.m' 92 0 4
+'Bożydar' 'p3.m' 93 0 4
+'Bożydar' 'p3.m' 96 0 4
+'Bożydar' 'p3.m' 97 0 4
+'Bożydar' 'p3.m' 98 0 4
+'Bożydar' 'p3.m' 99 0 4
+'Bożydar' 'p3.m' 100 0 4
+'Bożydar' 'p3.m' 103 0 4
+'Bożydar' 'p3.m' 104 0 4
+'Bożydar' 'p3.m' 105 0 4
+'Bożydar' 'p3.m' 106 0 4
+'Bożydar' 'p3.m' 107 0 4
+'Bożydar' 'p3.m' 110 0 4
+'Bożydar' 'p3.m' 111 0 4
+'Bożydar' 'p3.m' 112 0 4
+'Bożydar' 'p3.m' 113 0 4
+'Bożydar' 'p3.m' 114 0 4
+'Bożydar' 'p3.m' 117 0 4
+'Bożydar' 'p3.m' 118 0 4
+'Bożydar' 'p3.m' 119 0 4
+'Bożydar' 'p3.m' 120 0 4
+'Bożydar' 'p3.m' 121 0 4
+'Bożydar' 'p3.m' 124 0 4
+'Bożydar' 'p3.m' 125 0 4
+'Bożydar' 'p3.m' 126 0 4
+'Bożydar' 'p3.m' 127 0 4
+'Bożydar' 'p3.m' 128 0 4
+'Bożydar' 'p3.m' 131 0 4
+'Bożydar' 'p3.m' 132 0 4
+'Bożydar' 'p3.m' 133 0 4
+'Bożydar' 'p3.m' 134 0 4
+'Bożydar' 'p3.m' 135 0 4
+'Bożydar' 'p3.m' 138 0 4
+'Bożydar' 'p3.m' 139 0 4
+'Bożydar' 'p3.m' 140 0 4
+'Bożydar' 'p3.m' 141 0 4
+'Bożydar' 'p3.m' 142 0 4
+'Bożydar' 'p3.m' 145 0 4
+'Bożydar' 'p3.m' 146 0 4
+'Bożydar' 'p3.m' 147 0 4
+'Bożydar' 'p3.m' 148 0 4
+'Bożydar' 'p3.m' 149 0 4
+'Bożydar' 'p3.m' 152 0 4
+'Bożydar' 'p3.m' 153 0 4
+'Bożydar' 'p3.m' 154 0 4
+'Bożydar' 'p3.m' 155 0 4
+'Bożydar' 'p3.m' 156 0 4
+'Bożydar' 'p3.m' 159 0 4
+'Bożydar' 'p3.m' 160 0 4
+'Bożydar' 'p3.m' 161 0 4
+'Bożydar' 'p3.m' 162 0 4
+'Bożydar' 'p3.m' 163 0 4
+'Bożydar' 'p3.m' 166 0 4
+'Bożydar' 'p3.m' 167 0 4
+'Bożydar' 'p3.m' 168 0 4
+'Bożydar' 'p3.m' 169 0 4
+'Bożydar' 'p3.m' 170 0 4
+'Bożydar' 'p3.m' 173 0 4
+'Bożydar' 'p3.m' 174 0 4
+'Bożydar' 'p3.m' 175 0 4
+'Bożydar' 'p3.m' 176 0 4
+'Bożydar' 'p3.m' 177 0 4
+'Bożydar' 'p3.m' 180 0 4
+'Bożydar' 'p3.m' 181 0 4
+'Bożydar' 'p3.m' 182 0 4
+'Bożydar' 'p3.m' 183 0 4
+'Bożydar' 'p3.m' 184 0 4
+'Bożydar' 'p3.m' 187 0 4
+'Bożydar' 'p3.m' 188 0 4
+'Bożydar' 'p3.m' 189 0 4
+'Bożydar' 'p3.m' 190 0 4
+'Bożydar' 'p3.m' 191 0 4
+'Bożydar' 'p3.f' 194 8 8
+'Bożydar' 'p3.f' 195 8 8
+'Bożydar' 'p3.f' 196 8 8
+'Bożydar' 'p3.f' 197 8 8
+'Bożydar' 'p3.f' 198 8 8
+'Bożydar' 'p3.f' 201 8 8
+'Bożydar' 'p3.f' 202 8 8
+'Bożydar' 'p3.f' 203 8 8
+'Bożydar' 'p3.f' 204 8 8
+'Bożydar' 'p3.f' 205 8 8
+'Bożydar' 'p3.f' 208 8 8
+'Bożydar' 'p3.f' 209 8 8
+'Bożydar' 'p3.f' 210 8 8
+'Bożydar' 'p3.f' 211 8 8
+'Bożydar' 'p3.f' 212 8 8
+'Bożydar' 'p3.f' 215 8 8
+'Bożydar' 'p3.f' 216 8 8
+'Bożydar' 'p3.f' 217 8 8
+'Bożydar' 'p3.f' 218 8 8
+'Bożydar' 'p3.f' 219 8 8
+'Bożydar' 'p4.e' 26 12 16
+'Bożydar' 'p4.e' 27 12 16
+'Bożydar' 'p4.e' 28 12 16
+'Bożydar' 'p4.e' 29 12 16
+'Bożydar' 'p4.e' 30 12 16
+'Bożydar' 'p4.e' 33 12 16
+'Bożydar' 'p4.e' 34 12 16
+'Bożydar' 'p4.e' 36 12 16
+'Bożydar' 'p4.e' 37 12 16
+'Bożydar' 'p4.e' 40 12 16
+'Bożydar' 'p4.e' 41 12 16
+'Bożydar' 'p4.e' 42 12 16
+'Bożydar' 'p4.e' 43 12 16
+'Bożydar' 'p4.e' 44 12 16
+'Bożydar' 'p4.m' 47 0 4
+'Bożydar' 'p4.m' 48 0 4
+'Bożydar' 'p4.m' 49 0 4
+'Bożydar' 'p4.m' 50 0 4
+'Bożydar' 'p4.m' 51 0 4
+'Bożydar' 'p4.m' 54 0 4
+'Bożydar' 'p4.m' 55 0 4
+'Bożydar' 'p4.m' 56 0 4
+'Bożydar' 'p4.m' 57 0 4
+'Bożydar' 'p4.m' 58 0 4
+'Bożydar' 'p4.m' 61 0 4
+'Bożydar' 'p4.m' 62 0 4
+'Bożydar' 'p4.m' 63 0 4
+'Bożydar' 'p4.m' 64 0 4
+'Bożydar' 'p4.m' 65 0 4
+'Bożydar' 'p4.m' 68 0 4
+'Bożydar' 'p4.m' 69 0 4
+'Bożydar' 'p4.m' 70 0 4
+'Bożydar' 'p4.m' 71 0 4
+'Bożydar' 'p4.m' 72 0 4
+'Bożydar' 'p4.m' 75 0 4
+'Bożydar' 'p4.m' 76 0 4
+'Bożydar' 'p4.m' 77 0 4
+'Bożydar' 'p4.m' 78 0 4
+'Bożydar' 'p4.m' 79 0 4
+'Bożydar' 'p4.m' 82 0 4
+'Bożydar' 'p4.m' 83 0 4
+'Bożydar' 'p4.m' 84 0 4
+'Bożydar' 'p4.m' 85 0 4
+'Bożydar' 'p4.m' 86 0 4
+'Bożydar' 'p4.m' 89 0 4
+'Bożydar' 'p4.m' 90 0 4
+'Bożydar' 'p4.m' 91 0 4
+'Bożydar' 'p4.m' 92 0 4
+'Bożydar' 'p4.m' 93 0 4
+'Bożydar' 'p4.m' 96 0 4
+'Bożydar' 'p4.m' 97 0 4
+'Bożydar' 'p4.m' 98 0 4
+'Bożydar' 'p4.m' 99 0 4
+'Bożydar' 'p4.m' 100 0 4
+'Bożydar' 'p4.m' 103 0 4
+'Bożydar' 'p4.m' 104 0 4
+'Bożydar' 'p4.m' 105 0 4
+'Bożydar' 'p4.m' 106 0 4
+'Bożydar' 'p4.m' 107 0 4
+'Bożydar' 'p4.m' 110 0 4
+'Bożydar' 'p4.m' 111 0 4
+'Bożydar' 'p4.m' 112 0 4
+'Bożydar' 'p4.m' 113 0 4
+'Bożydar' 'p4.m' 114 0 4
+'Bożydar' 'p4.m' 117 0 4
+'Bożydar' 'p4.m' 118 0 4
+'Bożydar' 'p4.m' 119 0 4
+'Bożydar' 'p4.m' 120 0 4
+'Bożydar' 'p4.m' 121 0 4
+'Bożydar' 'p4.m' 124 0 4
+'Bożydar' 'p4.m' 125 0 4
+'Bożydar' 'p4.m' 126 0 4
+'Bożydar' 'p4.m' 127 0 4
+'Bożydar' 'p4.m' 128 0 4
+'Bożydar' 'p4.m' 131 0 4
+'Bożydar' 'p4.m' 132 0 4
+'Bożydar' 'p4.m' 133 0 4
+'Bożydar' 'p4.m' 134 0 4
+'Bożydar' 'p4.m' 135 0 4
+'Bożydar' 'p4.m' 138 0 4
+'Bożydar' 'p4.m' 139 0 4
+'Bożydar' 'p4.m' 140 0 4
+'Bożydar' 'p4.m' 141 0 4
+'Bożydar' 'p4.m' 142 0 4
+'Bożydar' 'p4.m' 145 0 4
+'Bożydar' 'p4.m' 146 0 4
+'Bożydar' 'p4.m' 147 0 4
+'Bożydar' 'p4.m' 148 0 4
+'Bożydar' 'p4.m' 149 0 4
+'Bożydar' 'p4.m' 152 0 4
+'Bożydar' 'p4.m' 153 0 4
+'Bożydar' 'p4.m' 154 0 4
+'Bożydar' 'p4.m' 155 0 4
+'Bożydar' 'p4.m' 156 0 4
+'Bożydar' 'p4.m' 159 0 4
+'Bożydar' 'p4.m' 160 0 4
+'Bożydar' 'p4.m' 161 0 4
+'Bożydar' 'p4.m' 162 0 4
+'Bożydar' 'p4.m' 163 0 4
+'Bożydar' 'p4.m' 166 0 4
+'Bożydar' 'p4.m' 167 0 4
+'Bożydar' 'p4.m' 168 0 4
+'Bożydar' 'p4.m' 169 0 4
+'Bożydar' 'p4.m' 170 0 4
+'Bożydar' 'p4.m' 173 0 4
+'Bożydar' 'p4.m' 174 0 4
+'Bożydar' 'p4.m' 175 0 4
+'Bożydar' 'p4.m' 176 0 4
+'Bożydar' 'p4.m' 177 0 4
+'Bożydar' 'p4.m' 180 0 4
+'Bożydar' 'p4.m' 181 0 4
+'Bożydar' 'p4.m' 182 0 4
+'Bożydar' 'p4.m' 183 0 4
+'Bożydar' 'p4.m' 184 0 4
+'Bożydar' 'p4.m' 187 0 4
+'Bożydar' 'p4.m' 188 0 4
+'Bożydar' 'p4.m' 189 0 4
+'Bożydar' 'p4.m' 190 0 4
+'Bożydar' 'p4.m' 191 0 4
+'Bożydar' 'p4.m' 194 0 4
+'Bożydar' 'p4.m' 195 0 4
+'Bożydar' 'p4.m' 196 0 4
+'Bożydar' 'p4.m' 197 0 4
+'Bożydar' 'p4.m' 198 0 4
+'Bożydar' 'p4.m' 201 0 4
+'Bożydar' 'p4.m' 202 0 4
+'Bożydar' 'p4.m' 203 0 4
+'Bożydar' 'p4.m' 204 0 4
+'Bożydar' 'p4.m' 205 0 4
+'Bożydar' 'p4.m' 208 0 4
+'Bożydar' 'p4.m' 209 0 4
+'Bożydar' 'p4.m' 210 0 4
+'Bożydar' 'p4.m' 211 0 4
+'Bożydar' 'p4.m' 212 0 4
+'Bożydar' 'p4.f' 215 8 8
+'Bożydar' 'p4.f' 216 8 8
+'Bożydar' 'p4.f' 217 8 8
+'Bożydar' 'p4.f' 218 8 8
+'Bożydar' 'p4.f' 219 8 8
+'Bożydar' 'p4.f' 222 8 8
+'Bożydar' 'p4.f' 223 8 8
+'Bożydar' 'p4.f' 224 8 8
+'Bożydar' 'p4.f' 225 8 8
+'Bożydar' 'p4.f' 226 8 8
+'Bożydar' 'p4.f' 229 8 8
+'Bożydar' 'p4.f' 230 8 8
+'Bożydar' 'p4.f' 231 8 8
+'Bożydar' 'p4.f' 232 8 8
+'Bożydar' 'p4.f' 233 8 8
+'Bożydar' 'p4.f' 236 8 8
+'Bożydar' 'p4.f' 237 8 8
+'Bożydar' 'p4.f' 238 8 8
+'Bożydar' 'p4.f' 239 8 8
+'Bożydar' 'p4.f' 240 8 8
+'Bożydar' 'p5.e' 41 16 16
+'Bożydar' 'p5.e' 42 16 16
+'Bożydar' 'p5.e' 43 16 16
+'Bożydar' 'p5.e' 44 16 16
+'Bożydar' 'p5.e' 47 16 16
+'Bożydar' 'p5.e' 48 16 16
+'Bożydar' 'p5.e' 49 16 16
+'Bożydar' 'p5.e' 50 16 16
+'Bożydar' 'p5.e' 51 16 16
+'Bożydar' 'p5.e' 54 16 16
+'Bożydar' 'p5.m' 55 0 8
+'Bożydar' 'p5.m' 56 0 8
+'Bożydar' 'p5.m' 57 0 8
+'Bożydar' 'p5.m' 58 0 8
+'Bożydar' 'p5.m' 61 0 8
+'Bożydar' 'p5.m' 62 0 8
+'Bożydar' 'p5.m' 63 0 8
+'Bożydar' 'p5.m' 64 0 8
+'Bożydar' 'p5.m' 65 0 8
+'Bożydar' 'p5.m' 68 0 8
+'Bożydar' 'p5.m' 69 0 8
+'Bożydar' 'p5.m' 70 0 8
+'Bożydar' 'p5.m' 71 0 8
+'Bożydar' 'p5.m' 72 0 8
+'Bożydar' 'p5.m' 75 0 8
+'Bożydar' 'p5.m' 76 0 8
+'Bożydar' 'p5.m' 77 0 8
+'Bożydar' 'p5.m' 78 0 8
+'Bożydar' 'p5.m' 79 0 8
+'Bożydar' 'p5.m' 82 0 8
+'Bożydar' 'p5.m' 83 0 8
+'Bożydar' 'p5.m' 84 0 8
+'Bożydar' 'p5.m' 85 0 8
+'Bożydar' 'p5.m' 86 0 8
+'Bożydar' 'p5.m' 89 0 8
+'Bożydar' 'p5.m' 90 0 8
+'Bożydar' 'p5.m' 91 0 8
+'Bożydar' 'p5.m' 92 0 8
+'Bożydar' 'p5.m' 93 0 8
+'Bożydar' 'p5.m' 96 0 8
+'Bożydar' 'p5.m' 97 0 8
+'Bożydar' 'p5.m' 98 0 8
+'Bożydar' 'p5.m' 99 0 8
+'Bożydar' 'p5.m' 100 0 8
+'Bożydar' 'p5.m' 103 0 8
+'Bożydar' 'p5.m' 104 0 8
+'Bożydar' 'p5.m' 105 0 8
+'Bożydar' 'p5.m' 106 0 8
+'Bożydar' 'p5.m' 107 0 8
+'Bożydar' 'p5.m' 110 0 8
+'Bożydar' 'p5.m' 111 0 8
+'Bożydar' 'p5.m' 112 0 8
+'Bożydar' 'p5.m' 113 0 8
+'Bożydar' 'p5.m' 114 0 8
+'Bożydar' 'p5.m' 117 0 8
+'Bożydar' 'p5.m' 118 0 8
+'Bożydar' 'p5.m' 119 0 8
+'Bożydar' 'p5.m' 120 0 8
+'Bożydar' 'p5.m' 121 0 8
+'Bożydar' 'p5.m' 124 0 8
+'Bożydar' 'p5.m' 125 0 8
+'Bożydar' 'p5.m' 126 0 8
+'Bożydar' 'p5.m' 127 0 8
+'Bożydar' 'p5.m' 128 0 8
+'Bożydar' 'p5.m' 131 0 8
+'Bożydar' 'p5.m' 132 0 8
+'Bożydar' 'p5.m' 133 0 8
+'Bożydar' 'p5.m' 134 0 8
+'Bożydar' 'p5.m' 135 0 8
+'Bożydar' 'p5.m' 138 0 8
+'Bożydar' 'p5.m' 139 0 8
+'Bożydar' 'p5.m' 140 0 8
+'Bożydar' 'p5.m' 141 0 8
+'Bożydar' 'p5.m' 142 0 8
+'Bożydar' 'p5.m' 145 0 8
+'Bożydar' 'p5.m' 146 0 8
+'Bożydar' 'p5.m' 147 0 8
+'Bożydar' 'p5.m' 148 0 8
+'Bożydar' 'p5.m' 149 0 8
+'Bożydar' 'p5.m' 152 0 8
+'Bożydar' 'p5.m' 153 0 8
+'Bożydar' 'p5.m' 154 0 8
+'Bożydar' 'p5.m' 155 0 8
+'Bożydar' 'p5.m' 156 0 8
+'Bożydar' 'p5.m' 159 0 8
+'Bożydar' 'p5.m' 160 0 8
+'Bożydar' 'p5.m' 161 0 8
+'Bożydar' 'p5.m' 162 0 8
+'Bożydar' 'p5.m' 163 0 8
+'Bożydar' 'p5.m' 166 0 8
+'Bożydar' 'p5.m' 167 0 8
+'Bożydar' 'p5.m' 168 0 8
+'Bożydar' 'p5.m' 169 0 8
+'Bożydar' 'p5.m' 170 0 8
+'Bożydar' 'p5.m' 173 0 8
+'Bożydar' 'p5.f' 174 8 8
+'Bożydar' 'p5.f' 175 8 8
+'Bożydar' 'p5.f' 176 8 8
+'Bożydar' 'p5.f' 177 8 8
+'Bożydar' 'p5.f' 180 8 8
+'Bożydar' 'p5.f' 181 8 8
+'Bożydar' 'p5.f' 182 8 8
+'Bożydar' 'p5.f' 183 8 8
+'Bożydar' 'p5.f' 184 8 8
+'Bożydar' 'p5.f' 187 8 8
+'Bożydar' 'p5.f' 188 8 8
+'Bożydar' 'p5.f' 189 8 8
+'Bożydar' 'p5.f' 190 8 8
+'Bożydar' 'p5.f' 191 8 8
+'Bożydar' 'p5.f' 194 8 8
+'Bożydar' 'p5.f' 195 8 8
+'Bożydar' 'p5.f' 196 8 8
+'Bożydar' 'p5.f' 197 8 8
+'Bożydar' 'p5.f' 198 8 8
+'Bożydar' 'p5.f' 201 8 8
+'Bożydar' 'p6.e' 61 0 8
+'Bożydar' 'p6.e' 62 0 8
+'Bożydar' 'p6.e' 63 0 8
+'Bożydar' 'p6.e' 64 0 8
+'Bożydar' 'p6.e' 65 0 8
+'Bożydar' 'p6.e' 68 0 8
+'Bożydar' 'p6.e' 69 0 8
+'Bożydar' 'p6.e' 70 0 8
+'Bożydar' 'p6.e' 71 0 8
+'Bożydar' 'p6.e' 72 0 8
+'Bożydar' 'p6.e' 75 0 8
+'Bożydar' 'p6.e' 76 0 8
+'Bożydar' 'p6.e' 77 0 8
+'Bożydar' 'p6.e' 78 0 8
+'Bożydar' 'p6.e' 79 0 8
+'Bożydar' 'p6.e' 82 0 8
+'Bożydar' 'p6.e' 83 0 8
+'Bożydar' 'p6.e' 84 0 8
+'Bożydar' 'p6.e' 85 0 8
+'Bożydar' 'p6.e' 86 0 8
+'Bożydar' 'p6.m' 89 0 4
+'Bożydar' 'p6.m' 90 0 4
+'Bożydar' 'p6.m' 91 0 4
+'Bożydar' 'p6.m' 92 0 4
+'Bożydar' 'p6.m' 93 0 4
+'Bożydar' 'p6.m' 96 0 4
+'Bożydar' 'p6.m' 97 0 4
+'Bożydar' 'p6.m' 98 0 4
+'Bożydar' 'p6.m' 99 0 4
+'Bożydar' 'p6.m' 100 0 4
+'Bożydar' 'p6.m' 103 0 4
+'Bożydar' 'p6.m' 104 0 4
+'Bożydar' 'p6.m' 105 0 4
+'Bożydar' 'p6.m' 106 0 4
+'Bożydar' 'p6.m' 107 0 4
+'Bożydar' 'p6.m' 110 0 4
+'Bożydar' 'p6.m' 111 0 4
+'Bożydar' 'p6.m' 112 0 4
+'Bożydar' 'p6.m' 113 0 4
+'Bożydar' 'p6.m' 114 0 4
+'Bożydar' 'p6.m' 117 0 4
+'Bożydar' 'p6.m' 118 0 4
+'Bożydar' 'p6.m' 119 0 4
+'Bożydar' 'p6.m' 120 0 4
+'Bożydar' 'p6.m' 121 0 4
+'Bożydar' 'p6.m' 124 0 4
+'Bożydar' 'p6.m' 125 0 4
+'Bożydar' 'p6.m' 126 0 4
+'Bożydar' 'p6.m' 127 0 4
+'Bożydar' 'p6.m' 128 0 4
+'Bożydar' 'p6.m' 131 0 4
+'Bożydar' 'p6.m' 132 0 4
+'Bożydar' 'p6.m' 133 0 4
+'Bożydar' 'p6.m' 134 0 4
+'Bożydar' 'p6.m' 135 0 4
+'Bożydar' 'p6.m' 138 0 4
+'Bożydar' 'p6.m' 139 0 4
+'Bożydar' 'p6.m' 140 0 4
+'Bożydar' 'p6.m' 141 0 4
+'Bożydar' 'p6.m' 142 0 4
+'Bożydar' 'p6.m' 145 0 4
+'Bożydar' 'p6.m' 146 0 4
+'Bożydar' 'p6.m' 147 0 4
+'Bożydar' 'p6.m' 148 0 4
+'Bożydar' 'p6.m' 149 0 4
+'Bożydar' 'p6.m' 152 0 4
+'Bożydar' 'p6.m' 153 0 4
+'Bożydar' 'p6.m' 154 0 4
+'Bożydar' 'p6.m' 155 0 4
+'Bożydar' 'p6.m' 156 0 4
+'Bożydar' 'p6.m' 159 0 4
+'Bożydar' 'p6.m' 160 0 4
+'Bożydar' 'p6.m' 161 0 4
+'Bożydar' 'p6.m' 162 0 4
+'Bożydar' 'p6.m' 163 0 4
+'Bożydar' 'p6.m' 166 0 4
+'Bożydar' 'p6.m' 167 0 4
+'Bożydar' 'p6.m' 168 0 4
+'Bożydar' 'p6.m' 169 0 4
+'Bożydar' 'p6.m' 170 0 4
+'Bożydar' 'p6.m' 173 0 4
+'Bożydar' 'p6.m' 174 0 4
+'Bożydar' 'p6.m' 175 0 4
+'Bożydar' 'p6.m' 176 0 4
+'Bożydar' 'p6.m' 177 0 4
+'Bożydar' 'p6.m' 180 0 4
+'Bożydar' 'p6.m' 181 0 4
+'Bożydar' 'p6.m' 182 0 4
+'Bożydar' 'p6.m' 183 0 4
+'Bożydar' 'p6.m' 184 0 4
+'Bożydar' 'p6.m' 187 0 4
+'Bożydar' 'p6.m' 188 0 4
+'Bożydar' 'p6.m' 189 0 4
+'Bożydar' 'p6.m' 190 0 4
+'Bożydar' 'p6.m' 191 0 4
+'Bożydar' 'p6.m' 194 0 4
+'Bożydar' 'p6.m' 195 0 4
+'Bożydar' 'p6.m' 196 0 4
+'Bożydar' 'p6.m' 197 0 4
+'Bożydar' 'p6.m' 198 0 4
+'Bożydar' 'p6.m' 201 0 4
+'Bożydar' 'p6.m' 202 0 4
+'Bożydar' 'p6.m' 203 0 4
+'Bożydar' 'p6.m' 204 0 4
+'Bożydar' 'p6.m' 205 0 4
+'Bożydar' 'p6.m' 208 0 4
+'Bożydar' 'p6.m' 209 0 4
+'Bożydar' 'p6.m' 210 0 4
+'Bożydar' 'p6.m' 211 0 4
+'Bożydar' 'p6.m' 212 0 4
+'Bożydar' 'p6.m' 215 0 4
+'Bożydar' 'p6.m' 216 0 4
+'Bożydar' 'p6.m' 217 0 4
+'Bożydar' 'p6.m' 218 0 4
+'Bożydar' 'p6.m' 219 0 4
+'Bożydar' 'p6.m' 222 0 4
+'Bożydar' 'p6.m' 223 0 4
+'Bożydar' 'p6.m' 224 0 4
+'Bożydar' 'p6.m' 225 0 4
+'Bożydar' 'p6.m' 226 0 4
+'Bożydar' 'p6.m' 229 0 4
+'Bożydar' 'p6.m' 230 0 4
+'Bożydar' 'p6.m' 231 0 4
+'Bożydar' 'p6.m' 232 0 4
+'Bożydar' 'p6.m' 233 0 4
+'Bożydar' 'p6.m' 236 0 4
+'Bożydar' 'p6.m' 237 0 4
+'Bożydar' 'p6.m' 238 0 4
+'Bożydar' 'p6.m' 239 0 4
+'Bożydar' 'p6.m' 240 0 4
+'Bożydar' 'p6.m' 243 0 4
+'Bożydar' 'p6.m' 244 0 4
+'Bożydar' 'p6.m' 245 0 4
+'Bożydar' 'p6.m' 246 0 4
+'Bożydar' 'p6.m' 247 0 4
+'Bożydar' 'p6.m' 250 0 4
+'Bożydar' 'p6.m' 251 0 4
+'Bożydar' 'p6.m' 252 0 4
+'Bożydar' 'p6.m' 253 0 4
+'Bożydar' 'p6.m' 254 0 4
+'Bożydar' 'p6.f' 257 8 8
+'Bożydar' 'p6.f' 258 8 8
+'Bożydar' 'p6.f' 259 8 8
+'Bożydar' 'p6.f' 260 8 8
+'Bożydar' 'p6.f' 261 8 8
+'Bożydar' 'p6.f' 264 8 8
+'Bożydar' 'p6.f' 265 8 8
+'Bożydar' 'p6.f' 266 8 8
+'Bożydar' 'p6.f' 267 8 8
+'Bożydar' 'p6.f' 268 8 8
+'Bożydar' 'p6.f' 271 8 8
+'Bożydar' 'p6.f' 272 8 8
+'Bożydar' 'p6.f' 273 8 8
+'Bożydar' 'p6.f' 274 8 8
+'Bożydar' 'p6.f' 275 8 8
+'Bożydar' 'p6.f' 278 8 8
+'Bożydar' 'p6.f' 279 8 8
+'Bożydar' 'p6.f' 280 8 8
+'Bożydar' 'p6.f' 281 8 8
+'Bożydar' 'p6.f' 282 8 8
+;
+
+param:
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
+'25.Jan' 21 56
+'25.Feb' 57 85
+'25.Mar' 86 116
+'25.Apr' 117 145
+'25.May' 146 179
+;
+
+param:
+EXPPER: PBL PBU :=
+'Bożydar' '25.Jan' 0 800
+;
 

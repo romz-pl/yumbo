@@ -20,31 +20,31 @@ def add_days_and_workdays(df, start, end):
     dtype = "datetime64[D]"
 
     # Convert public holidays to numpy datetime64[D]
-    holidays = st.session_state.mprob["public holidays"]["Date"].to_numpy(dtype=dtype)
+    holiday = st.session_state.mprob["holiday"]["Date"].to_numpy(dtype=dtype)
 
     # Calculate workdays using numpy's busday_count
     df["Workdays"] = np.busday_count(
         df[start].to_numpy(dtype=dtype),
         (df[end] + pd.Timedelta(days=1)).to_numpy(dtype=dtype),
-        holidays=holidays
+        holidays=holiday
     )
 
     return df
 
 
-def read_tasks(xlsx):
-    df = xlsx.parse(sheet_name="tasks", usecols="A:D")
+def read_task(xlsx):
+    df = xlsx.parse(sheet_name="task", usecols="A:D")
     df = parse_date_columns(df, ["Start", "End"])
     df = add_days_and_workdays(df, "Start", "End")
     df["Avg"] = df["Work"] / df["Workdays"]
-    st.session_state.mprob["tasks"] = df
+    st.session_state.mprob["task"] = df
 
 
-def read_invoicing_periods(xlsx):
-    df = xlsx.parse(sheet_name="invoicing periods", usecols="A:C")
+def read_period(xlsx):
+    df = xlsx.parse(sheet_name="period", usecols="A:C")
     df = parse_date_columns(df, ["Start", "End"])
     df = add_days_and_workdays(df, "Start", "End")
-    st.session_state.mprob["invoicing periods"] =  df
+    st.session_state.mprob["period"] =  df
 
 
 def read_xbday(xlsx):
@@ -53,38 +53,26 @@ def read_xbday(xlsx):
     st.session_state.mprob["xbday"] = df
 
 
-def read_xbsum(xlsx):
-    df = xlsx.parse(sheet_name="xbsum", usecols="A:F")
-    df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.mprob["xbsum"] = df
-
-
 def read_ubday(xlsx):
     df = xlsx.parse(sheet_name="ubday", usecols="A:E")
     df = parse_date_columns(df, ["Start", "End"])
     st.session_state.mprob["ubday"] = df
 
 
-def read_ubsum(xlsx):
-    df = xlsx.parse(sheet_name="ubsum", usecols="A:F")
+def read_expert(xlsx):
+    st.session_state.mprob["expert"] = xlsx.parse(sheet_name="expert", usecols="A:B")
+
+
+def read_ebday(xlsx):
+    df = xlsx.parse(sheet_name="ebday", usecols="A:E")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.mprob["ubsum"] = df
+    st.session_state.mprob["ebday"] = df
 
 
-def read_experts(xlsx):
-    st.session_state.mprob["experts"] = xlsx.parse(sheet_name="experts", usecols="A:B")
-
-
-def read_expert_bounds(xlsx):
-    df = xlsx.parse(sheet_name="expert bounds", usecols="A:E")
-    df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.mprob["expert bounds"] = df
-
-
-def read_public_holidays(xlsx):
-    df = xlsx.parse(sheet_name="public holidays", usecols="A:A")
+def read_holiday(xlsx):
+    df = xlsx.parse(sheet_name="holiday", usecols="A:A")
     df = parse_date_columns(df, ["Date"])
-    st.session_state.mprob["public holidays"] = df
+    st.session_state.mprob["holiday"] = df
 
 
 def read_misc(xlsx):
@@ -129,26 +117,22 @@ def read_eimg(xlsx):
     st.session_state.mprob["eimg"] = xlsx.parse(sheet_name="eimg", usecols="B:E")
 
 
-def read_links(xlsx):
-    st.session_state.mprob["links"] = xlsx.parse(sheet_name="links", usecols="A:B")
+def read_assign(xlsx):
+    st.session_state.mprob["assign"] = xlsx.parse(sheet_name="assign", usecols="A:B")
 
 
-def read_invoicing_periods_bounds(xlsx):
-    st.session_state.mprob["invoicing periods bounds"] = xlsx.parse(sheet_name="invoicing periods bounds",
-                                                      usecols="A:D",
-                                                      dtype={"Lower": np.float16, "Upper": np.float16})
+def read_pbsum(xlsx):
+    st.session_state.mprob["pbsum"] = xlsx.parse(sheet_name="pbsum", usecols="A:D")
 
 
 def adjust_start_days():
     # List of DataFrame keys and the column to update
     targets = [
-        "tasks",
+        "task",
         "xbday",
-        "xbsum",
         "ubday",
-        "ubsum",
-        "expert bounds",
-        "invoicing periods",
+        "ebday",
+        "period",
     ]
 
     tomorrow = pd.to_datetime(glb.tomorrow(), format=glb.format())
@@ -162,18 +146,16 @@ def adjust_start_days():
 
 def read(file_path):
     xlsx = pd.ExcelFile(file_path)
-    read_public_holidays(xlsx)
+    read_holiday(xlsx)
     read_misc(xlsx)
-    read_tasks(xlsx)
+    read_task(xlsx)
     read_xbday(xlsx)
-    read_xbsum(xlsx)
     read_ubday(xlsx)
-    read_ubsum(xlsx)
-    read_invoicing_periods(xlsx)
-    read_experts(xlsx)
-    read_expert_bounds(xlsx)
-    read_invoicing_periods_bounds(xlsx)
-    read_links(xlsx)
+    read_period(xlsx)
+    read_expert(xlsx)
+    read_ebday(xlsx)
+    read_pbsum(xlsx)
+    read_assign(xlsx)
     read_himg(xlsx)
     read_timg(xlsx)
     read_simg(xlsx)

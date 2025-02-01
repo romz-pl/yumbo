@@ -1,31 +1,494 @@
-param HOURS_PER_DAY := 32;
+param MAXWORK := 32;
 
-set EXPERTN :=
-'PM.Fabian';
+param:
+TNAME: TWORK :=
+'india2.pm' 160
+'india2.pf' 40
+'kilo2.pm' 120
+'kilo2.pf' 60
+'november2.pm' 240
+'november2.pf' 80
+'romeo2.pm' 120
+'romeo2.pf' 60
+'victor2.pe' 240
+'victor2.pm' 360
+'victor2.pf' 80
+;
 
-param EBOUND_NO := 0;
+set TSCOPE['india2.pm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77
+;
 
-param EBOUND:
-1   2   3   4   5 :=
+set TSCOPE['india2.pf'] :=
+78 79 80 81 84 85
+;
+
+set TSCOPE['kilo2.pm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57
+;
+
+set TSCOPE['kilo2.pf'] :=
+58 59 60 63
+;
+
+set TSCOPE['november2.pm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81 84 85 86 87
+;
+
+set TSCOPE['november2.pf'] :=
+88 91 92 93 94 95 98
+;
+
+set TSCOPE['romeo2.pm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81 84 85 86 87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133 134 135 136 137 140 141 142
+;
+
+set TSCOPE['romeo2.pf'] :=
+143 144 147 148 149 150 151 154
+;
+
+set TSCOPE['victor2.pe'] :=
+77 78 79 80 81 84 85 86 87 88 91 92 93 94 95 98 99 100
+;
+
+set TSCOPE['victor2.pm'] :=
+101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133 134 135 136 137 140 141 142 143 144 147 148 149 150 151 154 155 156 157 158 161 162 163 164 165 168 169 170 171
+172 175 176 177 178 179 182 183 184 185 186 189 190 191 192 193 196 197 198 199 200 203 204 205 206 207 210 211 212 213 214 217 218 219 220 221 224 225 226 227 228 231
+;
+
+set TSCOPE['victor2.pf'] :=
+232 233 234 235 238 239 240 241 242 245
+;
+
+set ENAME :=
+'PM.Fabian'
+;
+
+set ASSIGN :=
+'PM.Fabian' 'india2.pf'
+'PM.Fabian' 'india2.pm'
+'PM.Fabian' 'kilo2.pf'
+'PM.Fabian' 'kilo2.pm'
+'PM.Fabian' 'november2.pf'
+'PM.Fabian' 'november2.pm'
+'PM.Fabian' 'romeo2.pf'
+'PM.Fabian' 'romeo2.pm'
+'PM.Fabian' 'victor2.pe'
+'PM.Fabian' 'victor2.pf'
+'PM.Fabian' 'victor2.pm'
 ;
 
 param:
-TASKN: TASKS TASKE TASKW :=
-'india2.pm' 2 77 160
-'india2.pf' 78 85 40
-'kilo2.pm' 2 57 120
-'kilo2.pf' 58 63 60
-'november2.pm' 2 87 240
-'november2.pf' 88 98 80
-'romeo2.pm' 2 142 120
-'romeo2.pf' 143 154 60
-'victor2.pe' 75 100 240
-'victor2.pm' 101 231 360
-'victor2.pf' 232 245 80
+XBID: XBL XBU :=
+'PM.Fabian' 'india2.pm' 3 3.0 4.0
+'PM.Fabian' 'india2.pm' 4 3.0 4.0
+'PM.Fabian' 'india2.pm' 7 3.0 4.0
+'PM.Fabian' 'india2.pm' 8 3.0 4.0
+'PM.Fabian' 'india2.pm' 9 3.0 4.0
+'PM.Fabian' 'india2.pm' 10 3.0 4.0
+'PM.Fabian' 'india2.pm' 11 3.0 4.0
+'PM.Fabian' 'india2.pm' 14 3.0 4.0
+'PM.Fabian' 'india2.pm' 15 3.0 4.0
+'PM.Fabian' 'india2.pm' 16 3.0 4.0
+'PM.Fabian' 'india2.pm' 17 3.0 4.0
+'PM.Fabian' 'india2.pm' 18 3.0 4.0
+'PM.Fabian' 'india2.pm' 21 3.0 4.0
+'PM.Fabian' 'india2.pm' 22 3.0 4.0
+'PM.Fabian' 'india2.pm' 23 3.0 4.0
+'PM.Fabian' 'india2.pm' 24 3.0 4.0
+'PM.Fabian' 'india2.pm' 25 3.0 4.0
+'PM.Fabian' 'india2.pm' 28 3.0 4.0
+'PM.Fabian' 'india2.pm' 29 3.0 4.0
+'PM.Fabian' 'india2.pm' 30 3.0 4.0
+'PM.Fabian' 'india2.pm' 31 3.0 4.0
+'PM.Fabian' 'india2.pm' 32 3.0 4.0
+'PM.Fabian' 'india2.pm' 35 3.0 4.0
+'PM.Fabian' 'india2.pm' 36 3.0 4.0
+'PM.Fabian' 'india2.pm' 37 3.0 4.0
+'PM.Fabian' 'india2.pm' 38 3.0 4.0
+'PM.Fabian' 'india2.pm' 39 3.0 4.0
+'PM.Fabian' 'india2.pm' 42 3.0 4.0
+'PM.Fabian' 'india2.pm' 43 3.0 4.0
+'PM.Fabian' 'india2.pm' 44 3.0 4.0
+'PM.Fabian' 'india2.pm' 45 3.0 4.0
+'PM.Fabian' 'india2.pm' 46 3.0 4.0
+'PM.Fabian' 'india2.pm' 49 3.0 4.0
+'PM.Fabian' 'india2.pm' 50 3.0 4.0
+'PM.Fabian' 'india2.pm' 51 3.0 4.0
+'PM.Fabian' 'india2.pm' 52 3.0 4.0
+'PM.Fabian' 'india2.pm' 53 3.0 4.0
+'PM.Fabian' 'india2.pm' 56 3.0 4.0
+'PM.Fabian' 'india2.pm' 57 3.0 4.0
+'PM.Fabian' 'india2.pm' 58 3.0 4.0
+'PM.Fabian' 'india2.pm' 59 3.0 4.0
+'PM.Fabian' 'india2.pm' 60 3.0 4.0
+'PM.Fabian' 'india2.pm' 63 3.0 4.0
+'PM.Fabian' 'india2.pm' 64 3.0 4.0
+'PM.Fabian' 'india2.pm' 65 3.0 4.0
+'PM.Fabian' 'india2.pm' 66 3.0 4.0
+'PM.Fabian' 'india2.pm' 67 3.0 4.0
+'PM.Fabian' 'india2.pm' 70 3.0 4.0
+'PM.Fabian' 'india2.pm' 71 3.0 4.0
+'PM.Fabian' 'india2.pm' 72 3.0 4.0
+'PM.Fabian' 'india2.pm' 73 3.0 4.0
+'PM.Fabian' 'india2.pm' 74 3.0 4.0
+'PM.Fabian' 'india2.pm' 77 3.0 4.0
+'PM.Fabian' 'india2.pf' 78 6.0 7.0
+'PM.Fabian' 'india2.pf' 79 6.0 7.0
+'PM.Fabian' 'india2.pf' 80 6.0 7.0
+'PM.Fabian' 'india2.pf' 81 6.0 7.0
+'PM.Fabian' 'india2.pf' 84 6.0 7.0
+'PM.Fabian' 'india2.pf' 85 6.0 7.0
+'PM.Fabian' 'kilo2.pm' 3 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 4 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 7 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 8 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 9 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 10 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 11 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 14 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 15 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 16 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 17 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 18 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 21 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 22 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 23 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 24 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 25 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 28 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 29 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 30 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 31 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 32 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 35 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 36 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 37 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 38 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 39 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 42 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 43 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 44 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 45 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 46 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 49 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 50 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 51 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 52 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 53 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 56 3.0 4.0
+'PM.Fabian' 'kilo2.pm' 57 3.0 4.0
+'PM.Fabian' 'kilo2.pf' 58 15.0 16.0
+'PM.Fabian' 'kilo2.pf' 59 15.0 16.0
+'PM.Fabian' 'kilo2.pf' 60 15.0 16.0
+'PM.Fabian' 'kilo2.pf' 63 15.0 16.0
+'PM.Fabian' 'november2.pm' 3 3.0 4.0
+'PM.Fabian' 'november2.pm' 4 3.0 4.0
+'PM.Fabian' 'november2.pm' 7 3.0 4.0
+'PM.Fabian' 'november2.pm' 8 3.0 4.0
+'PM.Fabian' 'november2.pm' 9 3.0 4.0
+'PM.Fabian' 'november2.pm' 10 3.0 4.0
+'PM.Fabian' 'november2.pm' 11 3.0 4.0
+'PM.Fabian' 'november2.pm' 14 3.0 4.0
+'PM.Fabian' 'november2.pm' 15 3.0 4.0
+'PM.Fabian' 'november2.pm' 16 3.0 4.0
+'PM.Fabian' 'november2.pm' 17 3.0 4.0
+'PM.Fabian' 'november2.pm' 18 3.0 4.0
+'PM.Fabian' 'november2.pm' 21 3.0 4.0
+'PM.Fabian' 'november2.pm' 22 3.0 4.0
+'PM.Fabian' 'november2.pm' 23 3.0 4.0
+'PM.Fabian' 'november2.pm' 24 3.0 4.0
+'PM.Fabian' 'november2.pm' 25 3.0 4.0
+'PM.Fabian' 'november2.pm' 28 3.0 4.0
+'PM.Fabian' 'november2.pm' 29 3.0 4.0
+'PM.Fabian' 'november2.pm' 30 3.0 4.0
+'PM.Fabian' 'november2.pm' 31 3.0 4.0
+'PM.Fabian' 'november2.pm' 32 3.0 4.0
+'PM.Fabian' 'november2.pm' 35 3.0 4.0
+'PM.Fabian' 'november2.pm' 36 3.0 4.0
+'PM.Fabian' 'november2.pm' 37 3.0 4.0
+'PM.Fabian' 'november2.pm' 38 3.0 4.0
+'PM.Fabian' 'november2.pm' 39 3.0 4.0
+'PM.Fabian' 'november2.pm' 42 3.0 4.0
+'PM.Fabian' 'november2.pm' 43 3.0 4.0
+'PM.Fabian' 'november2.pm' 44 3.0 4.0
+'PM.Fabian' 'november2.pm' 45 3.0 4.0
+'PM.Fabian' 'november2.pm' 46 3.0 4.0
+'PM.Fabian' 'november2.pm' 49 3.0 4.0
+'PM.Fabian' 'november2.pm' 50 3.0 4.0
+'PM.Fabian' 'november2.pm' 51 3.0 4.0
+'PM.Fabian' 'november2.pm' 52 3.0 4.0
+'PM.Fabian' 'november2.pm' 53 3.0 4.0
+'PM.Fabian' 'november2.pm' 56 3.0 4.0
+'PM.Fabian' 'november2.pm' 57 3.0 4.0
+'PM.Fabian' 'november2.pm' 58 3.0 4.0
+'PM.Fabian' 'november2.pm' 59 3.0 4.0
+'PM.Fabian' 'november2.pm' 60 3.0 4.0
+'PM.Fabian' 'november2.pm' 63 3.0 4.0
+'PM.Fabian' 'november2.pm' 64 3.0 4.0
+'PM.Fabian' 'november2.pm' 65 3.0 4.0
+'PM.Fabian' 'november2.pm' 66 3.0 4.0
+'PM.Fabian' 'november2.pm' 67 3.0 4.0
+'PM.Fabian' 'november2.pm' 70 3.0 4.0
+'PM.Fabian' 'november2.pm' 71 3.0 4.0
+'PM.Fabian' 'november2.pm' 72 3.0 4.0
+'PM.Fabian' 'november2.pm' 73 3.0 4.0
+'PM.Fabian' 'november2.pm' 74 3.0 4.0
+'PM.Fabian' 'november2.pm' 77 3.0 4.0
+'PM.Fabian' 'november2.pm' 78 3.0 4.0
+'PM.Fabian' 'november2.pm' 79 3.0 4.0
+'PM.Fabian' 'november2.pm' 80 3.0 4.0
+'PM.Fabian' 'november2.pm' 81 3.0 4.0
+'PM.Fabian' 'november2.pm' 84 3.0 4.0
+'PM.Fabian' 'november2.pm' 85 3.0 4.0
+'PM.Fabian' 'november2.pm' 86 3.0 4.0
+'PM.Fabian' 'november2.pm' 87 3.0 4.0
+'PM.Fabian' 'november2.pf' 88 11.0 12.0
+'PM.Fabian' 'november2.pf' 91 11.0 12.0
+'PM.Fabian' 'november2.pf' 92 11.0 12.0
+'PM.Fabian' 'november2.pf' 93 11.0 12.0
+'PM.Fabian' 'november2.pf' 94 11.0 12.0
+'PM.Fabian' 'november2.pf' 95 11.0 12.0
+'PM.Fabian' 'november2.pf' 98 11.0 12.0
+'PM.Fabian' 'romeo2.pm' 3 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 4 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 7 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 8 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 9 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 10 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 11 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 14 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 15 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 16 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 17 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 18 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 21 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 22 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 23 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 24 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 25 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 28 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 29 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 30 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 31 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 32 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 35 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 36 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 37 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 38 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 39 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 42 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 43 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 44 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 45 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 46 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 49 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 50 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 51 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 52 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 53 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 56 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 57 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 58 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 59 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 60 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 63 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 64 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 65 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 66 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 67 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 70 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 71 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 72 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 73 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 74 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 77 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 78 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 79 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 80 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 81 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 84 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 85 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 86 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 87 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 88 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 91 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 92 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 93 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 94 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 95 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 98 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 99 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 100 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 101 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 102 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 105 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 106 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 107 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 108 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 109 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 112 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 113 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 114 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 115 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 116 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 119 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 120 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 121 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 123 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 126 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 127 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 128 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 129 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 130 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 133 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 134 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 135 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 136 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 137 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 140 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 141 1.0 2.0
+'PM.Fabian' 'romeo2.pm' 142 1.0 2.0
+'PM.Fabian' 'romeo2.pf' 143 7.0 8.0
+'PM.Fabian' 'romeo2.pf' 144 7.0 8.0
+'PM.Fabian' 'romeo2.pf' 147 7.0 8.0
+'PM.Fabian' 'romeo2.pf' 148 7.0 8.0
+'PM.Fabian' 'romeo2.pf' 149 7.0 8.0
+'PM.Fabian' 'romeo2.pf' 150 7.0 8.0
+'PM.Fabian' 'romeo2.pf' 151 7.0 8.0
+'PM.Fabian' 'romeo2.pf' 154 7.0 8.0
+'PM.Fabian' 'victor2.pe' 77 13.0 14.0
+'PM.Fabian' 'victor2.pe' 78 13.0 14.0
+'PM.Fabian' 'victor2.pe' 79 13.0 14.0
+'PM.Fabian' 'victor2.pe' 80 13.0 14.0
+'PM.Fabian' 'victor2.pe' 81 13.0 14.0
+'PM.Fabian' 'victor2.pe' 84 13.0 14.0
+'PM.Fabian' 'victor2.pe' 85 13.0 14.0
+'PM.Fabian' 'victor2.pe' 86 13.0 14.0
+'PM.Fabian' 'victor2.pe' 87 13.0 14.0
+'PM.Fabian' 'victor2.pe' 88 13.0 14.0
+'PM.Fabian' 'victor2.pe' 91 13.0 14.0
+'PM.Fabian' 'victor2.pe' 92 13.0 14.0
+'PM.Fabian' 'victor2.pe' 93 13.0 14.0
+'PM.Fabian' 'victor2.pe' 94 13.0 14.0
+'PM.Fabian' 'victor2.pe' 95 13.0 14.0
+'PM.Fabian' 'victor2.pe' 98 13.0 14.0
+'PM.Fabian' 'victor2.pe' 99 13.0 14.0
+'PM.Fabian' 'victor2.pe' 100 13.0 14.0
+'PM.Fabian' 'victor2.pm' 101 3.0 4.0
+'PM.Fabian' 'victor2.pm' 102 3.0 4.0
+'PM.Fabian' 'victor2.pm' 105 3.0 4.0
+'PM.Fabian' 'victor2.pm' 106 3.0 4.0
+'PM.Fabian' 'victor2.pm' 107 3.0 4.0
+'PM.Fabian' 'victor2.pm' 108 3.0 4.0
+'PM.Fabian' 'victor2.pm' 109 3.0 4.0
+'PM.Fabian' 'victor2.pm' 112 3.0 4.0
+'PM.Fabian' 'victor2.pm' 113 3.0 4.0
+'PM.Fabian' 'victor2.pm' 114 3.0 4.0
+'PM.Fabian' 'victor2.pm' 115 3.0 4.0
+'PM.Fabian' 'victor2.pm' 116 3.0 4.0
+'PM.Fabian' 'victor2.pm' 119 3.0 4.0
+'PM.Fabian' 'victor2.pm' 120 3.0 4.0
+'PM.Fabian' 'victor2.pm' 121 3.0 4.0
+'PM.Fabian' 'victor2.pm' 123 3.0 4.0
+'PM.Fabian' 'victor2.pm' 126 3.0 4.0
+'PM.Fabian' 'victor2.pm' 127 3.0 4.0
+'PM.Fabian' 'victor2.pm' 128 3.0 4.0
+'PM.Fabian' 'victor2.pm' 129 3.0 4.0
+'PM.Fabian' 'victor2.pm' 130 3.0 4.0
+'PM.Fabian' 'victor2.pm' 133 3.0 4.0
+'PM.Fabian' 'victor2.pm' 134 3.0 4.0
+'PM.Fabian' 'victor2.pm' 135 3.0 4.0
+'PM.Fabian' 'victor2.pm' 136 3.0 4.0
+'PM.Fabian' 'victor2.pm' 137 3.0 4.0
+'PM.Fabian' 'victor2.pm' 140 3.0 4.0
+'PM.Fabian' 'victor2.pm' 141 3.0 4.0
+'PM.Fabian' 'victor2.pm' 142 3.0 4.0
+'PM.Fabian' 'victor2.pm' 143 3.0 4.0
+'PM.Fabian' 'victor2.pm' 144 3.0 4.0
+'PM.Fabian' 'victor2.pm' 147 3.0 4.0
+'PM.Fabian' 'victor2.pm' 148 3.0 4.0
+'PM.Fabian' 'victor2.pm' 149 3.0 4.0
+'PM.Fabian' 'victor2.pm' 150 3.0 4.0
+'PM.Fabian' 'victor2.pm' 151 3.0 4.0
+'PM.Fabian' 'victor2.pm' 154 3.0 4.0
+'PM.Fabian' 'victor2.pm' 155 3.0 4.0
+'PM.Fabian' 'victor2.pm' 156 3.0 4.0
+'PM.Fabian' 'victor2.pm' 157 3.0 4.0
+'PM.Fabian' 'victor2.pm' 158 3.0 4.0
+'PM.Fabian' 'victor2.pm' 161 3.0 4.0
+'PM.Fabian' 'victor2.pm' 162 3.0 4.0
+'PM.Fabian' 'victor2.pm' 163 3.0 4.0
+'PM.Fabian' 'victor2.pm' 164 3.0 4.0
+'PM.Fabian' 'victor2.pm' 165 3.0 4.0
+'PM.Fabian' 'victor2.pm' 168 3.0 4.0
+'PM.Fabian' 'victor2.pm' 169 3.0 4.0
+'PM.Fabian' 'victor2.pm' 170 3.0 4.0
+'PM.Fabian' 'victor2.pm' 171 3.0 4.0
+'PM.Fabian' 'victor2.pm' 172 3.0 4.0
+'PM.Fabian' 'victor2.pm' 175 3.0 4.0
+'PM.Fabian' 'victor2.pm' 176 3.0 4.0
+'PM.Fabian' 'victor2.pm' 177 3.0 4.0
+'PM.Fabian' 'victor2.pm' 178 3.0 4.0
+'PM.Fabian' 'victor2.pm' 179 3.0 4.0
+'PM.Fabian' 'victor2.pm' 182 3.0 4.0
+'PM.Fabian' 'victor2.pm' 183 3.0 4.0
+'PM.Fabian' 'victor2.pm' 184 3.0 4.0
+'PM.Fabian' 'victor2.pm' 185 3.0 4.0
+'PM.Fabian' 'victor2.pm' 186 3.0 4.0
+'PM.Fabian' 'victor2.pm' 189 3.0 4.0
+'PM.Fabian' 'victor2.pm' 190 3.0 4.0
+'PM.Fabian' 'victor2.pm' 191 3.0 4.0
+'PM.Fabian' 'victor2.pm' 192 3.0 4.0
+'PM.Fabian' 'victor2.pm' 193 3.0 4.0
+'PM.Fabian' 'victor2.pm' 196 3.0 4.0
+'PM.Fabian' 'victor2.pm' 197 3.0 4.0
+'PM.Fabian' 'victor2.pm' 198 3.0 4.0
+'PM.Fabian' 'victor2.pm' 199 3.0 4.0
+'PM.Fabian' 'victor2.pm' 200 3.0 4.0
+'PM.Fabian' 'victor2.pm' 203 3.0 4.0
+'PM.Fabian' 'victor2.pm' 204 3.0 4.0
+'PM.Fabian' 'victor2.pm' 205 3.0 4.0
+'PM.Fabian' 'victor2.pm' 206 3.0 4.0
+'PM.Fabian' 'victor2.pm' 207 3.0 4.0
+'PM.Fabian' 'victor2.pm' 210 3.0 4.0
+'PM.Fabian' 'victor2.pm' 211 3.0 4.0
+'PM.Fabian' 'victor2.pm' 212 3.0 4.0
+'PM.Fabian' 'victor2.pm' 213 3.0 4.0
+'PM.Fabian' 'victor2.pm' 214 3.0 4.0
+'PM.Fabian' 'victor2.pm' 217 3.0 4.0
+'PM.Fabian' 'victor2.pm' 218 3.0 4.0
+'PM.Fabian' 'victor2.pm' 219 3.0 4.0
+'PM.Fabian' 'victor2.pm' 220 3.0 4.0
+'PM.Fabian' 'victor2.pm' 221 3.0 4.0
+'PM.Fabian' 'victor2.pm' 224 3.0 4.0
+'PM.Fabian' 'victor2.pm' 225 3.0 4.0
+'PM.Fabian' 'victor2.pm' 226 3.0 4.0
+'PM.Fabian' 'victor2.pm' 227 3.0 4.0
+'PM.Fabian' 'victor2.pm' 228 3.0 4.0
+'PM.Fabian' 'victor2.pm' 231 3.0 4.0
+'PM.Fabian' 'victor2.pf' 232 8.0 9.0
+'PM.Fabian' 'victor2.pf' 233 8.0 9.0
+'PM.Fabian' 'victor2.pf' 234 8.0 9.0
+'PM.Fabian' 'victor2.pf' 235 8.0 9.0
+'PM.Fabian' 'victor2.pf' 238 8.0 9.0
+'PM.Fabian' 'victor2.pf' 239 8.0 9.0
+'PM.Fabian' 'victor2.pf' 240 8.0 9.0
+'PM.Fabian' 'victor2.pf' 241 8.0 9.0
+'PM.Fabian' 'victor2.pf' 242 8.0 9.0
+'PM.Fabian' 'victor2.pf' 245 8.0 9.0
 ;
 
 param:
-PAYROLLN: PAYROLLS PAYROLLE :=
+EBID: EBN EBS EBE EBL EBU :=
+
+;
+
+param:
+PNAME: PERS PERE :=
 'Jan.25' 1 16
 'Feb.25' 17 45
 'Mar.25' 46 76
@@ -37,509 +500,22 @@ PAYROLLN: PAYROLLS PAYROLLE :=
 'Sep.25' 231 259
 'Oct.25' 260 289
 'Nov.25' 290 317
-'Dec.25' 318 346;
+'Dec.25' 318 346
+;
 
 param:
-EXPPAY: PAYROLLBL PAYROLLBU :=
-'PM.Fabian' 'Jan.25' 0.0 720.0
-'PM.Fabian' 'Feb.25' 0.0 720.0
-'PM.Fabian' 'Mar.25' 0.0 720.0
-'PM.Fabian' 'Apr.25' 0.0 720.0
-'PM.Fabian' 'May.25' 0.0 720.0
-'PM.Fabian' 'Jun.25' 0.0 720.0
-'PM.Fabian' 'Jul.25' 0.0 720.0
-'PM.Fabian' 'Aug.25' 0.0 720.0
-'PM.Fabian' 'Sep.25' 0.0 720.0
-'PM.Fabian' 'Oct.25' 0.0 720.0
-'PM.Fabian' 'Nov.25' 0.0 720.0
-'PM.Fabian' 'Dec.25' 0.0 720.0;
-
-param OFFDAY_NO := 72;
-
-param OFFDAY :=
-1 2
-2 5
-3 6
-4 12
-5 13
-6 19
-7 20
-8 26
-9 27
-10 33
-11 34
-12 40
-13 41
-14 47
-15 48
-16 54
-17 55
-18 61
-19 62
-20 68
-21 69
-22 75
-23 76
-24 82
-25 83
-26 89
-27 90
-28 96
-29 97
-30 103
-31 104
-32 110
-33 111
-34 117
-35 118
-36 122
-37 124
-38 125
-39 131
-40 132
-41 138
-42 139
-43 145
-44 146
-45 152
-46 153
-47 159
-48 160
-49 166
-50 167
-51 173
-52 174
-53 180
-54 181
-55 187
-56 188
-57 194
-58 195
-59 201
-60 202
-61 208
-62 209
-63 215
-64 216
-65 222
-66 223
-67 229
-68 230
-69 236
-70 237
-71 243
-72 244;
-
-param XBDAY_NO := 377;
-
-param XBDAY:
-1   2   3   4   5 :=
-1 'PM.Fabian' 'india2.pm' 3 3.0 4.0
-2 'PM.Fabian' 'india2.pm' 4 3.0 4.0
-3 'PM.Fabian' 'india2.pm' 7 3.0 4.0
-4 'PM.Fabian' 'india2.pm' 8 3.0 4.0
-5 'PM.Fabian' 'india2.pm' 9 3.0 4.0
-6 'PM.Fabian' 'india2.pm' 10 3.0 4.0
-7 'PM.Fabian' 'india2.pm' 11 3.0 4.0
-8 'PM.Fabian' 'india2.pm' 14 3.0 4.0
-9 'PM.Fabian' 'india2.pm' 15 3.0 4.0
-10 'PM.Fabian' 'india2.pm' 16 3.0 4.0
-11 'PM.Fabian' 'india2.pm' 17 3.0 4.0
-12 'PM.Fabian' 'india2.pm' 18 3.0 4.0
-13 'PM.Fabian' 'india2.pm' 21 3.0 4.0
-14 'PM.Fabian' 'india2.pm' 22 3.0 4.0
-15 'PM.Fabian' 'india2.pm' 23 3.0 4.0
-16 'PM.Fabian' 'india2.pm' 24 3.0 4.0
-17 'PM.Fabian' 'india2.pm' 25 3.0 4.0
-18 'PM.Fabian' 'india2.pm' 28 3.0 4.0
-19 'PM.Fabian' 'india2.pm' 29 3.0 4.0
-20 'PM.Fabian' 'india2.pm' 30 3.0 4.0
-21 'PM.Fabian' 'india2.pm' 31 3.0 4.0
-22 'PM.Fabian' 'india2.pm' 32 3.0 4.0
-23 'PM.Fabian' 'india2.pm' 35 3.0 4.0
-24 'PM.Fabian' 'india2.pm' 36 3.0 4.0
-25 'PM.Fabian' 'india2.pm' 37 3.0 4.0
-26 'PM.Fabian' 'india2.pm' 38 3.0 4.0
-27 'PM.Fabian' 'india2.pm' 39 3.0 4.0
-28 'PM.Fabian' 'india2.pm' 42 3.0 4.0
-29 'PM.Fabian' 'india2.pm' 43 3.0 4.0
-30 'PM.Fabian' 'india2.pm' 44 3.0 4.0
-31 'PM.Fabian' 'india2.pm' 45 3.0 4.0
-32 'PM.Fabian' 'india2.pm' 46 3.0 4.0
-33 'PM.Fabian' 'india2.pm' 49 3.0 4.0
-34 'PM.Fabian' 'india2.pm' 50 3.0 4.0
-35 'PM.Fabian' 'india2.pm' 51 3.0 4.0
-36 'PM.Fabian' 'india2.pm' 52 3.0 4.0
-37 'PM.Fabian' 'india2.pm' 53 3.0 4.0
-38 'PM.Fabian' 'india2.pm' 56 3.0 4.0
-39 'PM.Fabian' 'india2.pm' 57 3.0 4.0
-40 'PM.Fabian' 'india2.pm' 58 3.0 4.0
-41 'PM.Fabian' 'india2.pm' 59 3.0 4.0
-42 'PM.Fabian' 'india2.pm' 60 3.0 4.0
-43 'PM.Fabian' 'india2.pm' 63 3.0 4.0
-44 'PM.Fabian' 'india2.pm' 64 3.0 4.0
-45 'PM.Fabian' 'india2.pm' 65 3.0 4.0
-46 'PM.Fabian' 'india2.pm' 66 3.0 4.0
-47 'PM.Fabian' 'india2.pm' 67 3.0 4.0
-48 'PM.Fabian' 'india2.pm' 70 3.0 4.0
-49 'PM.Fabian' 'india2.pm' 71 3.0 4.0
-50 'PM.Fabian' 'india2.pm' 72 3.0 4.0
-51 'PM.Fabian' 'india2.pm' 73 3.0 4.0
-52 'PM.Fabian' 'india2.pm' 74 3.0 4.0
-53 'PM.Fabian' 'india2.pm' 77 3.0 4.0
-54 'PM.Fabian' 'india2.pf' 78 6.0 7.0
-55 'PM.Fabian' 'india2.pf' 79 6.0 7.0
-56 'PM.Fabian' 'india2.pf' 80 6.0 7.0
-57 'PM.Fabian' 'india2.pf' 81 6.0 7.0
-58 'PM.Fabian' 'india2.pf' 84 6.0 7.0
-59 'PM.Fabian' 'india2.pf' 85 6.0 7.0
-60 'PM.Fabian' 'kilo2.pm' 3 3.0 4.0
-61 'PM.Fabian' 'kilo2.pm' 4 3.0 4.0
-62 'PM.Fabian' 'kilo2.pm' 7 3.0 4.0
-63 'PM.Fabian' 'kilo2.pm' 8 3.0 4.0
-64 'PM.Fabian' 'kilo2.pm' 9 3.0 4.0
-65 'PM.Fabian' 'kilo2.pm' 10 3.0 4.0
-66 'PM.Fabian' 'kilo2.pm' 11 3.0 4.0
-67 'PM.Fabian' 'kilo2.pm' 14 3.0 4.0
-68 'PM.Fabian' 'kilo2.pm' 15 3.0 4.0
-69 'PM.Fabian' 'kilo2.pm' 16 3.0 4.0
-70 'PM.Fabian' 'kilo2.pm' 17 3.0 4.0
-71 'PM.Fabian' 'kilo2.pm' 18 3.0 4.0
-72 'PM.Fabian' 'kilo2.pm' 21 3.0 4.0
-73 'PM.Fabian' 'kilo2.pm' 22 3.0 4.0
-74 'PM.Fabian' 'kilo2.pm' 23 3.0 4.0
-75 'PM.Fabian' 'kilo2.pm' 24 3.0 4.0
-76 'PM.Fabian' 'kilo2.pm' 25 3.0 4.0
-77 'PM.Fabian' 'kilo2.pm' 28 3.0 4.0
-78 'PM.Fabian' 'kilo2.pm' 29 3.0 4.0
-79 'PM.Fabian' 'kilo2.pm' 30 3.0 4.0
-80 'PM.Fabian' 'kilo2.pm' 31 3.0 4.0
-81 'PM.Fabian' 'kilo2.pm' 32 3.0 4.0
-82 'PM.Fabian' 'kilo2.pm' 35 3.0 4.0
-83 'PM.Fabian' 'kilo2.pm' 36 3.0 4.0
-84 'PM.Fabian' 'kilo2.pm' 37 3.0 4.0
-85 'PM.Fabian' 'kilo2.pm' 38 3.0 4.0
-86 'PM.Fabian' 'kilo2.pm' 39 3.0 4.0
-87 'PM.Fabian' 'kilo2.pm' 42 3.0 4.0
-88 'PM.Fabian' 'kilo2.pm' 43 3.0 4.0
-89 'PM.Fabian' 'kilo2.pm' 44 3.0 4.0
-90 'PM.Fabian' 'kilo2.pm' 45 3.0 4.0
-91 'PM.Fabian' 'kilo2.pm' 46 3.0 4.0
-92 'PM.Fabian' 'kilo2.pm' 49 3.0 4.0
-93 'PM.Fabian' 'kilo2.pm' 50 3.0 4.0
-94 'PM.Fabian' 'kilo2.pm' 51 3.0 4.0
-95 'PM.Fabian' 'kilo2.pm' 52 3.0 4.0
-96 'PM.Fabian' 'kilo2.pm' 53 3.0 4.0
-97 'PM.Fabian' 'kilo2.pm' 56 3.0 4.0
-98 'PM.Fabian' 'kilo2.pm' 57 3.0 4.0
-99 'PM.Fabian' 'kilo2.pf' 58 15.0 16.0
-100 'PM.Fabian' 'kilo2.pf' 59 15.0 16.0
-101 'PM.Fabian' 'kilo2.pf' 60 15.0 16.0
-102 'PM.Fabian' 'kilo2.pf' 63 15.0 16.0
-103 'PM.Fabian' 'november2.pm' 3 3.0 4.0
-104 'PM.Fabian' 'november2.pm' 4 3.0 4.0
-105 'PM.Fabian' 'november2.pm' 7 3.0 4.0
-106 'PM.Fabian' 'november2.pm' 8 3.0 4.0
-107 'PM.Fabian' 'november2.pm' 9 3.0 4.0
-108 'PM.Fabian' 'november2.pm' 10 3.0 4.0
-109 'PM.Fabian' 'november2.pm' 11 3.0 4.0
-110 'PM.Fabian' 'november2.pm' 14 3.0 4.0
-111 'PM.Fabian' 'november2.pm' 15 3.0 4.0
-112 'PM.Fabian' 'november2.pm' 16 3.0 4.0
-113 'PM.Fabian' 'november2.pm' 17 3.0 4.0
-114 'PM.Fabian' 'november2.pm' 18 3.0 4.0
-115 'PM.Fabian' 'november2.pm' 21 3.0 4.0
-116 'PM.Fabian' 'november2.pm' 22 3.0 4.0
-117 'PM.Fabian' 'november2.pm' 23 3.0 4.0
-118 'PM.Fabian' 'november2.pm' 24 3.0 4.0
-119 'PM.Fabian' 'november2.pm' 25 3.0 4.0
-120 'PM.Fabian' 'november2.pm' 28 3.0 4.0
-121 'PM.Fabian' 'november2.pm' 29 3.0 4.0
-122 'PM.Fabian' 'november2.pm' 30 3.0 4.0
-123 'PM.Fabian' 'november2.pm' 31 3.0 4.0
-124 'PM.Fabian' 'november2.pm' 32 3.0 4.0
-125 'PM.Fabian' 'november2.pm' 35 3.0 4.0
-126 'PM.Fabian' 'november2.pm' 36 3.0 4.0
-127 'PM.Fabian' 'november2.pm' 37 3.0 4.0
-128 'PM.Fabian' 'november2.pm' 38 3.0 4.0
-129 'PM.Fabian' 'november2.pm' 39 3.0 4.0
-130 'PM.Fabian' 'november2.pm' 42 3.0 4.0
-131 'PM.Fabian' 'november2.pm' 43 3.0 4.0
-132 'PM.Fabian' 'november2.pm' 44 3.0 4.0
-133 'PM.Fabian' 'november2.pm' 45 3.0 4.0
-134 'PM.Fabian' 'november2.pm' 46 3.0 4.0
-135 'PM.Fabian' 'november2.pm' 49 3.0 4.0
-136 'PM.Fabian' 'november2.pm' 50 3.0 4.0
-137 'PM.Fabian' 'november2.pm' 51 3.0 4.0
-138 'PM.Fabian' 'november2.pm' 52 3.0 4.0
-139 'PM.Fabian' 'november2.pm' 53 3.0 4.0
-140 'PM.Fabian' 'november2.pm' 56 3.0 4.0
-141 'PM.Fabian' 'november2.pm' 57 3.0 4.0
-142 'PM.Fabian' 'november2.pm' 58 3.0 4.0
-143 'PM.Fabian' 'november2.pm' 59 3.0 4.0
-144 'PM.Fabian' 'november2.pm' 60 3.0 4.0
-145 'PM.Fabian' 'november2.pm' 63 3.0 4.0
-146 'PM.Fabian' 'november2.pm' 64 3.0 4.0
-147 'PM.Fabian' 'november2.pm' 65 3.0 4.0
-148 'PM.Fabian' 'november2.pm' 66 3.0 4.0
-149 'PM.Fabian' 'november2.pm' 67 3.0 4.0
-150 'PM.Fabian' 'november2.pm' 70 3.0 4.0
-151 'PM.Fabian' 'november2.pm' 71 3.0 4.0
-152 'PM.Fabian' 'november2.pm' 72 3.0 4.0
-153 'PM.Fabian' 'november2.pm' 73 3.0 4.0
-154 'PM.Fabian' 'november2.pm' 74 3.0 4.0
-155 'PM.Fabian' 'november2.pm' 77 3.0 4.0
-156 'PM.Fabian' 'november2.pm' 78 3.0 4.0
-157 'PM.Fabian' 'november2.pm' 79 3.0 4.0
-158 'PM.Fabian' 'november2.pm' 80 3.0 4.0
-159 'PM.Fabian' 'november2.pm' 81 3.0 4.0
-160 'PM.Fabian' 'november2.pm' 84 3.0 4.0
-161 'PM.Fabian' 'november2.pm' 85 3.0 4.0
-162 'PM.Fabian' 'november2.pm' 86 3.0 4.0
-163 'PM.Fabian' 'november2.pm' 87 3.0 4.0
-164 'PM.Fabian' 'november2.pf' 88 11.0 12.0
-165 'PM.Fabian' 'november2.pf' 91 11.0 12.0
-166 'PM.Fabian' 'november2.pf' 92 11.0 12.0
-167 'PM.Fabian' 'november2.pf' 93 11.0 12.0
-168 'PM.Fabian' 'november2.pf' 94 11.0 12.0
-169 'PM.Fabian' 'november2.pf' 95 11.0 12.0
-170 'PM.Fabian' 'november2.pf' 98 11.0 12.0
-171 'PM.Fabian' 'romeo2.pm' 3 1.0 2.0
-172 'PM.Fabian' 'romeo2.pm' 4 1.0 2.0
-173 'PM.Fabian' 'romeo2.pm' 7 1.0 2.0
-174 'PM.Fabian' 'romeo2.pm' 8 1.0 2.0
-175 'PM.Fabian' 'romeo2.pm' 9 1.0 2.0
-176 'PM.Fabian' 'romeo2.pm' 10 1.0 2.0
-177 'PM.Fabian' 'romeo2.pm' 11 1.0 2.0
-178 'PM.Fabian' 'romeo2.pm' 14 1.0 2.0
-179 'PM.Fabian' 'romeo2.pm' 15 1.0 2.0
-180 'PM.Fabian' 'romeo2.pm' 16 1.0 2.0
-181 'PM.Fabian' 'romeo2.pm' 17 1.0 2.0
-182 'PM.Fabian' 'romeo2.pm' 18 1.0 2.0
-183 'PM.Fabian' 'romeo2.pm' 21 1.0 2.0
-184 'PM.Fabian' 'romeo2.pm' 22 1.0 2.0
-185 'PM.Fabian' 'romeo2.pm' 23 1.0 2.0
-186 'PM.Fabian' 'romeo2.pm' 24 1.0 2.0
-187 'PM.Fabian' 'romeo2.pm' 25 1.0 2.0
-188 'PM.Fabian' 'romeo2.pm' 28 1.0 2.0
-189 'PM.Fabian' 'romeo2.pm' 29 1.0 2.0
-190 'PM.Fabian' 'romeo2.pm' 30 1.0 2.0
-191 'PM.Fabian' 'romeo2.pm' 31 1.0 2.0
-192 'PM.Fabian' 'romeo2.pm' 32 1.0 2.0
-193 'PM.Fabian' 'romeo2.pm' 35 1.0 2.0
-194 'PM.Fabian' 'romeo2.pm' 36 1.0 2.0
-195 'PM.Fabian' 'romeo2.pm' 37 1.0 2.0
-196 'PM.Fabian' 'romeo2.pm' 38 1.0 2.0
-197 'PM.Fabian' 'romeo2.pm' 39 1.0 2.0
-198 'PM.Fabian' 'romeo2.pm' 42 1.0 2.0
-199 'PM.Fabian' 'romeo2.pm' 43 1.0 2.0
-200 'PM.Fabian' 'romeo2.pm' 44 1.0 2.0
-201 'PM.Fabian' 'romeo2.pm' 45 1.0 2.0
-202 'PM.Fabian' 'romeo2.pm' 46 1.0 2.0
-203 'PM.Fabian' 'romeo2.pm' 49 1.0 2.0
-204 'PM.Fabian' 'romeo2.pm' 50 1.0 2.0
-205 'PM.Fabian' 'romeo2.pm' 51 1.0 2.0
-206 'PM.Fabian' 'romeo2.pm' 52 1.0 2.0
-207 'PM.Fabian' 'romeo2.pm' 53 1.0 2.0
-208 'PM.Fabian' 'romeo2.pm' 56 1.0 2.0
-209 'PM.Fabian' 'romeo2.pm' 57 1.0 2.0
-210 'PM.Fabian' 'romeo2.pm' 58 1.0 2.0
-211 'PM.Fabian' 'romeo2.pm' 59 1.0 2.0
-212 'PM.Fabian' 'romeo2.pm' 60 1.0 2.0
-213 'PM.Fabian' 'romeo2.pm' 63 1.0 2.0
-214 'PM.Fabian' 'romeo2.pm' 64 1.0 2.0
-215 'PM.Fabian' 'romeo2.pm' 65 1.0 2.0
-216 'PM.Fabian' 'romeo2.pm' 66 1.0 2.0
-217 'PM.Fabian' 'romeo2.pm' 67 1.0 2.0
-218 'PM.Fabian' 'romeo2.pm' 70 1.0 2.0
-219 'PM.Fabian' 'romeo2.pm' 71 1.0 2.0
-220 'PM.Fabian' 'romeo2.pm' 72 1.0 2.0
-221 'PM.Fabian' 'romeo2.pm' 73 1.0 2.0
-222 'PM.Fabian' 'romeo2.pm' 74 1.0 2.0
-223 'PM.Fabian' 'romeo2.pm' 77 1.0 2.0
-224 'PM.Fabian' 'romeo2.pm' 78 1.0 2.0
-225 'PM.Fabian' 'romeo2.pm' 79 1.0 2.0
-226 'PM.Fabian' 'romeo2.pm' 80 1.0 2.0
-227 'PM.Fabian' 'romeo2.pm' 81 1.0 2.0
-228 'PM.Fabian' 'romeo2.pm' 84 1.0 2.0
-229 'PM.Fabian' 'romeo2.pm' 85 1.0 2.0
-230 'PM.Fabian' 'romeo2.pm' 86 1.0 2.0
-231 'PM.Fabian' 'romeo2.pm' 87 1.0 2.0
-232 'PM.Fabian' 'romeo2.pm' 88 1.0 2.0
-233 'PM.Fabian' 'romeo2.pm' 91 1.0 2.0
-234 'PM.Fabian' 'romeo2.pm' 92 1.0 2.0
-235 'PM.Fabian' 'romeo2.pm' 93 1.0 2.0
-236 'PM.Fabian' 'romeo2.pm' 94 1.0 2.0
-237 'PM.Fabian' 'romeo2.pm' 95 1.0 2.0
-238 'PM.Fabian' 'romeo2.pm' 98 1.0 2.0
-239 'PM.Fabian' 'romeo2.pm' 99 1.0 2.0
-240 'PM.Fabian' 'romeo2.pm' 100 1.0 2.0
-241 'PM.Fabian' 'romeo2.pm' 101 1.0 2.0
-242 'PM.Fabian' 'romeo2.pm' 102 1.0 2.0
-243 'PM.Fabian' 'romeo2.pm' 105 1.0 2.0
-244 'PM.Fabian' 'romeo2.pm' 106 1.0 2.0
-245 'PM.Fabian' 'romeo2.pm' 107 1.0 2.0
-246 'PM.Fabian' 'romeo2.pm' 108 1.0 2.0
-247 'PM.Fabian' 'romeo2.pm' 109 1.0 2.0
-248 'PM.Fabian' 'romeo2.pm' 112 1.0 2.0
-249 'PM.Fabian' 'romeo2.pm' 113 1.0 2.0
-250 'PM.Fabian' 'romeo2.pm' 114 1.0 2.0
-251 'PM.Fabian' 'romeo2.pm' 115 1.0 2.0
-252 'PM.Fabian' 'romeo2.pm' 116 1.0 2.0
-253 'PM.Fabian' 'romeo2.pm' 119 1.0 2.0
-254 'PM.Fabian' 'romeo2.pm' 120 1.0 2.0
-255 'PM.Fabian' 'romeo2.pm' 121 1.0 2.0
-256 'PM.Fabian' 'romeo2.pm' 123 1.0 2.0
-257 'PM.Fabian' 'romeo2.pm' 126 1.0 2.0
-258 'PM.Fabian' 'romeo2.pm' 127 1.0 2.0
-259 'PM.Fabian' 'romeo2.pm' 128 1.0 2.0
-260 'PM.Fabian' 'romeo2.pm' 129 1.0 2.0
-261 'PM.Fabian' 'romeo2.pm' 130 1.0 2.0
-262 'PM.Fabian' 'romeo2.pm' 133 1.0 2.0
-263 'PM.Fabian' 'romeo2.pm' 134 1.0 2.0
-264 'PM.Fabian' 'romeo2.pm' 135 1.0 2.0
-265 'PM.Fabian' 'romeo2.pm' 136 1.0 2.0
-266 'PM.Fabian' 'romeo2.pm' 137 1.0 2.0
-267 'PM.Fabian' 'romeo2.pm' 140 1.0 2.0
-268 'PM.Fabian' 'romeo2.pm' 141 1.0 2.0
-269 'PM.Fabian' 'romeo2.pm' 142 1.0 2.0
-270 'PM.Fabian' 'romeo2.pf' 143 7.0 8.0
-271 'PM.Fabian' 'romeo2.pf' 144 7.0 8.0
-272 'PM.Fabian' 'romeo2.pf' 147 7.0 8.0
-273 'PM.Fabian' 'romeo2.pf' 148 7.0 8.0
-274 'PM.Fabian' 'romeo2.pf' 149 7.0 8.0
-275 'PM.Fabian' 'romeo2.pf' 150 7.0 8.0
-276 'PM.Fabian' 'romeo2.pf' 151 7.0 8.0
-277 'PM.Fabian' 'romeo2.pf' 154 7.0 8.0
-278 'PM.Fabian' 'victor2.pm' 101 3.0 4.0
-279 'PM.Fabian' 'victor2.pm' 102 3.0 4.0
-280 'PM.Fabian' 'victor2.pm' 105 3.0 4.0
-281 'PM.Fabian' 'victor2.pm' 106 3.0 4.0
-282 'PM.Fabian' 'victor2.pm' 107 3.0 4.0
-283 'PM.Fabian' 'victor2.pm' 108 3.0 4.0
-284 'PM.Fabian' 'victor2.pm' 109 3.0 4.0
-285 'PM.Fabian' 'victor2.pm' 112 3.0 4.0
-286 'PM.Fabian' 'victor2.pm' 113 3.0 4.0
-287 'PM.Fabian' 'victor2.pm' 114 3.0 4.0
-288 'PM.Fabian' 'victor2.pm' 115 3.0 4.0
-289 'PM.Fabian' 'victor2.pm' 116 3.0 4.0
-290 'PM.Fabian' 'victor2.pm' 119 3.0 4.0
-291 'PM.Fabian' 'victor2.pm' 120 3.0 4.0
-292 'PM.Fabian' 'victor2.pm' 121 3.0 4.0
-293 'PM.Fabian' 'victor2.pm' 123 3.0 4.0
-294 'PM.Fabian' 'victor2.pm' 126 3.0 4.0
-295 'PM.Fabian' 'victor2.pm' 127 3.0 4.0
-296 'PM.Fabian' 'victor2.pm' 128 3.0 4.0
-297 'PM.Fabian' 'victor2.pm' 129 3.0 4.0
-298 'PM.Fabian' 'victor2.pm' 130 3.0 4.0
-299 'PM.Fabian' 'victor2.pm' 133 3.0 4.0
-300 'PM.Fabian' 'victor2.pm' 134 3.0 4.0
-301 'PM.Fabian' 'victor2.pm' 135 3.0 4.0
-302 'PM.Fabian' 'victor2.pm' 136 3.0 4.0
-303 'PM.Fabian' 'victor2.pm' 137 3.0 4.0
-304 'PM.Fabian' 'victor2.pm' 140 3.0 4.0
-305 'PM.Fabian' 'victor2.pm' 141 3.0 4.0
-306 'PM.Fabian' 'victor2.pm' 142 3.0 4.0
-307 'PM.Fabian' 'victor2.pm' 143 3.0 4.0
-308 'PM.Fabian' 'victor2.pm' 144 3.0 4.0
-309 'PM.Fabian' 'victor2.pm' 147 3.0 4.0
-310 'PM.Fabian' 'victor2.pm' 148 3.0 4.0
-311 'PM.Fabian' 'victor2.pm' 149 3.0 4.0
-312 'PM.Fabian' 'victor2.pm' 150 3.0 4.0
-313 'PM.Fabian' 'victor2.pm' 151 3.0 4.0
-314 'PM.Fabian' 'victor2.pm' 154 3.0 4.0
-315 'PM.Fabian' 'victor2.pm' 155 3.0 4.0
-316 'PM.Fabian' 'victor2.pm' 156 3.0 4.0
-317 'PM.Fabian' 'victor2.pm' 157 3.0 4.0
-318 'PM.Fabian' 'victor2.pm' 158 3.0 4.0
-319 'PM.Fabian' 'victor2.pm' 161 3.0 4.0
-320 'PM.Fabian' 'victor2.pm' 162 3.0 4.0
-321 'PM.Fabian' 'victor2.pm' 163 3.0 4.0
-322 'PM.Fabian' 'victor2.pm' 164 3.0 4.0
-323 'PM.Fabian' 'victor2.pm' 165 3.0 4.0
-324 'PM.Fabian' 'victor2.pm' 168 3.0 4.0
-325 'PM.Fabian' 'victor2.pm' 169 3.0 4.0
-326 'PM.Fabian' 'victor2.pm' 170 3.0 4.0
-327 'PM.Fabian' 'victor2.pm' 171 3.0 4.0
-328 'PM.Fabian' 'victor2.pm' 172 3.0 4.0
-329 'PM.Fabian' 'victor2.pm' 175 3.0 4.0
-330 'PM.Fabian' 'victor2.pm' 176 3.0 4.0
-331 'PM.Fabian' 'victor2.pm' 177 3.0 4.0
-332 'PM.Fabian' 'victor2.pm' 178 3.0 4.0
-333 'PM.Fabian' 'victor2.pm' 179 3.0 4.0
-334 'PM.Fabian' 'victor2.pm' 182 3.0 4.0
-335 'PM.Fabian' 'victor2.pm' 183 3.0 4.0
-336 'PM.Fabian' 'victor2.pm' 184 3.0 4.0
-337 'PM.Fabian' 'victor2.pm' 185 3.0 4.0
-338 'PM.Fabian' 'victor2.pm' 186 3.0 4.0
-339 'PM.Fabian' 'victor2.pm' 189 3.0 4.0
-340 'PM.Fabian' 'victor2.pm' 190 3.0 4.0
-341 'PM.Fabian' 'victor2.pm' 191 3.0 4.0
-342 'PM.Fabian' 'victor2.pm' 192 3.0 4.0
-343 'PM.Fabian' 'victor2.pm' 193 3.0 4.0
-344 'PM.Fabian' 'victor2.pm' 196 3.0 4.0
-345 'PM.Fabian' 'victor2.pm' 197 3.0 4.0
-346 'PM.Fabian' 'victor2.pm' 198 3.0 4.0
-347 'PM.Fabian' 'victor2.pm' 199 3.0 4.0
-348 'PM.Fabian' 'victor2.pm' 200 3.0 4.0
-349 'PM.Fabian' 'victor2.pm' 203 3.0 4.0
-350 'PM.Fabian' 'victor2.pm' 204 3.0 4.0
-351 'PM.Fabian' 'victor2.pm' 205 3.0 4.0
-352 'PM.Fabian' 'victor2.pm' 206 3.0 4.0
-353 'PM.Fabian' 'victor2.pm' 207 3.0 4.0
-354 'PM.Fabian' 'victor2.pm' 210 3.0 4.0
-355 'PM.Fabian' 'victor2.pm' 211 3.0 4.0
-356 'PM.Fabian' 'victor2.pm' 212 3.0 4.0
-357 'PM.Fabian' 'victor2.pm' 213 3.0 4.0
-358 'PM.Fabian' 'victor2.pm' 214 3.0 4.0
-359 'PM.Fabian' 'victor2.pm' 217 3.0 4.0
-360 'PM.Fabian' 'victor2.pm' 218 3.0 4.0
-361 'PM.Fabian' 'victor2.pm' 219 3.0 4.0
-362 'PM.Fabian' 'victor2.pm' 220 3.0 4.0
-363 'PM.Fabian' 'victor2.pm' 221 3.0 4.0
-364 'PM.Fabian' 'victor2.pm' 224 3.0 4.0
-365 'PM.Fabian' 'victor2.pm' 225 3.0 4.0
-366 'PM.Fabian' 'victor2.pm' 226 3.0 4.0
-367 'PM.Fabian' 'victor2.pm' 227 3.0 4.0
-368 'PM.Fabian' 'victor2.pm' 228 3.0 4.0
-369 'PM.Fabian' 'victor2.pm' 231 3.0 4.0
-370 'PM.Fabian' 'victor2.pf' 234 8.0 9.0
-371 'PM.Fabian' 'victor2.pf' 235 8.0 9.0
-372 'PM.Fabian' 'victor2.pf' 238 8.0 9.0
-373 'PM.Fabian' 'victor2.pf' 239 8.0 9.0
-374 'PM.Fabian' 'victor2.pf' 240 8.0 9.0
-375 'PM.Fabian' 'victor2.pf' 241 8.0 9.0
-376 'PM.Fabian' 'victor2.pf' 242 8.0 9.0
-377 'PM.Fabian' 'victor2.pf' 245 8.0 9.0;
-
-param XBSUM_NO := 0;
-
-param XBSUM:
-1   2   3   4   5   6 :=
+EXPPER: PBL PBU :=
+'PM.Fabian' 'Jan.25' 0 720
+'PM.Fabian' 'Feb.25' 0 720
+'PM.Fabian' 'Mar.25' 0 720
+'PM.Fabian' 'Apr.25' 0 720
+'PM.Fabian' 'May.25' 0 720
+'PM.Fabian' 'Jun.25' 0 720
+'PM.Fabian' 'Jul.25' 0 720
+'PM.Fabian' 'Aug.25' 0 720
+'PM.Fabian' 'Sep.25' 0 720
+'PM.Fabian' 'Oct.25' 0 720
+'PM.Fabian' 'Nov.25' 0 720
+'PM.Fabian' 'Dec.25' 0 720
 ;
-
-param UBDAY_NO := 0;
-
-param UBDAY:
-1   2   3   4 :=
-;
-
-param UBSUM_NO := 0;
-
-param UBSUM:
-1   2   3   4   5   6 :=
-;
-
-set LINKS :=
-'PM.Fabian' 'india2.pf'
-'PM.Fabian' 'india2.pm'
-'PM.Fabian' 'kilo2.pf'
-'PM.Fabian' 'kilo2.pm'
-'PM.Fabian' 'november2.pf'
-'PM.Fabian' 'november2.pm'
-'PM.Fabian' 'romeo2.pf'
-'PM.Fabian' 'romeo2.pm'
-'PM.Fabian' 'victor2.pe'
-'PM.Fabian' 'victor2.pf'
-'PM.Fabian' 'victor2.pm';
 

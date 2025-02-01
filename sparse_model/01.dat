@@ -20,7 +20,7 @@ set ENAME :=
 ;
 
 
-set EXPTAS :=
+set ASSIGN :=
 'Alojzy'    't1'
 'Alojzy'    't2'
 'Eugeniusz' 't2'

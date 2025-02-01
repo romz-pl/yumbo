@@ -9,12 +9,10 @@ import time
 # Hours per day (Summary)
 #
 def plot():
-    sum_df = sum(st.session_state.glb[f"schedule {e}"] for e in st.session_state.mprob["experts"]["Name"])
-
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("himg")
-    buf = himgsum(sum_df, mm_hash)
+    buf = himgsum(mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -24,22 +22,26 @@ def plot():
 
 
 @st.cache_resource(max_entries=1000)
-def himgsum(df, mm_hash):
+def himgsum(mm_hash):
+
+    df = st.session_state.amplsol.sum(axis=1)
+    # st.write(sum_df)
+
     start = glb.himg("Start")
     end = glb.himg("End")
 
     # Generate the date range as string
-    days = pd.date_range(start=start, end=end, freq="D")
+    #days = pd.date_range(start=start, end=end, freq="D")
 
     # Sum the hours for each day
-    hours_per_day = df[days].sum()
+    #hours_per_day = df[days].sum()
 
     # Calculate plot limits
     left = pd.Timestamp(start) - pd.Timedelta(days=1)
     right = pd.Timestamp(end) + pd.Timedelta(days=1)
 
     # Determine bar width
-    width = 0.9 if days.size < 10 else 1.0
+    width = 0.9 if df.index.size < 10 else 1.0
 
     # Create figure and axis
     fig = matplotlib.figure.Figure(figsize=(glb.himg("Width"), glb.himg("Height")), dpi=glb.himg("Dpi"))
@@ -57,8 +59,8 @@ def himgsum(df, mm_hash):
 
     # Add bars to the plot
     ax.bar(
-        days,
-        hours_per_day,
+        df.index,
+        df.values,
         width,
         color=glb.himg("Bar:color"),
         hatch=glb.himg("Bar:hatch"),
@@ -67,7 +69,7 @@ def himgsum(df, mm_hash):
 
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)
-    ax.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.2f'))
+    #ax.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.2f'))
 
     ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6))
     ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))
