@@ -257,7 +257,7 @@ def save_schedule(ampl):
         # st.write(schedule.index)
         # schedule.index = glb.today() + schedule.index
 
-        schedule.index = pd.to_datetime(glb.today()) + pd.TimedeltaIndex(schedule.index, unit='D')
+        schedule.index = pd.to_datetime(glb.today()) + pd.to_timedelta(schedule.index, unit='D')
 
         amplsol[f"{row.Expert};{row.Task}"] = schedule.astype(np.float16) / quarters_in_hour
         # st.write(sol.dtypes)
