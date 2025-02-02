@@ -165,7 +165,6 @@ def customise_chart_colours():
             f"{key}:Color",
             label_visibility="collapsed",
             value=fun(col),
-
         )
 
 
@@ -173,12 +172,12 @@ def show_task():
     st.subheader("Tasks", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Avg': "{:.4f}"}
     df = st.session_state.mprob["task"].style.format(format)
-    st.dataframe(df, hide_index=False, use_container_width=True)
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_expert():
     st.subheader("Experts", divider="blue")
-    st.dataframe(st.session_state.mprob["expert"], hide_index=False, use_container_width=True)
+    st.dataframe(st.session_state.mprob["expert"], hide_index=True, use_container_width=True)
 
 
 def show_assign():
@@ -188,14 +187,14 @@ def show_assign():
 
 def show_xbday():
     st.subheader("XBDAY bounds", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
+    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
     df = st.session_state.mprob["xbday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_ubday():
     st.subheader("UBDAY bounds", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
+    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
     df = st.session_state.mprob["ubday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
@@ -203,7 +202,7 @@ def show_ubday():
 
 def show_ebday():
     st.subheader("EBDAY bounds", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
+    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
     df = st.session_state.mprob["ebday"].style.format(format)
     st.dataframe(df, hide_index=True, use_container_width=True)
 
@@ -217,7 +216,9 @@ def show_period():
 
 def show_pbsum():
     st.subheader("PBSUM bounds", divider="blue")
-    st.dataframe(st.session_state.mprob["pbsum"], hide_index=True, use_container_width=True)
+    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
+    df = st.session_state.mprob["pbsum"].style.format(format)
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def customise_ampl_options():
