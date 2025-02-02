@@ -239,11 +239,7 @@ def solve():
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash(None)
-    ampl_output, amplsol = solve_ampl(mm_hash)
-    st.session_state.amplsol = amplsol
-
-    st.session_state.glb["solver output"] = ampl_output
-    st.session_state.glb["solver timestamp"] = datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")
+    solve_ampl(mm_hash)
 
     time_end = time.perf_counter()
     st.session_state.glb["time:ampl:ttime"] += time_end - time_start
@@ -286,11 +282,13 @@ def solve_ampl(mm_hash):
     set_model_and_data(ampl)
 
     # Capture solver output
-    ampl_output = ampl.get_output("solve;")
+    st.session_state.glb["solver output"] = ampl.get_output("solve;")
 
     # Check if solving was successful
     if ampl.solve_result != "solved":
         raise Exception(f"Failed to solve AMPL problem. AMPL returned flag: {ampl.solve_result}")
 
-    amplsol = save_schedule(ampl)
-    return ampl_output, amplsol
+    st.session_state.amplsol = save_schedule(ampl)
+
+    st.session_state.glb["solver timestamp"] = datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")
+
