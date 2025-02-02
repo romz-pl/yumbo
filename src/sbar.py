@@ -246,6 +246,8 @@ def show_problem():
     show_period()
     show_pbsum()
 
+    st.session_state.glb["show_ampl_data_file"] = st.checkbox("Show AMPL data file?", value=False)
+
 def customise_expert():
     customise_expert_report_layout()
     customise_show_experts()

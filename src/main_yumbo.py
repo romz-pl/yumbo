@@ -329,6 +329,13 @@ def show_ampl_stats():
 
     st.markdown("**Total elapsed time: :green[{:.3f} [s]]**".format(st.session_state.glb['time:ampl:ttime']))
 
+
+def show_ampl_data_file():
+    if st.session_state.glb["show_ampl_data_file"]:
+        st.subheader(f":green[AMPL data file]", divider="blue")
+        st.code(st.session_state.glb["ampl_data_file"])
+
+
 def show_main_panel():
     show_summary()
     show_all_experts()
@@ -336,6 +343,7 @@ def show_main_panel():
     show_solver_output()
     show_time_counters()
     show_ampl_stats()
+    show_ampl_data_file()
 
 
 def set_page_config():
@@ -412,12 +420,12 @@ def main():
         return
 
     if new_input:
-        romz_ampl.solve(uploaded_file)
-        # try:
-        #     romz_ampl.solve(uploaded_file)
-        # except Exception as e:
-        #     st.subheader(f":red[Exception during solving process.] {e}")
-        #     return
+        try:
+            romz_ampl.solve()
+        except Exception as e:
+            st.subheader(f":red[Exception during solving process.] {e}")
+            show_ampl_data_file()
+            return
 
     show_main_panel()
 

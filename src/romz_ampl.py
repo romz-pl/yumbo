@@ -5,6 +5,7 @@ import numpy as np
 import os
 import pandas as pd
 import streamlit as st
+import tempfile
 import time
 import uuid
 
@@ -177,23 +178,26 @@ def pbsum(f):
     f.write(output)
 
 
-def data_file(name):
-    random_uuid = uuid.uuid4()
-    ampl_data_file = f"./ampl-translated-from-excel/{name}-{random_uuid}.dat"
-    with open(ampl_data_file, 'w') as f:
-        f.write(f'param MAXWORK := {glb.hours_per_day() * quarters_in_hour};\n\n')
 
-        task(f)
-        tscope(f)
-        expert(f)
-        assign(f)
-        xbday(f)
-        # ubday(f)
-        ebday(f)
-        period(f)
-        pbsum(f)
+def data_file():
+    ff = tempfile.NamedTemporaryFile(mode='w+', prefix="yumbo-")
 
-    return ampl_data_file
+    ff.write(f'param MAXWORK := {glb.hours_per_day() * quarters_in_hour};\n\n')
+
+    task(ff)
+    tscope(ff)
+    expert(ff)
+    assign(ff)
+    xbday(ff)
+    # ubday(ff)
+    ebday(ff)
+    period(ff)
+    pbsum(ff)
+
+    ff.seek(0)
+    st.session_state.glb["ampl_data_file"] = ff.read()
+
+    return ff
 
 
 def save_schedule(ampl):
@@ -231,18 +235,18 @@ def set_ampl_license():
         modules.activate(uuid)
 
 
-def solve(uploaded_file):
+def solve():
     time_start = time.perf_counter()
 
-    ampl_output, amplsol = solve_ampl(uploaded_file.name, uploaded_file.getvalue())
+    mm_hash = glb.math_model_hash(None)
+    ampl_output, amplsol = solve_ampl(mm_hash)
     st.session_state.amplsol = amplsol
+
     st.session_state.glb["solver output"] = ampl_output
     st.session_state.glb["solver timestamp"] = datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")
 
     time_end = time.perf_counter()
     st.session_state.glb["time:ampl:ttime"] += time_end - time_start
-
-    # st.write(st.session_state.amplsol)
 
 
 def set_ampl_options(ampl):
@@ -264,21 +268,22 @@ def set_ampl_options(ampl):
         ampl.option[f"{solver}_options"] = solver_options[solver]
 
 
-def set_model_and_data(ampl, name):
+def set_model_and_data(ampl):
     # Change directory to AMPL's working directory
     ampl.cd(os.path.dirname(os.path.dirname(__file__)))
 
     ampl.read("./res/ampl.mod.py")
-    file = data_file(name)
-    ampl.read_data(file)
+    ff = data_file()
+    ampl.read_data(ff.name)
+    ff.close()
 
 
 @st.cache_resource(max_entries=99)
-def solve_ampl(name, file_data):
+def solve_ampl(mm_hash):
     set_ampl_license()
     ampl = AMPL()
     set_ampl_options(ampl)
-    set_model_and_data(ampl, name)
+    set_model_and_data(ampl)
 
     # Capture solver output
     ampl_output = ampl.get_output("solve;")

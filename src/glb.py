@@ -61,8 +61,10 @@ def math_model_hash(img):
         "pbsum",
         "holiday",
         "misc",
-        img,
     ]
+
+    if img != None:
+        keys.append(img)
 
     # Create the input tuple
     input_data = tuple(st.session_state.mprob[k] for k in keys)
