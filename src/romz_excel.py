@@ -181,7 +181,7 @@ def read_from_file(uploaded_file):
         adjust_start_days()
 
 
-@st.cache_resource(max_entries=99)
+# @st.cache_resource(max_entries=99)
 def load(uploaded_file):
     time_start = time.perf_counter()
 

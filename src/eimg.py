@@ -35,10 +35,13 @@ def eimg(task, mm_hash):
     right = pd.Timestamp(task.End) + pd.Timedelta(days=1)
 
     # Initialize figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.eimg("Width"), glb.eimg("Height")), dpi=glb.eimg("Dpi"))
+    fig = matplotlib.figure.Figure(
+        figsize=(glb.eimg("Width"), glb.eimg("Height")),
+        dpi=glb.eimg("Dpi")
+    )
     ax = fig.subplots()
     ax.set_title("Experts per day stacked")
-    ax.set_xlim([left, right])
+    ax.set_xlim(left, right)
 
     # Configure axis formatting and grid
     ax.yaxis.grid(alpha=0.4)
@@ -46,23 +49,24 @@ def eimg(task, mm_hash):
     ax.tick_params(axis="x", labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
 
-    experts = st.session_state.mprob["experts"].sort_values(by="Name")
+    expert_schedules = st.session_state.amplsol.xs(
+        task.Name, level="Task", axis=1, drop_level=False
+    ).loc[days]
 
     # Plot stacked bar chart
     bottom = np.zeros(days.shape[0])
-    for expert in experts.itertuples(index=False):
-        schedule = st.session_state.glb[f"schedule {expert.Name}"][days]
-        expert_data = schedule.loc[task.Name]
-        if expert_data.sum() > 0:
+    for et in expert_schedules.columns:
+        col = expert_schedules[et]
+        if col.sum() > 0:
             ax.bar(
                 days,
-                expert_data,
+                col.values,
                 width,
-                label=expert.Name,
+                label=et[0],
                 bottom=bottom,
                 alpha=glb.eimg("Bar:alpha"),
             )
-            bottom = bottom + expert_data
+            bottom += col.values
 
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)

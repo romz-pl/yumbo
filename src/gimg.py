@@ -25,10 +25,10 @@ def gimg(expert_name, mm_hash):
     session_state = st.session_state
     task = session_state.mprob["task"]
     assign = session_state.mprob["assign"]
-    expert_filter = assign.xs(expert_name, level="Elevel")["Task"]
+    filter = assign.xs(expert_name, level="Elevel")["Task"]
 
     # Filter tasks for the expert
-    expert_tasks = task.loc[expert_filter]
+    expert_tasks = task.loc[filter]
 
     # Sum work done for the expert
     work_done = session_state.amplsol[expert_name].sum(axis=0)

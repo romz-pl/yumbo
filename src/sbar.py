@@ -243,14 +243,15 @@ def customise_task():
     customise_task_report_layout()
     customise_show_tasks()
 
-
-def show():
+def show_planing_horizon():
     st.subheader(f"Planing horizon", divider="blue")
     st.caption(f"Today: :green[{glb.today().date()}]")
     st.caption(f"Tomorrow: :green[{glb.tomorrow().date()}]")
     st.caption(f"Last day: :green[{glb.last_day().date()}]")
     st.caption(f"Number of days: :green[{(glb.last_day() - glb.today()).days}]")
 
+def show():
+    show_planing_horizon()
     st.divider()
 
     tab0, tab1, tab2 = st.tabs(["**Problem**", "**Experts**", "**Tasks**"])
