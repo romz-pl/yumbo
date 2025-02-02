@@ -47,36 +47,49 @@ def highlight_rows(row):
 
 
 def show_schedule_as_table(expert_name):
-    tasks = tasks_for_expert(expert_name)
-    start_date = tasks["Start"].min()
-    end_date = tasks["End"].max()
+    # Retrieve data from session state
+    task = st.session_state.mprob["task"]
+    assign = st.session_state.mprob["assign"]
 
-    # Retrieve the relevant schedule data
+    # Filter tasks for the specified expert
+    filter = assign.xs(expert_name, level="Elevel")["Task"]
+    expert_tasks = task.loc[filter]
+
+    # Calculate the date range
+    start_date, end_date = expert_tasks["Start"].min(), expert_tasks["End"].max()
     days = pd.date_range(start=start_date, end=end_date, freq='D')
-    #st.write(st.session_state.mprob)
-    df = st.session_state.amplsol[f"{expert_name}"].loc[start_date:end_date, tasks["Name"]]
-    df = df.replace(0, '')
-    # df = df.transpose()
-    df.index = days.astype("str")
-    # df.index.name = "Date"
 
-    df.insert(0, "Weekdays", days.day_name())
+    # Retrieve and format the relevant schedule data
+    schedule_data = st.session_state.amplsol[expert_name].loc[start_date:end_date, expert_tasks["Name"]]
+    schedule_data = schedule_data.replace(0, '')
+    schedule_data.index = days.astype(str)
 
-    # Style definitions
-    row_hover = {'selector': 'tr:hover', 'props': [('background-color', '#555555')]}
-    cell_format = {'selector': 'td', 'props': 'text-align: right;'}
-    headers = {'selector': 'th:not(.index_name)', 'props': 'background-color: #000066; color: white;'}
+    # Add weekdays column
+    schedule_data.insert(0, "Weekdays", days.day_name())
 
-    styled_df = df.style \
-                  .format(precision=2) \
-                  .apply(highlight_rows, axis=1) \
-                  .set_table_styles([row_hover, cell_format, headers], overwrite=True) \
-                  .map(lambda v: 'color:LightBlue', subset=['Weekdays'])
+    # Define styles
+    styles = [
+        {'selector': 'tr:hover', 'props': [('background-color', '#555555')]},
+        {'selector': 'td', 'props': [('text-align', 'right')]},
+        {'selector': 'th:not(.index_name)', 'props': [('background-color', '#000066'), ('color', 'white')]}
+    ]
 
+    # Apply styles to the dataframe
+    styled_df = (
+        schedule_data.style
+        .format(precision=2)
+        .apply(highlight_rows, axis=1)
+        .set_table_styles(styles, overwrite=True)
+        .map(lambda v: 'color:LightBlue', subset=['Weekdays'])
+    )
+
+    # Render the styled dataframe as HTML
     st.markdown(styled_df.to_html(), unsafe_allow_html=True)
 
-    if st.checkbox("Show schedule as Streamlit table", value=False, key=f"checkbox_html_table_{expert_name}") :
-        st.dataframe(styled_df, use_container_width=False)
+    # Optionally display the dataframe as a Streamlit table
+    if st.checkbox(f"Show schedule as Streamlit table", value=False, key=f"checkbox_html_table_{expert_name}"):
+        st.dataframe(schedule_data, use_container_width=False)
+
 
 
 def experts_in_tasks_as_table(task, as_html):
