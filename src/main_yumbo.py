@@ -10,6 +10,7 @@ import numpy as np
 import os
 import pandas as pd
 import romz_ampl
+import romz_excel
 import sbar
 import simg
 import streamlit as st
@@ -325,9 +326,10 @@ def show_time_counters():
 
 
 def show_ampl_stats():
-    st.subheader(":green[Statistics on AMPL solution]", divider="blue")
+    st.subheader(":green[Statistics on Yumbo execution]", divider="blue")
 
-    st.markdown("**Total elapsed time: :green[{:.3f} [s]]**".format(st.session_state.glb['time:ampl:ttime']))
+    st.markdown("**Solution time of AMPL model: :green[{:.3f} [s]]**".format(st.session_state.glb['time:ampl:ttime']))
+    st.markdown("**Load time from Excel file:   :green[{:.3f} [s]]**".format(st.session_state.glb["time:excel:ttime"]))
 
 
 def show_ampl_data_file():
@@ -389,6 +391,7 @@ def zero_time_counters():
         st.session_state.glb[f"time:{v}:nbytes"] = 0
 
     st.session_state.glb[f"time:ampl:ttime"] = 0
+    st.session_state.glb[f"time:excel:ttime"] = 0
 
 
 def init_sesion():
@@ -402,30 +405,30 @@ def init_sesion():
         st.session_state.amplsol = pd.DataFrame()
 
 def main():
+    # plt.style.use('seaborn-v0_8-whitegrid')
 
     init_sesion()
-
-    # plt.style.use('seaborn-v0_8-whitegrid')
     set_page_config()
     show_page_header()
     zero_time_counters()
 
     with st.sidebar:
-        uploaded_file = sbar.load_excel_file()
+        uploaded_file = sbar.get_uploaded_file()
         if uploaded_file != None:
-            new_input = sbar.show(uploaded_file)
+            romz_excel.load(uploaded_file)
+            sbar.show()
 
     if uploaded_file == None:
         show_yumbo_description()
         return
 
-    if new_input:
-        try:
-            romz_ampl.solve()
-        except Exception as e:
-            st.subheader(f":red[Exception during solving process.] {e}")
-            show_ampl_data_file()
-            return
+
+    try:
+        romz_ampl.solve()
+    except Exception as e:
+        st.subheader(f":red[Exception during solving process.] {e}")
+        show_ampl_data_file()
+        return
 
     show_main_panel()
 

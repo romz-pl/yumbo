@@ -1,16 +1,17 @@
 import glb
 import numpy as np
 import pandas as pd
-import romz_excel
 import streamlit as st
-import tempfile
 
 
-def load_excel_file():
+
+def get_uploaded_file():
     st.subheader("Load a Excel data file", divider="blue")
+
     uploaded_file = st.file_uploader("Excel file required in format 'xlsx'")
     if uploaded_file == None:
         st.subheader(":red[Select Excel data file for scheduling investigation!]")
+
     st.caption("See the [Yumbo](https://github.com/romz-pl/yambo/tree/main/ampl-data-input-excel) GitHub repository for sample Excel input files.")
     return uploaded_file
 
@@ -219,23 +220,6 @@ def show_pbsum():
     st.dataframe(st.session_state.mprob["pbsum"], hide_index=True, use_container_width=True)
 
 
-def prepare(uploaded_file):
-
-    if 'key:uploaded_file' in st.session_state:
-        new_input = ( st.session_state['key:uploaded_file'] != uploaded_file )
-    else:
-        new_input = True
-
-    if new_input:
-        with tempfile.NamedTemporaryFile(suffix=".xlsx") as f:
-            f.write(uploaded_file.getvalue())
-            f.flush()
-            romz_excel.read(f.name)
-        st.session_state['key:uploaded_file'] = uploaded_file
-
-    return new_input
-
-
 def show_problem():
     show_task()
     show_expert()
@@ -245,8 +229,8 @@ def show_problem():
     show_ebday()
     show_period()
     show_pbsum()
-
     st.session_state.glb["show_ampl_data_file"] = st.checkbox("Show AMPL data file?", value=False)
+
 
 def customise_expert():
     customise_expert_report_layout()
@@ -254,14 +238,13 @@ def customise_expert():
     customise_date_range()
     customise_chart_colours()
 
+
 def customise_task():
     customise_task_report_layout()
     customise_show_tasks()
 
 
-
-def show(uploaded_file):
-    new_input = prepare(uploaded_file)
+def show():
     st.subheader(f"Planing horizon", divider="blue")
     st.caption(f"Today: :green[{glb.today().date()}]")
     st.caption(f"Tomorrow: :green[{glb.tomorrow().date()}]")
@@ -278,4 +261,3 @@ def show(uploaded_file):
     with tab2:
         customise_task()
 
-    return new_input

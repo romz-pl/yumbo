@@ -2,6 +2,9 @@ import glb
 import numpy as np
 import pandas as pd
 import streamlit as st
+import tempfile
+import time
+
 
 # Helper function to handle the date columns parsing
 def parse_date_columns(df, date_columns):
@@ -144,24 +147,37 @@ def adjust_start_days():
         st.session_state.mprob[key].loc[st.session_state.mprob[key][col] < tomorrow, col] = tomorrow
 
 
-def read(file_path):
-    xlsx = pd.ExcelFile(file_path)
-    read_holiday(xlsx)
-    read_misc(xlsx)
-    read_task(xlsx)
-    read_xbday(xlsx)
-    read_ubday(xlsx)
-    read_period(xlsx)
-    read_expert(xlsx)
-    read_ebday(xlsx)
-    read_pbsum(xlsx)
-    read_assign(xlsx)
-    read_himg(xlsx)
-    read_timg(xlsx)
-    read_simg(xlsx)
-    read_gimg(xlsx)
-    read_wimg(xlsx)
-    read_bimg(xlsx)
-    read_eimg(xlsx)
-    adjust_start_days()
+def read_from_file(uploaded_file):
+    with tempfile.NamedTemporaryFile(prefix="yumbo", suffix=".xlsx") as f:
+        f.write(uploaded_file.getvalue())
+        f.flush()
 
+        xlsx = pd.ExcelFile(f)
+        read_holiday(xlsx)
+        read_misc(xlsx)
+        read_task(xlsx)
+        read_xbday(xlsx)
+        read_ubday(xlsx)
+        read_period(xlsx)
+        read_expert(xlsx)
+        read_ebday(xlsx)
+        read_pbsum(xlsx)
+        read_assign(xlsx)
+        read_himg(xlsx)
+        read_timg(xlsx)
+        read_simg(xlsx)
+        read_gimg(xlsx)
+        read_wimg(xlsx)
+        read_bimg(xlsx)
+        read_eimg(xlsx)
+        adjust_start_days()
+
+
+@st.cache_resource(max_entries=99)
+def load(uploaded_file):
+    time_start = time.perf_counter()
+
+    read_from_file(uploaded_file)
+
+    time_end = time.perf_counter()
+    st.session_state.glb["time:excel:ttime"] += time_end - time_start
