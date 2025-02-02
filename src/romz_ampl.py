@@ -245,12 +245,7 @@ def solve(uploaded_file):
     # st.write(st.session_state.amplsol)
 
 
-# @st.cache_resource(max_entries=99)
-def solve_ampl(name, file_data):
-    set_ampl_license()
-    ampl = AMPL()
-
-    # Customise AMPL run
+def set_ampl_options(ampl):
     ampl.set_option('presolve', 10)
     ampl.set_option('show_stats', 7);
     # ampl.set_option('times', 1);
@@ -268,12 +263,22 @@ def solve_ampl(name, file_data):
     if solver in solver_options:
         ampl.option[f"{solver}_options"] = solver_options[solver]
 
+
+def set_model_and_data(ampl, name):
     # Change directory to AMPL's working directory
     ampl.cd(os.path.dirname(os.path.dirname(__file__)))
 
     ampl.read("./res/ampl.mod.py")
     file = data_file(name)
     ampl.read_data(file)
+
+
+# @st.cache_resource(max_entries=99)
+def solve_ampl(name, file_data):
+    set_ampl_license()
+    ampl = AMPL()
+    set_ampl_options(ampl)
+    set_model_and_data(ampl, name)
 
     # Capture solver output
     ampl_output = ampl.get_output("solve;")
