@@ -2,7 +2,6 @@
 import pandas as pd
 pd.options.mode.copy_on_write = True
 
-import datetime
 import numpy as np
 import os
 import streamlit as st
@@ -367,7 +366,7 @@ def show_page_header():
     st.title(":red[Yumbo.] Scheduling, Planning and Resource Allocation")
     st.subheader("Zbigniew Romanowski, Paweł Koczyk")
     st.caption("Source code, documentation and sample Excel input files can be found on [Yumbo's](https://github.com/romz-pl/yambo) GitHub repository.")
-    st.caption("_{d}_".format(d=datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")))
+    st.caption("_{d}_".format(d=pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")))
 
 
 def show_yumbo_description():

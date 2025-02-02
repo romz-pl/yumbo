@@ -1,7 +1,7 @@
-import datetime
 import hashlib
 import io
 import matplotlib
+import pandas as pd
 import streamlit as st
 
 
@@ -43,7 +43,7 @@ def today():
     # return data["misc"].at[0, "Today"]
 
 def tomorrow():
-    return (today() + datetime.timedelta(days=1))
+    return (today() + pd.Timedelta(1, unit="D"))
 
 def last_day():
     return max(st.session_state.mprob["task"]["End"].max(), st.session_state.mprob["period"]["End"].max())

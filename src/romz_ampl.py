@@ -1,5 +1,4 @@
 from amplpy import AMPL, modules
-import datetime
 import glb
 import numpy as np
 import os
@@ -242,7 +241,7 @@ def solve():
     solver_output, amplsol = solve_ampl(mm_hash)
     st.session_state.glb["solver output"] = solver_output
     st.session_state.amplsol = amplsol
-    st.session_state.glb["solver timestamp"] = datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S %p")
+    st.session_state.glb["solver timestamp"] = pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")
 
     time_end = time.perf_counter()
     st.session_state.glb["time:ampl:ttime"] += time_end - time_start
