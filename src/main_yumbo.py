@@ -167,8 +167,10 @@ def show_summary():
 
 
 def show_solver_output():
-    st.subheader(f":green[Solver output at {st.session_state.glb['solver timestamp']}]", divider="blue")
-    st.code(st.session_state.glb["solver output"])
+
+    if st.session_state.glb["show_ampl_solver_log"]:
+        st.subheader(f":green[Solver output at {st.session_state.glb['solver timestamp']}]", divider="blue")
+        st.code(st.session_state.glb["solver output"])
 
 
 def show_one_expert(expert_name):

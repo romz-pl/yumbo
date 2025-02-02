@@ -220,6 +220,12 @@ def show_pbsum():
     st.dataframe(st.session_state.mprob["pbsum"], hide_index=True, use_container_width=True)
 
 
+def customise_ampl_options():
+    st.subheader("AMPL options", divider="blue")
+    st.session_state.glb["show_ampl_solver_log"] = st.checkbox("Show AMPL solver log?", value=False)
+    st.session_state.glb["show_ampl_data_file"] = st.checkbox("Show AMPL data file?", value=False)
+
+
 def show_problem():
     show_task()
     show_expert()
@@ -229,7 +235,8 @@ def show_problem():
     show_ebday()
     show_period()
     show_pbsum()
-    st.session_state.glb["show_ampl_data_file"] = st.checkbox("Show AMPL data file?", value=False)
+    customise_ampl_options()
+
 
 
 def customise_expert():
