@@ -57,8 +57,6 @@ def read_period(xlsx, mprob):
 def read_xbday(xlsx, mprob):
     df = xlsx.parse(sheet_name="xbday", usecols="A:F")
     df = parse_date_columns(df, ["Start", "End"])
-    df.set_index(["Expert", "Task"], drop=False, inplace=True, verify_integrity=False)
-    df.index.names = ["Elevel", "Tlevel"]
     mprob["xbday"] = df
     return mprob
 

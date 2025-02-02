@@ -124,32 +124,6 @@ def experts_in_tasks_as_table_simple(task):
     experts_in_tasks_as_table(task, False)
 
 
-# def show_commitment_per_task(expert_name):
-
-#     # Extract data from session state
-#     task = st.session_state.mprob["task"]
-#     assign = st.session_state.mprob["assign"]
-#     filter = assign.xs(expert_name, level="Elevel")["Task"]
-
-#     # Filter tasks for the expert
-#     expert_tasks = task.loc[filter]
-
-#     schedule = st.session_state.amplsol[f"{expert_name}"]
-
-#     xbday = st.session_state.mprob["xbday"].xs(expert_name, level="Elevel")
-
-#     xbday_grouped = xbday.groupby('Task')
-#     cols = st.columns(3)
-
-#     for jj, task in enumerate(expert_tasks.itertuples(index=False)):
-#         if task.Name in xbday_grouped.groups:
-#             bounds = xbday_grouped.get_group(task.Name)
-#         else:
-#             bounds = pd.DataFrame()
-#         with cols[jj % 3]:
-#             bimg.plot(task, schedule, bounds)
-
-
 def show_commitment_per_task(expert_name):
     # Cache frequently used session state objects
     mprob = st.session_state.mprob
@@ -163,7 +137,7 @@ def show_commitment_per_task(expert_name):
     schedule = amplsol[expert_name]
 
     # Get the 'xbday' DataFrame for the expert and precompute groups by 'Task'
-    xbday = mprob["xbday"].xs(expert_name, level="Elevel")
+    xbday = mprob["xbday"][mprob["xbday"]["Expert"] == expert_name]
     xbday_groups = {group_name: group_df for group_name, group_df in xbday.groupby('Task')}
 
     # Create 3 columns for layout
