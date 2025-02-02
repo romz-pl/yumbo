@@ -197,101 +197,32 @@ def data_file(name):
     return ampl_data_file
 
 
-
 def save_schedule(ampl):
-    #today = glb.today()
-    assign_df = st.session_state.mprob["assign"]
-    # task_df = st.session_state.mprob["task"]
-
-    # day_no = int(ampl.get_data("DAY_NO").to_pandas().iloc[0, 0])
-    # days = pd.date_range(start=today + pd.Timedelta(days=1), periods=day_no, freq='D')
-
-    # holiday = set(st.session_state.mprob["holiday"]["Date"])
-
-    #sol = ampl.get_solution(flat=True, zeros=True)
-
-    #for key, value in sol.items():
-    #    st.write(type(key), type(value))
-
-    # Get the variable object for 'x'
-    #x_var = ampl.getVariable("X")
-
-    # Retrieve the solution values as an amplpy DataFrame (which you can also convert to a pandas DataFrame)
-    #x_values = x_var.getValues()
-
-    # Optionally convert to a pandas DataFrame for further processing
-    #x_df = x_values.toPandas()
-    #st.write(x_df)
-
-    #level0 = ["bar", "bar", "baz", "baz", "foo", "foo", "qux", "qux"]
-    #level1 = ["one", "two", "one", "two", "one", "two", "one", "two"]
-
-
-
-
-
-
-
+    # Create the index for the schedule DataFrame.
     days = pd.date_range(start=glb.tomorrow(), end=glb.last_day(), freq='D')
-    amplsol = pd.DataFrame(index=days)
 
-    level0 = []
-    level1 = []
-
-    for row in assign_df.itertuples(index=False):
-        level0.append(row.Expert)
-        level1.append(row.Task)
-
-        # schedule = ampl.get_data(f"{{d in 1..DAY_NO}} X['{row.Expert}', '{row.Task}', d]").to_pandas().iloc[:, 0]
-        #schedule = ampl.get_data(f"X['{row.Expert}', '{row.Task}']")
-        #st.write(schedule)
-
-
-        schedule = ampl.get_data(f"{{d in TSCOPE['{row.Task}']}} X['{row.Expert}', '{row.Task}', d]").to_pandas().iloc[:, 0]
-        # st.write(type(schedule))
-        #st.write(schedule.to_list(skip_index=True))
-        # st.write(schedule.to_pandas().iloc[:, 0])
-        # schedule.columns = ["X"]
-        # st.write(schedule.columns)
-
-        # st.write(schedule.index)
-        # schedule.index = glb.today() + schedule.index
-
+    # Build a dictionary where keys are (Expert, Task) tuples and values are the corresponding schedule Series.
+    schedule_data = {}
+    for row in st.session_state.mprob["assign"].itertuples(index=False):
+        # Retrieve the schedule series from AMPL.
+        schedule = (
+            ampl.get_data(f"{{d in TSCOPE['{row.Task}']}} X['{row.Expert}', '{row.Task}', d]")
+            .to_pandas()
+            .iloc[:, 0]
+        )
+        # Adjust the schedule index to actual dates.
         schedule.index = pd.to_datetime(glb.today()) + pd.to_timedelta(schedule.index, unit='D')
 
-        amplsol[f"{row.Expert};{row.Task}"] = schedule.astype(np.float16) / quarters_in_hour
-        # st.write(sol.dtypes)
+        # Convert values to np.float16 and apply scaling.
+        schedule_data[(row.Expert, row.Task)] = schedule.astype(np.float16) / quarters_in_hour
 
+    # Create the full DataFrame at once, aligning on the given 'days' index.
+    amplsol = pd.DataFrame(schedule_data, index=days).fillna(0)
 
-
-        # # Create DataFrame from fetched data
-        # df = pd.DataFrame(schedule, dtype=np.float16) / quarters_in_hour
-        # task_start = task_df[task_df["Name"] == row.Task]["Start"].iloc[0]
-        # task_end = task_df[task_df["Name"] == row.Task]["End"].iloc[0]
-        # # st.write(task_start, task_end)
-
-        # df.index = pd.bdate_range(start=task_start, end=task_end, freq='C', holidays=holiday)
-        # df.columns = ["X"]
-        # st.write(df)
-        # all_schedules[(f"{row.Expert}", f"{row.Task}")] = df
-
-    amplsol = amplsol.fillna(0)
-    #st.write(amplsol)
-
-    tuples = list(zip(level0, level1))
-    twoLevelIndex = pd.MultiIndex.from_tuples(tuples, names=["Expert", "Task"])
-    #st.write(twoLevelIndex.get_level_values(0))
-    #st.write(twoLevelIndex.get_level_values(1))
-
-    amplsol.columns = twoLevelIndex
-
-    # st.write(amplsol["DEV.Jarosław"])
-    #st.write(amplsol.xs("DEV.Jarosław", level="Expert", axis=1))
-    #st.write(amplsol.xs("DEV.p18.m", level="Task", axis=1))
-    # st.markdown(amplsol.to_html(), unsafe_allow_html=True)
+    # Set a MultiIndex on the columns with names "Expert" and "Task".
+    amplsol.columns = pd.MultiIndex.from_tuples(amplsol.columns, names=["Expert", "Task"])
 
     return amplsol
-
 
 
 # activate AMPL license
