@@ -179,8 +179,7 @@ def pbsum(f):
 
 def data_file(name):
     random_uuid = uuid.uuid4()
-    # ampl_data_file = f"./ampl-translated-from-excel/{name}-{random_uuid}.dat"
-    ampl_data_file = f"./ampl-translated-from-excel/{name}.dat"
+    ampl_data_file = f"./ampl-translated-from-excel/{name}-{random_uuid}.dat"
     with open(ampl_data_file, 'w') as f:
         f.write(f'param MAXWORK := {glb.hours_per_day() * quarters_in_hour};\n\n')
 
