@@ -22,16 +22,15 @@ def plot(expert_name):
 @st.cache_resource(max_entries=1000)
 def gimg(expert_name, mm_hash):
     # Extract data from session state
-    session_state = st.session_state
-    task = session_state.mprob["task"]
-    assign = session_state.mprob["assign"]
+    task = st.session_state.mprob["task"]
+    assign = st.session_state.mprob["assign"]
     filter = assign.xs(expert_name, level="Elevel")["Task"]
 
     # Filter tasks for the expert
     expert_tasks = task.loc[filter]
 
     # Sum work done for the expert
-    work_done = session_state.amplsol[expert_name].sum(axis=0)
+    work_done = st.session_state.amplsol[expert_name].sum(axis=0)
 
     # Create the figure and axis
     fig = matplotlib.figure.Figure(

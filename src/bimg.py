@@ -45,9 +45,12 @@ def bimg(task, schedule, bounds, mm_hash):
     # Add task bounds
     for row in bounds.itertuples(index=False):
         bound_days = pd.date_range(start=row.Start, end=row.End, freq="D")
+
+        delta = 0.1 if row.Lower == row.Upper else 0
+
         ax.fill_between(bound_days,
-                        row.Lower,
-                        row.Upper,
+                        row.Lower - delta,
+                        row.Upper + delta,
                         color=glb.bimg("Fill:color"),
                         hatch=glb.bimg("Fill:hatch"),
                         alpha=glb.bimg("Fill:alpha")

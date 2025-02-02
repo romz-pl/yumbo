@@ -24,17 +24,6 @@ import wimg
 
 
 
-def tasks_for_expert(expert_name):
-    tasks = st.session_state.mprob["task"]
-    assign = st.session_state.mprob["assign"]
-
-    # Filter the tasks related to the expert
-    filter = assign[assign["Expert"] == expert_name]["Task"]
-
-    # Use .isin() to filter tasks directly
-    return tasks[tasks["Name"].isin(filter)]
-
-
 def show_tasks_gantt_chart(expert_name):
     gimg.plot(expert_name)
 
@@ -135,20 +124,58 @@ def experts_in_tasks_as_table_simple(task):
     experts_in_tasks_as_table(task, False)
 
 
+# def show_commitment_per_task(expert_name):
+
+#     # Extract data from session state
+#     task = st.session_state.mprob["task"]
+#     assign = st.session_state.mprob["assign"]
+#     filter = assign.xs(expert_name, level="Elevel")["Task"]
+
+#     # Filter tasks for the expert
+#     expert_tasks = task.loc[filter]
+
+#     schedule = st.session_state.amplsol[f"{expert_name}"]
+
+#     xbday = st.session_state.mprob["xbday"].xs(expert_name, level="Elevel")
+
+#     xbday_grouped = xbday.groupby('Task')
+#     cols = st.columns(3)
+
+#     for jj, task in enumerate(expert_tasks.itertuples(index=False)):
+#         if task.Name in xbday_grouped.groups:
+#             bounds = xbday_grouped.get_group(task.Name)
+#         else:
+#             bounds = pd.DataFrame()
+#         with cols[jj % 3]:
+#             bimg.plot(task, schedule, bounds)
+
+
 def show_commitment_per_task(expert_name):
-    tasks = tasks_for_expert(expert_name)
-    schedule = st.session_state.amplsol[f"{expert_name}"]
-    xbday = st.session_state.mprob["xbday"][st.session_state.mprob["xbday"]["Expert"] == expert_name]
-    xbday_grouped = xbday.groupby('Task')
+    # Cache frequently used session state objects
+    mprob = st.session_state.mprob
+    amplsol = st.session_state.amplsol
+
+    # Filter tasks for the expert using a cross-section on the assignment DataFrame
+    filter = mprob["assign"].xs(expert_name, level="Elevel")["Task"]
+    expert_tasks = mprob["task"].loc[filter]
+
+    # Get the expert's schedule
+    schedule = amplsol[expert_name]
+
+    # Get the 'xbday' DataFrame for the expert and precompute groups by 'Task'
+    xbday = mprob["xbday"].xs(expert_name, level="Elevel")
+    xbday_groups = {group_name: group_df for group_name, group_df in xbday.groupby('Task')}
+
+    # Create 3 columns for layout
     cols = st.columns(3)
 
-    for jj, task in enumerate(tasks.itertuples(index=False)):
-        if task.Name in xbday_grouped.groups:
-            bounds = xbday_grouped.get_group(task.Name)
-        else:
-            bounds = pd.DataFrame()
-        with cols[jj % 3]:
-            bimg.plot(task, schedule, bounds)
+    # Iterate over each task row (as a namedtuple) and plot the commitment
+    for idx, task_row in enumerate(expert_tasks.itertuples(index=False)):
+        # Look up bounds for the task from the precomputed groups dictionary.
+        bounds = xbday_groups.get(task_row.Name, pd.DataFrame())
+        # Plot in the appropriate column
+        with cols[idx % 3]:
+            bimg.plot(task_row, schedule, bounds)
 
 
 def show_summary():
