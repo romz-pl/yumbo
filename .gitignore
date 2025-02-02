@@ -1,6 +1,5 @@
 # Excel lock file
 *.xlsx#
-ampl-translated-from-excel/
 
 
 # Byte-compiled / optimized / DLL files
