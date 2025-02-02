@@ -273,7 +273,7 @@ def set_model_and_data(ampl, name):
     ampl.read_data(file)
 
 
-# @st.cache_resource(max_entries=99)
+@st.cache_resource(max_entries=99)
 def solve_ampl(name, file_data):
     set_ampl_license()
     ampl = AMPL()
