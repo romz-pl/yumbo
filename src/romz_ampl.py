@@ -294,4 +294,3 @@ def solve_ampl(mm_hash):
 
     amplsol = save_schedule(ampl)
     return ampl_output, amplsol
-
