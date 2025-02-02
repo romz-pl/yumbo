@@ -40,6 +40,8 @@ def read_task(xlsx):
     df = parse_date_columns(df, ["Start", "End"])
     df = add_days_and_workdays(df, "Start", "End")
     df["Avg"] = df["Work"] / df["Workdays"]
+    df.set_index("Name", drop=False, inplace=True, verify_integrity=True)
+    df.index.name = "Nindex"
     st.session_state.mprob["task"] = df
 
 
@@ -63,7 +65,10 @@ def read_ubday(xlsx):
 
 
 def read_expert(xlsx):
-    st.session_state.mprob["expert"] = xlsx.parse(sheet_name="expert", usecols="A:B")
+    df = xlsx.parse(sheet_name="expert", usecols="A:B")
+    df.set_index("Name", drop=False, inplace=True, verify_integrity=True)
+    df.index.name = "Nindex"
+    st.session_state.mprob["expert"] = df
 
 
 def read_ebday(xlsx):
@@ -121,7 +126,10 @@ def read_eimg(xlsx):
 
 
 def read_assign(xlsx):
-    st.session_state.mprob["assign"] = xlsx.parse(sheet_name="assign", usecols="A:B")
+    df = xlsx.parse(sheet_name="assign", usecols="A:B")
+    df.set_index(["Expert", "Task"], drop=False, inplace=True, verify_integrity=True)
+    df.index.names = ["Elevel", "Tlevel"]
+    st.session_state.mprob["assign"] = df
 
 
 def read_pbsum(xlsx):

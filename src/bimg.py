@@ -35,10 +35,7 @@ def bimg(task, schedule, bounds, mm_hash):
     ax.plot(x_task, y_task, glb.bimg("Plot:format"), markeredgewidth=glb.bimg("Plot:markeredgewidth"), label=f"Task {task.Name}")
     ax.step(x_task, y_task, linewidth=glb.bimg("Step:linewidth"), where="mid")
 
-    # Configure grid and axis properties
-    ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5, integer=True))
-    ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator())
-    ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5))
+    # Configure grid
     ax.yaxis.grid(alpha=0.5)
     ax.set_axisbelow(True)
     ax.set_xlim([x_task[0], x_task[-1]])
@@ -58,5 +55,12 @@ def bimg(task, schedule, bounds, mm_hash):
 
     # Add legend and finalize layout
     ax.legend(loc="upper right")
+
+    # Configure axis properties
+    ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5, integer=True))
+    ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator())
+
+    locator = glb.get_major_tick_locator(ax)
+    ax.yaxis.set_major_locator(locator)
 
     return glb.savefig(fig)

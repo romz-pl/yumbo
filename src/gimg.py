@@ -6,11 +6,11 @@ import time
 #
 # Task's Gantt Chart
 #
-def plot(df, work_done):
+def plot(expert_name):
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("gimg")
-    buf = gimg(df, work_done, mm_hash)
+    buf = gimg(expert_name, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -19,27 +19,44 @@ def plot(df, work_done):
     st.session_state.glb["time:gimg:nbytes"] += buf.getbuffer().nbytes
 
 
-@st.cache_resource(max_entries=1000)
-def gimg(df, work_done, mm_hash):
-    # Create figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")), dpi=glb.gimg("Dpi"))
+# @st.cache_resource(max_entries=1000)
+def gimg(expert_name, mm_hash):
+    # Extract data from session state
+    session_state = st.session_state
+    task = session_state.mprob["task"]
+    assign = session_state.mprob["assign"]
+    expert_filter = assign.xs(expert_name, level="Elevel")["Task"]
+
+    # Filter tasks for the expert
+    expert_tasks = task.loc[expert_filter]
+
+    # Sum work done for the expert
+    work_done = session_state.amplsol[expert_name].sum(axis=0)
+
+    # Create the figure and axis
+    fig = matplotlib.figure.Figure(
+        figsize=(glb.gimg("Width"), glb.gimg("Height")),
+        dpi=glb.gimg("Dpi")
+    )
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
 
     # Plot Gantt bars
     rects = ax.barh(
-        y=df["Name"],
-        width=df["Days"] - 1,
-        left=df["Start"],
+        y=expert_tasks["Name"],
+        width=expert_tasks["Days"] - 1,
+        left=expert_tasks["Start"],
         color=glb.gimg("Barh:color"),
         height=glb.gimg("Barh:height"),
         alpha=glb.gimg("Barh:alpha"),
     )
 
-    # Add labels to the bars
+    # Generate labels for the bars
     labels = [
-        f"{round(done)} of {work}" for work, done in zip(df["Work"].to_numpy(), work_done.to_numpy())
+        f"{work_done[idx]} of {task.loc[idx, 'Work']}"
+        for idx in work_done.index
     ]
+
     ax.bar_label(rects, labels=labels, size=6, label_type="center")
 
     # Configure x-axis
@@ -56,6 +73,6 @@ def gimg(df, work_done, mm_hash):
     # Configure layout
     ax.set_ylim(bottom=-0.6)
 
+    # Save the figure and return
     return glb.savefig(fig)
-
 

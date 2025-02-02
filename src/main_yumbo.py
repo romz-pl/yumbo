@@ -1,19 +1,24 @@
-import bimg
+# This must be the first line
+import pandas as pd
+pd.options.mode.copy_on_write = True
+
 import datetime
+import numpy as np
+import os
+import streamlit as st
+
+
+import bimg
 import eimg
 import gimg
 import gimgsum
 import glb
 import himg
 import himgsum
-import numpy as np
-import os
-import pandas as pd
 import romz_ampl
 import romz_excel
 import sbar
 import simg
-import streamlit as st
 import timg
 import timgsum
 import wimg
@@ -32,10 +37,7 @@ def tasks_for_expert(expert_name):
 
 
 def show_tasks_gantt_chart(expert_name):
-    tasks = tasks_for_expert(expert_name)
-    # work_done = st.session_state.glb[f"schedule {expert_name}"].loc[tasks["Name"]].sum(axis=1)
-    work_done = pd.Series(np.zeros(st.session_state.amplsol.shape[0]))
-    gimg.plot(tasks, work_done)
+    gimg.plot(expert_name)
 
 
 def highlight_rows(row):

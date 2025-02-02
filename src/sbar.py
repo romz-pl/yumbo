@@ -173,12 +173,12 @@ def show_task():
     st.subheader("Tasks", divider="blue")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Avg': "{:.4f}"}
     df = st.session_state.mprob["task"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    st.dataframe(df, hide_index=False, use_container_width=True)
 
 
 def show_expert():
     st.subheader("Experts", divider="blue")
-    st.dataframe(st.session_state.mprob["expert"], hide_index=True, use_container_width=True)
+    st.dataframe(st.session_state.mprob["expert"], hide_index=False, use_container_width=True)
 
 
 def show_assign():
