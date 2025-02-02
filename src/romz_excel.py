@@ -14,7 +14,7 @@ def parse_date_columns(df, date_columns):
 
 
 # Helper function to calculate Days and Workdays
-def add_days_and_workdays(df, start, end):
+def add_days_and_workdays(df, start, end, mprob):
 
     # Calculate total days (inclusive)
     df["Days"] = (df[end] - df[start]).dt.days + 1
@@ -23,7 +23,7 @@ def add_days_and_workdays(df, start, end):
     dtype = "datetime64[D]"
 
     # Convert public holidays to numpy datetime64[D]
-    holiday = st.session_state.mprob["holiday"]["Date"].to_numpy(dtype=dtype)
+    holiday = mprob["holiday"]["Date"].to_numpy(dtype=dtype)
 
     # Calculate workdays using numpy's busday_count
     df["Workdays"] = np.busday_count(
@@ -35,108 +35,125 @@ def add_days_and_workdays(df, start, end):
     return df
 
 
-def read_task(xlsx):
+def read_task(xlsx, mprob):
     df = xlsx.parse(sheet_name="task", usecols="A:D")
     df = parse_date_columns(df, ["Start", "End"])
-    df = add_days_and_workdays(df, "Start", "End")
+    df = add_days_and_workdays(df, "Start", "End", mprob)
     df["Avg"] = df["Work"] / df["Workdays"]
     df.set_index("Name", drop=False, inplace=True, verify_integrity=True)
     df.index.name = "Nindex"
-    st.session_state.mprob["task"] = df
+    mprob["task"] = df
+    return mprob
 
 
-def read_period(xlsx):
+def read_period(xlsx, mprob):
     df = xlsx.parse(sheet_name="period", usecols="A:C")
     df = parse_date_columns(df, ["Start", "End"])
-    df = add_days_and_workdays(df, "Start", "End")
-    st.session_state.mprob["period"] =  df
+    df = add_days_and_workdays(df, "Start", "End", mprob)
+    mprob["period"] =  df
+    return mprob
 
 
-def read_xbday(xlsx):
+def read_xbday(xlsx, mprob):
     df = xlsx.parse(sheet_name="xbday", usecols="A:F")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.mprob["xbday"] = df
+    mprob["xbday"] = df
+    return mprob
 
 
-def read_ubday(xlsx):
+def read_ubday(xlsx, mprob):
     df = xlsx.parse(sheet_name="ubday", usecols="A:E")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.mprob["ubday"] = df
+    mprob["ubday"] = df
+    return mprob
 
 
-def read_expert(xlsx):
+def read_expert(xlsx, mprob):
     df = xlsx.parse(sheet_name="expert", usecols="A:B")
     df.set_index("Name", drop=False, inplace=True, verify_integrity=True)
     df.index.name = "Nindex"
-    st.session_state.mprob["expert"] = df
+    mprob["expert"] = df
+    return mprob
 
 
-def read_ebday(xlsx):
+def read_ebday(xlsx, mprob):
     df = xlsx.parse(sheet_name="ebday", usecols="A:E")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.mprob["ebday"] = df
+    mprob["ebday"] = df
+    return mprob
 
 
-def read_holiday(xlsx):
+def read_holiday(xlsx, mprob):
     df = xlsx.parse(sheet_name="holiday", usecols="A:A")
     df = parse_date_columns(df, ["Date"])
-    st.session_state.mprob["holiday"] = df
+    mprob["holiday"] = df
+    return mprob
 
 
-def read_misc(xlsx):
+def read_misc(xlsx, mprob):
     df = xlsx.parse(sheet_name="misc", usecols="A:C")
-    st.session_state.mprob["misc"] = df
+    mprob["misc"] = df
+    return mprob
 
 
-def read_himg(xlsx):
+def read_himg(xlsx, mprob):
     df = xlsx.parse(sheet_name="himg", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.mprob["himg"] = df
+    mprob["himg"] = df
+    return mprob
 
 
-def read_timg(xlsx):
+def read_timg(xlsx, mprob):
     df = xlsx.parse(sheet_name="timg", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.mprob["timg"] = df
+    mprob["timg"] = df
+    return mprob
 
 
-def read_simg(xlsx):
+def read_simg(xlsx, mprob):
     df = xlsx.parse(sheet_name="simg", usecols="B:G")
     df = parse_date_columns(df, ["Start", "End"])
-    st.session_state.mprob["simg"] = df
+    mprob["simg"] = df
+    return mprob
 
 
-def read_gimg(xlsx):
+def read_gimg(xlsx, mprob):
     df = xlsx.parse(sheet_name="gimg", usecols="B:G")
-    st.session_state.mprob["gimg"] = df
+    mprob["gimg"] = df
+    return mprob
 
 
-def read_wimg(xlsx):
+def read_wimg(xlsx, mprob):
     df = xlsx.parse(sheet_name="wimg", usecols="B:G")
-    st.session_state.mprob["wimg"] = df
+    mprob["wimg"] = df
+    return mprob
 
 
-def read_bimg(xlsx):
+def read_bimg(xlsx, mprob):
     df = xlsx.parse(sheet_name="bimg", usecols="B:J")
-    st.session_state.mprob["bimg"] = df
+    mprob["bimg"] = df
+    return mprob
 
 
-def read_eimg(xlsx):
-    st.session_state.mprob["eimg"] = xlsx.parse(sheet_name="eimg", usecols="B:E")
+def read_eimg(xlsx, mprob):
+    mprob["eimg"] = xlsx.parse(sheet_name="eimg", usecols="B:E")
+    return mprob
 
 
-def read_assign(xlsx):
+def read_assign(xlsx, mprob):
     df = xlsx.parse(sheet_name="assign", usecols="A:B")
     df.set_index(["Expert", "Task"], drop=False, inplace=True, verify_integrity=True)
     df.index.names = ["Elevel", "Tlevel"]
-    st.session_state.mprob["assign"] = df
+    mprob["assign"] = df
+    return mprob
 
 
-def read_pbsum(xlsx):
-    st.session_state.mprob["pbsum"] = xlsx.parse(sheet_name="pbsum", usecols="A:D")
+def read_pbsum(xlsx, mprob):
+    mprob["pbsum"] = xlsx.parse(sheet_name="pbsum", usecols="A:D")
+    return mprob
 
 
-def adjust_start_days():
+def adjust_start_days(mprob):
     # List of DataFrame keys and the column to update
     targets = [
         "task",
@@ -146,13 +163,16 @@ def adjust_start_days():
         "period",
     ]
 
-    tomorrow = pd.to_datetime(glb.tomorrow(), format=glb.format())
+    today = mprob["misc"].iloc[0]["Today"]
+    tomorrow = today + pd.Timedelta(1, unit="D")
 
     # Apply the adjustment to each target DataFrame
     for key in targets:
         col = "Start"
-        assert(col in st.session_state.mprob[key].columns)
-        st.session_state.mprob[key].loc[st.session_state.mprob[key][col] < tomorrow, col] = tomorrow
+        assert(col in mprob[key].columns)
+        mprob[key].loc[mprob[key][col] < tomorrow, col] = tomorrow
+
+    return mprob
 
 
 def read_from_file(uploaded_file):
@@ -160,32 +180,35 @@ def read_from_file(uploaded_file):
         f.write(uploaded_file.getvalue())
         f.flush()
 
+        mprob = dict()
         xlsx = pd.ExcelFile(f)
-        read_holiday(xlsx)
-        read_misc(xlsx)
-        read_task(xlsx)
-        read_xbday(xlsx)
-        read_ubday(xlsx)
-        read_period(xlsx)
-        read_expert(xlsx)
-        read_ebday(xlsx)
-        read_pbsum(xlsx)
-        read_assign(xlsx)
-        read_himg(xlsx)
-        read_timg(xlsx)
-        read_simg(xlsx)
-        read_gimg(xlsx)
-        read_wimg(xlsx)
-        read_bimg(xlsx)
-        read_eimg(xlsx)
-        adjust_start_days()
+        mprob = read_holiday(xlsx, mprob)
+        mprob = read_misc(xlsx, mprob)
+        mprob = read_task(xlsx, mprob)
+        mprob = read_xbday(xlsx, mprob)
+        mprob = read_ubday(xlsx, mprob)
+        mprob = read_period(xlsx, mprob)
+        mprob = read_expert(xlsx, mprob)
+        mprob = read_ebday(xlsx, mprob)
+        mprob = read_pbsum(xlsx, mprob)
+        mprob = read_assign(xlsx, mprob)
+        mprob = read_himg(xlsx, mprob)
+        mprob = read_timg(xlsx, mprob)
+        mprob = read_simg(xlsx, mprob)
+        mprob = read_gimg(xlsx, mprob)
+        mprob = read_wimg(xlsx, mprob)
+        mprob = read_bimg(xlsx, mprob)
+        mprob = read_eimg(xlsx, mprob)
+        mprob = adjust_start_days(mprob)
+
+        return mprob
 
 
-# @st.cache_resource(max_entries=99)
+@st.cache_resource(max_entries=99)
 def load(uploaded_file):
     time_start = time.perf_counter()
 
-    read_from_file(uploaded_file)
+    st.session_state.mprob = read_from_file(uploaded_file)
 
     time_end = time.perf_counter()
     st.session_state.glb["time:excel:ttime"] += time_end - time_start
