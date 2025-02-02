@@ -21,8 +21,6 @@ def plot(task):
     st.session_state.glb["time:eimg:nbytes"] += buf.getbuffer().nbytes
 
 
-
-
 @st.cache_resource(max_entries=1000)
 def eimg(task, mm_hash):
 
@@ -68,7 +66,6 @@ def eimg(task, mm_hash):
 
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)
-    ax.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.2f'))
 
     ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6))
     ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))

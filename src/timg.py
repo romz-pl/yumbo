@@ -23,17 +23,10 @@ def plot(expert_name):
 
 @st.cache_resource(max_entries=1000)
 def timg(expert_name, mm_hash):
-
     df = (st.session_state.amplsol[f"{expert_name}"] > 0).sum(axis=1)
 
     start = glb.timg("Start")
     end = glb.timg("End")
-
-    # Generate the date range as string
-    #days = pd.date_range(start=start, end=end, freq="D")
-
-    # Count the number of tasks per day
-    #tasks_per_day = (df[days] > 0).sum()
 
     # Calculate plot limits
     left = pd.Timestamp(start) - pd.Timedelta(days=1)

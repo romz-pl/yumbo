@@ -9,46 +9,6 @@ import time
 # Tasks per day (Summary)
 #
 def plot():
-    # # st.write(st.session_state.mprob["assign"][["Expert", "Task"]])
-
-
-    # # sum_df = sum(st.session_state.amplsol[(f"{row.Expert}", f"{t}")] for row in st.session_state.mprob["assign"][["Expert", "Task"]])
-
-    # sum_df = sum(
-    #     st.session_state.amplsol[(f"{row.Expert}", f"{row.Task}")]
-    #     for row in st.session_state.mprob["assign"].itertuples(index=False)
-    # )
-    # st.write(sum_df)
-
-
-    # start = st.session_state.mprob["task"]["Start"].min()
-    # end = st.session_state.mprob["task"]["End"].max()
-
-    # days = pd.date_range(start=start, end=end, freq='D')
-
-    # # Initialize result DataFrame
-    # result = pd.DataFrame(0, index=days, columns=["X"])
-
-    # # Iterate over rows in assign DataFrame
-    # for row in st.session_state.mprob["assign"].itertuples(index=False):
-    #     # Retrieve the solution DataFrame for the current expert and task
-    #     amplsol_series = st.session_state.amplsol[(f"{row.Expert}", f"{row.Task}")]
-
-    #     # # Align amplsol_series with the result DataFrame index and add
-    #     #result["X"] = result["X"].add(amplsol_series.reindex(result.index, fill_value=0), fill_value=0)
-
-    #     # Ensure amplsol_series is aligned with result.index
-    #     amplsol_series = amplsol_series.reindex(result.index, fill_value=0)
-    #     #st.write(amplsol_series, result["X"])
-    #     #st.write(type(amplsol_series))
-
-    #     # Add the aligned amplsol_series to result["X"]
-    #     result["X"] = result["X"] + amplsol_series["X"]
-
-    # st.write(result)
-
-
-
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("timg")
@@ -68,13 +28,6 @@ def timgsum(mm_hash):
 
     start = glb.timg("Start")
     end = glb.timg("End")
-
-    # Generate the date range as string
-    #days = pd.date_range(start=start, end=end, freq="D")
-
-    # Count the number of tasks per day
-    # tasks_per_day = (df[days] > 0).sum()
-    #tasks_per_day = df
 
     # Calculate plot limits
     left = pd.Timestamp(start) - pd.Timedelta(days=1)

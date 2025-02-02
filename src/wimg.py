@@ -31,8 +31,6 @@ def wimg(expert_name, mm_hash):
     bounds = pbsum[ pbsum["Expert"] == expert_name ]
     assert bounds["Lower"].dtype == bounds["Upper"].dtype
     dtype = bounds["Lower"].dtype
-    #st.write(bounds)
-    #st.write(period)
 
     if bounds.empty:
         st.write(":green[No limits have been set for the invoicing periods.]")
@@ -47,9 +45,7 @@ def wimg(expert_name, mm_hash):
         period_data = period_dict[p]
         start = pd.Timestamp(period_data["Start"])
         end = pd.Timestamp(period_data["End"])
-        # st.write(schedule.index)
         x_task = pd.date_range(start=start, end=end, freq="D").intersection(schedule.index)
-        # st.write(schedule.loc[x_task])
         y[idx] = schedule.loc[x_task].sum().sum()
 
     ylower = bounds["Lower"].to_numpy(dtype=dtype)

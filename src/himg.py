@@ -29,12 +29,6 @@ def himg(expert_name, mm_hash):
     start = glb.himg("Start")
     end = glb.himg("End")
 
-    # Generate the date range as string
-    # days = pd.date_range(start=start, end=end, freq="D")
-
-    # Sum the hours for each day
-    # hours_per_day = df[days].sum()
-
     # Calculate plot limits
     left = pd.Timestamp(start) - pd.Timedelta(days=1)
     right = pd.Timestamp(end) + pd.Timedelta(days=1)
@@ -66,7 +60,6 @@ def himg(expert_name, mm_hash):
 
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)
-    # ax.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.2f'))
 
     ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6))
     ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))

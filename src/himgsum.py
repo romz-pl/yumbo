@@ -23,18 +23,10 @@ def plot():
 
 @st.cache_resource(max_entries=1000)
 def himgsum(mm_hash):
-
     df = st.session_state.amplsol.sum(axis=1)
-    # st.write(sum_df)
 
     start = glb.himg("Start")
     end = glb.himg("End")
-
-    # Generate the date range as string
-    #days = pd.date_range(start=start, end=end, freq="D")
-
-    # Sum the hours for each day
-    #hours_per_day = df[days].sum()
 
     # Calculate plot limits
     left = pd.Timestamp(start) - pd.Timedelta(days=1)
@@ -50,7 +42,6 @@ def himgsum(mm_hash):
     # Configure plot properties
     ax.set_title("Hours per day")
     ax.set_xlim([left, right])
-
 
     ax.yaxis.grid(alpha=0.4)
     ax.set_axisbelow(True)
@@ -69,11 +60,8 @@ def himgsum(mm_hash):
 
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)
-    #ax.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.2f'))
 
     ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6))
     ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))
 
     return glb.savefig(fig)
-
-

@@ -21,8 +21,6 @@ def plot(df, work_done):
 
 @st.cache_resource(max_entries=1000)
 def gimg(df, work_done, mm_hash):
-
-
     # Create figure and axis
     fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")), dpi=glb.gimg("Dpi"))
     ax = fig.subplots()
