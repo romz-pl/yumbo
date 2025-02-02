@@ -175,7 +175,8 @@ def adjust_start_days(mprob):
     return mprob
 
 
-def read_from_file(uploaded_file):
+@st.cache_resource(max_entries=99)
+def read_excel_file(uploaded_file):
     with tempfile.NamedTemporaryFile(prefix="yumbo", suffix=".xlsx") as f:
         f.write(uploaded_file.getvalue())
         f.flush()
@@ -204,11 +205,10 @@ def read_from_file(uploaded_file):
         return mprob
 
 
-@st.cache_resource(max_entries=99)
 def load(uploaded_file):
     time_start = time.perf_counter()
 
-    st.session_state.mprob = read_from_file(uploaded_file)
+    st.session_state.mprob = read_excel_file(uploaded_file)
 
     time_end = time.perf_counter()
     st.session_state.glb["time:excel:ttime"] += time_end - time_start
