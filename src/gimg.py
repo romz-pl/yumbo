@@ -19,7 +19,7 @@ def plot(expert_name):
     st.session_state.glb["time:gimg:nbytes"] += buf.getbuffer().nbytes
 
 
-# @st.cache_resource(max_entries=1000)
+@st.cache_resource(max_entries=1000)
 def gimg(expert_name, mm_hash):
     # Extract data from session state
     session_state = st.session_state
