@@ -86,14 +86,15 @@ def experts_in_tasks_as_table(task, as_html):
     # Generate day labels and filter dataframe
     days = pd.date_range(start=task.Start, end=task.End, freq="D")
 
-    experts = st.session_state.mprob["experts"].sort_values(by="Name")
+    experts = st.session_state.mprob["expert"].sort_values(by="Name")
 
     df = pd.DataFrame()
     for expert in experts.itertuples(index=False):
-        schedule = st.session_state.glb[f"schedule {expert.Name}"][days]
-        expert_data = schedule.loc[task.Name]
-        if expert_data.sum() > 0:
-            df[expert.Name] = expert_data
+        schedule = st.session_state.amplsol[expert.Name].loc[days]
+        if task.Name in schedule.columns:
+            expert_data = schedule[task.Name]
+            if expert_data.sum() > 0:
+                df[expert.Name] = expert_data
 
     df = df.replace(0, '')
     df.index = days.astype("str")
