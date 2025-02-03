@@ -24,37 +24,39 @@ def plot(expert_name):
 @st.cache_resource(max_entries=1000)
 def imgw(expert_name, mm_hash):
 
-    # Get schedule for the expert
-    schedule = st.session_state.amplsol[f"{expert_name}"].astype("float32")
+    # Get schedule for the expert and convert to float32.
+    schedule = st.session_state.amplsol[expert_name].astype("float32")
 
-    # Sum across columns for each date.
+    # Sum across columns for each date and compute its cumulative sum.
     sched_sum = schedule.sum(axis=1)
-
-    # Compute the cumulative sum
     cum = sched_sum.cumsum()
 
     # Extract start and end dates for each period
     period = st.session_state.mprob["period"]
-    starts = period["Start"].values
-    ends = period["End"].values
+    starts = period["Start"].to_numpy()
+    ends = period["End"].to_numpy()
 
     # Compute the sum for each period using cumulative sums.
-    yvalue = cum[ends].values - cum[starts].values + sched_sum.loc[starts].values
+    # Note: cum[ends] and cum[starts] use the index labels from 'starts' and 'ends'
+    yvalue = (
+        cum[ends].to_numpy() -
+        cum[starts].to_numpy() +
+        sched_sum.loc[starts].to_numpy()
+    )
 
 
-    # Get bounds (Lower and Upper) for the given expert in one go
-    # Construct a MultiIndex matching (expert_name, period["Name"]) for each period.
+    # Build a MultiIndex to extract the bounds for the given expert and period names.
+    period_names = period["Name"]
     multi_index = pd.MultiIndex.from_arrays(
-            [np.repeat(expert_name, len(period)), period["Name"]],
-            names=["Expert", "Name"]
-        )
+        [np.repeat(expert_name, len(period_names)), period_names],
+        names=["Expert", "Name"]
+    )
 
-    # Reindex pbsum (which has a MultiIndex) to get the bounds for each period.
-    # Missing keys will produce NaN; replace them with 0 (as in the original code).
+    # Reindex pbsum with fill_value=0
     pbsum = st.session_state.mprob["pbsum"]
-    bounds = pbsum.reindex(multi_index)
-    ylower = bounds["Lower"].fillna(0).to_numpy()
-    yupper = bounds["Upper"].fillna(0).to_numpy()
+    bounds = pbsum.reindex(multi_index, fill_value=0)
+    ylower = bounds["Lower"].to_numpy()
+    yupper = bounds["Upper"].to_numpy()
 
     # Create the plot
     fig = matplotlib.figure.Figure(
@@ -76,6 +78,7 @@ def imgw(expert_name, mm_hash):
 
     # Create mask for bars with errors
     mask = (yupper - ylower) != 0
+    # Create error bars
     ax.errorbar(x=np.arange(period.shape[0])[mask],
                 y=np.array(yvalue)[mask],
                 yerr=[(yvalue - ylower)[mask],
