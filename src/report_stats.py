@@ -85,8 +85,16 @@ def show_time_counters():
 def show_ampl_stats():
     st.subheader(":green[Statistics on Yumbo execution]", divider="blue")
 
-    st.markdown("**Solution time of AMPL model: :green[{:.3f} [s]]**".format(st.session_state.stats["ampl:ttime"]))
-    st.markdown("**Load time from Excel file:   :green[{:.3f} [s]]**".format(st.session_state.stats["excel:ttime"]))
+    stats = st.session_state.stats
+
+    st.markdown("**Solution time of AMPL model: :green[{:.3f} [s]]**".format(stats["ampl:ttime"]))
+
+    st.markdown("**Load time from Excel file:   :green[{:.3f} [s]]**".format(stats["excel:ttime"]))
+
+    st.markdown("**Time taken to report on experts:   :green[{:.3f} [s]]**".format(stats["report_experts:ttime"]))
+
+    st.markdown("**Time taken to report on tasks:   :green[{:.3f} [s]]**".format(stats["report_tasks:ttime"]))
+
 
 
 def show():

@@ -2,6 +2,7 @@ import imge
 import pandas as pd
 import streamlit as st
 import styled_table
+import time
 
 
 def experts_in_tasks_as_table(task, as_html):
@@ -61,7 +62,7 @@ def show_one_task(task):
             chart_functions.get(chart_name)(task)
 
 
-def show():
+def show_report():
     tasks = st.session_state.mprob["task"].sort_values(by="Name")
     report = st.session_state.glb["report:tasks"]
 
@@ -75,3 +76,10 @@ def show():
         if report.at[task.Name, "Report"]:
             st.subheader(f"Task: :blue['{task.Name}']", divider="blue")
             show_one_task(task)
+
+
+def show():
+    time_start = time.perf_counter()
+    show_report()
+    time_end = time.perf_counter()
+    st.session_state.stats["report_tasks:ttime"] += time_end - time_start

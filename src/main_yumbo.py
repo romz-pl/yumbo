@@ -68,6 +68,8 @@ def zero_time_counters():
 
     st.session_state.stats["ampl:ttime"] = 0
     st.session_state.stats["excel:ttime"] = 0
+    st.session_state.stats["report_experts:ttime"] = 0
+    st.session_state.stats["report_tasks:ttime"] = 0
 
 
 def init_sesion():

@@ -8,6 +8,7 @@ import imgw
 import pandas as pd
 import streamlit as st
 import styled_table
+import time
 
 
 def show_commitment_per_task(expert_name):
@@ -83,7 +84,7 @@ def show_one_expert(expert_name):
             # Call the corresponding function
             chart_functions.get(chart_name)(expert_name)
 
-def show():
+def show_report():
     experts = st.session_state.mprob["expert"].sort_values(by="Name")
     report = st.session_state.glb["report:experts"]
 
@@ -117,3 +118,10 @@ def show():
 
             if bCommitment:
                 show_commitment_per_task(expert.Name)
+
+
+def show():
+    time_start = time.perf_counter()
+    show_report()
+    time_end = time.perf_counter()
+    st.session_state.stats["report_experts:ttime"] += time_end - time_start
