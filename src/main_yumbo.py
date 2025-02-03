@@ -25,10 +25,6 @@ import styled_table
 
 
 
-def show_tasks_gantt_chart(expert_name):
-    imgg.plot(expert_name)
-
-
 def show_schedule_as_table(expert_name):
     # Retrieve data from session state
     task = st.session_state.mprob["task"]
@@ -149,7 +145,7 @@ def show_one_expert(expert_name):
 
     # Define the mapping of chart names to functions
     chart_functions = {
-        "Task's Gantt chart": show_tasks_gantt_chart,
+        "Task's Gantt chart": imgg.plot,
         "Tasks per day": imgt.plot,
         "Hours per day": imgh.plot,
         "Hours per day stacked": imgs.plot,
