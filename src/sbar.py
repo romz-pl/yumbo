@@ -6,19 +6,19 @@ import streamlit as st
 
 
 def get_uploaded_file():
-    st.subheader("Load a Excel data file", divider="blue")
+    st.subheader("Load Excel data file", divider="blue")
 
     uploaded_file = st.file_uploader("Excel file required in format 'xlsx'")
     if uploaded_file == None:
         st.subheader(":red[Select Excel data file for scheduling investigation!]")
 
-    st.caption("See the [Yumbo](https://github.com/romz-pl/yambo/tree/main/ampl-data-input-excel) GitHub repository for sample Excel input files.")
+    st.markdown("See the [Yumbo](https://github.com/romz-pl/yambo/tree/main/ampl-data-input-excel) GitHub repository for sample Excel input files.")
     return uploaded_file
 
 
 def customise_expert_report_layout():
     st.subheader("Report layout", divider="blue")
-    st.session_state.glb["show_experts_overview"] = st.checkbox("Show experts overview?", value=True)
+
     max_col_no = 5
     report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=max_col_no)
 
@@ -97,7 +97,7 @@ def customise_show_tasks():
     df.sort_index(inplace=True)
 
     # Update column values based on user input from Streamlit checkboxes
-    df[names[0]] = st.checkbox(f"Show all reports", value=False , key=f"task_{names[0]}")
+    df[names[0]] = st.checkbox(f"All reports", value=False , key=f"task_{names[0]}")
 
 
     # Use Streamlit data editor with configuration for interaction
@@ -168,74 +168,10 @@ def customise_chart_colours():
         )
 
 
-def show_task():
-    st.subheader("Tasks", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Avg': "{:.4f}"}
-    df = st.session_state.mprob["task"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
-
-
-def show_expert():
-    st.subheader("Experts", divider="blue")
-    st.dataframe(st.session_state.mprob["expert"], hide_index=True, use_container_width=True)
-
-
-def show_assign():
-    st.subheader("Assignment (allocation)", divider="blue")
-    st.dataframe(st.session_state.mprob["assign"], hide_index=True, use_container_width=True)
-
-
-def show_xbday():
-    st.subheader("XBDAY bounds", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
-    df = st.session_state.mprob["xbday"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
-
-
-def show_ubday():
-    st.subheader("UBDAY bounds", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
-    df = st.session_state.mprob["ubday"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
-
-
-
-def show_ebday():
-    st.subheader("EBDAY bounds", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
-    df = st.session_state.mprob["ebday"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
-
-
-def show_period():
-    st.subheader("Periods", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.mprob["period"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
-
-
-def show_pbsum():
-    st.subheader("PBSUM bounds", divider="blue")
-    format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
-    df = st.session_state.mprob["pbsum"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
-
-
 def customise_ampl():
-    st.subheader("AMPL options", divider="blue")
-    st.session_state.glb["show_ampl_solver_log"] = st.checkbox("Show AMPL solver log?", value=False)
-    st.session_state.glb["show_ampl_data_file"] = st.checkbox("Show AMPL data file?", value=False)
-
-
-def show_problem():
-    show_task()
-    show_expert()
-    show_assign()
-    show_xbday()
-    show_ubday()
-    show_ebday()
-    show_period()
-    show_pbsum()
+    st.subheader("Report layout", divider="blue")
+    st.session_state.glb["show_ampl_solver_log"] = st.checkbox("Solver log", value=False)
+    st.session_state.glb["show_ampl_data_file"] = st.checkbox("AMPL data file", value=False)
 
 
 def customise_expert():
@@ -250,24 +186,45 @@ def customise_task():
     customise_show_tasks()
 
 def show_planing_horizon():
+    st.divider()
     st.subheader(f"Planing horizon", divider="blue")
-    st.caption(f"Today: :green[{glb.today().date()}]")
-    st.caption(f"Tomorrow: :green[{glb.tomorrow().date()}]")
-    st.caption(f"Last day: :green[{glb.last_day().date()}]")
-    st.caption(f"Number of days: :green[{(glb.last_day() - glb.today()).days}]")
+    st.markdown(f"Today: :green[{glb.today().date()}]")
+    st.markdown(f"Tomorrow: :green[{glb.tomorrow().date()}]")
+    st.markdown(f"Last day: :green[{glb.last_day().date()}]")
+    st.markdown(f"Number of days: :green[{(glb.last_day() - glb.today()).days}]")
+
+
+def customise_summary():
+    st.subheader("Report layout", divider="blue")
+    st.session_state.glb["show_experts_summary"] = st.checkbox("Experts summary", value=False)
+
+
+def customise_problem():
+    st.subheader("Report layout", divider="blue")
+    st.session_state.glb["show_problem"] = st.checkbox("Problem definition", value=False)
+
+
+def customise_stats():
+    st.subheader("Report layout", divider="blue")
+    st.session_state.glb["show_stats_chart"] = st.checkbox("Statistics on chart creation", value=False)
+    st.session_state.glb["show_stats_execution"] = st.checkbox("Statistics on Yumbo execution", value=False)
 
 
 def show():
     show_planing_horizon()
     st.divider()
 
-    tab = st.tabs(["**Problem**", "**Experts**", "**Tasks**", "**AMPL**"])
+    tab = st.tabs(["**Experts**", "**Tasks**", "**Summary**", "**AMPL**", "**Problem**", "**Stats**"])
     with tab[0]:
-        show_problem()
-    with tab[1]:
         customise_expert()
-    with tab[2]:
+    with tab[1]:
         customise_task()
+    with tab[2]:
+        customise_summary()
     with tab[3]:
         customise_ampl()
+    with tab[4]:
+        customise_problem()
+    with tab[5]:
+        customise_stats()
 

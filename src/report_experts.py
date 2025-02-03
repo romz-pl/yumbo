@@ -101,14 +101,14 @@ def show_report():
 
     st.divider()
 
-    st.header("Experts", divider="green")
+    st.header(":blue[Experts]", divider="blue")
     for expert in active_experts.itertuples(index=False):
         bCharts = report.at[expert.Name, "Charts"]
         bTable = report.at[expert.Name, "Table"]
         bCommitment = report.at[expert.Name, "Commitment"]
 
         if bCharts or bTable or bCommitment:
-            st.subheader(f"Expert: :blue['{expert.Name}'], {expert.Comment}", divider="blue")
+            st.subheader(f":green[{expert.Name}, {expert.Comment}]", divider="green")
 
             if bCharts:
                 show_one_expert(expert.Name)

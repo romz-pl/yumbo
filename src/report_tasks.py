@@ -71,10 +71,10 @@ def show_report():
 
     st.divider()
 
-    st.header("Tasks", divider="green")
+    st.header(":blue[Tasks]", divider="blue")
     for task in tasks.itertuples(index=False):
         if report.at[task.Name, "Report"]:
-            st.subheader(f"Task: :blue['{task.Name}']", divider="blue")
+            st.subheader(f":green[{task.Name}]", divider="green")
             show_one_task(task)
 
 

@@ -3,7 +3,7 @@ import streamlit as st
 
 
 def show_time_counters():
-    st.subheader(":green[Statistics on chart creation]", divider="blue")
+    st.subheader(":green[Statistics on chart creation]", divider="green")
 
     chart_data = [
         ("Plot task with its constrains", "imgb"),
@@ -83,14 +83,15 @@ def show_time_counters():
 
 
 def show_ampl_stats():
-    st.subheader(":green[Statistics on Yumbo execution]", divider="blue")
+    st.subheader(":green[Statistics on Yumbo execution]", divider="green")
 
     stats = st.session_state.stats
     messages = [
         ("Solution time of AMPL model", "ampl:ttime"),
         ("Load time from Excel file", "excel:ttime"),
         ("Time taken to report on experts", "report_experts:ttime"),
-        ("Time taken to report on tasks", "report_tasks:ttime")
+        ("Time taken to report on tasks", "report_tasks:ttime"),
+        ("Time taken to report on summary", "report_summary:ttime"),
     ]
 
     for label, key in messages:
@@ -98,5 +99,17 @@ def show_ampl_stats():
 
 
 def show():
-    show_time_counters()
-    show_ampl_stats()
+    stats_chart = st.session_state.glb["show_stats_chart"]
+    stats_execution = st.session_state.glb["show_stats_execution"]
+
+    if not (stats_chart or stats_execution):
+        return
+
+    st.divider()
+    st.header(":blue[Statistics]", divider="blue")
+
+    if stats_chart:
+        show_time_counters()
+
+    if stats_execution:
+        show_ampl_stats()
