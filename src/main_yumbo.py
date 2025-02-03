@@ -83,34 +83,49 @@ def show_schedule_as_table(expert_name):
 
 def experts_in_tasks_as_table(task, as_html):
 
-    # Generate day labels and filter dataframe
+    # Generate day labels based on the task start and end dates
     days = pd.date_range(start=task.Start, end=task.End, freq="D")
 
-    experts = st.session_state.mprob["expert"].sort_values(by="Name")
+    # Sort experts by Name
+    experts = st.session_state.mprob["expert"].sort_values("Name")
 
-    df = pd.DataFrame()
+    # Build a dictionary with expert names as keys and their corresponding schedule series as values,
+    # but only include experts that have the task column and a positive total for that task.
+    data = dict()
     for expert in experts.itertuples(index=False):
         schedule = st.session_state.amplsol[expert.Name].loc[days]
         if task.Name in schedule.columns:
             expert_data = schedule[task.Name]
             if expert_data.sum() > 0:
-                df[expert.Name] = expert_data
+                data[expert.Name] = expert_data
 
-    df = df.replace(0, '')
-    df.index = days.astype("str")
+
+    # Create the DataFrame with the index already set to the string representation of `days`
+    df = pd.DataFrame(data, index=days.astype("str"))
+
+    # Replace all 0 values with an empty string in place
+    df.replace(0, '', inplace=True)
+
+    # Insert the "Weekdays" column at the beginning
     df.insert(0, "Weekdays", days.day_name())
 
-    # Style definitions
-    row_hover = {'selector': 'tr:hover', 'props': [('background-color', '#555555')]}
-    cell_format = {'selector': 'td', 'props': 'text-align: right;'}
-    headers = {'selector': 'th:not(.index_name)', 'props': 'background-color: #000066; color: white;'}
+    # Define table styles as a list for clarity
+    styles = [
+        {'selector': 'tr:hover', 'props': [('background-color', '#555555')]},
+        {'selector': 'td', 'props': 'text-align: right;'},
+        {'selector': 'th:not(.index_name)', 'props': 'background-color: #000066; color: white;'}
+    ]
 
-    styled_df = df.style \
-                  .format(precision=2) \
-                  .apply(highlight_rows, axis=1) \
-                  .set_table_styles([row_hover, cell_format, headers], overwrite=True) \
-                  .map(lambda v: 'color:LightBlue', subset=['Weekdays'])
+    # Apply styling to the DataFrame using method chaining with parentheses for better readability
+    styled_df = (
+        df.style
+        .format(precision=2)
+        .apply(highlight_rows, axis=1)
+        .set_table_styles(styles, overwrite=True)
+        .map(lambda v: 'color:LightBlue', subset=['Weekdays'])
+    )
 
+    # Render the styled DataFrame
     if as_html :
         st.markdown(styled_df.to_html(), unsafe_allow_html=True)
     else:
