@@ -1,4 +1,5 @@
-import matplotlib
+import matplotlib.figure as matplotlib_figure
+import matplotlib.ticker as matplotlib_ticker
 import pandas as pd
 import streamlit as st
 import time
@@ -29,7 +30,7 @@ def imgb(task, schedule, bounds, mm_hash):
     y_task = schedule.loc[x_task, task.Name]
 
     # Create figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.imgb("Width"), glb.imgb("Height")), dpi=glb.imgb("Dpi"))
+    fig = matplotlib_figure.Figure(figsize=(glb.imgb("Width"), glb.imgb("Height")), dpi=glb.imgb("Dpi"))
     ax = fig.subplots()
 
     # Plot task data
@@ -61,8 +62,8 @@ def imgb(task, schedule, bounds, mm_hash):
     ax.legend(loc="upper right")
 
     # Configure axis properties
-    ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5, integer=True))
-    ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator())
+    ax.xaxis.set_major_locator(matplotlib_ticker.MaxNLocator(5, integer=True))
+    ax.xaxis.set_minor_locator(matplotlib_ticker.AutoMinorLocator())
 
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)

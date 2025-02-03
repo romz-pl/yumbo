@@ -1,4 +1,5 @@
-import matplotlib
+import matplotlib.figure as matplotlib_figure
+import matplotlib.ticker as matplotlib_ticker
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -60,7 +61,7 @@ def imgw(expert_name, mm_hash):
     yupper = bounds["Upper"].to_numpy()
 
     # Create the plot
-    fig = matplotlib.figure.Figure(
+    fig = matplotlib_figure.Figure(
         figsize=(glb.imgw("Width"), glb.imgw("Height")),
         dpi=glb.imgw("Dpi")
     )

@@ -1,4 +1,5 @@
-import matplotlib
+import matplotlib.figure as matplotlib_figure
+import matplotlib.ticker as matplotlib_ticker
 import streamlit as st
 import time
 
@@ -34,7 +35,7 @@ def imgg(expert_name, mm_hash):
     work_done = st.session_state.amplsol[expert_name].sum(axis=0)
 
     # Create the figure and axis
-    fig = matplotlib.figure.Figure(
+    fig = matplotlib_figure.Figure(
         figsize=(glb.imgg("Width"), glb.imgg("Height")),
         dpi=glb.imgg("Dpi")
     )
@@ -60,12 +61,12 @@ def imgg(expert_name, mm_hash):
     ax.bar_label(rects, labels=labels, size=6, label_type="center")
 
     # Configure x-axis
-    ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5, integer=True))
+    ax.xaxis.set_major_locator(matplotlib_ticker.MaxNLocator(5, integer=True))
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
     ax.set_xlim(left=glb.today())
 
     # Configure y-axis
-    ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(1))
+    ax.yaxis.set_major_locator(matplotlib_ticker.MultipleLocator(1))
     ax.tick_params(axis="y", rotation=0, labelsize="x-small")
     ax.yaxis.grid(alpha=0.5)
     ax.set_axisbelow(True)

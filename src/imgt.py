@@ -1,4 +1,6 @@
-import matplotlib
+import matplotlib.figure as matplotlib_figure
+import matplotlib.ticker as matplotlib_ticker
+import matplotlib.dates as matplotlib_dates
 import pandas as pd
 import streamlit as st
 import time
@@ -37,15 +39,15 @@ def imgt(expert_name, mm_hash):
     width = 0.9 if df.index.size < 10 else 1.0
 
     # Create figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.imgt("Width"), glb.imgt("Height")), dpi=glb.imgt("Dpi"))
+    fig = matplotlib_figure.Figure(figsize=(glb.imgt("Width"), glb.imgt("Height")), dpi=glb.imgt("Dpi"))
     ax = fig.subplots()
 
     # Configure plot properties
     ax.set_title("Tasks per day")
     ax.set_xlim([left, right])
-    ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=6, min_n_ticks=1, integer=True))
-    ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6, interval_multiples=True))
-    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))
+    ax.yaxis.set_major_locator(matplotlib_ticker.MaxNLocator(nbins=6, min_n_ticks=1, integer=True))
+    ax.xaxis.set_major_locator(matplotlib_dates.AutoDateLocator(minticks=3, maxticks=6, interval_multiples=True))
+    ax.xaxis.set_major_formatter(matplotlib_dates.DateFormatter(glb.format()))
     ax.yaxis.grid(alpha=0.4)
     ax.set_axisbelow(True)
     ax.tick_params(axis="x", labelsize="x-small")

@@ -1,4 +1,6 @@
-import matplotlib
+import matplotlib.figure as matplotlib_figure
+import matplotlib.ticker as matplotlib_ticker
+import matplotlib.dates as matplotlib_dates
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -36,7 +38,7 @@ def imge(task, mm_hash):
     right = pd.Timestamp(task.End) + pd.Timedelta(days=1)
 
     # Initialize figure and axis
-    fig = matplotlib.figure.Figure(
+    fig = matplotlib_figure.Figure(
         figsize=(glb.imge("Width"), glb.imge("Height")),
         dpi=glb.imge("Dpi")
     )
@@ -72,8 +74,8 @@ def imge(task, mm_hash):
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)
 
-    ax.xaxis.set_major_locator(matplotlib.dates.AutoDateLocator(minticks=3, maxticks=6))
-    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter(glb.format()))
+    ax.xaxis.set_major_locator(matplotlib_dates.AutoDateLocator(minticks=3, maxticks=6))
+    ax.xaxis.set_major_formatter(matplotlib_dates.DateFormatter(glb.format()))
 
     # Add legend and adjust layout
     ax.legend(loc="upper right", fontsize="6")

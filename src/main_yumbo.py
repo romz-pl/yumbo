@@ -2,7 +2,8 @@
 import pandas as pd
 pd.options.mode.copy_on_write = True
 
-import matplotlib
+import matplotlib.figure as matplotlib_figure
+import matplotlib.ticker as matplotlib_ticker
 import numpy as np
 import os
 import streamlit as st

@@ -1,6 +1,7 @@
 import hashlib
 import io
-import matplotlib
+import matplotlib.figure as matplotlib_figure
+import matplotlib.ticker as matplotlib_ticker
 import pandas as pd
 import streamlit as st
 
@@ -94,10 +95,10 @@ def get_major_tick_locator(ax):
 
     # Determine locator based on the range
     if y_range <= 2:
-        locator = matplotlib.ticker.MultipleLocator(0.25)
+        locator = matplotlib_ticker.MultipleLocator(0.25)
     elif y_range <= 5:
-        locator = matplotlib.ticker.MultipleLocator(0.5)
+        locator = matplotlib_ticker.MultipleLocator(0.5)
     else:
-        locator = matplotlib.ticker.MaxNLocator(steps=[1, 2, 5], integer=True)
+        locator = matplotlib_ticker.MaxNLocator(steps=[1, 2, 5], integer=True)
 
     return locator

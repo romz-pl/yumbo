@@ -1,4 +1,5 @@
-import matplotlib
+import matplotlib.figure as matplotlib_figure
+import matplotlib.ticker as matplotlib_ticker
 import pandas as pd
 import streamlit as st
 import time
