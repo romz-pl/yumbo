@@ -29,28 +29,18 @@ def imgw(expert_name, mm_hash):
 
     # Filter the bounds for the given expert
     bounds = pbsum[ pbsum["Expert"] == expert_name ]
-    assert bounds["Lower"].dtype == bounds["Upper"].dtype
-    dtype = bounds["Lower"].dtype
 
-    if bounds.empty:
-        st.write(":green[No limits have been set for the invoicing periods.]")
-        return
+    yvalue = np.empty(period.shape[0])
+    ylower = np.zeros(period.shape[0])
+    yupper = np.zeros(period.shape[0])
+    for idx, row in enumerate(period.itertuples(index=False)):
+        x_task = pd.date_range(start=row.Start, end=row.End, freq="D").intersection(schedule.index)
+        yvalue[idx] = schedule.loc[x_task].sum().sum()
 
-    # Precompute invoicing period start and end as a dictionary for quick lookup
-    period_dict = period.set_index("Name")[["Start", "End"]].to_dict("index")
+        if (expert_name, row.Name) in pbsum.index:
+            ylower[idx] = pbsum.loc[(expert_name, row.Name)]["Lower"]
+            yupper[idx] = pbsum.loc[(expert_name, row.Name)]["Upper"]
 
-    # Calculate workload for each period
-    y = np.empty(bounds.shape[0], dtype=dtype)
-    for idx, p in enumerate(bounds["Period"]):
-        period_data = period_dict[p]
-        start = pd.Timestamp(period_data["Start"])
-        end = pd.Timestamp(period_data["End"])
-        x_task = pd.date_range(start=start, end=end, freq="D").intersection(schedule.index)
-        y[idx] = schedule.loc[x_task].sum().sum()
-
-    ylower = bounds["Lower"].to_numpy(dtype=dtype)
-    yupper = bounds["Upper"].to_numpy(dtype=dtype)
-    yerr = np.array([y - ylower, yupper - y], dtype=dtype)
 
     # Create the plot
     fig = matplotlib.figure.Figure(figsize=(glb.imgw("Width"), glb.imgw("Height")), dpi=glb.imgw("Dpi"))
@@ -58,16 +48,30 @@ def imgw(expert_name, mm_hash):
     ax.set_ylabel("Hours")
     ax.set_title("Invoicing Periods Workload")
     ax.bar(
-        bounds["Period"],
-        y,
-        yerr=yerr,
+        period["Name"],
+        yvalue,
         color=glb.imgw("Bar:color"),
-        ecolor=glb.imgw("Bar:ecolor"),
-        capsize=glb.imgw("Bar:capsize"),
     )
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
 
+
+    # Create mask for bars with errors
+    mask = np.array(yupper - ylower) != 0
+    ax.errorbar(x=np.arange(period.shape[0])[mask],
+                y=np.array(yvalue)[mask],
+                yerr=[np.array(yvalue - ylower)[mask],
+                      np.array(yupper - yvalue)[mask]],
+                fmt="o",
+                color="black",
+                capsize=glb.imgw("Bar:capsize"),
+                ecolor=glb.imgw("Bar:ecolor"),
+                capthick=2)
+
+
     return glb.savefig(fig)
+
+
+
 
 

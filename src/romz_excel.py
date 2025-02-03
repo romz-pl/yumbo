@@ -35,6 +35,7 @@ def add_days_and_workdays(df, start, end, mprob):
     return df
 
 
+
 def read_task(xlsx, mprob):
     df = xlsx.parse(sheet_name="task", usecols="A:D")
     df = parse_date_columns(df, ["Start", "End"])
@@ -46,11 +47,19 @@ def read_task(xlsx, mprob):
     return mprob
 
 
-def read_period(xlsx, mprob):
-    df = xlsx.parse(sheet_name="period", usecols="A:C")
-    df = parse_date_columns(df, ["Start", "End"])
-    df = add_days_and_workdays(df, "Start", "End", mprob)
-    mprob["period"] =  df
+def read_expert(xlsx, mprob):
+    df = xlsx.parse(sheet_name="expert", usecols="A:B")
+    df.set_index("Name", drop=False, inplace=True, verify_integrity=True)
+    df.index.name = "Nindex"
+    mprob["expert"] = df
+    return mprob
+
+
+def read_assign(xlsx, mprob):
+    df = xlsx.parse(sheet_name="assign", usecols="A:B")
+    df.set_index(["Expert", "Task"], drop=False, inplace=True, verify_integrity=True)
+    df.index.names = ["Elevel", "Tlevel"]
+    mprob["assign"] = df
     return mprob
 
 
@@ -68,18 +77,28 @@ def read_ubday(xlsx, mprob):
     return mprob
 
 
-def read_expert(xlsx, mprob):
-    df = xlsx.parse(sheet_name="expert", usecols="A:B")
-    df.set_index("Name", drop=False, inplace=True, verify_integrity=True)
-    df.index.name = "Nindex"
-    mprob["expert"] = df
-    return mprob
-
-
 def read_ebday(xlsx, mprob):
     df = xlsx.parse(sheet_name="ebday", usecols="A:E")
     df = parse_date_columns(df, ["Start", "End"])
     mprob["ebday"] = df
+    return mprob
+
+
+def read_period(xlsx, mprob):
+    df = xlsx.parse(sheet_name="period", usecols="A:C")
+    df = parse_date_columns(df, ["Start", "End"])
+    df = add_days_and_workdays(df, "Start", "End", mprob)
+    df.set_index("Name", drop=False, inplace=True, verify_integrity=True)
+    df.index.name = "Pindex"
+    mprob["period"] =  df
+    return mprob
+
+
+def read_pbsum(xlsx, mprob):
+    df = xlsx.parse(sheet_name="pbsum", usecols="A:D")
+    df.set_index(["Expert", "Period"], drop=False, inplace=True, verify_integrity=True)
+    df.index.names = ["Elevel", "Plevel"]
+    mprob["pbsum"] = df
     return mprob
 
 
@@ -96,60 +115,47 @@ def read_misc(xlsx, mprob):
     return mprob
 
 
-def read_himg(xlsx, mprob):
+def read_imgh(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgh", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
     mprob["imgh"] = df
     return mprob
 
 
-def read_timg(xlsx, mprob):
+def read_imgt(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgt", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
     mprob["imgt"] = df
     return mprob
 
 
-def read_simg(xlsx, mprob):
+def read_imgs(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgs", usecols="B:G")
     df = parse_date_columns(df, ["Start", "End"])
     mprob["imgs"] = df
     return mprob
 
 
-def read_gimg(xlsx, mprob):
+def read_imgg(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgg", usecols="B:G")
     mprob["imgg"] = df
     return mprob
 
 
-def read_wimg(xlsx, mprob):
+def read_imgw(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgw", usecols="B:G")
     mprob["imgw"] = df
     return mprob
 
 
-def read_bimg(xlsx, mprob):
+def read_imgb(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgb", usecols="B:J")
     mprob["imgb"] = df
     return mprob
 
 
-def read_eimg(xlsx, mprob):
+def read_imge(xlsx, mprob):
     mprob["imge"] = xlsx.parse(sheet_name="imge", usecols="B:E")
-    return mprob
-
-
-def read_assign(xlsx, mprob):
-    df = xlsx.parse(sheet_name="assign", usecols="A:B")
-    df.set_index(["Expert", "Task"], drop=False, inplace=True, verify_integrity=True)
-    df.index.names = ["Elevel", "Tlevel"]
-    mprob["assign"] = df
-    return mprob
-
-
-def read_pbsum(xlsx, mprob):
-    mprob["pbsum"] = xlsx.parse(sheet_name="pbsum", usecols="A:D")
     return mprob
 
 
@@ -193,13 +199,13 @@ def read_excel_file(file_data):
         mprob = read_ebday(xlsx, mprob)
         mprob = read_pbsum(xlsx, mprob)
         mprob = read_assign(xlsx, mprob)
-        mprob = read_himg(xlsx, mprob)
-        mprob = read_timg(xlsx, mprob)
-        mprob = read_simg(xlsx, mprob)
-        mprob = read_gimg(xlsx, mprob)
-        mprob = read_wimg(xlsx, mprob)
-        mprob = read_bimg(xlsx, mprob)
-        mprob = read_eimg(xlsx, mprob)
+        mprob = read_imgh(xlsx, mprob)
+        mprob = read_imgt(xlsx, mprob)
+        mprob = read_imgs(xlsx, mprob)
+        mprob = read_imgg(xlsx, mprob)
+        mprob = read_imgw(xlsx, mprob)
+        mprob = read_imgb(xlsx, mprob)
+        mprob = read_imge(xlsx, mprob)
         mprob = adjust_start_days(mprob)
 
         return mprob
