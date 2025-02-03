@@ -4,30 +4,29 @@ import pandas as pd
 import streamlit as st
 import time
 
+#
+# Tasks per day
+#
+def plot(expert_name):
 
-#
-# Tasks per day (Summary)
-#
-def plot():
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("timg")
-    buf = timgsum( mm_hash)
+    mm_hash = glb.math_model_hash("imgt")
+    buf = imgt(expert_name, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:timgsum:cnt"] += 1
-    st.session_state.glb["time:timgsum:ttime"] += time_end - time_start
-    st.session_state.glb["time:timgsum:nbytes"] += buf.getbuffer().nbytes
+    st.session_state.glb["time:imgt:cnt"] += 1
+    st.session_state.glb["time:imgt:ttime"] += time_end - time_start
+    st.session_state.glb["time:imgt:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource(max_entries=1000)
-def timgsum(mm_hash):
+def imgt(expert_name, mm_hash):
+    df = (st.session_state.amplsol[f"{expert_name}"] > 0).sum(axis=1)
 
-    df = (st.session_state.amplsol > 0).sum(axis=1)
-
-    start = glb.timg("Start")
-    end = glb.timg("End")
+    start = glb.imgt("Start")
+    end = glb.imgt("End")
 
     # Calculate plot limits
     left = pd.Timestamp(start) - pd.Timedelta(days=1)
@@ -37,7 +36,7 @@ def timgsum(mm_hash):
     width = 0.9 if df.index.size < 10 else 1.0
 
     # Create figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.timg("Width"), glb.timg("Height")), dpi=glb.timg("Dpi"))
+    fig = matplotlib.figure.Figure(figsize=(glb.imgt("Width"), glb.imgt("Height")), dpi=glb.imgt("Dpi"))
     ax = fig.subplots()
 
     # Configure plot properties
@@ -56,9 +55,9 @@ def timgsum(mm_hash):
         df.index,
         df.values,
         width,
-        color=glb.timg("Bar:color"),
-        hatch=glb.timg("Bar:hatch"),
-        alpha=glb.timg("Bar:alpha")
+        color=glb.imgt("Bar:color"),
+        hatch=glb.imgt("Bar:hatch"),
+        alpha=glb.imgt("Bar:alpha")
     )
 
     return glb.savefig(fig)

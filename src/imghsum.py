@@ -11,22 +11,22 @@ import time
 def plot():
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("himg")
-    buf = himgsum(mm_hash)
+    mm_hash = glb.math_model_hash("imgh")
+    buf = imghsum(mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:himgsum:cnt"] += 1
-    st.session_state.glb["time:himgsum:ttime"] += time_end - time_start
-    st.session_state.glb["time:himgsum:nbytes"] += buf.getbuffer().nbytes
+    st.session_state.glb["time:imghsum:cnt"] += 1
+    st.session_state.glb["time:imghsum:ttime"] += time_end - time_start
+    st.session_state.glb["time:imghsum:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource(max_entries=1000)
-def himgsum(mm_hash):
+def imghsum(mm_hash):
     df = st.session_state.amplsol.sum(axis=1)
 
-    start = glb.himg("Start")
-    end = glb.himg("End")
+    start = glb.imgh("Start")
+    end = glb.imgh("End")
 
     # Calculate plot limits
     left = pd.Timestamp(start) - pd.Timedelta(days=1)
@@ -36,7 +36,7 @@ def himgsum(mm_hash):
     width = 0.9 if df.index.size < 10 else 1.0
 
     # Create figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.himg("Width"), glb.himg("Height")), dpi=glb.himg("Dpi"))
+    fig = matplotlib.figure.Figure(figsize=(glb.imgh("Width"), glb.imgh("Height")), dpi=glb.imgh("Dpi"))
     ax = fig.subplots()
 
     # Configure plot properties
@@ -53,9 +53,9 @@ def himgsum(mm_hash):
         df.index,
         df.values,
         width,
-        color=glb.himg("Bar:color"),
-        hatch=glb.himg("Bar:hatch"),
-        alpha=glb.himg("Bar:alpha")
+        color=glb.imgh("Bar:color"),
+        hatch=glb.imgh("Bar:hatch"),
+        alpha=glb.imgh("Bar:alpha")
     )
 
     locator = glb.get_major_tick_locator(ax)

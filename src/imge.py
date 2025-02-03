@@ -11,18 +11,18 @@ import time
 def plot(task):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("eimg")
-    buf = eimg(task, mm_hash)
+    mm_hash = glb.math_model_hash("imge")
+    buf = imge(task, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:eimg:cnt"] += 1
-    st.session_state.glb["time:eimg:ttime"] += time_end - time_start
-    st.session_state.glb["time:eimg:nbytes"] += buf.getbuffer().nbytes
+    st.session_state.glb["time:imge:cnt"] += 1
+    st.session_state.glb["time:imge:ttime"] += time_end - time_start
+    st.session_state.glb["time:imge:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource(max_entries=1000)
-def eimg(task, mm_hash):
+def imge(task, mm_hash):
 
     # Generate day labels and filter dataframe
     days = pd.date_range(start=task.Start, end=task.End, freq="D")
@@ -36,8 +36,8 @@ def eimg(task, mm_hash):
 
     # Initialize figure and axis
     fig = matplotlib.figure.Figure(
-        figsize=(glb.eimg("Width"), glb.eimg("Height")),
-        dpi=glb.eimg("Dpi")
+        figsize=(glb.imge("Width"), glb.imge("Height")),
+        dpi=glb.imge("Dpi")
     )
     ax = fig.subplots()
     ax.set_title("Experts per day stacked")
@@ -64,7 +64,7 @@ def eimg(task, mm_hash):
                 width,
                 label=et[0],
                 bottom=bottom,
-                alpha=glb.eimg("Bar:alpha"),
+                alpha=glb.imge("Bar:alpha"),
             )
             bottom += col.values
 

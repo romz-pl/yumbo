@@ -11,18 +11,18 @@ import time
 def plot(expert_name):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("wimg")
-    buf = wimg(expert_name, mm_hash)
+    mm_hash = glb.math_model_hash("imgw")
+    buf = imgw(expert_name, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:wimg:cnt"] += 1
-    st.session_state.glb["time:wimg:ttime"] += time_end - time_start
-    st.session_state.glb["time:wimg:nbytes"] += buf.getbuffer().nbytes
+    st.session_state.glb["time:imgw:cnt"] += 1
+    st.session_state.glb["time:imgw:ttime"] += time_end - time_start
+    st.session_state.glb["time:imgw:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource(max_entries=1000)
-def wimg(expert_name, mm_hash):
+def imgw(expert_name, mm_hash):
     period = st.session_state.mprob["period"]
     schedule = st.session_state.amplsol[f"{expert_name}"]
     pbsum = st.session_state.mprob["pbsum"]
@@ -53,7 +53,7 @@ def wimg(expert_name, mm_hash):
     yerr = np.array([y - ylower, yupper - y], dtype=dtype)
 
     # Create the plot
-    fig = matplotlib.figure.Figure(figsize=(glb.wimg("Width"), glb.wimg("Height")), dpi=glb.wimg("Dpi"))
+    fig = matplotlib.figure.Figure(figsize=(glb.imgw("Width"), glb.imgw("Height")), dpi=glb.imgw("Dpi"))
     ax = fig.subplots()
     ax.set_ylabel("Hours")
     ax.set_title("Invoicing Periods Workload")
@@ -61,9 +61,9 @@ def wimg(expert_name, mm_hash):
         bounds["Period"],
         y,
         yerr=yerr,
-        color=glb.wimg("Bar:color"),
-        ecolor=glb.wimg("Bar:ecolor"),
-        capsize=glb.wimg("Bar:capsize"),
+        color=glb.imgw("Bar:color"),
+        ecolor=glb.imgw("Bar:ecolor"),
+        capsize=glb.imgw("Bar:capsize"),
     )
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")

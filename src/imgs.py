@@ -11,20 +11,20 @@ import time
 def plot(expert_name):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("simg")
-    buf = simg(expert_name, mm_hash)
+    mm_hash = glb.math_model_hash("imgs")
+    buf = imgs(expert_name, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:simg:cnt"] += 1
-    st.session_state.glb["time:simg:ttime"] += time_end - time_start
-    st.session_state.glb["time:simg:nbytes"] += buf.getbuffer().nbytes
+    st.session_state.glb["time:imgs:cnt"] += 1
+    st.session_state.glb["time:imgs:ttime"] += time_end - time_start
+    st.session_state.glb["time:imgs:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource(max_entries=1000)
-def simg(expert_name, mm_hash):
-    start = glb.simg("Start")
-    end = glb.simg("End")
+def imgs(expert_name, mm_hash):
+    start = glb.imgs("Start")
+    end = glb.imgs("End")
 
     # Generate day labels and filter dataframe
     days = pd.date_range(start=start, end=end, freq="D")
@@ -38,7 +38,7 @@ def simg(expert_name, mm_hash):
     right = pd.Timestamp(end) + pd.Timedelta(days=1)
 
     # Initialize figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.simg("Width"), glb.simg("Height")), dpi=glb.simg("Dpi"))
+    fig = matplotlib.figure.Figure(figsize=(glb.imgs("Width"), glb.imgs("Height")), dpi=glb.imgs("Dpi"))
     ax = fig.subplots()
     ax.set_title("Hours per day stacked")
     ax.set_xlim([left, right])
@@ -62,7 +62,7 @@ def simg(expert_name, mm_hash):
             width,
             label=task_name,
             bottom=bottom,
-            alpha=glb.simg("Bar:alpha"),
+            alpha=glb.imgs("Bar:alpha"),
         )
         bottom = bottom + task_data
 

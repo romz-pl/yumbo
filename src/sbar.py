@@ -117,9 +117,9 @@ def customise_date_range():
 
     # Mapping data keys to labels
     sections = {
-        ("timg", "Tasks per day", glb.timg),
-        ("simg", "Tasks per day stacked", glb.simg),
-        ("himg", "Hours per day", glb.himg)
+        ("imgt", "Tasks per day", glb.imgt),
+        ("imgs", "Tasks per day stacked", glb.imgs),
+        ("imgh", "Hours per day", glb.imgh)
     }
 
     mprob = st.session_state.mprob
@@ -150,10 +150,10 @@ def customise_chart_colours():
 
     # Mapping data keys to labels
     sections = [
-        ("timg", "Tasks per day", "Bar:color", glb.timg),
-        ("himg", "Hours per day", "Bar:color", glb.himg),
-        ("gimg", "Task's Gantt Chart", "Barh:color", glb.gimg),
-        ("wimg", "Invoicing Periods Workload", "Bar:color", glb.wimg),
+        ("imgt", "Tasks per day", "Bar:color", glb.imgt),
+        ("imgh", "Hours per day", "Bar:color", glb.imgh),
+        ("imgg", "Task's Gantt Chart", "Barh:color", glb.imgg),
+        ("imgw", "Invoicing Periods Workload", "Bar:color", glb.imgw),
     ]
 
     mprob = st.session_state.mprob

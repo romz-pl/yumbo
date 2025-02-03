@@ -10,26 +10,26 @@ def format():
 
 
 
-def bimg(col):
-    return st.session_state.mprob["bimg"].iloc[0][col]
+def imgb(col):
+    return st.session_state.mprob["imgb"].iloc[0][col]
 
-def eimg(col):
-    return st.session_state.mprob["eimg"].iloc[0][col]
+def imge(col):
+    return st.session_state.mprob["imge"].iloc[0][col]
 
-def gimg(col):
-    return st.session_state.mprob["gimg"].iloc[0][col]
+def imgg(col):
+    return st.session_state.mprob["imgg"].iloc[0][col]
 
-def himg(col):
-    return st.session_state.mprob["himg"].iloc[0][col]
+def imgh(col):
+    return st.session_state.mprob["imgh"].iloc[0][col]
 
-def simg(col):
-    return st.session_state.mprob["simg"].iloc[0][col]
+def imgs(col):
+    return st.session_state.mprob["imgs"].iloc[0][col]
 
-def timg(col):
-    return st.session_state.mprob["timg"].iloc[0][col]
+def imgt(col):
+    return st.session_state.mprob["imgt"].iloc[0][col]
 
-def wimg(col):
-    return st.session_state.mprob["wimg"].iloc[0][col]
+def imgw(col):
+    return st.session_state.mprob["imgw"].iloc[0][col]
 
 
 

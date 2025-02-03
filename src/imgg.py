@@ -9,18 +9,18 @@ import time
 def plot(expert_name):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("gimg")
-    buf = gimg(expert_name, mm_hash)
+    mm_hash = glb.math_model_hash("imgg")
+    buf = imgg(expert_name, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:gimg:cnt"] += 1
-    st.session_state.glb["time:gimg:ttime"] += time_end - time_start
-    st.session_state.glb["time:gimg:nbytes"] += buf.getbuffer().nbytes
+    st.session_state.glb["time:imgg:cnt"] += 1
+    st.session_state.glb["time:imgg:ttime"] += time_end - time_start
+    st.session_state.glb["time:imgg:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource(max_entries=1000)
-def gimg(expert_name, mm_hash):
+def imgg(expert_name, mm_hash):
     # Extract data from session state
     task = st.session_state.mprob["task"]
     assign = st.session_state.mprob["assign"]
@@ -34,8 +34,8 @@ def gimg(expert_name, mm_hash):
 
     # Create the figure and axis
     fig = matplotlib.figure.Figure(
-        figsize=(glb.gimg("Width"), glb.gimg("Height")),
-        dpi=glb.gimg("Dpi")
+        figsize=(glb.imgg("Width"), glb.imgg("Height")),
+        dpi=glb.imgg("Dpi")
     )
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
@@ -45,9 +45,9 @@ def gimg(expert_name, mm_hash):
         y=expert_tasks["Name"],
         width=expert_tasks["Days"] - 1,
         left=expert_tasks["Start"],
-        color=glb.gimg("Barh:color"),
-        height=glb.gimg("Barh:height"),
-        alpha=glb.gimg("Barh:alpha"),
+        color=glb.imgg("Barh:color"),
+        height=glb.imgg("Barh:height"),
+        alpha=glb.imgg("Barh:alpha"),
     )
 
     # Generate labels for the bars

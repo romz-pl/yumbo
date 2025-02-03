@@ -4,29 +4,30 @@ import pandas as pd
 import streamlit as st
 import time
 
-#
-# Tasks per day
-#
-def plot(expert_name):
 
+#
+# Tasks per day (Summary)
+#
+def plot():
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("timg")
-    buf = timg(expert_name, mm_hash)
+    mm_hash = glb.math_model_hash("imgt")
+    buf = imgtsum( mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:timg:cnt"] += 1
-    st.session_state.glb["time:timg:ttime"] += time_end - time_start
-    st.session_state.glb["time:timg:nbytes"] += buf.getbuffer().nbytes
+    st.session_state.glb["time:imgtsum:cnt"] += 1
+    st.session_state.glb["time:imgtsum:ttime"] += time_end - time_start
+    st.session_state.glb["time:imgtsum:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource(max_entries=1000)
-def timg(expert_name, mm_hash):
-    df = (st.session_state.amplsol[f"{expert_name}"] > 0).sum(axis=1)
+def imgtsum(mm_hash):
 
-    start = glb.timg("Start")
-    end = glb.timg("End")
+    df = (st.session_state.amplsol > 0).sum(axis=1)
+
+    start = glb.imgt("Start")
+    end = glb.imgt("End")
 
     # Calculate plot limits
     left = pd.Timestamp(start) - pd.Timedelta(days=1)
@@ -36,7 +37,7 @@ def timg(expert_name, mm_hash):
     width = 0.9 if df.index.size < 10 else 1.0
 
     # Create figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.timg("Width"), glb.timg("Height")), dpi=glb.timg("Dpi"))
+    fig = matplotlib.figure.Figure(figsize=(glb.imgt("Width"), glb.imgt("Height")), dpi=glb.imgt("Dpi"))
     ax = fig.subplots()
 
     # Configure plot properties
@@ -55,9 +56,9 @@ def timg(expert_name, mm_hash):
         df.index,
         df.values,
         width,
-        color=glb.timg("Bar:color"),
-        hatch=glb.timg("Bar:hatch"),
-        alpha=glb.timg("Bar:alpha")
+        color=glb.imgt("Bar:color"),
+        hatch=glb.imgt("Bar:hatch"),
+        alpha=glb.imgt("Bar:alpha")
     )
 
     return glb.savefig(fig)

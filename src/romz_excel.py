@@ -97,46 +97,46 @@ def read_misc(xlsx, mprob):
 
 
 def read_himg(xlsx, mprob):
-    df = xlsx.parse(sheet_name="himg", usecols="B:I")
+    df = xlsx.parse(sheet_name="imgh", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
-    mprob["himg"] = df
+    mprob["imgh"] = df
     return mprob
 
 
 def read_timg(xlsx, mprob):
-    df = xlsx.parse(sheet_name="timg", usecols="B:I")
+    df = xlsx.parse(sheet_name="imgt", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
-    mprob["timg"] = df
+    mprob["imgt"] = df
     return mprob
 
 
 def read_simg(xlsx, mprob):
-    df = xlsx.parse(sheet_name="simg", usecols="B:G")
+    df = xlsx.parse(sheet_name="imgs", usecols="B:G")
     df = parse_date_columns(df, ["Start", "End"])
-    mprob["simg"] = df
+    mprob["imgs"] = df
     return mprob
 
 
 def read_gimg(xlsx, mprob):
-    df = xlsx.parse(sheet_name="gimg", usecols="B:G")
-    mprob["gimg"] = df
+    df = xlsx.parse(sheet_name="imgg", usecols="B:G")
+    mprob["imgg"] = df
     return mprob
 
 
 def read_wimg(xlsx, mprob):
-    df = xlsx.parse(sheet_name="wimg", usecols="B:G")
-    mprob["wimg"] = df
+    df = xlsx.parse(sheet_name="imgw", usecols="B:G")
+    mprob["imgw"] = df
     return mprob
 
 
 def read_bimg(xlsx, mprob):
-    df = xlsx.parse(sheet_name="bimg", usecols="B:J")
-    mprob["bimg"] = df
+    df = xlsx.parse(sheet_name="imgb", usecols="B:J")
+    mprob["imgb"] = df
     return mprob
 
 
 def read_eimg(xlsx, mprob):
-    mprob["eimg"] = xlsx.parse(sheet_name="eimg", usecols="B:E")
+    mprob["imge"] = xlsx.parse(sheet_name="imge", usecols="B:E")
     return mprob
 
 
@@ -176,9 +176,9 @@ def adjust_start_days(mprob):
 
 
 @st.cache_resource(max_entries=99)
-def read_excel_file(uploaded_file):
+def read_excel_file(file_data):
     with tempfile.NamedTemporaryFile(prefix="yumbo", suffix=".xlsx") as f:
-        f.write(uploaded_file.getvalue())
+        f.write(file_data)
         f.flush()
 
         mprob = dict()
@@ -208,7 +208,7 @@ def read_excel_file(uploaded_file):
 def load(uploaded_file):
     time_start = time.perf_counter()
 
-    st.session_state.mprob = read_excel_file(uploaded_file)
+    st.session_state.mprob = read_excel_file(uploaded_file.getvalue())
 
     time_end = time.perf_counter()
     st.session_state.glb["time:excel:ttime"] += time_end - time_start

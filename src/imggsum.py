@@ -11,21 +11,21 @@ import time
 def plot():
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("gimg")
-    buf = gimgsum(mm_hash)
+    mm_hash = glb.math_model_hash("imgg")
+    buf = imggsum(mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:gimgsum:cnt"] += 1
-    st.session_state.glb["time:gimgsum:ttime"] += time_end - time_start
-    st.session_state.glb["time:gimgsum:nbytes"] += buf.getbuffer().nbytes
+    st.session_state.glb["time:imggsum:cnt"] += 1
+    st.session_state.glb["time:imggsum:ttime"] += time_end - time_start
+    st.session_state.glb["time:imggsum:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource(max_entries=1000)
-def gimgsum(mm_hash):
+def imggsum(mm_hash):
     df = st.session_state.mprob["task"]
     # Create figure and axis
-    fig = matplotlib.figure.Figure(figsize=(glb.gimg("Width"), glb.gimg("Height")), dpi=glb.gimg("Dpi"))
+    fig = matplotlib.figure.Figure(figsize=(glb.imgg("Width"), glb.imgg("Height")), dpi=glb.imgg("Dpi"))
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
 
@@ -34,9 +34,9 @@ def gimgsum(mm_hash):
         y=df["Name"],
         width=df["Days"] - 1,
         left=df["Start"],
-        color=glb.gimg("Barh:color"),
-        height=glb.gimg("Barh:height"),
-        alpha=glb.gimg("Barh:alpha"),
+        color=glb.imgg("Barh:color"),
+        height=glb.imgg("Barh:height"),
+        alpha=glb.imgg("Barh:alpha"),
     )
 
     # Configure x-axis

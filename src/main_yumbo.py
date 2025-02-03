@@ -7,25 +7,25 @@ import os
 import streamlit as st
 
 
-import bimg
-import eimg
-import gimg
-import gimgsum
+import imgb
+import imge
+import imgg
+import imggsum
 import glb
-import himg
-import himgsum
+import imgh
+import imghsum
 import romz_ampl
 import romz_excel
 import sbar
-import simg
-import timg
-import timgsum
-import wimg
+import imgs
+import imgt
+import imgtsum
+import imgw
 
 
 
 def show_tasks_gantt_chart(expert_name):
-    gimg.plot(expert_name)
+    imgg.plot(expert_name)
 
 
 def highlight_rows(row):
@@ -149,7 +149,7 @@ def show_commitment_per_task(expert_name):
         bounds = xbday_groups.get(task_row.Name, pd.DataFrame())
         # Plot in the appropriate column
         with cols[idx % 3]:
-            bimg.plot(task_row, schedule, bounds)
+            imgb.plot(task_row, schedule, bounds)
 
 
 def show_summary():
@@ -159,11 +159,11 @@ def show_summary():
         st.header(":blue[Experts overview]", divider="blue")
         col1, col2, col3 = st.columns(3)
         with col1:
-            gimgsum.plot()
+            imggsum.plot()
         with col2:
-            timgsum.plot()
+            imgtsum.plot()
         with col3:
-            himgsum.plot()
+            imghsum.plot()
 
 
 def show_solver_output():
@@ -180,10 +180,10 @@ def show_one_expert(expert_name):
     # Define the mapping of chart names to functions
     chart_functions = {
         "Task's Gantt chart": show_tasks_gantt_chart,
-        "Tasks per day": timg.plot,
-        "Hours per day": himg.plot,
-        "Hours per day stacked": simg.plot,
-        "Invoice period workload": wimg.plot
+        "Tasks per day": imgt.plot,
+        "Hours per day": imgh.plot,
+        "Hours per day stacked": imgs.plot,
+        "Invoice period workload": imgw.plot
     }
 
     for ii, col in enumerate(col_list, start=1):
@@ -234,7 +234,7 @@ def show_one_task(task):
     col_list = st.columns(column_no)
 
     chart_functions = {
-        "Experts per day stacked": eimg.plot,
+        "Experts per day stacked": imge.plot,
         "HTML table": experts_in_tasks_as_table_html,
         "Simple table": experts_in_tasks_as_table_simple,
     }
@@ -268,16 +268,16 @@ def show_time_counters():
     st.subheader(":green[Statistics on chart creation]", divider="blue")
 
     chart_data = [
-        ("Plot task with its constrains", "bimg"),
-        ("Task's Gantt Chart", "gimg"),
-        ("Task's Gantt Chart (Summary)", "gimgsum"),
-        ("Hours per day", "himg"),
-        ("Hours per day  (Summary)", "himgsum"),
-        ("Hours per day stacked", "simg"),
-        ("Tasks per day", "timg"),
-        ("Tasks per day (Summary)", "timgsum"),
-        ("Invoicing Periods Workload", "wimg"),
-        ("Experts per day stacked", "eimg"),
+        ("Plot task with its constrains", "imgb"),
+        ("Task's Gantt Chart", "imgg"),
+        ("Task's Gantt Chart (Summary)", "imggsum"),
+        ("Hours per day", "imgh"),
+        ("Hours per day  (Summary)", "imghsum"),
+        ("Hours per day stacked", "imgs"),
+        ("Tasks per day", "imgt"),
+        ("Tasks per day (Summary)", "imgtsum"),
+        ("Invoicing Periods Workload", "imgw"),
+        ("Experts per day stacked", "imge"),
     ]
 
     time_total_col = "Total time [s]"
@@ -401,7 +401,7 @@ def show_yumbo_description():
 
 
 def zero_time_counters():
-    charts = ["bimg", "gimg", "gimgsum", "himg", "himgsum", "simg", "timg", "timgsum", "wimg", "eimg"]
+    charts = ["imgb", "imgg", "imggsum", "imgh", "imghsum", "imgs", "imgt", "imgtsum", "imgw", "imge"]
     for v in charts:
         st.session_state.glb[f"time:{v}:cnt"] = 0
         st.session_state.glb[f"time:{v}:ttime"] = 0
