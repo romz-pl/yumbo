@@ -275,7 +275,6 @@ def set_model_and_data(ampl):
     ampl.read_data(ff.name)
     ff.close()
 
-
 @st.cache_resource(max_entries=99)
 def solve_ampl(mm_hash):
     set_ampl_license()
