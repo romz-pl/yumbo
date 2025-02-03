@@ -37,14 +37,14 @@ def show_time_counters():
         chart_titles.append(title)
         short_names.append(short_name)
 
-        cnt = st.session_state.glb[f"time:{short_name}:cnt"]
+        cnt = st.session_state.stats[f"{short_name}:cnt"]
         num_calls.append(cnt)
 
-        ttime = st.session_state.glb[f"time:{short_name}:ttime"]
+        ttime = st.session_state.stats[f"{short_name}:ttime"]
         time_total.append(ttime)
         time_avg.append(ttime / cnt if cnt != 0 else 0)
 
-        nbytes = st.session_state.glb[f"time:{short_name}:nbytes"]
+        nbytes = st.session_state.stats[f"{short_name}:nbytes"]
         nbytes_total.append(nbytes / 1024)
         nbytes_avg.append(nbytes / cnt if cnt != 0 else 0)
 
@@ -85,8 +85,8 @@ def show_time_counters():
 def show_ampl_stats():
     st.subheader(":green[Statistics on Yumbo execution]", divider="blue")
 
-    st.markdown("**Solution time of AMPL model: :green[{:.3f} [s]]**".format(st.session_state.glb['time:ampl:ttime']))
-    st.markdown("**Load time from Excel file:   :green[{:.3f} [s]]**".format(st.session_state.glb["time:excel:ttime"]))
+    st.markdown("**Solution time of AMPL model: :green[{:.3f} [s]]**".format(st.session_state.stats["ampl:ttime"]))
+    st.markdown("**Load time from Excel file:   :green[{:.3f} [s]]**".format(st.session_state.stats["excel:ttime"]))
 
 
 def show():

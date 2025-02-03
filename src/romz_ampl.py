@@ -244,7 +244,7 @@ def solve():
     st.session_state.glb["solver timestamp"] = pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:ampl:ttime"] += time_end - time_start
+    st.session_state.stats["ampl:ttime"] += time_end - time_start
 
 
 def set_ampl_options(ampl):

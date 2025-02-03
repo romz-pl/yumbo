@@ -62,12 +62,12 @@ def show_yumbo_description():
 def zero_time_counters():
     charts = ["imgb", "imgg", "imggsum", "imgh", "imghsum", "imgs", "imgt", "imgtsum", "imgw", "imge"]
     for v in charts:
-        st.session_state.glb[f"time:{v}:cnt"] = 0
-        st.session_state.glb[f"time:{v}:ttime"] = 0
-        st.session_state.glb[f"time:{v}:nbytes"] = 0
+        st.session_state.stats[f"{v}:cnt"] = 0
+        st.session_state.stats[f"{v}:ttime"] = 0
+        st.session_state.stats[f"{v}:nbytes"] = 0
 
-    st.session_state.glb[f"time:ampl:ttime"] = 0
-    st.session_state.glb[f"time:excel:ttime"] = 0
+    st.session_state.stats["ampl:ttime"] = 0
+    st.session_state.stats["excel:ttime"] = 0
 
 
 def init_sesion():
@@ -76,6 +76,9 @@ def init_sesion():
 
     if 'mprob' not in st.session_state:
         st.session_state.mprob = dict()
+
+    if 'stats' not in st.session_state:
+        st.session_state.stats = dict()
 
     if 'amplsol' not in st.session_state:
         st.session_state.amplsol = pd.DataFrame()

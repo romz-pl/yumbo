@@ -16,9 +16,9 @@ def plot():
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:imgtsum:cnt"] += 1
-    st.session_state.glb["time:imgtsum:ttime"] += time_end - time_start
-    st.session_state.glb["time:imgtsum:nbytes"] += buf.getbuffer().nbytes
+    st.session_state.stats["imgtsum:cnt"] += 1
+    st.session_state.stats["imgtsum:ttime"] += time_end - time_start
+    st.session_state.stats["imgtsum:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource(max_entries=1000)

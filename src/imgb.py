@@ -16,9 +16,9 @@ def plot(task, schedule, bounds):
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:imgb:cnt"] += 1
-    st.session_state.glb["time:imgb:ttime"] += time_end - time_start
-    st.session_state.glb["time:imgb:nbytes"] += buf.getbuffer().nbytes
+    st.session_state.stats["imgb:cnt"] += 1
+    st.session_state.stats["imgb:ttime"] += time_end - time_start
+    st.session_state.stats["imgb:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource(max_entries=1000)

@@ -14,9 +14,9 @@ def plot(expert_name):
     st.image(buf)
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:imgg:cnt"] += 1
-    st.session_state.glb["time:imgg:ttime"] += time_end - time_start
-    st.session_state.glb["time:imgg:nbytes"] += buf.getbuffer().nbytes
+    st.session_state.stats["imgg:cnt"] += 1
+    st.session_state.stats["imgg:ttime"] += time_end - time_start
+    st.session_state.stats["imgg:nbytes"] += buf.getbuffer().nbytes
 
 
 @st.cache_resource(max_entries=1000)

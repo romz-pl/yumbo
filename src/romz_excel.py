@@ -217,4 +217,4 @@ def load(uploaded_file):
     st.session_state.mprob = read_excel_file(uploaded_file.getvalue())
 
     time_end = time.perf_counter()
-    st.session_state.glb["time:excel:ttime"] += time_end - time_start
+    st.session_state.stats["excel:ttime"] += time_end - time_start
