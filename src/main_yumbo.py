@@ -103,8 +103,11 @@ def experts_in_tasks_as_table(task, as_html):
     # Create the DataFrame with the index already set to the string representation of `days`
     df = pd.DataFrame(data, index=days.astype("str"))
 
-    # Replace all 0 values with an empty string in place
-    df.replace(0, np.nan, inplace=True)
+    # Replace all 0 values
+    if as_html:
+        df.replace(0, '', inplace=True)
+    else:
+        df.replace(0, np.nan, inplace=True)
 
     # Insert the "Weekdays" column at the beginning
     df.insert(0, "Weekdays", days.day_name())
@@ -126,7 +129,7 @@ def experts_in_tasks_as_table(task, as_html):
     )
 
     # Render the styled DataFrame
-    if as_html :
+    if as_html:
         st.markdown(styled_df.to_html(), unsafe_allow_html=True)
     else:
         st.dataframe(styled_df)
