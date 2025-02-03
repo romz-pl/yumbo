@@ -86,15 +86,15 @@ def show_ampl_stats():
     st.subheader(":green[Statistics on Yumbo execution]", divider="blue")
 
     stats = st.session_state.stats
+    messages = [
+        ("Solution time of AMPL model", "ampl:ttime"),
+        ("Load time from Excel file", "excel:ttime"),
+        ("Time taken to report on experts", "report_experts:ttime"),
+        ("Time taken to report on tasks", "report_tasks:ttime")
+    ]
 
-    st.markdown("**Solution time of AMPL model: :green[{:.3f} [s]]**".format(stats["ampl:ttime"]))
-
-    st.markdown("**Load time from Excel file:   :green[{:.3f} [s]]**".format(stats["excel:ttime"]))
-
-    st.markdown("**Time taken to report on experts:   :green[{:.3f} [s]]**".format(stats["report_experts:ttime"]))
-
-    st.markdown("**Time taken to report on tasks:   :green[{:.3f} [s]]**".format(stats["report_tasks:ttime"]))
-
+    for label, key in messages:
+        st.markdown(f"**{label}: :green[{stats[key]:.3f} [s]]**")
 
 
 def show():
