@@ -23,27 +23,45 @@ def plot(expert_name):
 
 @st.cache_resource(max_entries=1000)
 def imgw(expert_name, mm_hash):
+
+    # Get schedule for the expert
+    schedule = st.session_state.amplsol[f"{expert_name}"].astype("float32")
+
+    # Sum across columns for each date.
+    sched_sum = schedule.sum(axis=1)
+
+    # Compute the cumulative sum
+    cum = sched_sum.cumsum()
+
+    # Extract start and end dates for each period
     period = st.session_state.mprob["period"]
-    schedule = st.session_state.amplsol[f"{expert_name}"]
+    starts = period["Start"].values
+    ends = period["End"].values
+
+    # Compute the sum for each period using cumulative sums.
+    yvalue = cum[ends].values - cum[starts].values + sched_sum.loc[starts].values
+
+
+    # Get bounds (Lower and Upper) for the given expert in one go
+    # Construct a MultiIndex matching (expert_name, period["Name"]) for each period.
+    multi_index = pd.MultiIndex.from_arrays(
+            [np.repeat(expert_name, len(period)), period["Name"]],
+            names=["Expert", "Name"]
+        )
+
+    # Reindex pbsum (which has a MultiIndex) to get the bounds for each period.
+    # Missing keys will produce NaN; replace them with 0 (as in the original code).
     pbsum = st.session_state.mprob["pbsum"]
-
-    # Filter the bounds for the given expert
-    bounds = pbsum[ pbsum["Expert"] == expert_name ]
-
-    yvalue = np.empty(period.shape[0])
-    ylower = np.zeros(period.shape[0])
-    yupper = np.zeros(period.shape[0])
-    for idx, row in enumerate(period.itertuples(index=False)):
-        x_task = pd.date_range(start=row.Start, end=row.End, freq="D").intersection(schedule.index)
-        yvalue[idx] = schedule.loc[x_task].sum().sum()
-
-        if (expert_name, row.Name) in pbsum.index:
-            ylower[idx] = pbsum.loc[(expert_name, row.Name)]["Lower"]
-            yupper[idx] = pbsum.loc[(expert_name, row.Name)]["Upper"]
-
+    bounds = pbsum.reindex(multi_index)
+    ylower = bounds["Lower"].fillna(0).to_numpy()
+    yupper = bounds["Upper"].fillna(0).to_numpy()
 
     # Create the plot
-    fig = matplotlib.figure.Figure(figsize=(glb.imgw("Width"), glb.imgw("Height")), dpi=glb.imgw("Dpi"))
+    fig = matplotlib.figure.Figure(
+        figsize=(glb.imgw("Width"), glb.imgw("Height")),
+        dpi=glb.imgw("Dpi")
+    )
+
     ax = fig.subplots()
     ax.set_ylabel("Hours")
     ax.set_title("Invoicing Periods Workload")
@@ -57,11 +75,11 @@ def imgw(expert_name, mm_hash):
 
 
     # Create mask for bars with errors
-    mask = np.array(yupper - ylower) != 0
+    mask = (yupper - ylower) != 0
     ax.errorbar(x=np.arange(period.shape[0])[mask],
                 y=np.array(yvalue)[mask],
-                yerr=[np.array(yvalue - ylower)[mask],
-                      np.array(yupper - yvalue)[mask]],
+                yerr=[(yvalue - ylower)[mask],
+                      (yupper - yvalue)[mask]],
                 fmt="o",
                 color="black",
                 capsize=glb.imgw("Bar:capsize"),
