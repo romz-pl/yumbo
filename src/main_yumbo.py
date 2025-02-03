@@ -7,32 +7,26 @@ import os
 import streamlit as st
 
 
+import glb
 import imgb
 import imge
 import imgg
 import imggsum
-import glb
 import imgh
 import imghsum
-import romz_ampl
-import romz_excel
-import sbar
 import imgs
 import imgt
 import imgtsum
 import imgw
+import romz_ampl
+import romz_excel
+import sbar
+import styled_table
 
 
 
 def show_tasks_gantt_chart(expert_name):
     imgg.plot(expert_name)
-
-
-def highlight_rows(row):
-    if row['Weekdays'] in ['Saturday', 'Sunday']:
-        return ['background-color: rgba(144,238,144, 0.2)'] * len(row)
-    else:
-        return [''] * len(row)
 
 
 def show_schedule_as_table(expert_name):
@@ -49,35 +43,16 @@ def show_schedule_as_table(expert_name):
     days = pd.date_range(start=start_date, end=end_date, freq='D')
 
     # Retrieve and format the relevant schedule data
-    schedule_data = st.session_state.amplsol[expert_name].loc[start_date:end_date, expert_tasks["Name"]]
-    schedule_data = schedule_data.replace(0, '')
-    schedule_data.index = days.astype(str)
+    df = st.session_state.amplsol[expert_name].loc[start_date:end_date, expert_tasks["Name"]]
 
-    # Add weekdays column
-    schedule_data.insert(0, "Weekdays", days.day_name())
-
-    # Define styles
-    styles = [
-        {'selector': 'tr:hover', 'props': [('background-color', '#555555')]},
-        {'selector': 'td', 'props': [('text-align', 'right')]},
-        {'selector': 'th:not(.index_name)', 'props': [('background-color', '#000066'), ('color', 'white')]}
-    ]
-
-    # Apply styles to the dataframe
-    styled_df = (
-        schedule_data.style
-        .format(precision=2)
-        .apply(highlight_rows, axis=1)
-        .set_table_styles(styles, overwrite=True)
-        .map(lambda v: 'color:LightBlue', subset=['Weekdays'])
-    )
+    styled_df = styled_table.create(df, days)
 
     # Render the styled dataframe as HTML
     st.markdown(styled_df.to_html(), unsafe_allow_html=True)
 
     # Optionally display the dataframe as a Streamlit table
-    if st.checkbox(f"Show schedule as Streamlit table", value=False, key=f"checkbox_html_table_{expert_name}"):
-        st.dataframe(schedule_data, use_container_width=False)
+    if st.checkbox(f"Show schedule as simple table", value=False, key=f"checkbox_html_table_{expert_name}"):
+        st.dataframe(styled_df, use_container_width=False)
 
 
 
@@ -101,32 +76,8 @@ def experts_in_tasks_as_table(task, as_html):
 
 
     # Create the DataFrame with the index already set to the string representation of `days`
-    df = pd.DataFrame(data, index=days.astype("str"))
-
-    # Replace all 0 values
-    if as_html:
-        df.replace(0, '', inplace=True)
-    else:
-        df.replace(0, np.nan, inplace=True)
-
-    # Insert the "Weekdays" column at the beginning
-    df.insert(0, "Weekdays", days.day_name())
-
-    # Define table styles as a list for clarity
-    styles = [
-        {'selector': 'tr:hover', 'props': [('background-color', '#555555')]},
-        {'selector': 'td', 'props': 'text-align: right;'},
-        {'selector': 'th:not(.index_name)', 'props': 'background-color: #000066; color: white;'}
-    ]
-
-    # Apply styling to the DataFrame using method chaining with parentheses for better readability
-    styled_df = (
-        df.style
-        .format(precision=2)
-        .apply(highlight_rows, axis=1)
-        .set_table_styles(styles, overwrite=True)
-        .map(lambda v: 'color:LightBlue', subset=['Weekdays'])
-    )
+    df = pd.DataFrame(data)
+    styled_df = styled_table.create(df, days)
 
     # Render the styled DataFrame
     if as_html:
