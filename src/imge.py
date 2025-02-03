@@ -1,9 +1,10 @@
-import glb
 import matplotlib
 import numpy as np
 import pandas as pd
 import streamlit as st
 import time
+
+import glb
 
 #
 # Experts per day stacked

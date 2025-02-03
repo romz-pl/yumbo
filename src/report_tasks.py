@@ -1,8 +1,9 @@
-import imge
 import pandas as pd
 import streamlit as st
 import styled_table
 import time
+
+import imge
 
 
 def experts_in_tasks_as_table(task, as_html):

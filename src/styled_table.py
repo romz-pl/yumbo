@@ -1,4 +1,5 @@
 import numpy as np
+
 import glb
 
 def highlight_rows(row):

@@ -1,3 +1,8 @@
+import matplotlib
+import pandas as pd
+import streamlit as st
+import time
+
 import glb
 import imgb
 import imgg
@@ -5,10 +10,8 @@ import imgh
 import imgs
 import imgt
 import imgw
-import pandas as pd
-import streamlit as st
 import styled_table
-import time
+
 
 
 def show_commitment_per_task(expert_name):

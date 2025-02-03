@@ -1,9 +1,9 @@
-import imggsum
-import imghsum
-import imgtsum
 import streamlit as st
 import time
 
+import imggsum
+import imghsum
+import imgtsum
 
 def show_report():
     if not st.session_state.glb["show_experts_summary"]:

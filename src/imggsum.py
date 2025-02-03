@@ -1,8 +1,8 @@
-import glb
 import matplotlib
 import streamlit as st
 import time
 
+import glb
 
 #
 # Task's Gantt Chart (Summary)

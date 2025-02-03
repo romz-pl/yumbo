@@ -1,7 +1,8 @@
-import glb
 import matplotlib
 import streamlit as st
 import time
+
+import glb
 
 #
 # Task's Gantt Chart
@@ -19,7 +20,7 @@ def plot(expert_name):
     st.session_state.stats["imgg:nbytes"] += buf.getbuffer().nbytes
 
 
-@st.cache_resource(max_entries=1000)
+# @st.cache_resource(max_entries=1000)
 def imgg(expert_name, mm_hash):
     # Extract data from session state
     task = st.session_state.mprob["task"]

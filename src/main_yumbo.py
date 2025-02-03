@@ -2,6 +2,7 @@
 import pandas as pd
 pd.options.mode.copy_on_write = True
 
+import matplotlib
 import numpy as np
 import os
 import streamlit as st
@@ -14,6 +15,7 @@ import report_experts
 import report_stats
 import report_summary
 import report_tasks
+
 
 def show_task():
     st.subheader(":green[Tasks]", divider="green")

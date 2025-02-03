@@ -1,5 +1,4 @@
 from amplpy import AMPL, modules
-import glb
 import numpy as np
 import os
 import pandas as pd
@@ -7,6 +6,8 @@ import streamlit as st
 import tempfile
 import time
 import uuid
+
+import glb
 
 quarters_in_hour = 4
 
