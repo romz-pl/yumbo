@@ -193,9 +193,7 @@ def upload():
             romz_excel.load(uploaded_file)
             sbar.show()
 
-    if uploaded_file == None:
-        show_yumbo_description()
-        return
+    return uploaded_file != None
 
 
 def solve_problem():
@@ -204,7 +202,9 @@ def solve_problem():
     except Exception as e:
         st.subheader(f":red[Exception during solving process.] {e}")
         report_ampl.show_ampl_data_file()
-        return
+        return False
+
+    return True
 
 
 def main():
@@ -212,8 +212,14 @@ def main():
     set_page_config()
     show_page_header()
     zero_time_counters()
-    upload()
-    solve_problem()
+
+    if not upload():
+        show_yumbo_description()
+        return
+
+    if not solve_problem():
+        return
+
     show_main_panel()
 
 
