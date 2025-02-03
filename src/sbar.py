@@ -221,7 +221,7 @@ def show_pbsum():
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
-def customise_ampl_options():
+def customise_ampl():
     st.subheader("AMPL options", divider="blue")
     st.session_state.glb["show_ampl_solver_log"] = st.checkbox("Show AMPL solver log?", value=False)
     st.session_state.glb["show_ampl_data_file"] = st.checkbox("Show AMPL data file?", value=False)
@@ -236,8 +236,6 @@ def show_problem():
     show_ebday()
     show_period()
     show_pbsum()
-    customise_ampl_options()
-
 
 
 def customise_expert():
@@ -258,15 +256,18 @@ def show_planing_horizon():
     st.caption(f"Last day: :green[{glb.last_day().date()}]")
     st.caption(f"Number of days: :green[{(glb.last_day() - glb.today()).days}]")
 
+
 def show():
     show_planing_horizon()
     st.divider()
 
-    tab0, tab1, tab2 = st.tabs(["**Problem**", "**Experts**", "**Tasks**"])
-    with tab0:
+    tab = st.tabs(["**Problem**", "**Experts**", "**Tasks**", "**AMPL**"])
+    with tab[0]:
         show_problem()
-    with tab1:
+    with tab[1]:
         customise_expert()
-    with tab2:
+    with tab[2]:
         customise_task()
+    with tab[3]:
+        customise_ampl()
 
