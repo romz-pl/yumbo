@@ -104,7 +104,7 @@ def experts_in_tasks_as_table(task, as_html):
     df = pd.DataFrame(data, index=days.astype("str"))
 
     # Replace all 0 values with an empty string in place
-    df.replace(0, '', inplace=True)
+    df.replace(0, np.nan, inplace=True)
 
     # Insert the "Weekdays" column at the beginning
     df.insert(0, "Weekdays", days.day_name())
