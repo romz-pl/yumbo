@@ -18,9 +18,9 @@ def show_time_counters():
         ("Experts per day stacked", "imge"),
     ]
 
+    # Column names
     time_total_col = "Total time [s]"
     time_avg_col = "Average time [s]"
-
     nbytes_total_col = "Total nbytes [KiB]"
     nbytes_avg_col = "Average nbytes [B]"
 
@@ -38,12 +38,13 @@ def show_time_counters():
         short_names.append(short_name)
 
         cnt = st.session_state.glb[f"time:{short_name}:cnt"]
-        ttime = st.session_state.glb[f"time:{short_name}:ttime"]
-        nbytes = st.session_state.glb[f"time:{short_name}:nbytes"]
-
         num_calls.append(cnt)
+
+        ttime = st.session_state.glb[f"time:{short_name}:ttime"]
         time_total.append(ttime)
         time_avg.append(ttime / cnt if cnt != 0 else 0)
+
+        nbytes = st.session_state.glb[f"time:{short_name}:nbytes"]
         nbytes_total.append(nbytes / 1024)
         nbytes_avg.append(nbytes / cnt if cnt != 0 else 0)
 
