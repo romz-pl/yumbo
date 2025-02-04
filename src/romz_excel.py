@@ -183,7 +183,7 @@ def adjust_start_days(mprob):
 
 
 @st.cache_resource(max_entries=99)
-def read_excel_file(file_data):
+def read_excel_file(file_data, git_hash):
     with tempfile.NamedTemporaryFile(prefix="yumbo", suffix=".xlsx") as f:
         f.write(file_data)
         f.flush()
@@ -215,7 +215,8 @@ def read_excel_file(file_data):
 def load(uploaded_file):
     time_start = time.perf_counter()
 
-    st.session_state.mprob = read_excel_file(uploaded_file.getvalue())
+    git_hash = glb.get_git_hash()
+    st.session_state.mprob = read_excel_file(uploaded_file.getvalue(), git_hash)
 
     time_end = time.perf_counter()
     st.session_state.stats["excel:ttime"] += time_end - time_start
