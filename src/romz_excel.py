@@ -111,7 +111,7 @@ def read_holiday(xlsx, mprob):
 
 
 def read_misc(xlsx, mprob):
-    df = xlsx.parse(sheet_name="misc", usecols="A:C")
+    df = xlsx.parse(sheet_name="misc", usecols="A:D")
     mprob["misc"] = df
     return mprob
 

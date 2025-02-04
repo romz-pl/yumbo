@@ -129,6 +129,11 @@ XBID: XBL XBU :=
 ;
 
 param:
+UBID: UBL UBU :=
+
+;
+
+param:
 EBID: EBN EBS EBE EBL EBU :=
 
 ;
@@ -145,9 +150,10 @@ PNAME: PERS PERE :=
 param:
 EXPPER: PBL PBU :=
 'Alojzy' '25.Jan' 0 800
+'Alojzy' '25.Feb' 40 760
+'Alojzy' '25.Mar' 80 720
 'Eugeniusz' '25.Jan' 0 800
 'Ignacy' '25.Jan' 0 800
 'Pafnucy' '25.Jan' 0 800
 'Romuald' '25.Jan' 0 800
 ;
-

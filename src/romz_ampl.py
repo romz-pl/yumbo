@@ -102,29 +102,27 @@ def xbday(f):
     f.write(output)
 
 
-def ubday():
-    assert False
-    # today = glb.today()
-    # df = st.session_state.mprob["ubday"]
-    # holiday = set(st.session_state.mprob["holidays"]["Date"])
+def ubday(f):
+    if not glb.with_ubday():
+        return
 
-    # result = []
-    # for row in df.itertuples(index=False):
-    #     # Generate business days and compute day differences.
-    #     days = (pd.bdate_range(start=row.Start, end=row.End, freq="C", holidays=holiday) - today).days
+    today = glb.today()
+    df = st.session_state.mprob["ubday"]
+    holiday = set(st.session_state.mprob["holiday"]["Date"])
 
-    #     # Pre-compute values used repeatedly for the current row.
-    #     lower = row.Lower * quarters_in_hour
-    #     upper = row.Upper * quarters_in_hour
+    result = []
+    for row in df.itertuples(index=False):
+        # Generate business days and compute day differences.
+        days = (pd.bdate_range(start=row.Start, end=row.End, freq="C", holidays=holiday) - today).days
 
-    #     # Use list comprehension to extend the result list for each day.
-    #     result.extend(
-    #         f"'{row.Expert}' '{row.Task}' {d} {lower} {upper}" for d in days
-    #     )
+        # Use list comprehension to extend the result list for each day.
+        result.extend(
+            f"'{row.Expert}' {d} {row.Lower} {row.Upper}" for d in days
+        )
 
-    # # Build the output string once and perform a single I/O write.
-    # output = "param:\nXBID: XBL XBU :=\n" + "\n".join(result) + "\n;\n\n"
-    # f.write(output)
+    # Build the output string once and perform a single I/O write.
+    output = "param:\nUBID: UBL UBU :=\n" + "\n".join(result) + "\n;\n\n"
+    f.write(output)
 
 
 
@@ -189,7 +187,7 @@ def data_file():
     expert(ff)
     assign(ff)
     xbday(ff)
-    # ubday(ff)
+    ubday(ff)
     ebday(ff)
     period(ff)
     pbsum(ff)
@@ -271,7 +269,11 @@ def set_model_and_data(ampl):
     # Change directory to AMPL's working directory
     ampl.cd(os.path.dirname(os.path.dirname(__file__)))
 
-    ampl.read("./res/ampl.mod.py")
+    if glb.with_ubday():
+        ampl.read("./res/ampl-with-ubday.mod.py")
+    else:
+        ampl.read("./res/ampl.mod.py")
+
     ff = data_file()
     ampl.read_data(ff.name)
     ff.close()

@@ -50,13 +50,17 @@ def last_day():
     return max(st.session_state.mprob["task"]["End"].max(), st.session_state.mprob["period"]["End"].max())
 
 
+def with_ubday():
+    return (st.session_state.mprob["misc"].iloc[0]["With ubday"] == "Yes")
+
+
 def math_model_hash(img):
     keys = [
         "expert",
         "task",
         "assign",
         "xbday",
-        # "ubday",
+        "ubday",
         "ebday",
         "period",
         "pbsum",

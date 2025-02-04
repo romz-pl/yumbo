@@ -129,6 +129,125 @@ XBID: XBL XBU :=
 ;
 
 param:
+UBID: UBL UBU :=
+'Alojzy' 1 1 1
+'Alojzy' 2 1 1
+'Alojzy' 3 1 1
+'Alojzy' 4 1 1
+'Alojzy' 5 1 1
+'Alojzy' 8 1 1
+'Alojzy' 9 1 1
+'Alojzy' 11 1 1
+'Alojzy' 12 1 1
+'Alojzy' 15 1 1
+'Alojzy' 16 1 1
+'Alojzy' 17 1 1
+'Alojzy' 18 1 1
+'Alojzy' 19 1 1
+'Alojzy' 22 1 1
+'Alojzy' 23 1 1
+'Alojzy' 24 1 1
+'Alojzy' 25 1 1
+'Alojzy' 26 1 1
+'Alojzy' 29 1 1
+'Alojzy' 30 1 1
+'Alojzy' 31 1 1
+'Alojzy' 32 1 1
+'Eugeniusz' 1 2 2
+'Eugeniusz' 2 2 2
+'Eugeniusz' 3 2 2
+'Eugeniusz' 4 2 2
+'Eugeniusz' 5 2 2
+'Eugeniusz' 8 2 2
+'Eugeniusz' 9 2 2
+'Eugeniusz' 11 2 2
+'Eugeniusz' 12 2 2
+'Eugeniusz' 15 2 2
+'Eugeniusz' 16 2 2
+'Eugeniusz' 17 2 2
+'Eugeniusz' 18 2 2
+'Eugeniusz' 19 2 2
+'Eugeniusz' 22 2 2
+'Eugeniusz' 23 2 2
+'Eugeniusz' 24 2 2
+'Eugeniusz' 25 2 2
+'Eugeniusz' 26 2 2
+'Eugeniusz' 29 2 2
+'Eugeniusz' 30 2 2
+'Eugeniusz' 31 2 2
+'Eugeniusz' 32 2 2
+'Ignacy' 1 3 3
+'Ignacy' 2 3 3
+'Ignacy' 3 3 3
+'Ignacy' 4 3 3
+'Ignacy' 5 3 3
+'Ignacy' 8 3 3
+'Ignacy' 9 3 3
+'Ignacy' 11 3 3
+'Ignacy' 12 3 3
+'Ignacy' 15 3 3
+'Ignacy' 16 3 3
+'Ignacy' 17 3 3
+'Ignacy' 18 3 3
+'Ignacy' 19 3 3
+'Ignacy' 22 3 3
+'Ignacy' 23 3 3
+'Ignacy' 24 3 3
+'Ignacy' 25 3 3
+'Ignacy' 26 3 3
+'Ignacy' 29 3 3
+'Ignacy' 30 3 3
+'Ignacy' 31 3 3
+'Ignacy' 32 3 3
+'Pafnucy' 1 4 4
+'Pafnucy' 2 4 4
+'Pafnucy' 3 4 4
+'Pafnucy' 4 4 4
+'Pafnucy' 5 4 4
+'Pafnucy' 8 4 4
+'Pafnucy' 9 4 4
+'Pafnucy' 11 4 4
+'Pafnucy' 12 4 4
+'Pafnucy' 15 4 4
+'Pafnucy' 16 4 4
+'Pafnucy' 17 4 4
+'Pafnucy' 18 4 4
+'Pafnucy' 19 4 4
+'Pafnucy' 22 4 4
+'Pafnucy' 23 4 4
+'Pafnucy' 24 4 4
+'Pafnucy' 25 4 4
+'Pafnucy' 26 4 4
+'Pafnucy' 29 4 4
+'Pafnucy' 30 4 4
+'Pafnucy' 31 4 4
+'Pafnucy' 32 4 4
+'Romuald' 1 5 5
+'Romuald' 2 5 5
+'Romuald' 3 5 5
+'Romuald' 4 5 5
+'Romuald' 5 5 5
+'Romuald' 8 5 5
+'Romuald' 9 5 5
+'Romuald' 11 5 5
+'Romuald' 12 5 5
+'Romuald' 15 5 5
+'Romuald' 16 5 5
+'Romuald' 17 5 5
+'Romuald' 18 5 5
+'Romuald' 19 5 5
+'Romuald' 22 5 5
+'Romuald' 23 5 5
+'Romuald' 24 5 5
+'Romuald' 25 5 5
+'Romuald' 26 5 5
+'Romuald' 29 5 5
+'Romuald' 30 5 5
+'Romuald' 31 5 5
+'Romuald' 32 5 5
+;
+
+param:
 EBID: EBN EBS EBE EBL EBU :=
 
 ;
@@ -150,4 +269,3 @@ EXPPER: PBL PBU :=
 'Pafnucy' '25.Jan' 0 800
 'Romuald' '25.Jan' 0 800
 ;
-
