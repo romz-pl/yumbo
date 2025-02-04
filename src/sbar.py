@@ -205,8 +205,8 @@ def customise_problem():
 
 def customise_stats():
     st.subheader("Report layout", divider="blue")
-    st.session_state.glb["show_stats_chart"] = st.checkbox("Statistics on chart creation", value=False)
-    st.session_state.glb["show_stats_execution"] = st.checkbox("Statistics on Yumbo execution", value=False)
+    st.session_state.glb["show_stats_chart"] = st.checkbox("Statistics on chart creation", value=True)
+    st.session_state.glb["show_stats_execution"] = st.checkbox("Statistics on Yumbo execution", value=True)
 
 
 def show():
