@@ -9,7 +9,7 @@ def show_solver_output():
 
 def show_ampl_data_file():
     st.subheader(":green[AMPL data file]", divider="green")
-    st.code(st.session_state.glb["ampl_data_file"])
+    # st.code(st.session_state.glb["ampl_data_file"])
 
 
 def show_ampl_model_file():

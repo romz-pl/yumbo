@@ -73,22 +73,20 @@ def math_model_hash(img):
         "misc",
     ]
 
-    if img != None:
+    if img is not None:
         keys.append(img)
 
-    # Create the input tuple
-    input_data = tuple(st.session_state.mprob[k] for k in keys)
-
+    # Use git_hash to reflect changes to the code.
     git_hash = get_git_hash()
 
-    buf = io.StringIO()
+    # Build input_data by joining the string representations
+    input_data = "".join(st.session_state.mprob[k].to_string() for k in keys)
 
-    # Use git_hash to reflect changes to the code.
-    buf.write(git_hash)
+    # Combine the git hash and the input data, encode, and compute the hash
+    combined = git_hash + input_data
+    mm_hash = hashlib.blake2s(combined.encode('utf-8')).hexdigest()
+    # st.write(mm_hash)
 
-    buf.write(str(input_data))
-    mm_hash = hashlib.blake2s(buf.getvalue().encode('utf-8')).hexdigest()
-    buf.close()
     return mm_hash
 
 
