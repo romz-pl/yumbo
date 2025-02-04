@@ -4,6 +4,7 @@ import matplotlib.figure as matplotlib_figure
 import matplotlib.ticker as matplotlib_ticker
 import pandas as pd
 import streamlit as st
+import subprocess
 
 
 def format():
@@ -54,6 +55,10 @@ def with_ubday():
     return (st.session_state.mprob["misc"].iloc[0]["With ubday"] == "Yes")
 
 
+def get_git_hash():
+    return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
+
+
 def math_model_hash(img):
     keys = [
         "expert",
@@ -74,7 +79,13 @@ def math_model_hash(img):
     # Create the input tuple
     input_data = tuple(st.session_state.mprob[k] for k in keys)
 
+    git_hash = get_git_hash()
+
     buf = io.StringIO()
+
+    # Use git_hash to reflect changes to the code.
+    buf.write(git_hash)
+
     buf.write(str(input_data))
     mm_hash = hashlib.blake2s(buf.getvalue().encode('utf-8')).hexdigest()
     buf.close()
