@@ -69,6 +69,7 @@ def imgw(expert_name, mm_hash):
     ax = fig.subplots()
     ax.set_ylabel("Hours")
     ax.set_title("Invoicing Periods Workload")
+    ax.yaxis.grid(alpha=0.4)
     ax.bar(
         period["Name"],
         yvalue,
