@@ -67,20 +67,22 @@ def expert(f):
 
 
 def assign(f):
-    df = st.session_state.mprob["assign"]
-    # Build the formatted string for each (expert, task) pair.
-    formatted_pairs = "\n".join(
-        f"'{expert}' '{task}'"
-        for expert, task in zip(df["Expert"], df["Task"])
-    )
-    # Build the complete output string.
-    output = f"set ASSIGN :=\n{formatted_pairs}\n;\n\n"
+    df = st.session_state.mprob["assign"].sort_values(["Expert", "Task"])
+
+    result = []
+    expert = None
+    for row in df.itertuples(index=False):
+        if expert != row.Expert:
+            result.append(f"('{row.Expert}',*)")
+            expert = row.Expert
+        result.append(f"'{row.Task}'")
+    output = "set ASSIGN :=\n" + "\n".join(result) + "\n;\n\n"
     f.write(output)
 
 
 def xbday(f):
     today = glb.today()
-    df = st.session_state.mprob["xbday"]
+    df = st.session_state.mprob["xbday"].sort_values(["Expert", "Task"])
     holiday = set(st.session_state.mprob["holiday"]["Date"])  # Faster holiday lookups
 
     result = []
@@ -88,14 +90,14 @@ def xbday(f):
         # Generate business days and compute day differences.
         days = (pd.bdate_range(start=row.Start, end=row.End, freq="C", holidays=holiday) - today).days
 
+        result.append(f"['{row.Expert}','{row.Task}',*]")
+
         # Pre-compute values used repeatedly for the current row.
         lower = row.Lower * quarters_in_hour
         upper = row.Upper * quarters_in_hour
 
         # Use list comprehension to extend the result list for each day.
-        result.extend(
-            f"'{row.Expert}' '{row.Task}' {d} {lower} {upper}" for d in days
-        )
+        result.extend(f"{d} {lower} {upper}" for d in days)
 
     # Build the output string once and perform a single I/O write.
     output = "param:\nXBID: XBL XBU :=\n" + "\n".join(result) + "\n;\n\n"
@@ -107,7 +109,7 @@ def ubday(f):
         return
 
     today = glb.today()
-    df = st.session_state.mprob["ubday"]
+    df = st.session_state.mprob["ubday"].sort_values("Expert")
     holiday = set(st.session_state.mprob["holiday"]["Date"])
 
     result = []
@@ -115,9 +117,12 @@ def ubday(f):
         # Generate business days and compute day differences.
         days = (pd.bdate_range(start=row.Start, end=row.End, freq="C", holidays=holiday) - today).days
 
+        result.append(f"['{row.Expert}',*]")
+
+
         # Use list comprehension to extend the result list for each day.
         result.extend(
-            f"'{row.Expert}' {d} {row.Lower} {row.Upper}" for d in days
+            f"{d} {row.Lower} {row.Upper}" for d in days
         )
 
     # Build the output string once and perform a single I/O write.
@@ -146,33 +151,34 @@ def ebday(f):
 
 def period(f):
     today = glb.today()
-    df = st.session_state.mprob["period"]
+    df = st.session_state.mprob["period"].sort_values("Name")
 
-    # Vectorized computation of day differences
-    start_days = (df["Start"] - today).dt.days.astype(str)
-    end_days = (df["End"] - today).dt.days.astype(str)
-    names = df["Name"].astype(str)
+    result = []
+    expert = None
+    for row in df.itertuples(index=False):
+        start = (row.Start - today).days
+        end = (row.End - today).days
+        result.append(f"'{row.Name}' {start} {end}")
 
-    # Vectorized string construction for each row
-    result = ("'" + names + "' " + start_days + " " + end_days).to_list()
-
-    # Build the complete output and write it in one call
     output = "param:\nPNAME: PERS PERE :=\n" + "\n".join(result) + "\n;\n\n"
     f.write(output)
 
 
 def pbsum(f):
-    df = st.session_state.mprob["pbsum"]
-    # Build the formatted strings using vectorized operations.
-    formatted = (
-        "'" + df["Expert"].astype(str) + "' '" +
-        df["Period"].astype(str) + "' " +
-        (df["Lower"] * quarters_in_hour).astype(str) + " " +
-        (df["Upper"] * quarters_in_hour).astype(str)
-    )
 
-    # Concatenate the header, the formatted lines, and the footer.
-    output = "param:\nEXPPER: PBL PBU :=\n" + "\n".join(formatted) + "\n;\n\n"
+    df = st.session_state.mprob["pbsum"].sort_values(["Expert", "Period"])
+    result = []
+    expert = None
+    for row in df.itertuples(index=False):
+        if expert != row.Expert:
+            result.append(f"['{row.Expert}',*]")
+            expert = row.Expert
+
+        lower = row.Lower * quarters_in_hour
+        upper = row.Upper * quarters_in_hour
+        result.append(f"'{row.Period}' {lower} {upper}")
+
+    output = "param:\nEXPPER: PBL PBU :=\n" + "\n".join(result) + "\n;\n\n"
     f.write(output)
 
 

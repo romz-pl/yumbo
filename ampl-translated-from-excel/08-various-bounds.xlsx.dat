@@ -145,48 +145,106 @@ set ENAME :=
 ;
 
 set ASSIGN :=
-'DEV.Alojzy' 'DEV.p1.m'
-'DEV.Barłomiej' 'DEV.p2.m'
-'DEV.Cezary' 'DEV.p3.m'
-'DEV.Dariusz' 'DEV.p4.m'
-'DEV.Eugenius' 'DEV.p5.m'
-'DEV.Eugenius' 'DEV.p6.m'
-'DEV.Franciszek' 'DEV.p7.m'
-'DEV.Franciszek' 'DEV.p8.m'
-'DEV.Gustaw' 'DEV.p9.m'
-'DEV.Gustaw' 'DEV.p10.m'
-'DEV.Hubert' 'DEV.p11.m'
-'DEV.Hubert' 'DEV.p12.m'
-'DEV.Ignacy' 'DEV.p13.m'
-'DEV.Ignacy' 'DEV.p14.m'
-'DEV.Ignacy' 'DEV.p15.m'
-'DEV.Ignacy' 'DEV.p18.m'
-'DEV.Jarosław' 'DEV.p16.m'
-'DEV.Jarosław' 'DEV.p17.m'
-'DEV.Jarosław' 'DEV.p18.m'
-'DEV.Paweł' 'DEV.p19.m'
-'DEV.Paweł' 'DEV.p20.m'
-'DEV.Paweł' 'DEV.p21.m'
-'DEV.Paweł' 'DEV.p18.m'
+('DEV.Alojzy',*)
+'DEV.p1.m'
+('DEV.Barłomiej',*)
+'DEV.p2.m'
+('DEV.Cezary',*)
+'DEV.p3.m'
+('DEV.Dariusz',*)
+'DEV.p4.m'
+('DEV.Eugenius',*)
+'DEV.p5.m'
+'DEV.p6.m'
+('DEV.Franciszek',*)
+'DEV.p7.m'
+'DEV.p8.m'
+('DEV.Gustaw',*)
+'DEV.p10.m'
+'DEV.p9.m'
+('DEV.Hubert',*)
+'DEV.p11.m'
+'DEV.p12.m'
+('DEV.Ignacy',*)
+'DEV.p13.m'
+'DEV.p14.m'
+'DEV.p15.m'
+'DEV.p18.m'
+('DEV.Jarosław',*)
+'DEV.p16.m'
+'DEV.p17.m'
+'DEV.p18.m'
+('DEV.Paweł',*)
+'DEV.p18.m'
+'DEV.p19.m'
+'DEV.p20.m'
+'DEV.p21.m'
 ;
 
 param:
 XBID: XBL XBU :=
-'DEV.Barłomiej' 'DEV.p2.m' 2 20 24
-'DEV.Barłomiej' 'DEV.p2.m' 3 20 24
-'DEV.Barłomiej' 'DEV.p2.m' 4 20 24
-'DEV.Barłomiej' 'DEV.p2.m' 5 20 24
-'DEV.Barłomiej' 'DEV.p2.m' 8 20 24
-'DEV.Barłomiej' 'DEV.p2.m' 9 20 24
-'DEV.Barłomiej' 'DEV.p2.m' 11 20 24
-'DEV.Barłomiej' 'DEV.p2.m' 12 20 24
-'DEV.Cezary' 'DEV.p3.m' 3 16 20
-'DEV.Cezary' 'DEV.p3.m' 4 16 20
-'DEV.Cezary' 'DEV.p3.m' 5 16 20
-'DEV.Cezary' 'DEV.p3.m' 8 8 12
-'DEV.Cezary' 'DEV.p3.m' 9 8 12
-'DEV.Cezary' 'DEV.p3.m' 11 8 12
-'DEV.Cezary' 'DEV.p3.m' 12 8 12
+['DEV.Barłomiej','DEV.p2.m',*]
+2 20 24
+3 20 24
+4 20 24
+5 20 24
+8 20 24
+9 20 24
+11 20 24
+12 20 24
+['DEV.Cezary','DEV.p3.m',*]
+3 16 20
+4 16 20
+5 16 20
+['DEV.Cezary','DEV.p3.m',*]
+8 8 12
+9 8 12
+11 8 12
+12 8 12
+;
+
+param:
+UBID: UBL UBU :=
+['DEV.Franciszek',*]
+1 2 2
+2 2 2
+3 2 2
+4 2 2
+5 2 2
+8 2 2
+9 2 2
+11 2 2
+12 2 2
+['DEV.Hubert',*]
+1 1 1
+2 1 1
+3 1 1
+4 1 1
+5 1 1
+8 1 1
+9 1 1
+11 1 1
+12 1 1
+['DEV.Jarosław',*]
+1 2 2
+2 2 2
+3 2 2
+4 2 2
+5 2 2
+8 2 2
+9 2 2
+11 2 2
+12 2 2
+['DEV.Paweł',*]
+1 1 1
+2 1 1
+3 1 1
+4 1 1
+5 1 1
+8 1 1
+9 1 1
+11 1 1
+12 1 1
 ;
 
 param:
@@ -226,4 +284,3 @@ EXPPER: PBL PBU :=
 'DEV.Ignacy' '25.Jan' 0 800
 'DEV.Jarosław' '25.Jan' 0 800
 ;
-
