@@ -117,3 +117,12 @@ def get_major_tick_locator(ax):
         locator = matplotlib_ticker.MaxNLocator(steps=[1, 2, 5], integer=True)
 
     return locator
+
+
+def get_ampl_model_file():
+    if with_ubday():
+        ff = "./res/ampl-with-ubday.mod.py"
+    else:
+        ff = "./res/ampl.mod.py"
+
+    return ff

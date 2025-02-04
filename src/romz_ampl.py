@@ -271,14 +271,15 @@ def set_ampl_options(ampl):
         ampl.option[f"{solver}_options"] = solver_options[solver]
 
 
+
+
+
 def set_model_and_data(ampl):
     # Change directory to AMPL's working directory
     ampl.cd(os.path.dirname(os.path.dirname(__file__)))
 
-    if glb.with_ubday():
-        ampl.read("./res/ampl-with-ubday.mod.py")
-    else:
-        ampl.read("./res/ampl.mod.py")
+    model_file = glb.get_ampl_model_file()
+    ampl.read(model_file)
 
     ff = data_file()
     ampl.read_data(ff.name)

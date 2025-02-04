@@ -171,6 +171,7 @@ def customise_ampl():
     st.subheader("Report layout", divider="blue")
     st.session_state.glb["show_ampl_solver_log"] = st.checkbox("Solver log", value=False)
     st.session_state.glb["show_ampl_data_file"] = st.checkbox("AMPL data file", value=False)
+    st.session_state.glb["show_ampl_model_file"] = st.checkbox("AMPL model file", value=False)
 
 
 def customise_expert():
