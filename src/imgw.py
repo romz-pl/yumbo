@@ -70,7 +70,7 @@ def imgw(expert_name, mm_hash):
     ax.set_ylabel("Hours")
     ax.set_title("Invoicing Periods Workload")
     ax.yaxis.grid(alpha=0.4)
-    ax.bar(
+    rects = ax.bar(
         period["Name"],
         yvalue,
         color=glb.imgw("Bar:color"),
@@ -91,6 +91,14 @@ def imgw(expert_name, mm_hash):
                 capsize=glb.imgw("Bar:capsize"),
                 ecolor=glb.imgw("Bar:ecolor"),
                 capthick=2)
+
+    # Generate labels for the bars
+    labels = [
+        "{:.0f}".format(v)
+        for v in yvalue
+    ]
+
+    ax.bar_label(rects, labels=labels, size=8, label_type="edge")
 
 
     return glb.savefig(fig)

@@ -64,7 +64,7 @@ def customise_show_experts():
     df.sort_index(inplace=True)
 
     # Update column values based on user input from Streamlit checkboxes
-    df[names[0]] = st.checkbox(f"Show {names[0]}", value=True , key=f"expert_{names[0]}")
+    df[names[0]] = st.checkbox(f"Show {names[0]}", value=False , key=f"expert_{names[0]}")
     df[names[1]] = st.checkbox(f"Show {names[1]}", value=False, key=f"expert_{names[1]}")
     df[names[2]] = st.checkbox(f"Show {names[2]}", value=False, key=f"expert_{names[2]}")
 
@@ -196,7 +196,7 @@ def show_planing_horizon():
 
 def customise_summary():
     st.subheader("Report layout", divider="blue")
-    st.session_state.glb["show_experts_summary"] = st.checkbox("Experts summary", value=False)
+    st.session_state.glb["show_experts_summary"] = st.checkbox("Experts summary", value=True)
 
 
 def customise_problem():
