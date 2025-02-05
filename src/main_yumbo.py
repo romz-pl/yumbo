@@ -8,6 +8,7 @@ import numpy as np
 import os
 import streamlit as st
 
+import glb
 import romz_ampl
 import romz_excel
 import sbar
@@ -46,6 +47,7 @@ def show_page_header():
     st.title(":red[Yumbo.] Scheduling, Planning and Resource Allocation")
     st.subheader("Zbigniew Romanowski, Paweł Koczyk")
     st.markdown("Source code, documentation and sample Excel input files can be found on [Yumbo's](https://github.com/romz-pl/yambo) GitHub repository.")
+    st.caption(f"git hash: :green[{glb.get_git_hash()}]")
     st.caption("_{d}_".format(d=pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")))
 
 
