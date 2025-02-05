@@ -1,6 +1,7 @@
 import matplotlib.figure as matplotlib_figure
 import matplotlib.ticker as matplotlib_ticker
 import matplotlib.dates as matplotlib_dates
+import numpy as np
 import pandas as pd
 import streamlit as st
 import time
@@ -23,7 +24,7 @@ def plot():
     st.session_state.stats["imghsum:nbytes"] += buf.getbuffer().nbytes
 
 
-@st.cache_resource(max_entries=1000)
+# @st.cache_resource(max_entries=1000)
 def imghsum(mm_hash):
 
     # Always use the full planning horizon for the summary figure.
@@ -59,6 +60,14 @@ def imghsum(mm_hash):
         color=glb.imgh("Bar:color"),
         alpha=glb.imgh("Bar:alpha"),
         hatch=glb.imgh("Bar:hatch"),
+    )
+
+    window_size = 7
+    conv = np.convolve(df.values, np.ones(window_size)/window_size, mode='same')
+    ax.plot(
+        df.index,
+        conv,
+        color="#DD0000",
     )
 
     # Set the limits.
