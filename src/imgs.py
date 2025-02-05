@@ -30,21 +30,18 @@ def imgs(expert_name, mm_hash):
     end = glb.imgs("End")
 
     # Generate day labels and filter dataframe
-    days = pd.date_range(start=start, end=end, freq="D")
+    #days = pd.date_range(start=start, end=end, freq="D")
+
+    # Take only the days that are not public holidays.
+    holiday = set(st.session_state.mprob["holiday"]["Date"])
+    days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
+
     df = st.session_state.amplsol[f"{expert_name}"].loc[days]
-
-    # Determine bar width
-    width = 0.9 if days.size < 10 else 1.0
-
-    # Define x-axis limits
-    left = pd.Timestamp(start) - pd.Timedelta(days=1)
-    right = pd.Timestamp(end) + pd.Timedelta(days=1)
 
     # Initialize figure and axis
     fig = matplotlib_figure.Figure(figsize=(glb.imgs("Width"), glb.imgs("Height")), dpi=glb.imgs("Dpi"))
     ax = fig.subplots()
     ax.set_title("Hours per day stacked")
-    ax.set_xlim([left, right])
 
     # Configure axis formatting and grid
     ax.yaxis.grid(alpha=0.4)
@@ -55,19 +52,23 @@ def imgs(expert_name, mm_hash):
     # Filter out zero-sum tasks efficiently
     df = df.loc[:, df.sum() > 0]
 
-    # Plot stacked bar chart
+    # Plot stacked chart
     bottom = np.zeros(df.index.shape[0])
     for task_name in df.columns:
         task_data = df[task_name].values
-        ax.bar(
-            df.index,
-            task_data,
-            width,
+        ax.fill_between(
+            x=df.index,
+            y1=bottom,
+            y2=task_data + bottom,
             label=task_name,
-            bottom=bottom,
+            step='mid',
             alpha=glb.imgs("Bar:alpha"),
         )
         bottom = bottom + task_data
+
+    # Set the limits.
+    ax.set_xlim([start, end])
+    ax.set_ylim(bottom=0)
 
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)

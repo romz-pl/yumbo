@@ -35,8 +35,7 @@ def imgtsum(mm_hash):
     days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
 
     # Summing over all the tasks. Choose days that are not public holidays.
-    df = st.session_state.amplsol.loc[days]
-    df = (df > 0).sum(axis=1)
+    df = (st.session_state.amplsol.loc[days] > 0).sum(axis=1)
 
     # Create figure and axis
     fig = matplotlib_figure.Figure(figsize=(
