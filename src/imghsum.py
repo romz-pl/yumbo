@@ -25,47 +25,50 @@ def plot():
 
 @st.cache_resource(max_entries=1000)
 def imghsum(mm_hash):
-    df = st.session_state.amplsol.sum(axis=1)
 
-    start = glb.imgh("Start")
-    end = glb.imgh("End")
+    # Always use the full planning horizon for the summary figure.
+    start = glb.tomorrow()
+    end = glb.last_day()
 
-    # Calculate plot limits
-    left = pd.Timestamp(start) - pd.Timedelta(days=1)
-    right = pd.Timestamp(end) + pd.Timedelta(days=1)
+    # Take only the days that are not public holidays.
+    holiday = set(st.session_state.mprob["holiday"]["Date"])
+    days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
 
-    # Determine bar width
-    width = 0.9 if df.index.size < 10 else 1.0
+    # Summing over all tasks days that are not public holidays.
+    df = st.session_state.amplsol.loc[days].sum(axis=1)
 
-    # Create figure and axis
+    # Create figure and axis.
     fig = matplotlib_figure.Figure(
         figsize=(glb.imgh("Width"), glb.imgh("Height")),
-        dpi=2 * glb.imgh("Dpi") # Double DPI for summary image.
+        dpi=(2 * glb.imgh("Dpi")) # Double DPI for summary image.
     )
     ax = fig.subplots()
 
-    # Configure plot properties
+    # Configure plot properties.
     ax.set_title("Hours per day")
-    ax.set_xlim([left, right])
-
     ax.yaxis.grid(alpha=0.4)
     ax.set_axisbelow(True)
     ax.tick_params(axis="x", labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
 
-    # Add bars to the plot
-    ax.bar(
-        df.index,
-        df.values,
-        width,
+
+    ax.fill_between(
+        x=df.index,
+        y1=0,
+        y2=df.values,
+        step='mid',
         color=glb.imgh("Bar:color"),
+        alpha=glb.imgh("Bar:alpha"),
         hatch=glb.imgh("Bar:hatch"),
-        alpha=glb.imgh("Bar:alpha")
     )
 
+    # Set the limits.
+    ax.set_xlim([start, end])
+    ax.set_ylim(bottom=0)
+
+    # Set the tics.
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)
-
     ax.xaxis.set_major_locator(matplotlib_dates.AutoDateLocator(minticks=3, maxticks=6))
     ax.xaxis.set_major_formatter(matplotlib_dates.DateFormatter(glb.format()))
 
