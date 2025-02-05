@@ -10,11 +10,11 @@ import glb
 #
 # Invoicing Periods Workload
 #
-def plot(expert_name):
+def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("imgw")
-    buf = imgw(expert_name, mm_hash)
+    buf = imgw(expert_name, days_off, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -24,7 +24,7 @@ def plot(expert_name):
 
 
 @st.cache_resource(max_entries=1000)
-def imgw(expert_name, mm_hash):
+def imgw(expert_name, days_off, mm_hash):
 
     # Get schedule for the expert and convert to float32.
     schedule = st.session_state.amplsol[expert_name].astype("float32")

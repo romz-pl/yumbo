@@ -10,11 +10,11 @@ import glb
 #
 # Tasks per day (Summary)
 #
-def plot():
+def plot(days_off):
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("imgt")
-    buf = imgtsum( mm_hash)
+    buf = imgtsum(days_off, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -24,18 +24,21 @@ def plot():
 
 
 @st.cache_resource(max_entries=1000)
-def imgtsum(mm_hash):
+def imgtsum(days_off, mm_hash):
 
     # Always use the full planning horizon for the summary figure.
     start = glb.tomorrow()
     end = glb.last_day()
 
-    # Take only the days that are not public holidays.
-    holiday = set(st.session_state.mprob["holiday"]["Date"])
-    days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
-
-    # Summing over all the tasks. Choose days that are not public holidays.
-    df = (st.session_state.amplsol.loc[days] > 0).sum(axis=1)
+    if days_off:
+        # Summing over all the tasks.
+        df = (st.session_state.amplsol > 0).sum(axis=1)
+    else:
+        # Take only the days that are not public holidays.
+        holiday = set(st.session_state.mprob["holiday"]["Date"])
+        days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
+        # Summing over all the tasks. Choose days that are not public holidays.
+        df = (st.session_state.amplsol.loc[days] > 0).sum(axis=1)
 
     # Create figure and axis
     fig = matplotlib_figure.Figure(figsize=(

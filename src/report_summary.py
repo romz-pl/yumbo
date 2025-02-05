@@ -11,14 +11,15 @@ def show_report():
 
     st.divider()
 
+    days_off = st.session_state.glb["days_off"]
     st.header(":blue[Experts summary]", divider="blue")
     col1, col2, col3 = st.columns(3)
     with col1:
         imggsum.plot()
     with col2:
-        imgtsum.plot()
+        imgtsum.plot(days_off)
     with col3:
-        imghsum.plot()
+        imghsum.plot(days_off)
 
 
 def show():

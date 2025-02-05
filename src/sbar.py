@@ -68,6 +68,8 @@ def customise_show_experts():
     df[names[1]] = st.checkbox(f"Show {names[1]}", value=False, key=f"expert_{names[1]}")
     df[names[2]] = st.checkbox(f"Show {names[2]}", value=False, key=f"expert_{names[2]}")
 
+    st.session_state.glb["days_off"] = st.checkbox(f"Include days off", value=False)
+
     # Use Streamlit data editor with configuration for interaction
     st.session_state.glb["report:experts"] = st.data_editor(
         df,

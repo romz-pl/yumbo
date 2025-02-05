@@ -8,11 +8,11 @@ import glb
 #
 # Task's Gantt Chart
 #
-def plot(expert_name):
+def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("imgg")
-    buf = imgg(expert_name, mm_hash)
+    buf = imgg(expert_name, days_off, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -22,7 +22,7 @@ def plot(expert_name):
 
 
 @st.cache_resource(max_entries=1000)
-def imgg(expert_name, mm_hash):
+def imgg(expert_name, days_off, mm_hash):
     # Extract data from session state
     task = st.session_state.mprob["task"]
     assign = st.session_state.mprob["assign"]

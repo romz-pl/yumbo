@@ -70,7 +70,7 @@ def show_time_counters():
     df = pd.DataFrame(data)
     df_styled = (
         df
-        .sort_values(by=time_total_col, ascending=False)
+        .sort_values(by="Chart title", ascending=False)
         .style.format(format_spec)
     )
 

@@ -82,11 +82,12 @@ def show_one_expert(expert_name):
         "Invoice period workload": imgw.plot
     }
 
+    days_off = st.session_state.glb["days_off"]
     for ii, col in enumerate(col_list, start=1):
         with col:
             chart_name = st.session_state.glb[f"report_expert_column_{ii}"]
             # Call the corresponding function
-            chart_functions.get(chart_name)(expert_name)
+            chart_functions.get(chart_name)(expert_name, days_off)
 
 def show_report():
     experts = st.session_state.mprob["expert"].sort_values(by="Name")

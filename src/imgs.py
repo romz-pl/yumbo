@@ -11,11 +11,11 @@ import glb
 #
 # Hours per day stacked
 #
-def plot(expert_name):
+def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("imgs")
-    buf = imgs(expert_name, mm_hash)
+    buf = imgs(expert_name, days_off, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -25,17 +25,21 @@ def plot(expert_name):
 
 
 @st.cache_resource(max_entries=1000)
-def imgs(expert_name, mm_hash):
+def imgs(expert_name, days_off, mm_hash):
     start = glb.imgs("Start")
     end = glb.imgs("End")
 
-    # Generate day labels and filter dataframe
-    #days = pd.date_range(start=start, end=end, freq="D")
 
-    # Take only the days that are not public holidays.
-    holiday = set(st.session_state.mprob["holiday"]["Date"])
-    days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
+    if days_off:
+        # Generate day labels
+        days = pd.date_range(start=start, end=end, freq="D")
+    else:
+        # Take only the days that are not public holidays.
+        holiday = set(st.session_state.mprob["holiday"]["Date"])
+        days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
 
+
+    # Filter dataframe.
     df = st.session_state.amplsol[f"{expert_name}"].loc[days]
 
     # Initialize figure and axis

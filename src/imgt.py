@@ -10,12 +10,12 @@ import glb
 #
 # Tasks per day
 #
-def plot(expert_name):
+def plot(expert_name, days_off):
 
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("imgt")
-    buf = imgt(expert_name, mm_hash)
+    buf = imgt(expert_name, days_off, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -25,24 +25,26 @@ def plot(expert_name):
 
 
 @st.cache_resource(max_entries=1000)
-def imgt(expert_name, mm_hash):
+def imgt(expert_name, days_off, mm_hash):
 
     start = glb.imgt("Start")
     end = glb.imgt("End")
 
-    # Take only the days that are not public holidays.
-    holiday = set(st.session_state.mprob["holiday"]["Date"])
-    days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
+    if days_off:
+        # Generate days
+        days = pd.date_range(start=start, end=end, freq="D")
+    else:
+        # Take only the days that are not public holidays.
+        holiday = set(st.session_state.mprob["holiday"]["Date"])
+        days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
 
     # Summing over all the tasks. Choose days that are not public holidays.
-    df = st.session_state.amplsol[f"{expert_name}"].loc[days]
-    # df = st.session_state.amplsol.loc[days]
-    df = (df > 0).sum(axis=1)
+    df = (st.session_state.amplsol[f"{expert_name}"].loc[days] > 0).sum(axis=1)
 
     # Create figure and axis
     fig = matplotlib_figure.Figure(figsize=(
         glb.imgt("Width"), glb.imgt("Height")),
-        dpi=(2 * glb.imgt("Dpi")) # Double DPI for summary image.
+        dpi=glb.imgt("Dpi"),
     )
     ax = fig.subplots()
 
