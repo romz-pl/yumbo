@@ -34,7 +34,7 @@ def imghsum(mm_hash):
     holiday = set(st.session_state.mprob["holiday"]["Date"])
     days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
 
-    # Summing over all tasks days that are not public holidays.
+    # Summing over all the tasks. Choose days that are not public holidays.
     df = st.session_state.amplsol.loc[days].sum(axis=1)
 
     # Create figure and axis.
@@ -51,7 +51,6 @@ def imghsum(mm_hash):
     ax.tick_params(axis="x", labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
 
-
     ax.fill_between(
         x=df.index,
         y1=0,
@@ -66,7 +65,7 @@ def imghsum(mm_hash):
     ax.set_xlim([start, end])
     ax.set_ylim(bottom=0)
 
-    # Set the tics.
+    # Set the ticks.
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)
     ax.xaxis.set_major_locator(matplotlib_dates.AutoDateLocator(minticks=3, maxticks=6))
