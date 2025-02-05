@@ -25,8 +25,12 @@ def plot():
 @st.cache_resource(max_entries=1000)
 def imggsum(mm_hash):
     df = st.session_state.mprob["task"]
+
     # Create figure and axis
-    fig = matplotlib_figure.Figure(figsize=(glb.imgg("Width"), glb.imgg("Height")), dpi=glb.imgg("Dpi"))
+    fig = matplotlib_figure.Figure(
+        figsize=(glb.imgg("Width"), glb.imgg("Height")),
+        dpi=2 * glb.imgg("Dpi") # Double DPI for summary image.
+    )
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
 

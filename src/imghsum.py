@@ -38,7 +38,10 @@ def imghsum(mm_hash):
     width = 0.9 if df.index.size < 10 else 1.0
 
     # Create figure and axis
-    fig = matplotlib_figure.Figure(figsize=(glb.imgh("Width"), glb.imgh("Height")), dpi=glb.imgh("Dpi"))
+    fig = matplotlib_figure.Figure(
+        figsize=(glb.imgh("Width"), glb.imgh("Height")),
+        dpi=2 * glb.imgh("Dpi") # Double DPI for summary image.
+    )
     ax = fig.subplots()
 
     # Configure plot properties
