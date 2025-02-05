@@ -24,7 +24,7 @@ def plot():
     st.session_state.stats["imghsum:nbytes"] += buf.getbuffer().nbytes
 
 
-# @st.cache_resource(max_entries=1000)
+@st.cache_resource(max_entries=1000)
 def imghsum(mm_hash):
 
     # Always use the full planning horizon for the summary figure.
@@ -62,13 +62,21 @@ def imghsum(mm_hash):
         hatch=glb.imgh("Bar:hatch"),
     )
 
-    window_size = 7
-    conv = np.convolve(df.values, np.ones(window_size)/window_size, mode='same')
-    ax.plot(
-        df.index,
-        conv,
-        color="#DD0000",
-    )
+    if days.shape[0] > 21 :
+        window_size = [7, 15, 21]
+        window_color = ["#333333", "#AAAAAA", "#DD0000"]
+        idx_size = len(df.index)
+        for ws, wc in zip(window_size, window_color):
+            conv = np.convolve(df.values, np.ones(ws)/ws, mode='valid')
+            ax.plot(
+                df.index[ws : idx_size - ws],
+                conv[int(ws/2) + 1 : conv.shape[0] - int(ws/2) - 1],
+                'o-',
+                linewidth=1,
+                markersize=1,
+                color=wc,
+                label=f"window size {ws}",
+            )
 
     # Set the limits.
     ax.set_xlim([start, end])
@@ -79,5 +87,8 @@ def imghsum(mm_hash):
     ax.yaxis.set_major_locator(locator)
     ax.xaxis.set_major_locator(matplotlib_dates.AutoDateLocator(minticks=3, maxticks=6))
     ax.xaxis.set_major_formatter(matplotlib_dates.DateFormatter(glb.format()))
+
+    # Add legend and adjust layout
+    ax.legend(loc="upper right", fontsize="6")
 
     return glb.savefig(fig)
