@@ -31,12 +31,12 @@ def imge(task, days_off, mm_hash):
     end = task.End
 
     if days_off:
-        # Generate day labels
-        days = pd.date_range(start=start, end=end, freq="D")
+        df = st.session_state.amplsol.xs(task.Name, level="Task", axis=1, drop_level=False).loc[start:end]
     else:
         # Take only the days that are not public holidays.
         holiday = set(st.session_state.mprob["holiday"]["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
+        df = st.session_state.amplsol.xs(task.Name, level="Task", axis=1, drop_level=False).loc[days]
 
     # Initialize figure and axis
     fig = matplotlib_figure.Figure(
@@ -52,17 +52,13 @@ def imge(task, days_off, mm_hash):
     ax.tick_params(axis="x", labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
 
-    expert_schedules = st.session_state.amplsol.xs(
-        task.Name, level="Task", axis=1, drop_level=False
-    ).loc[days]
-
     # Plot stacked chart
-    bottom = np.zeros(days.shape[0])
-    for et in expert_schedules.columns:
-        col = expert_schedules[et]
+    bottom = np.zeros(df.shape[0])
+    for et in df.columns:
+        col = df[et]
         if col.sum() > 0:
             ax.fill_between(
-                x=days,
+                x=df.index,
                 y1=bottom,
                 y2=col.values + bottom,
                 label=et[0],
