@@ -29,7 +29,7 @@ def imggsum(mm_hash):
     # Create figure and axis
     fig = matplotlib_figure.Figure(
         figsize=(glb.imgg("Width"), glb.imgg("Height")),
-        dpi=(2 * glb.imgg("Dpi")) # Double DPI for summary image.
+        dpi=glb.imgg("Dpi")
     )
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")

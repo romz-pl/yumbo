@@ -43,7 +43,7 @@ def imgtsum(days_off, mm_hash):
     # Create figure and axis
     fig = matplotlib_figure.Figure(figsize=(
         glb.imgt("Width"), glb.imgt("Height")),
-        dpi=(2 * glb.imgt("Dpi")) # Double DPI for summary image.
+        dpi=glb.imgt("Dpi")
     )
     ax = fig.subplots()
 
