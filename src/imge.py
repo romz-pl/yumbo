@@ -30,9 +30,6 @@ def imge(task, days_off, mm_hash):
     start = task.Start
     end = task.End
 
-    # Generate day labels and filter dataframe
-    days = pd.date_range(start=task.Start, end=task.End, freq="D")
-
     if days_off:
         # Generate day labels
         days = pd.date_range(start=start, end=end, freq="D")
