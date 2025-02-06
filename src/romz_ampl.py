@@ -254,23 +254,32 @@ def set_ampl_options(ampl):
 
 
 
-def set_model_and_data(ampl, ff):
+def set_model_and_data(ampl):
     # Change directory to AMPL's working directory
     ampl.cd(os.path.dirname(os.path.dirname(__file__)))
 
     model_file = glb.get_ampl_model_file()
     ampl.read(model_file)
 
+    # Temporary file is required for storing AMPL data file
+    ff = tempfile.NamedTemporaryFile(mode='w+', prefix="yumbo-")
+
     create_data_file(ff)
+
     ampl.read_data(ff.name)
+    ff.seek(0)
+    ampl_data_file = ff.read()
+    ff.close()
+
+    return ampl_data_file
 
 
 @st.cache_resource(max_entries=99)
-def solve_ampl(ff, mm_hash):
+def solve_ampl(mm_hash):
     set_ampl_license()
     ampl = AMPL()
     set_ampl_options(ampl)
-    set_model_and_data(ampl, ff)
+    ampl_data_file = set_model_and_data(ampl)
 
     # Capture solver log
     solver_log = ampl.get_output("solve;")
@@ -281,7 +290,7 @@ def solve_ampl(ff, mm_hash):
 
     amplsol = save_schedule(ampl)
 
-    return solver_log, amplsol
+    return solver_log, amplsol, ampl_data_file
 
 
 def solve():
@@ -289,13 +298,9 @@ def solve():
 
     mm_hash = glb.math_model_hash(None)
 
-    # Temporary file is required for storing AMPL data file
-    ff = tempfile.NamedTemporaryFile(mode='w+', prefix="yumbo-")
+    solver_log, amplsol, ampl_data_file = solve_ampl(mm_hash)
 
-    solver_log, amplsol = solve_ampl(ff, mm_hash)
-    ff.seek(0)
-    st.session_state.mprob["ampl_data_file"] = ff.read()
-    ff.close()
+    st.session_state.mprob["ampl_data_file"] = ampl_data_file
 
     st.session_state.amplsol = amplsol
 
