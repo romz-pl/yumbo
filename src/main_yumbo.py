@@ -98,7 +98,6 @@ def init_sesion_show():
         show["ampl_solver_log"] = False
         show["ampl_data_file"] = False
         show["ampl_model_file"] = False
-        st.write(show)
 
 
 def init_sesion_variables():
