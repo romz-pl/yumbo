@@ -93,7 +93,6 @@ def init_sesion__stats():
 
 
 
-
 def init_sesion_show():
     if 'show' not in st.session_state:
         st.session_state.show = dict()
