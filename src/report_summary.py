@@ -11,7 +11,7 @@ def show_report():
 
     st.divider()
 
-    days_off = st.session_state.glb["days_off"]
+    days_off = st.session_state.show["days_off"]
     st.header(":blue[Experts summary]", divider="blue")
     col1, col2, col3 = st.columns(3)
     with col1:

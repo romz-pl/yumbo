@@ -104,7 +104,9 @@ def init_sesion_show():
         show["stats_execution"] = True
         show["problem"] = False
         show["experts_summary"] = False
+        show["days_off"] = False
         show["tasks"] = pd.DataFrame()
+        show["experts"] = pd.DataFrame()
 
 
 def init_sesion_variables():

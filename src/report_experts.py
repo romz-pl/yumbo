@@ -82,7 +82,7 @@ def show_one_expert(expert_name):
         "Invoice period workload": imgw.plot
     }
 
-    days_off = st.session_state.glb["days_off"]
+    days_off = st.session_state.show["days_off"]
     for ii, col in enumerate(col_list, start=1):
         with col:
             chart_name = st.session_state.glb[f"report_expert_column_{ii}"]
@@ -91,7 +91,7 @@ def show_one_expert(expert_name):
 
 def show_report():
     experts = st.session_state.mprob["expert"].sort_values(by="Name")
-    report = st.session_state.glb["report:experts"]
+    report = st.session_state.show["experts"]
 
     # Filter experts with any active field
     active_experts = experts[

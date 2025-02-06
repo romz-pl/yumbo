@@ -48,9 +48,7 @@ def customise_task_report_layout():
     st.session_state.glb["report_task_column_no"] = report_column_no
 
 
-def customise_show_experts():
-    st.subheader("Look and feel", divider="blue")
-
+def init_show_experts():
     # Extract expert names and define row/column counts
     experts = st.session_state.mprob["expert"]["Name"].to_numpy()
     row_count = len(experts)
@@ -68,22 +66,26 @@ def customise_show_experts():
     df[names[1]] = st.checkbox(f"Show {names[1]}", value=False, key=f"expert_{names[1]}")
     df[names[2]] = st.checkbox(f"Show {names[2]}", value=False, key=f"expert_{names[2]}")
 
-    st.session_state.glb["days_off"] = st.checkbox(f"Include days off", value=False)
+    return df
+
+def customise_show_experts():
+    st.subheader("Look and feel", divider="blue")
+
+    df = init_show_experts()
 
     # Use Streamlit data editor with configuration for interaction
-    st.session_state.glb["report:experts"] = st.data_editor(
+    st.session_state.show["experts"] = st.data_editor(
         df,
         hide_index=True,
         use_container_width=True,
         column_config={
             "Expert": st.column_config.TextColumn(disabled=True, pinned=True),
-            **{col: st.column_config.CheckboxColumn() for col in names},
+            **{col: st.column_config.CheckboxColumn() for col in df.columns},
         },
     )
 
 
 def init_show_tasks():
-
     # Extract tasks names and define row/column counts
     tasks = st.session_state.mprob["task"]["Name"].to_numpy()
     row_count = len(tasks)
@@ -201,6 +203,8 @@ def show_planing_horizon():
     st.markdown(f"Tomorrow: :green[{glb.tomorrow().date()}]")
     st.markdown(f"Last day: :green[{glb.last_day().date()}]")
     st.markdown(f"Number of days: :green[{(glb.last_day() - glb.today()).days}]")
+
+    st.session_state.show["days_off"] = st.checkbox(f"Show days off", value=False)
 
 
 def customise_summary():
