@@ -5,7 +5,7 @@ import glb
 def show_solver_log():
     solver_timestamp = st.session_state.stats["solver_timestamp"]
     st.subheader(f":green[Solver output at {solver_timestamp}]", divider="green")
-    st.code(st.session_state.stats["solver_log"])
+    st.code(st.session_state.stats["solver_log"], line_numbers=True, height=500)
 
 
 def show_ampl_data_file():
@@ -30,7 +30,7 @@ def show_ampl_model_file():
 
     with open(model_file, "r") as f:
         buf = f.read()
-    st.code(buf)
+    st.code(buf, line_numbers=True, height=500)
 
 
 def show():
