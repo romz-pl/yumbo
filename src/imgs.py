@@ -29,18 +29,14 @@ def imgs(expert_name, days_off, mm_hash):
     start = glb.imgs("Start")
     end = glb.imgs("End")
 
-
+    # Filter dataframe.
     if days_off:
-        # Generate day labels
-        days = pd.date_range(start=start, end=end, freq="D")
+        df = st.session_state.amplsol[f"{expert_name}"].loc[start : end]
     else:
         # Take only the days that are not public holidays.
         holiday = set(st.session_state.mprob["holiday"]["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
-
-
-    # Filter dataframe.
-    df = st.session_state.amplsol[f"{expert_name}"].loc[days]
+        df = st.session_state.amplsol[f"{expert_name}"].loc[days]
 
     # Initialize figure and axis
     fig = matplotlib_figure.Figure(figsize=(glb.imgs("Width"), glb.imgs("Height")), dpi=glb.imgs("Dpi"))
