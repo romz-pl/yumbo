@@ -29,17 +29,15 @@ def imgh(expert_name, days_off, mm_hash):
     start = glb.imgh("Start")
     end = glb.imgh("End")
 
+    # Summing over all the tasks.
     if days_off:
-        # Generate days
-        days = pd.date_range(start=start, end=end, freq="D")
+        df = st.session_state.amplsol[f"{expert_name}"].loc[start : end].sum(axis=1)
     else:
         # Take only the days that are not public holidays.
         holiday = set(st.session_state.mprob["holiday"]["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
+        df = st.session_state.amplsol[f"{expert_name}"].loc[days].sum(axis=1)
 
-
-    # Summing over all the tasks. Choose days.
-    df = st.session_state.amplsol[f"{expert_name}"].loc[days].sum(axis=1)
 
     # Create figure and axis.
     fig = matplotlib_figure.Figure(
