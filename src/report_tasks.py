@@ -65,8 +65,13 @@ def show_one_task(task):
 
 
 def show_report():
-    tasks = st.session_state.mprob["task"].sort_values(by="Name")
     report = st.session_state.show["tasks"]
+
+    # If all values are False
+    if (~report["Report"]).all():
+        return
+
+    tasks = st.session_state.mprob["task"].sort_values(by="Name")
 
     if not report.loc[tasks["Name"], "Report"].any():
         return

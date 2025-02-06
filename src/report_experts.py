@@ -90,10 +90,15 @@ def show_one_expert(expert_name):
             chart_functions.get(chart_name)(expert_name, days_off)
 
 def show_report():
-    experts = st.session_state.mprob["expert"].sort_values(by="Name")
     report = st.session_state.show["experts"]
 
+    # If all values are False
+    if (~report[["Charts", "Table", "Commitment"]]).all().all():
+        return
+
     # Filter experts with any active field
+    experts = st.session_state.mprob["expert"].sort_values(by="Name")
+
     active_experts = experts[
         experts["Name"].apply(
             lambda name: any(report.at[name, col] for col in ["Charts", "Table", "Commitment"])
