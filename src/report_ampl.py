@@ -11,8 +11,16 @@ def show_solver_log():
 def show_ampl_data_file():
     st.subheader(":green[AMPL data file]", divider="green")
 
-    # st.code is very slow for large files!!
-    st.text(st.session_state.mprob["ampl_data_file"])
+    data = st.session_state.mprob["ampl_data_file"]
+    if len(data) < 10 * 1024:
+        # st.code is very slow for large files!!
+        # What is better syntax for AML data files?
+        language="python"
+    else:
+        language=None
+
+    st.code(body=data, language=language, line_numbers=True, height=500)
+
 
 
 def show_ampl_model_file():

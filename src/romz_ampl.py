@@ -12,6 +12,15 @@ import glb
 quarters_in_hour = 4
 
 
+def check_and_round(f):
+    v = int(round(f))
+
+    if abs(f - v) > 0.001:
+        Exception(f"Invalid data in AMPL model")
+
+    return v
+
+
 def task(f):
     task = st.session_state.mprob["task"]
 
@@ -93,8 +102,8 @@ def xbday(f):
         result.append(f"['{row.Expert}','{row.Task}',*]")
 
         # Pre-compute values used repeatedly for the current row.
-        lower = row.Lower * quarters_in_hour
-        upper = row.Upper * quarters_in_hour
+        lower = check_and_round(row.Lower * quarters_in_hour)
+        upper = check_and_round(row.Upper * quarters_in_hour)
 
         # Use list comprehension to extend the result list for each day.
         result.extend(f"{d} {lower} {upper}" for d in days)
@@ -119,10 +128,13 @@ def ubday(f):
 
         result.append(f"['{row.Expert}',*]")
 
+        lower = check_and_round(row.Lower)
+        upper = check_and_round(row.Upper)
+
 
         # Use list comprehension to extend the result list for each day.
         result.extend(
-            f"{d} {row.Lower} {row.Upper}" for d in days
+            f"{d} {lower} {upper}" for d in days
         )
 
     # Build the output string once and perform a single I/O write.
@@ -135,18 +147,18 @@ def ubday(f):
 def ebday(f):
     today = glb.today()
     df = st.session_state.mprob["ebday"]
-    result = [
-        f"{id+1} '{row.Expert}' {(row.Start - today).days} "
-        f"{(row.End - today).days} "
-        f"{row.Lower * quarters_in_hour} "
-        f"{row.Upper * quarters_in_hour}"
-        for id, row in enumerate(df.itertuples(index=False))
-    ]
 
-    f.write("param:\nEBID: EBN EBS EBE EBL EBU :=\n")
-    buf = "\n".join(result)
-    f.write(buf)
-    f.write("\n;\n\n")
+    result = []
+    for id, row in enumerate(df.itertuples(index=False)):
+        start = (row.Start - today).days
+        end = (row.End - today).days
+        lower = check_and_round(row.Lower * quarters_in_hour)
+        upper = check_and_round(row.Upper * quarters_in_hour)
+        result.append(f"{id+1} '{row.Expert}' {start} {end} {lower} {upper}")
+
+
+    output = "param:\nEBID: EBN EBS EBE EBL EBU :=\n" + "\n".join(result) + "\n;\n\n"
+    f.write(output)
 
 
 def period(f):
@@ -174,8 +186,9 @@ def pbsum(f):
             result.append(f"['{row.Expert}',*]")
             expert = row.Expert
 
-        lower = row.Lower * quarters_in_hour
-        upper = row.Upper * quarters_in_hour
+        lower = check_and_round(row.Lower * quarters_in_hour)
+        upper = check_and_round(row.Upper * quarters_in_hour)
+
         result.append(f"'{row.Period}' {lower} {upper}")
 
     output = "param:\nEXPPER: PBL PBU :=\n" + "\n".join(result) + "\n;\n\n"
