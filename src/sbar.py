@@ -171,8 +171,8 @@ def customise_chart_colours():
 
 def customise_ampl():
     st.subheader("Report layout", divider="blue")
-    show = st.session_state.show
 
+    show = st.session_state.show
     show["ampl_solver_log"] = st.checkbox("Solver log", value=False)
     show["ampl_data_file"] = st.checkbox("AMPL data file", value=False)
     show["ampl_model_file"] = st.checkbox("AMPL model file", value=False)
@@ -200,18 +200,24 @@ def show_planing_horizon():
 
 def customise_summary():
     st.subheader("Report layout", divider="blue")
-    st.session_state.show["experts_summary"] = st.checkbox("Experts summary", value=True)
+
+    show = st.session_state.show
+    show["experts_summary"] = st.checkbox("Experts summary", value=True)
 
 
 def customise_problem():
     st.subheader("Report layout", divider="blue")
-    st.session_state.show["problem"] = st.checkbox("Problem definition", value=False)
+
+    show = st.session_state.show
+    show["problem"] = st.checkbox("Problem definition", value=False)
 
 
 def customise_stats():
     st.subheader("Report layout", divider="blue")
-    st.session_state.show["stats_chart"] = st.checkbox("Statistics on chart creation", value=True)
-    st.session_state.show["stats_execution"] = st.checkbox("Statistics on Yumbo execution", value=True)
+
+    show = st.session_state.show
+    show["stats_chart"] = st.checkbox("Statistics on chart creation", value=True)
+    show["stats_execution"] = st.checkbox("Statistics on Yumbo execution", value=True)
 
 
 def show():
