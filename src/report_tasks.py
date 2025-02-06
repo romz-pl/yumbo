@@ -54,13 +54,14 @@ def show_one_task(task):
         "Simple table": experts_in_tasks_as_table_simple,
     }
 
+    days_off = st.session_state.show["days_off"]
     for ii, col in enumerate(col_list, start=1):
         with col:
             chart_name = st.session_state.glb[f"report_task_column_{ii}"]
             # Call the corresponding function
             #st.write(chart_name)
             #st.write(chart_functions.get(chart_name))
-            chart_functions.get(chart_name)(task)
+            chart_functions.get(chart_name)(task, days_off)
 
 
 def show_report():

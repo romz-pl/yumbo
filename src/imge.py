@@ -11,11 +11,11 @@ import glb
 #
 # Experts per day stacked
 #
-def plot(task):
+def plot(task, days_off):
     time_start = time.perf_counter()
 
     mm_hash = glb.math_model_hash("imge")
-    buf = imge(task, mm_hash)
+    buf = imge(task, days_off, mm_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -25,17 +25,21 @@ def plot(task):
 
 
 @st.cache_resource(max_entries=1000)
-def imge(task, mm_hash):
+def imge(task, days_off, mm_hash):
+
+    start = task.Start
+    end = task.End
 
     # Generate day labels and filter dataframe
     days = pd.date_range(start=task.Start, end=task.End, freq="D")
 
-    # Determine bar width
-    width = 0.9 if days.size < 10 else 1.0
-
-    # Define x-axis limits
-    left = pd.Timestamp(task.Start) - pd.Timedelta(days=1)
-    right = pd.Timestamp(task.End) + pd.Timedelta(days=1)
+    if days_off:
+        # Generate day labels
+        days = pd.date_range(start=start, end=end, freq="D")
+    else:
+        # Take only the days that are not public holidays.
+        holiday = set(st.session_state.mprob["holiday"]["Date"])
+        days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
 
     # Initialize figure and axis
     fig = matplotlib_figure.Figure(
@@ -44,7 +48,6 @@ def imge(task, mm_hash):
     )
     ax = fig.subplots()
     ax.set_title("Experts per day stacked")
-    ax.set_xlim(left, right)
 
     # Configure axis formatting and grid
     ax.yaxis.grid(alpha=0.4)
@@ -56,20 +59,24 @@ def imge(task, mm_hash):
         task.Name, level="Task", axis=1, drop_level=False
     ).loc[days]
 
-    # Plot stacked bar chart
+    # Plot stacked chart
     bottom = np.zeros(days.shape[0])
     for et in expert_schedules.columns:
         col = expert_schedules[et]
         if col.sum() > 0:
-            ax.bar(
-                days,
-                col.values,
-                width,
+            ax.fill_between(
+                x=days,
+                y1=bottom,
+                y2=col.values + bottom,
                 label=et[0],
-                bottom=bottom,
+                step='mid',
                 alpha=glb.imge("Bar:alpha"),
             )
-            bottom += col.values
+            bottom = bottom + col.values
+
+    # Set the limits.
+    ax.set_xlim([start, end])
+    ax.set_ylim(bottom=0)
 
     locator = glb.get_major_tick_locator(ax)
     ax.yaxis.set_major_locator(locator)
