@@ -30,6 +30,7 @@ def imge(task, days_off, mm_hash):
     start = task.Start
     end = task.End
 
+    # Summing over all the experts.
     if days_off:
         df = st.session_state.amplsol.xs(task.Name, level="Task", axis=1, drop_level=False).loc[start : end]
     else:
