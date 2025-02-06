@@ -65,7 +65,7 @@ def show_one_task(task):
 
 def show_report():
     tasks = st.session_state.mprob["task"].sort_values(by="Name")
-    report = st.session_state.glb["report:tasks"]
+    report = st.session_state.show["tasks"]
 
     if not report.loc[tasks["Name"], "Report"].any():
         return

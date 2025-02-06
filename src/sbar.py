@@ -82,10 +82,9 @@ def customise_show_experts():
     )
 
 
-def customise_show_tasks():
-    st.subheader("Look and feel", divider="blue")
+def init_show_tasks():
 
-    # Extract expert names and define row/column counts
+    # Extract tasks names and define row/column counts
     tasks = st.session_state.mprob["task"]["Name"].to_numpy()
     row_count = len(tasks)
 
@@ -100,15 +99,21 @@ def customise_show_tasks():
     # Update column values based on user input from Streamlit checkboxes
     df[names[0]] = st.checkbox(f"All reports", value=False , key=f"task_{names[0]}")
 
+    return df
+
+
+def customise_show_tasks():
+    st.subheader("Look and feel", divider="blue")
 
     # Use Streamlit data editor with configuration for interaction
-    st.session_state.glb["report:tasks"] = st.data_editor(
+    df = init_show_tasks()
+    st.session_state.show["tasks"] = st.data_editor(
         df,
         hide_index=True,
         use_container_width=True,
         column_config={
             "Task": st.column_config.TextColumn(disabled=True, pinned=True),
-            **{col: st.column_config.CheckboxColumn() for col in names},
+            **{col: st.column_config.CheckboxColumn() for col in df.columns},
         },
     )
 

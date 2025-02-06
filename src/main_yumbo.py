@@ -91,6 +91,8 @@ def init_sesion__stats():
     stats["report_summary:ttime"] = 0
 
 
+
+
 def init_sesion_show():
     if 'show' not in st.session_state:
         st.session_state.show = dict()
@@ -102,6 +104,7 @@ def init_sesion_show():
         show["stats_execution"] = True
         show["problem"] = False
         show["experts_summary"] = False
+        show["tasks"] = pd.DataFrame()
 
 
 def init_sesion_variables():
@@ -141,14 +144,12 @@ def solve_problem():
 
 def main():
     set_page_config()
-
-    init_sesion_variables()
     show_page_header()
+    init_sesion_variables()
 
     if not upload():
         show_yumbo_description()
         return
-
 
     if not solve_problem():
         return
