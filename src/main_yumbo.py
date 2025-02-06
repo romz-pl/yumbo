@@ -48,7 +48,8 @@ def show_page_header():
     st.subheader("Zbigniew Romanowski, Paweł Koczyk")
     st.markdown("Source code, documentation and sample Excel input files can be found on [Yumbo's](https://github.com/romz-pl/yambo) GitHub repository.")
     st.caption(f"git hash: :green[{glb.get_git_hash()}]")
-    st.caption("_{d}_".format(d=pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")))
+    st.caption(f"Timestamp: :green[{pd.Timestamp.now().strftime('%d %B %Y, %H:%M:%S %p')}]")
+    st.caption(f"Streamlit version: :green[{st.__version__}]")
 
 
 def show_yumbo_description():
