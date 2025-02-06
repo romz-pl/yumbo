@@ -98,6 +98,10 @@ def init_sesion_show():
         show["ampl_solver_log"] = False
         show["ampl_data_file"] = False
         show["ampl_model_file"] = False
+        show["stats_chart"] = True
+        show["stats_execution"] = True
+        show["problem"] = False
+        show["experts_summary"] = False
 
 
 def init_sesion_variables():

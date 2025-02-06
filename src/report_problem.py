@@ -82,7 +82,7 @@ def customise_periods():
 
 
 def show():
-    if not st.session_state.glb["show_problem"]:
+    if not st.session_state.show["problem"]:
         return
 
     st.divider()

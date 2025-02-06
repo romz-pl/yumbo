@@ -6,7 +6,7 @@ import imghsum
 import imgtsum
 
 def show_report():
-    if not st.session_state.glb["show_experts_summary"]:
+    if not st.session_state.show["experts_summary"]:
         return
 
     st.divider()

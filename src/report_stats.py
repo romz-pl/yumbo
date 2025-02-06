@@ -99,8 +99,8 @@ def show_ampl_stats():
 
 
 def show():
-    stats_chart = st.session_state.glb["show_stats_chart"]
-    stats_execution = st.session_state.glb["show_stats_execution"]
+    stats_chart = st.session_state.show["stats_chart"]
+    stats_execution = st.session_state.show["stats_execution"]
 
     if not (stats_chart or stats_execution):
         return

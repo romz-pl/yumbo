@@ -200,18 +200,18 @@ def show_planing_horizon():
 
 def customise_summary():
     st.subheader("Report layout", divider="blue")
-    st.session_state.glb["show_experts_summary"] = st.checkbox("Experts summary", value=True)
+    st.session_state.show["experts_summary"] = st.checkbox("Experts summary", value=True)
 
 
 def customise_problem():
     st.subheader("Report layout", divider="blue")
-    st.session_state.glb["show_problem"] = st.checkbox("Problem definition", value=False)
+    st.session_state.show["problem"] = st.checkbox("Problem definition", value=False)
 
 
 def customise_stats():
     st.subheader("Report layout", divider="blue")
-    st.session_state.glb["show_stats_chart"] = st.checkbox("Statistics on chart creation", value=True)
-    st.session_state.glb["show_stats_execution"] = st.checkbox("Statistics on Yumbo execution", value=True)
+    st.session_state.show["stats_chart"] = st.checkbox("Statistics on chart creation", value=True)
+    st.session_state.show["stats_execution"] = st.checkbox("Statistics on Yumbo execution", value=True)
 
 
 def show():
