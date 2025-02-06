@@ -10,4 +10,4 @@ matplotlib
 numpy==1.26.4
 openpyxl
 pandas
-streamlit=1.42.0
+streamlit==1.42.0
