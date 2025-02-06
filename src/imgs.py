@@ -39,7 +39,11 @@ def imgs(expert_name, days_off, mm_hash):
         df = st.session_state.amplsol[f"{expert_name}"].loc[days]
 
     # Initialize figure and axis
-    fig = matplotlib_figure.Figure(figsize=(glb.imgs("Width"), glb.imgs("Height")), dpi=glb.imgs("Dpi"))
+    fig = matplotlib_figure.Figure(
+        figsize=(glb.imgs("Width"), glb.imgs("Height")),
+        dpi=glb.imgs("Dpi")
+    )
+
     ax = fig.subplots()
     ax.set_title("Hours per day stacked")
 
