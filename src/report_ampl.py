@@ -2,16 +2,17 @@ import streamlit as st
 
 import glb
 
-def show_solver_output():
-    st.subheader(f":green[Solver output at {st.session_state.glb['solver timestamp']}]", divider="green")
-    st.code(st.session_state.glb["solver output"])
+def show_solver_log():
+    solver_timestamp = st.session_state.stats["solver_timestamp"]
+    st.subheader(f":green[Solver output at {solver_timestamp}]", divider="green")
+    st.code(st.session_state.stats["solver_log"])
 
 
 def show_ampl_data_file():
     st.subheader(":green[AMPL data file]", divider="green")
 
     # st.code is very slow for large files!!
-    st.text(st.session_state.glb["ampl_data_file"])
+    st.text(st.session_state.mprob["ampl_data_file"])
 
 
 def show_ampl_model_file():
@@ -25,9 +26,9 @@ def show_ampl_model_file():
 
 
 def show():
-    solver_log = st.session_state.glb["show_ampl_solver_log"]
-    data_file = st.session_state.glb["show_ampl_data_file"]
-    model_file = st.session_state.glb["show_ampl_model_file"]
+    solver_log = st.session_state.show["ampl_solver_log"]
+    data_file = st.session_state.show["ampl_data_file"]
+    model_file = st.session_state.show["ampl_model_file"]
 
     if not (solver_log or data_file or model_file):
         return
@@ -36,7 +37,7 @@ def show():
     st.header(":blue[AMPL]", divider="blue")
 
     if solver_log:
-        show_solver_output()
+        show_solver_log()
 
     if data_file:
         show_ampl_data_file()

@@ -183,9 +183,7 @@ def pbsum(f):
 
 
 
-def data_file():
-    ff = tempfile.NamedTemporaryFile(mode='w+', prefix="yumbo-")
-
+def create_data_file(ff):
     ff.write(f'param MAXWORK := {glb.hours_per_day() * quarters_in_hour};\n\n')
 
     task(ff)
@@ -199,9 +197,6 @@ def data_file():
     pbsum(ff)
 
     ff.seek(0)
-    st.session_state.glb["ampl_data_file"] = ff.read()
-
-    return ff
 
 
 def save_schedule(ampl):
@@ -239,19 +234,6 @@ def set_ampl_license():
         modules.activate(uuid)
 
 
-def solve():
-    time_start = time.perf_counter()
-
-    mm_hash = glb.math_model_hash(None)
-    solver_output, amplsol = solve_ampl(mm_hash)
-    st.session_state.glb["solver output"] = solver_output
-    st.session_state.amplsol = amplsol
-    st.session_state.glb["solver timestamp"] = pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")
-
-    time_end = time.perf_counter()
-    st.session_state.stats["ampl:ttime"] += time_end - time_start
-
-
 def set_ampl_options(ampl):
     ampl.set_option('presolve', 10)
     ampl.set_option('show_stats', 7);
@@ -272,28 +254,26 @@ def set_ampl_options(ampl):
 
 
 
-
-
-def set_model_and_data(ampl):
+def set_model_and_data(ampl, ff):
     # Change directory to AMPL's working directory
     ampl.cd(os.path.dirname(os.path.dirname(__file__)))
 
     model_file = glb.get_ampl_model_file()
     ampl.read(model_file)
 
-    ff = data_file()
+    create_data_file(ff)
     ampl.read_data(ff.name)
-    ff.close()
+
 
 @st.cache_resource(max_entries=99)
-def solve_ampl(mm_hash):
+def solve_ampl(ff, mm_hash):
     set_ampl_license()
     ampl = AMPL()
     set_ampl_options(ampl)
-    set_model_and_data(ampl)
+    set_model_and_data(ampl, ff)
 
-    # Capture solver output
-    solver_output = ampl.get_output("solve;")
+    # Capture solver log
+    solver_log = ampl.get_output("solve;")
 
     # Check if solving was successful
     if ampl.solve_result != "solved":
@@ -301,4 +281,26 @@ def solve_ampl(mm_hash):
 
     amplsol = save_schedule(ampl)
 
-    return solver_output, amplsol
+    return solver_log, amplsol
+
+
+def solve():
+    time_start = time.perf_counter()
+
+    mm_hash = glb.math_model_hash(None)
+
+    # Temporary file is required for storing AMPL data file
+    ff = tempfile.NamedTemporaryFile(mode='w+', prefix="yumbo-")
+
+    solver_log, amplsol = solve_ampl(ff, mm_hash)
+    ff.seek(0)
+    st.session_state.mprob["ampl_data_file"] = ff.read()
+    ff.close()
+
+    st.session_state.amplsol = amplsol
+
+    st.session_state.stats["solver_log"] = solver_log
+    st.session_state.stats["solver_timestamp"] = pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")
+
+    time_end = time.perf_counter()
+    st.session_state.stats["ampl:ttime"] += time_end - time_start
