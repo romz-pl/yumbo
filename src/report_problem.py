@@ -63,7 +63,7 @@ def show_exptas():
         show_assign()
 
 
-def customise_bounds():
+def show_bounds():
     col0, col1, col2 = st.columns(3)
     with col0:
         show_xbday()
@@ -73,7 +73,7 @@ def customise_bounds():
         show_ebday()
 
 
-def customise_periods():
+def show_periods():
     col0, col1 = st.columns(2)
     with col0:
         show_period()
@@ -88,11 +88,20 @@ def show():
     st.divider()
 
     st.header(":blue[Problem definition]", divider="blue")
-    tab = st.tabs(["**Experts and Tasks**", "**Bounds**", "**Periods**"])
 
-    with tab[0]:
+    options = ["Experts and Tasks", "Bounds", "Periods"]
+
+    selection = st.pills(
+        "Select problem area",
+        options,
+        selection_mode="single",
+        default=options[0],
+        label_visibility="collapsed"
+    )
+
+    if selection == options[0]:
         show_exptas()
-    with tab[1]:
-        customise_bounds()
-    with tab[2]:
-        customise_periods()
+    elif selection == options[1]:
+        show_bounds()
+    elif selection == options[2]:
+        show_periods()
