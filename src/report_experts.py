@@ -89,32 +89,35 @@ def show_one_expert(expert_name):
             # Call the corresponding function
             chart_functions.get(chart_name)(expert_name, days_off)
 
+
 def show_report():
     show_experts = st.session_state.show["experts"]
 
-    # If all values are False
-    if (~show_experts).all(axis=None):
+    # Return if no experts are selected
+    if not show_experts.any(axis=None):
         return
 
     experts = st.session_state.mprob["expert"]
 
-    for row in show_experts.itertuples(index=True):
-        bChart = row.Chart
-        bTable = row.Table
-        bCommitment = row.Commitment
-        if bChart or bTable or bCommitment:
-            extert_name = row.Index
-            comment = experts.loc[extert_name, "Comment"]
-            st.subheader(f":green[{extert_name}, {comment}]", divider="green")
+    # Filter only rows with any True values
+    active_experts = show_experts[show_experts.any(axis=1)]
 
-            if bChart:
-                show_one_expert(extert_name)
+    # Use dictionary to map boolean flags to functions
+    display_funcs = {
+        'Chart': show_one_expert,
+        'Table': show_schedule_as_table,
+        'Commitment': show_commitment_per_task
+    }
 
-            if bTable:
-                show_schedule_as_table(extert_name)
+    for expert_name, row in active_experts.iterrows():
+        st.subheader(
+            f":green[{expert_name}, {experts.loc[expert_name, 'Comment']}]",
+            divider="green"
+        )
 
-            if bCommitment:
-                show_commitment_per_task(extert_name)
+        for col, func in display_funcs.items():
+            if row[col]:
+                func(expert_name)
 
 
 def show():
