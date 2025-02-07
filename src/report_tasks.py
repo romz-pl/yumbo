@@ -65,24 +65,22 @@ def show_one_task(task):
 
 
 def show_report():
-    report = st.session_state.show["tasks"]
+    show_tasks = st.session_state.show["tasks"]
 
-    # If all values are False
-    if (~report["Report"]).all():
-        return
-
-    tasks = st.session_state.mprob["task"].sort_values(by="Name")
-
-    if not report.loc[tasks["Name"], "Report"].any():
+    # Return if no tasks are selected
+    if not show_tasks.any(axis=None):
         return
 
     st.divider()
-
     st.header(":blue[Tasks]", divider="blue")
-    for task in tasks.itertuples(index=False):
-        if report.at[task.Name, "Report"]:
-            st.subheader(f":green[{task.Name}]", divider="green")
-            show_one_task(task)
+
+    tasks = st.session_state.mprob["task"]
+
+    for row in show_tasks.itertuples():
+        if row.Report:
+            st.subheader(f":green[{row.Index}]", divider="green")
+            show_one_task(tasks.loc[row.Index])
+
 
 
 def show():
