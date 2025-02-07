@@ -48,76 +48,52 @@ def customise_task_report_layout():
     st.session_state.glb["report_task_column_no"] = report_column_no
 
 
-def init_show_experts():
-    # Extract expert names and define row/column counts
-    experts = st.session_state.mprob["expert"]["Name"].to_numpy()
-    row_count = len(experts)
-
-    # Create a DataFrame with predefined columns and default boolean values
-    names = ["Charts", "Table", "Commitment"]
-    df = pd.DataFrame(False, index=experts, columns=names)
-    df.index.name = "Expert"
-
-    # Sort the DataFrame by index (expert names)
-    df.sort_index(inplace=True)
-
-    # Update column values based on user input from Streamlit checkboxes
-    df[names[0]] = st.checkbox(f"Show {names[0]}", value=False , key=f"expert_{names[0]}")
-    df[names[1]] = st.checkbox(f"Show {names[1]}", value=False, key=f"expert_{names[1]}")
-    df[names[2]] = st.checkbox(f"Show {names[2]}", value=False, key=f"expert_{names[2]}")
-
-    return df
-
 def customise_show_experts():
     st.subheader("Look and feel", divider="blue")
 
-    df = init_show_experts()
+    experts_init = st.session_state.show["experts_init"]
 
-    # Use Streamlit data editor with configuration for interaction
-    st.session_state.show["experts"] = st.data_editor(
-        df,
+    df = st.data_editor(
+        experts_init,
         hide_index=False,
         use_container_width=True,
         column_config={
             "Expert": st.column_config.TextColumn(disabled=True, pinned=True),
-            **{col: st.column_config.CheckboxColumn() for col in df.columns},
+            **{col: st.column_config.CheckboxColumn() for col in experts_init.columns},
         },
     )
 
+    if st.checkbox("Show all charts"):
+        df["Chart"] = True
 
-def init_show_tasks():
-    # Extract tasks names and define row/column counts
-    tasks = st.session_state.mprob["task"]["Name"].to_numpy()
-    row_count = len(tasks)
+    if st.checkbox("Show all tables"):
+        df["Table"] = True
 
-    # Create a DataFrame with predefined columns and default boolean values
-    names = ["Report"]
-    df = pd.DataFrame(False, index=tasks, columns=names)
-    df.index.name = "Task"
+    if st.checkbox("Show all commitments"):
+        df["Commitment"] = True
 
-    # Sort the DataFrame by index (task names)
-    df.sort_index(inplace=True)
-
-    # Update column values based on user input from Streamlit checkboxes
-    df[names[0]] = st.checkbox(f"All reports", value=False , key=f"task_{names[0]}")
-
-    return df
+    st.session_state.show["experts"] = df
 
 
 def customise_show_tasks():
     st.subheader("Look and feel", divider="blue")
 
-    # Use Streamlit data editor with configuration for interaction
-    df = init_show_tasks()
-    st.session_state.show["tasks"] = st.data_editor(
-        df,
+    tasks_init = st.session_state.show["tasks_init"]
+
+    df = st.data_editor(
+        tasks_init,
         hide_index=False,
         use_container_width=True,
         column_config={
             "Task": st.column_config.TextColumn(disabled=True, pinned=True),
-            **{col: st.column_config.CheckboxColumn() for col in df.columns},
+            **{col: st.column_config.CheckboxColumn() for col in tasks_init.columns},
         },
     )
+
+    if st.checkbox("Show all reports"):
+        df["Report"] = True
+
+    st.session_state.show["tasks"] = df
 
 
 def customise_date_range():

@@ -93,6 +93,33 @@ def init_sesion__stats():
     stats["report_summary:ttime"] = 0
 
 
+def init_show_tasks():
+    # Extract tasks names and define row/column counts
+    tasks = st.session_state.mprob["task"]["Name"].to_numpy()
+    row_count = len(tasks)
+
+    # Create a DataFrame with predefined columns and default boolean values
+    names = ["Report"]
+    df = pd.DataFrame(False, index=tasks, columns=names)
+    df.index.name = "Task"
+
+    # Sort the DataFrame by index (task names)
+    df.sort_index(inplace=True)
+    return df
+
+def init_show_experts():
+    # Extract expert names and define row/column counts
+    experts = st.session_state.mprob["expert"]["Name"].to_numpy()
+    row_count = len(experts)
+
+    # Create a DataFrame with predefined columns and default boolean values
+    names = ["Chart", "Table", "Commitment"]
+    df = pd.DataFrame(False, index=experts, columns=names)
+    df.index.name = "Expert"
+
+    # Sort the DataFrame by index (expert names)
+    df.sort_index(inplace=True)
+    return df
 
 def init_sesion_show():
     if 'show' not in st.session_state:
@@ -107,7 +134,9 @@ def init_sesion_show():
         show["experts_summary"] = False
         show["days_off"] = False
         show["tasks"] = pd.DataFrame()
+        show["tasks_init"] = pd.DataFrame()
         show["experts"] = pd.DataFrame()
+        show["experts_init"] = pd.DataFrame()
 
 
 def init_sesion_variables():
@@ -129,6 +158,8 @@ def upload():
         uploaded_file = sbar.get_uploaded_file()
         if uploaded_file != None:
             romz_excel.load(uploaded_file)
+            st.session_state.show["tasks_init"] = init_show_tasks()
+            st.session_state.show["experts_init"] = init_show_experts()
             sbar.show()
 
     return uploaded_file != None

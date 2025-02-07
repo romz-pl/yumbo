@@ -93,7 +93,7 @@ def show_report():
     report = st.session_state.show["experts"]
 
     # If all values are False
-    if (~report[["Charts", "Table", "Commitment"]]).all().all():
+    if (~report[["Chart", "Table", "Commitment"]]).all().all():
         return
 
     # Filter experts with any active field
@@ -101,7 +101,7 @@ def show_report():
 
     active_experts = experts[
         experts["Name"].apply(
-            lambda name: any(report.at[name, col] for col in ["Charts", "Table", "Commitment"])
+            lambda name: any(report.at[name, col] for col in ["Chart", "Table", "Commitment"])
         )
     ]
 
@@ -113,14 +113,14 @@ def show_report():
 
     st.header(":blue[Experts]", divider="blue")
     for expert in active_experts.itertuples(index=False):
-        bCharts = report.at[expert.Name, "Charts"]
+        bChart = report.at[expert.Name, "Chart"]
         bTable = report.at[expert.Name, "Table"]
         bCommitment = report.at[expert.Name, "Commitment"]
 
-        if bCharts or bTable or bCommitment:
+        if bChart or bTable or bCommitment:
             st.subheader(f":green[{expert.Name}, {expert.Comment}]", divider="green")
 
-            if bCharts:
+            if bChart:
                 show_one_expert(expert.Name)
 
             if bTable:
