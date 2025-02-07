@@ -13,8 +13,8 @@ import glb
 def plot(task, schedule, bounds):
     time_start = time.perf_counter()
 
-    mm_hash = st.session_state.mm_hash
-    buf = imgb(task, schedule, bounds, mm_hash)
+    combi_hash = st.session_state.combi_hash
+    buf = imgb(task, schedule, bounds, combi_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -24,7 +24,7 @@ def plot(task, schedule, bounds):
 
 
 @st.cache_resource(max_entries=1000)
-def imgb(task, schedule, bounds, mm_hash):
+def imgb(task, schedule, bounds, combi_hash):
 
     # Generate task-specific data
     x_task = pd.date_range(start=task.Start, end=task.End, freq="D")

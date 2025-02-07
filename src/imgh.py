@@ -13,8 +13,8 @@ import glb
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
-    mm_hash = st.session_state.mm_hash
-    buf = imgh(expert_name, days_off, mm_hash)
+    combi_hash = st.session_state.combi_hash
+    buf = imgh(expert_name, days_off, combi_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -24,7 +24,7 @@ def plot(expert_name, days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imgh(expert_name, days_off, mm_hash):
+def imgh(expert_name, days_off, combi_hash):
 
     start = glb.img("Start")
     end = glb.img("End")

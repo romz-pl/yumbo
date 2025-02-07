@@ -43,7 +43,8 @@ def show_commitment_per_task(expert_name):
             imgb.plot(task_row, schedule, bounds)
 
 
-def show_schedule_as_table(expert_name, as_html):
+@st.cache_resource(max_entries=1000)
+def show_schedule_as_table(expert_name, as_html, mm_hash):
     # Retrieve data from session state
     task = st.session_state.mprob["task"]
     assign = st.session_state.mprob["assign"]
@@ -108,12 +109,14 @@ def show_report():
             divider="green"
         )
 
+        mm_hash = st.session_state.mm_hash
+
         if row["Chart"]:
             show_one_expert(expert_name)
         if row["H:Table"]:
-            show_schedule_as_table(expert_name, True)
+            show_schedule_as_table(expert_name, True, mm_hash)
         if row["S:Table"]:
-            show_schedule_as_table(expert_name, False)
+            show_schedule_as_table(expert_name, False, mm_hash)
         if row["Commitment"]:
             show_commitment_per_task(expert_name)
 

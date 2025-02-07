@@ -14,8 +14,8 @@ import glb
 def plot(days_off):
     time_start = time.perf_counter()
 
-    mm_hash = st.session_state.mm_hash
-    buf = imghsum(days_off, mm_hash)
+    combi_hash = st.session_state.combi_hash
+    buf = imghsum(days_off, combi_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -25,7 +25,7 @@ def plot(days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imghsum(days_off, mm_hash):
+def imghsum(days_off, combi_hash):
 
     start = glb.img("Start")
     end = glb.img("End")

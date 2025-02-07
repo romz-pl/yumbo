@@ -12,8 +12,8 @@ import glb
 def plot():
     time_start = time.perf_counter()
 
-    mm_hash = st.session_state.mm_hash
-    buf = imggsum(mm_hash)
+    combi_hash = st.session_state.combi_hash
+    buf = imggsum(combi_hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -23,7 +23,7 @@ def plot():
 
 
 @st.cache_resource(max_entries=1000)
-def imggsum(mm_hash):
+def imggsum(combi_hash):
     df = st.session_state.mprob["task"]
 
     # Create figure and axis
