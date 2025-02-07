@@ -13,7 +13,7 @@ import glb
 def plot(days_off):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash()
+    mm_hash = glb.math_model_hash(True)
     buf = imgtsum(days_off, mm_hash)
     st.image(buf)
 

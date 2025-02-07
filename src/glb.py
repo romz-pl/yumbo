@@ -61,7 +61,7 @@ def get_git_hash():
     return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
 
 
-def math_model_hash():
+def math_model_hash(with_img):
     keys = [
         "expert",
         "task",
@@ -73,8 +73,10 @@ def math_model_hash():
         "pbsum",
         "holiday",
         "misc",
-        "img",
     ]
+
+    if with_img:
+        keys.append("img")
 
     # Use git_hash to reflect changes to the code.
     git_hash = get_git_hash()
