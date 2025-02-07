@@ -7,11 +7,11 @@ import glb
 def get_uploaded_file():
     st.subheader("Load Excel data file", divider="blue")
 
-    uploaded_file = st.file_uploader("Excel file required in format 'xlsx'")
+    uploaded_file = st.file_uploader("Excel file required in format 'xlsx'", label_visibility="collapsed")
     if uploaded_file == None:
         st.subheader(":red[Select Excel data file for scheduling investigation!]")
 
-    st.markdown("See the [Yumbo](https://github.com/romz-pl/yambo/tree/main/ampl-data-input-excel) GitHub repository for sample Excel input files.")
+    # st.markdown("See the [Yumbo](https://github.com/romz-pl/yambo/tree/main/ampl-data-input-excel) GitHub repository for sample Excel input files.")
     return uploaded_file
 
 
@@ -76,7 +76,7 @@ def customise_show_experts():
     # Use Streamlit data editor with configuration for interaction
     st.session_state.show["experts"] = st.data_editor(
         df,
-        hide_index=True,
+        hide_index=False,
         use_container_width=True,
         column_config={
             "Expert": st.column_config.TextColumn(disabled=True, pinned=True),
@@ -111,7 +111,7 @@ def customise_show_tasks():
     df = init_show_tasks()
     st.session_state.show["tasks"] = st.data_editor(
         df,
-        hide_index=True,
+        hide_index=False,
         use_container_width=True,
         column_config={
             "Task": st.column_config.TextColumn(disabled=True, pinned=True),
@@ -154,7 +154,7 @@ def customise_date_range():
         )
 
 def customise_chart_colours():
-    st.subheader("Chart colours", divider="blue")
+    st.subheader("Colours", divider="blue")
 
     # Mapping data keys to labels
     sections = [
@@ -188,23 +188,21 @@ def customise_ampl():
 def customise_expert():
     customise_expert_report_layout()
     customise_show_experts()
-    customise_date_range()
-    customise_chart_colours()
+
+
 
 
 def customise_task():
     customise_task_report_layout()
     customise_show_tasks()
 
+
 def show_planing_horizon():
-    st.divider()
     st.subheader(f"Planing horizon", divider="blue")
     st.markdown(f"Today: :green[{glb.today().date()}]")
     st.markdown(f"Tomorrow: :green[{glb.tomorrow().date()}]")
     st.markdown(f"Last day: :green[{glb.last_day().date()}]")
     st.markdown(f"Number of days: :green[{(glb.last_day() - glb.today()).days}]")
-
-    st.session_state.show["days_off"] = st.checkbox(f"Show days off", value=False)
 
 
 def customise_summary():
@@ -229,11 +227,37 @@ def customise_stats():
     show["stats_execution"] = st.checkbox("Statistics on Yumbo execution", value=True)
 
 
-def show():
-    show_planing_horizon()
-    st.divider()
+def customise_size_and_dpi():
+    st.subheader("Size and DPI", divider="blue")
 
-    tab = st.tabs(["**Experts**", "**Tasks**", "**Summary**", "**AMPL**", "**Problem**", "**Stats**"])
+    with st.form("my_form"):
+        height = st.slider("Height", min_value=1.0, max_value=12.0, value=3.0, step=0.1, format="%.1f")
+        width = st.slider("Width", min_value=1.0, max_value=12.0, value=3.0, step=0.1, format="%.1f")
+        dpi = st.slider("Dpi", min_value=10, max_value=600, value=96, step=1)
+
+        submitted = st.form_submit_button("Set sizes and DPI")
+        if submitted:
+            img_type = ["imgh", "imgt", "imgs", "imgg", "imgw", "imgb", "imge"]
+            for img in img_type:
+                st.session_state.mprob[img].loc[0, "Height"] = height
+                st.session_state.mprob[img].loc[0, "Width"] = width
+                st.session_state.mprob[img].loc[0, "Dpi"] = dpi
+
+
+def customise_chart():
+    st.session_state.show["days_off"] = st.checkbox(f"Show days off", value=False)
+
+    customise_chart_colours()
+    customise_date_range()
+    customise_size_and_dpi()
+
+
+
+def show():
+
+    # st.divider()
+
+    tab = st.tabs(["**Expert**", "**Task**", "**Summary**", "**AMPL**", "**Problem**", "**Stats**", "**Chart**", "**Horizon**"])
     with tab[0]:
         customise_expert()
     with tab[1]:
@@ -246,4 +270,8 @@ def show():
         customise_problem()
     with tab[5]:
         customise_stats()
+    with tab[6]:
+        customise_chart()
+    with tab[7]:
+        show_planing_horizon()
 
