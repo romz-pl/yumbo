@@ -124,26 +124,21 @@ def customise_date_range():
     st.subheader("Date ranges", divider="blue")
 
     mprob = st.session_state.mprob
-    row = st.columns(4)
-    row[0].write("Start")
+    row = st.columns(2)
 
-    mprob["img"].loc[0, "Start"] = row[1].date_input(
-        "Img_start_date",
+    mprob["img"].loc[0, "Start"] = row[0].date_input(
+        "Start date",
         format="YYYY-MM-DD",
         min_value=glb.tomorrow(),
         max_value=glb.last_day(),
-        label_visibility="collapsed",
         value=mprob["img"].loc[0, "Start_init"],
     )
 
-    row[2].write("End")
-
-    mprob["img"]["End"] = row[3].date_input(
-        "Img_end_date",
+    mprob["img"]["End"] = row[1].date_input(
+        "End date",
         format="YYYY-MM-DD",
         min_value=glb.tomorrow(),
         max_value=glb.last_day(),
-        label_visibility="collapsed",
         value=mprob["img"].loc[0, "End_init"],
     )
 
