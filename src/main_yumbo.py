@@ -7,6 +7,7 @@ import matplotlib.ticker as matplotlib_ticker
 import numpy as np
 import os
 import streamlit as st
+import time
 
 import glb
 import romz_ampl
@@ -43,12 +44,12 @@ def set_page_config():
     # st.html(css)
 
 
-def show_page_header():
+def show_page_header(git_hash):
     st.title(":red[Yumbo.] Scheduling, Planning and Resource Allocation")
     st.subheader("Zbigniew Romanowski, Paweł Koczyk")
     st.markdown("Source code, documentation and sample Excel input files can be found on [Yumbo's](https://github.com/romz-pl/yambo) GitHub repository.")
-    st.caption(f"git hash: :green[{glb.get_git_hash()}]")
-    st.caption(f"Timestamp: :green[{pd.Timestamp.now().strftime('%d %B %Y, %H:%M:%S %p')}]")
+    st.caption(f"git hash: :green[{git_hash}]")
+    # st.caption(f"Timestamp: :green[{pd.Timestamp.now().strftime('%d %B %Y, %H:%M:%S %p')}]")
     st.caption(f"Streamlit version: :green[{st.__version__}]")
 
 
@@ -145,8 +146,11 @@ def solve_problem():
 
 
 def main():
+    time_start = time.perf_counter()
+
     set_page_config()
-    show_page_header()
+    git_hash = glb.get_git_hash()
+    show_page_header(git_hash)
     init_sesion_variables()
 
     if not upload():
@@ -157,6 +161,9 @@ def main():
         return
 
     show_main_panel()
+
+    time_end = time.perf_counter()
+    st.write(f"Total elapsed time: :green[{(time_end-time_start):.3f} [s]]")
 
 
 ######################## CALL MAIN FUNCTION ##################
