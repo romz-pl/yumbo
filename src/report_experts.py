@@ -90,10 +90,10 @@ def show_one_expert(expert_name):
             chart_functions.get(chart_name)(expert_name, days_off)
 
 def show_report():
-    show = st.session_state.show
+    show_experts = st.session_state.show["experts"]
 
     # If all values are False
-    if (~show["experts"]).all(axis=None):
+    if (~show_experts).all(axis=None):
         return
 
     # Filter experts with any active field
@@ -101,7 +101,7 @@ def show_report():
 
     active_experts = experts[
         experts["Name"].apply(
-            lambda name: any(show["experts"].at[name, col] for col in ["Chart", "Table", "Commitment"])
+            lambda name: any(show_experts.at[name, col] for col in ["Chart", "Table", "Commitment"])
         )
     ]
 
@@ -113,9 +113,9 @@ def show_report():
 
     st.header(":blue[Experts]", divider="blue")
     for expert in active_experts.itertuples(index=False):
-        bChart = show["experts"].at[expert.Name, "Chart"]
-        bTable = show["experts"].at[expert.Name, "Table"]
-        bCommitment = show["experts"].at[expert.Name, "Commitment"]
+        bChart = show_experts.at[expert.Name, "Chart"]
+        bTable = show_experts.at[expert.Name, "Table"]
+        bCommitment = show_experts.at[expert.Name, "Commitment"]
 
         if bChart or bTable or bCommitment:
             st.subheader(f":green[{expert.Name}, {expert.Comment}]", divider="green")
