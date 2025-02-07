@@ -59,8 +59,6 @@ def show_one_task(task):
         with col:
             chart_name = st.session_state.glb[f"report_task_column_{ii}"]
             # Call the corresponding function
-            #st.write(chart_name)
-            #st.write(chart_functions.get(chart_name))
             chart_functions.get(chart_name)(task, days_off)
 
 
@@ -73,14 +71,15 @@ def show_report():
 
     st.divider()
     st.header(":blue[Tasks]", divider="blue")
-
     tasks = st.session_state.mprob["task"]
 
-    for row in show_tasks.itertuples():
-        if row.Report:
-            st.subheader(f":green[{row.Index}]", divider="green")
-            show_one_task(tasks.loc[row.Index])
+    # Filter only rows with True value
+    selected_tasks = show_tasks[show_tasks["Report"]]
 
+    # Batch process selected tasks
+    for task_id in selected_tasks.index:
+        st.subheader(f":green[{task_id}]", divider="green")
+        show_one_task(tasks.loc[task_id])
 
 
 def show():
