@@ -14,7 +14,7 @@ import glb
 def plot(task, days_off):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("imge")
+    mm_hash = glb.math_model_hash()
     buf = imge(task, days_off, mm_hash)
     st.image(buf)
 
@@ -41,8 +41,8 @@ def imge(task, days_off, mm_hash):
 
     # Initialize figure and axis
     fig = matplotlib_figure.Figure(
-        figsize=(glb.imge("Width"), glb.imge("Height")),
-        dpi=glb.imge("Dpi")
+        figsize=(glb.img("Width"), glb.img("Height")),
+        dpi=glb.img("Dpi")
     )
     ax = fig.subplots()
     ax.set_title("Experts per day stacked")

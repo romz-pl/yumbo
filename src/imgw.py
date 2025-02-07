@@ -13,7 +13,7 @@ import glb
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("imgw")
+    mm_hash = glb.math_model_hash()
     buf = imgw(expert_name, days_off, mm_hash)
     st.image(buf)
 
@@ -62,8 +62,8 @@ def imgw(expert_name, days_off, mm_hash):
 
     # Create the plot
     fig = matplotlib_figure.Figure(
-        figsize=(glb.imgw("Width"), glb.imgw("Height")),
-        dpi=glb.imgw("Dpi")
+        figsize=(glb.img("Width"), glb.img("Height")),
+        dpi=glb.img("Dpi")
     )
 
     ax = fig.subplots()

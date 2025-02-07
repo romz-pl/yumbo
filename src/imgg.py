@@ -11,7 +11,7 @@ import glb
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("imgg")
+    mm_hash = glb.math_model_hash()
     buf = imgg(expert_name, days_off, mm_hash)
     st.image(buf)
 
@@ -36,8 +36,8 @@ def imgg(expert_name, days_off, mm_hash):
 
     # Create the figure and axis
     fig = matplotlib_figure.Figure(
-        figsize=(glb.imgg("Width"), glb.imgg("Height")),
-        dpi=glb.imgg("Dpi")
+        figsize=(glb.img("Width"), glb.img("Height")),
+        dpi=glb.img("Dpi")
     )
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")

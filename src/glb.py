@@ -11,6 +11,8 @@ def format():
     return "%Y-%m-%d"
 
 
+def img(col):
+    return st.session_state.mprob["img"].iloc[0][col]
 
 def imgb(col):
     return st.session_state.mprob["imgb"].iloc[0][col]
@@ -59,7 +61,7 @@ def get_git_hash():
     return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
 
 
-def math_model_hash(img):
+def math_model_hash():
     keys = [
         "expert",
         "task",
@@ -71,10 +73,8 @@ def math_model_hash(img):
         "pbsum",
         "holiday",
         "misc",
+        "img",
     ]
-
-    if img is not None:
-        keys.append(img)
 
     # Use git_hash to reflect changes to the code.
     git_hash = get_git_hash()

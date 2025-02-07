@@ -13,7 +13,7 @@ import glb
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("imgh")
+    mm_hash = glb.math_model_hash()
     buf = imgh(expert_name, days_off, mm_hash)
     st.image(buf)
 
@@ -26,8 +26,8 @@ def plot(expert_name, days_off):
 @st.cache_resource(max_entries=1000)
 def imgh(expert_name, days_off, mm_hash):
 
-    start = glb.imgh("Start")
-    end = glb.imgh("End")
+    start = glb.img("Start")
+    end = glb.img("End")
 
     # Summing over all the tasks.
     if days_off:
@@ -41,8 +41,8 @@ def imgh(expert_name, days_off, mm_hash):
 
     # Create figure and axis.
     fig = matplotlib_figure.Figure(
-        figsize=(glb.imgh("Width"), glb.imgh("Height")),
-        dpi=glb.imgh("Dpi"),
+        figsize=(glb.img("Width"), glb.img("Height")),
+        dpi=glb.img("Dpi"),
     )
     ax = fig.subplots()
 

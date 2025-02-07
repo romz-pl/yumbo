@@ -13,7 +13,7 @@ import glb
 def plot(days_off):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("imgt")
+    mm_hash = glb.math_model_hash()
     buf = imgtsum(days_off, mm_hash)
     st.image(buf)
 
@@ -26,9 +26,8 @@ def plot(days_off):
 @st.cache_resource(max_entries=1000)
 def imgtsum(days_off, mm_hash):
 
-    # Always use the full planning horizon for the summary figure.
-    start = glb.tomorrow()
-    end = glb.last_day()
+    start = glb.img("Start")
+    end = glb.img("End")
 
     if days_off:
         # Summing over all the tasks.
@@ -41,9 +40,9 @@ def imgtsum(days_off, mm_hash):
         df = (st.session_state.amplsol.loc[days] > 0).sum(axis=1)
 
     # Create figure and axis
-    fig = matplotlib_figure.Figure(figsize=(
-        glb.imgt("Width"), glb.imgt("Height")),
-        dpi=glb.imgt("Dpi")
+    fig = matplotlib_figure.Figure(
+        figsize=(glb.img("Width"), glb.img("Height")),
+        dpi=glb.img("Dpi")
     )
     ax = fig.subplots()
 

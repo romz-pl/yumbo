@@ -14,7 +14,7 @@ def plot(expert_name, days_off):
 
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("imgt")
+    mm_hash = glb.math_model_hash()
     buf = imgt(expert_name, days_off, mm_hash)
     st.image(buf)
 
@@ -27,8 +27,8 @@ def plot(expert_name, days_off):
 @st.cache_resource(max_entries=1000)
 def imgt(expert_name, days_off, mm_hash):
 
-    start = glb.imgt("Start")
-    end = glb.imgt("End")
+    start = glb.img("Start")
+    end = glb.img("End")
 
     # Summing over all the tasks.
     if days_off:
@@ -40,9 +40,9 @@ def imgt(expert_name, days_off, mm_hash):
         df = (st.session_state.amplsol[f"{expert_name}"].loc[days] > 0).sum(axis=1)
 
     # Create figure and axis
-    fig = matplotlib_figure.Figure(figsize=(
-        glb.imgt("Width"), glb.imgt("Height")),
-        dpi=glb.imgt("Dpi"),
+    fig = matplotlib_figure.Figure(
+        figsize=(glb.img("Width"), glb.img("Height")),
+        dpi=glb.img("Dpi"),
     )
     ax = fig.subplots()
 

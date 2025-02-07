@@ -116,53 +116,55 @@ def read_misc(xlsx, mprob):
     return mprob
 
 
-def read_imgh(xlsx, mprob):
-    df = xlsx.parse(sheet_name="imgh", usecols="B:I")
+def read_img(xlsx, mprob):
+    df = xlsx.parse(sheet_name="img", usecols="B:F")
     df = parse_date_columns(df, ["Start", "End"])
+    df["Width_init"] = df["Width"]
+    df["Height_init"] = df["Height"]
+    df["Dpi_init"] = df["Dpi"]
     df["Start_init"] = df["Start"]
     df["End_init"] = df["End"]
+    mprob["img"] = df
+    return mprob
+
+def read_imgh(xlsx, mprob):
+    df = xlsx.parse(sheet_name="imgh", usecols="B:D")
     mprob["imgh"] = df
     return mprob
 
 
 def read_imgt(xlsx, mprob):
-    df = xlsx.parse(sheet_name="imgt", usecols="B:I")
-    df = parse_date_columns(df, ["Start", "End"])
-    df["Start_init"] = df["Start"]
-    df["End_init"] = df["End"]
+    df = xlsx.parse(sheet_name="imgt", usecols="B:D")
     mprob["imgt"] = df
     return mprob
 
 
 def read_imgs(xlsx, mprob):
-    df = xlsx.parse(sheet_name="imgs", usecols="B:G")
-    df = parse_date_columns(df, ["Start", "End"])
-    df["Start_init"] = df["Start"]
-    df["End_init"] = df["End"]
+    df = xlsx.parse(sheet_name="imgs", usecols="B:B")
     mprob["imgs"] = df
     return mprob
 
 
 def read_imgg(xlsx, mprob):
-    df = xlsx.parse(sheet_name="imgg", usecols="B:G")
+    df = xlsx.parse(sheet_name="imgg", usecols="B:D")
     mprob["imgg"] = df
     return mprob
 
 
 def read_imgw(xlsx, mprob):
-    df = xlsx.parse(sheet_name="imgw", usecols="B:G")
+    df = xlsx.parse(sheet_name="imgw", usecols="B:D")
     mprob["imgw"] = df
     return mprob
 
 
 def read_imgb(xlsx, mprob):
-    df = xlsx.parse(sheet_name="imgb", usecols="B:J")
+    df = xlsx.parse(sheet_name="imgb", usecols="B:G")
     mprob["imgb"] = df
     return mprob
 
 
 def read_imge(xlsx, mprob):
-    mprob["imge"] = xlsx.parse(sheet_name="imge", usecols="B:E")
+    mprob["imge"] = xlsx.parse(sheet_name="imge", usecols="B:B")
     return mprob
 
 
@@ -206,6 +208,7 @@ def read_excel_file(file_data, git_hash):
         mprob = read_ebday(xlsx, mprob)
         mprob = read_pbsum(xlsx, mprob)
         mprob = read_assign(xlsx, mprob)
+        mprob = read_img(xlsx, mprob)
         mprob = read_imgh(xlsx, mprob)
         mprob = read_imgt(xlsx, mprob)
         mprob = read_imgs(xlsx, mprob)

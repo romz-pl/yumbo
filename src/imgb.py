@@ -13,7 +13,7 @@ import glb
 def plot(task, schedule, bounds):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash("imgb")
+    mm_hash = glb.math_model_hash()
     buf = imgb(task, schedule, bounds, mm_hash)
     st.image(buf)
 
@@ -32,8 +32,8 @@ def imgb(task, schedule, bounds, mm_hash):
 
     # Create figure and axis
     fig = matplotlib_figure.Figure(
-        figsize=(glb.imgb("Width"), glb.imgb("Height")),
-        dpi=glb.imgb("Dpi")
+        figsize=(glb.img("Width"), glb.img("Height")),
+        dpi=glb.img("Dpi")
     )
 
     ax = fig.subplots()
