@@ -110,9 +110,9 @@ def show_report():
 
         if row["Chart"]:
             show_one_expert(expert_name)
-        if row["HTML table"]:
+        if row["H:Table"]:
             show_schedule_as_table(expert_name, True)
-        if row["Simple table"]:
+        if row["S:Table"]:
             show_schedule_as_table(expert_name, False)
         if row["Commitment"]:
             show_commitment_per_task(expert_name)
