@@ -224,7 +224,7 @@ def read_excel_file(file_data, git_hash):
 def load(uploaded_file):
     time_start = time.perf_counter()
 
-    git_hash = glb.get_git_hash()
+    git_hash = st.session_state.git_hash
     st.session_state.mprob = read_excel_file(uploaded_file.getvalue(), git_hash)
 
     time_end = time.perf_counter()

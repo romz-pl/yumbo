@@ -149,6 +149,12 @@ def init_sesion_variables():
     if 'mprob' not in st.session_state:
         st.session_state.mprob = dict()
 
+    if 'git_hash' not in st.session_state:
+        st.session_state.git_hash = 0
+
+    if 'mm_hash' not in st.session_state:
+        st.session_state.mm_hash = 0
+
     init_sesion__stats()
     init_sesion_show()
 
@@ -160,6 +166,7 @@ def upload():
             romz_excel.load(uploaded_file)
             st.session_state.show["tasks_init"] = init_show_tasks()
             st.session_state.show["experts_init"] = init_show_experts()
+            st.session_state.mm_hash = glb.calc_mm_hash(True)
             sbar.show()
 
     return uploaded_file != None
@@ -179,9 +186,10 @@ def solve_problem():
 def main():
     time_start = time.perf_counter()
 
+    st.session_state.git_hash = glb.calc_git_hash()
+
     set_page_config()
-    git_hash = glb.get_git_hash()
-    show_page_header(git_hash)
+    show_page_header(st.session_state.git_hash)
     init_sesion_variables()
 
     if not upload():

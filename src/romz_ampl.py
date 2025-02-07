@@ -309,7 +309,7 @@ def solve_ampl(mm_hash):
 def solve():
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash(False)
+    mm_hash = glb.calc_mm_hash(False)
     solver_log, amplsol, ampl_data_file = solve_ampl(mm_hash)
 
     st.session_state.mprob["ampl_data_file"] = ampl_data_file

@@ -13,7 +13,7 @@ import glb
 def plot(task, schedule, bounds):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash(True)
+    mm_hash = st.session_state.mm_hash
     buf = imgb(task, schedule, bounds, mm_hash)
     st.image(buf)
 

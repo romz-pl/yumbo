@@ -14,7 +14,7 @@ import glb
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash(True)
+    mm_hash = st.session_state.mm_hash
     buf = imgs(expert_name, days_off, mm_hash)
     st.image(buf)
 

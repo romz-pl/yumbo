@@ -57,41 +57,6 @@ def with_ubday():
     return (st.session_state.mprob["misc"].iloc[0]["With ubday"] == "Yes")
 
 
-def get_git_hash():
-    return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
-
-
-def math_model_hash(with_img):
-    keys = [
-        "expert",
-        "task",
-        "assign",
-        "xbday",
-        "ubday",
-        "ebday",
-        "period",
-        "pbsum",
-        "holiday",
-        "misc",
-    ]
-
-    if with_img:
-        keys.append("img")
-
-    # Use git_hash to reflect changes to the code.
-    git_hash = get_git_hash()
-
-    # Build input_data by joining the string representations
-    input_data = "".join(st.session_state.mprob[k].to_string() for k in keys)
-
-    # Combine the git hash and the input data, encode, and compute the hash
-    combined = git_hash + input_data
-    mm_hash = hashlib.blake2s(combined.encode('utf-8')).hexdigest()
-    # st.write(mm_hash)
-
-    return mm_hash
-
-
 def savefig(fig):
     fig.tight_layout()
 
@@ -126,3 +91,40 @@ def get_ampl_model_file():
         ff = "./res/ampl.mod.py"
 
     return ff
+
+
+
+
+def calc_git_hash():
+    return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
+
+
+def calc_mm_hash(with_img):
+    keys = [
+        "expert",
+        "task",
+        "assign",
+        "xbday",
+        "ubday",
+        "ebday",
+        "period",
+        "pbsum",
+        "holiday",
+        "misc",
+    ]
+
+    if with_img:
+        keys.append("img")
+
+    # Use git_hash to reflect changes to the code.
+    git_hash = calc_git_hash()
+
+    # Build input_data by joining the string representations
+    input_data = "".join(st.session_state.mprob[k].to_string() for k in keys)
+
+    # Combine the git hash and the input data, encode, and compute the hash
+    combined = git_hash + input_data
+    mm_hash = hashlib.blake2s(combined.encode('utf-8')).hexdigest()
+    # st.write(mm_hash)
+
+    return mm_hash

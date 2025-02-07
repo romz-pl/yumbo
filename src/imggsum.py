@@ -12,7 +12,7 @@ import glb
 def plot():
     time_start = time.perf_counter()
 
-    mm_hash = glb.math_model_hash(True)
+    mm_hash = st.session_state.mm_hash
     buf = imggsum(mm_hash)
     st.image(buf)
 
