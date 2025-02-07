@@ -126,7 +126,7 @@ def customise_date_range():
     mprob = st.session_state.mprob
     row = st.columns(2)
 
-    mprob["img"].loc[0, "Start"] = row[0].date_input(
+    start = row[0].date_input(
         "Start date",
         format="YYYY-MM-DD",
         min_value=glb.tomorrow(),
@@ -134,13 +134,17 @@ def customise_date_range():
         value=mprob["img"].loc[0, "Start_init"],
     )
 
-    mprob["img"]["End"] = row[1].date_input(
+    mprob["img"].loc[0, "Start"] = pd.to_datetime(start)
+
+    end = row[1].date_input(
         "End date",
         format="YYYY-MM-DD",
         min_value=glb.tomorrow(),
         max_value=glb.last_day(),
         value=mprob["img"].loc[0, "End_init"],
     )
+
+    mprob["img"]["End"] = pd.to_datetime(end)
 
 
 def customise_chart_colours():
