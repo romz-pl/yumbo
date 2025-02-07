@@ -96,38 +96,25 @@ def show_report():
     if (~show_experts).all(axis=None):
         return
 
-    # Filter experts with any active field
-    experts = st.session_state.mprob["expert"].sort_values(by="Name")
+    experts = st.session_state.mprob["expert"]
 
-    active_experts = experts[
-        experts["Name"].apply(
-            lambda name: any(show_experts.at[name, col] for col in ["Chart", "Table", "Commitment"])
-        )
-    ]
-
-    if active_experts.empty:
-        return
-
-
-    st.divider()
-
-    st.header(":blue[Experts]", divider="blue")
-    for expert in active_experts.itertuples(index=False):
-        bChart = show_experts.at[expert.Name, "Chart"]
-        bTable = show_experts.at[expert.Name, "Table"]
-        bCommitment = show_experts.at[expert.Name, "Commitment"]
-
+    for row in show_experts.itertuples(index=True):
+        bChart = row.Chart
+        bTable = row.Table
+        bCommitment = row.Commitment
         if bChart or bTable or bCommitment:
-            st.subheader(f":green[{expert.Name}, {expert.Comment}]", divider="green")
+            extert_name = row.Index
+            comment = experts.loc[extert_name, "Comment"]
+            st.subheader(f":green[{extert_name}, {comment}]", divider="green")
 
             if bChart:
-                show_one_expert(expert.Name)
+                show_one_expert(extert_name)
 
             if bTable:
-                show_schedule_as_table(expert.Name)
+                show_schedule_as_table(extert_name)
 
             if bCommitment:
-                show_commitment_per_task(expert.Name)
+                show_commitment_per_task(extert_name)
 
 
 def show():
