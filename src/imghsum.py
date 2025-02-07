@@ -92,7 +92,4 @@ def imghsum(days_off, mm_hash):
     ax.xaxis.set_major_locator(matplotlib_dates.AutoDateLocator(minticks=3, maxticks=6))
     ax.xaxis.set_major_formatter(matplotlib_dates.DateFormatter(glb.format()))
 
-    # Add legend and adjust layout
-    ax.legend(loc="upper right", fontsize="6")
-
     return glb.savefig(fig)

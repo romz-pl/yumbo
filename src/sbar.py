@@ -180,8 +180,6 @@ def customise_expert():
     customise_show_experts()
 
 
-
-
 def customise_task():
     customise_task_report_layout()
     customise_show_tasks()
