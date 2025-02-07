@@ -119,6 +119,8 @@ def read_misc(xlsx, mprob):
 def read_imgh(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgh", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
+    df["Start_init"] = df["Start"]
+    df["End_init"] = df["End"]
     mprob["imgh"] = df
     return mprob
 
@@ -126,6 +128,8 @@ def read_imgh(xlsx, mprob):
 def read_imgt(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgt", usecols="B:I")
     df = parse_date_columns(df, ["Start", "End"])
+    df["Start_init"] = df["Start"]
+    df["End_init"] = df["End"]
     mprob["imgt"] = df
     return mprob
 
@@ -133,6 +137,8 @@ def read_imgt(xlsx, mprob):
 def read_imgs(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgs", usecols="B:G")
     df = parse_date_columns(df, ["Start", "End"])
+    df["Start_init"] = df["Start"]
+    df["End_init"] = df["End"]
     mprob["imgs"] = df
     return mprob
 

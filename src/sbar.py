@@ -125,23 +125,23 @@ def customise_date_range():
 
     # Mapping data keys to labels
     sections = {
-        ("imgt", "Tasks per day", glb.imgt),
-        ("imgs", "Tasks per day stacked", glb.imgs),
-        ("imgh", "Hours per day", glb.imgh)
+        ("imgt", "Tasks per day"),
+        ("imgs", "Tasks per day stacked"),
+        ("imgh", "Hours per day")
     }
 
     mprob = st.session_state.mprob
-    for key, label, fun in sections:
+    for key, label in sections:
         row = st.columns(3)
         row[0].write(label)
 
-        mprob[key]["Start"] = row[1].date_input(
+        mprob[key].loc[0, "Start"] = row[1].date_input(
             f"{key}:Start",
             format="YYYY-MM-DD",
             min_value=glb.tomorrow(),
             max_value=glb.last_day(),
             label_visibility="collapsed",
-            value=fun("Start"),
+            value=mprob[key].loc[0, "Start_init"],
         )
 
         mprob[key]["End"] = row[2].date_input(
@@ -150,7 +150,7 @@ def customise_date_range():
             min_value=glb.tomorrow(),
             max_value=glb.last_day(),
             label_visibility="collapsed",
-            value=fun("End"),
+            value=mprob[key].loc[0, "End_init"],
         )
 
 def customise_chart_colours():
