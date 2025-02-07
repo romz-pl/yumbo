@@ -113,7 +113,7 @@ def init_show_experts():
     row_count = len(experts)
 
     # Create a DataFrame with predefined columns and default boolean values
-    names = ["Chart", "Table", "Commitment"]
+    names = ["Chart", "HTML table", "Simple table", "Commitment"]
     df = pd.DataFrame(False, index=experts, columns=names)
     df.index.name = "Expert"
 

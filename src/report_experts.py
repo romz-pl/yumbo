@@ -43,7 +43,7 @@ def show_commitment_per_task(expert_name):
             imgb.plot(task_row, schedule, bounds)
 
 
-def show_schedule_as_table(expert_name):
+def show_schedule_as_table(expert_name, as_html):
     # Retrieve data from session state
     task = st.session_state.mprob["task"]
     assign = st.session_state.mprob["assign"]
@@ -61,12 +61,12 @@ def show_schedule_as_table(expert_name):
 
     styled_df = styled_table.create(df, days)
 
-    # Render the styled dataframe as HTML
-    st.markdown(styled_df.to_html(), unsafe_allow_html=True)
-
-    # Optionally display the dataframe as a Streamlit table
-    if st.checkbox(f"Show schedule as simple table", value=False, key=f"checkbox_html_table_{expert_name}"):
-        st.dataframe(styled_df, use_container_width=False)
+    if as_html:
+        # Render the styled dataframe as HTML
+        st.markdown(styled_df.to_html(), unsafe_allow_html=True)
+    else:
+        # Optionally display the dataframe as a Streamlit table
+        st.dataframe(styled_df, use_container_width=True)
 
 
 def show_one_expert(expert_name):
@@ -102,22 +102,20 @@ def show_report():
     # Filter only rows with any True values
     active_experts = show_experts[show_experts.any(axis=1)]
 
-    # Use dictionary to map boolean flags to functions
-    display_funcs = {
-        'Chart': show_one_expert,
-        'Table': show_schedule_as_table,
-        'Commitment': show_commitment_per_task
-    }
-
     for expert_name, row in active_experts.iterrows():
         st.subheader(
             f":green[{expert_name}, {experts.loc[expert_name, 'Comment']}]",
             divider="green"
         )
 
-        for col, func in display_funcs.items():
-            if row[col]:
-                func(expert_name)
+        if row["Chart"]:
+            show_one_expert(expert_name)
+        if row["HTML table"]:
+            show_schedule_as_table(expert_name, True)
+        if row["Simple table"]:
+            show_schedule_as_table(expert_name, False)
+        if row["Commitment"]:
+            show_commitment_per_task(expert_name)
 
 
 def show():

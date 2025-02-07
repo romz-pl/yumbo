@@ -66,8 +66,11 @@ def customise_show_experts():
     if st.checkbox("Show all charts"):
         df["Chart"] = True
 
-    if st.checkbox("Show all tables"):
-        df["Table"] = True
+    if st.checkbox("Show all HTML tables"):
+        df["HTML table"] = True
+
+    if st.checkbox("Show all Simple tables"):
+        df["Simple table"] = True
 
     if st.checkbox("Show all commitments"):
         df["Commitment"] = True
