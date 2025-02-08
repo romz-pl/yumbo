@@ -145,9 +145,6 @@ def init_sesion_variables():
     if 'overflow' not in st.session_state:
         st.session_state.overflow = pd.Series()
 
-    if 'glb' not in st.session_state:
-        st.session_state.glb = dict()
-
     if 'mprob' not in st.session_state:
         st.session_state.mprob = dict()
 

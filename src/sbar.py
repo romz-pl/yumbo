@@ -25,14 +25,14 @@ def customise_expert_report_layout():
     report_column_no = st.number_input("Number of charts", min_value=1, max_value=max_col_no, value=max_col_no)
 
     for ii in range(1, max_col_no + 1):
-        st.session_state.glb[f"report_expert_column_{ii}"] = st.selectbox(
+        st.session_state.show[f"expert_column_{ii}"] = st.selectbox(
             f"Col {ii}",
             ("Task's Gantt chart", "Tasks per day", "Hours per day stacked", "Hours per day", "Invoice period workload"),
             disabled = (ii > report_column_no),
             index = (ii - 1),
             label_visibility = "collapsed",
         )
-    st.session_state.glb["report_expert_column_no"] = report_column_no
+    st.session_state.show["expert_column_no"] = report_column_no
 
 
 def customise_show_experts():

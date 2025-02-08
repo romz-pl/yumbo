@@ -82,11 +82,11 @@ def show_one_expert(expert_name):
     }
 
     days_off = st.session_state.show["days_off"]
-    report_column_no = st.session_state.glb["report_expert_column_no"]
+    report_column_no = st.session_state.show["expert_column_no"]
 
     # Retrieve the column chart names in advance
     column_chart_names = [
-        st.session_state.glb[f"report_expert_column_{ii}"]
+        st.session_state.show[f"expert_column_{ii}"]
         for ii in range(1, report_column_no + 1)
     ]
 
