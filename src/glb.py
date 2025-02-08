@@ -35,10 +35,6 @@ def imgt(col):
 def imgw(col):
     return st.session_state.mprob["imgw"].iloc[0][col]
 
-
-
-
-
 def hours_per_day():
     return st.session_state.mprob["misc"].iloc[0]["Hours per day"]
 
@@ -53,15 +49,24 @@ def last_day():
     return max(st.session_state.mprob["task"]["End"].max(), st.session_state.mprob["period"]["End"].max())
 
 
+def get_ampl_model_name():
+    return st.session_state.mprob["misc"].iloc[0]["AMPL model"]
+
+
+def get_ampl_model_file():
+    ampl_model = get_ampl_model_name()
+    model_file = f"./res/{ampl_model}.ampl"
+    return model_file
+
+
 def is_ampl_model_ubday():
     model = get_ampl_model_name()
+    return (model == "solid-ubday" or model == "solid-ubday-overflow")
 
-    return (model == "ubday" or model == "ubday-overflow")
 
 def is_ampl_model_overflow():
     model = get_ampl_model_name()
-
-    return (model == "solid-overflow" or model == "ubday-overflow")
+    return (model == "solid-overflow" or model == "solid-ubday-overflow")
 
 
 def savefig(fig):
@@ -72,7 +77,6 @@ def savefig(fig):
     # fig.savefig(buf, format="png", pil_kwargs={"compress_level": 9})
 
     return buf
-
 
 
 def get_major_tick_locator(ax):
@@ -89,19 +93,6 @@ def get_major_tick_locator(ax):
         locator = matplotlib_ticker.MaxNLocator(steps=[1, 2, 5], integer=True)
 
     return locator
-
-def get_ampl_model_name():
-    return st.session_state.mprob["misc"].iloc[0]["AMPL model"]
-
-
-def get_ampl_model_file():
-
-    ampl_model = get_ampl_model_name()
-    model_file = f"./res/ampl-{ampl_model}.mod.py"
-
-    return model_file
-
-
 
 
 def calc_git_hash():

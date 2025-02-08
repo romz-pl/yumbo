@@ -59,8 +59,9 @@ def show_schedule_as_table(expert_name, as_html, mm_hash):
 
     # Retrieve and format the relevant schedule data
     df = st.session_state.schedule[expert_name].loc[start_date:end_date, expert_tasks["Name"]]
+    st.write(df)
 
-    styled_df = styled_table.create(df, days)
+    styled_df = styled_table.create(df, days, as_html)
 
     if as_html:
         # Render the styled dataframe as HTML

@@ -9,11 +9,13 @@ def highlight_rows(row):
         return [''] * len(row)
 
 
-def create(df, days):
+def create(df, days, as_html):
 
     # df.index = days.astype(str)
     df.index = df.index.strftime(glb.format())
-    df.replace(0, np.nan, inplace=True)
+
+    if as_html:
+        df.replace(0, np.nan, inplace=True)
 
     # Insert the "Weekdays" column at the beginning
     df.insert(0, "Weekdays", days.day_name())

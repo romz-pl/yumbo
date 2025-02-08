@@ -27,7 +27,7 @@ def experts_in_tasks_as_table(task, as_html):
 
     # Create the DataFrame with the index already set to the string representation of `days`
     df = pd.DataFrame(data)
-    styled_df = styled_table.create(df, days)
+    styled_df = styled_table.create(df, days, as_html)
 
     # Render the styled DataFrame
     if as_html:

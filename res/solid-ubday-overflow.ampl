@@ -4,7 +4,7 @@
 #
 # Authors: Zbigniew Romanowski; Paweł Koczyk;
 #
-# Model: UBDAY
+# Model: SOLID and UBDAY and OVERFLOW
 #
 
 # The maximal total number of working units per day
@@ -88,11 +88,20 @@ var X{(e, t) in ASSIGN, TSCOPE[t]} integer, >= 0, <= MAXWORK;
 var U{(e, t) in ASSIGN, TSCOPE[t]} binary;
 
 
+# The overflow work for each task
+var F{TNAME} integer, >= 0;
+
+
+# Last day to be investigated, i.e. last day in the scope of each task
+param LASTDAY = max{t in TNAME} last(TSCOPE[t]);
+
+
 # The objective function.
 # This function encourages the early completion of tasks.
 minimize objective_function:
     sum {(e, t) in ASSIGN, d in TSCOPE[t]}
-    ((d + 1 - first(TSCOPE[t]))^(1/3)) * X[e, t, d];
+    ((d + 1 - first(TSCOPE[t]))^(1/3)) * X[e, t, d] +
+    ((LASTDAY + 1)^(1/3)) * sum{t in TNAME} F[t];
 
 
 # The total number of working hours per day
@@ -103,7 +112,7 @@ subject to C_maxwork {e in ENAME, d in union {t in TNAME: (e,t) in ASSIGN} TSCOP
 
 # The total number of working hours in the task
 subject to C_work {t in TNAME}:
-    sum {(e, t) in ASSIGN, d in TSCOPE[t]} X[e, t, d]
+    sum {(e, t) in ASSIGN, d in TSCOPE[t]} X[e, t, d] + F[t]
     = TWORK[t];
 
 
