@@ -18,7 +18,8 @@ def get_uploaded_file():
 def customise_expert_report_layout():
     st.subheader("Report layout", divider="blue")
 
-    st.session_state.show["expert_charts_in_columns"] = st.checkbox("Charts in columns")
+    label = "Charts in one column"
+    st.session_state.show["expert_charts_in_one_column"] = st.checkbox(label, key="experts" + label)
 
     max_col_no = 5
     report_column_no = st.number_input("Number of charts", min_value=1, max_value=max_col_no, value=max_col_no)
@@ -179,7 +180,13 @@ def customise_summary():
     st.subheader("Report layout", divider="blue")
 
     show = st.session_state.show
-    show["experts_summary"] = st.checkbox("Experts summary", value=True)
+
+    label = "Charts in one column"
+    show["summary_charts_in_one_column"] = st.checkbox(label, key="summary" + label)
+
+    show["summary_tasks_gantt_chart"] = st.checkbox("Task's Gantt Chart", value=True)
+    show["summary_tasks_per_day"] = st.checkbox("Tasks per day", value=True)
+    show["summary_hours_per_day"] = st.checkbox("Hours per day", value=True)
 
 
 def customise_problem():

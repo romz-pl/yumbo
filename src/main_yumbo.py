@@ -131,7 +131,6 @@ def init_sesion_show():
         show["stats_chart"] = True
         show["stats_execution"] = True
         show["problem"] = False
-        show["experts_summary"] = False
         show["days_off"] = False
         show["tasks"] = pd.DataFrame()
         show["tasks_init"] = pd.DataFrame()

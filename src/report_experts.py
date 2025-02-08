@@ -90,7 +90,7 @@ def show_one_expert(expert_name):
         for ii in range(1, report_column_no + 1)
     ]
 
-    if st.session_state.show["expert_charts_in_columns"]:
+    if st.session_state.show["expert_charts_in_one_column"]:
         # Render charts in rows
         for chart_name in column_chart_names:
             if chart_name in chart_functions:

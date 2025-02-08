@@ -9,7 +9,7 @@ import glb
 # Task's Gantt Chart (Summary)
 #
 
-def plot():
+def plot(days_off):
     time_start = time.perf_counter()
 
     combi_hash = st.session_state.combi_hash
