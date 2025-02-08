@@ -111,6 +111,8 @@ def show_report():
     if not show_experts.any(axis=None):
         return
 
+    st.divider()
+    st.header(":blue[Experts]", divider="blue")
     experts = st.session_state.mprob["expert"]
 
     # Filter only rows with any True values
