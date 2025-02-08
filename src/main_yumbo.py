@@ -99,7 +99,7 @@ def init_show_tasks():
     row_count = len(tasks)
 
     # Create a DataFrame with predefined columns and default boolean values
-    names = ["Report"]
+    names = ["Chart", "H:Table", "S:Table"]
     df = pd.DataFrame(False, index=tasks, columns=names)
     df.index.name = "Task"
 

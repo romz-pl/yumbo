@@ -32,22 +32,6 @@ def customise_expert_report_layout():
     st.session_state.glb["report_expert_column_no"] = report_column_no
 
 
-def customise_task_report_layout():
-    st.subheader("Report layout", divider="blue")
-    max_col_no = 3
-    report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=1)
-
-    for ii in range(1, max_col_no + 1):
-        st.session_state.glb[f"report_task_column_{ii}"] = st.selectbox(
-            f"Col {ii}",
-            ("Experts per day stacked", "HTML table", "Simple table"),
-            disabled = (ii > report_column_no),
-            index = (ii - 1),
-            label_visibility = "collapsed",
-        )
-    st.session_state.glb["report_task_column_no"] = report_column_no
-
-
 def customise_show_experts():
     st.subheader("Look and feel", divider="blue")
 
@@ -63,16 +47,20 @@ def customise_show_experts():
         },
     )
 
-    if st.checkbox("Show all charts"):
+    label = "Show all charts"
+    if st.checkbox(label, key="experts" + label):
         df["Chart"] = True
 
-    if st.checkbox("Show all H:Tables"):
+    label = "Show all H:Tables"
+    if st.checkbox(label, key="experts" + label):
         df["H:Table"] = True
 
-    if st.checkbox("Show all S:Tables"):
+    label = "Show all S:Tables"
+    if st.checkbox(label, key="experts" + label):
         df["S:Table"] = True
 
-    if st.checkbox("Show all commitments"):
+    label = "Show all commitments"
+    if st.checkbox(label, key="experts" + label):
         df["Commitment"] = True
 
     st.session_state.show["experts"] = df
@@ -93,8 +81,18 @@ def customise_show_tasks():
         },
     )
 
-    if st.checkbox("Show all reports"):
-        df["Report"] = True
+    label = "Show all charts"
+    if st.checkbox(label, key="tasks" + label):
+        df["Chart"] = True
+
+    label = "Show all H:Tables"
+    if st.checkbox(label, key="tasks" + label):
+        df["H:Table"] = True
+
+    label = "Show all S:Tables"
+    if st.checkbox(label, key="tasks" + label):
+        df["S:Table"] = True
+
 
     st.session_state.show["tasks"] = df
 
@@ -164,7 +162,6 @@ def customise_expert():
 
 
 def customise_task():
-    customise_task_report_layout()
     customise_show_tasks()
 
 

@@ -13,7 +13,7 @@ def show_report():
     st.divider()
 
     days_off = st.session_state.show["days_off"]
-    st.header(":blue[Experts summary]", divider="blue")
+    st.header(":blue[Summary]", divider="blue")
     col1, col2, col3 = st.columns(3)
     with col1:
         imggsum.plot()

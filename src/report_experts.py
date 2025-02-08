@@ -59,7 +59,7 @@ def show_schedule_as_table(expert_name, as_html, mm_hash):
 
     # Retrieve and format the relevant schedule data
     df = st.session_state.schedule[expert_name].loc[start_date:end_date, expert_tasks["Name"]]
-    st.write(df)
+    # st.write(df)
 
     styled_df = styled_table.create(df, days, as_html)
 
@@ -68,7 +68,7 @@ def show_schedule_as_table(expert_name, as_html, mm_hash):
         st.markdown(styled_df.to_html(), unsafe_allow_html=True)
     else:
         # Optionally display the dataframe as a Streamlit table
-        st.dataframe(styled_df, use_container_width=True)
+        st.dataframe(styled_df, use_container_width=False)
 
 
 def show_one_expert(expert_name):

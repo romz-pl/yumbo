@@ -37,30 +37,14 @@ def experts_in_tasks_as_table(task, as_html):
         st.dataframe(styled_df)
 
 
-def experts_in_tasks_as_table_html(task):
-    experts_in_tasks_as_table(task, True)
+def get_subheader(task_name):
+    info = ""
+    if glb.is_ampl_model_overflow():
+        overflow_value = st.session_state.overflow.loc[task_name]
+        if overflow_value > 0:
+            info = f", :red[overflow {overflow_value:.2f} [h]]"
 
-
-def experts_in_tasks_as_table_simple(task):
-    experts_in_tasks_as_table(task, False)
-
-
-def show_one_task(task):
-    column_no = st.session_state.glb["report_task_column_no"]
-    col_list = st.columns(column_no)
-
-    chart_functions = {
-        "Experts per day stacked": imge.plot,
-        "HTML table": experts_in_tasks_as_table_html,
-        "Simple table": experts_in_tasks_as_table_simple,
-    }
-
-    days_off = st.session_state.show["days_off"]
-    for ii, col in enumerate(col_list, start=1):
-        with col:
-            chart_name = st.session_state.glb[f"report_task_column_{ii}"]
-            # Call the corresponding function
-            chart_functions.get(chart_name)(task, days_off)
+    return f":green[{task_name}]{info}"
 
 
 def show_report():
@@ -74,21 +58,20 @@ def show_report():
     st.header(":blue[Tasks]", divider="blue")
     tasks = st.session_state.mprob["task"]
 
-    # Filter only rows with True value
-    selected_tasks = show_tasks[show_tasks["Report"]]
+    # Filter only rows with any True values
+    active_tasks = show_tasks[show_tasks.any(axis=1)]
 
-    # Batch process selected tasks  
-    if glb.is_ampl_model_overflow():
-        overflow = st.session_state.overflow
-        for task_id in selected_tasks.index:
-            v = overflow.loc[task_id]
-            info = f", :red[overflow {v:.2f} [h]]" if v > 0 else ""
-            st.subheader(f":green[{task_id}]{info}", divider="green")
-            show_one_task(tasks.loc[task_id])
-    else:
-        for task_id in selected_tasks.index:
-            st.subheader(f":green[{task_id}]", divider="green")
-            show_one_task(tasks.loc[task_id])
+    days_off = st.session_state.show["days_off"]
+
+    for task_name, row in active_tasks.iterrows():
+        st.subheader(get_subheader(task_name), divider="green")
+        task = tasks.loc[task_name]
+        if row["Chart"]:
+            imge.plot(task, days_off)
+        if row["H:Table"]:
+            experts_in_tasks_as_table(task, True)
+        if row["S:Table"]:
+            experts_in_tasks_as_table(task, False)
 
 
 def show():
