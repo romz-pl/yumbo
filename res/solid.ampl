@@ -17,7 +17,7 @@ check: card(TNAME) > 0;
 
 
 # The scope of the task
-set TSCOPE{TNAME} ordered;
+set TSCOPE{TNAME} ordered within integer[1, Infinity];
 
 
 # The work of a task:
