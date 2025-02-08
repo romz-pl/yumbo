@@ -18,7 +18,7 @@ import styled_table
 def show_commitment_per_task(expert_name):
     # Cache frequently used session state objects
     mprob = st.session_state.mprob
-    amplsol = st.session_state.amplsol
+    amplsol = st.session_state.schedule
 
     # Filter tasks for the expert using a cross-section on the assignment DataFrame
     filter = mprob["assign"].xs(expert_name, level="Elevel")["Task"]
@@ -58,7 +58,7 @@ def show_schedule_as_table(expert_name, as_html, mm_hash):
     days = pd.date_range(start=start_date, end=end_date, freq='D')
 
     # Retrieve and format the relevant schedule data
-    df = st.session_state.amplsol[expert_name].loc[start_date:end_date, expert_tasks["Name"]]
+    df = st.session_state.schedule[expert_name].loc[start_date:end_date, expert_tasks["Name"]]
 
     styled_df = styled_table.create(df, days)
 

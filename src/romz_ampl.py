@@ -114,7 +114,7 @@ def xbday(f):
 
 
 def ubday(f):
-    if not glb.with_ubday():
+    if not glb.is_ampl_model_ubday():
         return
 
     today = glb.today()
@@ -213,11 +213,8 @@ def create_data_file(ff):
 
 
 def save_schedule(ampl):
-    # Create the index for the schedule DataFrame.
-    days = pd.date_range(start=glb.tomorrow(), end=glb.last_day(), freq='D')
-
     # Build a dictionary where keys are (Expert, Task) tuples and values are the corresponding schedule Series.
-    schedule_data = {}
+    schedule_dict = {}
     for row in st.session_state.mprob["assign"].itertuples(index=False):
         # Retrieve the schedule series from AMPL.
         schedule = (
@@ -229,15 +226,36 @@ def save_schedule(ampl):
         schedule.index = pd.to_datetime(glb.today()) + pd.to_timedelta(schedule.index, unit='D')
 
         # Convert values to np.float16 and apply scaling.
-        schedule_data[(row.Expert, row.Task)] = schedule.astype(np.float16) / quarters_in_hour
+        schedule_dict[(row.Expert, row.Task)] = schedule.astype(np.float16) / quarters_in_hour
+
+    # Create the index for the schedule DataFrame.
+    days = pd.date_range(start=glb.tomorrow(), end=glb.last_day(), freq='D')
 
     # Create the full DataFrame at once, aligning on the given 'days' index.
-    amplsol = pd.DataFrame(schedule_data, index=days).fillna(0)
+    df = pd.DataFrame(schedule_dict, index=days).fillna(0)
 
     # Set a MultiIndex on the columns with names "Expert" and "Task".
-    amplsol.columns = pd.MultiIndex.from_tuples(amplsol.columns, names=["Expert", "Task"])
+    df.columns = pd.MultiIndex.from_tuples(df.columns, names=["Expert", "Task"])
 
-    return amplsol
+    return df
+
+
+def save_overflow(ampl):
+    if not glb.is_ampl_model_overflow():
+        return None
+
+
+    # Retrieve the overflow series from AMPL.
+    overflow = (
+        ampl.get_data(f"{{t in TNAME}} F[t]")
+        .to_pandas()
+        .iloc[:, 0]
+    )
+
+    # Convert values to np.float16 and apply scaling.
+    overflow = overflow.astype(np.float16) / quarters_in_hour
+
+    return overflow
 
 
 # activate AMPL license
@@ -301,20 +319,25 @@ def solve_ampl(mm_hash):
     if ampl.solve_result != "solved":
         raise Exception(f"Failed to solve AMPL problem. AMPL returned flag: {ampl.solve_result}")
 
-    amplsol = save_schedule(ampl)
+    schedule = save_schedule(ampl)
+    overflow = save_overflow(ampl)
 
-    return solver_log, amplsol, ampl_data_file
+    return ampl_data_file, solver_log, schedule, overflow
 
 
 def solve():
     time_start = time.perf_counter()
 
     mm_hash = st.session_state.mm_hash
-    solver_log, amplsol, ampl_data_file = solve_ampl(mm_hash)
+    ampl_data_file, solver_log, schedule, overflow = solve_ampl(mm_hash)
 
     st.session_state.mprob["ampl_data_file"] = ampl_data_file
 
-    st.session_state.amplsol = amplsol
+    st.session_state.schedule = schedule
+    st.session_state.overflow = overflow
+
+    if glb.is_ampl_model_overflow():
+        st.write(st.session_state.overflow)
 
     st.session_state.stats["solver_log"] = solver_log
     st.session_state.stats["solver_timestamp"] = pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")

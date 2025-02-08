@@ -32,12 +32,12 @@ def imgt(expert_name, days_off, combi_hash):
 
     # Summing over all the tasks.
     if days_off:
-        df = (st.session_state.amplsol[f"{expert_name}"].loc[start : end] > 0).sum(axis=1)
+        df = (st.session_state.schedule[f"{expert_name}"].loc[start : end] > 0).sum(axis=1)
     else:
         # Take only the days that are not public holidays.
         holiday = set(st.session_state.mprob["holiday"]["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
-        df = (st.session_state.amplsol[f"{expert_name}"].loc[days] > 0).sum(axis=1)
+        df = (st.session_state.schedule[f"{expert_name}"].loc[days] > 0).sum(axis=1)
 
     # Create figure and axis
     fig = matplotlib_figure.Figure(

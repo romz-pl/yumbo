@@ -53,8 +53,15 @@ def last_day():
     return max(st.session_state.mprob["task"]["End"].max(), st.session_state.mprob["period"]["End"].max())
 
 
-def with_ubday():
-    return (st.session_state.mprob["misc"].iloc[0]["With ubday"] == "Yes")
+def is_ampl_model_ubday():
+    model = get_ampl_model_name()
+
+    return (model == "ubday" or model == "ubday-overflow")
+
+def is_ampl_model_overflow():
+    model = get_ampl_model_name()
+
+    return (model == "solid-overflow" or model == "ubday-overflow")
 
 
 def savefig(fig):
@@ -83,14 +90,16 @@ def get_major_tick_locator(ax):
 
     return locator
 
+def get_ampl_model_name():
+    return st.session_state.mprob["misc"].iloc[0]["AMPL model"]
+
 
 def get_ampl_model_file():
-    if with_ubday():
-        ff = "./res/ampl-with-ubday.mod.py"
-    else:
-        ff = "./res/ampl.mod.py"
 
-    return ff
+    ampl_model = get_ampl_model_name()
+    model_file = f"./res/ampl-{ampl_model}.mod.py"
+
+    return model_file
 
 
 

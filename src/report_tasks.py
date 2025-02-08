@@ -18,7 +18,7 @@ def experts_in_tasks_as_table(task, as_html):
     # but only include experts that have the task column and a positive total for that task.
     data = dict()
     for expert in experts.itertuples(index=False):
-        schedule = st.session_state.amplsol[expert.Name].loc[days]
+        schedule = st.session_state.schedule[expert.Name].loc[days]
         if task.Name in schedule.columns:
             expert_data = schedule[task.Name]
             if expert_data.sum() > 0:

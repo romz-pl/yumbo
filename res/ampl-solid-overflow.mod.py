@@ -1,23 +1,11 @@
 #
-# The mathematical optimisation model that generates the schedule for a set of tasks.
-# Authors: Zbigniew Romanowski and Paweł Koczyk
 #
-# A set of tasks is defined, with each task characterised by three properties:
-#    (a) the start date;
-#    (b) the end date;
-#    (c) the work expressed in hours.
+# The mathematic optimisation model that generates the schedule
+# for a set of tasks and a set of experts with many-to-many relations.
 #
-# Each task in the set is assigned to at least one expert, and an expert can be assigned to one or more tasks.
-# Consequently, there is a many-to-many relationship between tasks and experts.
-# 
-# It is possible to pefine constrains to change the default behaviour.
-# Constraints are further categorised into four classes, each of which is optional.
-# The objective is to determine the expert's daily schedule that satisfies the following constraints:
-#    - The number of hours worked per day must not exceed the limit.
-#    - For each call period, the total number of hours worked must be within the limit.
-#    - For each day, for each task, the number of hours worked per day must be within the limit.
-#    - For an expert, the number of hours worked per day must be within the limit for each day.
+# Authors: Zbigniew Romanowski; Paweł Koczyk;
 #
+# Model: SOLID with OVERFLOW
 #
 
 # The maximal total number of working units per day
@@ -79,47 +67,41 @@ param PBL {EXPPER} integer, >= 0; # LOWER
 param PBU {(e, p) in EXPPER} integer, >= PBL[e, p]; # UPPER
 
 
-# Number of days to be investigated, i.e. time horizon
-param DAYNO = max( max{i in PNAME} PERE[i], max{t in TNAME} TWORK[t] );
-
-
-# The set of UBDAY bounds
-set UBID within {ENAME, 1..DAYNO}; # ID
-param UBL{UBID}, >= 0; # LOWER
-param UBU{(e, d) in UBID} integer, >= UBL[e, d]; # UPPER
-
-
 # X[e, t, d] means the number of hours assigned to expert "e" for task "t" on day "d" 
 var X{(e, t) in ASSIGN, TSCOPE[t]} integer, >= 0, <= MAXWORK;
 
+# The overflow work for each task
+var F{TNAME} integer, >= 0;
 
-#
-#              | 0 iff X[e, t, d] = 0
-# U[e, t, d] = |
-#              | 1 iff X[e, t, d] => 1
-#
-var U{(e, t) in ASSIGN, TSCOPE[t]} binary;
+
+# Last day to be investigated, i.e. last day in the scope of each task
+param LASTDAY = max{t in TNAME} last(TSCOPE[t]);
 
 
 # The objective function.
 # This function encourages the early completion of tasks.
 minimize objective_function:
-    sum {(e, t) in ASSIGN, d in TSCOPE[t]} ((d + 1 - first(TSCOPE[t]))^(1/3)) * X[e, t, d];
+    sum {(e, t) in ASSIGN, d in TSCOPE[t]}
+    ((d + 1 - first(TSCOPE[t]))^(1/3)) * X[e, t, d] +
+    ((LASTDAY + 1)^(1/3)) * sum{t in TNAME} F[t];
 
 
 # The total number of working hours per day
 subject to C_maxwork {e in ENAME, d in union {t in TNAME: (e,t) in ASSIGN} TSCOPE[t] }:
-    sum {(e, t) in ASSIGN} (if d in TSCOPE[t] then X[e, t, d] else 0) <= MAXWORK;
+    sum {(e, t) in ASSIGN} (if d in TSCOPE[t] then X[e, t, d] else 0)
+    <= MAXWORK;
 
 
 # The total number of working hours in the task
 subject to C_work {t in TNAME}:
-    sum {(e, t) in ASSIGN, d in TSCOPE[t]} X[e, t, d] = TWORK[t];
+    sum {(e, t) in ASSIGN, d in TSCOPE[t]} X[e, t, d] + F[t] = TWORK[t];
 
 
 # Constraines for number of hours
 subject to C_xbday {(e, t, d) in XBID}:
-    XBL[e, t, d] <= X[e, t, d ] <= XBU[e, t, d];
+    XBL[e, t, d] <=
+    X[e, t, d ]
+    <= XBU[e, t, d];
 
 
 # The upper and lower limit on the total number of working hours in the period
@@ -134,20 +116,3 @@ subject to C_ebound {j in EBID, d in (EBS[j]..EBE[j]) inter (union {(EBN[j],t) i
     EBL[j] <=
     sum{(e, t) in ASSIGN: e = EBN[j]} (if d in TSCOPE[t] then X[e, t, d] else 0)
     <= EBU[j];
-
-
-# Constraint enforcing the value of U: lower bound
-subject to C_use_lower {(e, t) in ASSIGN, d in TSCOPE[t]}:
-    U[e, t, d] <= X[e, t, d];
-
-
-# Constraint enforcing the value of U: upper bound
-subject to C_use_upper {(e, t) in ASSIGN, d in TSCOPE[t]}:
-    U[e, t, d] * MAXWORK >= X[e, t, d];
-
-
-# The lower and upper bounds on the number of tasks per day
-subject to C_ubday {(e, d) in UBID}:
-    UBL[e, d] <=
-    sum {(e, t) in ASSIGN} (if d in TSCOPE[t] then U[e, t, d] else 0)
-    <= UBU[e, d];

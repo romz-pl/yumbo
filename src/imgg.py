@@ -32,7 +32,7 @@ def imgg(expert_name, days_off, combi_hash):
     expert_tasks = task.loc[filter]
 
     # Sum work done for the expert
-    work_done = st.session_state.amplsol[expert_name].sum(axis=0)
+    work_done = st.session_state.schedule[expert_name].sum(axis=0)
 
     # Create the figure and axis
     fig = matplotlib_figure.Figure(

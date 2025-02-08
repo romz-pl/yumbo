@@ -31,13 +31,13 @@ def imgtsum(days_off, combi_hash):
 
     if days_off:
         # Summing over all the tasks.
-        df = (st.session_state.amplsol > 0).sum(axis=1)
+        df = (st.session_state.schedule > 0).sum(axis=1)
     else:
         # Take only the days that are not public holidays.
         holiday = set(st.session_state.mprob["holiday"]["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
         # Summing over all the tasks. Choose days that are not public holidays.
-        df = (st.session_state.amplsol.loc[days] > 0).sum(axis=1)
+        df = (st.session_state.schedule.loc[days] > 0).sum(axis=1)
 
     # Create figure and axis
     fig = matplotlib_figure.Figure(

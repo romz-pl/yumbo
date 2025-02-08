@@ -27,7 +27,7 @@ def plot(expert_name, days_off):
 def imgw(expert_name, days_off, combi_hash):
 
     # Get schedule for the expert and convert to float32.
-    schedule = st.session_state.amplsol[expert_name].astype("float32")
+    schedule = st.session_state.schedule[expert_name].astype("float32")
 
     # Sum across columns for each date and compute its cumulative sum.
     sched_sum = schedule.sum(axis=1)

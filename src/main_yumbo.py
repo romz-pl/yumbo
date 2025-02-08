@@ -140,8 +140,11 @@ def init_sesion_show():
 
 
 def init_sesion_variables():
-    if 'amplsol' not in st.session_state:
-        st.session_state.amplsol = pd.DataFrame()
+    if 'schedule' not in st.session_state:
+        st.session_state.schedule = pd.DataFrame()
+
+    if 'overflow' not in st.session_state:
+        st.session_state.overflow = pd.Series()
 
     if 'glb' not in st.session_state:
         st.session_state.glb = dict()

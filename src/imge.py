@@ -32,12 +32,12 @@ def imge(task, days_off, combi_hash):
 
     # Summing over all the experts.
     if days_off:
-        df = st.session_state.amplsol.xs(task.Name, level="Task", axis=1, drop_level=False).loc[start : end]
+        df = st.session_state.schedule.xs(task.Name, level="Task", axis=1, drop_level=False).loc[start : end]
     else:
         # Take only the days that are not public holidays.
         holiday = set(st.session_state.mprob["holiday"]["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
-        df = st.session_state.amplsol.xs(task.Name, level="Task", axis=1, drop_level=False).loc[days]
+        df = st.session_state.schedule.xs(task.Name, level="Task", axis=1, drop_level=False).loc[days]
 
     # Initialize figure and axis
     fig = matplotlib_figure.Figure(

@@ -44,9 +44,15 @@ display card(PNAME);
 display PNAME;
 display PERS;
 display PERE;
+
+
 display EXPPER;
-display PBL;
-display PBU;
+display card(EXPPER);
+if card(EXPPER) > 0 then
+{
+    display PBL;
+    display PBU;
+}
 
 
 display card(EBID);
@@ -69,29 +75,19 @@ if card(EBID) > 0 then
 #    display (EBS[j]..EBE[j]) inter (union {(EBN[j],t) in ASSIGN} TSCOPE[t]);
 # }
 
-
-
-display card(UBID);
-display UBID;
-if card(UBID) > 0 then
-{
-    display UBL;
-    display UBU;
-}
-
 # expand objective_function;
 # expand C_work;
 # expand C_xbday;
 # expand C_maxwork;
 # expand C_period;
 # expand C_ebound;
-expand C_ubday;
+
 
 solve;
 
 display objective_function;
 
-# display X;
+display F;
 
-
+display X;
 

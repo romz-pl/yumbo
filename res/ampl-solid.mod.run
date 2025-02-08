@@ -1,0 +1,92 @@
+# option;
+
+option presolve 10;
+option show_stats 2;
+# option times 1;
+# option gentimes 1;
+
+display MAXWORK;
+
+display card(TNAME);
+display TNAME;
+display TWORK;
+
+display card(ENAME);
+display ENAME;
+
+display card(ASSIGN);
+display ASSIGN;
+
+for {t in TNAME}
+{
+    display t;
+    display card(TSCOPE[t]);
+    display TSCOPE[t];
+}
+
+display card(XBID);
+display XBID;
+
+if card(XBID) > 0 then
+{
+    display XBL;
+    display XBU;
+}
+
+# display union {t in TNAME} TSCOPE[t];
+
+# for {e in ENAME}
+# {
+#    display e, union {t in TNAME: (e,t) in ASSIGN} TSCOPE[t]
+# }
+
+display card(PNAME);
+display PNAME;
+display PERS;
+display PERE;
+
+display EXPPER;
+display card(EXPPER);
+if card(EXPPER) > 0 then
+{
+    display PBL;
+    display PBU;
+}
+
+
+display card(EBID);
+display EBID;
+if card(EBID) > 0 then
+{
+    display EBN;
+    display EBS;
+    display EBE;
+    display EBL;
+    display EBU;
+}
+
+# for {j in EBID}
+# {
+#    display j;
+#    display EBN[j];
+#    display (EBS[j]..EBE[j]);
+#    display (union {(EBN[j],t) in ASSIGN} TSCOPE[t]);
+#    display (EBS[j]..EBE[j]) inter (union {(EBN[j],t) in ASSIGN} TSCOPE[t]);
+# }
+
+# expand objective_function;
+# expand C_work;
+# expand C_xbday;
+# expand C_maxwork;
+# expand C_period;
+# expand C_ebound;
+
+
+solve;
+
+display objective_function;
+
+# display X;
+
+
+
