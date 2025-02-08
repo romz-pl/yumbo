@@ -106,30 +106,30 @@ set ENAME :=
 ;
 
 set ASSIGN :=
-'Alojzy' 'p1'
-'Eugeniusz' 'p5'
-'Eugeniusz' 'p6'
-'Ignacy' 'p13'
-'Ignacy' 'p14'
-'Ignacy' 'p15'
-'Pafnucy' 'p20'
-'Pafnucy' 'p21'
-'Pafnucy' 'p22'
-'Pafnucy' 'p23'
-'Romuald' 'p30'
-'Romuald' 'p31'
-'Romuald' 'p32'
-'Romuald' 'p33'
-'Romuald' 'p34'
+('Alojzy',*)
+'p1'
+('Eugeniusz',*)
+'p5'
+'p6'
+('Ignacy',*)
+'p13'
+'p14'
+'p15'
+('Pafnucy',*)
+'p20'
+'p21'
+'p22'
+'p23'
+('Romuald',*)
+'p30'
+'p31'
+'p32'
+'p33'
+'p34'
 ;
 
 param:
 XBID: XBL XBU :=
-
-;
-
-param:
-UBID: UBL UBU :=
 
 ;
 
@@ -140,20 +140,25 @@ EBID: EBN EBS EBE EBL EBU :=
 
 param:
 PNAME: PERS PERE :=
-'25.Jan' 1 31
-'25.Feb' 32 60
-'25.Mar' 61 91
 '25.Apr' 92 120
+'25.Feb' 32 60
+'25.Jan' 1 31
+'25.Mar' 61 91
 '25.May' 121 154
 ;
 
 param:
 EXPPER: PBL PBU :=
-'Alojzy' '25.Jan' 0 800
-'Alojzy' '25.Feb' 40 760
-'Alojzy' '25.Mar' 80 720
-'Eugeniusz' '25.Jan' 0 800
-'Ignacy' '25.Jan' 0 800
-'Pafnucy' '25.Jan' 0 800
-'Romuald' '25.Jan' 0 800
+['Alojzy',*]
+'25.Feb' 40 760
+'25.Jan' 0 800
+'25.Mar' 80 720
+['Eugeniusz',*]
+'25.Jan' 0 800
+['Ignacy',*]
+'25.Jan' 0 800
+['Pafnucy',*]
+'25.Jan' 0 800
+['Romuald',*]
+'25.Jan' 0 800
 ;
