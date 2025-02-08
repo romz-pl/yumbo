@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 
+import glb
 import imggsum
 import imghsum
 import imgtsum
@@ -20,6 +21,13 @@ def show_report():
         imgtsum.plot(days_off)
     with col3:
         imghsum.plot(days_off)
+
+    if glb.is_ampl_model_overflow():
+        overflow = st.session_state.overflow
+        if overflow.sum() > 0:
+            st.subheader(":red[There are task overflows!]", divider="red")
+            df = overflow[ overflow > 0]
+            st.write(df)
 
 
 def show():

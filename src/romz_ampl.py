@@ -242,7 +242,7 @@ def save_schedule(ampl):
 
 def save_overflow(ampl):
     if not glb.is_ampl_model_overflow():
-        return None
+        return pd.Series()
 
 
     # Retrieve the overflow series from AMPL.
@@ -254,6 +254,8 @@ def save_overflow(ampl):
 
     # Convert values to np.float16 and apply scaling.
     overflow = overflow.astype(np.float16) / quarters_in_hour
+    overflow.index.name = 'Task'
+    overflow.name='Overflow'
 
     return overflow
 
@@ -335,9 +337,6 @@ def solve():
 
     st.session_state.schedule = schedule
     st.session_state.overflow = overflow
-
-    if glb.is_ampl_model_overflow():
-        st.write(st.session_state.overflow)
 
     st.session_state.stats["solver_log"] = solver_log
     st.session_state.stats["solver_timestamp"] = pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")

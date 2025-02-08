@@ -3,6 +3,7 @@ import streamlit as st
 import styled_table
 import time
 
+import glb
 import imge
 
 
@@ -76,10 +77,18 @@ def show_report():
     # Filter only rows with True value
     selected_tasks = show_tasks[show_tasks["Report"]]
 
-    # Batch process selected tasks
-    for task_id in selected_tasks.index:
-        st.subheader(f":green[{task_id}]", divider="green")
-        show_one_task(tasks.loc[task_id])
+    # Batch process selected tasks  
+    if glb.is_ampl_model_overflow():
+        overflow = st.session_state.overflow
+        for task_id in selected_tasks.index:
+            v = overflow.loc[task_id]
+            info = f", :red[overflow {v:.2f} [h]]" if v > 0 else ""
+            st.subheader(f":green[{task_id}]{info}", divider="green")
+            show_one_task(tasks.loc[task_id])
+    else:
+        for task_id in selected_tasks.index:
+            st.subheader(f":green[{task_id}]", divider="green")
+            show_one_task(tasks.loc[task_id])
 
 
 def show():
