@@ -62,9 +62,9 @@ def customise_show_experts():
     if st.checkbox(label, key="experts" + label):
         df["S:Table"] = True
 
-    label = "Show all commitments"
+    label = "Show all xbdays"
     if st.checkbox(label, key="experts" + label):
-        df["Commitment"] = True
+        df["xbday"] = True
 
     st.session_state.show["experts"] = df
 

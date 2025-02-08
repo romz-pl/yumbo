@@ -15,7 +15,7 @@ import styled_table
 
 
 
-def show_commitment_per_task(expert_name):
+def show_xbday_per_task(expert_name):
     # Cache frequently used session state objects
     mprob = st.session_state.mprob
     amplsol = st.session_state.schedule
@@ -34,7 +34,7 @@ def show_commitment_per_task(expert_name):
     # Create 3 columns for layout
     cols = st.columns(3)
 
-    # Iterate over each task row (as a namedtuple) and plot the commitment
+    # Iterate over each task row (as a namedtuple) and plot the xbday
     for idx, task_row in enumerate(expert_tasks.itertuples(index=False)):
         # Look up bounds for the task from the precomputed groups dictionary.
         bounds = xbday_groups.get(task_row.Name, pd.DataFrame())
@@ -132,8 +132,8 @@ def show_report():
             show_schedule_as_table(expert_name, True, mm_hash)
         if row["S:Table"]:
             show_schedule_as_table(expert_name, False, mm_hash)
-        if row["Commitment"]:
-            show_commitment_per_task(expert_name)
+        if row["xbday"]:
+            show_xbday_per_task(expert_name)
 
 
 def show():
