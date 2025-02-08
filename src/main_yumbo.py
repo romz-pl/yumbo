@@ -44,12 +44,12 @@ def set_page_config():
     # st.html(css)
 
 
-def show_page_header(git_hash):
+def show_page_header():
     st.title(":red[Yumbo.] Scheduling, Planning and Resource Allocation")
     st.subheader("Zbigniew Romanowski, Paweł Koczyk")
     st.markdown("Source code, documentation and sample Excel input files can be found on [Yumbo's](https://github.com/romz-pl/yambo) GitHub repository.")
-    st.caption(f"git hash: :green[{git_hash}]")
-    # st.caption(f"Timestamp: :green[{pd.Timestamp.now().strftime('%d %B %Y, %H:%M:%S %p')}]")
+    st.caption(f"git hash: :green[{st.session_state.git_hash}]")
+    st.caption(f"Timestamp: :green[{pd.Timestamp.now().strftime('%d %B %Y, %H:%M:%S %p')}]")
     st.caption(f"Streamlit version: :green[{st.__version__}]")
 
 
@@ -196,7 +196,7 @@ def main():
     st.session_state.git_hash = glb.calc_git_hash()
 
     set_page_config()
-    show_page_header(st.session_state.git_hash)
+    show_page_header()
     init_sesion_variables()
 
     if not upload():
