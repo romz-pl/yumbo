@@ -73,22 +73,27 @@ var X{(e, t) in ASSIGN, TSCOPE[t]} integer, >= 0, <= MAXWORK;
 # The objective function.
 # This function encourages the early completion of tasks.
 minimize objective_function:
-    sum {(e, t) in ASSIGN, d in TSCOPE[t]} ((d + 1 - first(TSCOPE[t]))^(1/3)) * X[e, t, d];
+    sum {(e, t) in ASSIGN, d in TSCOPE[t]}
+    ((d + 1 - first(TSCOPE[t]))^(1/3)) * X[e, t, d];
 
 
 # The total number of working hours per day
 subject to C_maxwork {e in ENAME, d in union {t in TNAME: (e,t) in ASSIGN} TSCOPE[t] }:
-    sum {(e, t) in ASSIGN} (if d in TSCOPE[t] then X[e, t, d] else 0) <= MAXWORK;
+    sum {(e, t) in ASSIGN} (if d in TSCOPE[t] then X[e, t, d] else 0)
+    <= MAXWORK;
 
 
 # The total number of working hours in the task
 subject to C_work {t in TNAME}:
-    sum {(e, t) in ASSIGN, d in TSCOPE[t]} X[e, t, d] = TWORK[t];
+    sum {(e, t) in ASSIGN, d in TSCOPE[t]} X[e, t, d]
+    = TWORK[t];
 
 
 # Constraines for number of hours
 subject to C_xbday {(e, t, d) in XBID}:
-    XBL[e, t, d] <= X[e, t, d ] <= XBU[e, t, d];
+    XBL[e, t, d] <=
+    X[e, t, d ]
+    <= XBU[e, t, d];
 
 
 # The upper and lower limit on the total number of working hours in the period
