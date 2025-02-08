@@ -42,16 +42,11 @@ def imgb(task, schedule, bounds, combi_hash):
     ax.plot(
         x_task,
         y_task,
-        glb.imgb("Plot:format"),
+        glb.imgb("Plot:format") + "-",
+        drawstyle='steps-mid',
         markeredgewidth=glb.imgb("Plot:markeredgewidth"),
-        label=f"Task {task.Name}"
-    )
-
-    ax.step(
-        x_task,
-        y_task,
         linewidth=glb.imgb("Step:linewidth"),
-        where="mid"
+        label=f"Task {task.Name}"
     )
 
     # Configure grid
