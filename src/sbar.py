@@ -18,8 +18,10 @@ def get_uploaded_file():
 def customise_expert_report_layout():
     st.subheader("Report layout", divider="blue")
 
+    st.session_state.show["expert_charts_in_columns"] = st.checkbox("Charts in columns")
+
     max_col_no = 5
-    report_column_no = st.number_input("Number of columns", min_value=1, max_value=max_col_no, value=max_col_no)
+    report_column_no = st.number_input("Number of charts", min_value=1, max_value=max_col_no, value=max_col_no)
 
     for ii in range(1, max_col_no + 1):
         st.session_state.glb[f"report_expert_column_{ii}"] = st.selectbox(

@@ -71,25 +71,65 @@ def show_schedule_as_table(expert_name, as_html, mm_hash):
         st.dataframe(styled_df, use_container_width=False)
 
 
-def show_one_expert(expert_name):
-    report_column_no = st.session_state.glb["report_expert_column_no"]
-    col_list = st.columns(report_column_no)
+# def show_one_expert(expert_name):
+#     # Define the mapping of chart names to functions
+#     chart_functions = {
+#         "Task's Gantt chart": imgg.plot,
+#         "Tasks per day": imgt.plot,
+#         "Hours per day": imgh.plot,
+#         "Hours per day stacked": imgs.plot,
+#         "Invoice period workload": imgw.plot
+#     }
 
-    # Define the mapping of chart names to functions
+#     days_off = st.session_state.show["days_off"]
+#     report_column_no = st.session_state.glb["report_expert_column_no"]
+
+#     if st.session_state.show["expert_charts_in_columns"]:
+#         for ii in range(1, report_column_no+1):
+#             chart_name = st.session_state.glb[f"report_expert_column_{ii}"]
+#             chart_functions.get(chart_name)(expert_name, days_off)
+#     else:
+#         col_list = st.columns(report_column_no)
+#         for ii, col in enumerate(col_list, start=1):
+#             with col:
+#                 chart_name = st.session_state.glb[f"report_expert_column_{ii}"]
+#                 # Call the corresponding function
+#                 chart_functions.get(chart_name)(expert_name, days_off)
+
+
+
+
+def show_one_expert(expert_name):
+    # Mapping of chart names to their respective plotting functions
     chart_functions = {
         "Task's Gantt chart": imgg.plot,
         "Tasks per day": imgt.plot,
         "Hours per day": imgh.plot,
         "Hours per day stacked": imgs.plot,
-        "Invoice period workload": imgw.plot
+        "Invoice period workload": imgw.plot,
     }
 
     days_off = st.session_state.show["days_off"]
-    for ii, col in enumerate(col_list, start=1):
-        with col:
-            chart_name = st.session_state.glb[f"report_expert_column_{ii}"]
-            # Call the corresponding function
-            chart_functions.get(chart_name)(expert_name, days_off)
+    report_column_no = st.session_state.glb["report_expert_column_no"]
+
+    # Retrieve the column chart names in advance
+    column_chart_names = [
+        st.session_state.glb[f"report_expert_column_{ii}"]
+        for ii in range(1, report_column_no + 1)
+    ]
+
+    if st.session_state.show["expert_charts_in_columns"]:
+        # Render charts in rows
+        for chart_name in column_chart_names:
+            if chart_name in chart_functions:
+                chart_functions[chart_name](expert_name, days_off)
+    else:
+        # Render charts in columns
+        col_list = st.columns(report_column_no)
+        for col, chart_name in zip(col_list, column_chart_names):
+            with col:
+                if chart_name in chart_functions:
+                    chart_functions[chart_name](expert_name, days_off)
 
 
 def show_report():
