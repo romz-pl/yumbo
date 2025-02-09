@@ -34,17 +34,24 @@ set ASSIGN within {ENAME, TNAME};
 
 
 # The set of XBDAY bounds
-set XBID within {(e, t) in ASSIGN, TSCOPE[t]}; # ID
-param XBL{XBID}, >= 0; # LOWER
-param XBU{(e, t, d) in XBID} integer, >= XBL[e, t, d]; # UPPER
+set XBID within integer[1, Infinity];  # ID
+param XBEXPERT{XBID} symbolic within ENAME;
+param XBTASK  {XBID} symbolic within TNAME;
+param XBS{j in XBID} within TSCOPE[XBTASK[j]]; # START
+param XBE{j in XBID} within TSCOPE[XBTASK[j]], >= XBS[j]; # END
+param XBL{j in XBID} integer, >= 0; # LOWER
+param XBU{j in XBID} integer, >= XBL[j]; # UPPER
 
+# Check XBDAY definition
+check {j in XBID}:
+    (XBEXPERT[j], XBTASK[j]) in ASSIGN;
 
 # The set of EBDAY bounds for expert
-set EBID; # ID
-param EBN{EBID} symbolic within ENAME;
-param EBS{EBID} integer, >= 1; # START
+set EBID within integer[1, Infinity]; # ID
+param EBEXPERT{EBID} symbolic within ENAME;
+param EBS{j in EBID} integer, >= 1; # START
 param EBE{j in EBID} integer, >= EBS[j]; # END
-param EBL{EBID} integer, >= 0; # LOWER
+param EBL{j in EBID} integer, >= 0; # LOWER
 param EBU{j in EBID} integer, >= EBL[j]; # UPPER
 
 
@@ -108,7 +115,7 @@ subject to C_work {t in TNAME}:
 
 
 # Constraines for number of hours
-subject to C_xbday {(e, t, d) in XBID}:
+subject to C_xbday {j in XBID, d in (XBS[j]..XBE[j]): e = XBEXPERT[j], t = XBTASK[j]}:
     XBL[e, t, d] <=
     X[e, t, d ]
     <= XBU[e, t, d];
