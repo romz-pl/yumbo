@@ -91,25 +91,31 @@ def assign(f):
 
 def xbday(f):
     today = glb.today()
-    df = st.session_state.mprob["xbday"].sort_values(["Expert", "Task"])
-    holiday = set(st.session_state.mprob["holiday"]["Date"])  # Faster holiday lookups
+    df = st.session_state.mprob["xbday"] #.sort_values(["Expert", "Task"])
+    #holiday = set(st.session_state.mprob["holiday"]["Date"])  # Faster holiday lookups
 
     result = []
-    for row in df.itertuples(index=False):
+    for id, row in enumerate(df.itertuples(index=False), start=1):
         # Generate business days and compute day differences.
-        days = (pd.bdate_range(start=row.Start, end=row.End, freq="C", holidays=holiday) - today).days
+        #days = (pd.bdate_range(start=row.Start, end=row.End, freq="C", holidays=holiday) - today).days
 
-        result.append(f"['{row.Expert}','{row.Task}',*]")
+        # result.append(f"['{row.Expert}','{row.Task}',*]")
 
-        # Pre-compute values used repeatedly for the current row.
+        # # Pre-compute values used repeatedly for the current row.
+        # lower = check_and_round(row.Lower * quarters_in_hour)
+        # upper = check_and_round(row.Upper * quarters_in_hour)
+
+        # # Use list comprehension to extend the result list for each day.
+        # result.extend(f"{d} {lower} {upper}" for d in days)
+
+        start = (row.Start - today).days
+        end = (row.End - today).days
         lower = check_and_round(row.Lower * quarters_in_hour)
         upper = check_and_round(row.Upper * quarters_in_hour)
-
-        # Use list comprehension to extend the result list for each day.
-        result.extend(f"{d} {lower} {upper}" for d in days)
+        result.append(f"{id} '{row.Expert}' '{row.Task}' {start} {end} {lower} {upper}")
 
     # Build the output string once and perform a single I/O write.
-    output = "param:\nXBID: XBL XBU :=\n" + "\n".join(result) + "\n;\n\n"
+    output = "param:\nXBID: XBEXPERT XBTASK XBS XBE XBL XBU :=\n" + "\n".join(result) + "\n;\n\n"
     f.write(output)
 
 
@@ -149,15 +155,15 @@ def ebday(f):
     df = st.session_state.mprob["ebday"]
 
     result = []
-    for id, row in enumerate(df.itertuples(index=False)):
+    for id, row in enumerate(df.itertuples(index=False), start=1):
         start = (row.Start - today).days
         end = (row.End - today).days
         lower = check_and_round(row.Lower * quarters_in_hour)
         upper = check_and_round(row.Upper * quarters_in_hour)
-        result.append(f"{id+1} '{row.Expert}' {start} {end} {lower} {upper}")
+        result.append(f"{id} '{row.Expert}' {start} {end} {lower} {upper}")
 
 
-    output = "param:\nEBID: EBN EBS EBE EBL EBU :=\n" + "\n".join(result) + "\n;\n\n"
+    output = "param:\nEBID: EBEXPERT EBS EBE EBL EBU :=\n" + "\n".join(result) + "\n;\n\n"
     f.write(output)
 
 
@@ -298,10 +304,12 @@ def set_model_and_data(ampl):
     ff = tempfile.NamedTemporaryFile(mode='w+', prefix="yumbo-")
 
     create_data_file(ff)
-
-    ampl.read_data(ff.name)
     ff.seek(0)
     ampl_data_file = ff.read()
+    ff.seek(0)
+    #st.write(ampl_data_file)
+
+    ampl.read_data(ff.name)
     ff.close()
 
     return ampl_data_file
