@@ -293,7 +293,7 @@ def set_model_and_data(ampl):
     return ampl_data_file
 
 
-# @st.cache_resource(max_entries=99)
+@st.cache_resource(max_entries=99)
 def solve_ampl(mm_hash):
     set_ampl_license()
     ampl = AMPL()
