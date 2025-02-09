@@ -7,16 +7,24 @@ option show_stats 2;
 
 display MAXWORK;
 
+
+# Expert
+display card(ENAME);
+display ENAME;
+
+
+# Task
 display card(TNAME);
 display TNAME;
 display TWORK;
 
-display card(ENAME);
-display ENAME;
 
+# Assign
 display card(ASSIGN);
 display ASSIGN;
 
+
+# The scope of the individual tasks
 for {t in TNAME}
 {
     display t;
@@ -24,28 +32,55 @@ for {t in TNAME}
     display TSCOPE[t];
 }
 
+
+# XBDAY constarin
 display card(XBID);
 display XBID;
-
 if card(XBID) > 0 then
 {
+    display XBEXPERT;
+    display XBTASK;
+    display XBS;
+    display XBE;
     display XBL;
     display XBU;
 }
 
-# display union {t in TNAME} TSCOPE[t];
 
-# for {e in ENAME}
-# {
-#    display e, union {t in TNAME: (e,t) in ASSIGN} TSCOPE[t]
-# }
+# UBDAY constarin
+display card(UBID);
+display UBID;
+if card(UBID) > 0 then
+{
+    display UBEXPERT;
+    display UBS;
+    display UBE;
+    display UBL;
+    display UBU;
+}
 
+
+# EBDAY constrain
+display card(EBID);
+display EBID;
+if card(EBID) > 0 then
+{
+    display EBEXPERT;
+    display EBS;
+    display EBE;
+    display EBL;
+    display EBU;
+}
+
+
+# Period
 display card(PNAME);
 display PNAME;
 display PERS;
 display PERE;
 
 
+# PBSUM constrain
 display EXPPER;
 display card(EXPPER);
 if card(EXPPER) > 0 then
@@ -55,49 +90,52 @@ if card(EXPPER) > 0 then
 }
 
 
-display card(EBID);
-display EBID;
-if card(EBID) > 0 then
+# The last day in the scope of each task.
+display LASTDAY;
+
+
+# Display used unions for debugging purposes.
+if 1 > 2 then
 {
-    display EBN;
-    display EBS;
-    display EBE;
-    display EBL;
-    display EBU;
+    display union {t in TNAME} TSCOPE[t];
+
+    for {e in ENAME}
+    {
+        display e, union {t in TNAME: (e,t) in ASSIGN} TSCOPE[t]
+    }
+
+    for {j in EBID}
+    {
+        display j;
+        display EBEXPERT[j];
+        display (EBS[j]..EBE[j]);
+        display (union {(EBEXPERT[j],t) in ASSIGN} TSCOPE[t]);
+        display (EBS[j]..EBE[j]) inter (union {(EBEXPERT[j],t) in ASSIGN} TSCOPE[t]);
+    }
 }
 
-# for {j in EBID}
-# {
-#    display j;
-#    display EBN[j];
-#    display (EBS[j]..EBE[j]);
-#    display (union {(EBN[j],t) in ASSIGN} TSCOPE[t]);
-#    display (EBS[j]..EBE[j]) inter (union {(EBN[j],t) in ASSIGN} TSCOPE[t]);
-# }
 
-
-
-display card(UBID);
-display UBID;
-if card(UBID) > 0 then
+# Expand used constarins and expressions for debugging purposes.
+if 1 > 2 then
 {
-    display UBL;
-    display UBU;
+    expand objective_function;
+    expand C_maxwork;
+    expand C_work;
+    expand C_xbday;
+    expand C_period;
+    expand C_ebound;
+    expand C_ubday;
 }
 
-# expand objective_function;
-# expand C_work;
-# expand C_xbday;
-# expand C_maxwork;
-# expand C_period;
-# expand C_ebound;
-expand C_ubday;
 
 solve;
-
 display objective_function;
 
-# display X;
 
-
-
+# Display obtained solution.
+if 1 > 2 then
+{
+    display F;
+    display X;
+    display U;
+}

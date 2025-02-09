@@ -210,8 +210,11 @@ def pbsum(f):
 
 
 def create_data_file(ff):
-    ff.write(f"# AMPL MODEL: {glb.get_ampl_model_file()}\n\n")
-    ff.write(f"param MAXWORK := {glb.hours_per_day() * quarters_in_hour};\n\n")
+    ff.write(
+        f"# AMPL MODEL: {glb.get_ampl_model_file()}\n\n"
+        f"# Timestamp: {pd.Timestamp.now().strftime('%d %B %Y, %H:%M:%S %p')}\n\n"
+        f"param MAXWORK := {glb.hours_per_day() * quarters_in_hour};\n\n"
+    )
 
     task(ff)
     tscope(ff)
@@ -323,7 +326,7 @@ def set_model_and_data(ampl):
     return ampl_data_file
 
 
-@st.cache_resource(max_entries=99)
+# @st.cache_resource(max_entries=99)
 def solve_ampl(mm_hash):
     set_ampl_license()
     ampl = AMPL()
@@ -332,6 +335,7 @@ def solve_ampl(mm_hash):
 
     # Capture solver log
     solver_log = ampl.get_output("solve;")
+    st.write(solver_log)
 
     # Check if solving was successful
     if ampl.solve_result != "solved":

@@ -3,9 +3,15 @@ import streamlit as st
 import glb
 
 def show_solver_log():
-    solver_timestamp = st.session_state.stats["solver_timestamp"]
-    st.subheader(f":green[Solver output at {solver_timestamp}]", divider="green")
-    st.code(st.session_state.stats["solver_log"], line_numbers=True, height=500)
+    st.subheader(f":green[Solver log]", divider="green")
+
+    timestamp = st.session_state.stats["solver_timestamp"]
+    log = st.session_state.stats["solver_log"]
+    st.code(
+        f"{timestamp}\n\n{log}",
+        line_numbers=True,
+        height=500
+    )
 
 
 def show_ampl_data_file():

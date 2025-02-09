@@ -38,7 +38,7 @@ def add_days_and_workdays(df, start, end, mprob):
 
 
 def read_task(xlsx, mprob):
-    df = xlsx.parse(sheet_name="task", usecols="A:D")
+    df = xlsx.parse(sheet_name="task", usecols="A:D").sort_values("Name")
     df = parse_date_columns(df, ["Start", "End"])
     df = add_days_and_workdays(df, "Start", "End", mprob)
     df["Avg"] = df["Work"] / df["Workdays"]
@@ -49,7 +49,7 @@ def read_task(xlsx, mprob):
 
 
 def read_expert(xlsx, mprob):
-    df = xlsx.parse(sheet_name="expert", usecols="A:B")
+    df = xlsx.parse(sheet_name="expert", usecols="A:B").sort_values("Name")
     df.set_index("Name", drop=False, inplace=True, verify_integrity=True)
     df.index.name = "Nindex"
     mprob["expert"] = df
@@ -57,7 +57,7 @@ def read_expert(xlsx, mprob):
 
 
 def read_assign(xlsx, mprob):
-    df = xlsx.parse(sheet_name="assign", usecols="A:B")
+    df = xlsx.parse(sheet_name="assign", usecols="A:B").sort_values(["Expert", "Task"])
     df.set_index(["Expert", "Task"], drop=False, inplace=True, verify_integrity=True)
     df.index.names = ["Elevel", "Tlevel"]
     mprob["assign"] = df
@@ -65,21 +65,21 @@ def read_assign(xlsx, mprob):
 
 
 def read_xbday(xlsx, mprob):
-    df = xlsx.parse(sheet_name="xbday", usecols="A:F")
+    df = xlsx.parse(sheet_name="xbday", usecols="A:F").sort_values(["Expert", "Task"])
     df = parse_date_columns(df, ["Start", "End"])
     mprob["xbday"] = df
     return mprob
 
 
 def read_ubday(xlsx, mprob):
-    df = xlsx.parse(sheet_name="ubday", usecols="A:E")
+    df = xlsx.parse(sheet_name="ubday", usecols="A:E").sort_values("Expert")
     df = parse_date_columns(df, ["Start", "End"])
     mprob["ubday"] = df
     return mprob
 
 
 def read_ebday(xlsx, mprob):
-    df = xlsx.parse(sheet_name="ebday", usecols="A:E")
+    df = xlsx.parse(sheet_name="ebday", usecols="A:E").sort_values("Expert")
     df = parse_date_columns(df, ["Start", "End"])
     mprob["ebday"] = df
     return mprob
@@ -88,6 +88,7 @@ def read_ebday(xlsx, mprob):
 def read_period(xlsx, mprob):
     df = xlsx.parse(sheet_name="period", usecols="A:C")
     df = parse_date_columns(df, ["Start", "End"])
+    df.sort_values("Start", inplace=True)
     df = add_days_and_workdays(df, "Start", "End", mprob)
     df.set_index("Name", drop=False, inplace=True, verify_integrity=True)
     df.index.name = "Pindex"
@@ -96,7 +97,7 @@ def read_period(xlsx, mprob):
 
 
 def read_pbsum(xlsx, mprob):
-    df = xlsx.parse(sheet_name="pbsum", usecols="A:D")
+    df = xlsx.parse(sheet_name="pbsum", usecols="A:D").sort_values(["Expert", "Period"])
     df.set_index(["Expert", "Period"], drop=False, inplace=True, verify_integrity=True)
     df.index.names = ["Elevel", "Plevel"]
     mprob["pbsum"] = df
@@ -106,6 +107,7 @@ def read_pbsum(xlsx, mprob):
 def read_holiday(xlsx, mprob):
     df = xlsx.parse(sheet_name="holiday", usecols="A:A")
     df = parse_date_columns(df, ["Date"])
+    df.sort_values("Date", inplace=True)
     mprob["holiday"] = df
     return mprob
 
