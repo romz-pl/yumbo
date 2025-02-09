@@ -90,8 +90,6 @@ def assign(f):
 
 
 def xbday(f):
-    # from datetime import datetime
-
     today = glb.today()
     df = st.session_state.mprob["xbday"]
 
@@ -118,7 +116,6 @@ def xbday(f):
     f.write(output)
 
 
-
 def ubday(f):
     if not glb.is_ampl_model_ubday():
         return
@@ -126,16 +123,25 @@ def ubday(f):
     today = glb.today()
     df = st.session_state.mprob["ubday"]
 
-    result = []
-    for id, row in enumerate(df.itertuples(index=False), start=1):
-        start = (row.Start - today).days
-        end = (row.End - today).days
-        result.append(f"{id} '{row.Expert}' {start} {end} {row.Lower} {row.Upper}")
+    # Vectorize calculations to eliminate the loop
+    starts = (df['Start'] - today).dt.days
+    ends = (df['End'] - today).dt.days
 
-    # Build the output string once and perform a single I/O write.
-    output = "param:\nUBID: UBEXPERT UBS UBE UBL UBU :=\n" + "\n".join(result) + "\n;\n\n"
+    # Construct the result strings using vectorized operations
+    result = [
+        f"{idx + 1} '{expert}' {start} {end} {lower} {upper}"
+        for idx, (expert, start, end, lower, upper) in enumerate(
+            zip(df['Expert'], starts, ends, df['Lower'], df['Upper'])
+        )
+    ]
+
+    # Build the output string efficiently
+    output = "param:\nUBID: UBEXPERT UBS UBE UBL UBU :=\n"
+    output += "\n".join(result) if result else ""  # Add results if any
+    output += ";\n\n"
+
+    # Write the output string to the file
     f.write(output)
-
 
 
 def ebday(f):
