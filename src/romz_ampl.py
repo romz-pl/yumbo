@@ -305,27 +305,31 @@ def solve_ampl(mm_hash):
 
     # Check if solving was successful
     if ampl.solve_result != "solved":
-        raise Exception(f"Failed to solve AMPL problem. AMPL returned flag: {ampl.solve_result}")
+        return ampl.solve_result, ampl_data_file, solver_log, pd.DataFrame(), pd.DataFrame()
 
     schedule = save_schedule(ampl)
     overflow = save_overflow(ampl)
 
-    return ampl_data_file, solver_log, schedule, overflow
+    return ampl.solve_result, ampl_data_file, solver_log, schedule, overflow
 
 
 def solve():
     time_start = time.perf_counter()
 
     mm_hash = st.session_state.mm_hash
-    ampl_data_file, solver_log, schedule, overflow = solve_ampl(mm_hash)
+    solve_result, ampl_data_file, solver_log, schedule, overflow = solve_ampl(mm_hash)
 
     st.session_state.mprob["ampl_data_file"] = ampl_data_file
-
-    st.session_state.schedule = schedule
-    st.session_state.overflow = overflow
-
     st.session_state.stats["solver_log"] = solver_log
     st.session_state.stats["solver_timestamp"] = pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")
+
+    if solve_result == "solved":
+        st.session_state.schedule = schedule
+        st.session_state.overflow = overflow
+    else:
+        raise Exception(f"Failed to solve AMPL problem. AMPL returned flag: {solve_result}")
+
+
 
     time_end = time.perf_counter()
     st.session_state.stats["ampl:ttime"] += time_end - time_start

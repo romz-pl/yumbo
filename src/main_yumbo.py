@@ -167,7 +167,7 @@ def solve_problem():
         romz_ampl.solve()
     except Exception as e:
         st.subheader(f":red[Exception during solving process.] {e}")
-        # report_ampl.show_ampl_data_file()
+        report_ampl.show_ampl_data_file()
         return False
 
     return True
