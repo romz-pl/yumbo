@@ -61,7 +61,6 @@ def tscope(f):
         # Append the terminating semicolon and a blank line.
         output_lines.append(";\n")
 
-    # Write all lines at once.
     f.write("\n".join(output_lines))
 
 
@@ -70,7 +69,7 @@ def expert(f):
     output = (
         "\nset ENAME :=\n" +
         "\n".join(f"'{name}'" for name in ename) +
-        "\n;\n\n"
+        ";\n\n"
     )
     f.write(output)
 
@@ -85,7 +84,8 @@ def assign(f):
             result.append(f"('{row.Expert}',*)")
             expert = row.Expert
         result.append(f"'{row.Task}'")
-    output = "set ASSIGN :=\n" + "\n".join(result) + "\n;\n\n"
+
+    output = "set ASSIGN :=\n" + "\n".join(result) + ";\n\n"
     f.write(output)
 
 
@@ -107,12 +107,9 @@ def xbday(f):
         )
     ]
 
-    # Build the output string efficiently
     output = "param:\nXBID: XBEXPERT XBTASK XBS XBE XBL XBU :=\n"
     output += "\n".join(result) if result else ""  # Add results if any
     output += ";\n\n"
-
-    # Write the output string to the file
     f.write(output)
 
 
@@ -135,12 +132,9 @@ def ubday(f):
         )
     ]
 
-    # Build the output string efficiently
     output = "param:\nUBID: UBEXPERT UBS UBE UBL UBU :=\n"
     output += "\n".join(result) if result else ""  # Add results if any
     output += ";\n\n"
-
-    # Write the output string to the file
     f.write(output)
 
 
@@ -162,12 +156,9 @@ def ebday(f):
         )
     ]
 
-    # Build the output string efficiently
     output = "param:\nEBID: EBEXPERT EBS EBE EBL EBU :=\n"
     output += "\n".join(result) if result else ""  # Add results if any
     output += ";\n\n"
-
-    # Write the output string to the file
     f.write(output)
 
 
@@ -185,10 +176,7 @@ def period(f):
         for name, start, end in zip(df['Name'], starts, ends)
     ]
 
-    # Build the output string efficiently
-    output = "param:\nPNAME: PERS PERE :=\n" + "\n".join(result) + "\n;\n\n"
-
-    # Write the output string to the file
+    output = "param:\nPNAME: PERS PERE :=\n" + "\n".join(result) + ";\n\n"
     f.write(output)
 
 
@@ -205,7 +193,10 @@ def pbsum(f):
         upper = check_and_round(row.Upper * quarters_in_hour)
         result.append(f"'{row.Period}' {lower} {upper}")
 
-    output = "param:\nEXPPER: PBL PBU :=\n" + "\n".join(result) + "\n;\n\n"
+    output = "param:\nEXPPER: PBL PBU :=\n"
+    output += "\n".join(result) if result else ""  # Add results if any
+    output += ";\n\n"
+
     f.write(output)
 
 
