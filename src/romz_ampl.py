@@ -24,17 +24,15 @@ def check_and_round(f):
 def task(f):
     task = st.session_state.mprob["task"]
 
-    # Compute the formatted rows using vectorized operations.
-    # Multiply the Work column by quarters_in_hour and convert both columns to strings.
+    # Vectorized computation of formatted rows
     formatted_rows = (
-        "'" + task["Name"].astype(str) + "' " +
-        (task["Work"] * quarters_in_hour).astype(str) + "\n"
+        task["Name"].apply(lambda x: f"'{x}'") + " " +
+        (task["Work"] * quarters_in_hour).astype(str)
     )
 
-    # Write the header, the concatenated rows, and the footer.
-    f.write("param:\nTNAME: TWORK :=\n")
-    f.write(formatted_rows.str.cat(sep=""))
-    f.write(";\n\n")
+    # Write the header, formatted rows, and footer efficiently
+    output = "param:\nTNAME: TWORK :=\n" + "\n".join(formatted_rows) + ";\n\n"
+    f.write(output)
 
 
 def tscope(f):
