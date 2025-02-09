@@ -64,9 +64,9 @@ def show_pbsum():
 def show_exptas():
     col0, col1, col2 = st.columns(3)
     with col0:
-        show_task()
-    with col1:
         show_expert()
+    with col1:
+        show_task()
     with col2:
         show_assign()
 
