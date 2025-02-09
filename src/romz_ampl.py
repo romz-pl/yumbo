@@ -224,6 +224,11 @@ def create_data_file(ff):
     pbsum(ff)
 
     ff.seek(0)
+    data = ff.read()
+    ff.seek(0)
+    #st.write(ampl_data_file)
+
+    return data
 
 
 def save_schedule(ampl):
@@ -311,12 +316,7 @@ def set_model_and_data(ampl):
     # Temporary file is required for storing AMPL data file
     ff = tempfile.NamedTemporaryFile(mode='w+', prefix="yumbo-")
 
-    create_data_file(ff)
-    ff.seek(0)
-    ampl_data_file = ff.read()
-    ff.seek(0)
-    #st.write(ampl_data_file)
-
+    ampl_data_file = create_data_file(ff)
     ampl.read_data(ff.name)
     ff.close()
 
