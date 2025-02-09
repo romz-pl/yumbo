@@ -50,19 +50,19 @@ def customise_show_experts():
         },
     )
 
-    label = "Show all charts"
+    label = "All charts"
     if st.checkbox(label, key="experts" + label):
         df["Chart"] = True
 
-    label = "Show all H:Tables"
+    label = "All H:Tables"
     if st.checkbox(label, key="experts" + label):
         df["H:Table"] = True
 
-    label = "Show all S:Tables"
+    label = "All S:Tables"
     if st.checkbox(label, key="experts" + label):
         df["S:Table"] = True
 
-    label = "Show all xbdays"
+    label = "All xbdays"
     if st.checkbox(label, key="experts" + label):
         df["xbday"] = True
 
@@ -84,15 +84,15 @@ def customise_show_tasks():
         },
     )
 
-    label = "Show all charts"
+    label = "All charts"
     if st.checkbox(label, key="tasks" + label):
         df["Chart"] = True
 
-    label = "Show all H:Tables"
+    label = "All H:Tables"
     if st.checkbox(label, key="tasks" + label):
         df["H:Table"] = True
 
-    label = "Show all S:Tables"
+    label = "All S:Tables"
     if st.checkbox(label, key="tasks" + label):
         df["S:Table"] = True
 
