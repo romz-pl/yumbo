@@ -117,9 +117,7 @@ def ubday(f):
     for id, row in enumerate(df.itertuples(index=False), start=1):
         start = (row.Start - today).days
         end = (row.End - today).days
-        lower = check_and_round(row.Lower * quarters_in_hour)
-        upper = check_and_round(row.Upper * quarters_in_hour)
-        result.append(f"{id} '{row.Expert}' {start} {end} {lower} {upper}")
+        result.append(f"{id} '{row.Expert}' {start} {end} {row.Lower} {row.Upper}")
 
     # Build the output string once and perform a single I/O write.
     output = "param:\nUBID: UBEXPERT UBS UBE UBL UBU :=\n" + "\n".join(result) + "\n;\n\n"
