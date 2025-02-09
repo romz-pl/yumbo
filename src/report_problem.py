@@ -97,7 +97,7 @@ def show():
 
     st.header(":blue[Problem definition]", divider="blue")
 
-    options = ["Experts and Tasks", "Bounds", "Periods"]
+    options = ["Experts / Tasks", "Bounds", "Periods"]
 
     selection = st.pills(
         "Select problem area",
