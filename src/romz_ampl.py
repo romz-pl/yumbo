@@ -210,7 +210,8 @@ def pbsum(f):
 
 
 def create_data_file(ff):
-    ff.write(f'param MAXWORK := {glb.hours_per_day() * quarters_in_hour};\n\n')
+    ff.write(f"# AMPL MODEL: {glb.get_ampl_model_file()}\n\n")
+    ff.write(f"param MAXWORK := {glb.hours_per_day() * quarters_in_hour};\n\n")
 
     task(ff)
     tscope(ff)
