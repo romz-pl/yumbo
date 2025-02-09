@@ -148,16 +148,26 @@ def ebday(f):
     today = glb.today()
     df = st.session_state.mprob["ebday"]
 
-    result = []
-    for id, row in enumerate(df.itertuples(index=False), start=1):
-        start = (row.Start - today).days
-        end = (row.End - today).days
-        lower = check_and_round(row.Lower * quarters_in_hour)
-        upper = check_and_round(row.Upper * quarters_in_hour)
-        result.append(f"{id} '{row.Expert}' {start} {end} {lower} {upper}")
+    # Vectorize calculations to eliminate the loop
+    starts = (df['Start'] - today).dt.days
+    ends = (df['End'] - today).dt.days
+    lowers = (df['Lower'] * quarters_in_hour).apply(check_and_round)
+    uppers = (df['Upper'] * quarters_in_hour).apply(check_and_round)
 
-    # Build the output string once and perform a single I/O write.
-    output = "param:\nEBID: EBEXPERT EBS EBE EBL EBU :=\n" + "\n".join(result) + "\n;\n\n"
+    # Construct the result strings using vectorized operations
+    result = [
+        f"{idx + 1} '{expert}' {start} {end} {lower} {upper}"
+        for idx, (expert, start, end, lower, upper) in enumerate(
+            zip(df['Expert'], starts, ends, lowers, uppers)
+        )
+    ]
+
+    # Build the output string efficiently
+    output = "param:\nEBID: EBEXPERT EBS EBE EBL EBU :=\n"
+    output += "\n".join(result) if result else ""  # Add results if any
+    output += ";\n\n"
+
+    # Write the output string to the file
     f.write(output)
 
 
