@@ -124,27 +124,34 @@ def ubday(f):
         return
 
     today = glb.today()
-    df = st.session_state.mprob["ubday"].sort_values("Expert")
-    holiday = set(st.session_state.mprob["holiday"]["Date"])
+    df = st.session_state.mprob["ubday"]# .sort_values("Expert")
+    # holiday = set(st.session_state.mprob["holiday"]["Date"])
 
     result = []
-    for row in df.itertuples(index=False):
-        # Generate business days and compute day differences.
-        days = (pd.bdate_range(start=row.Start, end=row.End, freq="C", holidays=holiday) - today).days
+    #for row in df.itertuples(index=False):
+        # # Generate business days and compute day differences.
+        # days = (pd.bdate_range(start=row.Start, end=row.End, freq="C", holidays=holiday) - today).days
 
-        result.append(f"['{row.Expert}',*]")
+        # result.append(f"['{row.Expert}',*]")
 
-        lower = check_and_round(row.Lower)
-        upper = check_and_round(row.Upper)
+        # lower = check_and_round(row.Lower)
+        # upper = check_and_round(row.Upper)
 
 
-        # Use list comprehension to extend the result list for each day.
-        result.extend(
-            f"{d} {lower} {upper}" for d in days
-        )
+        # # Use list comprehension to extend the result list for each day.
+        # result.extend(
+        #     f"{d} {lower} {upper}" for d in days
+        # )
+
+    for id, row in enumerate(df.itertuples(index=False), start=1):
+        start = (row.Start - today).days
+        end = (row.End - today).days
+        lower = check_and_round(row.Lower * quarters_in_hour)
+        upper = check_and_round(row.Upper * quarters_in_hour)
+        result.append(f"{id} '{row.Expert}' {start} {end} {lower} {upper}")
 
     # Build the output string once and perform a single I/O write.
-    output = "param:\nUBID: UBL UBU :=\n" + "\n".join(result) + "\n;\n\n"
+    output = "param:\nUBID: UBEXPERT UBS UBE UBL UBU :=\n" + "\n".join(result) + "\n;\n\n"
     f.write(output)
 
 

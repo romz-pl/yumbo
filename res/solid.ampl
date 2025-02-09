@@ -113,5 +113,5 @@ subject to C_period {(e, i) in EXPPER}:
 # The lower and upper bounds on the total number of working hours per day
 subject to C_ebound {j in EBID, d in (EBS[j]..EBE[j]) inter (union {(EBEXPERT[j],t) in ASSIGN} TSCOPE[t]) }:
     EBL[j] <=
-    sum{(e, t) in ASSIGN: e = EBN[j]} (if d in TSCOPE[t] then X[e, t, d] else 0)
+    sum{(e, t) in ASSIGN: e = EBEXPERT[j]} (if d in TSCOPE[t] then X[e, t, d] else 0)
     <= EBU[j];

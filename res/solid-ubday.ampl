@@ -77,10 +77,13 @@ param PBU {(e, p) in EXPPER} integer, >= PBL[e, p]; # UPPER
 param DAYNO = max( max{i in PNAME} PERE[i], max{t in TNAME} TWORK[t] );
 
 
-# The set of UBDAY bounds
-set UBID within {ENAME, 1..DAYNO}; # ID
-param UBL{UBID}, >= 0; # LOWER
-param UBU{(e, d) in UBID} integer, >= UBL[e, d]; # UPPER
+# The set of UBDAY bounds for expert
+set UBID within integer[1, Infinity]; # ID
+param UBEXPERT{UBID} symbolic within ENAME;
+param UBS{j in UBID} integer, >= 1; # START
+param UBE{j in UBID} integer, >= UBS[j]; # END
+param UBL{j in UBID} integer, >= 0; # LOWER
+param UBU{j in UBID} integer, >= UBL[j]; # UPPER
 
 
 # X[e, t, d] means the number of hours assigned to expert "e" for task "t" on day "d" 
@@ -129,9 +132,9 @@ subject to C_period {(e, i) in EXPPER}:
  
 
 # The lower and upper bounds on the total number of working hours per day
-subject to C_ebound {j in EBID, d in (EBS[j]..EBE[j]) inter (union {(EBN[j],t) in ASSIGN} TSCOPE[t]) }:
+subject to C_ebound {j in EBID, d in (EBS[j]..EBE[j]) inter (union {(EBEXPERT[j],t) in ASSIGN} TSCOPE[t]) }:
     EBL[j] <=
-    sum{(e, t) in ASSIGN: e = EBN[j]} (if d in TSCOPE[t] then X[e, t, d] else 0)
+    sum{(e, t) in ASSIGN: e = EBEXPERT[j]} (if d in TSCOPE[t] then X[e, t, d] else 0)
     <= EBU[j];
 
 
@@ -146,7 +149,7 @@ subject to C_use_lower {(e, t) in ASSIGN, d in TSCOPE[t]}:
 
 
 # The lower and upper bounds on the number of tasks per day
-subject to C_ubday {(e, d) in UBID}:
-    UBL[e, d] <=
-    sum {(e, t) in ASSIGN} (if d in TSCOPE[t] then U[e, t, d] else 0)
-    <= UBU[e, d];
+subject to C_ubday {j in UBID, d in (UBS[j]..UBE[j]) inter (union {(UBEXPERT[j],t) in ASSIGN} TSCOPE[t]) }:
+    UBL[j] <=
+    sum {(e, t) in ASSIGN: e = UBEXPERT[j]} (if d in TSCOPE[t] then U[e, t, d] else 0)
+    <= UBU[j];
