@@ -2,56 +2,64 @@ import streamlit as st
 
 
 def show_task():
-    st.subheader(":green[Tasks]", divider="green")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Avg': "{:.4f}"}
-    df = st.session_state.mprob["task"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    df = st.session_state.mprob["task"]
+    df_styled = df.style.format(format)
+    st.subheader(f":green[Tasks ({df.shape[0]})]", divider="green")
+    st.dataframe(df_styled, hide_index=True, use_container_width=True)
 
 
 def show_expert():
-    st.subheader(":green[Experts]", divider="green")
-    st.dataframe(st.session_state.mprob["expert"], hide_index=True, use_container_width=True)
+    df = st.session_state.mprob["expert"]
+    st.subheader(f":green[Experts ({df.shape[0]})]", divider="green")
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_assign():
-    st.subheader(":green[Assignment]", divider="green")
-    st.dataframe(st.session_state.mprob["assign"], hide_index=True, use_container_width=True)
+    df = st.session_state.mprob["assign"]
+    st.subheader(f":green[Assignment ({df.shape[0]})]", divider="green")
+    st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_xbday():
-    st.subheader(":green[xbday]", divider="green")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
-    df = st.session_state.mprob["xbday"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    df = st.session_state.mprob["xbday"]
+    df_styled = df.style.format(format)
+    st.subheader(f":green[xbday ({df.shape[0]})]", divider="green")
+    st.dataframe(df_styled, hide_index=True, use_container_width=True)
 
 
 def show_ubday():
-    st.subheader(":green[ubday]", divider="green")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
-    df = st.session_state.mprob["ubday"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    df = st.session_state.mprob["ubday"]
+    df_styled = df.style.format(format)
+    st.subheader(f":green[ubday ({df.shape[0]})]", divider="green")
+    st.dataframe(df_styled, hide_index=True, use_container_width=True)
 
 
 
 def show_ebday():
-    st.subheader(":green[ebday]", divider="green")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
-    df = st.session_state.mprob["ebday"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    df = st.session_state.mprob["ebday"]
+    df_styled = df.style.format(format)
+    st.subheader(f":green[ebday ({df.shape[0]})]", divider="green")
+    st.dataframe(df_styled, hide_index=True, use_container_width=True)
 
 
 def show_period():
-    st.subheader(":green[Names and intervals]", divider="green")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}"}
-    df = st.session_state.mprob["period"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    df = st.session_state.mprob["period"]
+    df_styled = df.style.format(format)
+    st.subheader(f":green[Periods ({df.shape[0]})]", divider="green")
+    st.dataframe(df_styled, hide_index=True, use_container_width=True)
 
 
 def show_pbsum():
-    st.subheader(":green[pbsum]", divider="green")
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Lower': "{:.2f}", 'Upper': "{:.2f}"}
-    df = st.session_state.mprob["pbsum"].style.format(format)
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    df = st.session_state.mprob["pbsum"]
+    df_styled = df.style.format(format)
+    st.subheader(f":green[pbsum ({df.shape[0]})]", divider="green")
+    st.dataframe(df_styled, hide_index=True, use_container_width=True)
 
 def show_exptas():
     col0, col1, col2 = st.columns(3)
