@@ -199,10 +199,15 @@ def pbsum(f):
 
 
 def create_data_file(ff):
+    ampl_model = glb.get_ampl_model_file()
+    timestamp = pd.Timestamp.now().strftime('%d %B %Y, %H:%M:%S %p')
+    max_work = glb.hours_per_day() * quarters_in_hour
+
+    # Write the formatted data to the file
     ff.write(
-        f"# AMPL MODEL: {glb.get_ampl_model_file()}\n\n"
-        f"# Timestamp: {pd.Timestamp.now().strftime('%d %B %Y, %H:%M:%S %p')}\n\n"
-        f"param MAXWORK := {glb.hours_per_day() * quarters_in_hour};\n\n"
+        f"# AMPL MODEL: {ampl_model}\n\n"
+        f"# Timestamp: {timestamp}\n\n"
+        f"param MAXWORK := {max_work};\n\n"
     )
 
     task(ff)
