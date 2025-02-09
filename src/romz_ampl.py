@@ -258,20 +258,17 @@ def save_schedule(ampl):
 
 def save_overflow(ampl):
     if not glb.is_ampl_model_overflow():
-        return pd.Series()
+        return pd.Series(dtype=np.float16)
 
-
-    # Retrieve the overflow series from AMPL.
+    # Retrieve and process the overflow series from AMPL
     overflow = (
-        ampl.get_data(f"{{t in TNAME}} F[t]")
-        .to_pandas()
-        .iloc[:, 0]
+        ampl.get_data(f"{{t in TNAME}} F[t]").to_pandas().iloc[:, 0]
+        .astype(np.float16) / quarters_in_hour
     )
 
-    # Convert values to np.float16 and apply scaling.
-    overflow = overflow.astype(np.float16) / quarters_in_hour
+    # Set index and series name
     overflow.index.name = 'Task'
-    overflow.name='Overflow'
+    overflow.name = 'Overflow'
 
     return overflow
 
