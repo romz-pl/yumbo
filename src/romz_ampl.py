@@ -76,7 +76,7 @@ def expert(f):
 
 
 def assign(f):
-    df = st.session_state.mprob["assign"].sort_values(["Expert", "Task"])
+    df = st.session_state.mprob["assign"]
 
     result = []
     expert = None
@@ -91,23 +91,10 @@ def assign(f):
 
 def xbday(f):
     today = glb.today()
-    df = st.session_state.mprob["xbday"] #.sort_values(["Expert", "Task"])
-    #holiday = set(st.session_state.mprob["holiday"]["Date"])  # Faster holiday lookups
+    df = st.session_state.mprob["xbday"]
 
     result = []
     for id, row in enumerate(df.itertuples(index=False), start=1):
-        # Generate business days and compute day differences.
-        #days = (pd.bdate_range(start=row.Start, end=row.End, freq="C", holidays=holiday) - today).days
-
-        # result.append(f"['{row.Expert}','{row.Task}',*]")
-
-        # # Pre-compute values used repeatedly for the current row.
-        # lower = check_and_round(row.Lower * quarters_in_hour)
-        # upper = check_and_round(row.Upper * quarters_in_hour)
-
-        # # Use list comprehension to extend the result list for each day.
-        # result.extend(f"{d} {lower} {upper}" for d in days)
-
         start = (row.Start - today).days
         end = (row.End - today).days
         lower = check_and_round(row.Lower * quarters_in_hour)
@@ -124,25 +111,9 @@ def ubday(f):
         return
 
     today = glb.today()
-    df = st.session_state.mprob["ubday"]# .sort_values("Expert")
-    # holiday = set(st.session_state.mprob["holiday"]["Date"])
+    df = st.session_state.mprob["ubday"]
 
     result = []
-    #for row in df.itertuples(index=False):
-        # # Generate business days and compute day differences.
-        # days = (pd.bdate_range(start=row.Start, end=row.End, freq="C", holidays=holiday) - today).days
-
-        # result.append(f"['{row.Expert}',*]")
-
-        # lower = check_and_round(row.Lower)
-        # upper = check_and_round(row.Upper)
-
-
-        # # Use list comprehension to extend the result list for each day.
-        # result.extend(
-        #     f"{d} {lower} {upper}" for d in days
-        # )
-
     for id, row in enumerate(df.itertuples(index=False), start=1):
         start = (row.Start - today).days
         end = (row.End - today).days
@@ -153,7 +124,6 @@ def ubday(f):
     # Build the output string once and perform a single I/O write.
     output = "param:\nUBID: UBEXPERT UBS UBE UBL UBU :=\n" + "\n".join(result) + "\n;\n\n"
     f.write(output)
-
 
 
 
@@ -169,14 +139,14 @@ def ebday(f):
         upper = check_and_round(row.Upper * quarters_in_hour)
         result.append(f"{id} '{row.Expert}' {start} {end} {lower} {upper}")
 
-
+    # Build the output string once and perform a single I/O write.
     output = "param:\nEBID: EBEXPERT EBS EBE EBL EBU :=\n" + "\n".join(result) + "\n;\n\n"
     f.write(output)
 
 
 def period(f):
     today = glb.today()
-    df = st.session_state.mprob["period"].sort_values("Name")
+    df = st.session_state.mprob["period"]
 
     result = []
     expert = None
@@ -190,8 +160,7 @@ def period(f):
 
 
 def pbsum(f):
-
-    df = st.session_state.mprob["pbsum"].sort_values(["Expert", "Period"])
+    df = st.session_state.mprob["pbsum"]
     result = []
     expert = None
     for row in df.itertuples(index=False):
@@ -201,12 +170,10 @@ def pbsum(f):
 
         lower = check_and_round(row.Lower * quarters_in_hour)
         upper = check_and_round(row.Upper * quarters_in_hour)
-
         result.append(f"'{row.Period}' {lower} {upper}")
 
     output = "param:\nEXPPER: PBL PBU :=\n" + "\n".join(result) + "\n;\n\n"
     f.write(output)
-
 
 
 def create_data_file(ff):
@@ -335,7 +302,6 @@ def solve_ampl(mm_hash):
 
     # Capture solver log
     solver_log = ampl.get_output("solve;")
-    st.write(solver_log)
 
     # Check if solving was successful
     if ampl.solve_result != "solved":

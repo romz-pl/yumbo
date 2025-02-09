@@ -1,6 +1,6 @@
 # AMPL MODEL: ./res/solid-ubday.ampl
 
-# Timestamp: 09 February 2025, 17:43:59 PM
+# Timestamp: 09 February 2025, 17:57:43 PM
 
 param MAXWORK := 32;
 
@@ -2294,18 +2294,18 @@ EBID: EBEXPERT EBS EBE EBL EBU :=
 
 param:
 PNAME: PERS PERE :=
-'Apr.25' 76 104
-'Aug.25' 199 229
-'Dec.25' 317 345
-'Feb.25' 16 44
 'Jan.25' 1 15
-'Jul.25' 170 198
-'Jun.25' 139 169
+'Feb.25' 16 44
 'Mar.25' 45 75
+'Apr.25' 76 104
 'May.25' 105 138
-'Nov.25' 289 316
-'Oct.25' 259 288
+'Jun.25' 139 169
+'Jul.25' 170 198
+'Aug.25' 199 229
 'Sep.25' 230 258
+'Oct.25' 259 288
+'Nov.25' 289 316
+'Dec.25' 317 345
 ;
 
 param:
