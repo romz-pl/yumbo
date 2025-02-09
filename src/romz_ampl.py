@@ -175,14 +175,20 @@ def period(f):
     today = glb.today()
     df = st.session_state.mprob["period"]
 
-    result = []
-    expert = None
-    for row in df.itertuples(index=False):
-        start = (row.Start - today).days
-        end = (row.End - today).days
-        result.append(f"'{row.Name}' {start} {end}")
+    # Vectorize calculations to eliminate the loop
+    starts = (df['Start'] - today).dt.days
+    ends = (df['End'] - today).dt.days
 
+    # Construct the result strings using vectorized operations
+    result = [
+        f"'{name}' {start} {end}"
+        for name, start, end in zip(df['Name'], starts, ends)
+    ]
+
+    # Build the output string efficiently
     output = "param:\nPNAME: PERS PERE :=\n" + "\n".join(result) + "\n;\n\n"
+
+    # Write the output string to the file
     f.write(output)
 
 
