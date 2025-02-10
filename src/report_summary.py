@@ -53,6 +53,11 @@ def show_overflow():
             st.subheader(":green[There in no overflows]", divider="green")
 
 
+@st.cache_data
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode("utf-8")
+
 def show_full_schedule(as_html):
     if not st.session_state.show["summary_full_schedule"]:
         return
@@ -73,6 +78,18 @@ def show_full_schedule(as_html):
     #
     # Always display the dataframe as a Streamlit table without styles to avoid the above error.
     st.dataframe(df, use_container_width=False)
+
+
+
+
+    csv = convert_df(df)
+
+    st.download_button(
+        label="Download full schedule as CSV",
+        data=csv,
+        file_name=f"{st.session_state.mprob['uploaded_file_name']}_full_schedule.csv",
+        mime="text/csv",
+    )
 
     df.drop(columns="Weekday", inplace=True)
 

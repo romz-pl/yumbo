@@ -153,6 +153,7 @@ def upload():
         uploaded_file = sbar.get_uploaded_file()
         if uploaded_file != None:
             romz_excel.load(uploaded_file)
+            st.session_state.mprob["uploaded_file_name"] = uploaded_file.name
             st.session_state.show["tasks_init"] = init_show_tasks()
             st.session_state.show["experts_init"] = init_show_experts()
             st.session_state.mm_hash = glb.calc_mm_hash(False)
