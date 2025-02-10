@@ -60,14 +60,21 @@ def show_full_schedule(as_html):
     st.subheader(":green[Full schedule]", divider="green")
 
     df = st.session_state.schedule
-    styled_df = styled_table.create(df, as_html)
 
-    if as_html:
-        # Render the styled dataframe as HTML
-        st.markdown(styled_df.to_html(), unsafe_allow_html=True)
-    else:
-        # Optionally display the dataframe as a Streamlit table
-        st.dataframe(styled_df, use_container_width=False)
+    # .strftime('%a') Returns 'Mon', 'Tue', etc.
+    # .strftime('%A') Returns 'Monday', 'Tuesday', etc.
+    # df.insert(0, "Weekday", df.index.get_level_values("Date").strftime('%a'))
+
+    #
+    # streamlit.errors.StreamlitAPIException:
+    # The dataframe has 309748 cells, but the maximum number of cells allowed to be rendered by Pandas Styler is configured to 262144.
+    # To allow more cells to be styled, you can change the "styler.render.max_elements" config.
+    # For example: pd.set_option("styler.render.max_elements", 309748)
+    #
+    # Always display the dataframe as a Streamlit table without styles to avoid the above error.
+    st.dataframe(df, use_container_width=False)
+
+    # df.drop(columns="Weekday", inplace=True)
 
 def show_report():
     show = st.session_state.show
