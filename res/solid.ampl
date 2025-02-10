@@ -2,7 +2,7 @@
 # The mathematic optimisation model that generates the schedule
 # for a set of tasks and a set of experts with many-to-many relations.
 #
-# Authors: Zbigniew Romanowski; Paweł Koczyk;
+# Authors: Zbigniew Romanowski; Paweł Koczyk; Jacek Pikul;
 #
 # Model: SOLID
 #

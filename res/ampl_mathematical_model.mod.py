@@ -1,6 +1,6 @@
 #
 # The mathematical optimisation model that generates the schedule for a set of jobs.
-# Authors: Zbigniew Romanowski and Paweł Koczyk
+# Authors: Zbigniew Romanowski; Paweł Koczyk; Jacek Pikul;
 #
 # Each job is defined by three integers: 
 #   (1) the start of the job (i.e. the release date);
