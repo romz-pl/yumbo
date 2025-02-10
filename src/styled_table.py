@@ -32,7 +32,7 @@ def show(df, as_html):
         # Render the styled DataFrame as HTML
         styled_df = (
             df.style
-            .format(format_score)
+            .format(format_cell)
             .format_index("{:%Y-%m-%d}", axis=0)
             .apply(highlight_rows, axis=1)
             .set_table_styles(styles, overwrite=True)
@@ -50,7 +50,7 @@ def show(df, as_html):
 
         styled_df = (
             df.style
-            .format(format_score)
+            .format(format_cell)
             # .format_index("{:%Y-%m-%d}", axis=0) It does not work!
             .apply(highlight_rows, axis=1)
             .set_table_styles(styles, overwrite=True)
