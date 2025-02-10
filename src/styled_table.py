@@ -1,8 +1,6 @@
 import numpy as np
 import streamlit as st
 
-import glb
-
 
 def highlight_rows(row):
     if row['Weekday'] in ['Sat', 'Sun']:
@@ -11,13 +9,11 @@ def highlight_rows(row):
         return [''] * len(row)
 
 
-
-# Define a custom function to format each cell
-def format_score(value):
+def format_cell(value):
     if isinstance(value, float):  # Apply formatting only to float values
         if value < 0.0001:
             return ""
-        return f"{value:.2f}"  # Round to 1 decimal place
+        return f"{value:.2f}"  # Round to 2 decimal place
     return value  # Return non-float values unchanged
 
 
