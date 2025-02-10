@@ -259,16 +259,17 @@ def save_schedule(ampl):
         schedule_dict,
         index=days,
     ).fillna(0)
+    df.index.name = "Date"
 
-    df["Date"] = days#.date
+    #df["Date"] = pd.to_datetime(days, format=glb.format())
 
     # .strftime('%a') Returns 'Mon', 'Tue', etc.
     # .strftime('%A') Returns 'Monday', 'Tuesday', etc.
-    df["Weekday"] = days.strftime('%a')
+    #df["Weekday"] = days.strftime('%a')
 
     #st.write(df)
 
-    df.set_index(["Date", "Weekday"], drop=True, inplace=True, verify_integrity=True)
+    #df.set_index(["Date", "Weekday"], drop=True, inplace=True, verify_integrity=True)
 
     # pd.MultiIndex.from_arrays([days, days.day_name()], names=['Date', 'Weekday'])
 

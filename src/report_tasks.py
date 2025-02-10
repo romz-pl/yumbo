@@ -28,13 +28,7 @@ def experts_in_tasks_as_table(task, as_html):
 
     # Create the DataFrame with the index already set to the string representation of `days`
     df = pd.DataFrame(data)
-    styled_df = styled_table.create(df, as_html)
-
-    # Render the styled DataFrame
-    if as_html:
-        st.markdown(styled_df.to_html(), unsafe_allow_html=True)
-    else:
-        st.dataframe(styled_df)
+    styled_table.show(df, as_html)
 
 
 def get_subheader(task_name):

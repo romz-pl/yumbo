@@ -1,31 +1,29 @@
 import numpy as np
+import streamlit as st
 
 import glb
 
-#import streamlit as st
 
 def highlight_rows(row):
-    # if row['Weekdays'] in ['Saturday', 'Sunday']:
-    #     return ['background-color: rgba(144,238,144, 0.2)'] * len(row)
-    # else:
-    #     return [''] * len(row)
-
-    return [''] * len(row)
+    if row['Weekday'] in ['Sat', 'Sun']:
+        return ['background-color: rgba(144,238,144, 0.2)'] * len(row)
+    else:
+        return [''] * len(row)
 
 
-def create(df, as_html):
-    if as_html:
-        df.replace(0, np.nan, inplace=True)
 
-    #
-    # streamlit.errors.StreamlitAPIException:
-    # The dataframe has 309748 cells, but the maximum number of cells allowed to be rendered by Pandas Styler is configured to 262144.
-    # To allow more cells to be styled, you can change the "styler.render.max_elements" config.
-    # For example: pd.set_option("styler.render.max_elements", 309748)
-    #
-    # In order to avoid the error that is listed above.
-    if df.shape[0] * df.shape[1] > 100 * 1000:
-        return df
+# Define a custom function to format each cell
+def format_score(value):
+    if isinstance(value, float):  # Apply formatting only to float values
+        if value < 0.0001:
+            return ""
+        return f"{value:.2f}"  # Round to 1 decimal place
+    return value  # Return non-float values unchanged
+
+def show(df, as_html):
+    df.insert(0, "Weekday", df.index.strftime('%a'))
+
+    # df.replace(0, np.nan, inplace=True)
 
     # Define table styles as a list for clarity
     styles = [
@@ -34,14 +32,36 @@ def create(df, as_html):
         {'selector': 'th:not(.index_name)', 'props': 'background-color: #000066; color: white;'}
     ]
 
-    # Apply styling to the DataFrame using method chaining with parentheses for better readability
+    # # Apply styling to the DataFrame using method chaining with parentheses for better readability
+    # styled_df = (
+    #     df.style
+    #     .format_index("{:%Y-%m-%d}", axis=0)
+    #     #.format(lambda x: '{:.2f}'.format(x) if isinstance(x, (int, float)) and x > 0 else '') # Represent NaN as empty string!
+    #     .format(func),
+    #     # .apply(highlight_rows, axis=1)
+    #     #.set_table_styles(styles, overwrite=True)
+    #     #.map(lambda v: 'color:LightBlue', subset=['Weekday'])
+    # )
+
+
+
+    # Apply the custom function to each cell in the DataFrame
     styled_df = (
         df.style
-        .format(na_rep='', precision=2) # Represent NaN as empty
+        .format(format_score)
+        .format_index("{:%Y-%m-%d}", axis=0)
         .apply(highlight_rows, axis=1)
         .set_table_styles(styles, overwrite=True)
-        # .map(lambda v: 'color:LightBlue', subset=['Weekdays'])
+        .map(lambda v: 'color:LightBlue', subset=['Weekday'])
     )
 
-    return styled_df
 
+    if as_html:
+        # Render the styled dataframe as HTML.
+        st.markdown(styled_df.to_html(), unsafe_allow_html=True)
+    else:
+        # Display the dataframe as a Streamlit table.
+        # Some of the formats may not be displayed correctly!
+        st.dataframe(styled_df, use_container_width=False)
+
+    df.drop(columns="Weekday", inplace=True)

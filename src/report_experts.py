@@ -43,7 +43,7 @@ def show_xbday_per_task(expert_name):
             imgb.plot(task_row, schedule, bounds)
 
 
-@st.cache_resource(max_entries=1000)
+
 def show_schedule_as_table(expert_name, as_html, mm_hash):
     # Retrieve data from session state
     task = st.session_state.mprob["task"]
@@ -55,20 +55,11 @@ def show_schedule_as_table(expert_name, as_html, mm_hash):
 
     # Calculate the date range
     start_date, end_date = expert_tasks["Start"].min(), expert_tasks["End"].max()
-    days = pd.date_range(start=start_date, end=end_date, freq='D')
 
     # Retrieve and format the relevant schedule data
     df = st.session_state.schedule[expert_name].loc[start_date:end_date, expert_tasks["Name"]]
-    # st.write(df)
 
-    styled_df = styled_table.create(df, as_html)
-
-    if as_html:
-        # Render the styled dataframe as HTML
-        st.markdown(styled_df.to_html(), unsafe_allow_html=True)
-    else:
-        # Optionally display the dataframe as a Streamlit table
-        st.dataframe(styled_df, use_container_width=False)
+    styled_table.show(df, as_html)
 
 
 def show_one_expert(expert_name):

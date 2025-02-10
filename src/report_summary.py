@@ -63,7 +63,7 @@ def show_full_schedule(as_html):
 
     # .strftime('%a') Returns 'Mon', 'Tue', etc.
     # .strftime('%A') Returns 'Monday', 'Tuesday', etc.
-    # df.insert(0, "Weekday", df.index.get_level_values("Date").strftime('%a'))
+    df.insert(0, "Weekday", df.index.strftime('%a'))
 
     #
     # streamlit.errors.StreamlitAPIException:
@@ -74,7 +74,7 @@ def show_full_schedule(as_html):
     # Always display the dataframe as a Streamlit table without styles to avoid the above error.
     st.dataframe(df, use_container_width=False)
 
-    # df.drop(columns="Weekday", inplace=True)
+    df.drop(columns="Weekday", inplace=True)
 
 def show_report():
     show = st.session_state.show

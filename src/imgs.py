@@ -38,8 +38,6 @@ def imgs(expert_name, days_off, combi_hash):
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
         df = st.session_state.schedule[f"{expert_name}"].loc[days]
 
-    dates = df.index.get_level_values("Date")
-
     # Initialize figure and axis
     fig = matplotlib_figure.Figure(
         figsize=(glb.img("Width"), glb.img("Height")),
@@ -63,7 +61,7 @@ def imgs(expert_name, days_off, combi_hash):
     for task_name in df.columns:
         task_data = df[task_name].values
         ax.fill_between(
-            x=dates,
+            x=df.index,
             y1=bottom,
             y2=task_data + bottom,
             label=task_name,
