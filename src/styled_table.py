@@ -45,7 +45,7 @@ def show(df, as_html):
         # So, a temporray column "Date" has been added and the index has been hidden.
         #
 
-        # Temporary column for Date
+        # Temporary column for Date.
         df.insert(0, "Date", df.index.strftime("%Y-%m-%d"))
 
         styled_df = (
