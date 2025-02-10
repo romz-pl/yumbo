@@ -247,11 +247,33 @@ def save_schedule(ampl):
     # Create the index for the schedule DataFrame.
     days = pd.date_range(start=glb.tomorrow(), end=glb.last_day(), freq='D')
 
+    #st.write(days)
+    #st.write(days.date)
+
+    #schedule_dict["Date"] = days.date
+    #schedule_dict["Weekday"] = days.day_name()
+
     # Create the full DataFrame at once, aligning on the given 'days' index.
-    df = pd.DataFrame(schedule_dict, index=days).fillna(0)
+    # st.write(schedule_dict)
+    df = pd.DataFrame(
+        schedule_dict,
+        index=days,
+    ).fillna(0)
+
+    df["Date"] = days#.date
+    df["Weekday"] = days.day_name()
+
+    #st.write(df)
+
+    df.set_index(["Date", "Weekday"], drop=True, inplace=True, verify_integrity=True)
+
+    # pd.MultiIndex.from_arrays([days, days.day_name()], names=['Date', 'Weekday'])
+
 
     # Set a MultiIndex on the columns with names "Expert" and "Task".
     df.columns = pd.MultiIndex.from_tuples(df.columns, names=["Expert", "Task"])
+
+    #st.write(df)
 
     return df
 
@@ -352,8 +374,6 @@ def solve():
         st.session_state.overflow = overflow
     else:
         raise Exception(f"Failed to solve AMPL problem. AMPL returned flag: {solve_result}")
-
-
 
     time_end = time.perf_counter()
     st.session_state.stats["ampl:ttime"] += time_end - time_start

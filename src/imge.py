@@ -39,6 +39,8 @@ def imge(task, days_off, combi_hash):
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
         df = st.session_state.schedule.xs(task.Name, level="Task", axis=1, drop_level=False).loc[days]
 
+    dates = df.index.get_level_values("Date")
+
     # Initialize figure and axis
     fig = matplotlib_figure.Figure(
         figsize=(glb.img("Width"), glb.img("Height")),
@@ -59,7 +61,7 @@ def imge(task, days_off, combi_hash):
         col = df[et]
         if col.sum() > 0:
             ax.fill_between(
-                x=df.index,
+                x=dates,
                 y1=bottom,
                 y2=col.values + bottom,
                 label=et[0],

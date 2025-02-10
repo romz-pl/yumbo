@@ -40,6 +40,8 @@ def imghsum(days_off, combi_hash):
         # Summing over all the tasks. Choose days that are not public holidays.
         df = st.session_state.schedule.loc[days].sum(axis=1)
 
+    dates = df.index.get_level_values("Date")
+
     # Create figure and axis.
     fig = matplotlib_figure.Figure(
         figsize=(glb.img("Width"), glb.img("Height")),
@@ -55,7 +57,7 @@ def imghsum(days_off, combi_hash):
     ax.tick_params(axis="y", labelsize="x-small")
 
     ax.fill_between(
-        x=df.index,
+        x=dates,
         y1=0,
         y2=df.values,
         step='mid',
@@ -73,7 +75,7 @@ def imghsum(days_off, combi_hash):
             conv = np.convolve(df.values, np.ones(ws)/ws, mode='valid')
             shift = int(ws/2) # See the documentation of the [np.convolve] function.
             ax.plot(
-                df.index[shift : idx_size - shift],
+                dates[shift : idx_size - shift],
                 conv,
                 'o-',
                 linewidth=1,

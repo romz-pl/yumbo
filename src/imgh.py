@@ -38,6 +38,7 @@ def imgh(expert_name, days_off, combi_hash):
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
         df = st.session_state.schedule[f"{expert_name}"].loc[days].sum(axis=1)
 
+    dates = df.index.get_level_values("Date")
 
     # Create figure and axis.
     fig = matplotlib_figure.Figure(
@@ -54,7 +55,7 @@ def imgh(expert_name, days_off, combi_hash):
     ax.tick_params(axis="y", labelsize="x-small")
 
     ax.fill_between(
-        x=df.index,
+        x=dates,
         y1=0,
         y2=df.values,
         step='mid',

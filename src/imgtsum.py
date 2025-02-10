@@ -39,6 +39,8 @@ def imgtsum(days_off, combi_hash):
         # Summing over all the tasks. Choose days that are not public holidays.
         df = (st.session_state.schedule.loc[days] > 0).sum(axis=1)
 
+    dates = df.index.get_level_values("Date")
+
     # Create figure and axis
     fig = matplotlib_figure.Figure(
         figsize=(glb.img("Width"), glb.img("Height")),
@@ -54,7 +56,7 @@ def imgtsum(days_off, combi_hash):
     ax.tick_params(axis="y", labelsize="x-small")
 
     ax.fill_between(
-        x=df.index,
+        x=dates,
         y1=0,
         y2=df.values,
         step='mid',

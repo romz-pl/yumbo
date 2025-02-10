@@ -5,27 +5,23 @@ import glb
 import imggsum
 import imghsum
 import imgtsum
+import styled_table
 
-def show_report():
+
+def show_charts():
     show = st.session_state.show
 
-    # Extract relevant values from the session state
     b_list = [
         show["summary_tasks_gantt_chart"],
         show["summary_tasks_per_day"],
         show["summary_hours_per_day"],
     ]
 
-    func_list = [imggsum.plot, imgtsum.plot, imghsum.plot]
-
-    # Return early if no charts are to be shown
     if not any(b_list):
         return
 
-    st.divider()
-
     days_off = show["days_off"]
-    st.header(":blue[Summary]", divider="blue")
+    func_list = [imggsum.plot, imgtsum.plot, imghsum.plot]
 
     if show["summary_charts_in_one_column"]:
         # Loop through and plot charts in one column
@@ -44,12 +40,50 @@ def show_report():
                 col_index += 1
 
 
-    if glb.is_ampl_model_overflow():
+def show_overflow():
+    task_overflows = st.session_state.show["summary_task_overflows"]
+
+    if glb.is_ampl_model_overflow() and task_overflows:
         overflow = st.session_state.overflow
         if overflow.sum() > 0:
             st.subheader(":red[There are task overflows!]", divider="red")
             df = overflow[ overflow > 0]
             st.write(df)
+
+
+def show_full_schedule(as_html):
+    df = st.session_state.schedule
+    styled_df = styled_table.create(df, as_html)
+
+    if as_html:
+        # Render the styled dataframe as HTML
+        st.markdown(styled_df.to_html(), unsafe_allow_html=True)
+    else:
+        # Optionally display the dataframe as a Streamlit table
+        st.dataframe(styled_df, use_container_width=False)
+
+def show_report():
+    show = st.session_state.show
+
+    # Extract relevant values from the session state
+    b_list = [
+        show["summary_tasks_gantt_chart"],
+        show["summary_tasks_per_day"],
+        show["summary_hours_per_day"],
+        show["summary_task_overflows"],
+        show["summary_full_schedule"],
+    ]
+
+    # Return early if no charts are to be shown
+    if not any(b_list):
+        return
+
+    st.divider()
+    st.header(":blue[Summary]", divider="blue")
+
+    show_charts()
+    show_overflow()
+    show_full_schedule(False)
 
 
 def show():

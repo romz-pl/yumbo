@@ -163,12 +163,13 @@ def upload():
 
 
 def solve_problem():
-    try:
-        romz_ampl.solve()
-    except Exception as e:
-        st.subheader(f":red[Exception during solving process.] {e}")
-        report_ampl.show_ampl_data_file()
-        return False
+    romz_ampl.solve()
+    # try:
+    #     romz_ampl.solve()
+    # except Exception as e:
+    #     st.subheader(f":red[Exception during solving process.] {e}")
+    #     report_ampl.show_ampl_data_file()
+    #     return False
 
     return True
 
