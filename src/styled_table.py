@@ -17,6 +17,13 @@ def create(df, as_html):
     if as_html:
         df.replace(0, np.nan, inplace=True)
 
+    #
+    # streamlit.errors.StreamlitAPIException:
+    # The dataframe has 309748 cells, but the maximum number of cells allowed to be rendered by Pandas Styler is configured to 262144.
+    # To allow more cells to be styled, you can change the "styler.render.max_elements" config.
+    # For example: pd.set_option("styler.render.max_elements", 309748)
+    #
+    # In order to avoid the error that is listed above.
     if df.shape[0] * df.shape[1] > 100 * 1000:
         return df
 
