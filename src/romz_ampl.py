@@ -261,7 +261,10 @@ def save_schedule(ampl):
     ).fillna(0)
 
     df["Date"] = days#.date
-    df["Weekday"] = days.day_name()
+
+    # .strftime('%a') Returns 'Mon', 'Tue', etc.
+    # .strftime('%A') Returns 'Monday', 'Tuesday', etc.
+    df["Weekday"] = days.strftime('%a')
 
     #st.write(df)
 

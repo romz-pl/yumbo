@@ -14,9 +14,11 @@ def highlight_rows(row):
 
 
 def create(df, as_html):
-
     if as_html:
         df.replace(0, np.nan, inplace=True)
+
+    if df.shape[0] * df.shape[1] > 100 * 1000:
+        return df
 
     # Define table styles as a list for clarity
     styles = [
