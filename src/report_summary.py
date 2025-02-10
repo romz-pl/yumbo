@@ -80,7 +80,7 @@ def show_full_schedule(as_html):
     csv = glb.convert_df_to_csv(df)
 
     st.download_button(
-        label="Download full schedule as CSV",
+        label="Download :green[full schedule] as CSV",
         data=csv,
         file_name=f"{st.session_state.mprob['uploaded_file_name']}_full_schedule.csv",
         mime="text/csv",

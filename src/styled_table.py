@@ -1,6 +1,7 @@
 import numpy as np
 import streamlit as st
 
+import glb
 
 def highlight_rows(row):
     if row['Weekday'] in ['Sat', 'Sun']:
@@ -57,6 +58,15 @@ def show(df, as_html):
             .map(lambda _: 'color:LightBlue', subset=['Date', 'Weekday'])
         )
         st.dataframe(styled_df, hide_index=True)
+
+        csv = glb.convert_df_to_csv(df)
+
+        st.download_button(
+            label=f"Download schedule for :green[{df.name}] as CSV",
+            data=csv,
+            file_name=f"{st.session_state.mprob['uploaded_file_name']}_{df.name}_full_schedule.csv",
+            mime="text/csv",
+        )
 
         # Drop the temporary Date column
         df.drop(columns="Date", inplace=True)
