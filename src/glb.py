@@ -128,3 +128,9 @@ def calc_mm_hash(with_img):
     # st.write(mm_hash)
 
     return mm_hash
+
+
+@st.cache_data
+def convert_df_to_csv(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode("utf-8")
