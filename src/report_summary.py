@@ -49,9 +49,16 @@ def show_overflow():
             st.subheader(":red[There are task overflows!]", divider="red")
             df = overflow[ overflow > 0]
             st.write(df)
+        else:
+            st.subheader(":green[There in no overflows]", divider="green")
 
 
 def show_full_schedule(as_html):
+    if not st.session_state.show["summary_full_schedule"]:
+        return
+
+    st.subheader(":green[Full schedule]", divider="green")
+
     df = st.session_state.schedule
     styled_df = styled_table.create(df, as_html)
 

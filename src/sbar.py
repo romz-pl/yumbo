@@ -187,8 +187,12 @@ def customise_summary():
     show["summary_tasks_gantt_chart"] = st.checkbox("Task's Gantt Chart", value=True)
     show["summary_tasks_per_day"] = st.checkbox("Tasks per day", value=True)
     show["summary_hours_per_day"] = st.checkbox("Hours per day", value=True)
-    show["summary_task_overflows"] = st.checkbox("Task overflows", value=True)
     show["summary_full_schedule"] = st.checkbox("Full schedule", value=False)
+
+    if glb.is_ampl_model_overflow():
+        show["summary_task_overflows"] = st.checkbox("Task overflows", value=True)
+    else:
+        show["summary_task_overflows"] = False
 
 
 def customise_problem():
