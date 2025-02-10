@@ -69,6 +69,7 @@ def show_full_schedule(as_html):
     # .strftime('%a') Returns 'Mon', 'Tue', etc.
     # .strftime('%A') Returns 'Monday', 'Tuesday', etc.
     df.insert(0, "Weekday", df.index.strftime('%a'))
+    df.insert(0, "Date", df.index.strftime("%Y-%m-%d"))
 
     #
     # streamlit.errors.StreamlitAPIException:
@@ -77,10 +78,7 @@ def show_full_schedule(as_html):
     # For example: pd.set_option("styler.render.max_elements", 309748)
     #
     # Always display the dataframe as a Streamlit table without styles to avoid the above error.
-    st.dataframe(df, use_container_width=False)
-
-
-
+    st.dataframe(df, use_container_width=False, hide_index=True)
 
     csv = convert_df(df)
 
@@ -91,6 +89,7 @@ def show_full_schedule(as_html):
         mime="text/csv",
     )
 
+    df.drop(columns="Date", inplace=True)
     df.drop(columns="Weekday", inplace=True)
 
 def show_report():
