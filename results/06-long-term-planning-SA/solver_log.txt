@@ -1,0 +1,98 @@
+11 February 2025, 17:41:52 PM
+
+max_context = 2
+tva cells:	0 at level 0
+		24 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 1, o = 0
+0 variables, 0 constraints, 0 objectives
+max_context = 3
+tva cells:	0 at level 0
+		34 at levels above 0
+tva_hcl = 8, tva_len = 256
+rewrites: m = 14, o = 16
+692 variables, 909 constraints, 1 objectives
+2852 nonzeros
+
+Presolve eliminates 896 constraints and 110 variables.
+"option presolve 10;" used, but "option presolve 3;" would suffice.
+Adjusted problem:
+582 variables, all integer
+13 constraints, all linear; 594 nonzeros
+	9 equality constraints
+	4 inequality constraints
+1 linear objective; 582 nonzeros.
+
+presolve results:
+	variables omitted:	110
+	constraints omitted:	896
+	ranges relaxed:		286
+	bounds improved:	836
+	nba cycles:		2
+	bound row scans:	156
+	row-scan updates:	4
+SCIP 9.0.1:   tech:outlev-native = 5
+LP Solver <Soplex 7.0.1>: barrier convergence tolerance cannot be set -- tolerance of SCIP and LP solver may differ
+LP Solver <Soplex 7.0.1>: fastmip setting not available -- SCIP parameter has no effect
+LP Solver <Soplex 7.0.1>: number of threads settings not available -- SCIP parameter has no effect
+transformed problem has 583 variables (0 bin, 582 int, 0 impl, 1 cont) and 13 constraints
+     13 constraints of type <linear>
+
+original problem has 594 active (7.83745%) nonzeros and 594 (7.83745%) check nonzeros
+
+presolving:
+(round 1, fast)       10 del vars, 0 del conss, 0 add conss, 0 chg bounds, 0 chg sides, 0 chg coeffs, 0 upgd conss, 0 impls, 0 clqs
+   (0.0s) symmetry computation started: requiring (bin +, int +, cont +), (fixed: bin -, int -, cont -)
+   (0.0s) symmetry computation finished: 1 generators found (max: 1500, log10 of symmetry group size: 0.0) (symcode time: 0.00)
+dynamic symmetry handling statistics:
+   orbitopal reduction:       no components
+   orbital reduction:         no components
+   lexicographic reduction:    1 permutations with support sizes 238
+handled 1 out of 1 symmetry components
+cons components found 7 undirected components at node 1, depth 0 (0)
+clique table cleanup detected 0 bound changes
+
+presolved problem has 226 active (15.0868%) nonzeros and 226 (15.0868%) check nonzeros
+
+presolving (2 rounds: 2 fast, 1 medium, 1 exhaustive):
+ 369 deleted vars, 6 deleted constraints, 0 added constraints, 0 tightened bounds, 0 added holes, 0 changed sides, 0 changed coefficients
+ 0 implications, 0 cliques
+presolved problem has 214 variables (0 bin, 214 int, 0 impl, 0 cont) and 7 constraints
+      7 constraints of type <linear>
+Presolving Time: 0.02
+
+ time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. 
+p 0.0s|     1 |     0 |     0 |     - |shiftand|   0 | 214 |   7 |   7 |   0 |  0 |   0 |   0 | 8.085046e+03 | 1.068298e+04 |  32.13%| unknown
+* 0.0s|     1 |     0 |     8 |     - |    LP  |   0 | 214 |   7 |   7 |   0 |  0 |   0 |   0 | 1.004473e+04 | 1.004473e+04 |   0.00%| unknown
+  0.0s|     1 |     0 |     8 |     - |  8409k |   0 | 214 |   7 |   7 |   0 |  0 |   0 |   0 | 1.004473e+04 | 1.004473e+04 |   0.00%| unknown
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 0.02
+Solving Nodes      : 1
+Primal Bound       : +1.00447309306525e+04 (2 solutions)
+Dual Bound         : +1.00447309306525e+04
+Gap                : 0.00 %
+WARNING: No dual information available when presolving was performed.
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+SCIP 9.0.1: optimal solution; objective 10044.73093
+8 simplex iterations
+1 branching nodes
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
