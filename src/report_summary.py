@@ -1,5 +1,9 @@
+import os
 import streamlit as st
+import tempfile
 import time
+import uuid
+import zipfile
 
 import glb
 import imggsum
@@ -53,6 +57,101 @@ def show_overflow():
             st.subheader(":green[There in no overflows]", divider="green")
 
 
+@st.fragment()
+def download_full_schedule(df):
+    csv = glb.convert_df_to_csv(df)
+
+    file_name = f"{uuid.uuid4().hex}.csv"
+
+    st.download_button(
+        label=f"Download full schedule as :green[{file_name}]",
+        data=csv,
+        file_name=file_name,
+        mime="text/csv",
+    )
+
+
+@st.fragment()
+def download_complete_set(df):
+
+    # csv = glb.convert_df_to_csv(df)
+    csv = df.to_csv(index=False).encode("utf-8")
+    # st.write(csv)
+
+    f_tmp = tempfile.NamedTemporaryFile(
+        mode='w+',
+        prefix="yumbo-",
+        delete=True,
+        delete_on_close=False,
+    )
+    # st.write(f_tmp.name)
+
+
+
+    with zipfile.ZipFile(f_tmp.name, 'w') as myzip:
+        myzip.writestr("full_schedule.csv", csv)
+
+    f_tmp.close()
+    #st.write("AAAAAAAAAAAAAAAAA")
+    #st.write(f_tmp.name)
+
+
+    with open(f_tmp.name, 'rb') as f:
+        file_name = f"{uuid.uuid4().hex}.zip"
+        st.download_button(
+            label=f"Download the complete set as :green[{file_name}]",
+            data=f,
+            file_name=file_name,
+        )
+
+
+
+    # f_tmp = "abc"
+    # st.write(f_tmp)
+
+
+
+    # with zipfile.ZipFile(f_tmp, 'w') as myzip:
+    #     myzip.writestr("full_schedule.csv", csv)
+
+    # st.write("AAAAAAAAAAAAAAAAA")
+    # st.write(f_tmp)
+
+
+    # with open(f_tmp, 'rb') as f:
+    #     file_name = f"{uuid.uuid4().hex}.zip"
+    #     pressed = st.download_button(
+    #         label="Download :green[the complete set] as ZIP",
+    #         data=f,
+    #         file_name=file_name,
+    #     )
+
+
+
+
+
+
+    # if not st.button("Download :green[the complete] set of data as ZIP"):
+    #     return
+
+    # home = os.path.expanduser("~")
+    # out_dir = os.path.join(home, "Downloads")
+
+    # if not os.path.isdir(out_dir):
+    #     out_dir = home
+
+    # out_dir = os.path.join(out_dir, uuid.uuid4().hex)
+    # os.makedirs(out_dir)
+
+
+    # full_schedule_csv = glb.convert_df_to_csv(df)
+    # out_file = os.path.join(home, "full_schedule.csv")
+
+    # # # Create new directory
+    # # new_dir = os.path.join(downloads_path, "new_folder")
+    # # os.makedirs(new_dir, exist_ok=True)
+
+    # st.write(f"Downloaded at file :green[{out_dir}]")
 
 
 def show_full_schedule(as_html):
@@ -77,17 +176,12 @@ def show_full_schedule(as_html):
     # Always display the dataframe as a Streamlit table without styles to avoid the above error.
     st.dataframe(df, use_container_width=False, hide_index=True)
 
-    csv = glb.convert_df_to_csv(df)
-
-    st.download_button(
-        label="Download :green[full schedule] as CSV",
-        data=csv,
-        file_name=f"{st.session_state.mprob['uploaded_file_name']}_full_schedule.csv",
-        mime="text/csv",
-    )
+    download_full_schedule(df)
+    download_complete_set(df)
 
     df.drop(columns="Date", inplace=True)
     df.drop(columns="Weekday", inplace=True)
+
 
 def show_report():
     show = st.session_state.show
