@@ -125,6 +125,11 @@ def download_complete_set_bz2(df):
     download_complete_set(df, zipfile.ZIP_BZIP2, "bz2")
 
 
+@st.fragment()
+def download_complete_set_lzma(df):
+    download_complete_set(df, zipfile.ZIP_LZMA, "lzma")
+
+
 def show_full_schedule(as_html):
     if not st.session_state.show["summary_full_schedule"]:
         return
@@ -150,6 +155,7 @@ def show_full_schedule(as_html):
     download_full_schedule(df)
     download_complete_set_zip(df)
     download_complete_set_bz2(df)
+    download_complete_set_lzma(df)
 
     df.drop(columns="Date", inplace=True)
     df.drop(columns="Weekday", inplace=True)
