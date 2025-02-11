@@ -1,0 +1,106 @@
+11 February 2025, 17:42:34 PM
+
+max_context = 2
+tva cells:	0 at level 0
+		24 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 1, o = 0
+0 variables, 0 constraints, 0 objectives
+max_context = 3
+tva cells:	0 at level 0
+		34 at levels above 0
+tva_hcl = 8, tva_len = 256
+rewrites: m = 14, o = 16
+1646 variables, 2491 constraints, 1 objectives
+7681 nonzeros
+
+Presolve eliminates 2240 constraints and 890 variables.
+"option presolve 10;" used, but "option presolve 3;" would suffice.
+Adjusted problem:
+756 variables, all integer
+251 constraints, all linear; 1718 nonzeros
+	12 equality constraints
+	239 inequality constraints
+1 linear objective; 756 nonzeros.
+
+presolve results:
+	variables omitted:	890
+	constraints omitted:	2240
+	ranges relaxed:		267
+	bounds improved:	1002
+	constraint_drop_tol breakpoints: 0, 0, 32
+	nba cycles:		2
+	bound row scans:	471
+	row-scan updates:	362
+SCIP 9.0.1:   tech:outlev-native = 5
+LP Solver <Soplex 7.0.1>: barrier convergence tolerance cannot be set -- tolerance of SCIP and LP solver may differ
+LP Solver <Soplex 7.0.1>: fastmip setting not available -- SCIP parameter has no effect
+LP Solver <Soplex 7.0.1>: number of threads settings not available -- SCIP parameter has no effect
+transformed problem has 757 variables (0 bin, 756 int, 0 impl, 1 cont) and 251 constraints
+    251 constraints of type <linear>
+
+original problem has 1718 active (0.904177%) nonzeros and 1718 (0.904177%) check nonzeros
+
+presolving:
+(round 1, fast)       5 del vars, 0 del conss, 0 add conss, 0 chg bounds, 0 chg sides, 0 chg coeffs, 0 upgd conss, 0 impls, 0 clqs
+(round 2, fast)       5 del vars, 0 del conss, 0 add conss, 0 chg bounds, 1 chg sides, 0 chg coeffs, 0 upgd conss, 0 impls, 0 clqs
+(round 3, fast)       14 del vars, 1 del conss, 0 add conss, 0 chg bounds, 1 chg sides, 0 chg coeffs, 0 upgd conss, 0 impls, 0 clqs
+(round 4, exhaustive) 14 del vars, 1 del conss, 0 add conss, 0 chg bounds, 1 chg sides, 0 chg coeffs, 84 upgd conss, 0 impls, 0 clqs
+   (0.0s) sparsify finished: 9/1705 (0.5%) nonzeros canceled - in total 9 canceled nonzeros, 9 changed coefficients, 0 added nonzeros
+(round 5, exhaustive) 14 del vars, 1 del conss, 0 add conss, 0 chg bounds, 1 chg sides, 9 chg coeffs, 84 upgd conss, 0 impls, 0 clqs
+   (0.0s) symmetry computation started: requiring (bin +, int +, cont +), (fixed: bin -, int -, cont -)
+   (0.0s) symmetry computation finished: 49 generators found (max: 1500, log10 of symmetry group size: 0.0) (symcode time: 0.00)
+dynamic symmetry handling statistics:
+   orbitopal reduction:       no components
+   orbital reduction:         no components
+   lexicographic reduction:   no permutations
+handled 34 out of 34 symmetry components
+(round 6, exhaustive) 14 del vars, 1 del conss, 49 add conss, 0 chg bounds, 1 chg sides, 9 chg coeffs, 84 upgd conss, 0 impls, 0 clqs
+(round 7, exhaustive) 14 del vars, 1 del conss, 49 add conss, 0 chg bounds, 1 chg sides, 9 chg coeffs, 133 upgd conss, 0 impls, 0 clqs
+cons components found 2 undirected components at node 1, depth 0 (0)
+clique table cleanup detected 0 bound changes
+
+presolved problem has 1785 active (0.816067%) nonzeros and 1785 (0.816067%) check nonzeros
+
+presolving (8 rounds: 8 fast, 5 medium, 5 exhaustive):
+ 23 deleted vars, 2 deleted constraints, 49 added constraints, 0 tightened bounds, 0 added holes, 1 changed sides, 9 changed coefficients
+ 0 implications, 0 cliques
+presolved problem has 734 variables (0 bin, 734 int, 0 impl, 0 cont) and 298 constraints
+    133 constraints of type <varbound>
+    165 constraints of type <linear>
+Presolving Time: 0.03
+
+ time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. 
+* 0.0s|     1 |     0 |    50 |     - |    LP  |   0 | 734 | 298 | 298 |   0 |  0 |   9 |   0 | 7.291348e+04 | 7.291348e+04 |   0.00%| unknown
+  0.0s|     1 |     0 |    50 |     - |    11M |   0 | 734 | 298 | 298 |   0 |  0 |   9 |   0 | 7.291348e+04 | 7.291348e+04 |   0.00%| unknown
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 0.05
+Solving Nodes      : 1
+Primal Bound       : +7.29134786346130e+04 (1 solutions)
+Dual Bound         : +7.29134786346130e+04
+Gap                : 0.00 %
+WARNING: No dual information available when presolving was performed.
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+SCIP 9.0.1: optimal solution; objective 72913.47863
+50 simplex iterations
+1 branching nodes
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
