@@ -71,18 +71,16 @@ def download_full_schedule(df):
     )
 
 
-@st.fragment()
-def download_complete_set(df):
-
-    csv = df.to_csv(index=False).encode("utf-8")
-
+@st.cache_resource(max_entries=1000)
+def save_to_compressed_file(df, compression):
     f_tmp = tempfile.NamedTemporaryFile(
         mode='w+',
         prefix="yumbo-",
-        delete=True,
+        delete=False,
         delete_on_close=False,
     )
 
+    csv = df.to_csv(index=False).encode("utf-8")
     ampl_data_file = st.session_state.mprob["ampl_data_file"]
     solver_log = st.session_state.stats["solver_log"]
 
@@ -93,7 +91,7 @@ def download_complete_set(df):
     with open(ampl_model_file + ".run", "r") as f:
         ampl_model_run = f.read()
 
-    with zipfile.ZipFile(f_tmp.name, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+    with zipfile.ZipFile(f_tmp.name, 'w', compression=compression, compresslevel=9) as zf:
         zf.writestr("full_schedule.csv", csv)
         zf.writestr("ampl_data_file.dat", ampl_data_file)
         zf.writestr("solver_log.txt", solver_log)
@@ -101,14 +99,30 @@ def download_complete_set(df):
         zf.writestr("model.ampl.run", ampl_model_run)
 
     f_tmp.close()
+    return f_tmp
 
+
+
+def download_complete_set(df, compression, ext):
+    f_tmp = save_to_compressed_file(df, compression)
     with open(f_tmp.name, 'rb') as f:
-        file_name = f"{uuid.uuid4().hex}.zip"
+        file_name = f"{uuid.uuid4().hex}.{ext}"
         st.download_button(
             label=f"Download the complete set as :green[{file_name}]",
             data=f,
             file_name=file_name,
         )
+    os.unlink(f.name)
+
+
+@st.fragment()
+def download_complete_set_zip(df):
+    download_complete_set(df, zipfile.ZIP_DEFLATED, "zip")
+
+
+@st.fragment()
+def download_complete_set_bz2(df):
+    download_complete_set(df, zipfile.ZIP_BZIP2, "bz2")
 
 
 def show_full_schedule(as_html):
@@ -134,7 +148,8 @@ def show_full_schedule(as_html):
     st.dataframe(df, use_container_width=False, hide_index=True)
 
     download_full_schedule(df)
-    download_complete_set(df)
+    download_complete_set_zip(df)
+    download_complete_set_bz2(df)
 
     df.drop(columns="Date", inplace=True)
     df.drop(columns="Weekday", inplace=True)
