@@ -57,28 +57,15 @@ def show_overflow():
             st.subheader(":green[There in no overflows]", divider="green")
 
 
-@st.fragment()
-def download_full_schedule(df):
-    csv = glb.convert_df_to_csv(df)
-
-    file_name = f"{uuid.uuid4().hex}.csv"
-
-    st.download_button(
-        label=f"Download full schedule as :green[{file_name}]",
-        data=csv,
-        file_name=file_name,
-        mime="text/csv",
-    )
-
-
 @st.cache_resource(max_entries=1000)
-def save_to_compressed_file(df, compression):
+def save_to_compressed_file(df):
     f_tmp = tempfile.NamedTemporaryFile(
         mode='w+',
         prefix="yumbo-",
         delete=False,
         delete_on_close=False,
     )
+    f_tmp.close()
 
     csv = df.to_csv(index=False).encode("utf-8")
     ampl_data_file = st.session_state.mprob["ampl_data_file"]
@@ -91,43 +78,50 @@ def save_to_compressed_file(df, compression):
     with open(ampl_model_file + ".run", "r") as f:
         ampl_model_run = f.read()
 
-    with zipfile.ZipFile(f_tmp.name, 'w', compression=compression, compresslevel=9) as zf:
+    with zipfile.ZipFile(f_tmp.name, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         zf.writestr("full_schedule.csv", csv)
         zf.writestr("ampl_data_file.dat", ampl_data_file)
         zf.writestr("solver_log.txt", solver_log)
         zf.writestr("model.ampl", ampl_model)
         zf.writestr("model.ampl.run", ampl_model_run)
 
-    f_tmp.close()
-    return f_tmp
+    with open(f_tmp.name, "rb") as f:
+        buf_zip = f.read()
 
+    with zipfile.ZipFile(f_tmp.name, 'w', compression=zipfile.ZIP_BZIP2, compresslevel=9) as zf:
+        zf.writestr("full_schedule.csv", csv)
+        zf.writestr("ampl_data_file.dat", ampl_data_file)
+        zf.writestr("solver_log.txt", solver_log)
+        zf.writestr("model.ampl", ampl_model)
+        zf.writestr("model.ampl.run", ampl_model_run)
 
+    with open(f_tmp.name, "rb") as f:
+        buf_bz2 = f.read()
 
-def download_complete_set(df, compression, ext):
-    f_tmp = save_to_compressed_file(df, compression)
-    with open(f_tmp.name, 'rb') as f:
-        file_name = f"{uuid.uuid4().hex}.{ext}"
-        st.download_button(
-            label=f"Download the complete set as :green[{file_name}]",
-            data=f,
-            file_name=file_name,
-        )
-    os.unlink(f.name)
-
-
-@st.fragment()
-def download_complete_set_zip(df):
-    download_complete_set(df, zipfile.ZIP_DEFLATED, "zip")
+    os.unlink(f_tmp.name)
+    return buf_zip, buf_bz2
 
 
 @st.fragment()
-def download_complete_set_bz2(df):
-    download_complete_set(df, zipfile.ZIP_BZIP2, "bz2")
+def download_results(df):
+    buf_zip, buf_bz2 = save_to_compressed_file(df)
 
+    file_name = f"{uuid.uuid4().hex}.zip"
+    size_in_Kib = len(buf_zip) / 1024
+    st.download_button(
+        label=f"Download results :green[{file_name}] -> {size_in_Kib:,.1f} KiB",
+        data=buf_zip,
+        file_name=file_name,
+    )
 
-@st.fragment()
-def download_complete_set_lzma(df):
-    download_complete_set(df, zipfile.ZIP_LZMA, "lzma")
+    file_name = f"{uuid.uuid4().hex}.bz2"
+    size_in_Kib = len(buf_bz2) / 1024
+    st.download_button(
+        label=f"Download results :green[{file_name}] -> {size_in_Kib:,.1f} KiB",
+        data=buf_bz2,
+        file_name=file_name,
+    )
+
 
 
 def show_full_schedule(as_html):
@@ -152,10 +146,7 @@ def show_full_schedule(as_html):
     # Always display the dataframe as a Streamlit table without styles to avoid the above error.
     st.dataframe(df, use_container_width=False, hide_index=True)
 
-    download_full_schedule(df)
-    download_complete_set_zip(df)
-    download_complete_set_bz2(df)
-    download_complete_set_lzma(df)
+    download_results(df)
 
     df.drop(columns="Date", inplace=True)
     df.drop(columns="Weekday", inplace=True)
