@@ -1,0 +1,96 @@
+11 February 2025, 17:39:10 PM
+
+max_context = 2
+tva cells:	0 at level 0
+		24 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 1, o = 0
+0 variables, 0 constraints, 0 objectives
+max_context = 3
+tva cells:	0 at level 0
+		34 at levels above 0
+tva_hcl = 8, tva_len = 256
+rewrites: m = 14, o = 16
+1280 variables, 880 constraints, 1 objectives
+4515 nonzeros
+
+Presolve eliminates 607 constraints and 345 variables.
+"option presolve 10;" used, but "option presolve 2;" would suffice.
+Adjusted problem:
+935 variables, all integer
+273 constraints, all linear; 1728 nonzeros
+	15 equality constraints
+	258 inequality constraints
+1 linear objective; 935 nonzeros.
+
+presolve results:
+	variables omitted:	345
+	constraints omitted:	607
+	ranges relaxed:		258
+	bounds improved:	736
+	nba cycles:		1
+	bound row scans:	273
+	row-scan updates:	0
+SCIP 9.0.1:   tech:outlev-native = 5
+LP Solver <Soplex 7.0.1>: barrier convergence tolerance cannot be set -- tolerance of SCIP and LP solver may differ
+LP Solver <Soplex 7.0.1>: fastmip setting not available -- SCIP parameter has no effect
+LP Solver <Soplex 7.0.1>: number of threads settings not available -- SCIP parameter has no effect
+transformed problem has 936 variables (0 bin, 935 int, 0 impl, 1 cont) and 273 constraints
+    273 constraints of type <linear>
+
+original problem has 1728 active (0.676247%) nonzeros and 1728 (0.676247%) check nonzeros
+
+presolving:
+(round 1, fast)       6 del vars, 0 del conss, 0 add conss, 0 chg bounds, 0 chg sides, 0 chg coeffs, 0 upgd conss, 0 impls, 0 clqs
+(round 2, exhaustive) 6 del vars, 0 del conss, 0 add conss, 0 chg bounds, 0 chg sides, 0 chg coeffs, 97 upgd conss, 0 impls, 0 clqs
+   (0.0s) symmetry computation started: requiring (bin +, int +, cont +), (fixed: bin -, int -, cont -)
+   (0.0s) no symmetry present (symcode time: 0.00)
+cons components found 5 undirected components at node 1, depth 0 (0)
+clique table cleanup detected 0 bound changes
+
+presolved problem has 731 active (1.90603%) nonzeros and 731 (1.90603%) check nonzeros
+
+presolving (3 rounds: 3 fast, 2 medium, 2 exhaustive):
+ 560 deleted vars, 171 deleted constraints, 0 added constraints, 0 tightened bounds, 0 added holes, 0 changed sides, 0 changed coefficients
+ 0 implications, 0 cliques
+presolved problem has 376 variables (0 bin, 376 int, 0 impl, 0 cont) and 102 constraints
+     21 constraints of type <varbound>
+     81 constraints of type <linear>
+Presolving Time: 0.03
+
+ time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. 
+p 0.0s|     1 |     0 |     0 |     - |shiftand|   0 | 376 | 102 | 102 |   0 |  0 |   0 |   0 | 3.539701e+04 | 5.089704e+04 |  43.79%| unknown
+i 0.0s|     1 |     0 |     0 |     - |  oneopt|   0 | 376 | 102 | 102 |   0 |  0 |   0 |   0 | 3.539701e+04 | 5.007579e+04 |  41.47%| unknown
+* 0.0s|     1 |     0 |   385 |     - |    LP  |   0 | 376 | 102 | 102 |   0 |  0 |   0 |   0 | 5.007016e+04 | 5.007016e+04 |   0.00%| unknown
+  0.0s|     1 |     0 |   385 |     - |  7276k |   0 | 376 | 102 | 102 |   0 |  0 |   0 |   0 | 5.007016e+04 | 5.007016e+04 |   0.00%| unknown
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 0.04
+Solving Nodes      : 1
+Primal Bound       : +5.00701627315698e+04 (3 solutions)
+Dual Bound         : +5.00701627315698e+04
+Gap                : 0.00 %
+WARNING: No dual information available when presolving was performed.
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+SCIP 9.0.1: optimal solution; objective 50070.16273
+385 simplex iterations
+1 branching nodes
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
