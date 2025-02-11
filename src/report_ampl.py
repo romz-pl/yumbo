@@ -19,8 +19,8 @@ def show_ampl_data_file():
 
     data = st.session_state.mprob["ampl_data_file"]
     if len(data) < 10 * 1024:
-        # st.code is very slow for large files!!
-        # What is better syntax for AML data files?
+        # The st.code widget is very slow for large files with syntax highliting!
+        # What is a better syntax highlighting language for AMPL files?
         language="python"
     else:
         language=None
