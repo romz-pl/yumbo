@@ -1,0 +1,119 @@
+11 February 2025, 20:35:45 PM
+
+max_context = 2
+tva cells:	0 at level 0
+		24 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 1, o = 0
+0 variables, 0 constraints, 0 objectives
+max_context = 3
+tva cells:	0 at level 0
+		34 at levels above 0
+tva_hcl = 8, tva_len = 256
+rewrites: m = 14, o = 16
+676 variables, 1243 constraints, 1 objectives
+3999 nonzeros
+
+Presolve eliminates 1230 constraints and 16 variables.
+"option presolve 10;" used, but "option presolve 2;" would suffice.
+Adjusted problem:
+660 variables:
+	54 binary variables
+	606 integer variables
+13 constraints, all linear; 660 nonzeros
+	13 equality constraints
+1 linear objective; 660 nonzeros.
+
+presolve results:
+	variables omitted:	16
+	constraints omitted:	1230
+	ranges relaxed:		888
+	bounds improved:	1278
+	nba cycles:		1
+	bound row scans:	457
+	row-scan updates:	0
+GCG 4.0.0:   tech:outlev-native = 4
+presolving:
+(round 1, fast)       351 del vars, 0 del conss, 0 add conss, 0 chg bounds, 0 chg sides, 0 chg coeffs, 0 upgd conss, 0 impls, 0 clqs
+   (0.0s) probing: 51/402 (12.7%) - 0 fixings, 0 aggregations, 0 implications, 0 bound changes
+   (0.0s) probing aborted: 50/50 successive totally useless probings
+presolving (2 rounds: 2 fast, 1 medium, 1 exhaustive):
+ 351 deleted vars, 0 deleted constraints, 0 added constraints, 0 tightened bounds, 0 added holes, 0 changed sides, 0 changed coefficients
+ 0 implications, 0 cliques
+presolved problem has 658 variables (402 bin, 256 int, 0 impl, 0 cont) and 13 constraints
+     13 constraints of type <linear>
+Presolving Time: 0.00
+ Consclassifier "nonzeros" yields a classification with 11  different constraint classes 
+ Consclassifier "constypes" yields a classification with 1 different constraint classes 
+ Consclassifier "constypes according to miplib" yields a classification with 2 different constraint classes 
+ Consclassifier "gamsdomain" yields a classification with 1  different constraint classes 
+ Conspartition "gamsdomain" is not considered since it offers the same structure as "constypes" conspartition
+ Consclassifier "gamssymbols" yields a classification with 1  different constraint classes 
+ Conspartition "gamssymbols" is not considered since it offers the same structure as "constypes" conspartition
+ Varclassifier "gamsdomain" yields a classification with 1  different variable classes 
+ Varclassifier "gamssymbols" yields a classification with 1  different variable classes 
+ Varpartition "gamssymbols" is not considered since it offers the same structure as "gamsdomain"
+ Varclassifier "vartypes" yields a classification with 2 different variable classes
+ Varclassifier "varobjvals" yields a classification with 324 different variable classes
+ Varclassifier "varobjvalsigns" yields a classification with 1 different variable classes
+ Varpartition "varobjvalsigns" is not considered since it offers the same structure as "gamsdomain"
+ Added reduced version of conspartition nonzeros with 9  different constraint classes 
+ the current varclass distribution includes 324 classes but only 18 are allowed for GCGconshdlrDecompCalcCandidatesNBlocks()
+ in dec_consclass: there are 4 different constraint classes   
+  the current consclass distribution includes 11 classes but only 9 are allowed for propagatePartialdec() of cons class detector
+ the current constraint classifier "constypes" consists of 1 different classes   
+  the current constraint classifier "constypes according to miplib" consists of 2 different classes   
+  the current constraint classifier "nonzeros-red-to-9" consists of 9 different classes   
+ dec_consclass found 515 new partialdecs 
+dec_densemasterconss found 1 new partialdec 
+dec_neighborhoodmaster found 1 new partialdec 
+ the current varclass distribution includes 324 classes but only 9 are allowed for propagatePartialdec() of var class detector
+POSTPROCESSING of decompositions. Added 0 new decomps. 
+Found 518 finished decompositions.
+Measured running time per detector:
+Detector consclass                 worked on      513 finished decompositions and took a total time of      0.003
+Detector neighborhoodmaster        worked on        1 finished decompositions and took a total time of      0.000
+Detector connectedbase             worked on      517 finished decompositions and took a total time of      0.012
+Detector varclass                  worked on        3 finished decompositions and took a total time of      0.000
+Detection Time: 0.04
+
+A Dantzig-Wolfe reformulation is applied to solve the original problem.
+Chosen structure has 13 blocks and 0 linking constraints.
+This decomposition has a maxwhite score of 0.923077.
+Matrix has 13 blocks, using 12 aggregated pricing problems.
+
+  time | node  | left  |SLP iter|MLP iter|LP it/n| mem |mdpt |ovars|mvars|ocons|mcons|mcuts|  dualbound   | primalbound  |  deg   |  gap   
+p  0.0s|     1 |     0 |      0 |      0 |     - |9978k|   0 | 658 |   0 |  14 |   0 |   0 | 5.075758e+03 | 6.742985e+03 |   --   |  32.85%
+*  0.0s|     1 |     0 |      0 |      0 |     - |9832k|   0 | 658 |   0 |  14 |   0 |   0 | 6.097714e+03 | 6.097714e+03 |   --   |   0.00%
+   0.0s|     1 |     0 |      0 |      0 |     - |9832k|   0 | 658 |   0 |  14 |   0 |   0 | 6.097714e+03 | 6.097714e+03 |   --   |   0.00%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 0.02
+Solving Nodes      : 1
+Primal Bound       : +6.09771415839207e+03 (2 solutions)
+Dual Bound         : +6.09771415839207e+03
+Gap                : 0.00 %
+WARNING: Dual information only available for pure LPs (only continuous variables).
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+GCG 4.0.0: optimal solution; objective 6097.714158
+13 simplex iterations
+1 branching nodes
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
