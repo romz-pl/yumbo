@@ -131,7 +131,10 @@ def show_full_schedule(as_html):
 
     st.subheader(":green[Full schedule]", divider="green")
 
-    df = st.session_state.schedule
+    if st.checkbox("Show as multiples of a quarter", value=False):
+        df = (st.session_state.schedule * 4).astype("uint8")
+    else:
+        df = st.session_state.schedule
 
     # .strftime('%a') Returns 'Mon', 'Tue', etc.
     # .strftime('%A') Returns 'Monday', 'Tuesday', etc.
