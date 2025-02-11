@@ -7,6 +7,69 @@ import time
 import glb
 
 
+import pandas as pd
+import os
+from typing import Union, List, Tuple
+
+def validate_excel_file(file_path):
+    """
+    Validates an Excel file by checking:
+        1. If the file exists and is readable
+        2. If it has a valid file extension
+        3. If required columns are present (optional)
+        4. If required sheets are present (optional)
+
+    Args:
+        file_path: Path to the Excel file
+    """
+
+    sheets_and_columns = {
+        "expert" :["Name", "Comment"],
+        "task": ["Name", "Start", "End", "Work"],
+        "assign": ["Expert", "Task"],
+        "xbday": ["Expert", "Task", "Start", "End", "Lower", "Upper"],
+        "ubday": ["Expert", "Start", "End", "Lower", "Upper"],
+        "ebday": ["Expert", "Start", "End", "Lower", "Upper"],
+        "period": ["Name", "Start", "End"],
+        "pbsum": ["Expert", "Period", "Lower", "Upper"],
+        "holiday": ["Date"],
+        "misc": ["Today", "Hours per day", "Solver", "AMPL model"],
+        "img": ["Width", "Height", "Dpi", "End", "Start"],
+        "imgh": ["Bar:color", "Bar:hatch", "Bar:alpha"],
+        "imgt": ["Bar:color", "Bar:hatch", "Bar:alpha"],
+        "imgs": ["Bar:alpha"],
+        "imgg": ["Barh:color", "Barh:height", "Barh:alpha"],
+        "imgw": ["Bar:color", "Bar:ecolor", "Bar:capsize"],
+        "imgb": ["Fill:color", "Fill:hatch", "Fill:alpha", "Plot:format", "Plot:markeredgewidth", "Step:linewidth"],
+        "imge": ["Bar:alpha"],
+    }
+
+    # Check if file exists
+    if not os.path.exists(file_path):
+        raise Exception(f"File not found: {file_path}")
+
+    # Check file extension
+    if not file_path.endswith(('.xlsx', '.xls', '.xlsm')):
+        raise Exception("File is not an Excel file (must end with .xlsx, .xls, or .xlsm)")
+
+    # Try to read the file with pandas. Read Excel info without loading data.
+    excel_info = pd.ExcelFile(file_path)
+
+    # Check for required sheets
+    missing_sheets = set(sheets_and_columns.keys()) - set(excel_info.sheet_names)
+    if missing_sheets:
+        raise Exception(f"In Excel file: Missing required sheets: {', '.join(missing_sheets)}")
+
+
+    # For each sheet, check the required columns.
+    for sheet, columns in sheets_and_columns.items():
+        df = pd.read_excel(file_path, sheet_name=sheet)
+        missing_cols = set(columns) - set(df.columns)
+        if missing_cols:
+            raise Exception(f"In Excel file: Sheet '{sheet}' is missing required columns: {', '.join(missing_cols)}")
+
+
+
 # Helper function to handle the date columns parsing
 def parse_date_columns(df, date_columns):
     for column in date_columns:
@@ -197,6 +260,8 @@ def read_excel_file(file_data, git_hash):
     with tempfile.NamedTemporaryFile(prefix="yumbo", suffix=".xlsx") as f:
         f.write(file_data)
         f.flush()
+
+        validate_excel_file(f.name)
 
         mprob = dict()
         xlsx = pd.ExcelFile(f)

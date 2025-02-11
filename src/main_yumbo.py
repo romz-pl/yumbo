@@ -163,38 +163,27 @@ def upload():
     return uploaded_file != None
 
 
-def solve_problem():
-    romz_ampl.solve()
-    # try:
-    #     romz_ampl.solve()
-    # except Exception as e:
-    #     st.subheader(f":red[Exception during solving process.] {e}")
-    #     report_ampl.show_ampl_data_file()
-    #     return False
-
-    return True
-
-
 def main():
-    time_start = time.perf_counter()
+    try:
+        time_start = time.perf_counter()
 
-    st.session_state.git_hash = glb.calc_git_hash()
+        st.session_state.git_hash = glb.calc_git_hash()
+        set_page_config()
+        show_page_header()
+        init_sesion_variables()
 
-    set_page_config()
-    show_page_header()
-    init_sesion_variables()
+        if not upload():
+            show_yumbo_description()
+            return
 
-    if not upload():
-        show_yumbo_description()
-        return
+        romz_ampl.solve()
+        show_main_panel()
 
-    if not solve_problem():
-        return
+        time_end = time.perf_counter()
+        st.write(f"Total elapsed time: :green[{(time_end-time_start):.3f} [s]]")
+    except Exception as e:
+        st.subheader(f":red[Exception during solving process.] {e}")
 
-    show_main_panel()
-
-    time_end = time.perf_counter()
-    st.write(f"Total elapsed time: :green[{(time_end-time_start):.3f} [s]]")
 
 
 ######################## CALL MAIN FUNCTION ##################
