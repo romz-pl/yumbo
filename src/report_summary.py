@@ -74,9 +74,7 @@ def download_full_schedule(df):
 @st.fragment()
 def download_complete_set(df):
 
-    # csv = glb.convert_df_to_csv(df)
     csv = df.to_csv(index=False).encode("utf-8")
-    # st.write(csv)
 
     f_tmp = tempfile.NamedTemporaryFile(
         mode='w+',
@@ -84,17 +82,25 @@ def download_complete_set(df):
         delete=True,
         delete_on_close=False,
     )
-    # st.write(f_tmp.name)
 
+    ampl_data_file = st.session_state.mprob["ampl_data_file"]
+    solver_log = st.session_state.stats["solver_log"]
 
+    ampl_model_file = glb.get_ampl_model_file()
+    with open(ampl_model_file, "r") as f:
+        ampl_model = f.read()
 
-    with zipfile.ZipFile(f_tmp.name, 'w') as myzip:
-        myzip.writestr("full_schedule.csv", csv)
+    with open(ampl_model_file + ".run", "r") as f:
+        ampl_model_run = f.read()
+
+    with zipfile.ZipFile(f_tmp.name, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+        zf.writestr("full_schedule.csv", csv)
+        zf.writestr("ampl_data_file.dat", ampl_data_file)
+        zf.writestr("solver_log.txt", solver_log)
+        zf.writestr("model.ampl", ampl_model)
+        zf.writestr("model.ampl.run", ampl_model_run)
 
     f_tmp.close()
-    #st.write("AAAAAAAAAAAAAAAAA")
-    #st.write(f_tmp.name)
-
 
     with open(f_tmp.name, 'rb') as f:
         file_name = f"{uuid.uuid4().hex}.zip"
@@ -103,55 +109,6 @@ def download_complete_set(df):
             data=f,
             file_name=file_name,
         )
-
-
-
-    # f_tmp = "abc"
-    # st.write(f_tmp)
-
-
-
-    # with zipfile.ZipFile(f_tmp, 'w') as myzip:
-    #     myzip.writestr("full_schedule.csv", csv)
-
-    # st.write("AAAAAAAAAAAAAAAAA")
-    # st.write(f_tmp)
-
-
-    # with open(f_tmp, 'rb') as f:
-    #     file_name = f"{uuid.uuid4().hex}.zip"
-    #     pressed = st.download_button(
-    #         label="Download :green[the complete set] as ZIP",
-    #         data=f,
-    #         file_name=file_name,
-    #     )
-
-
-
-
-
-
-    # if not st.button("Download :green[the complete] set of data as ZIP"):
-    #     return
-
-    # home = os.path.expanduser("~")
-    # out_dir = os.path.join(home, "Downloads")
-
-    # if not os.path.isdir(out_dir):
-    #     out_dir = home
-
-    # out_dir = os.path.join(out_dir, uuid.uuid4().hex)
-    # os.makedirs(out_dir)
-
-
-    # full_schedule_csv = glb.convert_df_to_csv(df)
-    # out_file = os.path.join(home, "full_schedule.csv")
-
-    # # # Create new directory
-    # # new_dir = os.path.join(downloads_path, "new_folder")
-    # # os.makedirs(new_dir, exist_ok=True)
-
-    # st.write(f"Downloaded at file :green[{out_dir}]")
 
 
 def show_full_schedule(as_html):

@@ -5,10 +5,8 @@ import glb
 def show_solver_log():
     st.subheader(f":green[Solver log]", divider="green")
 
-    timestamp = st.session_state.stats["solver_timestamp"]
-    log = st.session_state.stats["solver_log"]
     st.code(
-        f"{timestamp}\n\n{log}",
+        st.session_state.stats["solver_log"],
         line_numbers=True,
         height=500
     )

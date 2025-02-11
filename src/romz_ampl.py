@@ -347,9 +347,10 @@ def solve():
     mm_hash = st.session_state.mm_hash
     solve_result, ampl_data_file, solver_log, schedule, overflow = solve_ampl(mm_hash)
 
+    timestamp = pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")
     st.session_state.mprob["ampl_data_file"] = ampl_data_file
-    st.session_state.stats["solver_log"] = solver_log
-    st.session_state.stats["solver_timestamp"] = pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")
+    st.session_state.stats["solver_log"] = f"{timestamp}\n\n{solver_log}"
+    st.session_state.stats["solver_timestamp"] = timestamp
 
     if solve_result == "solved":
         st.session_state.schedule = schedule
