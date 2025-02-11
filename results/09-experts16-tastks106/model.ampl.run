@@ -1,0 +1,136 @@
+# option;
+
+option presolve 10;
+option show_stats 2;
+# option times 1;
+# option gentimes 1;
+
+display MAXWORK;
+
+
+# Expert
+display card(ENAME);
+display ENAME;
+
+
+# Task
+display card(TNAME);
+display TNAME;
+display TWORK;
+
+
+# Assign
+display card(ASSIGN);
+display ASSIGN;
+
+
+# The scope of the individual tasks
+for {t in TNAME}
+{
+    display t;
+    display card(TSCOPE[t]);
+    display TSCOPE[t];
+}
+
+
+# XBDAY constarin
+display card(XBID);
+display XBID;
+if card(XBID) > 0 then
+{
+    display XBEXPERT;
+    display XBTASK;
+    display XBS;
+    display XBE;
+    display XBL;
+    display XBU;
+}
+
+
+# UBDAY constarin
+display card(UBID);
+display UBID;
+if card(UBID) > 0 then
+{
+    display UBEXPERT;
+    display UBS;
+    display UBE;
+    display UBL;
+    display UBU;
+}
+
+
+# EBDAY constrain
+display card(EBID);
+display EBID;
+if card(EBID) > 0 then
+{
+    display EBEXPERT;
+    display EBS;
+    display EBE;
+    display EBL;
+    display EBU;
+}
+
+
+# Period
+display card(PNAME);
+display PNAME;
+display PERS;
+display PERE;
+
+
+# PBSUM constrain
+display EXPPER;
+display card(EXPPER);
+if card(EXPPER) > 0 then
+{
+    display PBL;
+    display PBU;
+}
+
+
+# Display used unions for debugging purposes.
+if 1 > 2 then
+{
+    display union {t in TNAME} TSCOPE[t];
+
+    for {e in ENAME}
+    {
+        display e, union {t in TNAME: (e,t) in ASSIGN} TSCOPE[t]
+    }
+
+    for {j in EBID}
+    {
+        display j;
+        display EBEXPERT[j];
+        display (EBS[j]..EBE[j]);
+        display (union {(EBEXPERT[j],t) in ASSIGN} TSCOPE[t]);
+        display (EBS[j]..EBE[j]) inter (union {(EBEXPERT[j],t) in ASSIGN} TSCOPE[t]);
+    }
+}
+
+
+# Expand used constarins and expressions for debugging purposes.
+if 1 > 2 then
+{
+    expand objective_function;
+    expand C_maxwork;
+    expand C_work;
+    expand C_xbday;
+    expand C_period;
+    expand C_ebound;
+    expand C_ubday;
+}
+
+
+solve;
+display objective_function;
+
+
+# Display obtained solution.
+if 1 > 2 then
+{
+    display X;
+    display U;
+}
