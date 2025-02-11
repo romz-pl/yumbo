@@ -1,5 +1,7 @@
 # Yumbo. Scheduling, Planning and Resource Allocation
 
+## Authors: Zbigniew Romanowski; Paweł Koczyk; Jacek Pikul;
+
 ## Overview
 Yumbo is a sophisticated scheduling and resource allocation tool aimed at project managers, solution architects, and other professionals managing multiple tasks or projects simultaneously. The software focuses on the optimal generation of daily schedules while adhering to business rules and constraints.
 
