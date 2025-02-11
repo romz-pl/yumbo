@@ -247,37 +247,15 @@ def save_schedule(ampl):
     # Create the index for the schedule DataFrame.
     days = pd.date_range(start=glb.tomorrow(), end=glb.last_day(), freq='D')
 
-    #st.write(days)
-    #st.write(days.date)
-
-    #schedule_dict["Date"] = days.date
-    #schedule_dict["Weekday"] = days.day_name()
-
     # Create the full DataFrame at once, aligning on the given 'days' index.
-    # st.write(schedule_dict)
     df = pd.DataFrame(
         schedule_dict,
         index=days,
     ).fillna(0)
     df.index.name = "Date"
 
-    #df["Date"] = pd.to_datetime(days, format=glb.format())
-
-    # .strftime('%a') Returns 'Mon', 'Tue', etc.
-    # .strftime('%A') Returns 'Monday', 'Tuesday', etc.
-    #df["Weekday"] = days.strftime('%a')
-
-    #st.write(df)
-
-    #df.set_index(["Date", "Weekday"], drop=True, inplace=True, verify_integrity=True)
-
-    # pd.MultiIndex.from_arrays([days, days.day_name()], names=['Date', 'Weekday'])
-
-
     # Set a MultiIndex on the columns with names "Expert" and "Task".
     df.columns = pd.MultiIndex.from_tuples(df.columns, names=["Expert", "Task"])
-
-    #st.write(df)
 
     return df
 
