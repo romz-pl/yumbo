@@ -6,7 +6,6 @@ ampl_module_highs
 ampl_module_gurobi
 ampl-module_scip
 amplpy
-bz2
 matplotlib
 numpy==1.26.4
 openpyxl
