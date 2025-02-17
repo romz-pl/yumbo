@@ -1,4 +1,4 @@
-11 February 2025, 17:40:56 PM
+17 February 2025, 09:37:55 AM
 
 max_context = 2
 tva cells:	0 at level 0
@@ -57,7 +57,7 @@ presolving (6 rounds: 6 fast, 2 medium, 2 exhaustive):
  0 implications, 0 cliques
 presolved problem has 118 variables (0 bin, 118 int, 0 impl, 0 cont) and 1 constraints
       1 constraints of type <linear>
-Presolving Time: 0.01
+Presolving Time: 0.00
 
  time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. 
 p 0.0s|     1 |     0 |     0 |     - |shiftand|   0 | 118 |   1 |   1 |   0 |  0 |   0 |   0 | 7.607579e+03 | 9.082543e+03 |  19.39%| unknown
