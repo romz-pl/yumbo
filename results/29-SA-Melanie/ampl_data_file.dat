@@ -1,0 +1,134 @@
+# AMPL MODEL: ./res/solid.ampl
+
+# Timestamp: 17 February 2025, 10:42:24 AM
+
+param MAXWORK := 32;
+
+param:
+TNAME: TWORK :=
+'delta2.sf' 40
+'delta2.sm' 80
+'echo2.sf' 20
+'echo2.sm' 40
+'foxtrot2.sf' 120
+'foxtrot2.sm' 200
+'hotel2.sf' 20
+'hotel2.sm' 40
+'mike2.se' 160
+'mike2.sf' 40
+'mike2.sm' 80;
+
+set TSCOPE['delta2.sf'] :=
+175 176 177 178 179 182 183
+;
+
+set TSCOPE['delta2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81 84 85 86 87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133 134 135 136 137 140 141 142 143
+144 147 148 149 150 151 154 155 156 157 158 161 162 163 164 165 168 169 170 171 172
+;
+
+set TSCOPE['echo2.sf'] :=
+23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70
+;
+
+set TSCOPE['echo2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22
+;
+
+set TSCOPE['foxtrot2.sf'] :=
+84 85 86 87 88 91 92
+;
+
+set TSCOPE['foxtrot2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81
+;
+
+set TSCOPE['hotel2.sf'] :=
+49 50 51 52 53 56 57
+;
+
+set TSCOPE['hotel2.sm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46
+;
+
+set TSCOPE['mike2.se'] :=
+11 14 15 16 17 18 21 22 23 24 25
+;
+
+set TSCOPE['mike2.sf'] :=
+140 141 142 143 144 147 148 149 150 151
+;
+
+set TSCOPE['mike2.sm'] :=
+28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72 73 74 77 78 79 80 81 84 85 86 87 88 91 92 93 94 95
+98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133 134 135 136 137
+;
+
+set ENAME :=
+'SA.Melanie';
+
+set ASSIGN :=
+('SA.Melanie',*)
+'delta2.sf'
+'delta2.sm'
+'echo2.sf'
+'echo2.sm'
+'foxtrot2.sf'
+'foxtrot2.sm'
+'hotel2.sf'
+'hotel2.sm'
+'mike2.se'
+'mike2.sf'
+'mike2.sm';
+
+param:
+XBID: XBEXPERT XBTASK XBS XBE XBL XBU :=
+1 'SA.Melanie' 'delta2.sf' 173 183 5 6
+2 'SA.Melanie' 'delta2.sm' 2 172 0 1
+3 'SA.Melanie' 'echo2.sf' 23 70 0 1
+4 'SA.Melanie' 'echo2.sm' 2 22 2 3
+5 'SA.Melanie' 'foxtrot2.sf' 83 92 17 18
+6 'SA.Melanie' 'foxtrot2.sm' 2 82 3 4
+7 'SA.Melanie' 'hotel2.sf' 48 57 2 3
+8 'SA.Melanie' 'hotel2.sm' 2 47 1 2
+9 'SA.Melanie' 'mike2.se' 11 16 14 15
+10 'SA.Melanie' 'mike2.sf' 138 153 4 5
+11 'SA.Melanie' 'mike2.sm' 27 137 1 2;
+
+param:
+EBID: EBEXPERT EBS EBE EBL EBU :=
+;
+
+param:
+PNAME: PERS PERE :=
+'Jan.25' 1 16
+'Feb.25' 17 45
+'Mar.25' 46 76
+'Apr.25' 77 105
+'May.25' 106 139
+'Jun.25' 140 170
+'Jul.25' 171 199
+'Aug.25' 200 230
+'Sep.25' 231 259
+'Oct.25' 260 289
+'Nov.25' 290 317
+'Dec.25' 318 346;
+
+param:
+EXPPER: PBL PBU :=
+['SA.Melanie',*]
+'Apr.25' 0 720
+'Aug.25' 0 720
+'Dec.25' 0 720
+'Feb.25' 0 720
+'Jan.25' 0 720
+'Jul.25' 0 720
+'Jun.25' 0 720
+'Mar.25' 0 720
+'May.25' 0 720
+'Nov.25' 0 720
+'Oct.25' 0 720
+'Sep.25' 0 720;
+
