@@ -1,4 +1,4 @@
-11 February 2025, 17:43:21 PM
+17 February 2025, 10:01:15 AM
 
 max_context = 2
 tva cells:	0 at level 0
@@ -46,7 +46,7 @@ Solving MIP model with:
    523 rows
    1714 cols (0 binary, 1714 integer, 0 implied int., 0 continuous)
    3671 nonzeros
-MIP-Timing:      0.0081 - starting analytic centre calculation
+MIP-Timing:      0.0048 - starting analytic centre calculation
 
 Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic; L => Sub-MIP;
      P => Empty MIP; R => Randomized rounding; S => Solve LP; T => Evaluate node; U => Unbounded;
@@ -64,13 +64,13 @@ Solving report
   Primal bound      68279.0358011
   Dual bound        68279.0358011
   Gap               0% (tolerance: 0.01%)
-  P-D integral      4.48007131224e-05
+  P-D integral      2.03855096747e-05
   Solution status   feasible
                     68279.0358011 (objective)
                     0 (bound viol.)
                     0 (int. viol.)
                     0 (row viol.)
-  Timing            0.02 (total)
+  Timing            0.01 (total)
                     0.00 (presolve)
                     0.00 (solve)
                     0.00 (postsolve)
