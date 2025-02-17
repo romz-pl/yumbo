@@ -7,7 +7,7 @@ Yumbo is a sophisticated scheduling and resource allocation tool aimed at projec
 
 ## Running system
 
-The running system is available on teh Streamlit Community Cloud, see https://yumbo-ampl.streamlit.app/
+The running system is available on the Streamlit Community Cloud, see https://yumbo-ampl.streamlit.app/
 
 ## Features
 1. **Optimal Schedule Generation**:
