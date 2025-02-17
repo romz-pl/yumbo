@@ -59,7 +59,7 @@ def show_overflow():
 
 
 @st.cache_resource(max_entries=1000)
-def save_to_compressed_file(df, file_name):
+def save_to_compressed_file(df, schedule_file_name):
     f_tmp = tempfile.NamedTemporaryFile(
         mode='w+',
         prefix="yumbo-",
@@ -80,7 +80,7 @@ def save_to_compressed_file(df, file_name):
         ampl_model_run = f.read()
 
     with zipfile.ZipFile(f_tmp.name, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
-        zf.writestr(f"{file_name}.csv", csv)
+        zf.writestr(f"{schedule_file_name}.csv", csv)
         zf.writestr("ampl_data_file.dat", ampl_data_file)
         zf.writestr("solver_log.txt", solver_log)
         zf.writestr("model.ampl", ampl_model)
@@ -90,7 +90,7 @@ def save_to_compressed_file(df, file_name):
         buf_zip = f.read()
 
     with zipfile.ZipFile(f_tmp.name, 'w', compression=zipfile.ZIP_BZIP2, compresslevel=9) as zf:
-        zf.writestr(f"{file_name}.csv", csv)
+        zf.writestr(f"{schedule_file_name}.csv", csv)
         zf.writestr("ampl_data_file.dat", ampl_data_file)
         zf.writestr("solver_log.txt", solver_log)
         zf.writestr("model.ampl", ampl_model)
@@ -103,9 +103,9 @@ def save_to_compressed_file(df, file_name):
     return buf_zip, buf_bz2
 
 
-@st.fragment()
-def download_results(df, file_name):
-    buf_zip, buf_bz2 = save_to_compressed_file(df, file_name)
+
+def download_results(df, schedule_file_name):
+    buf_zip, buf_bz2 = save_to_compressed_file(df, schedule_file_name)
 
     file_name = f"{uuid.uuid4().hex}.zip"
     size_in_Kib = len(buf_zip) / 1024
@@ -124,7 +124,7 @@ def download_results(df, file_name):
     )
 
 
-
+@st.fragment()
 def show_full_schedule(as_html):
     if not st.session_state.show["summary_full_schedule"]:
         return
@@ -133,10 +133,10 @@ def show_full_schedule(as_html):
 
     if st.checkbox("Show as multiples of a quarter", value=False):
         df = (st.session_state.schedule * 4).astype("uint8")
-        file_name = "schedule_quarters"
+        schedule_file_name = "schedule_quarters"
     else:
         df = st.session_state.schedule
-        file_name = "schedule_hours"
+        schedule_file_name = "schedule_hours"
 
     # .strftime('%a') Returns 'Mon', 'Tue', etc.
     # .strftime('%A') Returns 'Monday', 'Tuesday', etc.
@@ -152,7 +152,7 @@ def show_full_schedule(as_html):
     # Always display the dataframe as a Streamlit table without styles to avoid the above error.
     st.dataframe(df, use_container_width=False, hide_index=True)
 
-    download_results(df, file_name)
+    download_results(df, schedule_file_name)
 
     df.drop(columns="Date", inplace=True)
     df.drop(columns="Weekday", inplace=True)
