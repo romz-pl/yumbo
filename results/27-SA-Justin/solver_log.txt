@@ -1,0 +1,108 @@
+17 February 2025, 10:40:32 AM
+
+max_context = 2
+tva cells:	0 at level 0
+		24 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 1, o = 0
+0 variables, 0 constraints, 0 objectives
+max_context = 3
+tva cells:	0 at level 0
+		34 at levels above 0
+tva_hcl = 8, tva_len = 256
+rewrites: m = 14, o = 16
+166 variables, 248 constraints, 1 objectives
+830 nonzeros
+
+Presolve eliminates 243 constraints and 4 variables.
+"option presolve 10;" used, but "option presolve 2;" would suffice.
+Adjusted problem:
+162 variables:
+	53 binary variables
+	109 integer variables
+5 constraints, all linear; 162 nonzeros
+	5 equality constraints
+1 linear objective; 162 nonzeros.
+
+presolve results:
+	variables omitted:	4
+	constraints omitted:	243
+	ranges relaxed:		126
+	bounds improved:	279
+	nba cycles:		1
+	bound row scans:	70
+	row-scan updates:	0
+HiGHS 1.8.1:   tech:outlev = 1
+Running HiGHS 1.8.1 (git hash: 4a7f24a): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [1e+00, 1e+00]
+  Cost   [1e+00, 4e+00]
+  Bound  [1e+00, 6e+01]
+  RHS    [4e+01, 8e+01]
+Presolving model
+5 rows, 162 cols, 162 nonzeros  0s
+4 rows, 123 cols, 123 nonzeros  0s
+4 rows, 123 cols, 123 nonzeros  0s
+
+Solving MIP model with:
+   4 rows
+   123 cols (53 binary, 70 integer, 0 implied int., 0 continuous)
+   123 nonzeros
+MIP-Timing:     0.00081 - starting analytic centre calculation
+
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic; L => Sub-MIP;
+     P => Empty MIP; R => Randomized rounding; S => Solve LP; T => Evaluate node; U => Unbounded;
+     z => Trivial zero; l => Trivial lower; u => Trivial upper; p => Trivial point
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   498.1429511     inf                  inf        0      0      0         0     0.0s
+ T       0       0         0   0.00%   498.1429511     680.9298974       26.84%        0      0      0         4     0.0s
+         1       0         1 100.00%   680.9298974     680.9298974        0.00%        0      0      0         4     0.0s
+
+Solving report
+  Status            Optimal
+  Primal bound      680.929897377
+  Dual bound        680.929897377
+  Gap               0% (tolerance: 0.01%)
+  P-D integral      5.18403456549e-06
+  Solution status   feasible
+                    680.929897377 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            0.00 (total)
+                    0.00 (presolve)
+                    0.00 (solve)
+                    0.00 (postsolve)
+  Max sub-MIP depth 0
+  Nodes             1
+  Repair LPs        0 (0 feasible; 0 iterations)
+  LP iterations     4 (total)
+                    0 (strong br.)
+                    0 (separation)
+                    0 (heuristics)
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+HiGHS 1.8.1: optimal solution; objective 680.9298974
+4 simplex iterations
+1 branching nodes
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
+max_context = 3
+tva cells:	0 at level 0
+		25 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 14, o = 16
