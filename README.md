@@ -5,6 +5,10 @@
 ## Overview
 Yumbo is a sophisticated scheduling and resource allocation tool aimed at project managers, solution architects, and other professionals managing multiple tasks or projects simultaneously. The software focuses on the optimal generation of daily schedules while adhering to business rules and constraints.
 
+## Running system
+
+The running system is available on teh Streamlit Community Cloud, see https://yumbo-ampl.streamlit.app/
+
 ## Features
 1. **Optimal Schedule Generation**:
    - Balances overlapping tasks and independent start/end dates.
