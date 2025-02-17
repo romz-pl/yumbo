@@ -1,0 +1,112 @@
+# AMPL MODEL: ./res/solid.ampl
+
+# Timestamp: 17 February 2025, 10:27:22 AM
+
+param MAXWORK := 32;
+
+param:
+TNAME: TWORK :=
+'alpha2.pe' 40
+'alpha2.pf' 40
+'alpha2.pm' 160
+'beta2.pe' 200
+'beta2.pf' 160
+'beta2.pm' 320
+'juliet2.pf' 40
+'juliet2.pm' 200;
+
+set TSCOPE['alpha2.pe'] :=
+28 29 30 31 32
+;
+
+set TSCOPE['alpha2.pf'] :=
+80 81 84 85 86 87 88 91 92
+;
+
+set TSCOPE['alpha2.pm'] :=
+35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72 73 74 77 78 79
+;
+
+set TSCOPE['beta2.pe'] :=
+7 8 9 10 11 14 15 16
+;
+
+set TSCOPE['beta2.pf'] :=
+198 199 200 203 204 205 206 207 210 211 212 213 214 217
+;
+
+set TSCOPE['beta2.pm'] :=
+17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72 73 74 77 78 79 80 81 84 85 86
+87 88 91 92 93 94 95 98 99 100 101 102 105 106 107 108 109 112 113 114 115 116 119 120 121 123 126 127 128 129 130 133 134 135 136 137 140 141 142 143 144 147 148 149 150 151 154 155 156 157
+158 161 162 163 164 165 168 169 170 171 172 175 176 177 178 179 182 183 184 185 186 189 190 191 192 193 196 197
+;
+
+set TSCOPE['juliet2.pf'] :=
+84 85 86 87 88 91 92
+;
+
+set TSCOPE['juliet2.pm'] :=
+3 4 7 8 9 10 11 14 15 16 17 18 21 22 23 24 25 28 29 30 31 32 35 36 37 38 39 42 43 44 45 46 49 50 51 52 53 56 57 58 59 60 63 64 65 66 67 70 71 72
+73 74 77 78 79 80 81
+;
+
+set ENAME :=
+'PM.Henry';
+
+set ASSIGN :=
+('PM.Henry',*)
+'alpha2.pe'
+'alpha2.pf'
+'alpha2.pm'
+'beta2.pe'
+'beta2.pf'
+'beta2.pm'
+'juliet2.pf'
+'juliet2.pm';
+
+param:
+XBID: XBEXPERT XBTASK XBS XBE XBL XBU :=
+1 'PM.Henry' 'alpha2.pe' 28 33 8 9
+2 'PM.Henry' 'alpha2.pf' 80 92 4 5
+3 'PM.Henry' 'alpha2.pm' 34 79 4 5
+4 'PM.Henry' 'beta2.pe' 6 16 25 26
+5 'PM.Henry' 'beta2.pf' 198 217 11 12
+6 'PM.Henry' 'beta2.pm' 17 197 2 3
+7 'PM.Henry' 'juliet2.pf' 83 92 5 6
+8 'PM.Henry' 'juliet2.pm' 2 82 3 4;
+
+param:
+EBID: EBEXPERT EBS EBE EBL EBU :=
+;
+
+param:
+PNAME: PERS PERE :=
+'Jan.25' 1 16
+'Feb.25' 17 45
+'Mar.25' 46 76
+'Apr.25' 77 105
+'May.25' 106 139
+'Jun.25' 140 170
+'Jul.25' 171 199
+'Aug.25' 200 230
+'Sep.25' 231 259
+'Oct.25' 260 289
+'Nov.25' 290 317
+'Dec.25' 318 346;
+
+param:
+EXPPER: PBL PBU :=
+['PM.Henry',*]
+'Apr.25' 0 720
+'Aug.25' 0 720
+'Dec.25' 0 720
+'Feb.25' 0 720
+'Jan.25' 0 720
+'Jul.25' 0 720
+'Jun.25' 0 720
+'Mar.25' 0 720
+'May.25' 0 720
+'Nov.25' 0 720
+'Oct.25' 0 720
+'Sep.25' 0 720;
+
