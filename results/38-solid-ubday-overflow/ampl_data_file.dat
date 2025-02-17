@@ -1,6 +1,6 @@
 # AMPL MODEL: ./res/solid-ubday-overflow.ampl
 
-# Timestamp: 09 February 2025, 19:06:56 PM
+# Timestamp: 17 February 2025, 10:49:25 AM
 
 param MAXWORK := 32;
 
@@ -11,8 +11,7 @@ TNAME: TWORK :=
 'botany' 1600
 'history' 1600
 'math' 1600
-'zoology' 1600
-;
+'zoology' 1600;
 
 set TSCOPE['archaeology'] :=
 1 2 3 4 5 8 9 11 12 15 16 17 18 19 22 23 24 25 26 29 30 31 32 33 36 37 38 39 40 43 44 45 46 47 50 51 52 53 54 57 58 59 60 61 64 65 66 67 68 71
@@ -47,8 +46,7 @@ set TSCOPE['zoology'] :=
 set ENAME :=
 'Izydor'
 'Jeremiusz'
-'Maurycy'
-;
+'Maurycy';
 
 set ASSIGN :=
 ('Izydor',*)
@@ -59,23 +57,19 @@ set ASSIGN :=
 ('Maurycy',*)
 'biology'
 'botany'
-'zoology'
-;
+'zoology';
 
 param:
 XBID: XBEXPERT XBTASK XBS XBE XBL XBU :=
-
 ;
 
 param:
 UBID: UBEXPERT UBS UBE UBL UBU :=
 1 'Jeremiusz' 1 77 2 2
-2 'Maurycy' 1 77 3 3
-;
+2 'Maurycy' 1 77 3 3;
 
 param:
 EBID: EBEXPERT EBS EBE EBL EBU :=
-
 ;
 
 param:
@@ -84,10 +78,9 @@ PNAME: PERS PERE :=
 '25.Feb' 32 60
 '25.Mar' 61 91
 '25.Apr' 92 120
-'25.May' 121 154
-;
+'25.May' 121 154;
 
 param:
 EXPPER: PBL PBU :=
-
 ;
+
