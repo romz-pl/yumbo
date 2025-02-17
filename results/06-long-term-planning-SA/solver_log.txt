@@ -1,4 +1,4 @@
-11 February 2025, 17:41:52 PM
+17 February 2025, 09:57:31 AM
 
 max_context = 2
 tva cells:	0 at level 0
@@ -59,7 +59,7 @@ presolving (2 rounds: 2 fast, 1 medium, 1 exhaustive):
  0 implications, 0 cliques
 presolved problem has 214 variables (0 bin, 214 int, 0 impl, 0 cont) and 7 constraints
       7 constraints of type <linear>
-Presolving Time: 0.02
+Presolving Time: 0.01
 
  time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. 
 p 0.0s|     1 |     0 |     0 |     - |shiftand|   0 | 214 |   7 |   7 |   0 |  0 |   0 |   0 | 8.085046e+03 | 1.068298e+04 |  32.13%| unknown
@@ -67,7 +67,7 @@ p 0.0s|     1 |     0 |     0 |     - |shiftand|   0 | 214 |   7 |   7 |   0 |  
   0.0s|     1 |     0 |     8 |     - |  8409k |   0 | 214 |   7 |   7 |   0 |  0 |   0 |   0 | 1.004473e+04 | 1.004473e+04 |   0.00%| unknown
 
 SCIP Status        : problem is solved [optimal solution found]
-Solving Time (sec) : 0.02
+Solving Time (sec) : 0.01
 Solving Nodes      : 1
 Primal Bound       : +1.00447309306525e+04 (2 solutions)
 Dual Bound         : +1.00447309306525e+04
