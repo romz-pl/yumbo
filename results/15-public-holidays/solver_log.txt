@@ -1,0 +1,33 @@
+17 February 2025, 10:09:22 AM
+
+max_context = 2
+tva cells:	0 at level 0
+		24 at levels above 0
+tva_hcl = 7, tva_len = 128
+rewrites: m = 1, o = 0
+0 variables, 0 constraints, 0 objectives
+max_context = 3
+tva cells:	0 at level 0
+		34 at levels above 0
+tva_hcl = 8, tva_len = 256
+rewrites: m = 14, o = 16
+27 variables, 36 constraints, 1 objectives
+108 nonzeros
+
+Presolve eliminates 36 constraints and 27 variables.
+"option presolve 10;" used, but "option presolve 2;" would suffice.
+Adjusted problem:
+0 variables;
+0 constraints
+1 linear objective; 0 nonzeros.
+
+presolve results:
+	variables omitted:	27
+	constraints omitted:	36
+	ranges relaxed:		0
+	bounds improved:	0
+	nba cycles:		1
+	bound row scans:	6
+	row-scan updates:	0
+Solution determined by presolve;
+objective objective_function = 1585.191795.

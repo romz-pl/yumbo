@@ -1,0 +1,62 @@
+# AMPL MODEL: ./res/solid.ampl
+
+# Timestamp: 17 February 2025, 10:09:22 AM
+
+param MAXWORK := 32;
+
+param:
+TNAME: TWORK :=
+'aaa' 288
+'bbb' 288
+'ccc' 288;
+
+set TSCOPE['aaa'] :=
+1 2 4 5 8 9 10 11 12
+;
+
+set TSCOPE['bbb'] :=
+2 4 5 8 9 10 11 12 15
+;
+
+set TSCOPE['ccc'] :=
+4 5 8 9 10 11 12 15 16
+;
+
+set ENAME :=
+'Zbigniew'
+'Ździsław'
+'Żaneta';
+
+set ASSIGN :=
+('Zbigniew',*)
+'ccc'
+('Ździsław',*)
+'bbb'
+('Żaneta',*)
+'aaa';
+
+param:
+XBID: XBEXPERT XBTASK XBS XBE XBL XBU :=
+;
+
+param:
+EBID: EBEXPERT EBS EBE EBL EBU :=
+;
+
+param:
+PNAME: PERS PERE :=
+'Jan.25' 1 17
+'Feb.25' 18 46;
+
+param:
+EXPPER: PBL PBU :=
+['Zbigniew',*]
+'Feb.25' 0 720
+'Jan.25' 0 720
+['Ździsław',*]
+'Feb.25' 0 720
+'Jan.25' 0 720
+['Żaneta',*]
+'Feb.25' 0 720
+'Jan.25' 0 720;
+
