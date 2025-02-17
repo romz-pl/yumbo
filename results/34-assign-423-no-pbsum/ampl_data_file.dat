@@ -1,6 +1,6 @@
 # AMPL MODEL: ./res/solid.ampl
 
-# Timestamp: 09 February 2025, 17:57:21 PM
+# Timestamp: 17 February 2025, 10:46:31 AM
 
 param MAXWORK := 32;
 
@@ -286,8 +286,7 @@ TNAME: TWORK :=
 'zulu2.pm' 360
 'zulu2.se' 200
 'zulu2.sf' 40
-'zulu2.sm' 80
-;
+'zulu2.sm' 80;
 
 set TSCOPE['alpha.f'] :=
 92 93 94 97 98 99 100 101 104 105 106 107 108 111 112 113 114 115 118 119 120 122
@@ -1625,8 +1624,7 @@ set ENAME :=
 'SA.Martha'
 'SA.Melanie'
 'SA.Peter'
-'SA.Robert'
-;
+'SA.Robert';
 
 set ASSIGN :=
 ('DEV.Adam',*)
@@ -2090,8 +2088,7 @@ set ASSIGN :=
 'oscar.m'
 'oscar.se'
 'oscar.sf'
-'oscar.sm'
-;
+'oscar.sm';
 
 param:
 XBID: XBEXPERT XBTASK XBS XBE XBL XBU :=
@@ -2279,12 +2276,10 @@ XBID: XBEXPERT XBTASK XBS XBE XBL XBU :=
 182 'SA.Robert' 'november.sm' 166 364 0 1
 183 'SA.Robert' 'oscar.se' 176 190 3 4
 184 'SA.Robert' 'oscar.sf' 365 396 1 2
-185 'SA.Robert' 'oscar.sm' 191 364 0 1
-;
+185 'SA.Robert' 'oscar.sm' 191 364 0 1;
 
 param:
 EBID: EBEXPERT EBS EBE EBL EBU :=
-
 ;
 
 param:
@@ -2300,10 +2295,9 @@ PNAME: PERS PERE :=
 'Sep.25' 230 258
 'Oct.25' 259 288
 'Nov.25' 289 316
-'Dec.25' 317 345
-;
+'Dec.25' 317 345;
 
 param:
 EXPPER: PBL PBU :=
-
 ;
+
