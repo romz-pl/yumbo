@@ -1,4 +1,4 @@
-11 February 2025, 20:17:47 PM
+17 February 2025, 10:05:20 AM
 
 max_context = 2
 tva cells:	0 at level 0
@@ -42,7 +42,7 @@ presolving (2 rounds: 2 fast, 1 medium, 1 exhaustive):
  0 implications, 0 cliques
 presolved problem has 662 variables (662 bin, 0 int, 0 impl, 0 cont) and 13 constraints
      13 constraints of type <linear>
-Presolving Time: 0.01
+Presolving Time: 0.00
  Consclassifier "nonzeros" yields a classification with 13  different constraint classes 
  Consclassifier "constypes" yields a classification with 1 different constraint classes 
  Consclassifier "constypes according to miplib" yields a classification with 1 different constraint classes 
@@ -74,7 +74,7 @@ Found 514 finished decompositions.
 Measured running time per detector:
 Detector consclass                 worked on      511 finished decompositions and took a total time of      0.002
 Detector neighborhoodmaster        worked on        1 finished decompositions and took a total time of      0.000
-Detector connectedbase             worked on      513 finished decompositions and took a total time of      0.013
+Detector connectedbase             worked on      513 finished decompositions and took a total time of      0.012
 Detector varclass                  worked on        1 finished decompositions and took a total time of      0.000
 Detection Time: 0.04
 
