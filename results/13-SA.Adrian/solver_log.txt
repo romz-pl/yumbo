@@ -1,4 +1,4 @@
-11 February 2025, 20:50:06 PM
+17 February 2025, 10:07:14 AM
 
 max_context = 2
 tva cells:	0 at level 0
@@ -75,11 +75,11 @@ POSTPROCESSING of decompositions. Added 132 new decomps.
 Found 674 finished decompositions.
 Measured running time per detector:
 Detector postprocess               worked on      132 finished decompositions and took a total time of      0.002
-Detector consclass                 worked on      667 finished decompositions and took a total time of      0.002
+Detector consclass                 worked on      667 finished decompositions and took a total time of      0.004
 Detector neighborhoodmaster        worked on        1 finished decompositions and took a total time of      0.000
-Detector connectedbase             worked on      673 finished decompositions and took a total time of      0.019
+Detector connectedbase             worked on      673 finished decompositions and took a total time of      0.021
 Detector varclass                  worked on        5 finished decompositions and took a total time of      0.000
-Detection Time: 0.05
+Detection Time: 0.06
 
 A Dantzig-Wolfe reformulation is applied to solve the original problem.
 Chosen structure has 2 blocks, 64 master-only (static) variables, and 1 linking constraints.
