@@ -1,4 +1,4 @@
-11 February 2025, 20:55:49 PM
+17 February 2025, 10:06:18 AM
 
 max_context = 2
 tva cells:	0 at level 0
@@ -76,7 +76,7 @@ Detector consclass                 worked on      511 finished decompositions an
 Detector neighborhoodmaster        worked on        1 finished decompositions and took a total time of      0.000
 Detector connectedbase             worked on      513 finished decompositions and took a total time of      0.015
 Detector varclass                  worked on        1 finished decompositions and took a total time of      0.000
-Detection Time: 0.06
+Detection Time: 0.05
 
 A Dantzig-Wolfe reformulation is applied to solve the original problem.
 Chosen structure has 12 blocks and 0 linking constraints.
