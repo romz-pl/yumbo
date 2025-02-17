@@ -1,4 +1,4 @@
-11 February 2025, 20:35:45 PM
+17 February 2025, 10:02:58 AM
 
 max_context = 2
 tva cells:	0 at level 0
@@ -71,7 +71,7 @@ dec_neighborhoodmaster found 1 new partialdec
 POSTPROCESSING of decompositions. Added 0 new decomps. 
 Found 518 finished decompositions.
 Measured running time per detector:
-Detector consclass                 worked on      513 finished decompositions and took a total time of      0.003
+Detector consclass                 worked on      513 finished decompositions and took a total time of      0.002
 Detector neighborhoodmaster        worked on        1 finished decompositions and took a total time of      0.000
 Detector connectedbase             worked on      517 finished decompositions and took a total time of      0.012
 Detector varclass                  worked on        3 finished decompositions and took a total time of      0.000
