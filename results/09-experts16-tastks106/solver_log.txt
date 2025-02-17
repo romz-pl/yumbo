@@ -1,4 +1,4 @@
-11 February 2025, 20:20:44 PM
+17 February 2025, 10:02:02 AM
 
 max_context = 2
 tva cells:	0 at level 0
@@ -49,7 +49,7 @@ Solving MIP model with:
    22313 rows
    19512 cols (9708 binary, 9804 integer, 0 implied int., 0 continuous)
    63923 nonzeros
-MIP-Timing:        0.12 - starting analytic centre calculation
+MIP-Timing:        0.15 - starting analytic centre calculation
 
 Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic; L => Sub-MIP;
      P => Empty MIP; R => Randomized rounding; S => Solve LP; T => Evaluate node; U => Unbounded;
@@ -58,23 +58,23 @@ Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristi
         Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
 Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
 
-         0       0         0   0.00%   1204.072967     inf                  inf        0      0      0         0     0.1s
+         0       0         0   0.00%   1204.072967     inf                  inf        0      0      0         0     0.2s
  R       0       0         0   0.00%   123434.892709   123515.002537      0.06%        0      0      0      4128     0.3s
- L       0       0         0   0.00%   123434.892709   123434.892709      0.00%     1695    221    350      5368     3.1s
-         1       0         1 100.00%   123434.892709   123434.892709      0.00%     1695    221    350      5815     3.1s
+ L       0       0         0   0.00%   123434.892709   123434.892709      0.00%     1695    221    350      5368     3.3s
+         1       0         1 100.00%   123434.892709   123434.892709      0.00%     1695    221    350      5815     3.3s
 
 Solving report
   Status            Optimal
   Primal bound      123434.892709
   Dual bound        123434.892709
   Gap               0% (tolerance: 0.01%)
-  P-D integral      0.00185426407772
+  P-D integral      0.00192683138492
   Solution status   feasible
                     123434.892709 (objective)
                     0 (bound viol.)
                     0 (int. viol.)
                     0 (row viol.)
-  Timing            3.14 (total)
+  Timing            3.31 (total)
                     0.00 (presolve)
                     0.00 (solve)
                     0.00 (postsolve)
