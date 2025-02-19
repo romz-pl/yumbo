@@ -195,9 +195,21 @@ def read_xbday(xlsx, mprob):
     return mprob
 
 
+def check_ubday(df, mprob):
+    delta = set(df["Expert"]) - set(mprob["expert"]["Name"])
+    if len(delta) > 0:
+        raise Exception(f"Found {len(delta)} unknown expert(s) in UBDAY!")
+
+    invalid = df["Start"] > df["End"]
+    if invalid.any():
+        invalid_rows = df[invalid]
+        raise Exception(f"Found {len(invalid_rows)} Start date after End in UBDAY!")
+
+
 def read_ubday(xlsx, mprob):
     df = xlsx.parse(sheet_name="ubday", usecols="A:E").sort_values("Expert")
     df = parse_date_columns(df, ["Start", "End"])
+    check_ubday(df, mprob)
     mprob["ubday"] = df
     return mprob
 
