@@ -99,6 +99,11 @@ def add_days_and_workdays(df, start, end, mprob):
     return df
 
 
+def get_today(mprob):
+    today = mprob["misc"].at[0, "Today"]
+
+    return pd.to_datetime(today, format=glb.format())
+
 
 def read_task(xlsx, mprob):
     df = xlsx.parse(sheet_name="task", usecols="A:D").sort_values("Name")
@@ -167,10 +172,20 @@ def read_pbsum(xlsx, mprob):
     return mprob
 
 
+
+def check_holiday(df, mprob):
+    today = get_today(mprob)
+    invalid_dates = df['Date'] <= today
+    if invalid_dates.any():
+        invalid_rows = df[invalid_dates]
+        raise Exception(f"Found {len(invalid_rows)} holiday dates before today ({today.strftime(glb.format())})")
+
+
 def read_holiday(xlsx, mprob):
     df = xlsx.parse(sheet_name="holiday", usecols="A:A")
     df = parse_date_columns(df, ["Date"])
     df.sort_values("Date", inplace=True)
+    check_holiday(df, mprob)
     mprob["holiday"] = df
     return mprob
 
@@ -265,8 +280,8 @@ def read_excel_file(file_data, git_hash):
 
         mprob = dict()
         xlsx = pd.ExcelFile(f)
-        mprob = read_holiday(xlsx, mprob)
         mprob = read_misc(xlsx, mprob)
+        mprob = read_holiday(xlsx, mprob)
         mprob = read_task(xlsx, mprob)
         mprob = read_xbday(xlsx, mprob)
         mprob = read_ubday(xlsx, mprob)
