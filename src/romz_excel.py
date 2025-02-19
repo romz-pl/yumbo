@@ -108,12 +108,12 @@ def check_task(df, mprob):
     invalid = df["Start"] > df["End"]
     if invalid.any():
         invalid_rows = df[invalid]
-        raise Exception(f"Found {len(invalid_rows)} task's Start date after End")
+        raise Exception(f"Found {len(invalid_rows)} task's Start date after End!")
 
     invalid = df["End"] <= get_today(mprob)
     if invalid.any():
         invalid_rows = df[invalid]
-        raise Exception(f"Found {len(invalid_rows)} task's End date before Today")
+        raise Exception(f"Found {len(invalid_rows)} task's End date before Today!")
 
 
 def read_task(xlsx, mprob):
@@ -136,10 +136,37 @@ def read_expert(xlsx, mprob):
     return mprob
 
 
+def check_assign(df, mprob):
+    duplicates = df.duplicated().sum()
+    if duplicates > 0:
+        raise Exception(f"Found {duplicates} in assigments!")
+
+
+    delta = set(df["Expert"]) - set(mprob["expert"]["Name"])
+    if len(delta) > 0:
+        raise Exception(f"Found at least {len(delta)} assigment(s) to unknown expert(s)!")
+
+
+    delta = set(mprob["expert"]["Name"]) - set(df["Expert"])
+    if len(delta) > 0:
+        raise Exception(f"Found {len(delta)} expert(s) without an assigned task!")
+
+
+    delta = set(df["Task"]) - set(mprob["task"]["Name"])
+    if len(delta) > 0:
+        raise Exception(f"Found at least {len(delta)} assigment(s) to unknown task(s)!")
+
+
+    delta = set(mprob["task"]["Name"]) - set(df["Task"])
+    if len(delta) > 0:
+        raise Exception(f"Found {len(delta)} task(s) without an assigned expert!")
+
+
 def read_assign(xlsx, mprob):
     df = xlsx.parse(sheet_name="assign", usecols="A:B").sort_values(["Expert", "Task"])
     df.set_index(["Expert", "Task"], drop=False, inplace=True, verify_integrity=True)
     df.index.names = ["Elevel", "Tlevel"]
+    check_assign(df, mprob)
     mprob["assign"] = df
     return mprob
 
@@ -189,7 +216,7 @@ def check_holiday(df, mprob):
     invalid = df["Date"] <= get_today(mprob)
     if invalid.any():
         invalid_rows = df[invalid]
-        raise Exception(f"Found {len(invalid_rows)} holiday dates before Today")
+        raise Exception(f"Found {len(invalid_rows)} holiday dates before Today!")
 
 
 def read_holiday(xlsx, mprob):
