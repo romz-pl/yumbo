@@ -171,10 +171,27 @@ def read_assign(xlsx, mprob):
     return mprob
 
 
+def check_xbday(df, mprob):
+    delta = set(df["Expert"]) - set(mprob["expert"]["Name"])
+    if len(delta) > 0:
+        raise Exception(f"Found {len(delta)} unknown expert(s) in XBDAY!")
+
+    delta = set(df["Task"]) - set(mprob["task"]["Name"])
+    if len(delta) > 0:
+        raise Exception(f"Found {len(delta)} unknown task(s) in XBDAY!")
+
+    invalid = df["Start"] > df["End"]
+    if invalid.any():
+        invalid_rows = df[invalid]
+        raise Exception(f"Found {len(invalid_rows)} Start date after End in XBDAY!")
+
+
+
 def read_xbday(xlsx, mprob):
     df = xlsx.parse(sheet_name="xbday", usecols="A:F").sort_values(["Expert", "Task"])
     df = parse_date_columns(df, ["Start", "End"])
     mprob["xbday"] = df
+    check_xbday(df, mprob)
     return mprob
 
 
@@ -320,11 +337,11 @@ def read_excel_file(file_data, git_hash):
         xlsx = pd.ExcelFile(f)
         mprob = read_misc(xlsx, mprob)
         mprob = read_holiday(xlsx, mprob)
+        mprob = read_expert(xlsx, mprob)
         mprob = read_task(xlsx, mprob)
         mprob = read_xbday(xlsx, mprob)
         mprob = read_ubday(xlsx, mprob)
         mprob = read_period(xlsx, mprob)
-        mprob = read_expert(xlsx, mprob)
         mprob = read_ebday(xlsx, mprob)
         mprob = read_pbsum(xlsx, mprob)
         mprob = read_assign(xlsx, mprob)
