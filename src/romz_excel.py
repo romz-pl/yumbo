@@ -101,8 +101,19 @@ def add_days_and_workdays(df, start, end, mprob):
 
 def get_today(mprob):
     today = mprob["misc"].at[0, "Today"]
-
     return pd.to_datetime(today, format=glb.format())
+
+
+def check_task(df, mprob):
+    invalid = df["Start"] > df["End"]
+    if invalid.any():
+        invalid_rows = df[invalid]
+        raise Exception(f"Found {len(invalid_rows)} task's Start date after End")
+
+    invalid = df["End"] <= get_today(mprob)
+    if invalid.any():
+        invalid_rows = df[invalid]
+        raise Exception(f"Found {len(invalid_rows)} task's End date before Today")
 
 
 def read_task(xlsx, mprob):
@@ -112,6 +123,7 @@ def read_task(xlsx, mprob):
     df["Avg"] = df["Work"] / df["Workdays"]
     df.set_index("Name", drop=False, inplace=True, verify_integrity=True)
     df.index.name = "Nindex"
+    check_task(df, mprob)
     mprob["task"] = df
     return mprob
 
@@ -174,11 +186,10 @@ def read_pbsum(xlsx, mprob):
 
 
 def check_holiday(df, mprob):
-    today = get_today(mprob)
-    invalid_dates = df['Date'] <= today
-    if invalid_dates.any():
-        invalid_rows = df[invalid_dates]
-        raise Exception(f"Found {len(invalid_rows)} holiday dates before today ({today.strftime(glb.format())})")
+    invalid = df["Date"] <= get_today(mprob)
+    if invalid.any():
+        invalid_rows = df[invalid]
+        raise Exception(f"Found {len(invalid_rows)} holiday dates before Today")
 
 
 def read_holiday(xlsx, mprob):
