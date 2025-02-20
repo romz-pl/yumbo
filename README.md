@@ -1,4 +1,4 @@
-# Yumbo. Scheduling, Planning and Resource Allocation
+# 📅 Yumbo. Scheduling, Planning and Resource Allocation
 
 ## Authors: Zbigniew Romanowski; Paweł Koczyk; Jacek Pikul;
 
