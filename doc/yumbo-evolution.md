@@ -7,8 +7,8 @@ Below is the chronological order of the development stages:
 - Natural language was used to formulate the business problem.
 - The process of formulating the business problem with a mathematical rigor has been set in motion.
 - To help formulate the problem, the tools of operations research were chosen.
-- **Linear programming was used to develop the first version of the mathematical model.
-- The more precise version of the mathematical model using integer linear programming was proposed.**
+- **Linear programming was used to develop the first version of the mathematical model.**
+- The more precise version of the mathematical model using integer linear programming was proposed.
 - **The objective function that favors the early completion of the task was invented.**
 - Business requirements were incorporated into the mathematical model as integer linear problem constraints.
 - Constraints XBDAY, UBDAY, PBSUM, XBSUM, UBSUM were introduced to represent the requirements and expectations of the business.
