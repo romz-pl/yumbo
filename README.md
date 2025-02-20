@@ -1,7 +1,5 @@
 # 📅 Yumbo. Scheduling, Planning and Resource Allocation
 
-## Authors: Zbigniew Romanowski; Paweł Koczyk; Jacek Pikul;
-
 Yumbo is a sophisticated scheduling and resource allocation tool aimed at project managers, solution architects, and other professionals managing multiple tasks or projects simultaneously. The software focuses on the optimal generation of daily schedules while adhering to business rules and constraints.
 
 ## Running system
@@ -79,6 +77,12 @@ Yumbo integrates various tools and libraries to ensure robust functionality and 
 Yumbo is available on the Streamlit Community Cloud at https://yumbo-ampl.streamlit.app/
 
 
+## Authors: 
+- Zbigniew Romanowski [romz@wp.pl](mailto:romz@wp.pl)
+- Paweł Koczyk [pk@koczyk.pl](mailto:pk@koczyk.pl)
+- Jacek Pikul
+
+
 ## Contributing
 Contributions are welcome! Please follow these steps:
 1. Fork the repository.
@@ -99,12 +103,6 @@ Contributions are welcome! Please follow these steps:
 
 ## License
 Yumbo is licensed under the [MIT License](LICENSE).
-
-
-## Contact
-For any inquiries or support, contact:
-- Zbigniew Romanowski: [romz@wp.pl](mailto:romz@wp.pl)
-- Paweł Koczyk: [pk@koczyk.pl](mailto:pk@koczyk.pl)
 
 
 ## Acknowledgments
