@@ -41,9 +41,10 @@ def show_stable(df, styles):
     st.dataframe(styled_df, hide_index=True)
 
     csv = glb.convert_df_to_csv(df)
+    size_in_Kib = len(csv) / 1024
 
     st.download_button(
-        label=f"Download schedule for :green[{df.name}] as CSV",
+        label=f"Download schedule for :green[{df.name}] as CSV -> {size_in_Kib:,.1f} KiB",
         data=csv,
         file_name=f"{st.session_state.mprob['uploaded_file_name']}_{df.name}_full_schedule.csv",
         mime="text/csv",
