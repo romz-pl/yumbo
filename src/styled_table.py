@@ -1,5 +1,6 @@
 import numpy as np
 import streamlit as st
+import uuid
 
 import glb
 
@@ -42,11 +43,12 @@ def show_stable(df, styles):
 
     csv = glb.convert_df_to_csv(df)
     size_in_Kib = len(csv) / 1024
+    file_name = f"{uuid.uuid4().hex}.csv"
 
     st.download_button(
-        label=f"Download schedule for :green[{df.name}] as CSV -> {size_in_Kib:,.1f} KiB",
+        label=f"Download schedule :green[{file_name}] -> {size_in_Kib:,.1f} KiB",
         data=csv,
-        file_name=f"{st.session_state.mprob['uploaded_file_name']}_{df.name}_full_schedule.csv",
+        file_name=file_name,
         mime="text/csv",
     )
 
