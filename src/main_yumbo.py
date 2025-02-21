@@ -45,7 +45,7 @@ def set_page_config():
 
 
 def show_page_header():
-    st.title(":red[Yumbo.] Scheduling, Planning and Resource Allocation")
+    st.title("📅 :red[Yumbo.] Scheduling, Planning and Resource Allocation")
     st.subheader("Zbigniew Romanowski, Paweł Koczyk, Jacek Pikul")
     st.markdown("Source code, documentation and sample Excel input files can be found on [Yumbo's](https://github.com/romz-pl/yambo) GitHub repository.")
     st.caption(f"git hash: :green[{st.session_state.git_hash}]")
