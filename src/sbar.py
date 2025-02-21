@@ -225,10 +225,13 @@ def customise_size_and_dpi():
         dpi = st.slider("Dpi", min_value=10, max_value=600, value=dpi_init, step=1)
 
         submitted = st.form_submit_button("Set sizes and DPI")
-        if submitted:
-            mprob["img"].loc[0, "Height"] = height
-            mprob["img"].loc[0, "Width"] = width
-            mprob["img"].loc[0, "Dpi"] = dpi
+
+
+    if submitted:
+        mprob["img"].loc[0, "Height"] = height
+        mprob["img"].loc[0, "Width"] = width
+        mprob["img"].loc[0, "Dpi"] = dpi
+        st.rerun()
 
 
 def customise_chart():
