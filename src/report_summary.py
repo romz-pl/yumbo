@@ -141,7 +141,7 @@ def show_full_schedule(as_html):
     # .strftime('%a') Returns 'Mon', 'Tue', etc.
     # .strftime('%A') Returns 'Monday', 'Tuesday', etc.
     df.insert(0, "Weekday", df.index.strftime('%a'))
-    df.insert(0, "Date", df.index.strftime("%Y-%m-%d"))
+    df.insert(0, "Date", df.index.strftime(glb.format()))
 
     #
     # streamlit.errors.StreamlitAPIException:

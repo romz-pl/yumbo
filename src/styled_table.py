@@ -26,7 +26,7 @@ def show_stable(df, styles):
 
     # Create temporary column for Weekday and Date
     df.insert(0, "Weekday", df.index.strftime('%a'))
-    df.insert(0, "Date", df.index.strftime("%Y-%m-%d"))
+    df.insert(0, "Date", df.index.strftime(glb.format()))
 
     styled_df = (
         df.style
