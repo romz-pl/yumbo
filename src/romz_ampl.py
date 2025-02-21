@@ -344,7 +344,7 @@ def solve_ampl(mm_hash):
 def solve():
     time_start = time.perf_counter()
 
-    mm_hash = st.session_state.mm_hash
+    mm_hash = glb.calc_mm_hash()
     solve_result, ampl_data_file, solver_log, schedule, overflow = solve_ampl(mm_hash)
 
     timestamp = pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")

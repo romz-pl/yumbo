@@ -11,8 +11,8 @@ import glb
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
-    combi_hash = st.session_state.combi_hash
-    buf = imgg(expert_name, days_off, combi_hash)
+    hash = glb.calc_mm_hash("imgg")
+    buf = imgg(expert_name, days_off, hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -22,7 +22,7 @@ def plot(expert_name, days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imgg(expert_name, days_off, combi_hash):
+def imgg(expert_name, days_off, hash):
     # Extract data from session state
     task = st.session_state.mprob["task"]
     assign = st.session_state.mprob["assign"]

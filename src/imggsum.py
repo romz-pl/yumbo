@@ -12,8 +12,8 @@ import glb
 def plot(days_off):
     time_start = time.perf_counter()
 
-    combi_hash = st.session_state.combi_hash
-    buf = imggsum(combi_hash)
+    hash = glb.calc_mm_hash("imgg")
+    buf = imggsum(hash)
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -23,7 +23,7 @@ def plot(days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imggsum(combi_hash):
+def imggsum(hash):
     df = st.session_state.mprob["task"]
 
     # Create figure and axis

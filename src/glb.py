@@ -12,34 +12,34 @@ def format():
 
 
 def img(col):
-    return st.session_state.mprob["img"].iloc[0][col]
+    return st.session_state.mprob["img"].loc[0, col]
 
 def imgb(col):
-    return st.session_state.mprob["imgb"].iloc[0][col]
+    return st.session_state.mprob["imgb"].loc[0, col]
 
 def imge(col):
-    return st.session_state.mprob["imge"].iloc[0][col]
+    return st.session_state.mprob["imge"].loc[0, col]
 
 def imgg(col):
-    return st.session_state.mprob["imgg"].iloc[0][col]
+    return st.session_state.mprob["imgg"].loc[0, col]
 
 def imgh(col):
-    return st.session_state.mprob["imgh"].iloc[0][col]
+    return st.session_state.mprob["imgh"].loc[0, col]
 
 def imgs(col):
-    return st.session_state.mprob["imgs"].iloc[0][col]
+    return st.session_state.mprob["imgs"].loc[0, col]
 
 def imgt(col):
-    return st.session_state.mprob["imgt"].iloc[0][col]
+    return st.session_state.mprob["imgt"].loc[0, col]
 
 def imgw(col):
-    return st.session_state.mprob["imgw"].iloc[0][col]
+    return st.session_state.mprob["imgw"].loc[0, col]
 
 def hours_per_day():
-    return st.session_state.mprob["misc"].iloc[0]["Hours per day"]
+    return st.session_state.mprob["misc"].loc[0, "Hours per day"]
 
 def today():
-    return (st.session_state.mprob["misc"].iloc[0]["Today"])
+    return (st.session_state.mprob["misc"].loc[0, "Today"])
     # return data["misc"].at[0, "Today"]
 
 def tomorrow():
@@ -99,7 +99,7 @@ def calc_git_hash():
     return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
 
 
-def calc_mm_hash(with_img):
+def calc_mm_hash(img_name = None):
     keys = [
         "expert",
         "task",
@@ -111,16 +111,18 @@ def calc_mm_hash(with_img):
         "pbsum",
         "holiday",
         "misc",
+        "img",
     ]
 
-    if with_img:
-        keys.append("img")
+    if img_name is not None:
+        keys.append(img_name)
+
 
     # Use git_hash to reflect changes to the code.
     git_hash = calc_git_hash()
 
     # Build input_data by joining the string representations
-    input_data = "".join(st.session_state.mprob[k].to_string() for k in keys)
+    input_data = "".join(st.session_state.mprob[k].to_csv() for k in keys)
 
     # Combine the git hash and the input data, encode, and compute the hash
     combined = git_hash + input_data

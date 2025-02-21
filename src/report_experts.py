@@ -116,7 +116,7 @@ def show_report():
             divider="green"
         )
 
-        mm_hash = st.session_state.mm_hash
+        mm_hash = glb.calc_mm_hash()
 
         if row["Chart"]:
             show_one_expert(expert_name)

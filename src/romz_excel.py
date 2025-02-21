@@ -278,52 +278,56 @@ def read_misc(xlsx, mprob):
 def read_img(xlsx, mprob):
     df = xlsx.parse(sheet_name="img", usecols="B:F")
     df = parse_date_columns(df, ["Start", "End"])
-    df["Width_init"] = df["Width"]
-    df["Height_init"] = df["Height"]
-    df["Dpi_init"] = df["Dpi"]
-    df["Start_init"] = df["Start"]
-    df["End_init"] = df["End"]
     mprob["img"] = df
+    mprob["img_init"] = df.copy()
     return mprob
 
 def read_imgh(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgh", usecols="B:D")
     mprob["imgh"] = df
+    mprob["imgh_init"] = df.copy()
     return mprob
 
 
 def read_imgt(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgt", usecols="B:D")
     mprob["imgt"] = df
+    mprob["imgt_init"] = df.copy()
     return mprob
 
 
 def read_imgs(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgs", usecols="B:B")
     mprob["imgs"] = df
+    mprob["imgs_init"] = df.copy()
     return mprob
 
 
 def read_imgg(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgg", usecols="B:D")
     mprob["imgg"] = df
+    mprob["imgg_init"] = df.copy()
     return mprob
 
 
 def read_imgw(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgw", usecols="B:D")
     mprob["imgw"] = df
+    mprob["imgw_init"] = df.copy()
     return mprob
 
 
 def read_imgb(xlsx, mprob):
     df = xlsx.parse(sheet_name="imgb", usecols="B:G")
     mprob["imgb"] = df
+    mprob["imgb_init"] = df.copy()
     return mprob
 
 
 def read_imge(xlsx, mprob):
-    mprob["imge"] = xlsx.parse(sheet_name="imge", usecols="B:B")
+    df = xlsx.parse(sheet_name="imge", usecols="B:B")
+    mprob["imge"] = df
+    mprob["imge_init"] = df.copy()
     return mprob
 
 

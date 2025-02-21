@@ -136,12 +136,6 @@ def init_sesion_variables():
     if 'git_hash' not in st.session_state:
         st.session_state.git_hash = 0
 
-    if 'mm_hash' not in st.session_state:
-        st.session_state.mm_hash = 0
-
-    if 'combi_hash' not in st.session_state:
-        st.session_state.combi_hash = 0
-
     if 'show' not in st.session_state:
         st.session_state.show = dict()
 
@@ -156,8 +150,6 @@ def upload():
             st.session_state.mprob["uploaded_file_name"] = uploaded_file.name
             st.session_state.show["tasks_init"] = init_show_tasks()
             st.session_state.show["experts_init"] = init_show_experts()
-            st.session_state.mm_hash = glb.calc_mm_hash(False)
-            st.session_state.combi_hash = glb.calc_mm_hash(True)
             sbar.show()
 
     return uploaded_file != None

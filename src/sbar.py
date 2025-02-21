@@ -111,7 +111,7 @@ def customise_date_range():
         format="YYYY-MM-DD",
         min_value=glb.tomorrow(),
         max_value=glb.last_day(),
-        value=mprob["img"].loc[0, "Start_init"],
+        value=mprob["img_init"].loc[0, "Start"],
     )
 
     mprob["img"].loc[0, "Start"] = pd.to_datetime(start)
@@ -121,10 +121,10 @@ def customise_date_range():
         format="YYYY-MM-DD",
         min_value=glb.tomorrow(),
         max_value=glb.last_day(),
-        value=mprob["img"].loc[0, "End_init"],
+        value=mprob["img_init"].loc[0, "End"],
     )
 
-    mprob["img"]["End"] = pd.to_datetime(end)
+    mprob["img"].loc[0, "End"] = pd.to_datetime(end)
 
 
 def customise_chart_colours():
@@ -132,22 +132,26 @@ def customise_chart_colours():
 
     # Mapping data keys to labels
     sections = [
-        ("imgt", "Tasks per day", "Bar:color", glb.imgt),
-        ("imgh", "Hours per day", "Bar:color", glb.imgh),
-        ("imgg", "Task's Gantt Chart", "Barh:color", glb.imgg),
-        ("imgw", "Invoicing Periods Workload", "Bar:color", glb.imgw),
+        ("imgt", "Tasks per day", "Bar:color"),
+        ("imgh", "Hours per day", "Bar:color"),
+        ("imgg", "Task's Gantt Chart", "Barh:color"),
+        ("imgw", "Invoicing Periods Workload", "Bar:color"),
     ]
 
     mprob = st.session_state.mprob
-    for key, label, col, fun in sections:
+    for key, label, col in sections:
         row = st.columns(2)
         row[0].write(label)
 
-        mprob[key][col] = row[1].color_picker(
+        new_color = row[1].color_picker(
             f"{key}:Color",
+            key=f"{key}:Color",
             label_visibility="collapsed",
-            value=fun(col),
+            value=mprob[f"{key}_init"].loc[0, col],
+
         )
+        mprob[key].loc[0, col] = new_color
+
 
 
 def customise_ampl():
@@ -215,13 +219,13 @@ def customise_size_and_dpi():
 
     mprob = st.session_state.mprob
     with st.form("my_form"):
-        width_init = float(mprob["img"].loc[0, "Width_init"])
+        width_init = float(mprob["img_init"].loc[0, "Width"])
         width = st.slider("Width", min_value=1.0, max_value=12.0, value=width_init, step=0.1, format="%.1f")
 
-        height_init = float(mprob["img"].loc[0, "Height_init"])
+        height_init = float(mprob["img_init"].loc[0, "Height"])
         height = st.slider("Height", min_value=1.0, max_value=12.0, value=height_init, step=0.1, format="%.1f")
 
-        dpi_init = int(mprob["img"].loc[0, "Dpi_init"])
+        dpi_init = int(mprob["img_init"].loc[0, "Dpi"])
         dpi = st.slider("Dpi", min_value=10, max_value=600, value=dpi_init, step=1)
 
         submitted = st.form_submit_button("Set sizes and DPI")
