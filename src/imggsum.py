@@ -5,6 +5,11 @@ import time
 
 import glb
 
+def imggsum_param(col):
+    # Yes, "imgg" is used, and not "imggsum"!
+    # Summary figures have the same colors as non-summary ones.
+    return st.session_state.mprob["imgg"].loc[0, col]
+
 #
 # Task's Gantt Chart (Summary)
 #
@@ -12,8 +17,17 @@ import glb
 def plot(days_off):
     time_start = time.perf_counter()
 
-    hash = glb.calc_mm_hash("imgg")
-    buf = imggsum(hash)
+    buf = imggsum(
+        st.session_state.git_hash,
+        st.session_state.mprob["task"],
+        glb.today(),
+        glb.img("Width"),
+        glb.img("Height"),
+        glb.img("Dpi"),
+        imggsum_param("Barh:color"),
+        imggsum_param("Barh:height"),
+        imggsum_param("Barh:alpha"),
+    )
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -23,13 +37,22 @@ def plot(days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imggsum(hash):
-    df = st.session_state.mprob["task"]
+def imggsum(
+        git_hash,
+        df,
+        today,
+        width,
+        height,
+        dpi,
+        barh_color,
+        barh_height,
+        barh_alpha,
+        ):
 
     # Create figure and axis
     fig = matplotlib_figure.Figure(
-        figsize=(glb.img("Width"), glb.img("Height")),
-        dpi=glb.img("Dpi")
+        figsize=(width, height),
+        dpi=dpi
     )
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
@@ -39,15 +62,15 @@ def imggsum(hash):
         y=df["Name"],
         width=df["Days"] - 1,
         left=df["Start"],
-        color=glb.imgg("Barh:color"),
-        height=glb.imgg("Barh:height"),
-        alpha=glb.imgg("Barh:alpha"),
+        color=barh_color,
+        height=barh_height,
+        alpha=barh_alpha,
     )
 
     # Configure x-axis
     ax.xaxis.set_major_locator(matplotlib_ticker.MaxNLocator(5, integer=True))
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
-    ax.set_xlim(left=glb.today())
+    ax.set_xlim(left=today)
 
     # Configure y-axis
     ax.yaxis.set_major_locator(matplotlib_ticker.MaxNLocator(5, integer=True))
