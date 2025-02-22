@@ -17,6 +17,7 @@ def plot(task, schedule, bounds):
     time_start = time.perf_counter()
 
     buf = imgb(
+        st.session_state.git_hash
         task,
         schedule,
         bounds,
@@ -40,6 +41,7 @@ def plot(task, schedule, bounds):
 
 @st.cache_resource(max_entries=1000)
 def imgb(
+        git_hash,
         task,
         schedule,
         bounds,
