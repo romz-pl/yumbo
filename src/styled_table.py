@@ -21,9 +21,10 @@ def format_cell(value):
 
 
 @st.cache_resource(max_entries=1000)
-def create_stable(df):
+def create_stable(df, df_name):
     """
     The index is hidden due to Streamlit version 1.42.0 limitations.
+    df_name is required for correct caching!
     """
 
     # Create a temporary DataFrame with additional columns (avoid modifying original df)
@@ -50,7 +51,7 @@ def create_stable(df):
 def show_stable(df):
     time_start = time.perf_counter()
 
-    styled_df, csv, size_in_Kib, file_name = create_stable(df)
+    styled_df, csv, size_in_Kib, file_name = create_stable(df, df.name)
 
     time_end = time.perf_counter()
     st.session_state.stats["S:Table:cnt"] += 1
@@ -62,6 +63,7 @@ def show_stable(df):
 
     st.download_button(
         label=f"Download schedule :green[{file_name}] -> {size_in_Kib:,.1f} KiB",
+        key=file_name,
         data=csv,
         file_name=file_name,
         mime="text/csv",
@@ -69,7 +71,11 @@ def show_stable(df):
 
 
 @st.cache_resource(max_entries=1000)
-def create_htable(df):
+def create_htable(df, df_name):
+    """
+    df_name is required for correct caching!
+    """
+
     # Define table styles
     styles = [
         {"selector": "tr:hover", "props": [("background-color", "#555555")]},
@@ -97,7 +103,7 @@ def create_htable(df):
 def show_htable(df):
     time_start = time.perf_counter()
 
-    styled_df = create_htable(df)
+    styled_df = create_htable(df, df.name)
 
     time_end = time.perf_counter()
     st.session_state.stats["H:Table:cnt"] += 1
