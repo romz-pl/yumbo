@@ -19,7 +19,6 @@ def hours_per_day():
 
 def today():
     return (st.session_state.mprob["misc"].loc[0, "Today"])
-    # return data["misc"].at[0, "Today"]
 
 def tomorrow():
     return (today() + pd.Timedelta(1, unit="D"))
@@ -97,9 +96,3 @@ def calc_mm_hash():
     mm_hash = hashlib.blake2s(mm_data.encode('utf-8')).hexdigest()
 
     return mm_hash
-
-
-@st.cache_data
-def convert_df_to_csv(df):
-    # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv(index=False).encode("utf-8")

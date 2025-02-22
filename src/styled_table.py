@@ -19,6 +19,16 @@ def format_cell(value):
     return value  # Return non-float values unchanged
 
 
+@st.cache_resource(max_entries=1000)
+def convert_df_to_csv(df):
+    # Cache the conversion to prevent computation on every rerun
+    csv = df.to_csv(index=False).encode("utf-8")
+    size_in_Kib = len(csv) / 1024
+    file_name = f"{uuid.uuid4().hex}.csv"
+
+    return csv, size_in_Kib, file_name
+
+
 def show_stable(df, styles):
     #
     # The "format_index" does not work with st.dataframe in Streamlit version 1.42.0!
@@ -41,9 +51,7 @@ def show_stable(df, styles):
     # Render the styled DataFrame as Streamlit dataframe
     st.dataframe(styled_df, hide_index=True)
 
-    csv = glb.convert_df_to_csv(df)
-    size_in_Kib = len(csv) / 1024
-    file_name = f"{uuid.uuid4().hex}.csv"
+    csv, size_in_Kib, file_name = convert_df_to_csv(df)
 
     st.download_button(
         label=f"Download schedule :green[{file_name}] -> {size_in_Kib:,.1f} KiB",
