@@ -14,9 +14,6 @@ def format():
 def img(col):
     return st.session_state.mprob["img"].loc[0, col]
 
-def imgb(col):
-    return st.session_state.mprob["imgb"].loc[0, col]
-
 def imge(col):
     return st.session_state.mprob["imge"].loc[0, col]
 

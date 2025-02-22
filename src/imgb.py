@@ -6,15 +6,30 @@ import time
 
 import glb
 
+def imgb_param(col):
+    return st.session_state.mprob["imgb"].loc[0, col]
+
 
 #
-# Plot task with its constrains
+# Plot task with its XBDAY constrains
 #
 def plot(task, schedule, bounds):
     time_start = time.perf_counter()
 
-    hash = glb.calc_mm_hash("imgb")
-    buf = imgb(task, schedule, bounds, hash)
+    buf = imgb(
+        task,
+        schedule,
+        bounds,
+        glb.img("Width"),
+        glb.img("Height"),
+        glb.img("Dpi"),
+        imgb_param("Plot:format"),
+        imgb_param("Plot:markeredgewidth"),
+        imgb_param("Step:linewidth"),
+        imgb_param("Fill:color"),
+        imgb_param("Fill:hatch"),
+        imgb_param("Fill:alpha"),
+    )
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -24,7 +39,20 @@ def plot(task, schedule, bounds):
 
 
 @st.cache_resource(max_entries=1000)
-def imgb(task, schedule, bounds, hash):
+def imgb(
+        task,
+        schedule,
+        bounds,
+        width,
+        height,
+        dpi,
+        plot_format,
+        plot_markeredgewidth,
+        step_linewidth,
+        fill_color,
+        fill_hatch,
+        fill_alpha,
+    ):
 
     # Generate task-specific data
     x_task = pd.date_range(start=task.Start, end=task.End, freq="D")
@@ -32,8 +60,8 @@ def imgb(task, schedule, bounds, hash):
 
     # Create figure and axis
     fig = matplotlib_figure.Figure(
-        figsize=(glb.img("Width"), glb.img("Height")),
-        dpi=glb.img("Dpi")
+        figsize=(width, height),
+        dpi=dpi
     )
 
     ax = fig.subplots()
@@ -42,10 +70,10 @@ def imgb(task, schedule, bounds, hash):
     ax.plot(
         x_task,
         y_task,
-        glb.imgb("Plot:format") + "-",
+        plot_format + "-",
         drawstyle='steps-mid',
-        markeredgewidth=glb.imgb("Plot:markeredgewidth"),
-        linewidth=glb.imgb("Step:linewidth"),
+        markeredgewidth=plot_markeredgewidth,
+        linewidth=step_linewidth,
         label=f"Task {task.Name}"
     )
 
@@ -61,12 +89,13 @@ def imgb(task, schedule, bounds, hash):
 
         delta = 0.1 if row.Lower == row.Upper else 0
 
-        ax.fill_between(bound_days,
+        ax.fill_between(
+            bound_days,
             row.Lower - delta,
             row.Upper + delta,
-            color=glb.imgb("Fill:color"),
-            hatch=glb.imgb("Fill:hatch"),
-            alpha=glb.imgb("Fill:alpha")
+            color=fill_color,
+            hatch=fill_hatch,
+            alpha=fill_alpha
         )
 
     # Set the limits.
