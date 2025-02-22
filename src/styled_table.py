@@ -29,10 +29,10 @@ def convert_df_to_csv(df):
     return csv, size_in_Kib, file_name
 
 
-def show_stable(df, styles):
+def show_stable(df):
     #
     # The "format_index" does not work with st.dataframe in Streamlit version 1.42.0!
-    # So, a temporray column "Date" has been added and the index has been hidden.
+    # So a temporray column "Date" was added and the index was hidden.
     #
 
     # Create temporary column for Weekday and Date
@@ -44,7 +44,6 @@ def show_stable(df, styles):
         .format(format_cell)
         # .format_index("{:%Y-%m-%d}", axis=0) It does not work!
         .apply(highlight_rows, axis=1)
-        .set_table_styles(styles, overwrite=True)
         .map(lambda _: 'color:LightBlue', subset=['Date', 'Weekday'])
     )
 
@@ -65,7 +64,15 @@ def show_stable(df, styles):
     df.drop(columns="Weekday", inplace=True)
 
 
-def show_htable(df, styles):
+def show_htable(df):
+
+    # Define table styles as a list for clarity
+    styles = [
+        {'selector': 'tr:hover', 'props': [('background-color', '#555555')]},
+        {'selector': 'td', 'props': 'text-align: right;'},
+        {'selector': 'th:not(.index_name)', 'props': 'background-color: #000066; color: white;'}
+    ]
+
     # Temporary column for Weekday
     df.insert(0, "Weekday", df.index.strftime('%a'))
 
@@ -86,14 +93,7 @@ def show_htable(df, styles):
 
 
 def show(df, as_html):
-    # Define table styles as a list for clarity
-    styles = [
-        {'selector': 'tr:hover', 'props': [('background-color', '#555555')]},
-        {'selector': 'td', 'props': 'text-align: right;'},
-        {'selector': 'th:not(.index_name)', 'props': 'background-color: #000066; color: white;'}
-    ]
-
     if as_html:
-        show_htable(df, styles)
+        show_htable(df)
     else:
-        show_stable(df, styles)
+        show_stable(df)
