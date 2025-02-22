@@ -19,6 +19,7 @@ def plot(expert_name, days_off):
     buf = imgt(
         st.session_state.git_hash,
         st.session_state.schedule[expert_name],
+        st.session_state.mprob["holiday"],
         days_off,
         glb.img("Start"),
         glb.img("End"),
@@ -41,6 +42,7 @@ def plot(expert_name, days_off):
 def imgt(
         git_hash,
         schedule,
+        holiday,
         days_off,
         start,
         end,
@@ -57,7 +59,7 @@ def imgt(
         df = (schedule.loc[start : end] > 0).sum(axis=1)
     else:
         # Summing over all the tasks. Take only the days that are not public holidays.
-        holiday = set(st.session_state.mprob["holiday"]["Date"])
+        holiday = set(holiday["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
         df = (schedule.loc[days] > 0).sum(axis=1)
 
