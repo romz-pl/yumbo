@@ -14,9 +14,6 @@ def format():
 def img(col):
     return st.session_state.mprob["img"].loc[0, col]
 
-def imgw(col):
-    return st.session_state.mprob["imgw"].loc[0, col]
-
 def hours_per_day():
     return st.session_state.mprob["misc"].loc[0, "Hours per day"]
 

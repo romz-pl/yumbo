@@ -7,14 +7,35 @@ import time
 
 import glb
 
+def imgw_param(col):
+    return st.session_state.mprob["imgw"].loc[0, col]
+
 #
 # Invoicing Periods Workload
 #
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
-    hash = glb.calc_mm_hash("imgw")
-    buf = imgw(expert_name, days_off, hash)
+    # Convertion from float16 to float32 is required!
+    schedule = st.session_state.schedule[expert_name].astype("float32")
+
+    period = st.session_state.mprob["period"]
+    pbsum = st.session_state.mprob["pbsum"]
+
+    buf = imgw(
+        st.session_state.git_hash,
+        expert_name,
+        schedule,
+        period,
+        pbsum,
+        days_off,
+        glb.img("Width"),
+        glb.img("Height"),
+        glb.img("Dpi"),
+        imgw_param("Bar:color"),
+        imgw_param("Bar:capsize"),
+        imgw_param("Bar:ecolor"),
+    )
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -24,17 +45,26 @@ def plot(expert_name, days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imgw(expert_name, days_off, hash):
-
-    # Get schedule for the expert and convert to float32.
-    schedule = st.session_state.schedule[expert_name].astype("float32")
+def imgw(
+        git_hash,
+        expert_name,
+        schedule,
+        period,
+        pbsum,
+        days_off,
+        width,
+        height,
+        dpi,
+        bar_color,
+        bar_capsize,
+        bar_ecolor,
+    ):
 
     # Sum across columns for each date and compute its cumulative sum.
     sched_sum = schedule.sum(axis=1)
     cum = sched_sum.cumsum()
 
     # Extract start and end dates for each period
-    period = st.session_state.mprob["period"]
     starts = period["Start"].to_numpy()
     ends = period["End"].to_numpy()
 
@@ -46,7 +76,6 @@ def imgw(expert_name, days_off, hash):
         sched_sum.loc[starts].to_numpy()
     )
 
-
     # Build a MultiIndex to extract the bounds for the given expert and period names.
     period_names = period["Name"]
     multi_index = pd.MultiIndex.from_arrays(
@@ -55,15 +84,14 @@ def imgw(expert_name, days_off, hash):
     )
 
     # Reindex pbsum with fill_value=0
-    pbsum = st.session_state.mprob["pbsum"]
     bounds = pbsum.reindex(multi_index, fill_value=0)
     ylower = bounds["Lower"].to_numpy()
     yupper = bounds["Upper"].to_numpy()
 
     # Create the plot
     fig = matplotlib_figure.Figure(
-        figsize=(glb.img("Width"), glb.img("Height")),
-        dpi=glb.img("Dpi")
+        figsize=(width, height),
+        dpi=dpi
     )
 
     ax = fig.subplots()
@@ -73,7 +101,7 @@ def imgw(expert_name, days_off, hash):
     rects = ax.bar(
         period["Name"],
         yvalue,
-        color=glb.imgw("Bar:color"),
+        color=bar_color,
     )
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
     ax.tick_params(axis="y", labelsize="x-small")
@@ -88,8 +116,8 @@ def imgw(expert_name, days_off, hash):
                       (yupper - yvalue)[mask]],
                 fmt="o",
                 color="black",
-                capsize=glb.imgw("Bar:capsize"),
-                ecolor=glb.imgw("Bar:ecolor"),
+                capsize=bar_capsize,
+                ecolor=bar_ecolor,
                 capthick=2)
 
     # Generate labels for the bars
@@ -100,10 +128,4 @@ def imgw(expert_name, days_off, hash):
 
     ax.bar_label(rects, labels=labels, size=8, label_type="edge")
 
-
     return glb.savefig(fig)
-
-
-
-
-
