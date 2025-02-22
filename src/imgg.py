@@ -16,6 +16,9 @@ def plot(expert_name, days_off):
 
     buf = imgg(
         st.session_state.git_hash,
+        st.session_state.mprob["task"],
+        st.session_state.mprob["assign"],
+        st.session_state.schedule[expert_name],
         expert_name,
         days_off,
         glb.today(),
@@ -25,7 +28,7 @@ def plot(expert_name, days_off):
         imgg_param("Barh:color"),
         imgg_param("Barh:height"),
         imgg_param("Barh:alpha"),
-        )
+    )
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -37,6 +40,9 @@ def plot(expert_name, days_off):
 @st.cache_resource(max_entries=1000)
 def imgg(
         git_hash,
+        task,
+        assign,
+        schedule,
         expert_name,
         days_off,
         today,
@@ -49,15 +55,13 @@ def imgg(
     ):
 
     # Extract data from session state
-    task = st.session_state.mprob["task"]
-    assign = st.session_state.mprob["assign"]
     filter = assign.xs(expert_name, level="Elevel")["Task"]
 
     # Filter tasks for the expert
     expert_tasks = task.loc[filter]
 
     # Sum work done for the expert
-    work_done = st.session_state.schedule[expert_name].sum(axis=0)
+    work_done = schedule.sum(axis=0)
 
     # Create the figure and axis
     fig = matplotlib_figure.Figure(
