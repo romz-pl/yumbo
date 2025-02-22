@@ -17,7 +17,7 @@ def plot(task, schedule, bounds):
     time_start = time.perf_counter()
 
     buf = imgb(
-        st.session_state.git_hash
+        st.session_state.git_hash,
         task,
         schedule,
         bounds,
