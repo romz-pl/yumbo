@@ -22,6 +22,7 @@ def plot(days_off):
     buf = imghsum(
         st.session_state.git_hash,
         st.session_state.schedule,
+        st.session_state.mprob["holiday"],
         days_off,
         glb.img("Start"),
         glb.img("End"),
@@ -44,6 +45,7 @@ def plot(days_off):
 def imghsum(
         git_hash,
         schedule,
+        holiday,
         days_off,
         start,
         end,
@@ -60,7 +62,7 @@ def imghsum(
         df = schedule.sum(axis=1)
     else:
         # Take only the days that are not public holidays.
-        holiday = set(st.session_state.mprob["holiday"]["Date"])
+        holiday = set(holiday["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
         # Summing over all the tasks. Choose days that are not public holidays.
         df = schedule.loc[days].sum(axis=1)
