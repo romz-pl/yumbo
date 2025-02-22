@@ -5,14 +5,27 @@ import time
 
 import glb
 
+def imgg_param(col):
+    return st.session_state.mprob["imgg"].loc[0, col]
+
 #
 # Task's Gantt Chart
 #
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
-    hash = glb.calc_mm_hash("imgg")
-    buf = imgg(expert_name, days_off, hash)
+    buf = imgg(
+        st.session_state.git_hash,
+        expert_name,
+        days_off,
+        glb.today(),
+        glb.img("Width"),
+        glb.img("Height"),
+        glb.img("Dpi"),
+        imgg_param("Barh:color"),
+        imgg_param("Barh:height"),
+        imgg_param("Barh:alpha"),
+        )
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -22,7 +35,19 @@ def plot(expert_name, days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imgg(expert_name, days_off, hash):
+def imgg(
+        git_hash,
+        expert_name,
+        days_off,
+        today,
+        width,
+        height,
+        dpi,
+        barh_color,
+        barh_height,
+        barh_alpha,
+    ):
+
     # Extract data from session state
     task = st.session_state.mprob["task"]
     assign = st.session_state.mprob["assign"]
@@ -36,8 +61,8 @@ def imgg(expert_name, days_off, hash):
 
     # Create the figure and axis
     fig = matplotlib_figure.Figure(
-        figsize=(glb.img("Width"), glb.img("Height")),
-        dpi=glb.img("Dpi")
+        figsize=(width, height),
+        dpi=dpi
     )
     ax = fig.subplots()
     ax.set_title("Task's Gantt Chart")
@@ -47,9 +72,9 @@ def imgg(expert_name, days_off, hash):
         y=expert_tasks["Name"],
         width=expert_tasks["Days"] - 1,
         left=expert_tasks["Start"],
-        color=glb.imgg("Barh:color"),
-        height=glb.imgg("Barh:height"),
-        alpha=glb.imgg("Barh:alpha"),
+        color=barh_color,
+        height=barh_height,
+        alpha=barh_alpha,
     )
 
     # Generate labels for the bars
@@ -63,7 +88,7 @@ def imgg(expert_name, days_off, hash):
     # Configure x-axis
     ax.xaxis.set_major_locator(matplotlib_ticker.MaxNLocator(5, integer=True))
     ax.tick_params(axis="x", rotation=0, labelsize="x-small")
-    ax.set_xlim(left=glb.today())
+    ax.set_xlim(left=today)
 
     # Configure y-axis
     ax.yaxis.set_major_locator(matplotlib_ticker.MultipleLocator(1))
