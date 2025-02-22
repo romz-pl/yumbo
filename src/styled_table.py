@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 import uuid
 
 import glb
@@ -47,7 +48,14 @@ def create_stable(df):
 
 
 def show_stable(df):
+    time_start = time.perf_counter()
+
     styled_df, csv, size_in_Kib, file_name = create_stable(df)
+
+    time_end = time.perf_counter()
+    st.session_state.stats["S:Table:cnt"] += 1
+    st.session_state.stats["S:Table:ttime"] += time_end - time_start
+    st.session_state.stats["S:Table:nbytes"] += df.memory_usage(deep=True).sum()
 
     # Render DataFrame in Streamlit
     st.dataframe(styled_df, hide_index=True)
@@ -87,7 +95,14 @@ def create_htable(df):
 
 
 def show_htable(df):
+    time_start = time.perf_counter()
+
     styled_df = create_htable(df)
+
+    time_end = time.perf_counter()
+    st.session_state.stats["H:Table:cnt"] += 1
+    st.session_state.stats["H:Table:ttime"] += time_end - time_start
+    st.session_state.stats["H:Table:nbytes"] += df.memory_usage(deep=True).sum()
 
     # Render the styled DataFrame as HTML
     st.write(styled_df.to_html(), unsafe_allow_html=True)
@@ -98,5 +113,3 @@ def show(df, as_html):
         show_htable(df)
     else:
         show_stable(df)
-
-

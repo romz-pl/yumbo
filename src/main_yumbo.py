@@ -80,7 +80,7 @@ def init_sesion_stats():
     # Take the session variable
     stats = st.session_state.stats
 
-    charts = ["imgb", "imgg", "imggsum", "imgh", "imghsum", "imgs", "imgt", "imgtsum", "imgw", "imge"]
+    charts = ["imgb", "imgg", "imggsum", "imgh", "imghsum", "imgs", "imgt", "imgtsum", "imgw", "imge", "H:Table", "S:Table"]
     for v in charts:
         stats[f"{v}:cnt"] = 0
         stats[f"{v}:ttime"] = 0

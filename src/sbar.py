@@ -210,7 +210,7 @@ def customise_stats():
     st.subheader("Report layout", divider="blue")
 
     show = st.session_state.show
-    show["stats_chart"] = st.checkbox("Statistics on chart creation", value=True)
+    show["stats_chart_table"] = st.checkbox("Statistics on chart and table creation", value=True)
     show["stats_execution"] = st.checkbox("Statistics on Yumbo execution", value=True)
 
 

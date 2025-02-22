@@ -2,8 +2,8 @@ import pandas as pd
 import streamlit as st
 
 
-def show_time_counters():
-    st.subheader(":green[Statistics on chart creation]", divider="green")
+def show_stats_chart_table():
+    st.subheader(":green[Statistics on chart and table creation]", divider="green")
 
     chart_data = [
         ("Plot task with its constrains", "imgb"),
@@ -16,6 +16,8 @@ def show_time_counters():
         ("Tasks per day (Summary)", "imgtsum"),
         ("Invoicing Periods Workload", "imgw"),
         ("Experts per day stacked", "imge"),
+        ("A HTML table", "H:Table"),
+        ("A Simple table", "S:Table"),
     ]
 
     # Column names
@@ -81,8 +83,7 @@ def show_time_counters():
     st.markdown("**For all figures, the total number of data downloaded is: :green[{:,.3f} MiB]**".format(mb))
 
 
-
-def show_ampl_stats():
+def show_stats_execution():
     st.subheader(":green[Statistics on Yumbo execution]", divider="green")
 
     stats = st.session_state.stats
@@ -99,17 +100,17 @@ def show_ampl_stats():
 
 
 def show():
-    stats_chart = st.session_state.show["stats_chart"]
+    stats_chart_table = st.session_state.show["stats_chart_table"]
     stats_execution = st.session_state.show["stats_execution"]
 
-    if not (stats_chart or stats_execution):
+    if not (stats_chart_table or stats_execution):
         return
 
     st.divider()
     st.header(":blue[Statistics]", divider="blue")
 
-    if stats_chart:
-        show_time_counters()
+    if stats_chart_table:
+        show_stats_chart_table()
 
     if stats_execution:
-        show_ampl_stats()
+        show_stats_execution()
