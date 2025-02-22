@@ -8,14 +8,26 @@ import time
 
 import glb
 
+def imgs_param(col):
+    return st.session_state.mprob["imgs"].loc[0, col]
+
 #
 # Hours per day stacked
 #
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
-    hash = glb.calc_mm_hash("imgs")
-    buf = imgs(expert_name, days_off, hash)
+    buf = imgs(
+        st.session_state.git_hash,
+        st.session_state.schedule[f"{expert_name}"],
+        days_off,
+        glb.img("Start"),
+        glb.img("End"),
+        glb.img("Width"),
+        glb.img("Height"),
+        glb.img("Dpi"),
+        imgs_param("Bar:alpha")
+    )
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -25,23 +37,31 @@ def plot(expert_name, days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imgs(expert_name, days_off, hash):
-    start = glb.img("Start")
-    end = glb.img("End")
+def imgs(
+        git_hash,
+        schedule,
+        days_off,
+        start,
+        end,
+        width,
+        height,
+        dpi,
+        bar_alpha,
+    ):
 
-    # Filter dataframe.
     if days_off:
-        df = st.session_state.schedule[f"{expert_name}"].loc[start : end]
+        # Filter dataframe.
+        df = schedule.loc[start : end]
     else:
         # Take only the days that are not public holidays.
         holiday = set(st.session_state.mprob["holiday"]["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
-        df = st.session_state.schedule[f"{expert_name}"].loc[days]
+        df = schedule.loc[days]
 
     # Initialize figure and axis
     fig = matplotlib_figure.Figure(
-        figsize=(glb.img("Width"), glb.img("Height")),
-        dpi=glb.img("Dpi")
+        figsize=(width, height),
+        dpi=dpi
     )
 
     ax = fig.subplots()
@@ -66,7 +86,7 @@ def imgs(expert_name, days_off, hash):
             y2=task_data + bottom,
             label=task_name,
             step='mid',
-            alpha=glb.imgs("Bar:alpha"),
+            alpha=bar_alpha,
         )
         bottom = bottom + task_data
 
