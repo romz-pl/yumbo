@@ -19,19 +19,10 @@ def format_cell(value):
     return value  # Return non-float values unchanged
 
 
+
 @st.cache_resource(max_entries=1000)
-def convert_df_to_csv(df):
-    # Cache the conversion to prevent computation on every rerun
-    csv = df.to_csv(index=False).encode("utf-8")
-    size_in_Kib = len(csv) / 1024
-    file_name = f"{uuid.uuid4().hex}.csv"
-
-    return csv, size_in_Kib, file_name
-
-
-def show_stable(df):
+def create_stable(df):
     """
-    Displays a styled DataFrame in Streamlit with added date-related columns.
     The index is hidden due to Streamlit version 1.42.0 limitations.
     """
 
@@ -49,13 +40,19 @@ def show_stable(df):
         .applymap(lambda _: 'color:LightBlue', subset=['Date', 'Weekday'])
     )
 
+    csv = temp_df.to_csv(index=False).encode("utf-8")
+    size_in_Kib = len(csv) / 1024
+    file_name = f"{uuid.uuid4().hex}.csv"
+
+    return styled_df, csv, size_in_Kib, file_name
+
+
+def show_stable(df):
+    styled_df, csv, size_in_Kib, file_name = create_stable(df)
+
     # Render DataFrame in Streamlit
     st.dataframe(styled_df, hide_index=True)
 
-    # Convert to CSV
-    csv, size_in_Kib, file_name = convert_df_to_csv(temp_df)
-
-    # Download button
     st.download_button(
         label=f"Download schedule :green[{file_name}] -> {size_in_Kib:,.1f} KiB",
         data=csv,
@@ -64,12 +61,8 @@ def show_stable(df):
     )
 
 
-def show_htable(df):
-    """
-    Displays a styled HTML table in Streamlit with additional weekday column.
-    The index formatting is preserved.
-    """
-
+@st.cache_resource(max_entries=1000)
+def create_htable(df):
     # Define table styles
     styles = [
         {"selector": "tr:hover", "props": [("background-color", "#555555")]},
@@ -91,6 +84,12 @@ def show_htable(df):
         .applymap(lambda _: "color:LightBlue", subset=["Weekday"])
     )
 
+    return styled_df
+
+
+def show_htable(df):
+    styled_df = create_htable(df)
+
     # Render the styled DataFrame as HTML
     st.write(styled_df.to_html(), unsafe_allow_html=True)
 
@@ -100,3 +99,5 @@ def show(df, as_html):
         show_htable(df)
     else:
         show_stable(df)
+
+
