@@ -7,14 +7,28 @@ import time
 
 import glb
 
+def imgh_param(col):
+    return st.session_state.mprob["imgh"].loc[0, col]
+
 #
 # Hours per day
 #
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
 
-    hash = glb.calc_mm_hash("imgh")
-    buf = imgh(expert_name, days_off, hash)
+    buf = imgh(
+        st.session_state.git_hash,
+        st.session_state.schedule[f"{expert_name}"],
+        days_off,
+        glb.img("Start"),
+        glb.img("End"),
+        glb.img("Width"),
+        glb.img("Height"),
+        glb.img("Dpi"),
+        imgh_param("Bar:color"),
+        imgh_param("Bar:alpha"),
+        imgh_param("Bar:hatch"),
+    )
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -24,25 +38,36 @@ def plot(expert_name, days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imgh(expert_name, days_off, hash):
+def imgh(
+        git_hash,
+        schedule,
+        days_off,
+        start,
+        end,
+        width,
+        height,
+        dpi,
+        bar_color,
+        bar_alpha,
+        bar_hatch,
+    ):
 
-    start = glb.img("Start")
-    end = glb.img("End")
 
-    # Summing over all the tasks.
     if days_off:
-        df = st.session_state.schedule[f"{expert_name}"].loc[start : end].sum(axis=1)
+        # Summing over all the tasks.
+        df = schedule.loc[start : end].sum(axis=1)
     else:
         # Take only the days that are not public holidays.
         holiday = set(st.session_state.mprob["holiday"]["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
-        df = st.session_state.schedule[f"{expert_name}"].loc[days].sum(axis=1)
+        # Summing over all the tasks. Choose days that are not public holidays.
+        df = schedule.loc[days].sum(axis=1)
 
 
     # Create figure and axis.
     fig = matplotlib_figure.Figure(
-        figsize=(glb.img("Width"), glb.img("Height")),
-        dpi=glb.img("Dpi"),
+        figsize=(width, height),
+        dpi=dpi
     )
     ax = fig.subplots()
 
@@ -58,9 +83,9 @@ def imgh(expert_name, days_off, hash):
         y1=0,
         y2=df.values,
         step='mid',
-        color=glb.imgh("Bar:color"),
-        alpha=glb.imgh("Bar:alpha"),
-        hatch=glb.imgh("Bar:hatch"),
+        color=bar_color,
+        alpha=bar_alpha,
+        hatch=bar_hatch,
     )
 
     # Set the limits.
