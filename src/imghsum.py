@@ -18,7 +18,6 @@ def imghsum_param(col):
 #
 def plot(days_off):
     time_start = time.perf_counter()
-
     buf = imghsum(
         st.session_state.git_hash,
         st.session_state.schedule,
@@ -33,12 +32,12 @@ def plot(days_off):
         imghsum_param("Bar:alpha"),
         imghsum_param("Bar:hatch"),
     )
-    st.image(buf)
-
     time_end = time.perf_counter()
     st.session_state.stats["imghsum:cnt"] += 1
     st.session_state.stats["imghsum:ttime"] += time_end - time_start
     st.session_state.stats["imghsum:nbytes"] += buf.getbuffer().nbytes
+
+    st.image(buf)
 
 
 @st.cache_resource(max_entries=1000)

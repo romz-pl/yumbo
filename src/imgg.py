@@ -13,7 +13,6 @@ def imgg_param(col):
 #
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
-
     buf = imgg(
         st.session_state.git_hash,
         st.session_state.mprob["task"],
@@ -29,12 +28,12 @@ def plot(expert_name, days_off):
         imgg_param("Barh:height"),
         imgg_param("Barh:alpha"),
     )
-    st.image(buf)
-
     time_end = time.perf_counter()
     st.session_state.stats["imgg:cnt"] += 1
     st.session_state.stats["imgg:ttime"] += time_end - time_start
     st.session_state.stats["imgg:nbytes"] += buf.getbuffer().nbytes
+
+    st.image(buf)
 
 
 @st.cache_resource(max_entries=1000)

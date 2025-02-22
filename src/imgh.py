@@ -15,7 +15,6 @@ def imgh_param(col):
 #
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
-
     buf = imgh(
         st.session_state.git_hash,
         st.session_state.schedule[expert_name],
@@ -30,12 +29,12 @@ def plot(expert_name, days_off):
         imgh_param("Bar:alpha"),
         imgh_param("Bar:hatch"),
     )
-    st.image(buf)
-
     time_end = time.perf_counter()
     st.session_state.stats["imgh:cnt"] += 1
     st.session_state.stats["imgh:ttime"] += time_end - time_start
     st.session_state.stats["imgh:nbytes"] += buf.getbuffer().nbytes
+
+    st.image(buf)
 
 
 @st.cache_resource(max_entries=1000)

@@ -15,19 +15,14 @@ def imgw_param(col):
 #
 def plot(expert_name, days_off):
     time_start = time.perf_counter()
-
     # Convertion from float16 to float32 is required!
     schedule = st.session_state.schedule[expert_name].astype("float32")
-
-    period = st.session_state.mprob["period"]
-    pbsum = st.session_state.mprob["pbsum"]
-
     buf = imgw(
         st.session_state.git_hash,
         expert_name,
         schedule,
-        period,
-        pbsum,
+        st.session_state.mprob["period"],
+        st.session_state.mprob["pbsum"],
         days_off,
         glb.img("Width"),
         glb.img("Height"),
@@ -36,12 +31,12 @@ def plot(expert_name, days_off):
         imgw_param("Bar:capsize"),
         imgw_param("Bar:ecolor"),
     )
-    st.image(buf)
-
     time_end = time.perf_counter()
     st.session_state.stats["imgw:cnt"] += 1
     st.session_state.stats["imgw:ttime"] += time_end - time_start
     st.session_state.stats["imgw:nbytes"] += buf.getbuffer().nbytes
+
+    st.image(buf)
 
 
 @st.cache_resource(max_entries=1000)

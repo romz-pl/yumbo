@@ -15,7 +15,6 @@ def imgb_param(col):
 #
 def plot(task, schedule, bounds):
     time_start = time.perf_counter()
-
     buf = imgb(
         st.session_state.git_hash,
         task,
@@ -31,12 +30,12 @@ def plot(task, schedule, bounds):
         imgb_param("Fill:hatch"),
         imgb_param("Fill:alpha"),
     )
-    st.image(buf)
-
     time_end = time.perf_counter()
     st.session_state.stats["imgb:cnt"] += 1
     st.session_state.stats["imgb:ttime"] += time_end - time_start
     st.session_state.stats["imgb:nbytes"] += buf.getbuffer().nbytes
+
+    st.image(buf)
 
 
 @st.cache_resource(max_entries=1000)

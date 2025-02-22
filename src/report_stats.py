@@ -3,7 +3,7 @@ import streamlit as st
 
 
 def show_stats_chart_table():
-    st.subheader(":green[Statistics on chart and table creation]", divider="green")
+    st.subheader(":green[Statistics on the creation of charts and tables]", divider="green")
 
     chart_data = [
         ("Plot task with its constrains", "imgb"),
@@ -80,7 +80,7 @@ def show_stats_chart_table():
     st.dataframe(df_styled, hide_index=True, use_container_width=False)
 
     mb = df[nbytes_total_col].sum()  / 1024
-    st.markdown("**For all figures, the total number of data downloaded is: :green[{:,.3f} MiB]**".format(mb))
+    st.markdown("**For all the charts, the total number of data that was downloaded is :green[{:,.3f} MiB]**".format(mb))
 
 
 def show_stats_execution():

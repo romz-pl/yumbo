@@ -16,7 +16,6 @@ def imge_param(col):
 #
 def plot(task, days_off):
     time_start = time.perf_counter()
-
     buf = imge(
         st.session_state.git_hash,
         task,
@@ -28,12 +27,12 @@ def plot(task, days_off):
         glb.img("Dpi"),
         imge_param("Bar:alpha"),
     )
-    st.image(buf)
-
     time_end = time.perf_counter()
     st.session_state.stats["imge:cnt"] += 1
     st.session_state.stats["imge:ttime"] += time_end - time_start
     st.session_state.stats["imge:nbytes"] += buf.getbuffer().nbytes
+
+    st.image(buf)
 
 
 @st.cache_resource(max_entries=1000)
