@@ -20,6 +20,8 @@ def plot(task, days_off):
     buf = imge(
         st.session_state.git_hash,
         task,
+        st.session_state.schedule,
+        st.session_state.mprob["holiday"],
         days_off,
         glb.img("Width"),
         glb.img("Height"),
@@ -38,6 +40,8 @@ def plot(task, days_off):
 def imge(
         git_hash,
         task,
+        schedule,
+        holiday,
         days_off,
         width,
         height,
@@ -50,12 +54,12 @@ def imge(
 
     # Summing over all the experts.
     if days_off:
-        df = st.session_state.schedule.xs(task.Name, level="Task", axis=1, drop_level=False).loc[start : end]
+        df = schedule.xs(task.Name, level="Task", axis=1, drop_level=False).loc[start : end]
     else:
         # Take only the days that are not public holidays.
-        holiday = set(st.session_state.mprob["holiday"]["Date"])
+        holiday = set(holiday["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
-        df = st.session_state.schedule.xs(task.Name, level="Task", axis=1, drop_level=False).loc[days]
+        df = schedule.xs(task.Name, level="Task", axis=1, drop_level=False).loc[days]
 
     # Initialize figure and axis
     fig = matplotlib_figure.Figure(
