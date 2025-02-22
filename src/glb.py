@@ -78,7 +78,7 @@ def calc_git_hash():
     return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
 
 
-def calc_mm_hash(img_name = None):
+def calc_mm_hash():
     keys = [
         "expert",
         "task",
@@ -90,23 +90,11 @@ def calc_mm_hash(img_name = None):
         "pbsum",
         "holiday",
         "misc",
-        "img",
     ]
 
-    if img_name is not None:
-        keys.append(img_name)
-
-
-    # Use git_hash to reflect changes to the code.
-    git_hash = calc_git_hash()
-
-    # Build input_data by joining the string representations
-    input_data = "".join(st.session_state.mprob[k].to_csv() for k in keys)
-
-    # Combine the git hash and the input data, encode, and compute the hash
-    combined = git_hash + input_data
-    mm_hash = hashlib.blake2s(combined.encode('utf-8')).hexdigest()
-    # st.write(mm_hash)
+    # Build data by joining the string representations
+    mm_data = "".join(st.session_state.mprob[k].to_csv() for k in keys)
+    mm_hash = hashlib.blake2s(mm_data.encode('utf-8')).hexdigest()
 
     return mm_hash
 

@@ -322,7 +322,7 @@ def set_model_and_data(ampl):
 
 
 @st.cache_resource(max_entries=99)
-def solve_ampl(mm_hash):
+def solve_ampl(git_hash, mm_hash):
     set_ampl_license()
     ampl = AMPL()
     set_ampl_options(ampl)
@@ -345,7 +345,8 @@ def solve():
     time_start = time.perf_counter()
 
     mm_hash = glb.calc_mm_hash()
-    solve_result, ampl_data_file, solver_log, schedule, overflow = solve_ampl(mm_hash)
+    git_hash = st.session_state.git_hash
+    solve_result, ampl_data_file, solver_log, schedule, overflow = solve_ampl(git_hash, mm_hash)
 
     timestamp = pd.Timestamp.now().strftime("%d %B %Y, %H:%M:%S %p")
     st.session_state.mprob["ampl_data_file"] = ampl_data_file
