@@ -7,14 +7,30 @@ import time
 
 import glb
 
+def imgtsum_param(col):
+    # Yes, "imgt" is used, and not "imgtsum"!
+    # Summary figures have the same colors as non-summary ones.
+    return st.session_state.mprob["imgt"].loc[0, col]
+
 #
 # Tasks per day (Summary)
 #
 def plot(days_off):
     time_start = time.perf_counter()
 
-    hash = glb.calc_mm_hash("imgt")
-    buf = imgtsum(days_off, hash)
+    buf = imgtsum(
+        st.session_state.git_hash,
+        st.session_state.schedule,
+        days_off,
+        glb.img("Start"),
+        glb.img("End"),
+        glb.img("Width"),
+        glb.img("Height"),
+        glb.img("Dpi"),
+        imgtsum_param("Bar:color"),
+        imgtsum_param("Bar:alpha"),
+        imgtsum_param("Bar:hatch"),
+    )
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -24,25 +40,33 @@ def plot(days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imgtsum(days_off, hash):
-
-    start = glb.img("Start")
-    end = glb.img("End")
+def imgtsum(
+        git_hash,
+        schedule,
+        days_off,
+        start,
+        end,
+        width,
+        height,
+        dpi,
+        bar_color,
+        bar_alpha,
+        bar_hatch,
+    ):
 
     if days_off:
         # Summing over all the tasks.
-        df = (st.session_state.schedule > 0).sum(axis=1)
+        df = (schedule > 0).sum(axis=1)
     else:
-        # Take only the days that are not public holidays.
         holiday = set(st.session_state.mprob["holiday"]["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
         # Summing over all the tasks. Choose days that are not public holidays.
-        df = (st.session_state.schedule.loc[days] > 0).sum(axis=1)
+        df = (schedule.loc[days] > 0).sum(axis=1)
 
     # Create figure and axis
     fig = matplotlib_figure.Figure(
-        figsize=(glb.img("Width"), glb.img("Height")),
-        dpi=glb.img("Dpi")
+        figsize=(width, height),
+        dpi=dpi
     )
     ax = fig.subplots()
 
@@ -58,9 +82,9 @@ def imgtsum(days_off, hash):
         y1=0,
         y2=df.values,
         step='mid',
-        color=glb.imgt("Bar:color"),
-        alpha=glb.imgt("Bar:alpha"),
-        hatch=glb.imgt("Bar:hatch"),
+        color=bar_color,
+        alpha=bar_alpha,
+        hatch=bar_hatch,
     )
 
     # Set the limits.

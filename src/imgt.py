@@ -7,15 +7,28 @@ import time
 
 import glb
 
+def imgt_param(col):
+    return st.session_state.mprob["imgt"].loc[0, col]
+
 #
 # Tasks per day
 #
 def plot(expert_name, days_off):
-
     time_start = time.perf_counter()
 
-    hash = glb.calc_mm_hash("imgt")
-    buf = imgt(expert_name, days_off, hash)
+    buf = imgt(
+        st.session_state.git_hash,
+        st.session_state.schedule[f"{expert_name}"],
+        days_off,
+        glb.img("Start"),
+        glb.img("End"),
+        glb.img("Width"),
+        glb.img("Height"),
+        glb.img("Dpi"),
+        imgt_param("Bar:color"),
+        imgt_param("Bar:alpha"),
+        imgt_param("Bar:hatch"),
+    )
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -25,24 +38,33 @@ def plot(expert_name, days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imgt(expert_name, days_off, hash):
+def imgt(
+        git_hash,
+        schedule,
+        days_off,
+        start,
+        end,
+        width,
+        height,
+        dpi,
+        bar_color,
+        bar_alpha,
+        bar_hatch,
+    ):
 
-    start = glb.img("Start")
-    end = glb.img("End")
-
-    # Summing over all the tasks.
     if days_off:
-        df = (st.session_state.schedule[f"{expert_name}"].loc[start : end] > 0).sum(axis=1)
+        # Summing over all the tasks.
+        df = (schedule.loc[start : end] > 0).sum(axis=1)
     else:
-        # Take only the days that are not public holidays.
+        # Summing over all the tasks. Take only the days that are not public holidays.
         holiday = set(st.session_state.mprob["holiday"]["Date"])
         days = pd.bdate_range(start=start, end=end, freq='C', holidays=holiday)
-        df = (st.session_state.schedule[f"{expert_name}"].loc[days] > 0).sum(axis=1)
+        df = (schedule.loc[days] > 0).sum(axis=1)
 
     # Create figure and axis
     fig = matplotlib_figure.Figure(
-        figsize=(glb.img("Width"), glb.img("Height")),
-        dpi=glb.img("Dpi"),
+        figsize=(width, height),
+        dpi=dpi
     )
     ax = fig.subplots()
 
@@ -58,9 +80,9 @@ def imgt(expert_name, days_off, hash):
         y1=0,
         y2=df.values,
         step='mid',
-        color=glb.imgt("Bar:color"),
-        alpha=glb.imgt("Bar:alpha"),
-        hatch=glb.imgt("Bar:hatch"),
+        color=bar_color,
+        alpha=bar_alpha,
+        hatch=bar_hatch,
     )
 
     # Set the limits.
