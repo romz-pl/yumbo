@@ -8,14 +8,24 @@ import time
 
 import glb
 
+def imge_param(col):
+    return st.session_state.mprob["imge"].loc[0, col]
+
 #
 # Experts per day stacked
 #
 def plot(task, days_off):
     time_start = time.perf_counter()
 
-    hash = glb.calc_mm_hash("imge")
-    buf = imge(task, days_off, hash)
+    buf = imge(
+        st.session_state.git_hash,
+        task,
+        days_off,
+        glb.img("Width"),
+        glb.img("Height"),
+        glb.img("Dpi"),
+        imge_param("Bar:alpha"),
+    )
     st.image(buf)
 
     time_end = time.perf_counter()
@@ -25,7 +35,15 @@ def plot(task, days_off):
 
 
 @st.cache_resource(max_entries=1000)
-def imge(task, days_off, hash):
+def imge(
+        git_hash,
+        task,
+        days_off,
+        width,
+        height,
+        dpi,
+        bar_alpha,
+    ):
 
     start = task.Start
     end = task.End
@@ -41,8 +59,8 @@ def imge(task, days_off, hash):
 
     # Initialize figure and axis
     fig = matplotlib_figure.Figure(
-        figsize=(glb.img("Width"), glb.img("Height")),
-        dpi=glb.img("Dpi")
+        figsize=(width, height),
+        dpi=dpi
     )
     ax = fig.subplots()
     ax.set_title("Experts per day stacked")
@@ -64,7 +82,7 @@ def imge(task, days_off, hash):
                 y2=col.values + bottom,
                 label=et[0],
                 step='mid',
-                alpha=glb.imge("Bar:alpha"),
+                alpha=bar_alpha,
             )
             bottom = bottom + col.values
 
