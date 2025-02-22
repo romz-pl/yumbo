@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import os
 import streamlit as st
 import tempfile
@@ -52,8 +53,10 @@ def show_overflow():
         overflow = st.session_state.overflow
         if overflow.sum() > 0:
             st.subheader(":red[There are task overflows!]", divider="red")
-            df = overflow[ overflow > 0]
-            st.write(df)
+            df = pd.DataFrame(overflow[ overflow > 0])
+            format = {'Overflow': "{:.2f}"}
+            df_styled = df.style.format(format)
+            st.dataframe(df_styled)
         else:
             st.subheader(":green[There in no overflows]", divider="green")
 
