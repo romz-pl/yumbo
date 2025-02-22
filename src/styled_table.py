@@ -64,33 +64,35 @@ def show_stable(df):
     )
 
 
-
 def show_htable(df):
+    """
+    Displays a styled HTML table in Streamlit with additional weekday column.
+    The index formatting is preserved.
+    """
 
-    # Define table styles as a list for clarity
+    # Define table styles
     styles = [
-        {'selector': 'tr:hover', 'props': [('background-color', '#555555')]},
-        {'selector': 'td', 'props': 'text-align: right;'},
-        {'selector': 'th:not(.index_name)', 'props': 'background-color: #000066; color: white;'}
+        {"selector": "tr:hover", "props": [("background-color", "#555555")]},
+        {"selector": "td", "props": [("text-align", "right")]},
+        {"selector": "th:not(.index_name)", "props": [("background-color", "#000066"), ("color", "white")]}
     ]
 
-    # Temporary column for Weekday
-    df.insert(0, "Weekday", df.index.strftime('%a'))
+    # Create a temporary DataFrame with additional columns (avoid modifying original df)
+    temp_df = df.copy()
+    temp_df.insert(0, "Weekday", temp_df.index.strftime('%a'))
 
+    # Apply styling
     styled_df = (
-        df.style
+        temp_df.style
         .format(format_cell)
         .format_index("{:%Y-%m-%d}", axis=0)
         .apply(highlight_rows, axis=1)
         .set_table_styles(styles, overwrite=True)
-        .map(lambda _: 'color:LightBlue', subset=['Weekday'])
+        .applymap(lambda _: "color:LightBlue", subset=["Weekday"])
     )
 
     # Render the styled DataFrame as HTML
-    st.markdown(styled_df.to_html(), unsafe_allow_html=True)
-
-    # Drop the temporary Weekday column
-    df.drop(columns="Weekday", inplace=True)
+    st.write(styled_df.to_html(), unsafe_allow_html=True)
 
 
 def show(df, as_html):
