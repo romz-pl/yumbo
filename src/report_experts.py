@@ -44,7 +44,7 @@ def show_xbday_per_task(expert_name):
 
 
 
-def show_schedule_as_table(expert_name, as_html, mm_hash):
+def show_schedule_as_table(expert_name, as_html):
     # Retrieve data from session state
     task = st.session_state.mprob["task"]
     assign = st.session_state.mprob["assign"]
@@ -116,14 +116,12 @@ def show_report():
             divider="green"
         )
 
-        mm_hash = glb.calc_mm_hash()
-
         if row["Chart"]:
             show_one_expert(expert_name)
         if row["H:Table"]:
-            show_schedule_as_table(expert_name, True, mm_hash)
+            show_schedule_as_table(expert_name, True)
         if row["S:Table"]:
-            show_schedule_as_table(expert_name, False, mm_hash)
+            show_schedule_as_table(expert_name, False)
         if row["xbday"]:
             show_xbday_per_task(expert_name)
 
