@@ -69,15 +69,10 @@ def show_yumbo_description():
 
 
 def init_sesion_stats():
-    if 'stats' not in st.session_state:
-        st.session_state.stats = dict()
+    if 'stats' in st.session_state:
+        return
 
-
-    #
-    # Stats must be zeroing for each execution of the program
-    #
-
-    # Take the session variable
+    st.session_state.stats = dict()
     stats = st.session_state.stats
 
     charts = ["imgb", "imgg", "imggsum", "imgh", "imghsum", "imgs", "imgt", "imgtsum", "imgw", "imge", "H:Table", "S:Table"]
