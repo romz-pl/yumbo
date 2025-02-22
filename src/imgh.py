@@ -18,7 +18,7 @@ def plot(expert_name, days_off):
 
     buf = imgh(
         st.session_state.git_hash,
-        st.session_state.schedule[f"{expert_name}"],
+        st.session_state.schedule[expert_name],
         days_off,
         glb.img("Start"),
         glb.img("End"),
