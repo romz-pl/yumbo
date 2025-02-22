@@ -25,7 +25,7 @@ def tomorrow():
     return (today() + pd.Timedelta(1, unit="D"))
 
 def last_day():
-    return max(st.session_state.mprob["task"]["End"].max(), st.session_state.mprob["period"]["End"].max())
+    return st.session_state.mprob["task"]["End"].max()
 
 
 def get_ampl_model_name():
