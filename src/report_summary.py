@@ -55,7 +55,11 @@ def show_overflow():
             st.subheader(":red[There are task overflows!]", divider="red")
             df = pd.DataFrame(overflow[ overflow > 0])
             format = {'Overflow': "{:.2f}"}
-            df_styled = df.style.format(format)
+            df_styled = (
+                df.style
+                .format(format)
+                .map(lambda _: 'background-color:red', subset=['Overflow'])
+            )
             st.dataframe(df_styled)
         else:
             st.subheader(":green[There in no overflows]", divider="green")
