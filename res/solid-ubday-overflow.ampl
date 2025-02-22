@@ -110,10 +110,15 @@ param LASTDAY = max{t in TNAME} last(TSCOPE[t]);
 
 # The objective function.
 # This function encourages the early completion of tasks.
+#
+# The largest element in the first sum must be smaller than the smallest element in the second sum.
+# This condition forces the minimization process to look for a solution in schedule X,
+# and only when schedule X is full the "task overflow" F becomes non-zero.
+#
 minimize objective_function:
-    sum {(e, t) in ASSIGN, d in TSCOPE[t]}
-    ((d + 1 - first(TSCOPE[t]))^(1/3)) * X[e, t, d] +
-    ((LASTDAY + 1)^(1/3)) * sum{t in TNAME} F[t];
+    (sum {(e, t) in ASSIGN, d in TSCOPE[t]} ((d + 1 - first(TSCOPE[t]))^(1/3)) * X[e, t, d])
+    +
+    (MAXWORK * ((LASTDAY + 1)^(1/3)) * sum{t in TNAME} F[t]);
 
 
 # The total number of working hours per day
