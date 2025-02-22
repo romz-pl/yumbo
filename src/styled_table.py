@@ -30,28 +30,32 @@ def convert_df_to_csv(df):
 
 
 def show_stable(df):
-    #
-    # The "format_index" does not work with st.dataframe in Streamlit version 1.42.0!
-    # So a temporray column "Date" was added and the index was hidden.
-    #
+    """
+    Displays a styled DataFrame in Streamlit with added date-related columns.
+    The index is hidden due to Streamlit version 1.42.0 limitations.
+    """
 
-    # Create temporary column for Weekday and Date
-    df.insert(0, "Weekday", df.index.strftime('%a'))
-    df.insert(0, "Date", df.index.strftime(glb.format()))
+    # Create a temporary DataFrame with additional columns (avoid modifying original df)
+    temp_df = df.copy()
+    temp_df.insert(0, "Weekday", temp_df.index.strftime('%a'))
+    temp_df.insert(0, "Date", temp_df.index.strftime(glb.format()))
 
+    # Apply styling
     styled_df = (
-        df.style
+        temp_df.style
         .format(format_cell)
         # .format_index("{:%Y-%m-%d}", axis=0) It does not work!
         .apply(highlight_rows, axis=1)
-        .map(lambda _: 'color:LightBlue', subset=['Date', 'Weekday'])
+        .applymap(lambda _: 'color:LightBlue', subset=['Date', 'Weekday'])
     )
 
-    # Render the styled DataFrame as Streamlit dataframe
+    # Render DataFrame in Streamlit
     st.dataframe(styled_df, hide_index=True)
 
-    csv, size_in_Kib, file_name = convert_df_to_csv(df)
+    # Convert to CSV
+    csv, size_in_Kib, file_name = convert_df_to_csv(temp_df)
 
+    # Download button
     st.download_button(
         label=f"Download schedule :green[{file_name}] -> {size_in_Kib:,.1f} KiB",
         data=csv,
@@ -59,9 +63,6 @@ def show_stable(df):
         mime="text/csv",
     )
 
-    # Drop the temporary column for Weekday and Date
-    df.drop(columns="Date", inplace=True)
-    df.drop(columns="Weekday", inplace=True)
 
 
 def show_htable(df):
