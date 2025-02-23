@@ -16,10 +16,7 @@ def get_uploaded_file():
 
 
 def customise_expert_report_layout():
-    st.subheader("Report layout", divider="blue")
-
-    label = "Charts in one column"
-    st.session_state.show["expert_charts_in_one_column"] = st.checkbox(label, key="experts" + label)
+    st.subheader(":material/group: :blue[Layout]", divider="blue")
 
     max_col_no = 5
     report_column_no = st.number_input("Number of charts", min_value=1, max_value=max_col_no, value=max_col_no)
@@ -34,9 +31,14 @@ def customise_expert_report_layout():
         )
     st.session_state.show["expert_column_no"] = report_column_no
 
+    label = "Charts in one column"
+    st.session_state.show["expert_charts_in_one_column"] = st.checkbox(label, key="experts" + label)
+
 
 def customise_show_experts():
-    st.subheader("Look and feel", divider="blue")
+    # st.subheader("Look and feel", divider="blue")
+
+    st.divider()
 
     experts_init = st.session_state.show["experts_init"]
 
@@ -70,7 +72,7 @@ def customise_show_experts():
 
 
 def customise_show_tasks():
-    st.subheader("Look and feel", divider="blue")
+    st.subheader(":material/receipt_long: :blue[Layout]", divider="blue")
 
     tasks_init = st.session_state.show["tasks_init"]
 
@@ -155,7 +157,7 @@ def customise_chart_colours():
 
 
 def customise_ampl():
-    st.subheader("Report layout", divider="blue")
+    st.subheader(":material/calculate: :blue[Layout]", divider="blue")
 
     show = st.session_state.show
     show["ampl_solver_log"] = st.checkbox("Solver log", value=False)
@@ -181,7 +183,7 @@ def show_planing_horizon():
 
 
 def customise_summary():
-    st.subheader("Report layout", divider="blue")
+    st.subheader(":material/summarize: :blue[Layout]", divider="blue")
 
     show = st.session_state.show
 
@@ -200,14 +202,15 @@ def customise_summary():
 
 
 def customise_problem():
-    st.subheader("Report layout", divider="blue")
+    st.subheader(":material/database: :blue[Layout]", divider="blue")
 
     show = st.session_state.show
     show["problem"] = st.checkbox("Problem definition", value=False)
+    show["days_off"] = st.checkbox(f"Show days off", value=False)
 
 
 def customise_stats():
-    st.subheader("Report layout", divider="blue")
+    st.subheader(":material/analytics: :blue[Layout]", divider="blue")
 
     show = st.session_state.show
     show["stats_chart_table"] = st.checkbox("Statistics on chart and table creation", value=True)
@@ -239,8 +242,6 @@ def customise_size_and_dpi():
 
 
 def customise_chart():
-    st.session_state.show["days_off"] = st.checkbox(f"Show days off", value=False)
-
     customise_chart_colours()
     customise_date_range()
     customise_size_and_dpi()
