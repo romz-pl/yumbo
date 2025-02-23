@@ -68,4 +68,5 @@ Below is the chronological order of the development stages:
 - The study of the behavior with the walking time has been under investigation.
 - The statistics for reporting the running time are implemented.
 - Validation of input data from Excel files has been implemented.
+- The caching process of generated images and tables has been improved and simplified.
 
