@@ -95,7 +95,7 @@ def show():
 
     st.divider()
 
-    st.header(":blue[Problem definition]", divider="blue")
+    st.header(":material/database: :blue[Problem definition]", divider="blue")
 
     options = ["Experts / Tasks", "Bounds", "Periods"]
 

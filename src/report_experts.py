@@ -104,7 +104,7 @@ def show_report():
         return
 
     st.divider()
-    st.header(":blue[Experts]", divider="blue")
+    st.header(":material/person: :blue[Experts]", divider="blue")
     experts = st.session_state.mprob["expert"]
 
     # Filter only rows with any True values

@@ -46,7 +46,7 @@ def show():
         return
 
     st.divider()
-    st.header(":blue[AMPL]", divider="blue")
+    st.header(":material/calculate: :blue[AMPL]", divider="blue")
 
     if solver_log:
         show_solver_log()

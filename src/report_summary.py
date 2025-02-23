@@ -184,7 +184,7 @@ def show_report():
         return
 
     st.divider()
-    st.header(":blue[Summary]", divider="blue")
+    st.header(":material/summarize: :blue[Summary]", divider="blue")
 
     show_charts()
     show_overflow()

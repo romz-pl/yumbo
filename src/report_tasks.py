@@ -50,7 +50,7 @@ def show_report():
         return
 
     st.divider()
-    st.header(":blue[Tasks]", divider="blue")
+    st.header(":material/task: :blue[Tasks]", divider="blue")
     tasks = st.session_state.mprob["task"]
 
     # Filter only rows with any True values
