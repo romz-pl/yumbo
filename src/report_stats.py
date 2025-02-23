@@ -107,7 +107,7 @@ def show():
         return
 
     st.divider()
-    st.header(":material/monitoring: :blue[Statistics]", divider="blue")
+    st.header(":material/analytics: :blue[Statistics]", divider="blue")
 
     if stats_chart_table:
         show_stats_chart_table()

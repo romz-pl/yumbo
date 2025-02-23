@@ -5,7 +5,7 @@ import streamlit as st
 import glb
 
 def get_uploaded_file():
-    st.subheader("Load Excel data file", divider="blue")
+    st.subheader("Load Excel data file :material/database:", divider="blue")
 
     uploaded_file = st.file_uploader("Excel file required in format 'xlsx'", label_visibility="collapsed")
     if uploaded_file == None:
