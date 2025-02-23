@@ -68,6 +68,10 @@ def customise_show_experts():
     if st.checkbox(label, key="experts" + label):
         df["xbday"] = True
 
+    label = "None"
+    if st.checkbox(label, key="experts" + label):
+        df.loc[:, :] = False
+
     st.session_state.show["experts"] = df
 
 
@@ -97,6 +101,10 @@ def customise_show_tasks():
     label = "All S:Tables"
     if st.checkbox(label, key="tasks" + label):
         df["S:Table"] = True
+
+    label = "None"
+    if st.checkbox(label, key="tasks" + label):
+        df.loc[:, :] = False
 
 
     st.session_state.show["tasks"] = df
