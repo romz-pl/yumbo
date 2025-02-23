@@ -36,10 +36,7 @@ def customise_expert_report_layout():
 
 
 def customise_show_experts():
-    # st.subheader("Look and feel", divider="blue")
-
     st.divider()
-
     experts_init = st.session_state.show["experts_init"]
 
     df = st.data_editor(
@@ -106,7 +103,6 @@ def customise_show_tasks():
     if st.checkbox(label, key="tasks" + label):
         df.loc[:, :] = False
 
-
     st.session_state.show["tasks"] = df
 
 
@@ -163,7 +159,6 @@ def customise_chart_colours():
         mprob[key].loc[0, col] = new_color
 
 
-
 def customise_ampl():
     st.subheader(":material/calculate: :blue[Layout]", divider="blue")
 
@@ -194,10 +189,6 @@ def customise_summary():
     st.subheader(":material/summarize: :blue[Layout]", divider="blue")
 
     show = st.session_state.show
-
-    label = "Charts in one column"
-    show["summary_charts_in_one_column"] = st.checkbox(label, key="summary" + label)
-
     show["summary_tasks_gantt_chart"] = st.checkbox("Task's Gantt Chart", value=True)
     show["summary_tasks_per_day"] = st.checkbox("Tasks per day", value=True)
     show["summary_hours_per_day"] = st.checkbox("Hours per day", value=True)
@@ -207,6 +198,10 @@ def customise_summary():
         show["summary_task_overflows"] = st.checkbox("Task overflows", value=True)
     else:
         show["summary_task_overflows"] = False
+
+    st.divider()
+    label = "Charts in one column"
+    show["summary_charts_in_one_column"] = st.checkbox(label, key="summary" + label)
 
 
 def customise_problem():
