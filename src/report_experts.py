@@ -14,7 +14,6 @@ import imgw
 import styled_table
 
 
-
 def show_xbday_per_task(expert_name):
     # Cache frequently used session state objects
     mprob = st.session_state.mprob
