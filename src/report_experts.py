@@ -104,7 +104,7 @@ def show_report():
         return
 
     st.divider()
-    st.header(":material/person: :blue[Experts]", divider="blue")
+    st.header(":material/group: :blue[Experts]", divider="blue")
     experts = st.session_state.mprob["expert"]
 
     # Filter only rows with any True values
@@ -112,7 +112,7 @@ def show_report():
 
     for expert_name, row in active_experts.iterrows():
         st.subheader(
-            f":green[{expert_name}, {experts.loc[expert_name, 'Comment']}]",
+            f":material/person: :green[{expert_name}, {experts.loc[expert_name, 'Comment']}]",
             divider="green"
         )
 

@@ -39,7 +39,7 @@ def get_subheader(task_name):
         if overflow_value > 0:
             info = f", :red[overflow {overflow_value:.2f} [h]]"
 
-    return f":green[{task_name}]{info}"
+    return f":material/task: :green[{task_name}]{info}"
 
 
 def show_report():
@@ -50,7 +50,7 @@ def show_report():
         return
 
     st.divider()
-    st.header(":material/task: :blue[Tasks]", divider="blue")
+    st.header(":material/receipt_long: :blue[Tasks]", divider="blue")
     tasks = st.session_state.mprob["task"]
 
     # Filter only rows with any True values
