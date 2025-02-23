@@ -67,6 +67,7 @@ def show_stable(df):
         data=csv,
         file_name=file_name,
         mime="text/csv",
+        icon=":material/download:",
     )
 
 

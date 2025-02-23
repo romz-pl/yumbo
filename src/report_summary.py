@@ -120,6 +120,7 @@ def download_results(df, schedule_file_name):
         label=f"Download results :green[{file_name}] -> {size_in_Kib:,.1f} KiB",
         data=buf_zip,
         file_name=file_name,
+        icon=":material/download:",
     )
 
     file_name = f"{uuid.uuid4().hex}.bz2"
@@ -128,6 +129,7 @@ def download_results(df, schedule_file_name):
         label=f"Download results :green[{file_name}] -> {size_in_Kib:,.1f} KiB",
         data=buf_bz2,
         file_name=file_name,
+        icon=":material/download:",
     )
 
 
