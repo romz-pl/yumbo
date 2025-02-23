@@ -62,7 +62,7 @@ def show_overflow():
             )
             st.dataframe(df_styled)
         else:
-            st.subheader(":green[There in no overflows]", divider="green")
+            st.subheader(":green[There is no overflows]", divider="green")
 
 
 @st.cache_resource(max_entries=1000)
