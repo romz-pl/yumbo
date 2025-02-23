@@ -38,7 +38,7 @@ def create_stable(df, df_name):
         .format(format_cell)
         # .format_index("{:%Y-%m-%d}", axis=0) It does not work!
         .apply(highlight_rows, axis=1)
-        .applymap(lambda _: 'color:LightBlue', subset=['Date', 'Weekday'])
+        .map(lambda _: 'color:LightBlue', subset=['Date', 'Weekday'])
     )
 
     csv = temp_df.to_csv(index=False).encode("utf-8")
