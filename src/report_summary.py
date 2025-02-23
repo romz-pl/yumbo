@@ -163,8 +163,8 @@ def show_full_schedule(as_html):
 
     download_results(df, schedule_file_name)
 
-    df.drop(columns="Date", inplace=True)
-    df.drop(columns="Weekday", inplace=True)
+    df.drop(columns="Date", inplace=True, level=0)
+    df.drop(columns="Weekday", inplace=True, level=0)
 
 
 def show_report():
