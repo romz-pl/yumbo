@@ -52,7 +52,7 @@ def show_overflow():
     if glb.is_ampl_model_overflow() and task_overflows:
         overflow = st.session_state.overflow
         if overflow.sum() > 0:
-            st.subheader(":red[There are task overflows!]", divider="red")
+            st.subheader(":material/warning: :red[There are task overflows!]", divider="red")
             df = pd.DataFrame(overflow[ overflow > 0])
             format = {'Overflow': "{:.2f}"}
             df_styled = (
@@ -138,7 +138,7 @@ def show_full_schedule(as_html):
     if not st.session_state.show["summary_full_schedule"]:
         return
 
-    st.subheader(":green[Full schedule]", divider="green")
+    st.subheader(":material/schedule: :green[Full schedule]", divider="green")
 
     if st.checkbox("Show as multiples of a quarter", value=False):
         df = (st.session_state.schedule * 4).astype("uint8")

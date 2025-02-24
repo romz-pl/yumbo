@@ -3,7 +3,7 @@ import streamlit as st
 
 
 def show_stats_chart_table():
-    st.subheader(":green[Statistics on the creation of charts and tables]", divider="green")
+    st.subheader(":material/event_note: :green[Statistics on the creation of charts and tables]", divider="green")
 
     chart_data = [
         ("Plot task with its constrains", "imgb"),
@@ -84,7 +84,7 @@ def show_stats_chart_table():
 
 
 def show_stats_execution():
-    st.subheader(":green[Statistics on Yumbo execution]", divider="green")
+    st.subheader(":material/view_timeline: :green[Statistics on Yumbo execution]", divider="green")
 
     stats = st.session_state.stats
     messages = [
