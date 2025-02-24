@@ -70,4 +70,4 @@ Below is the chronological order of the development stages:
 - Validation of input data from Excel files has been implemented.
 - The caching process of generated images and tables has been improved and simplified.
 - Material icons have been used to improve the visual appeal of the reporting module.
-
+- The input data file generator has been implemented as an Excel spreadsheet.
