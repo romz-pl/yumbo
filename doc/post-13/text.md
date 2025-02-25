@@ -31,7 +31,8 @@ This innovation is supported by a rich technology stack, including:
 ## Why it matters?
 By prioritizing early task completion and balancing workloads, Yumbo enables teams to achieve peak productivity while maintaining work-life balance.
 
-🔗 If you're curious about the technical details, the **source code** is available on [GitHub](https://github.com/romz-pl/yambo/). 
+🔗 If you're curious about the technical details, the **source code** is available on [GitHub](https://github.com/romz-pl/yambo/).
+
 🔗 If you want to see the **program in action**, go to [Streamlit Community Cloud](https://yumbo-ampl.streamlit.app/), download the program definition from an Excel file and get the optimal schedule for your configuration.
 
 💡 I invite you to explore how Yumbo can change your approach to scheduling and planning. Let's redefine productivity together!
