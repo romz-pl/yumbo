@@ -250,12 +250,15 @@ def customise_size_and_dpi():
     st.button(":material/zoom_in: Zoom In 10%", on_click=image_zoom_in)
     st.button(":material/zoom_out: Zoom Out 10%", on_click=image_zoom_out)
 
-    with st.form("my_form"):
-        width_init = float(mprob["img_init"].loc[0, "Width"])
-        width = st.slider("Width", key="image_width", min_value=1.0, max_value=max_width, value=width_init, step=0.1, format="%.1f")
+    if "image_width" not in st.session_state:
+        st.session_state.image_width = float(mprob["img_init"].loc[0, "Width"])
 
-        height_init = float(mprob["img_init"].loc[0, "Height"])
-        height = st.slider("Height", key="image_height", min_value=1.0, max_value=max_height, value=height_init, step=0.1, format="%.1f")
+    if "image_height" not in st.session_state:
+        st.session_state.image_height = float(mprob["img_init"].loc[0, "Height"])
+
+    with st.form("my_form"):
+        width = st.slider("Width", key="image_width", min_value=1.0, max_value=max_width, step=0.1, format="%.1f")
+        height = st.slider("Height", key="image_height", min_value=1.0, max_value=max_height, step=0.1, format="%.1f")
 
         dpi_init = int(mprob["img_init"].loc[0, "Dpi"])
         dpi = st.slider("Dpi", min_value=10, max_value=600, value=dpi_init, step=1)
