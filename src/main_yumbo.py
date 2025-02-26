@@ -167,7 +167,7 @@ def main():
         show_main_panel()
 
         time_end = time.perf_counter()
-        st.write(f":material/timer: Total elapsed time of this run: :green[{(time_end-time_start):.3f} [s]]")
+        st.markdown(f":material/timer: **Total elapsed time of this run: :green[{(time_end-time_start):.3f} [s]]**")
     except Exception as e:
         st.subheader(f":red[Exception during solving process.] {e}")
 

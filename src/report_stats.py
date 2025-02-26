@@ -80,7 +80,7 @@ def show_stats_chart_table():
     st.dataframe(df_styled, hide_index=True, use_container_width=False)
 
     mb = df[nbytes_total_col].sum()  / 1024
-    st.markdown("**For all the charts, the total number of data that was downloaded is :green[{:,.3f} MiB]**".format(mb))
+    st.markdown(":material/cloud_download: **For all the charts, the total number of data that was downloaded is :green[{:,.3f} MiB]**".format(mb))
 
 
 def show_stats_execution():
@@ -96,7 +96,7 @@ def show_stats_execution():
     ]
 
     for label, key in messages:
-        st.markdown(f"**{label}: :green[{stats[key]:.3f} [s]]**")
+        st.markdown(f"{label}: :green[{stats[key]:.3f} [s]]")
 
 
 def show():
