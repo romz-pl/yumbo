@@ -31,6 +31,8 @@ def customise_expert_report_layout():
         )
     st.session_state.show["expert_column_no"] = report_column_no
 
+    st.divider()
+
     label = "Charts in one column"
     st.session_state.show["expert_charts_in_one_column"] = st.checkbox(label, key="experts" + label)
 
