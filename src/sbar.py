@@ -109,7 +109,7 @@ def customise_show_tasks():
 
 
 def customise_date_range():
-    st.subheader(":material/date_range: Date ranges", divider="blue")
+    st.subheader(":material/date_range: :blue[Date ranges]", divider="blue")
 
     mprob = st.session_state.mprob
     row = st.columns(2)
@@ -136,7 +136,7 @@ def customise_date_range():
 
 
 def customise_chart_colours():
-    st.subheader(":material/palette: Colours", divider="blue")
+    st.subheader(":material/palette: :blue[Colors]", divider="blue")
 
     # Mapping data keys to labels
     sections = [
@@ -180,7 +180,7 @@ def customise_task():
 
 
 def show_planing_horizon():
-    st.subheader(f"Planing horizon", divider="blue")
+    st.subheader(f":material/timeline: :blue[Planing horizon]", divider="blue")
     st.markdown(f"Today: :green[{glb.today().date()}]")
     st.markdown(f"Tomorrow: :green[{glb.tomorrow().date()}]")
     st.markdown(f"Last day: :green[{glb.last_day().date()}]")
@@ -244,7 +244,7 @@ def image_zoom_out():
 
 
 def customise_size_and_dpi():
-    st.subheader(":material/aspect_ratio: Size and DPI", divider="blue")
+    st.subheader(":material/aspect_ratio: :blue[Size and DPI]", divider="blue")
 
     max_width, max_height = max_imag_sizes()
 
