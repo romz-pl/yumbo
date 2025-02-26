@@ -278,6 +278,8 @@ def read_misc(xlsx, mprob):
 def read_img(xlsx, mprob):
     df = xlsx.parse(sheet_name="img", usecols="B:F")
     df = parse_date_columns(df, ["Start", "End"])
+    float_cols = ['Width', 'Height']
+    df[float_cols] = df[float_cols].astype(float)
     mprob["img"] = df
     mprob["img_init"] = df.copy()
     return mprob
