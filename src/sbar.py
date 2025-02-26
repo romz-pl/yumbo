@@ -220,16 +220,42 @@ def customise_stats():
     show["stats_execution"] = st.checkbox("Statistics on Yumbo execution", value=True)
 
 
+def max_imag_sizes():
+    max_width = 12.0
+    max_height = 12.0
+    return max_width, max_height
+
+
+def image_zoom_in():
+    max_width, max_height = max_imag_sizes()
+
+    st.session_state.image_width = min(max_width, 1.1 * st.session_state.image_width)
+    st.session_state.image_height = min(max_height, 1.1 * st.session_state.image_height)
+
+
+def image_zoom_out():
+    max_width, max_height = max_imag_sizes()
+
+    st.session_state.image_width = min(max_width, st.session_state.image_width / 1.1)
+    st.session_state.image_height = min(max_height, st.session_state.image_height / 1.1)
+
+
+
 def customise_size_and_dpi():
     st.subheader(":material/aspect_ratio: Size and DPI", divider="blue")
 
+    max_width, max_height = max_imag_sizes()
+
     mprob = st.session_state.mprob
+    st.button(":material/zoom_in: Zoom In 10%", on_click=image_zoom_in)
+    st.button(":material/zoom_out: Zoom Out 10%", on_click=image_zoom_out)
+
     with st.form("my_form"):
         width_init = float(mprob["img_init"].loc[0, "Width"])
-        width = st.slider("Width", min_value=1.0, max_value=12.0, value=width_init, step=0.1, format="%.1f")
+        width = st.slider("Width", key="image_width", min_value=1.0, max_value=max_width, value=width_init, step=0.1, format="%.1f")
 
         height_init = float(mprob["img_init"].loc[0, "Height"])
-        height = st.slider("Height", min_value=1.0, max_value=12.0, value=height_init, step=0.1, format="%.1f")
+        height = st.slider("Height", key="image_height", min_value=1.0, max_value=max_height, value=height_init, step=0.1, format="%.1f")
 
         dpi_init = int(mprob["img_init"].loc[0, "Dpi"])
         dpi = st.slider("Dpi", min_value=10, max_value=600, value=dpi_init, step=1)
@@ -238,8 +264,8 @@ def customise_size_and_dpi():
 
 
     if submitted:
-        mprob["img"].loc[0, "Height"] = height
         mprob["img"].loc[0, "Width"] = width
+        mprob["img"].loc[0, "Height"] = height
         mprob["img"].loc[0, "Dpi"] = dpi
         st.rerun()
 
