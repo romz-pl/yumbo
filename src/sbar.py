@@ -5,7 +5,7 @@ import streamlit as st
 import glb
 
 def get_uploaded_file():
-    st.subheader("Load Excel data file :material/database:", divider="blue")
+    st.subheader(":material/database: :blue[Load Excel data file]", divider="blue")
 
     uploaded_file = st.file_uploader("Excel file required in format 'xlsx'", label_visibility="collapsed")
     if uploaded_file == None:
@@ -16,7 +16,7 @@ def get_uploaded_file():
 
 
 def customise_expert_report_layout():
-    st.subheader(":material/group: :blue[Layout]", divider="blue")
+    st.subheader(":material/dashboard: :blue[Appearance]", divider="blue")
 
     max_col_no = 5
     report_column_no = st.number_input("Number of charts", min_value=1, max_value=max_col_no, value=max_col_no)
@@ -31,14 +31,14 @@ def customise_expert_report_layout():
         )
     st.session_state.show["expert_column_no"] = report_column_no
 
-    st.divider()
-
+def customise_expert_orientation():
+    st.subheader(":material/flip_camera_android: :blue[Orientation]", divider="blue")
     label = "Charts in one column"
     st.session_state.show["expert_charts_in_one_column"] = st.checkbox(label, key="experts" + label)
 
 
 def customise_show_experts():
-    st.divider()
+    st.subheader(":material/group: :blue[Layout]", divider="blue")
     experts_init = st.session_state.show["experts_init"]
 
     df = st.data_editor(
@@ -171,6 +171,7 @@ def customise_ampl():
 
 
 def customise_expert():
+    customise_expert_orientation()
     customise_expert_report_layout()
     customise_show_experts()
 
