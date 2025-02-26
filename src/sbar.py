@@ -107,7 +107,7 @@ def customise_show_tasks():
 
 
 def customise_date_range():
-    st.subheader("Date ranges", divider="blue")
+    st.subheader(":material/date_range: Date ranges", divider="blue")
 
     mprob = st.session_state.mprob
     row = st.columns(2)
@@ -134,7 +134,7 @@ def customise_date_range():
 
 
 def customise_chart_colours():
-    st.subheader("Colours", divider="blue")
+    st.subheader(":material/palette: Colours", divider="blue")
 
     # Mapping data keys to labels
     sections = [
@@ -221,7 +221,7 @@ def customise_stats():
 
 
 def customise_size_and_dpi():
-    st.subheader("Size and DPI", divider="blue")
+    st.subheader(":material/aspect_ratio: Size and DPI", divider="blue")
 
     mprob = st.session_state.mprob
     with st.form("my_form"):

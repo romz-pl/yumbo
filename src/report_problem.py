@@ -5,19 +5,19 @@ def show_task():
     format = {'Start': "{:%Y-%m-%d}", 'End': "{:%Y-%m-%d}", 'Avg': "{:.4f}"}
     df = st.session_state.mprob["task"]
     df_styled = df.style.format(format)
-    st.subheader(f":green[Tasks ({df.shape[0]})]", divider="green")
+    st.subheader(f":material/receipt_long: :green[Tasks ({df.shape[0]})]", divider="green")
     st.dataframe(df_styled, hide_index=True, use_container_width=True)
 
 
 def show_expert():
     df = st.session_state.mprob["expert"]
-    st.subheader(f":green[Experts ({df.shape[0]})]", divider="green")
+    st.subheader(f":material/group: :green[Experts ({df.shape[0]})]", divider="green")
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
 def show_assign():
     df = st.session_state.mprob["assign"]
-    st.subheader(f":green[Assignment ({df.shape[0]})]", divider="green")
+    st.subheader(f":material/assignment: :green[Assignment ({df.shape[0]})]", divider="green")
     st.dataframe(df, hide_index=True, use_container_width=True)
 
 
