@@ -91,7 +91,6 @@ def init_sesion_stats():
 def init_show_tasks():
     # Extract tasks names and define row/column counts
     tasks = st.session_state.mprob["task"]["Name"].to_numpy()
-    row_count = len(tasks)
 
     # Create a DataFrame with predefined columns and default boolean values
     names = ["Chart", "H:Table", "S:Table"]
@@ -106,7 +105,6 @@ def init_show_tasks():
 def init_show_experts():
     # Extract expert names and define row/column counts
     experts = st.session_state.mprob["expert"]["Name"].to_numpy()
-    row_count = len(experts)
 
     # Create a DataFrame with predefined columns and default boolean values
     names = ["Chart", "H:Table", "S:Table", "xbday"]
