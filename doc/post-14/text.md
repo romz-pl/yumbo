@@ -12,7 +12,7 @@ The next mandatory parameters define the first date of the schedule and the maxi
 
 
 ## Optional Input Parameters
-To define the characteristics of the designed schedule, Yumbo uses linear constraints of the linear mathematical model. The current version of Yumbo supports four types of constraints: xbday, ubday, ebday, pbsum. The *xbday** constraint is the most common type of constraint and specifies the upper and lower limits of hours an expert can work on a task within a date range. The **ubday** constraint is used to define the number of tasks per day for an expert. Expert availability and preferences are defined by **ebday** constraints. To limit the number of hours per billing period, you can use the **pbsum** constraints.
+To define the characteristics of the designed schedule, Yumbo uses linear constraints of the linear mathematical model. The current version of Yumbo supports four types of constraints: xbday, ubday, ebday, pbsum. The **xbday** constraint is the most common type of constraint and specifies the upper and lower limits of hours an expert can work on a task within a date range. The **ubday** constraint is used to define the number of tasks per day for an expert. Expert availability and preferences are defined by **ebday** constraints. To limit the number of hours per billing period, you can use the **pbsum** constraints.
 
 In addition, if you want to avoid working on holidays, you need to specify the list of dates that define the **holidays**.
 
