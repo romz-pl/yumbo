@@ -28,8 +28,8 @@ The following definition of a solved problem is provided. A set of tasks is defi
 
 
 ## :green[Implementation details]
-1. The problem is formulated as a linear mixed-integer problem with an objective function that favours early task completion.
-2. The solution to the problem is a daily work schedule that specifies the number of hours to be worked on the task for each day.
+1. The problem is formulated as a linear integer programming problem. The objective function favors early completion of the task.
+2. The solution to this problem is a daily work schedule. This schedule specifies the number of hours each expert should work on the task each day.
 3. The mathematical problem is implemented as a [AMPL](https://ampl.com/) program and solved by [HiGHS](https://highs.dev/) solver.
 4. The graphical user interface is written in [Python](https://www.python.org/) within the [Streamlit](https://streamlit.io/) framework.
 5. The plots are generated using the [Matplotlib](https://matplotlib.org/) library, and the data is processed using the [Pandas](https://pandas.pydata.org/) and [NumPy](https://numpy.org/) Python libraries.
@@ -39,7 +39,7 @@ The following definition of a solved problem is provided. A set of tasks is defi
 - [AMPL](https://ampl.com/) a mathematical programming language; 
 - [HiGHS](https://highs.dev/) a high performance software for linear optimization; 
 - [SCIP](https://www.scipopt.org/) one of the fastest non-commercial solvers for mixed integer programming and mixed integer nonlinear programming;
-- [GCG](https://gcg.or.rwth-aachen.de/) a generic decomposition solver for mixed-integer programs (MIPs);
+- [GCG](https://gcg.or.rwth-aachen.de/) a generic decomposition solver for mixed-integer programs;
 - [Streamlit](https://streamlit.io/) a faster way to build and share data apps; 
 - [Python](https://www.python.org/) a programming language that lets you work quickly; 
 - [Pandas](https://pandas.pydata.org/) a fast, powerful, flexible and easy to use open source data analysis and manipulation tool; 
@@ -48,6 +48,6 @@ The following definition of a solved problem is provided. A set of tasks is defi
 
 
 ## :green[Source code]
-The programme is implemented in Python. The source code is available in the GitHub repository [Yumbo](https://github.com/romz-pl/yambo/).
+Yumbo is implemented in Python. The source code is available in the GitHub repository as **open source** under the MIT license [Yumbo](https://github.com/romz-pl/yambo/).
 
 
