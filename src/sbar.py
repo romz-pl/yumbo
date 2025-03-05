@@ -12,7 +12,6 @@ def get_uploaded_file():
     if uploaded_file == None:
         st.subheader(":red[Select Excel data file for scheduling investigation!]")
         dd = os.path.dirname(__file__)
-        st.write(f"{dd}/../doc/logo/python-logo.png")
         st.image(f"{dd}/../doc/logo/python-logo.png")
         st.image(f"{dd}/../doc/logo/python-logo-large.png")
         st.image(f"{dd}/../doc/logo/python-package-logo-large.svg")
