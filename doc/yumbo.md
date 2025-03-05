@@ -66,7 +66,7 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 - Python for Data Scientists, [post-05](https://github.com/romz-pl/yumbo/tree/main/doc/post-05/text.md)
 - Streamlit for Data Scientists, [post-06](https://github.com/romz-pl/yumbo/tree/main/doc/post-06/text.md)
 - Integer Programming: Lessons from Computational Mathematics, [post-07](https://github.com/romz-pl/yumbo/tree/main/doc/post-07/text.md)
-- AMPL and Optimization Problem Formulation, [post-08](https://github.com/romz-pl/yumbo/tree/main/doc/post-08/text.md)
+- AMPL, A Mathematical Programming Language, [post-08](https://github.com/romz-pl/yumbo/tree/main/doc/post-08/text.md)
 - Value of the NEOS Server for Operations Research, [post-09](https://github.com/romz-pl/yumbo/tree/main/doc/post-09/text.md)
 - Diversity of Mathematical Programming Languages, [post-10](https://github.com/romz-pl/yumbo/tree/main/doc/post-10/text.md)
 - Open Source Linear Programming Solvers, [post-11](https://github.com/romz-pl/yumbo/tree/main/doc/post-11/text.md)

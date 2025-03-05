@@ -1,4 +1,5 @@
 import numpy as np
+import os
 import pandas as pd
 import streamlit as st
 
@@ -10,6 +11,10 @@ def get_uploaded_file():
     uploaded_file = st.file_uploader("Excel file required in format 'xlsx'", label_visibility="collapsed")
     if uploaded_file == None:
         st.subheader(":red[Select Excel data file for scheduling investigation!]")
+        dd = os.path.dirname(__file__)
+        st.image(f"{dd}/../doc/logo/python-logo.png")
+        st.image(f"{dd}/../doc/logo/python-logo-large.png")
+        st.image(f"{dd}/../doc/logo/python-package-logo-large.svg")
 
     # st.markdown("See the [Yumbo](https://github.com/romz-pl/yambo/tree/main/ampl-data-input-excel) GitHub repository for sample Excel input files.")
     return uploaded_file
