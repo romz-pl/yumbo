@@ -29,6 +29,7 @@ You can find out more about the algorithms used in integer programming in the bo
 #ComputationalOptimization 
 ```
 
+![Integer Programming: Lessons from Computational Mathematics](./img.webp)
 
 Image created by ChatGPT.
 
