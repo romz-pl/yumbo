@@ -14,8 +14,9 @@ The project has two goals. The first is to verify that the schedule meets the co
 The software facilitates both short-term and long-term planning. The use of Yumbo ensures that the expert is equipped with adequate resources to meet the long-term requirements of each task. In addition, the software facilitates short-term planning and scheduling, thereby increasing the expert's comfort level. It is recommended to use Yumbo frequently and regularly, e.g. weekly. For example, the schedule should be updated when the expert's availability changes or when a new task is added to the task pool.
 
 
-## :green[Mathematical model]
-The aforementioned problem is resolved by a mathematical model based on Mixed Integer Linear Programming, implemented in AMPL language and solved by HiGHS, a high-performance software for linear optimisation.
+## :green[Mathematical models]
+The above problem is solved by a mathematical model based on Integer Linear Programming, implemented in the language [AMPL](https://ampl.com/) (A Modeling Language for Mathematical Programming) and solved by [HiGHS](https://highs.dev/), a powerful software for linear optimization. At the moment there are four mathematical models. They differ in memory consumption and functionality. Two of the models are equipped with a feature to search for overflowing tasks, where the task is overflowing when there are not enough experts assigned to the task. In addition, there is a mathematical model that can be used to impose the constraints on the number of tasks per day.
+
 
 
 ## :green[Formulation of the mathematical model]
