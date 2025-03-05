@@ -1,4 +1,4 @@
-## :green[Objectives]
+## :green[Intro]
 The primary objective of the project is to develop software that facilitates the optimal creation of daily schedules. This software will address the challenge faced by project managers, solution architects, and other professionals working on multiple tasks or projects simultaneously, enabling them to manage their time and resources more efficiently.
 
 
