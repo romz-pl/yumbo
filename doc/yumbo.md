@@ -15,7 +15,13 @@ The software facilitates both :blue[**short-term and long-term planning**]. The 
 
 
 ## :green[Mathematical models]
-The above problem is solved by a mathematical model based on Integer Linear Programming, implemented in the language [AMPL](https://ampl.com/) (A Modeling Language for Mathematical Programming) and solved by [HiGHS](https://highs.dev/), a powerful software for linear optimization. At the moment there are four mathematical models. They differ in memory consumption and functionality. Two of the models are equipped with a feature to search for overflowing tasks, where the task is overflowing when there are not enough experts assigned to the task. In addition, there is a mathematical model that can be used to impose the constraints on the number of tasks per day.
+The above problem is solved by a mathematical model based on Integer Linear Programming, implemented in the language [AMPL](https://ampl.com/) (A Modeling Language for Mathematical Programming) and solved by [HiGHS](https://highs.dev/), a powerful software for linear optimization. At the moment there are four mathematical models:
+- [solid](https://github.com/romz-pl/yumbo/tree/main/res/solid.ampl),
+- [solid + overflow](https://github.com/romz-pl/yumbo/tree/main/res/solid-overflow.ampl),
+- [solid + ubday](https://github.com/romz-pl/yumbo/tree/main/res/solid-ubday.ampl),
+- [solid + ubday + overflow](https://github.com/romz-pl/yumbo/tree/main/res/solid-ubday-overflow.ampl).
+
+The mathematical models differ in memory consumption and functionality. Two of the models (i.e., :blue[**solid**] and :blue[**solid + ubday + overflow**]) are equipped with a feature to search for overflowing tasks, where the task is overflowing when there are not enough experts assigned to the task. In addition, there are two mathematical models (i.e., :blue[**solid + ubday**] and :blue[**solid + ubday + overflow**]) that can be used to impose the constraints on the number of tasks per day.
 
 
 
@@ -66,4 +72,4 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 - [Open source linear programming solvers](https://github.com/romz-pl/yumbo/tree/main/doc/post-11/text.md)
 - [Commercial linear programming solvers](https://github.com/romz-pl/yumbo/tree/main/doc/post-12/text.md)
 - [Yumbo. Scheduling, Planning and Resource Allocation](https://github.com/romz-pl/yumbo/tree/main/doc/post-13/text.md)
-- [Yumbo. Input Parameters for Efficient Scheduling](https://github.com/romz-pl/yumbo/tree/main/doc/post-13/text.md)
+- [Yumbo. Input Parameters for Efficient Scheduling](https://github.com/romz-pl/yumbo/tree/main/doc/post-14/text.md)
