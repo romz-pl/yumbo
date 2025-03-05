@@ -1,7 +1,5 @@
-# 📅 Yumbo
-
-
-The project's primary objective is the development of a software solution that will facilitate the optimal generation of daily schedules. This software is intended to address the challenge faced by project managers, solution architects, and other professionals who are engaged in multiple tasks or projects concurrently, thereby enabling them to more efficiently manage their time and resources.
+## :green[Objectives]
+The primary objective of the project is to develop a software solution that facilitates the optimal creation of daily schedules. This software will address the challenge faced by project managers, solution architects, and other professionals who work on multiple tasks or projects simultaneously, enabling them to manage their time and resources more efficiently.
 
 
 ## :green[Assumptions]
