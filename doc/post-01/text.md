@@ -20,3 +20,4 @@ You can find out more about the broad topics of operations research in the book 
 #MathematicalModelling
 ```
 
+![Optimal generation of daily schedules](./img.webp)

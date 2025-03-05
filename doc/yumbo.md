@@ -51,3 +51,7 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 [Yumbo](https://github.com/romz-pl/yambo/) is implemented in Python. The source code is available in the GitHub repository as :blue[**open source**] under the MIT license.
 
 
+## :green[Yumbo dedicated posts]
+
+- [Optimal generation of daily schedules](https://github.com/romz-pl/yumbo/tree/main/doc/post-01/text.md)
+
