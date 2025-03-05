@@ -24,6 +24,7 @@ If you are interested in AMPL, I recommend the book written by R. Fourer, D.M. G
 #AMPL
 ```
 
+![AMPL facilitates the formulation of optimisation problems](./img.webp)
 
 Image created by ChatGPT.
 

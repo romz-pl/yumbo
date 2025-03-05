@@ -60,3 +60,4 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 - [Python for data scientists](https://github.com/romz-pl/yumbo/tree/main/doc/post-05/text.md)
 - [Why every data scientist should be aware of Streamlit](https://github.com/romz-pl/yumbo/tree/main/doc/post-06/text.md)
 - [Integer Programming: Lessons from Computational Mathematics](https://github.com/romz-pl/yumbo/tree/main/doc/post-07/text.md)
+- [AMPL facilitates the formulation of optimisation problems](https://github.com/romz-pl/yumbo/tree/main/doc/post-08/text.md)
