@@ -5,7 +5,7 @@ The project's primary objective is the development of a software solution that w
 
 
 ## Assumptions
-It is assumed that each task is defined by its start date and end date, and that during the fixed task period, the expert is obliged to complete the fixed number of working hours, which is usually less than 80% of the total working hours available. It is also assumed that the tasks can overlap and that the start and end dates of the tasks are independent of each other. The lifetime of a task can be up to 200 working days. However, it should be noted that the software does not impose any restrictions on the duration of a task.
+It is assumed that each task is defined by its start date and end date, and that the expert is required to complete the fixed number of working hours during the lifetime of the task. It is also assumed that tasks can overlap and that the start and end dates of tasks are independent of each other. The lifetime of a task in the use cases studied so far was typically about 200 business days. Note, however, that the software does not impose any restrictions on the duration of a task.
 
 
 ## Objectives
