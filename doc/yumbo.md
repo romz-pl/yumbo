@@ -19,12 +19,12 @@ The above problem is solved by a mathematical model based on Integer Linear Prog
 
 
 
-## :green[Formulation of the mathematical model]
-The following definition of a solved problem is provided. A set of tasks is defined, with each task characterised by three properties: (a) the start date; (b) the end date; (c) the work expressed in hours. Each task in the set is assigned to at least one expert, and an expert can be assigned to one or more tasks. Consequently, there is a many-to-many relationship between tasks and experts. Constraints are further categorised into four classes, each of which is optional. The objective is to determine the expert's daily schedule that satisfies the following constraints:
-- The number of hours worked per day must not exceed the limit.
-- For each call period, the total number of hours worked must be within the limit.
-- For each day, for each task, the number of hours worked per day must be within the limit.
-- For an expert, the number of hours worked per day must be within the limit for each day.
+## :green[Mathematical model formulation]
+The following definition of a solved problem is provided. A set of tasks is defined, each task being characterized by three properties: (a) the start date; (b) the end date; (c) the work (i.e., effort) expressed in hours. Each task in the set is assigned to at least one expert, and an expert can be assigned to one or more tasks. Thus, there is a many-to-many relationship between tasks and experts. The constraints are further categorized into four classes, each of which is optional. The goal is to determine the expert's daily schedule that satisfies the following constraints:
+- The number of work hours per day may not be in excess of the limit.
+- The total number of hours worked must be within the limit for each billing period.
+- The number of hours worked per day must be within the limit for each day, for each task.
+- For each expert, the number of hours worked per day must be within the limit for each day.
 
 
 ## :green[Implementation details]
