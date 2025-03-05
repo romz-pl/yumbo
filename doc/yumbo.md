@@ -11,7 +11,7 @@ The project has two goals. The first is to verify that the schedule meets the co
 
 
 ## :green[Planning horizon]
-The software facilitates both short-term and long-term planning. The utilisation of this software guarantees that the expert is equipped with adequate resources to address the long-term requirements of each task. In addition, the software facilitates short-term planning and scheduling, thereby enhancing the convenience of the expert. The schedule can be updated in the event of changes to the expert's availability or the addition of a new task to the task pool. 
+The software facilitates both short-term and long-term planning. The use of Yumbo ensures that the expert is equipped with adequate resources to meet the long-term requirements of each task. In addition, the software facilitates short-term planning and scheduling, thereby increasing the expert's comfort level. It is recommended to use Yumbo frequently and regularly, e.g. weekly. For example, the schedule should be updated when the expert's availability changes or when a new task is added to the task pool.
 
 
 ## :green[Mathematical model]
