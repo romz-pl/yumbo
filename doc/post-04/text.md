@@ -16,3 +16,4 @@ For **data exchange** and manipulation, we employ Pandas, an open-source library
 #Optimization
 ```
 
+![Scheduling and timetable generation](./img.webp)
