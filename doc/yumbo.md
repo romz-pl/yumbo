@@ -35,7 +35,7 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 5. The plots are generated using the [Matplotlib](https://matplotlib.org/) library, and the data is processed using the [Pandas](https://pandas.pydata.org/) and [NumPy](https://numpy.org/) Python libraries.
 
 
-## :green[The list of the tools and libraries that are used]
+## :green[List of tools and libraries]
 - [AMPL](https://ampl.com/) a mathematical programming language; 
 - [HiGHS](https://highs.dev/) a high performance software for linear optimization; 
 - [SCIP](https://www.scipopt.org/) one of the fastest non-commercial solvers for mixed integer programming and mixed integer nonlinear programming;
