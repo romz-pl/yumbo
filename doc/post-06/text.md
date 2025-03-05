@@ -24,5 +24,6 @@ For more information on the Streamlit, refer to the book: T. Richards [**Streaml
 #InteractiveDataVisualization
 ```
 
+![Why every data scientist should be aware of Streamlit](./img.webp)
 
 Image created by ChatGPT.

@@ -58,3 +58,4 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 - [Mathematical model of the scheduling problem](https://github.com/romz-pl/yumbo/tree/main/doc/post-03/text.md)
 - [Scheduling and timetable generation](https://github.com/romz-pl/yumbo/tree/main/doc/post-04/text.md)
 - [Python for data scientists](https://github.com/romz-pl/yumbo/tree/main/doc/post-05/text.md)
+- [Why every data scientist should be aware of Streamlit](https://github.com/romz-pl/yumbo/tree/main/doc/post-06/text.md)
