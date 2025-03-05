@@ -42,7 +42,7 @@ def customise_expert_orientation():
     st.session_state.show["expert_charts_in_one_column"] = st.checkbox(label, key="experts" + label)
 
 
-def customise_show_experts():
+def customise_expert_show():
     st.subheader(":material/group: :blue[Layout]", divider="blue")
     experts_init = st.session_state.show["experts_init"]
 
@@ -178,7 +178,7 @@ def customise_ampl():
 def customise_expert():
     customise_expert_orientation()
     customise_expert_report_layout()
-    customise_show_experts()
+    customise_expert_show()
 
 
 def customise_task():
@@ -193,7 +193,14 @@ def show_planing_horizon():
     st.markdown(f"Number of days: :green[{(glb.last_day() - glb.today()).days}]")
 
 
-def customise_summary():
+def customise_summary_orientation():
+    st.subheader(":material/flip_camera_android: :blue[Orientation]", divider="blue")
+    label = "Charts in one column"
+    show = st.session_state.show
+    show["summary_charts_in_one_column"] = st.checkbox(label, key="summary" + label)
+
+
+def customise_summary_show():
     st.subheader(":material/summarize: :blue[Layout]", divider="blue")
 
     show = st.session_state.show
@@ -207,10 +214,10 @@ def customise_summary():
     else:
         show["summary_task_overflows"] = False
 
-    st.divider()
-    label = "Charts in one column"
-    show["summary_charts_in_one_column"] = st.checkbox(label, key="summary" + label)
 
+def customise_summary():
+    customise_summary_orientation()
+    customise_summary_show()
 
 def customise_problem():
     st.subheader(":material/database: :blue[Layout]", divider="blue")
