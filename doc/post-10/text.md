@@ -34,7 +34,7 @@ Each of these languages excels in **specific scenarios**, enabling optimization 
 #OptimizationProblems
 ```
 
-
+![Diversity of mathematical programming languages](./img.webp)
 
 Image created by ChatGPT.
  

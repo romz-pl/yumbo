@@ -62,3 +62,4 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 - [Integer Programming: Lessons from Computational Mathematics](https://github.com/romz-pl/yumbo/tree/main/doc/post-07/text.md)
 - [AMPL facilitates the formulation of optimisation problems](https://github.com/romz-pl/yumbo/tree/main/doc/post-08/text.md)
 - [Value of the NEOS Server for operations research](https://github.com/romz-pl/yumbo/tree/main/doc/post-09/text.md)
+- [Diversity of mathematical programming languages](https://github.com/romz-pl/yumbo/tree/main/doc/post-10/text.md)
