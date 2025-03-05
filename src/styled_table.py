@@ -95,7 +95,7 @@ def create_htable(df, df_name):
         .format_index("{:%Y-%m-%d}", axis=0)
         .apply(highlight_rows, axis=1)
         .set_table_styles(styles, overwrite=True)
-        .applymap(lambda _: "color:LightBlue", subset=["Weekday"])
+        .map(lambda _: "color:LightBlue", subset=["Weekday"])
     )
 
     return styled_df
