@@ -1,4 +1,4 @@
-# Diversity of mathematical programming languages
+# Diversity of Mathematical Programming Languages
 
 Mathematical programming languages play a central role in the world of efficient decision making, providing specialised environments for effectively modelling, analysing and solving **optimisation problems**. AMPL (A Mathematical Programming Language) is my favourite mathematical language. I like it because it provides a high-level platform for describing and solving optimisation problems. It also has a clean design and separates the mathematical modelling from the data. On the NEOS server, **about 80%** of the jobs submitted are in AMPL. However, AMPL is not the only language available for building mathematical models.
 

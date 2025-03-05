@@ -1,4 +1,4 @@
-# Python for data scientists
+# Python for Data Scientists
 
 Python has established itself as one of the most versatile and accessible languages in data science. From its humble beginnings as a general-purpose scripting language, Python has evolved into a cornerstone for data analysis, machine learning, and scientific computing, thanks to its vibrant ecosystem of libraries. Today, I want to highlight three essential libraries that every data scientist should master: **NumPy**, **pandas**, and **matplotlib**.
 

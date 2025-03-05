@@ -1,4 +1,4 @@
-# Commercial linear programming solvers
+# Commercial Linear Programming Solvers
 
 The list of commercial linear programming solvers is long. Below I give a short description of six of them, which are available through the NEOS server.
 

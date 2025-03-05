@@ -1,4 +1,4 @@
-# Value of the NEOS Server for operations research
+# Value of the NEOS Server for Operations Research
 
 In the domain of applied operations research, access to sophisticated **computational tools** frequently constitutes the pivotal factor distinguishing theoretical insights from practical impact. In this context, the NEOS Server emerges as a transformative platform for researchers, practitioners, and enthusiasts alike.
 

@@ -1,4 +1,4 @@
-# AMPL facilitates the formulation of optimisation problems
+# AMPL and Optimization Problem Formulation
 
 In the fast-paced and ever-changing field of optimisation and mathematical programming, clarity and flexibility are paramount to effectively solve complex business problems. One tool that has demonstrated consistent excellence in this area is AMPL (A Mathematical Programming Language).
 

@@ -1,5 +1,5 @@
 
-# Optimal generation of daily schedules
+# Optimal Generation of Daily Schedules
 
 As a Principal Data Scientist, I am involved in a project that focuses on the optimal generation of daily schedules. The software developed should solve the problem of optimal schedule generation for project managers, solution architects, or any expert involved in more than one task or project simultaneously.
 

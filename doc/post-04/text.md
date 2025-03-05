@@ -1,4 +1,4 @@
-# Scheduling and timetable generation
+# Scheduling and Timetable Generation
 
 The issue of timetable generation is a well-documented challenge in project management, also referred to as scheduling. A comprehensive review of the scheduling issue has enabled us to categorise it into more straightforward, clearly defined stages.
 

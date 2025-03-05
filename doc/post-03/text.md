@@ -1,4 +1,4 @@
-# Mathematical model of the scheduling problem
+# Mathematical Model of the Scheduling Problem
 
 The objective of scheduling is to identify a timetable that satisfies the constraints imposed by business and takes into account any human preferences. The scheduling problem is inherently complex due to the vast number of potential constraints and profiles. Consequently, numerous **mathematical formulations** have been proposed to address this challenge.
 

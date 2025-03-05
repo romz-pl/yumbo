@@ -1,4 +1,4 @@
-# Open source linear programming solvers
+# Open Source Linear Programming Solvers
 
 For my projects dedicated to solving optimisation problems, I use the **HiGHS** solver. It is the open source serial and parallel solver for large sparse linear programming (LP), mixed integer programming (MIP), and quadratic programming (QP) models. The solver is written in C++ and integrates seamlessly with AMPL. HiGHS is freely available under the MIT licence and can be downloaded from GitHub https://highs.dev/ 
 

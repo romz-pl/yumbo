@@ -1,4 +1,4 @@
-# Why every data scientist should be aware of Streamlit
+# Streamlit for Data Scientists
 
 In today's fast-paced, data-driven world, effectively sharing insights and iterating on machine learning models often requires more than static reports or dashboards. Enter **Streamlit**, an open source Python library that is revolutionising the way data professionals build web applications.
 
