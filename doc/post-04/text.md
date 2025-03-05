@@ -17,3 +17,5 @@ For **data exchange** and manipulation, we employ Pandas, an open-source library
 ```
 
 ![Scheduling and timetable generation](./img.webp)
+
+Fractal image created with "The Online Fractal Generator" by Christopher Williams, see http://usefuljs.net/fractals/docs/index.html

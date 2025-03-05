@@ -27,5 +27,7 @@ See books:
 #MachineLearning
 ```
 
+![Python for data scientists](./img.webp)
+
 Image created by ChatGPT.
 
