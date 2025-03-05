@@ -39,6 +39,7 @@ Yumbo also includes eight spreadsheets in the Excel input file that store report
 #ProjectManagement
 ```
 
+![Yumbo. Input Parameters for Efficient Scheduling](./img.webp)
 
 Image created by ChatGPT.
 
