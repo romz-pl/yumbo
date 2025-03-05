@@ -35,6 +35,8 @@ LINDO provides a comprehensive suite of tools for solving LP, MIP, and NLP probl
 #NetworkOptimization
 ```
 
+![Commercial linear programming solvers](./img.webp)
+
 Image created by ChatGPT.
 
  
