@@ -1,17 +1,17 @@
 ## :green[Intro]
-The primary objective of the project is to develop software that facilitates the optimal creation of daily schedules. This software will address the challenge faced by project managers, solution architects, and other professionals working on multiple tasks or projects simultaneously, enabling them to manage their time and resources more efficiently.
+The primary objective of the project is the development of software that will facilitate the creation of :blue[**optimal daily schedules**]. This software will address the challenge faced by project managers, solution architects, and other professionals working on multiple tasks or projects simultaneously, enabling them to manage their time and resources more efficiently.
 
 
 ## :green[Assumptions]
-It is assumed that each task is defined by its start date and end date, and that the expert is required to complete the fixed number of working hours during the lifetime of the task. It is also assumed that tasks can overlap and that the start and end dates of tasks are independent of each other. The lifetime of a task in the use cases studied so far was typically about 200 business days. Note, however, that the software does not impose any restrictions on the duration of a task.
+It is assumed that each task is defined by its :blue[**start date and end date**], and that the expert is required to complete the :blue[**fixed number of working hours**] during the lifetime of the task. It is also assumed that tasks can overlap and that the start and end dates of tasks are independent of each other. The lifetime of a task in the use cases studied so far was typically about 200 business days. Note, however, that the software does not impose any restrictions on the duration of a task.
 
 
 ## :green[Objectives]
-The project has two goals. The first is to verify that the schedule meets the constraints of the business rules. The current version of Yumbo takes into account the following business rules: the allowed number of working hours per day, the availability of experts, and the experts' vacations and holidays. Second, once the existence of the schedule has been verified, the daily schedule must be generated. It is assumed that the smallest working time unit is a quarter of an hour. This assumption is made with the understanding that during a standard working day, an expert's engagement with the task is not shorter than a quarter of an hour.
+The project has two goals. The first is to :blue[**verify**] that the schedule meets the constraints of the business rules. The current version of Yumbo takes into account the following business rules: the allowed number of working hours per day, the availability of experts, and the experts' vacations and holidays. Second, once the existence of the schedule has been verified, the daily schedule must be :blue[**generated**]. It is assumed that the smallest working time unit is a quarter of an hour. This assumption is made with the understanding that during a standard working day, an expert's engagement with the task is not shorter than a quarter of an hour.
 
 
 ## :green[Planning horizon]
-The software facilitates both short-term and long-term planning. The use of Yumbo ensures that the expert is equipped with adequate resources to meet the long-term requirements of each task. In addition, the software facilitates short-term planning and scheduling, thereby increasing the expert's comfort level. It is recommended to use Yumbo frequently and regularly, e.g. weekly. For example, the schedule should be updated when the expert's availability changes or when a new task is added to the task pool.
+The software facilitates both :blue[**short-term and long-term planning**]. The use of Yumbo ensures that the expert is equipped with adequate resources to meet the long-term requirements of each task. In addition, the software facilitates short-term planning and scheduling, thereby increasing the expert's comfort level. It is recommended to use Yumbo frequently and regularly, e.g. weekly. For example, the schedule should be updated when the expert's availability changes or when a new task is added to the task pool.
 
 
 ## :green[Mathematical models]
@@ -20,7 +20,7 @@ The above problem is solved by a mathematical model based on Integer Linear Prog
 
 
 ## :green[Mathematical model formulation]
-The following definition of a solved problem is provided. A set of tasks is defined, each task being characterized by three properties: (a) the start date; (b) the end date; (c) the work (i.e., effort) expressed in hours. Each task in the set is assigned to at least one expert, and an expert can be assigned to one or more tasks. Thus, there is a many-to-many relationship between tasks and experts. The constraints are further categorized into four classes, each of which is optional. The goal is to determine the expert's daily schedule that satisfies the following constraints:
+The definition of the problem that Yumbo solves is as follows. A set of :blue[**tasks**] is defined, each task being characterized by three properties: (a) the start date; (b) the end date; (c) the work (i.e., effort) expressed in hours. Each task in the set is assigned to at least one :blue[**expert**], and an expert can be assigned to one or more tasks. Thus, there is a :blue[**many-to-many relationship**] between tasks and experts. The constraints are further categorized into four classes, each of which is optional. The goal is to determine the expert's daily schedule that satisfies the following constraints:
 - The number of work hours per day may not be in excess of the limit.
 - The total number of hours worked must be within the limit for each billing period.
 - The number of hours worked per day must be within the limit for each day, for each task.
@@ -28,7 +28,7 @@ The following definition of a solved problem is provided. A set of tasks is defi
 
 
 ## :green[Implementation details]
-1. The problem is formulated as a linear integer programming problem. The objective function favors early completion of the task.
+1. The problem is formulated as a :blue[**linear integer programming problem**]. The objective function favors early completion of the task.
 2. The solution to this problem is a daily work schedule. This schedule specifies the number of hours each expert should work on the task each day.
 3. The mathematical problem is implemented as a [AMPL](https://ampl.com/) program and solved by [HiGHS](https://highs.dev/) solver.
 4. The graphical user interface is written in [Python](https://www.python.org/) within the [Streamlit](https://streamlit.io/) framework.
@@ -48,6 +48,6 @@ The following definition of a solved problem is provided. A set of tasks is defi
 
 
 ## :green[Source code]
-Yumbo is implemented in Python. The source code is available in the GitHub repository as **open source** under the MIT license [Yumbo](https://github.com/romz-pl/yambo/).
+[Yumbo](https://github.com/romz-pl/yambo/) is implemented in Python. The source code is available in the GitHub repository as :blue[**open source**] under the MIT license.
 
 
