@@ -18,3 +18,4 @@ You can find more about application of linear programming and operations researc
 #ProjectManagement
 ```
 
+![Operations Research and Project Management](./img.webp)
