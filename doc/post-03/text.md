@@ -18,3 +18,4 @@ For those who are interested in the application of integer linear programming to
 #SchedulingProblems
 ```
 
+![Mathematical model of the scheduling problem](./img.webp)

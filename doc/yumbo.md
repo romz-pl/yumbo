@@ -55,4 +55,5 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 
 - [Optimal generation of daily schedules](https://github.com/romz-pl/yumbo/tree/main/doc/post-01/text.md)
 - [Operations Research and Project Management](https://github.com/romz-pl/yumbo/tree/main/doc/post-02/text.md)
+- [Mathematical model of the scheduling problem](https://github.com/romz-pl/yumbo/tree/main/doc/post-03/text.md)
 
