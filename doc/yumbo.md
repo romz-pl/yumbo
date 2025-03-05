@@ -7,7 +7,7 @@ It is assumed that each task is defined by its start date and end date, and that
 
 
 ## :green[Objectives]
-The project has two objectives. Firstly, it is necessary to verify that the schedule is in compliance with the constraints of the business rules. In this regard, the following business rules must be taken into account: the permitted number of working hours per day, the availability of experts, and the holidays of experts and public holidays. Secondly, once the existence of the schedule has been checked, the daily schedule must be generated. It is assumed that the smallest working time unit is one quarter hour. This assumption is made in the understanding that during a standard working day, an expert's engagement with tasks is constrained to a maximum of 32 tasks, with each task requiring a duration of precisely one quarter hour.
+The project has two goals. The first is to verify that the schedule meets the constraints of the business rules. The current version of Yumbo takes into account the following business rules: the allowed number of working hours per day, the availability of experts, and the experts' vacations and holidays. Second, once the existence of the schedule has been verified, the daily schedule must be generated. It is assumed that the smallest working time unit is a quarter of an hour. This assumption is made with the understanding that during a standard working day, an expert's engagement with the task is not shorter than a quarter of an hour.
 
 
 ## :green[Planning horizon]
