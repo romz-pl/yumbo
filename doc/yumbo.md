@@ -65,3 +65,4 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 - [Diversity of mathematical programming languages](https://github.com/romz-pl/yumbo/tree/main/doc/post-10/text.md)
 - [Open source linear programming solvers](https://github.com/romz-pl/yumbo/tree/main/doc/post-11/text.md)
 - [Commercial linear programming solvers](https://github.com/romz-pl/yumbo/tree/main/doc/post-12/text.md)
+- [Yumbo. Scheduling, Planning and Resource Allocation](https://github.com/romz-pl/yumbo/tree/main/doc/post-13/text.md)

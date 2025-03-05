@@ -46,6 +46,8 @@ By prioritizing early task completion and balancing workloads, Yumbo enables tea
 #Scheduling
 ```
 
+![Yumbo. Scheduling, Planning and Resource Allocation](./img.webp)
+
 Image created by ChatGPT.
 
  
