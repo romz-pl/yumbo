@@ -73,3 +73,79 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 - Commercial Linear Programming Solvers, [post-12](https://github.com/romz-pl/yumbo/tree/main/doc/post-12/text.md)
 - Yumbo. Scheduling, Planning and Resource Allocation, [post-13](https://github.com/romz-pl/yumbo/tree/main/doc/post-13/text.md)
 - Yumbo. Input Parameters for Efficient Scheduling, [post-14](https://github.com/romz-pl/yumbo/tree/main/doc/post-14/text.md)
+
+
+## :green[Yumbo's evolution. From Concept to Maturity]
+
+
+The important thing is that Yumbo has gone through the entire cycle of advanced software development and can now be treated as a mature program. 
+Below is the chronological order of the development stages:
+- :blue[**The business problem has been identified!**]
+- Natural language was used to formulate the business problem.
+- The process of formulating the business problem with a mathematical rigor has been set in motion.
+- To help formulate the problem, the tools of operations research were chosen.
+- :blue[**Linear programming was used to develop the first version of the mathematical model.**]
+- The more precise version of the mathematical model using integer linear programming was proposed.
+- :blue[**The objective function that favors the early completion of the task was invented.**]
+- Business requirements were incorporated into the mathematical model as integer linear problem constraints.
+- Constraints XBDAY, UBDAY, PBSUM, XBSUM, UBSUM were introduced to represent the requirements and expectations of the business.
+- A suitable name for the program was found. Yumbo was born!
+- Additional mathematical constraints (XBSUM and UBSUM) were proposed and implemented.
+- Designing schedules through the set of constraints was invented.
+- Focusing on constraints as a means to design flexible schedules has been the subject of in-depth analysis.
+- Integer linear mathematical model was implemented as AMPL program.
+- A text mode prototype running on the NEOS service has been created and tested extensively.
+- It has been observed that text mode is not sufficient for presenting complex constraints and schedules.
+- :blue[**The process of finding the right framework for building web applications suitable for our purpose began. Streamlit was chosen.**]
+- A prototype of the application has been created with the help of the Streamlit framework.
+- :blue[**AMPL Python modules have been integrated into the program.**]
+- Support for a HiGHS solver through AMPL Python modules has been implemented.
+- A json file was used to formulate the input data.
+- A Microsoft Excel was used as the input format, which provides extensive editing capabilities and allows for the validation of the input data.
+- The Pandas and Numpy libraries were used for the analysis of the data.
+- Extensive set of sample input data has been prepared as Excel files.
+- The complete source code of Yumbo has been moved to GitHub as an open source project under the MIT license.
+- A sophisticated reporting system was one of the requirements.
+- To generate high quality professional plots and charts, the matplotlib library was chosen.
+- Design and implementation of a sophisticated reporting system using the matplotlib library began.
+- User-friendly customization of the generated charts has been added.
+- To further customize the reporting system, a "Look and Fill" section has been added.
+- The st.columns object from the Streamlit framework has been in heavy use.
+- The testbed with increasing number of experts, tasks and constraints was prepared and run on Yumbo.
+- For some use cases, memory consumption as high as 14 GiB has been observed in the pre-solve phase of the AMPL engine.
+- The process of finding a model capable of finding a schedule with more than 3,000 experts, tasks, and constraints has begun.
+- :blue[**A memory efficient mathematical model was designed and implemented.**]
+- Two mathematical models with different profiles of memory usage have been introduced: one with and one without UBDAY constraints.
+- The XBSUM and UBSUM constraints are not included in the mathematical model because they are rarely used in planning.
+- Added support for three open source solvers HiGHS, GCG, SCIP via AMPL Python modules.
+- The process of extensive testing with three solvers HiGHS, GCG, SCIP has begun.
+- It has been observed that many use cases have more than one schedule with the same value of the objective function.
+- The tests clearly showed that different solvers can produce different schedules with the same objective value.
+- Report in Streamlit framework is divided into sections: Problem, Summary, Experts, Tasks, Statistics, Model.
+- Further improvements to the reporting system were proposed and developed.
+- Data processing has been optimized for speed by using vectorized versions of functions from the Pandas and NumPy libraries.
+- Unified handling of the date data type by the Pandas library has been implemented.
+- Date format as "%Y-%m-%d" was enforced.
+- The program has been modularized and the modularization process has resulted in two sets of Python modules: img*, report*.
+- For further visualization improvements, the st.tabs and st.pills objects from the Streamlit framework were used.
+- :blue[**The Yumbo program is available as a WEB service on the Streamlit Community Cloud, https://yumbo-ampl.streamlit.app/.**]
+- The mathematical model was extended by the introduction of "overflow tasks".
+- The overflowing task model enabled us to create a schedule for tasks with insufficient number of assigned experts to complete the tasks on time.
+- For performance reasons, the ax.bar function has been replaced by the ax.fill_between function from the matplotlib library.
+- For matplotlib charts, the image compression process has been optimized by using the WebP file format instead of PNG.
+- Session variables in the Streamlit framework were used to allow simultaneous multi-user program execution.
+- Caching system in Streamlit framework was used to speed up the second time process of image generation.
+- The hash of selected session variables was passed as a function argument to enforce correct caching system behavior in Streamlit.
+- The hashlib.md5 was replaced with hashlib.blake2s.
+- Convolution of sizes 7, 15, 21 has been implemented for the "Hours per day" chart in the summary section.
+- Export of the entire schedule to a compressed CSV file is implemented.
+- Further adjustment and refinement of the reporting system is required.
+- :blue[**Yumbo solved the real case with 41 experts, 282 tasks, 423 assignments and 186 XBDAY constraints in less than 3 minutes on moderate CPU and generated a complete report without any problems.**]
+- More complex and involved input cases have been prepared.
+- The study of the behavior with the walking time has been under investigation.
+- The statistics for reporting the running time are implemented.
+- Validation of input data from Excel files has been implemented.
+- The caching process of generated images and tables has been improved and simplified.
+- Material icons have been used to improve the visual appeal of the reporting module.
+- The input data file generator has been implemented as an Excel spreadsheet.
+
