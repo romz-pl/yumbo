@@ -25,6 +25,8 @@ Whether one is a seasoned operations researcher or has just embarked on their jo
 #LinearProgramming
 ```
 
+![Value of the NEOS Server for operations research](./img.webp)
+
 Image created by ChatGPT.
 
 
