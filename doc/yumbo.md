@@ -63,3 +63,4 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 - [AMPL facilitates the formulation of optimisation problems](https://github.com/romz-pl/yumbo/tree/main/doc/post-08/text.md)
 - [Value of the NEOS Server for operations research](https://github.com/romz-pl/yumbo/tree/main/doc/post-09/text.md)
 - [Diversity of mathematical programming languages](https://github.com/romz-pl/yumbo/tree/main/doc/post-10/text.md)
+- [Open source linear programming solvers](https://github.com/romz-pl/yumbo/tree/main/doc/post-11/text.md)

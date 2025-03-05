@@ -33,6 +33,8 @@ There is a large and vibrant open source community involved in the development o
 #IntegerProgramming
 ```
 
+![Open source linear programming solvers](./img.webp)
+
 Image created by ChatGPT.
 
  
