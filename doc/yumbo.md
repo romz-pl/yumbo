@@ -75,6 +75,10 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 - Yumbo. Input Parameters for Efficient Scheduling, [post-14](https://github.com/romz-pl/yumbo/tree/main/doc/post-14/text.md)
 
 
+## :green[What others say about Yumbo]
+- Eryk Makowski, Expert Software Engineer at Infopulse, [post](https://www.linkedin.com/feed/update/urn:li:share:7304112503754559488)
+
+
 ## :green[Yumbo's evolution. From Concept to Maturity]
 
 
