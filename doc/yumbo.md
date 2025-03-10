@@ -76,7 +76,7 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 
 
 ## :green[What others say about Yumbo]
-- Eryk Makowski, Expert Software Engineer at Infopulse, [post](https://www.linkedin.com/feed/update/urn:li:share:7304112503754559488)
+- Eryk Makowski, Expert Software Engineer at Infopulse, [LinkedIn post](https://www.linkedin.com/feed/update/urn:li:share:7304112503754559488)
 
 
 ## :green[Yumbo's evolution. From Concept to Maturity]
