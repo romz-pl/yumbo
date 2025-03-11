@@ -11,7 +11,7 @@ Both **short and long-term planning** is possible with the software. By using th
 
 The above problem is solved by a mathematical model based on Mixed Integer Linear Programming, implemented in **AMPL language** and solved by HiGHS, a high performance software for linear optimisation.
 
-You can find out more about the broad topics of operations research in the book M.W. Carter, C.C. Price, G.R. **Operations Research A Practical Introduction** https://lnkd.in/dh8tvJKh
+You can find out more about the broad topics of operations research in the book M. Carter, C.C. Price, G. Rabadi [**Operations Research A Practical Introduction**](https://www.routledge.com/Operations-Research-A-Practical-Introduction/Carter-Price-Rabadi/p/book/9781032476063?srsltid=AfmBOorO32BkdDYSfB-F_ajzqlYZXw6ZOa92letf-j8U-PI_0BxZeu6x)
 
 ```
 #OperationsResearch 
