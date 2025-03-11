@@ -73,6 +73,7 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 - Commercial Linear Programming Solvers, [post-12](https://github.com/romz-pl/yumbo/tree/main/doc/post-12/text.md)
 - Yumbo. Scheduling, Planning and Resource Allocation, [post-13](https://github.com/romz-pl/yumbo/tree/main/doc/post-13/text.md)
 - Yumbo. Input Parameters for Efficient Scheduling, [post-14](https://github.com/romz-pl/yumbo/tree/main/doc/post-14/text.md)
+- Yumbo. Expert Availability and Preferences, [post-15](https://github.com/romz-pl/yumbo/tree/main/doc/post-15/text.md)
 
 
 ## :green[What others say about Yumbo]
