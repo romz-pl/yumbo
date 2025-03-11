@@ -157,13 +157,17 @@ Below is the chronological order of the development stages:
 
 
 ## :green[Bibliography]
-- Michael L. Pinedo [**Scheduling Theory, Algorithms, and Systems**](https://doi.org/10.1007/978-3-031-05921-6)
-- F. Werner, L. Burtseva, Y. Sotskov [**Exact and Heuristic Scheduling Algorithms**](https://doi.org/10.3390/books978-3-03928-469-6)
-- R.K. Phanden, A. Jain, J.P. Davim [**Integration of Process Planning and Scheduling Approaches and Algorithms**](https://doi.org/10.1201/9780429021305)
-- P. Brucker [**Scheduling Algorithms**](https://doi.org/10.1007/978-3-540-69516-5)
-- M. Carter, C.C. Price, G. Rabadi [**Operations Research A Practical Introduction**](https://www.routledge.com/Operations-Research-A-Practical-Introduction/Carter-Price-Rabadi/p/book/9781032476063?srsltid=AfmBOorO32BkdDYSfB-F_ajzqlYZXw6ZOa92letf-j8U-PI_0BxZeu6x)
-- F. Hillier, G. Lieberman [**Introduction to Operations Research**](https://www.mheducation.com/highered/product/Introduction-to-Operations-Research-Hillier.html)
-- R.J. Boucherie, A. Braaksma, H. Tijms [**Operations Research Introduction to Models and Methods**](https://doi.org/10.1142/12343)
-- H.P. Williams [**Model Building in Mathematical Programming**](https://www.wiley.com/en-dk/Model+Building+in+Mathematical+Programming%2C+5th+Edition-p-9781118443330)
-- M. Conforti, G. Cornuéjols, G. Zambelli [**Integer Programming**](https://link.springer.com/book/10.1007/978-3-319-11008-0)
-- R. Fourer, D.M. Gay, B.W. Kernighan [**AMPL A Modeling Language for Mathematical Programming**](https://ampl.com/wp-content/uploads/BOOK.pdf)
+- [**AMPL A Modeling Language for Mathematical Programming**](https://ampl.com/wp-content/uploads/BOOK.pdf), R. Fourer, D.M. Gay, B.W. Kernighan
+- [**Exact and Heuristic Scheduling Algorithms**](https://doi.org/10.3390/books978-3-03928-469-6), F. Werner, L. Burtseva, Y. Sotskov
+- [**Integer Programming**](https://link.springer.com/book/10.1007/978-3-319-11008-0), M. Conforti, G. Cornuéjols, G. Zambelli
+- [**Integration of Process Planning and Scheduling Approaches and Algorithms**](https://doi.org/10.1201/9780429021305), R.K. Phanden, A. Jain, J.P. Davim
+- [**Introduction to Management Science**](https://www.mheducation.com/highered/product/Introduction-to-Management-Science-and-Business-Analytics-A-Modeling-and-Case-Studies-Approach-with-Spreadsheets-Hillier.html?viewOption=student), F.S. Hillier, M.S. Hillier, K. Schmedders, M. Stephens
+- [**Introduction to Operations Research**](https://www.mheducation.com/highered/product/Introduction-to-Operations-Research-Hillier.html), F. Hillier, G. Lieberman
+- [**Model Building in Mathematical Programming**](https://www.wiley.com/en-dk/Model+Building+in+Mathematical+Programming%2C+5th+Edition-p-9781118443330), H.P. Williams
+- [**Modelling in Mathematical Programming Methodology and Techniques**](https://doi.org/10.1007/978-3-030-57250-1), José Manuel García Sánchez
+- [**Operations Research A Model-Based Approach**](https://doi.org/10.1007/978-3-030-97162-5), H.A. Eiselt, C.-L. Sandblom
+- [**Operations Research A Practical Introduction**](https://www.routledge.com/Operations-Research-A-Practical-Introduction/Carter-Price-Rabadi/p/book/9781032476063?srsltid=AfmBOorO32BkdDYSfB-F_ajzqlYZXw6ZOa92letf-j8U-PI_0BxZeu6x), M. Carter, C.C. Price, G. Rabadi
+- [**Operations Research Introduction to Models and Methods**](https://doi.org/10.1142/12343), R.J. Boucherie, A. Braaksma, H. Tijms
+- [**Scheduling Algorithms**](https://doi.org/10.1007/978-3-540-69516-5), P. Brucker
+- [**Scheduling Theory, Algorithms, and Systems**](https://doi.org/10.1007/978-3-031-05921-6), M.L. Pinedo
+
