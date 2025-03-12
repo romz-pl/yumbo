@@ -158,11 +158,16 @@ Below is the chronological order of the development stages:
 
 ## :green[Bibliography]
 - [**AMPL A Modeling Language for Mathematical Programming**](https://ampl.com/wp-content/uploads/BOOK.pdf), R. Fourer, D.M. Gay, B.W. Kernighan
+- [**Assignment Problems**](https://epubs.siam.org/doi/book/10.1137/1.9781611972238), R. Burkard, M. Dell’Amico, S Martello
+- [**Combinatorial and Algorithmic Mathematics From Foundation to Optimization**](https://www.wiley.com/en-it/Combinatorial+and+Algorithmic+Mathematics%3A+From+Foundation+to+Optimization-p-9781394235940), B. Alzalg
 - [**Exact and Heuristic Scheduling Algorithms**](https://doi.org/10.3390/books978-3-03928-469-6), F. Werner, L. Burtseva, Y. Sotskov
+- [**Integer Programming**](https://www.wiley.com/en-us/Integer+Programming%2C+2nd+Edition-p-9781119606536), L.A. Wolsey
 - [**Integer Programming**](https://link.springer.com/book/10.1007/978-3-319-11008-0), M. Conforti, G. Cornuéjols, G. Zambelli
 - [**Integration of Process Planning and Scheduling Approaches and Algorithms**](https://doi.org/10.1201/9780429021305), R.K. Phanden, A. Jain, J.P. Davim
 - [**Introduction to Management Science**](https://www.mheducation.com/highered/product/Introduction-to-Management-Science-and-Business-Analytics-A-Modeling-and-Case-Studies-Approach-with-Spreadsheets-Hillier.html?viewOption=student), F.S. Hillier, M.S. Hillier, K. Schmedders, M. Stephens
 - [**Introduction to Operations Research**](https://www.mheducation.com/highered/product/Introduction-to-Operations-Research-Hillier.html), F. Hillier, G. Lieberman
+- [**Linear and Nonlinear Programming**](https://doi.org/10.1007/978-0-387-74503-9), D.G. Luenberger, Y. Ye
+- [**Linear Programming Foundations and Extensions**](https://doi.org/10.1007/978-3-030-39415-8), R.J. Vanderbei
 - [**Model Building in Mathematical Programming**](https://www.wiley.com/en-dk/Model+Building+in+Mathematical+Programming%2C+5th+Edition-p-9781118443330), H.P. Williams
 - [**Modelling in Mathematical Programming Methodology and Techniques**](https://doi.org/10.1007/978-3-030-57250-1), José Manuel García Sánchez
 - [**Operations Research A Model-Based Approach**](https://doi.org/10.1007/978-3-030-97162-5), H.A. Eiselt, C.-L. Sandblom
