@@ -178,7 +178,27 @@ Below is the chronological order of the development stages:
 
 
 ## :green[Bibliography (journal papers)]
+- [**A Compromise Programming for Multi-Objective Task Assignment Problem**](https://doi.org/10.3390/computers10020015), 2021
+- [**A mathematical model for personnel task assignment problem and an application for banking sector**](https://doi.org/10.11121/ijocta.01.2020.00825), 2020
+- [**A patient assignment algorithm for home care services**](https://doi.org/10.1057/palgrave.jors.2602574), 2007
+- [**A shift-based model to solve the integrated staff rostering and task assignment problem with real-world requirements**](https://doi.org/10.1016/j.ejor.2023.02.040), 2023
+- [**A Survey of the Generalized Assignment Problem and Its Applications**](https://doi.org/10.3138/infor.45.3.123), 2007
+- [**A three-phase matheuristic algorithm for the multi-day task assignment problem**](https://doi.org/10.1016/j.cor.2023.106313), 2023
 - [**An Optimal Assignment Schedule of Staff-Subject Allocation**](https://doi.org/10.4236/jmf.2017.74042), 2017
 - [**Automated Timetable Generation**](https://doi.org/10.32628/CSEIT206393), 2020
 - [**Automated timetable generation for academic institutions**](https://doi.org/10.1063/5.0217280), 2024
 - [**Automating Timetable Generation with Conflict Resolution Algorithms in Web-Based Systems for Educational Institutions**](https://doi.org/10.1109/ICCEBS58601.2023.10449048), 2023
+- [**Mathematical model and exact algorithm for the home care worker scheduling and routing problem with lunch break requirements**](https://doi.org/10.1080/00207543.2016.1213917), 2016
+- [**Mixed Integer Linear Programming Formulation Techniques**](https://doi.org/10.1137/130915303), 2015
+- [**On teaching assistant-task assignment problem: A case study**](https://doi.org/10.1016/j.cie.2014.10.004), 2015
+- [**Optimizing resource allocation in hyperscale datacenters: scalability, usability, and experiences**](https://dl.acm.org/doi/10.5555/3691938.3691965), 2024
+- [**Solving a Large Real-world Bus Driver Scheduling Problem with a Multi-assignment based Heuristic Algorithm**](http://hdl.handle.net/11449/165793), 2017
+- [**Solving an airport ground service task assignment problem with an exact algorithm**](https://doi.org/10.1371/journal.pone.0279131), 2022
+- [**Solving Large-Scale Granular Resource Allocation Problems Efficiently with POP**](https://doi.org/10.1145/3477132.3483588), 2021
+- [**Solving max-min fair resource allocations quickly on large graphs**](https://dl.acm.org/doi/10.5555/3691825.3691931), 2024
+- [**Task assignment algorithms for unmanned aerial vehicle networks: A comprehensive survey**](https://doi.org/10.1016/j.vehcom.2022.100469), 2022
+- [**The Airport Gate Assignment Problem: A Survey**](http://dx.doi.org/10.1155/2014/923859), 2014
+- [**The manpower allocation problem with time windows and job-teaming constraints: A branch-and-price approach**](https://doi.org/10.1016/j.cor.2007.12.011), 2009
+- [**The multi-skilled multi-period workforce assignment problem**](https://doi.org/10.1080/00207543.2020.1783009), 2020
+- [**Workforce scheduling and routing problems: literature survey and computational study**](https://doi.org/10.1007/s10479-014-1687-2), 2014
+
