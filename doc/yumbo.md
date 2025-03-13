@@ -179,3 +179,6 @@ Below is the chronological order of the development stages:
 
 ## :green[Bibliography (journal papers)]
 - [**An Optimal Assignment Schedule of Staff-Subject Allocation**](https://doi.org/10.4236/jmf.2017.74042), 2017
+- [**Automated Timetable Generation**](https://doi.org/10.32628/CSEIT206393), 2020
+- [**Automated timetable generation for academic institutions**](https://doi.org/10.1063/5.0217280), 2024
+- [**Automating Timetable Generation with Conflict Resolution Algorithms in Web-Based Systems for Educational Institutions**](https://doi.org/10.1109/ICCEBS58601.2023.10449048), 2023
