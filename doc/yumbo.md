@@ -156,23 +156,26 @@ Below is the chronological order of the development stages:
 
 
 
-## :green[Bibliography]
-- [**AMPL A Modeling Language for Mathematical Programming**](https://ampl.com/wp-content/uploads/BOOK.pdf), R. Fourer, D.M. Gay, B.W. Kernighan
-- [**Assignment Problems**](https://epubs.siam.org/doi/book/10.1137/1.9781611972238), R. Burkard, M. Dell’Amico, S Martello
-- [**Combinatorial and Algorithmic Mathematics From Foundation to Optimization**](https://www.wiley.com/en-it/Combinatorial+and+Algorithmic+Mathematics%3A+From+Foundation+to+Optimization-p-9781394235940), B. Alzalg
-- [**Exact and Heuristic Scheduling Algorithms**](https://doi.org/10.3390/books978-3-03928-469-6), F. Werner, L. Burtseva, Y. Sotskov
-- [**Integer Programming**](https://www.wiley.com/en-us/Integer+Programming%2C+2nd+Edition-p-9781119606536), L.A. Wolsey
-- [**Integer Programming**](https://link.springer.com/book/10.1007/978-3-319-11008-0), M. Conforti, G. Cornuéjols, G. Zambelli
-- [**Integration of Process Planning and Scheduling Approaches and Algorithms**](https://doi.org/10.1201/9780429021305), R.K. Phanden, A. Jain, J.P. Davim
-- [**Introduction to Management Science**](https://www.mheducation.com/highered/product/Introduction-to-Management-Science-and-Business-Analytics-A-Modeling-and-Case-Studies-Approach-with-Spreadsheets-Hillier.html?viewOption=student), F.S. Hillier, M.S. Hillier, K. Schmedders, M. Stephens
-- [**Introduction to Operations Research**](https://www.mheducation.com/highered/product/Introduction-to-Operations-Research-Hillier.html), F. Hillier, G. Lieberman
-- [**Linear and Nonlinear Programming**](https://doi.org/10.1007/978-0-387-74503-9), D.G. Luenberger, Y. Ye
-- [**Linear Programming Foundations and Extensions**](https://doi.org/10.1007/978-3-030-39415-8), R.J. Vanderbei
-- [**Model Building in Mathematical Programming**](https://www.wiley.com/en-dk/Model+Building+in+Mathematical+Programming%2C+5th+Edition-p-9781118443330), H.P. Williams
-- [**Modelling in Mathematical Programming Methodology and Techniques**](https://doi.org/10.1007/978-3-030-57250-1), José Manuel García Sánchez
-- [**Operations Research A Model-Based Approach**](https://doi.org/10.1007/978-3-030-97162-5), H.A. Eiselt, C.-L. Sandblom
-- [**Operations Research A Practical Introduction**](https://www.routledge.com/Operations-Research-A-Practical-Introduction/Carter-Price-Rabadi/p/book/9781032476063?srsltid=AfmBOorO32BkdDYSfB-F_ajzqlYZXw6ZOa92letf-j8U-PI_0BxZeu6x), M. Carter, C.C. Price, G. Rabadi
-- [**Operations Research Introduction to Models and Methods**](https://doi.org/10.1142/12343), R.J. Boucherie, A. Braaksma, H. Tijms
-- [**Scheduling Algorithms**](https://doi.org/10.1007/978-3-540-69516-5), P. Brucker
-- [**Scheduling Theory, Algorithms, and Systems**](https://doi.org/10.1007/978-3-031-05921-6), M.L. Pinedo
+## :green[Bibliography (books)]
+- [**AMPL A Modeling Language for Mathematical Programming**](https://ampl.com/wp-content/uploads/BOOK.pdf), R. Fourer, D.M. Gay, B.W. Kernighan, 2003
+- [**Assignment Problems**](https://epubs.siam.org/doi/book/10.1137/1.9781611972238), R. Burkard, M. Dell’Amico, S Martello, 2012
+- [**Combinatorial and Algorithmic Mathematics From Foundation to Optimization**](https://www.wiley.com/en-it/Combinatorial+and+Algorithmic+Mathematics%3A+From+Foundation+to+Optimization-p-9781394235940), B. Alzalg, 2024
+- [**Exact and Heuristic Scheduling Algorithms**](https://doi.org/10.3390/books978-3-03928-469-6), F. Werner, L. Burtseva, Y. Sotskov, 2020
+- [**Integer Programming**](https://www.wiley.com/en-us/Integer+Programming%2C+2nd+Edition-p-9781119606536), L.A. Wolsey, 2020
+- [**Integer Programming**](https://link.springer.com/book/10.1007/978-3-319-11008-0), M. Conforti, G. Cornuéjols, G. Zambelli, 2014
+- [**Integration of Process Planning and Scheduling Approaches and Algorithms**](https://doi.org/10.1201/9780429021305), R.K. Phanden, A. Jain, J.P. Davim, 2014
+- [**Introduction to Management Science and Business Analytics: A Modeling and Case Studies Approach with Spreadsheets**](https://www.mheducation.com/highered/product/Introduction-to-Management-Science-and-Business-Analytics-A-Modeling-and-Case-Studies-Approach-with-Spreadsheets-Hillier.html?viewOption=student), F. Hillier, M. Hillier, 2023
+- [**Introduction to Operations Research**](https://www.mheducation.com/highered/product/Introduction-to-Operations-Research-Hillier.html), F. Hillier, G. Lieberman, 2024
+- [**Linear and Nonlinear Programming**](https://doi.org/10.1007/978-0-387-74503-9), D.G. Luenberger, Y. Ye, 2008
+- [**Linear Programming Foundations and Extensions**](https://doi.org/10.1007/978-3-030-39415-8), R.J. Vanderbei, 2020
+- [**Model Building in Mathematical Programming**](https://www.wiley.com/en-dk/Model+Building+in+Mathematical+Programming%2C+5th+Edition-p-9781118443330), H.P. Williams, 2013
+- [**Modelling in Mathematical Programming Methodology and Techniques**](https://doi.org/10.1007/978-3-030-57250-1), José Manuel García Sánchez, 2021
+- [**Operations Research A Model-Based Approach**](https://doi.org/10.1007/978-3-030-97162-5), H.A. Eiselt, C.-L. Sandblom, 2022
+- [**Operations Research A Practical Introduction**](https://www.routledge.com/Operations-Research-A-Practical-Introduction/Carter-Price-Rabadi/p/book/9781032476063?srsltid=AfmBOorO32BkdDYSfB-F_ajzqlYZXw6ZOa92letf-j8U-PI_0BxZeu6x), M. Carter, C.C. Price, G. Rabadi, 2017
+- [**Operations Research Introduction to Models and Methods**](https://doi.org/10.1142/12343), R.J. Boucherie, A. Braaksma, H. Tijms, 2021
+- [**Scheduling Algorithms**](https://doi.org/10.1007/978-3-540-69516-5), P. Brucker, 2007
+- [**Scheduling Theory, Algorithms, and Systems**](https://doi.org/10.1007/978-3-031-05921-6), M.L. Pinedo, 2022
 
+
+## :green[Bibliography (journal papers)]
+- [**An Optimal Assignment Schedule of Staff-Subject Allocation**](https://doi.org/10.4236/jmf.2017.74042), 2017
