@@ -48,6 +48,7 @@ def show_page_header():
     st.title("📅 :red[Yumbo.] Scheduling, Planning and Resource Allocation")
     st.subheader("Zbigniew Romanowski, Paweł Koczyk, Jacek Pikul")
     st.markdown("Source code, documentation and sample Excel input files can be found on [Yumbo's](https://github.com/romz-pl/yambo) GitHub repository.")
+    st.markdown("Our LinkedIn personal pages: [Zbigniew](https://www.linkedin.com/in/romz-pl), [Jacek](https://www.linkedin.com/in/jacek-pikul-06b0201/)")
     st.caption(f"git hash: :green[{st.session_state.git_hash}]")
     st.caption(f"Timestamp: :green[{pd.Timestamp.now().strftime('%d %B %Y, %H:%M:%S %p')}]")
     st.caption(f"Streamlit version: :green[{st.__version__}]")
