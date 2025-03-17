@@ -58,22 +58,21 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 
 
 ## :green[Yumbo dedicated posts]
-
-- Optimal Generation of Daily Schedules, [post-01](https://github.com/romz-pl/yumbo/tree/main/doc/post-01/text.md)
-- Operations Research and Project Management, [post-02](https://github.com/romz-pl/yumbo/tree/main/doc/post-02/text.md)
-- Mathematical Model of the Scheduling Problem, [post-03](https://github.com/romz-pl/yumbo/tree/main/doc/post-03/text.md)
-- Scheduling and Timetable Generation, [post-04](https://github.com/romz-pl/yumbo/tree/main/doc/post-04/text.md)
-- Python for Data Scientists, [post-05](https://github.com/romz-pl/yumbo/tree/main/doc/post-05/text.md)
-- Streamlit for Data Scientists, [post-06](https://github.com/romz-pl/yumbo/tree/main/doc/post-06/text.md)
-- Integer Programming: Lessons from Computational Mathematics, [post-07](https://github.com/romz-pl/yumbo/tree/main/doc/post-07/text.md)
-- AMPL, A Mathematical Programming Language, [post-08](https://github.com/romz-pl/yumbo/tree/main/doc/post-08/text.md)
-- Value of the NEOS Server for Operations Research, [post-09](https://github.com/romz-pl/yumbo/tree/main/doc/post-09/text.md)
-- Diversity of Mathematical Programming Languages, [post-10](https://github.com/romz-pl/yumbo/tree/main/doc/post-10/text.md)
-- Open Source Linear Programming Solvers, [post-11](https://github.com/romz-pl/yumbo/tree/main/doc/post-11/text.md)
-- Commercial Linear Programming Solvers, [post-12](https://github.com/romz-pl/yumbo/tree/main/doc/post-12/text.md)
-- Yumbo. Scheduling, Planning and Resource Allocation, [post-13](https://github.com/romz-pl/yumbo/tree/main/doc/post-13/text.md)
-- Yumbo. Input Parameters for Efficient Scheduling, [post-14](https://github.com/romz-pl/yumbo/tree/main/doc/post-14/text.md)
 - Yumbo. Expert Availability and Preferences, [post-15](https://github.com/romz-pl/yumbo/tree/main/doc/post-15/text.md)
+- Yumbo. Input Parameters for Efficient Scheduling, [post-14](https://github.com/romz-pl/yumbo/tree/main/doc/post-14/text.md)
+- Yumbo. Scheduling, Planning and Resource Allocation, [post-13](https://github.com/romz-pl/yumbo/tree/main/doc/post-13/text.md)
+- Commercial Linear Programming Solvers, [post-12](https://github.com/romz-pl/yumbo/tree/main/doc/post-12/text.md)
+- Open Source Linear Programming Solvers, [post-11](https://github.com/romz-pl/yumbo/tree/main/doc/post-11/text.md)
+- Diversity of Mathematical Programming Languages, [post-10](https://github.com/romz-pl/yumbo/tree/main/doc/post-10/text.md)
+- Value of the NEOS Server for Operations Research, [post-09](https://github.com/romz-pl/yumbo/tree/main/doc/post-09/text.md)
+- AMPL, A Mathematical Programming Language, [post-08](https://github.com/romz-pl/yumbo/tree/main/doc/post-08/text.md)
+- Integer Programming: Lessons from Computational Mathematics, [post-07](https://github.com/romz-pl/yumbo/tree/main/doc/post-07/text.md)
+- Streamlit for Data Scientists, [post-06](https://github.com/romz-pl/yumbo/tree/main/doc/post-06/text.md)
+- Python for Data Scientists, [post-05](https://github.com/romz-pl/yumbo/tree/main/doc/post-05/text.md)
+- Scheduling and Timetable Generation, [post-04](https://github.com/romz-pl/yumbo/tree/main/doc/post-04/text.md)
+- Mathematical Model of the Scheduling Problem, [post-03](https://github.com/romz-pl/yumbo/tree/main/doc/post-03/text.md)
+- Operations Research and Project Management, [post-02](https://github.com/romz-pl/yumbo/tree/main/doc/post-02/text.md)
+- Optimal Generation of Daily Schedules, [post-01](https://github.com/romz-pl/yumbo/tree/main/doc/post-01/text.md)
 
 
 ## :green[What others say about Yumbo]
