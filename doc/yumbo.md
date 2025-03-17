@@ -58,9 +58,9 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 
 
 ## :green[Yumbo dedicated posts]
-- Yumbo. Expert Availability and Preferences, [post-15](https://github.com/romz-pl/yumbo/tree/main/doc/post-15/text.md)
-- Yumbo. Input Parameters for Efficient Scheduling, [post-14](https://github.com/romz-pl/yumbo/tree/main/doc/post-14/text.md)
-- Yumbo. Scheduling, Planning and Resource Allocation, [post-13](https://github.com/romz-pl/yumbo/tree/main/doc/post-13/text.md)
+- :red[Yumbo.] Expert Availability and Preferences, [post-15](https://github.com/romz-pl/yumbo/tree/main/doc/post-15/text.md)
+- :red[Yumbo.] Input Parameters for Efficient Scheduling, [post-14](https://github.com/romz-pl/yumbo/tree/main/doc/post-14/text.md)
+- :red[Yumbo.] Scheduling, Planning and Resource Allocation, [post-13](https://github.com/romz-pl/yumbo/tree/main/doc/post-13/text.md)
 - Commercial Linear Programming Solvers, [post-12](https://github.com/romz-pl/yumbo/tree/main/doc/post-12/text.md)
 - Open Source Linear Programming Solvers, [post-11](https://github.com/romz-pl/yumbo/tree/main/doc/post-11/text.md)
 - Diversity of Mathematical Programming Languages, [post-10](https://github.com/romz-pl/yumbo/tree/main/doc/post-10/text.md)
