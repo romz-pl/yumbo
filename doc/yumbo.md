@@ -58,6 +58,7 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 
 
 ## :green[Yumbo dedicated posts]
+- :red[Yumbo.] Schedules for Developers, [post-17](https://github.com/romz-pl/yumbo/tree/main/doc/post-17/text.md)
 - :red[Yumbo.] Schedules for Project Managers, [post-16](https://github.com/romz-pl/yumbo/tree/main/doc/post-16/text.md)
 - :red[Yumbo.] Expert Availability and Preferences, [post-15](https://github.com/romz-pl/yumbo/tree/main/doc/post-15/text.md)
 - :red[Yumbo.] Input Parameters for Efficient Scheduling, [post-14](https://github.com/romz-pl/yumbo/tree/main/doc/post-14/text.md)
