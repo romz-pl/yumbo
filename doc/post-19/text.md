@@ -14,7 +14,7 @@ Operations research and linear programming provided the foundation for the first
 As the model evolved, the focus shifted to designing schedules through constraints to ensure flexibility and efficiency. The objective function was optimized to favor early task completion, further refining Yumbo's ability to generate optimal schedules.
 
 ## From prototype to full implementation
-With a robust integer linear model in place, Yumbo was implemented in AMPL and tested in a text-based prototype via the [NEOS](https://neos-server.org/neos/) service. However, it became clear that text mode alone was not sufficient to effectively represent complex scheduling constraints. This led to the search for a suitable framework, culminating in the adoption of [Streamlit](https://streamlit.io/) for web-based deployment.
+With a robust integer linear model in place, Yumbo was implemented in [AMPL](https://ampl.com/) and tested in a text-based prototype via the [NEOS](https://neos-server.org/neos/) service. However, it became clear that text mode alone was not sufficient to effectively represent complex scheduling constraints. This led to the search for a suitable framework, culminating in the adoption of [Streamlit](https://streamlit.io/) for web-based deployment.
 
 ## Yumbo today: a mature and flexible solution
 Through rigorous iteration, Yumbo has evolved into a sophisticated scheduling tool that uses advanced mathematical modeling to solve real-world business challenges. Its evolution demonstrates the power of structured problem solving, constraint-based optimization, and adaptive development methodologies.
