@@ -19,7 +19,7 @@ With a robust integer linear model in place, Yumbo was implemented in [AMPL](htt
 ## Yumbo today: a mature and flexible solution
 Through rigorous iteration, Yumbo has evolved into a sophisticated scheduling tool that uses advanced mathematical modeling to solve real-world business challenges. Its evolution demonstrates the power of structured problem solving, constraint-based optimization, and adaptive development methodologies.
 
-As Yumbo continues to evolve, it serves as a testament to how software matures through research, iteration, and practical application. 
+💡 As Yumbo continues to evolve, it serves as a testament to how software matures through research, iteration, and practical application. 
 
 🔗 Yumbo is available as an open-source tool on [GitHub](https://github.com/romz-pl/yumbo/)
 
