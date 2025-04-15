@@ -6,7 +6,7 @@ In today's business environment, a clear, structured and visually appealing **re
 Yumbo's reporting module has gone through an **impressive evolution** to meet the growing needs of its users. It started with a simple text-based prototype, but as the complexity of constraints and schedules grew, it became clear that a more interactive and visual solution was needed. This led to the adoption of Streamlit as the core framework, enabling a seamless and dynamic web-based reporting system.
 
 
-##What distinguishes Yumbo's reporting module?
+## What distinguishes Yumbo's reporting module?
 
 **Modular framework**
 Yumbo's reporting module is divided into intuitive sections. This allows users to quickly navigate and interpret key information.
