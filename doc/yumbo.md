@@ -58,6 +58,7 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 
 
 ## :green[Yumbo dedicated posts]
+- :red[Yumbo.] Significance of Advanced Reporting, [post-20](https://github.com/romz-pl/yumbo/tree/main/doc/post-20/text.md)
 - :red[Yumbo.] From Concept to Maturity, [post-19](https://github.com/romz-pl/yumbo/tree/main/doc/post-19/text.md)
 - :red[Yumbo.] Expert's satisfaction with workload, [post-18](https://github.com/romz-pl/yumbo/tree/main/doc/post-18/text.md)
 - :red[Yumbo.] Schedules for Developers, [post-17](https://github.com/romz-pl/yumbo/tree/main/doc/post-17/text.md)
