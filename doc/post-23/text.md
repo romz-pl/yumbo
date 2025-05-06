@@ -10,11 +10,11 @@ The evolution of the assignment problem parallels the growth of **combinatorial 
 
 
 ## References
-+ R. Burkard, M. Dell’Amico, S. Martello "Assignment Problems", [2012](https://epubs.siam.org/doi/book/10.1137/1.9781611972238)
-+ H.W. Kuhn, "The Hungarian Method for the assignment problem", Naval Research Logistics Quarterly, [1955](https://doi.org/10.1002/nav.3800020109)
-+ H.W. Kuhn, "Variants of the Hungarian method for assignment problems", Naval Research Logistics Quarterly, [1956](https://doi.org/10.1002/nav.3800030404)
-+ J. Munkres, "Algorithms for the Assignment and Transportation Problems", Journal of the Society for Industrial and Applied Mathematics, [1957](https://doi.org/10.1137/0105003)
-+ J. Edmonds, R.M. Karp "Theoretical Improvements in Algorithmic Efficiency for Network Flow Problems", Journal of the ACM, [1972](https://doi.org/10.1145/321694.321699)
++ R. Burkard, M. Dell’Amico, S. Martello **"Assignment Problems"**, [2012](https://epubs.siam.org/doi/book/10.1137/1.9781611972238)
++ H.W. Kuhn **"The Hungarian Method for the assignment problem"**, Naval Research Logistics Quarterly, [1955](https://doi.org/10.1002/nav.3800020109)
++ H.W. Kuhn **"Variants of the Hungarian method for assignment problems"**, Naval Research Logistics Quarterly, [1956](https://doi.org/10.1002/nav.3800030404)
++ J. Munkres **"Algorithms for the Assignment and Transportation Problems"**, Journal of the Society for Industrial and Applied Mathematics, [1957](https://doi.org/10.1137/0105003)
++ J. Edmonds, R.M. Karp **"Theoretical Improvements in Algorithmic Efficiency for Network Flow Problems"**, Journal of the ACM, [1972](https://doi.org/10.1145/321694.321699)
 
 
 ```
