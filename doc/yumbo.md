@@ -58,6 +58,7 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 
 
 ## :green[Yumbo dedicated posts]
+- Assigning Problems - A Classic Optimization Challenge, [post-23](https://github.com/romz-pl/yumbo/tree/main/doc/post-23/text.md)
 - :red[Yumbo.] Details of Mathematical Model, [post-22](https://github.com/romz-pl/yumbo/tree/main/doc/post-22/text.md)
 - :red[Yumbo.] Features of Mathematical Model, [post-21](https://github.com/romz-pl/yumbo/tree/main/doc/post-21/text.md)
 - :red[Yumbo.] Significance of Advanced Reporting, [post-20](https://github.com/romz-pl/yumbo/tree/main/doc/post-20/text.md)
