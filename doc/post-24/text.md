@@ -26,7 +26,7 @@ This growing landscape of "knapsack variants" is **no longer a niche**. In fact,
 
 Image created by ChatGPT.
 
-![Knapsack Problems: Extensions and Variants](./img.webp)
+![Knapsack Problems: Extensions and Variants](./img.png)
 
 
 
