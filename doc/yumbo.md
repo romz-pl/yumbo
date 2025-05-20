@@ -58,6 +58,7 @@ The definition of the problem that Yumbo solves is as follows. A set of :blue[**
 
 
 ## :green[Yumbo dedicated posts]
+- Design and Analysis of Approximation Algorithms, [post-25](https://github.com/romz-pl/yumbo/tree/main/doc/post-25/text.md)
 - Knapsack Problems: Extensions and Variants, [post-24](https://github.com/romz-pl/yumbo/tree/main/doc/post-24/text.md)
 - Assigning Problems - A Classic Optimization Challenge, [post-23](https://github.com/romz-pl/yumbo/tree/main/doc/post-23/text.md)
 - :red[Yumbo.] Details of Mathematical Model, [post-22](https://github.com/romz-pl/yumbo/tree/main/doc/post-22/text.md)
