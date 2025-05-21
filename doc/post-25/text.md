@@ -32,6 +32,8 @@ In addition, theoretical issues such as the existence of polynomial-time approxi
 
 Image created by ChatGPT.
 
+![Design and Analysis of Approximation Algorithms](./img-c.png)
+
 ![Design and Analysis of Approximation Algorithms](./img.png)
 
 
