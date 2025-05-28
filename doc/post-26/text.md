@@ -16,10 +16,10 @@ In addition, Pyomo provides rigorous, solver-independent interfaces that make it
 
  
 ## References
-+ Pyomo web page, https://www.pyomo.org/
-+ Pyomo GitHub repository, https://github.com/Pyomo/pyomo
-+ M.L. Bynum, G.A. Hackebeil, W.E. Hart, C.D. Laird, B.L. Nicholson, J.D. Siirola, J.-P. Watson, D.L. Woodruff "Pyomo - Optimization Modeling in Python", 2021, https://doi.org/10.1007/978-3-030-68928-5
-+ W.E. Hart, J.-P. Watson, D.L. Woodruff "Pyomo: Modeling and solving mathematical programs in Python" Mathematical Programming Computation, 3:219–260, 2011, https://doi.org/10.1007/s12532-011-0026-8
++ 🔗 Pyomo web page, https://www.pyomo.org/
++ 🔗 Pyomo GitHub repository, https://github.com/Pyomo/pyomo
++ 🔗 M.L. Bynum, G.A. Hackebeil, W.E. Hart, C.D. Laird, B.L. Nicholson, J.D. Siirola, J.-P. Watson, D.L. Woodruff "Pyomo - Optimization Modeling in Python", 2021, https://doi.org/10.1007/978-3-030-68928-5
++ 🔗 W.E. Hart, J.-P. Watson, D.L. Woodruff "Pyomo: Modeling and solving mathematical programs in Python" Mathematical Programming Computation, 3:219–260, 2011, https://doi.org/10.1007/s12532-011-0026-8
 
 
 
