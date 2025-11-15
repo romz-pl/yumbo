@@ -6,19 +6,19 @@ def show_task():
     df = st.session_state.mprob["task"]
     df_styled = df.style.format(format)
     st.subheader(f":material/receipt_long: :green[Tasks ({df.shape[0]})]", divider="green")
-    st.dataframe(df_styled, hide_index=True, use_container_width=True)
+    st.dataframe(df_styled, hide_index=True, width=True)
 
 
 def show_expert():
     df = st.session_state.mprob["expert"]
     st.subheader(f":material/group: :green[Experts ({df.shape[0]})]", divider="green")
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    st.dataframe(df, hide_index=True, width=True)
 
 
 def show_assign():
     df = st.session_state.mprob["assign"]
     st.subheader(f":material/assignment: :green[Assignment ({df.shape[0]})]", divider="green")
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    st.dataframe(df, hide_index=True, width=True)
 
 
 def show_xbday():
@@ -26,7 +26,7 @@ def show_xbday():
     df = st.session_state.mprob["xbday"]
     df_styled = df.style.format(format)
     st.subheader(f":green[xbday ({df.shape[0]})]", divider="green")
-    st.dataframe(df_styled, hide_index=True, use_container_width=True)
+    st.dataframe(df_styled, hide_index=True, width=True)
 
 
 def show_ubday():
@@ -34,7 +34,7 @@ def show_ubday():
     df = st.session_state.mprob["ubday"]
     df_styled = df.style.format(format)
     st.subheader(f":green[ubday ({df.shape[0]})]", divider="green")
-    st.dataframe(df_styled, hide_index=True, use_container_width=True)
+    st.dataframe(df_styled, hide_index=True, width=True)
 
 
 
@@ -43,7 +43,7 @@ def show_ebday():
     df = st.session_state.mprob["ebday"]
     df_styled = df.style.format(format)
     st.subheader(f":green[ebday ({df.shape[0]})]", divider="green")
-    st.dataframe(df_styled, hide_index=True, use_container_width=True)
+    st.dataframe(df_styled, hide_index=True, width=True)
 
 
 def show_period():
@@ -51,7 +51,7 @@ def show_period():
     df = st.session_state.mprob["period"]
     df_styled = df.style.format(format)
     st.subheader(f":green[Periods ({df.shape[0]})]", divider="green")
-    st.dataframe(df_styled, hide_index=True, use_container_width=True)
+    st.dataframe(df_styled, hide_index=True, width=True)
 
 
 def show_pbsum():
@@ -59,7 +59,7 @@ def show_pbsum():
     df = st.session_state.mprob["pbsum"]
     df_styled = df.style.format(format)
     st.subheader(f":green[pbsum ({df.shape[0]})]", divider="green")
-    st.dataframe(df_styled, hide_index=True, use_container_width=True)
+    st.dataframe(df_styled, hide_index=True, width=True)
 
 def show_exptas():
     col0, col1, col2 = st.columns(3)

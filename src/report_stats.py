@@ -77,7 +77,7 @@ def show_stats_chart_table():
     )
 
     # Display DataFrame
-    st.dataframe(df_styled, hide_index=True, use_container_width=False)
+    st.dataframe(df_styled, hide_index=True, width=False)
 
     mb = df[nbytes_total_col].sum()  / 1024
     st.markdown(":material/cloud_download: **For all the charts, the total number of data that was downloaded is :green[{:,.3f} MiB]**".format(mb))
