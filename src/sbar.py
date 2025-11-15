@@ -49,7 +49,7 @@ def customise_expert_show():
     df = st.data_editor(
         experts_init,
         hide_index=False,
-        width=True,
+        use_container_width=True,
         column_config={
             "Expert": st.column_config.TextColumn(disabled=True, pinned=True),
             **{col: st.column_config.CheckboxColumn() for col in experts_init.columns},
@@ -87,7 +87,7 @@ def customise_show_tasks():
     df = st.data_editor(
         tasks_init,
         hide_index=False,
-        width=True,
+        use_container_width=True,
         column_config={
             "Task": st.column_config.TextColumn(disabled=True, pinned=True),
             **{col: st.column_config.CheckboxColumn() for col in tasks_init.columns},
