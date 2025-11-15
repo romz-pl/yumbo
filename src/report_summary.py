@@ -159,7 +159,7 @@ def show_full_schedule(as_html):
     # For example: pd.set_option("styler.render.max_elements", 309748)
     #
     # Always display the dataframe as a Streamlit table without styles to avoid the above error.
-    st.dataframe(df, width=False, hide_index=True)
+    st.dataframe(df, hide_index=True)
 
     download_results(df, schedule_file_name)
 
