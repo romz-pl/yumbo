@@ -87,7 +87,7 @@ def customise_show_tasks():
     df = st.data_editor(
         tasks_init,
         hide_index=False,
-        use_container_width=True,
+        width=True,
         column_config={
             "Task": st.column_config.TextColumn(disabled=True, pinned=True),
             **{col: st.column_config.CheckboxColumn() for col in tasks_init.columns},
