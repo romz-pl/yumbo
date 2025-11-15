@@ -49,7 +49,7 @@ def customise_expert_show():
     df = st.data_editor(
         experts_init,
         hide_index=False,
-        use_container_width=True,
+        width=True,
         column_config={
             "Expert": st.column_config.TextColumn(disabled=True, pinned=True),
             **{col: st.column_config.CheckboxColumn() for col in experts_init.columns},
